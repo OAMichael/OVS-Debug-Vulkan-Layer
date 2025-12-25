@@ -1,0 +1,7 @@
+.vscode
+build
+Generated/*.txt
+*.o
+*.dll
+*.lib
+*.exp

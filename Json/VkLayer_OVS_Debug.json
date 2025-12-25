@@ -1,0 +1,22 @@
+{
+    "file_format_version": "1.2.0",
+    "layer": {
+        "name": "VK_LAYER_OVS_DEBUG",
+        "type": "GLOBAL",
+        "library_path": ".\\VkLayer_OVS_Debug.dll",
+        "api_version": "1.4.313",
+        "implementation_version": "1",
+        "description": "Debug Layer",
+        "platforms": [
+            "WINDOWS"
+        ],
+        "functions": {
+            "vkNegotiateLoaderLayerInterfaceVersion": "OVS_Debug_vkNegotiateLoaderLayerInterfaceVersion",
+            "vkGetInstanceProcAddr": "OVS_Debug_vkGetInstanceProcAddr",
+            "vkGetDeviceProcAddr": "OVS_Debug_vkGetDeviceProcAddr"
+        },
+        "disable_environment": {
+            "OVS_DEBUG_DISABLE": "1"
+        }
+    }
+}
