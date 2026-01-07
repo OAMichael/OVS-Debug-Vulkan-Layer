@@ -18,7 +18,7 @@ VkResult VulkanLayerTerminator::vkCreateInstance(const VkInstanceCreateInfo* pCr
     PFN_vkGetInstanceProcAddr gipa = layerCreateInfo->u.pLayerInfo->pfnNextGetInstanceProcAddr;
     layerCreateInfo->u.pLayerInfo = layerCreateInfo->u.pLayerInfo->pNext;
 
-    PFN_vkCreateInstance pfnCreateInstance = (PFN_vkCreateInstance)gipa(VK_NULL_HANDLE, "vkCreateInstance");
+    PFN_vkCreateInstance pfnCreateInstance = (PFN_vkCreateInstance)gipa(nullptr, "vkCreateInstance");
     if (!pfnCreateInstance) {
         return VK_ERROR_INITIALIZATION_FAILED;
     }

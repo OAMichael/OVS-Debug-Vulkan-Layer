@@ -440,6 +440,71 @@ class COutputGeneratorVulkanLayerPrinter(OutputGenerator):
         self.body += self.indent + f'}}\n\n'
 
 
+class COutputGeneratorVulkanLayerPassThrough(OutputGenerator):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.body = ''
+        self.header_guard = ''
+        self.indent = '    '
+
+    def beginFile(self, genOpts):
+        OutputGenerator.beginFile(self, genOpts)
+
+        self.body += autogen_message
+
+        self.header_guard = getMacroForFilename(self.genOpts.filename)
+        self.body += f'#ifndef {self.header_guard}\n'
+        self.body += f'#define {self.header_guard}\n\n'
+        self.body += f'#include <VulkanLayerInterfaceGenerated.h>\n\n'
+        self.body += f'namespace OVS {{\n\n'
+        self.body += f'class VulkanLayerPassThrough : public VulkanLayerInterface {{\n'
+        self.body += f'public:\n'
+
+    def endFile(self):
+        self.body += self.indent + f'virtual ~VulkanLayerPassThrough() {{}}\n'
+        self.body += f'}};\n\n'
+        self.body += f'}} // namespace OVS\n\n'
+        self.body += f'#endif // {self.header_guard}'
+
+        self.outFile.write(self.body)
+
+        OutputGenerator.endFile(self)
+
+    def genCmd(self, cmdinfo, name, alias):
+        OutputGenerator.genCmd(self, cmdinfo, name, alias)
+
+        proto = cmdinfo.elem.find('proto')
+        type = proto.find('type').text
+        params = cmdinfo.elem.findall('param')
+
+        decl = ''
+        defi = ''
+
+        defi += 2 * self.indent
+        if type != 'void':
+            defi += 'return '
+        defi += f'next_->{name}('
+        for i in range(len(params)):
+            param = params[i]
+            param_qual = safeStr(param.text)
+            param_type = safeStr(param.find('type').text) + safeStr(param.find('type').tail)
+            param_name = safeStr(param.find('name').text)
+            param_tail = safeStr(param.find('name').tail)
+
+            if i > 0:
+                decl += f', '
+                defi += f', '
+
+            decl += f'{param_qual}{param_type}{param_name}{param_tail}'
+            defi += f'{param_name}'
+        defi += ');'
+
+        self.body += self.indent + f'virtual {type} {name}({decl}) override {{\n'
+        self.body += f'{defi}\n'
+        self.body += self.indent + f'}}\n\n'
+
+
 generate_targets = [
     [COutputGeneratorCustom,
      CGeneratorOptions(prefixText='',
@@ -520,6 +585,20 @@ generate_targets = [
                        protectFeature=False,
                        conventions=vkconventions.VulkanConventions(),
                        filename='VulkanLayerPrinterGenerated.h',
+                       directory='.',
+                       apiname='vulkan',
+                       defaultExtensions='vulkan',
+                       emitExtensions = '.*')],
+
+    [COutputGeneratorVulkanLayerPassThrough,
+     CGeneratorOptions(prefixText='',
+                       apicall='VKAPI_ATTR ',
+                       apientry='VKAPI_CALL ',
+                       apientryp='VKAPI_PTR *',
+                       indentFuncProto=True,
+                       protectFeature=False,
+                       conventions=vkconventions.VulkanConventions(),
+                       filename='VulkanLayerPassThroughGenerated.h',
                        directory='.',
                        apiname='vulkan',
                        defaultExtensions='vulkan',

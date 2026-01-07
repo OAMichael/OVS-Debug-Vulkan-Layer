@@ -14,9 +14,9 @@ static FILE* f3 = NULL;
 static void AllocateConsole() {
     AllocConsole();
     SetConsoleCtrlHandler(MyHandlerRoutine, TRUE);
-    freopen_s(&f1, "CONIN$",  "rb", stdin);
-    freopen_s(&f2, "CONOUT$", "wb", stdout);
-    freopen_s(&f3, "CONOUT$", "wb", stderr);
+    freopen_s(&f1, "CONIN$",  "r", stdin);
+    freopen_s(&f2, "CONOUT$", "w", stdout);
+    freopen_s(&f3, "CONOUT$", "w", stderr);
 }
 
 static void DeallocateConsole() {

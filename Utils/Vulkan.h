@@ -7,5 +7,4 @@
 #define VULKAN_CORE_H_ 1
 #include <vulkan/vk_layer.h>
 
-
 #endif // UTILS__VULKAN_H

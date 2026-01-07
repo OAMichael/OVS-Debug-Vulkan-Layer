@@ -16,6 +16,7 @@ set(INCLUDE_DIRECTORIES
     ${GENERATED_DIR}
     ${UTILS_DIR}
     ${EXTERNAL_DIR}/Vulkan-Headers/include
+    ${EXTERNAL_DIR}/stb
 )
 
 include_directories(${INCLUDE_DIRECTORIES})
@@ -28,11 +29,14 @@ set(OVS_LAYER_SOURCES
     ${LAYER_DIR}/VulkanLayerManager.cpp
     ${LAYER_DIR}/VulkanLayerTerminator.h
     ${LAYER_DIR}/VulkanLayerTerminator.cpp
+    ${LAYER_DIR}/VulkanLayerScreenshot.h
+    ${LAYER_DIR}/VulkanLayerScreenshot.cpp
 
     ${GENERATED_DIR}/VulkanCoreGenerated.h
     ${GENERATED_DIR}/VulkanDispatchTablesGenerated.h
     ${GENERATED_DIR}/VulkanLayerEntryGenerated.cpp
     ${GENERATED_DIR}/VulkanLayerInterfaceGenerated.h
+    ${GENERATED_DIR}/VulkanLayerPassThroughGenerated.h
     ${GENERATED_DIR}/VulkanLayerTerminatorBaseGenerated.h
     ${GENERATED_DIR}/VulkanLayerPrinterGenerated.h
 
