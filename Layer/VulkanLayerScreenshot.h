@@ -9,11 +9,6 @@
 
 namespace OVS {
 
-struct FrameRange {
-    uint32_t start{0};
-    uint32_t end{0};
-};
-
 class VulkanLayerScreenshot : public VulkanLayerPassThrough {
 public:
     virtual VkResult vkCreateDevice(VkPhysicalDevice physicalDevice, const VkDeviceCreateInfo* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkDevice* pDevice) override;
@@ -26,14 +21,10 @@ public:
     virtual void vkDestroySwapchainKHR(VkDevice device, VkSwapchainKHR swapchain, const VkAllocationCallbacks* pAllocator) override;
     virtual VkResult vkQueuePresentKHR(VkQueue queue, const VkPresentInfoKHR* pPresentInfo) override;
 
-    virtual ~VulkanLayerScreenshot() {}
-
-    inline void AddFrameRange(const FrameRange& frameRange) { frameRanges_.push_back(frameRange); }
-
-    const std::string& GetFileBaseName() const { return fileBaseName_; }
-    void SetFileBaseName(const std::string& name) { fileBaseName_ = name; }
-
     uint32_t GetCurrentFrame() const { return currentFrame_; }
+
+    explicit VulkanLayerScreenshot(const VulkanLayerScreenshotSettings& settings) : VulkanLayerPassThrough(VulkanLayerType::Screenshot), settings_{settings} {}
+    virtual ~VulkanLayerScreenshot() {}
 
 private:
     struct ScreenshotInfo {
@@ -85,10 +76,9 @@ private:
     std::unordered_map<VkDevice, DeviceInfo> deviceInfos_;
     std::unordered_map<VkQueue, VkDevice> queueToDevice_;
 
-    std::string fileBaseName_;
-    uint32_t currentFrame_{1};
+    VulkanLayerScreenshotSettings settings_{};
 
-    std::vector<FrameRange> frameRanges_;
+    uint32_t currentFrame_{1};
 };
 
 } // namespace OVS

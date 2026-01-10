@@ -3114,7 +3114,11 @@ public:
         next_->vkCmdDrawMeshTasksIndirectCountEXT(commandBuffer, buffer, offset, countBuffer, countBufferOffset, maxDrawCount, stride);
     }
 
+    VulkanLayerPassThrough() : VulkanLayerInterface(VulkanLayerType::PassThrough) {}
     virtual ~VulkanLayerPassThrough() {}
+
+protected:
+    explicit VulkanLayerPassThrough(VulkanLayerType type) : VulkanLayerInterface(type) {}
 };
 
 } // namespace OVS

@@ -1,0 +1,26 @@
+{
+    "Layers": [
+        {
+            "Type": "Screenshot",
+            "Settings": {
+                "FileBaseName": "Cube",
+                "FrameRanges": "10-13, 42, 555-666, 1000-1024"
+            }
+        },
+        {
+            "Type": "Printer",
+            "Settings": {
+                "Filename": "stdout"
+            }
+        },
+        {
+            "Type": "Printer",
+            "Settings": {
+                "Filename": "Cube.txt"
+            }
+        },
+        {
+            "Type": "Terminator"
+        }
+    ]
+}

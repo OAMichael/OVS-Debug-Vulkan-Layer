@@ -3,12 +3,9 @@
 
 #include <VulkanLayerInterfaceGenerated.h>
 
-#include <memory>
 #include <vector>
 
 namespace OVS {
-
-using VulkanLayerPtr = std::unique_ptr<VulkanLayerInterface>;
 
 class VulkanLayerManager {
 public:
@@ -17,6 +14,9 @@ public:
     inline VulkanLayerPtr& GetFrontLayer() { return layers_.front(); }
 
 private:
+    bool CreateLayersFromJSON(const std::string& settingsPath);
+    bool ParseFrameRanges(const std::string& frameRangesStr, std::vector<FrameRange>& out) const;
+
     bool inited_{false};
 
     std::vector<VulkanLayerPtr> layers_;

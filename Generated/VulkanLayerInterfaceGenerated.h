@@ -9,6 +9,7 @@
 #define VULKAN_LAYER_INTERFACE_GENERATED_H
 
 #include <Vulkan.h>
+#include <VulkanLayer.h>
 
 namespace OVS {
 
@@ -790,12 +791,16 @@ public:
     virtual void vkCmdDrawMeshTasksIndirectEXT(VkCommandBuffer commandBuffer, VkBuffer buffer, VkDeviceSize offset, uint32_t drawCount, uint32_t stride) = 0;
     virtual void vkCmdDrawMeshTasksIndirectCountEXT(VkCommandBuffer commandBuffer, VkBuffer buffer, VkDeviceSize offset, VkBuffer countBuffer, VkDeviceSize countBufferOffset, uint32_t maxDrawCount, uint32_t stride) = 0;
 
+    inline VulkanLayerType GetType() const { return type_; }
+
     inline VulkanLayerInterface* GetNext() const { return next_; }
     inline void SetNext(VulkanLayerInterface* next) { next_ = next; }
 
+    explicit VulkanLayerInterface(VulkanLayerType type) : type_{type} {}
     virtual ~VulkanLayerInterface() {}
 
 protected:
+    VulkanLayerType type_{VulkanLayerType::None};
     VulkanLayerInterface* next_{nullptr};
 };
 

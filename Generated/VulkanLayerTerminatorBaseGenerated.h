@@ -3115,9 +3115,12 @@ public:
         dispatchTableNative_.vkCmdDrawMeshTasksIndirectCountEXT(commandBuffer, buffer, offset, countBuffer, countBufferOffset, maxDrawCount, stride);
     }
 
+    VulkanLayerTerminatorBase() : VulkanLayerInterface(VulkanLayerType::TerminatorBase) {}
     virtual ~VulkanLayerTerminatorBase() {}
 
 protected:
+    explicit VulkanLayerTerminatorBase(VulkanLayerType type) : VulkanLayerInterface(type) {}
+
     VulkanDispatchTable dispatchTableNative_;
 };
 

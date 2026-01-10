@@ -12,6 +12,7 @@ public:
     virtual PFN_vkVoidFunction vkGetInstanceProcAddr(VkInstance instance, const char* pName) override;
     virtual PFN_vkVoidFunction vkGetDeviceProcAddr(VkDevice device, const char* pName) override;
 
+    VulkanLayerTerminator() : VulkanLayerTerminatorBase(VulkanLayerType::Terminator) {}
     virtual ~VulkanLayerTerminator() {}
 };
 

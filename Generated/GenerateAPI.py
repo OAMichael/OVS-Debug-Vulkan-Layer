@@ -262,17 +262,21 @@ class COutputGeneratorVulkanLayerInterface(OutputGenerator):
         self.header_guard = getMacroForFilename(self.genOpts.filename)
         self.body += f'#ifndef {self.header_guard}\n'
         self.body += f'#define {self.header_guard}\n\n'
-        self.body += f'#include <Vulkan.h>\n\n'
+        self.body += f'#include <Vulkan.h>\n'
+        self.body += f'#include <VulkanLayer.h>\n\n'
         self.body += f'namespace OVS {{\n\n'
         self.body += f'class VulkanLayerInterface {{\n'
         self.body += f'public:\n'
 
     def endFile(self):
         self.body += f'\n'
+        self.body += self.indent + f'inline VulkanLayerType GetType() const {{ return type_; }}\n\n'
         self.body += self.indent + f'inline VulkanLayerInterface* GetNext() const {{ return next_; }}\n'
         self.body += self.indent + f'inline void SetNext(VulkanLayerInterface* next) {{ next_ = next; }}\n\n'
+        self.body += self.indent + f'explicit VulkanLayerInterface(VulkanLayerType type) : type_{{type}} {{}}\n'
         self.body += self.indent + f'virtual ~VulkanLayerInterface() {{}}\n\n'
         self.body += f'protected:\n'
+        self.body += self.indent + f'VulkanLayerType type_{{VulkanLayerType::None}};\n'
         self.body += self.indent + f'VulkanLayerInterface* next_{{nullptr}};\n'
         self.body += f'}};\n\n'
         self.body += f'}} // namespace OVS\n\n'
@@ -328,8 +332,10 @@ class COutputGeneratorVulkanLayerTerminatorBase(OutputGenerator):
         self.body += f'public:\n'
 
     def endFile(self):
+        self.body += self.indent + f'VulkanLayerTerminatorBase() : VulkanLayerInterface(VulkanLayerType::TerminatorBase) {{}}\n'
         self.body += self.indent + f'virtual ~VulkanLayerTerminatorBase() {{}}\n\n'
         self.body += f'protected:\n'
+        self.body += self.indent + f'explicit VulkanLayerTerminatorBase(VulkanLayerType type) : VulkanLayerInterface(type) {{}}\n\n'
         self.body += self.indent + f'VulkanDispatchTable dispatchTableNative_;\n'
         self.body += f'}};\n\n'
         self.body += f'}} // namespace OVS\n\n'
@@ -390,13 +396,26 @@ class COutputGeneratorVulkanLayerPrinter(OutputGenerator):
         self.body += f'#ifndef {self.header_guard}\n'
         self.body += f'#define {self.header_guard}\n\n'
         self.body += f'#include <VulkanLayerInterfaceGenerated.h>\n\n'
+        self.body += f'#include <fstream>\n'
         self.body += f'#include <iostream>\n\n'
         self.body += f'namespace OVS {{\n\n'
         self.body += f'class VulkanLayerPrinter : public VulkanLayerInterface {{\n'
         self.body += f'public:\n'
 
     def endFile(self):
-        self.body += self.indent + f'virtual ~VulkanLayerPrinter() {{}}\n'
+        self.body += self.indent + f'explicit VulkanLayerPrinter(const VulkanLayerPrinterSettings& settings) : VulkanLayerInterface(VulkanLayerType::Printer), settings_{{settings}} {{\n'
+        self.body += 2 * self.indent + f'std::streambuf* buf = std::cout.rdbuf();\n'
+        self.body += 2 * self.indent + f'if (settings_.filename != \"stdout\") {{\n'
+        self.body += 3 * self.indent +     f'fout_ = std::ofstream(settings_.filename);\n'
+        self.body += 3 * self.indent +     f'buf = fout_.rdbuf();\n'
+        self.body += 2 * self.indent + f'}}\n'
+        self.body += 2 * self.indent + f'out_.set_rdbuf(buf);\n'
+        self.body += self.indent + f'}}\n\n'
+        self.body += self.indent + f'virtual ~VulkanLayerPrinter() {{}}\n\n'
+        self.body += f'private:\n'
+        self.body += self.indent + f'VulkanLayerPrinterSettings settings_{{}};\n'
+        self.body += self.indent + f'std::ofstream fout_;\n'
+        self.body += self.indent + f'std::ostream out_{{std::cout.rdbuf()}};\n'
         self.body += f'}};\n\n'
         self.body += f'}} // namespace OVS\n\n'
         self.body += f'#endif // {self.header_guard}'
@@ -415,7 +434,7 @@ class COutputGeneratorVulkanLayerPrinter(OutputGenerator):
         decl = ''
         defi = ''
 
-        defi += 2 * self.indent + f'std::cout << \"{name}\" << std::endl;\n'
+        defi += 2 * self.indent + f'out_ << \"{name}\" << \'\\n\';\n'
         defi += 2 * self.indent
         if type != 'void':
             defi += 'return '
@@ -462,7 +481,10 @@ class COutputGeneratorVulkanLayerPassThrough(OutputGenerator):
         self.body += f'public:\n'
 
     def endFile(self):
-        self.body += self.indent + f'virtual ~VulkanLayerPassThrough() {{}}\n'
+        self.body += self.indent + f'VulkanLayerPassThrough() : VulkanLayerInterface(VulkanLayerType::PassThrough) {{}}\n'
+        self.body += self.indent + f'virtual ~VulkanLayerPassThrough() {{}}\n\n'
+        self.body += f'protected:\n'
+        self.body += self.indent + f'explicit VulkanLayerPassThrough(VulkanLayerType type) : VulkanLayerInterface(type) {{}}\n'
         self.body += f'}};\n\n'
         self.body += f'}} // namespace OVS\n\n'
         self.body += f'#endif // {self.header_guard}'

@@ -336,7 +336,8 @@ VkResult VulkanLayerScreenshot::vkQueuePresentKHR(VkQueue queue, const VkPresent
 
         pData = (void*)((uint8_t*)pData + screenshotInfo.offset);
 
-        std::string filename = fileBaseName_ + '-' + std::to_string(currentFrame_) + ".png";
+        const auto& fileBaseName = settings_.fileBaseName;
+        std::string filename = fileBaseName + '-' + std::to_string(currentFrame_) + ".png";
         int pngRes = stbi_write_png(filename.c_str(),
                                     swapchainInfo.width,
                                     swapchainInfo.height,
@@ -558,7 +559,8 @@ void VulkanLayerScreenshot::CleanupScreenshotInfo(ScreenshotInfo& screenshotInfo
 
 bool VulkanLayerScreenshot::ShouldMakeScreenshot(uint32_t frame) const
 {
-    for (const auto& fr : frameRanges_) {
+    const auto& frameRanges = settings_.frameRanges;
+    for (const auto& fr : frameRanges) {
         if (fr.start <= frame && frame <= fr.end) {
             return true;
         }

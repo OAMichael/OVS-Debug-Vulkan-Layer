@@ -17,6 +17,7 @@ set(INCLUDE_DIRECTORIES
     ${UTILS_DIR}
     ${EXTERNAL_DIR}/Vulkan-Headers/include
     ${EXTERNAL_DIR}/stb
+    ${EXTERNAL_DIR}/json/single_include
 )
 
 include_directories(${INCLUDE_DIRECTORIES})
@@ -47,5 +48,6 @@ set(OVS_LAYER_SOURCES
 )
 
 add_library(${OVS_LAYER_NAME} SHARED ${OVS_LAYER_SOURCES})
+add_compile_definitions(_CRT_SECURE_NO_WARNINGS)
 
 file(COPY ${JSON_DIR}/${OVS_LAYER_NAME}.json DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
