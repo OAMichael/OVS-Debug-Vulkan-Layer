@@ -19,6 +19,14 @@ void VulkanLayerManager::Init() {
     auto settingsPath = GetEnvVar("VK_OVS_DEBUG_SETTINGS_PATH");
     CreateLayersFromJSON(settingsPath);
 
+    if (!ContainsLayer(VulkanLayerType::Terminator)) {
+        std::cout << "[DEBUG] Layers chain does not contain Terminator Layer. Appending it to the end...\n";
+        AppendTerminatorLayer();
+    }
+
+    ChainLayers();
+    DumpLayerChain();
+
     inited_ = true;
 }
 
@@ -38,43 +46,46 @@ bool VulkanLayerManager::CreateLayersFromJSON(const std::string& settingsPath) {
         auto data = nlohmann::json::parse(jfile);
         const auto& layers = data["Layers"];
         for (const auto& layerInfo : layers) {
-            std::string type = layerInfo["Type"];
-
-            if (type == "Terminator") {
-                auto layer = std::make_unique<VulkanLayerTerminator>();
-                layers_.emplace_back(std::move(layer));
-            }
-            else if (type == "Printer") {
-                VulkanLayerPrinterSettings settings{};
-                if (layerInfo.contains("Settings")) {
-                    const auto& settingsJSON = layerInfo["Settings"];
-                    settings.filename = settingsJSON["Filename"];
+            std::string typeStr = layerInfo["Type"];
+            auto type = GetLayerTypeByName(typeStr);
+            switch (type) {
+                case VulkanLayerType::Terminator: {
+                    auto layer = std::make_unique<VulkanLayerTerminator>();
+                    layers_.emplace_back(std::move(layer));
+                    break;
                 }
+                case VulkanLayerType::Printer: {
+                    VulkanLayerPrinterSettings settings{};
+                    if (layerInfo.contains("Settings")) {
+                        const auto& settingsJSON = layerInfo["Settings"];
+                        settings.filename = settingsJSON["Filename"];
+                    }
 
-                auto layer = std::make_unique<VulkanLayerPrinter>(settings);
-                layers_.emplace_back(std::move(layer));
-            }
-            else if (type == "Screenshot") {
-                VulkanLayerScreenshotSettings settings{};
-                if (layerInfo.contains("Settings")) {
-                    const auto& settingsJSON = layerInfo["Settings"];
-                    settings.fileBaseName = settingsJSON["FileBaseName"];
+                    auto layer = std::make_unique<VulkanLayerPrinter>(settings);
+                    layers_.emplace_back(std::move(layer));
+                    break;
+                }
+                case VulkanLayerType::Screenshot: {
+                    VulkanLayerScreenshotSettings settings{};
+                    if (layerInfo.contains("Settings")) {
+                        const auto& settingsJSON = layerInfo["Settings"];
+                        settings.fileBaseName = settingsJSON["FileBaseName"];
 
-                    std::string frameRangesStr = settingsJSON["FrameRanges"];
-                    if (!ParseFrameRanges(frameRangesStr, settings.frameRanges)) {
-                        std::cout << "[DEBUG] Could not parse Screenshot Layer frame ranges\n";
+                        std::string frameRangesStr = settingsJSON["FrameRanges"];
+                        if (!ParseFrameRanges(frameRangesStr, settings.frameRanges)) {
+                            std::cout << "[DEBUG] Could not parse Screenshot Layer frame ranges\n";
+                        }
                     }
 
                     auto layer = std::make_unique<VulkanLayerScreenshot>(settings);
                     layers_.emplace_back(std::move(layer));
+                    break;
+                }
+                default: {
+                    std::cout << "[DEBUG] Unknown Layer Type: \"" << typeStr << "\". Skipping...\n";
+                    break;
                 }
             }
-        }
-
-        for (int i = 0; i < layers_.size() - 1; ++i) {
-            auto& curr = layers_[i];
-            auto& next = layers_[i + 1];
-            curr->SetNext(next.get());
         }
     }
     catch (nlohmann::json::exception e) {
@@ -146,6 +157,39 @@ bool VulkanLayerManager::ParseFrameRanges(const std::string& frameRangesStr, std
 
     out = std::move(frameRanges);
     return true;
+}
+
+bool VulkanLayerManager::ContainsLayer(VulkanLayerType type) const {
+    for (const auto& layer : layers_) {
+        if (layer->GetType() == type) {
+            return true;
+        }
+    }
+    return false;
+}
+
+void VulkanLayerManager::AppendTerminatorLayer() {
+    auto layer = std::make_unique<VulkanLayerTerminator>();
+    layers_.emplace_back(std::move(layer));
+}
+
+void VulkanLayerManager::ChainLayers() {
+    for (int i = 0; i < layers_.size() - 1; ++i) {
+        auto& curr = layers_[i];
+        auto& next = layers_[i + 1];
+        curr->SetNext(next.get());
+    }
+}
+
+void VulkanLayerManager::DumpLayerChain() const {
+    std::cout << "[DEBUG] VK_LAYER_OVS_DEBUG Layes\n";
+    for (const auto& layer : layers_) {
+        auto type = layer->GetType();
+        auto name = GetLayerTypeName(type);
+
+        std::cout << "[DEBUG] ||\n";
+        std::cout << "[DEBUG] " << name << "\n";
+    }
 }
 
 } // namespace OVS

@@ -13,7 +13,7 @@ struct FrameRange {
     uint32_t end{0};
 };
 
-enum VulkanLayerType {
+enum class VulkanLayerType {
     None = 0,
     PassThrough,
     TerminatorBase,
@@ -23,6 +23,36 @@ enum VulkanLayerType {
 
     Count
 };
+
+static inline const char* GetLayerTypeName(VulkanLayerType type) {
+    switch (type) {
+        case VulkanLayerType::PassThrough:      return "PassThrough";
+        case VulkanLayerType::TerminatorBase:   return "TerminatorBase";
+        case VulkanLayerType::Terminator:       return "Terminator";
+        case VulkanLayerType::Printer:          return "Printer";
+        case VulkanLayerType::Screenshot:       return "Screenshot";
+        default:                                return "Unknown";
+    }
+}
+
+static inline VulkanLayerType GetLayerTypeByName(std::string_view name) {
+    if (name == "PassThrough") {
+        return VulkanLayerType::PassThrough;
+    }
+    if (name == "TerminatorBase") {
+        return VulkanLayerType::TerminatorBase;
+    }
+    if (name == "Terminator") {
+        return VulkanLayerType::Terminator;
+    }
+    if (name == "Printer") {
+        return VulkanLayerType::Printer;
+    }
+    if (name == "Screenshot") {
+        return VulkanLayerType::Screenshot;
+    }
+    return VulkanLayerType::None;
+}
 
 class VulkanLayerInterface;
 using VulkanLayerPtr = std::unique_ptr<VulkanLayerInterface>;

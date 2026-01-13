@@ -16,6 +16,10 @@ public:
 private:
     bool CreateLayersFromJSON(const std::string& settingsPath);
     bool ParseFrameRanges(const std::string& frameRangesStr, std::vector<FrameRange>& out) const;
+    bool ContainsLayer(VulkanLayerType type) const;
+    void AppendTerminatorLayer();
+    void ChainLayers();
+    void DumpLayerChain() const;
 
     bool inited_{false};
 
