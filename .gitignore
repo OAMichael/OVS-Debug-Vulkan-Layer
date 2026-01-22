@@ -5,3 +5,4 @@ Generated/*.txt
 *.dll
 *.lib
 *.exp
+imgui.ini

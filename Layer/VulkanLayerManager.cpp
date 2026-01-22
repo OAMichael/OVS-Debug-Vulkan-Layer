@@ -2,12 +2,17 @@
 #include <VulkanLayerTerminator.h>
 #include <VulkanLayerScreenshot.h>
 #include <VulkanLayerPrinterGenerated.h>
+#include <VulkanLayerAPIDumpGenerated.h>
 
 #include <PlatformUtils.h>
 
 #include <fstream>
 #include <algorithm>
 #include <nlohmann/json.hpp>
+
+
+#include <SignatureGenerated.h>
+
 
 namespace OVS {
 
@@ -62,6 +67,17 @@ bool VulkanLayerManager::CreateLayersFromJSON(const std::string& settingsPath) {
                     }
 
                     auto layer = std::make_unique<VulkanLayerPrinter>(settings);
+                    layers_.emplace_back(std::move(layer));
+                    break;
+                }
+                case VulkanLayerType::APIDump: {
+                    VulkanLayerAPIDumpSettings settings{};
+                    if (layerInfo.contains("Settings")) {
+                        const auto& settingsJSON = layerInfo["Settings"];
+                        settings.filename = settingsJSON["Filename"];
+                    }
+
+                    auto layer = std::make_unique<VulkanLayerAPIDump>(settings);
                     layers_.emplace_back(std::move(layer));
                     break;
                 }

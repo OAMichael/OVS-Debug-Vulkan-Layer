@@ -715,15 +715,15 @@ public:
         return dispatchTableNative_.vkCreateRenderPass2(device, pCreateInfo, pAllocator, pRenderPass);
     }
 
-    virtual void vkCmdBeginRenderPass2(VkCommandBuffer commandBuffer, const VkRenderPassBeginInfo*      pRenderPassBegin, const VkSubpassBeginInfo*      pSubpassBeginInfo) override {
+    virtual void vkCmdBeginRenderPass2(VkCommandBuffer commandBuffer, const VkRenderPassBeginInfo* pRenderPassBegin, const VkSubpassBeginInfo* pSubpassBeginInfo) override {
         dispatchTableNative_.vkCmdBeginRenderPass2(commandBuffer, pRenderPassBegin, pSubpassBeginInfo);
     }
 
-    virtual void vkCmdNextSubpass2(VkCommandBuffer commandBuffer, const VkSubpassBeginInfo*      pSubpassBeginInfo, const VkSubpassEndInfo*        pSubpassEndInfo) override {
+    virtual void vkCmdNextSubpass2(VkCommandBuffer commandBuffer, const VkSubpassBeginInfo* pSubpassBeginInfo, const VkSubpassEndInfo* pSubpassEndInfo) override {
         dispatchTableNative_.vkCmdNextSubpass2(commandBuffer, pSubpassBeginInfo, pSubpassEndInfo);
     }
 
-    virtual void vkCmdEndRenderPass2(VkCommandBuffer commandBuffer, const VkSubpassEndInfo*        pSubpassEndInfo) override {
+    virtual void vkCmdEndRenderPass2(VkCommandBuffer commandBuffer, const VkSubpassEndInfo* pSubpassEndInfo) override {
         dispatchTableNative_.vkCmdEndRenderPass2(commandBuffer, pSubpassEndInfo);
     }
 
@@ -747,15 +747,15 @@ public:
         dispatchTableNative_.vkGetPrivateData(device, objectType, objectHandle, privateDataSlot, pData);
     }
 
-    virtual void vkCmdPipelineBarrier2(VkCommandBuffer                   commandBuffer, const VkDependencyInfo*                             pDependencyInfo) override {
+    virtual void vkCmdPipelineBarrier2(VkCommandBuffer commandBuffer, const VkDependencyInfo* pDependencyInfo) override {
         dispatchTableNative_.vkCmdPipelineBarrier2(commandBuffer, pDependencyInfo);
     }
 
-    virtual void vkCmdWriteTimestamp2(VkCommandBuffer                   commandBuffer, VkPipelineStageFlags2               stage, VkQueryPool                                         queryPool, uint32_t                                            query) override {
+    virtual void vkCmdWriteTimestamp2(VkCommandBuffer commandBuffer, VkPipelineStageFlags2 stage, VkQueryPool queryPool, uint32_t query) override {
         dispatchTableNative_.vkCmdWriteTimestamp2(commandBuffer, stage, queryPool, query);
     }
 
-    virtual VkResult vkQueueSubmit2(VkQueue                           queue, uint32_t                            submitCount, const VkSubmitInfo2*              pSubmits, VkFence           fence) override {
+    virtual VkResult vkQueueSubmit2(VkQueue queue, uint32_t submitCount, const VkSubmitInfo2* pSubmits, VkFence fence) override {
         return dispatchTableNative_.vkQueueSubmit2(queue, submitCount, pSubmits, fence);
     }
 
@@ -787,15 +787,15 @@ public:
         dispatchTableNative_.vkGetDeviceImageSparseMemoryRequirements(device, pInfo, pSparseMemoryRequirementCount, pSparseMemoryRequirements);
     }
 
-    virtual void vkCmdSetEvent2(VkCommandBuffer                   commandBuffer, VkEvent                                             event, const VkDependencyInfo*                             pDependencyInfo) override {
+    virtual void vkCmdSetEvent2(VkCommandBuffer commandBuffer, VkEvent event, const VkDependencyInfo* pDependencyInfo) override {
         dispatchTableNative_.vkCmdSetEvent2(commandBuffer, event, pDependencyInfo);
     }
 
-    virtual void vkCmdResetEvent2(VkCommandBuffer                   commandBuffer, VkEvent                                             event, VkPipelineStageFlags2               stageMask) override {
+    virtual void vkCmdResetEvent2(VkCommandBuffer commandBuffer, VkEvent event, VkPipelineStageFlags2 stageMask) override {
         dispatchTableNative_.vkCmdResetEvent2(commandBuffer, event, stageMask);
     }
 
-    virtual void vkCmdWaitEvents2(VkCommandBuffer                   commandBuffer, uint32_t                                            eventCount, const VkEvent*                     pEvents, const VkDependencyInfo*            pDependencyInfos) override {
+    virtual void vkCmdWaitEvents2(VkCommandBuffer commandBuffer, uint32_t eventCount, const VkEvent* pEvents, const VkDependencyInfo* pDependencyInfos) override {
         dispatchTableNative_.vkCmdWaitEvents2(commandBuffer, eventCount, pEvents, pDependencyInfos);
     }
 
@@ -807,11 +807,11 @@ public:
         dispatchTableNative_.vkCmdResolveImage2(commandBuffer, pResolveImageInfo);
     }
 
-    virtual void vkCmdBeginRendering(VkCommandBuffer                   commandBuffer, const VkRenderingInfo*                              pRenderingInfo) override {
+    virtual void vkCmdBeginRendering(VkCommandBuffer commandBuffer, const VkRenderingInfo* pRenderingInfo) override {
         dispatchTableNative_.vkCmdBeginRendering(commandBuffer, pRenderingInfo);
     }
 
-    virtual void vkCmdEndRendering(VkCommandBuffer                   commandBuffer) override {
+    virtual void vkCmdEndRendering(VkCommandBuffer commandBuffer) override {
         dispatchTableNative_.vkCmdEndRendering(commandBuffer);
     }
 
@@ -891,19 +891,19 @@ public:
         dispatchTableNative_.vkGetImageSubresourceLayout2(device, image, pSubresource, pLayout);
     }
 
-    virtual VkResult vkCopyMemoryToImage(VkDevice device, const VkCopyMemoryToImageInfo*    pCopyMemoryToImageInfo) override {
+    virtual VkResult vkCopyMemoryToImage(VkDevice device, const VkCopyMemoryToImageInfo* pCopyMemoryToImageInfo) override {
         return dispatchTableNative_.vkCopyMemoryToImage(device, pCopyMemoryToImageInfo);
     }
 
-    virtual VkResult vkCopyImageToMemory(VkDevice device, const VkCopyImageToMemoryInfo*    pCopyImageToMemoryInfo) override {
+    virtual VkResult vkCopyImageToMemory(VkDevice device, const VkCopyImageToMemoryInfo* pCopyImageToMemoryInfo) override {
         return dispatchTableNative_.vkCopyImageToMemory(device, pCopyImageToMemoryInfo);
     }
 
-    virtual VkResult vkCopyImageToImage(VkDevice device, const VkCopyImageToImageInfo*    pCopyImageToImageInfo) override {
+    virtual VkResult vkCopyImageToImage(VkDevice device, const VkCopyImageToImageInfo* pCopyImageToImageInfo) override {
         return dispatchTableNative_.vkCopyImageToImage(device, pCopyImageToImageInfo);
     }
 
-    virtual VkResult vkTransitionImageLayout(VkDevice device, uint32_t transitionCount, const VkHostImageLayoutTransitionInfo*    pTransitions) override {
+    virtual VkResult vkTransitionImageLayout(VkDevice device, uint32_t transitionCount, const VkHostImageLayoutTransitionInfo* pTransitions) override {
         return dispatchTableNative_.vkTransitionImageLayout(device, transitionCount, pTransitions);
     }
 
@@ -915,15 +915,15 @@ public:
         dispatchTableNative_.vkCmdPushDescriptorSetWithTemplate(commandBuffer, descriptorUpdateTemplate, layout, set, pData);
     }
 
-    virtual void vkCmdBindDescriptorSets2(VkCommandBuffer commandBuffer, const VkBindDescriptorSetsInfo*   pBindDescriptorSetsInfo) override {
+    virtual void vkCmdBindDescriptorSets2(VkCommandBuffer commandBuffer, const VkBindDescriptorSetsInfo* pBindDescriptorSetsInfo) override {
         dispatchTableNative_.vkCmdBindDescriptorSets2(commandBuffer, pBindDescriptorSetsInfo);
     }
 
-    virtual void vkCmdPushConstants2(VkCommandBuffer commandBuffer, const VkPushConstantsInfo*        pPushConstantsInfo) override {
+    virtual void vkCmdPushConstants2(VkCommandBuffer commandBuffer, const VkPushConstantsInfo* pPushConstantsInfo) override {
         dispatchTableNative_.vkCmdPushConstants2(commandBuffer, pPushConstantsInfo);
     }
 
-    virtual void vkCmdPushDescriptorSet2(VkCommandBuffer commandBuffer, const VkPushDescriptorSetInfo*    pPushDescriptorSetInfo) override {
+    virtual void vkCmdPushDescriptorSet2(VkCommandBuffer commandBuffer, const VkPushDescriptorSetInfo* pPushDescriptorSetInfo) override {
         dispatchTableNative_.vkCmdPushDescriptorSet2(commandBuffer, pPushDescriptorSetInfo);
     }
 
@@ -1127,11 +1127,11 @@ public:
         dispatchTableNative_.vkCmdDecodeVideoKHR(commandBuffer, pDecodeInfo);
     }
 
-    virtual void vkCmdBeginRenderingKHR(VkCommandBuffer                   commandBuffer, const VkRenderingInfo*                              pRenderingInfo) override {
+    virtual void vkCmdBeginRenderingKHR(VkCommandBuffer commandBuffer, const VkRenderingInfo* pRenderingInfo) override {
         dispatchTableNative_.vkCmdBeginRenderingKHR(commandBuffer, pRenderingInfo);
     }
 
-    virtual void vkCmdEndRenderingKHR(VkCommandBuffer                   commandBuffer) override {
+    virtual void vkCmdEndRenderingKHR(VkCommandBuffer commandBuffer) override {
         dispatchTableNative_.vkCmdEndRenderingKHR(commandBuffer);
     }
 
@@ -1247,15 +1247,15 @@ public:
         return dispatchTableNative_.vkCreateRenderPass2KHR(device, pCreateInfo, pAllocator, pRenderPass);
     }
 
-    virtual void vkCmdBeginRenderPass2KHR(VkCommandBuffer commandBuffer, const VkRenderPassBeginInfo*      pRenderPassBegin, const VkSubpassBeginInfo*      pSubpassBeginInfo) override {
+    virtual void vkCmdBeginRenderPass2KHR(VkCommandBuffer commandBuffer, const VkRenderPassBeginInfo* pRenderPassBegin, const VkSubpassBeginInfo* pSubpassBeginInfo) override {
         dispatchTableNative_.vkCmdBeginRenderPass2KHR(commandBuffer, pRenderPassBegin, pSubpassBeginInfo);
     }
 
-    virtual void vkCmdNextSubpass2KHR(VkCommandBuffer commandBuffer, const VkSubpassBeginInfo*      pSubpassBeginInfo, const VkSubpassEndInfo*        pSubpassEndInfo) override {
+    virtual void vkCmdNextSubpass2KHR(VkCommandBuffer commandBuffer, const VkSubpassBeginInfo* pSubpassBeginInfo, const VkSubpassEndInfo* pSubpassEndInfo) override {
         dispatchTableNative_.vkCmdNextSubpass2KHR(commandBuffer, pSubpassBeginInfo, pSubpassEndInfo);
     }
 
-    virtual void vkCmdEndRenderPass2KHR(VkCommandBuffer commandBuffer, const VkSubpassEndInfo*        pSubpassEndInfo) override {
+    virtual void vkCmdEndRenderPass2KHR(VkCommandBuffer commandBuffer, const VkSubpassEndInfo* pSubpassEndInfo) override {
         dispatchTableNative_.vkCmdEndRenderPass2KHR(commandBuffer, pSubpassEndInfo);
     }
 
@@ -1379,7 +1379,7 @@ public:
         return dispatchTableNative_.vkGetPhysicalDeviceFragmentShadingRatesKHR(physicalDevice, pFragmentShadingRateCount, pFragmentShadingRates);
     }
 
-    virtual void vkCmdSetFragmentShadingRateKHR(VkCommandBuffer           commandBuffer, const VkExtent2D*                           pFragmentSize, const VkFragmentShadingRateCombinerOpKHR    combinerOps[2]) override {
+    virtual void vkCmdSetFragmentShadingRateKHR(VkCommandBuffer commandBuffer, const VkExtent2D* pFragmentSize, const VkFragmentShadingRateCombinerOpKHR combinerOps[2]) override {
         dispatchTableNative_.vkCmdSetFragmentShadingRateKHR(commandBuffer, pFragmentSize, combinerOps);
     }
 
@@ -1427,15 +1427,15 @@ public:
         return dispatchTableNative_.vkDeferredOperationJoinKHR(device, operation);
     }
 
-    virtual VkResult vkGetPipelineExecutablePropertiesKHR(VkDevice                        device, const VkPipelineInfoKHR*        pPipelineInfo, uint32_t* pExecutableCount, VkPipelineExecutablePropertiesKHR* pProperties) override {
+    virtual VkResult vkGetPipelineExecutablePropertiesKHR(VkDevice device, const VkPipelineInfoKHR* pPipelineInfo, uint32_t* pExecutableCount, VkPipelineExecutablePropertiesKHR* pProperties) override {
         return dispatchTableNative_.vkGetPipelineExecutablePropertiesKHR(device, pPipelineInfo, pExecutableCount, pProperties);
     }
 
-    virtual VkResult vkGetPipelineExecutableStatisticsKHR(VkDevice                        device, const VkPipelineExecutableInfoKHR*  pExecutableInfo, uint32_t* pStatisticCount, VkPipelineExecutableStatisticKHR* pStatistics) override {
+    virtual VkResult vkGetPipelineExecutableStatisticsKHR(VkDevice device, const VkPipelineExecutableInfoKHR* pExecutableInfo, uint32_t* pStatisticCount, VkPipelineExecutableStatisticKHR* pStatistics) override {
         return dispatchTableNative_.vkGetPipelineExecutableStatisticsKHR(device, pExecutableInfo, pStatisticCount, pStatistics);
     }
 
-    virtual VkResult vkGetPipelineExecutableInternalRepresentationsKHR(VkDevice                        device, const VkPipelineExecutableInfoKHR*  pExecutableInfo, uint32_t* pInternalRepresentationCount, VkPipelineExecutableInternalRepresentationKHR* pInternalRepresentations) override {
+    virtual VkResult vkGetPipelineExecutableInternalRepresentationsKHR(VkDevice device, const VkPipelineExecutableInfoKHR* pExecutableInfo, uint32_t* pInternalRepresentationCount, VkPipelineExecutableInternalRepresentationKHR* pInternalRepresentations) override {
         return dispatchTableNative_.vkGetPipelineExecutableInternalRepresentationsKHR(device, pExecutableInfo, pInternalRepresentationCount, pInternalRepresentations);
     }
 
@@ -1459,27 +1459,27 @@ public:
         dispatchTableNative_.vkCmdEncodeVideoKHR(commandBuffer, pEncodeInfo);
     }
 
-    virtual void vkCmdSetEvent2KHR(VkCommandBuffer                   commandBuffer, VkEvent                                             event, const VkDependencyInfo*                             pDependencyInfo) override {
+    virtual void vkCmdSetEvent2KHR(VkCommandBuffer commandBuffer, VkEvent event, const VkDependencyInfo* pDependencyInfo) override {
         dispatchTableNative_.vkCmdSetEvent2KHR(commandBuffer, event, pDependencyInfo);
     }
 
-    virtual void vkCmdResetEvent2KHR(VkCommandBuffer                   commandBuffer, VkEvent                                             event, VkPipelineStageFlags2               stageMask) override {
+    virtual void vkCmdResetEvent2KHR(VkCommandBuffer commandBuffer, VkEvent event, VkPipelineStageFlags2 stageMask) override {
         dispatchTableNative_.vkCmdResetEvent2KHR(commandBuffer, event, stageMask);
     }
 
-    virtual void vkCmdWaitEvents2KHR(VkCommandBuffer                   commandBuffer, uint32_t                                            eventCount, const VkEvent*                     pEvents, const VkDependencyInfo*            pDependencyInfos) override {
+    virtual void vkCmdWaitEvents2KHR(VkCommandBuffer commandBuffer, uint32_t eventCount, const VkEvent* pEvents, const VkDependencyInfo* pDependencyInfos) override {
         dispatchTableNative_.vkCmdWaitEvents2KHR(commandBuffer, eventCount, pEvents, pDependencyInfos);
     }
 
-    virtual void vkCmdPipelineBarrier2KHR(VkCommandBuffer                   commandBuffer, const VkDependencyInfo*                             pDependencyInfo) override {
+    virtual void vkCmdPipelineBarrier2KHR(VkCommandBuffer commandBuffer, const VkDependencyInfo* pDependencyInfo) override {
         dispatchTableNative_.vkCmdPipelineBarrier2KHR(commandBuffer, pDependencyInfo);
     }
 
-    virtual void vkCmdWriteTimestamp2KHR(VkCommandBuffer                   commandBuffer, VkPipelineStageFlags2               stage, VkQueryPool                                         queryPool, uint32_t                                            query) override {
+    virtual void vkCmdWriteTimestamp2KHR(VkCommandBuffer commandBuffer, VkPipelineStageFlags2 stage, VkQueryPool queryPool, uint32_t query) override {
         dispatchTableNative_.vkCmdWriteTimestamp2KHR(commandBuffer, stage, queryPool, query);
     }
 
-    virtual VkResult vkQueueSubmit2KHR(VkQueue                           queue, uint32_t                            submitCount, const VkSubmitInfo2*              pSubmits, VkFence           fence) override {
+    virtual VkResult vkQueueSubmit2KHR(VkQueue queue, uint32_t submitCount, const VkSubmitInfo2* pSubmits, VkFence fence) override {
         return dispatchTableNative_.vkQueueSubmit2KHR(queue, submitCount, pSubmits, fence);
     }
 
@@ -1583,15 +1583,15 @@ public:
         return dispatchTableNative_.vkGetCalibratedTimestampsKHR(device, timestampCount, pTimestampInfos, pTimestamps, pMaxDeviation);
     }
 
-    virtual void vkCmdBindDescriptorSets2KHR(VkCommandBuffer commandBuffer, const VkBindDescriptorSetsInfo*   pBindDescriptorSetsInfo) override {
+    virtual void vkCmdBindDescriptorSets2KHR(VkCommandBuffer commandBuffer, const VkBindDescriptorSetsInfo* pBindDescriptorSetsInfo) override {
         dispatchTableNative_.vkCmdBindDescriptorSets2KHR(commandBuffer, pBindDescriptorSetsInfo);
     }
 
-    virtual void vkCmdPushConstants2KHR(VkCommandBuffer commandBuffer, const VkPushConstantsInfo*        pPushConstantsInfo) override {
+    virtual void vkCmdPushConstants2KHR(VkCommandBuffer commandBuffer, const VkPushConstantsInfo* pPushConstantsInfo) override {
         dispatchTableNative_.vkCmdPushConstants2KHR(commandBuffer, pPushConstantsInfo);
     }
 
-    virtual void vkCmdPushDescriptorSet2KHR(VkCommandBuffer commandBuffer, const VkPushDescriptorSetInfo*    pPushDescriptorSetInfo) override {
+    virtual void vkCmdPushDescriptorSet2KHR(VkCommandBuffer commandBuffer, const VkPushDescriptorSetInfo* pPushDescriptorSetInfo) override {
         dispatchTableNative_.vkCmdPushDescriptorSet2KHR(commandBuffer, pPushDescriptorSetInfo);
     }
 
@@ -1615,7 +1615,7 @@ public:
         dispatchTableNative_.vkCmdCopyMemoryToImageIndirectKHR(commandBuffer, pCopyMemoryToImageIndirectInfo);
     }
 
-    virtual void vkCmdEndRendering2KHR(VkCommandBuffer                   commandBuffer, const VkRenderingEndInfoKHR*        pRenderingEndInfo) override {
+    virtual void vkCmdEndRendering2KHR(VkCommandBuffer commandBuffer, const VkRenderingEndInfoKHR* pRenderingEndInfo) override {
         dispatchTableNative_.vkCmdEndRendering2KHR(commandBuffer, pRenderingEndInfo);
     }
 
@@ -1863,31 +1863,31 @@ public:
         return dispatchTableNative_.vkGetMemoryAndroidHardwareBufferANDROID(device, pInfo, pBuffer);
     }
 
-    virtual VkResult vkCreateExecutionGraphPipelinesAMDX(VkDevice                                        device, VkPipelineCache pipelineCache, uint32_t                                        createInfoCount, const VkExecutionGraphPipelineCreateInfoAMDX* pCreateInfos, const VkAllocationCallbacks*    pAllocator, VkPipeline*               pPipelines) override {
+    virtual VkResult vkCreateExecutionGraphPipelinesAMDX(VkDevice device, VkPipelineCache pipelineCache, uint32_t createInfoCount, const VkExecutionGraphPipelineCreateInfoAMDX* pCreateInfos, const VkAllocationCallbacks* pAllocator, VkPipeline* pPipelines) override {
         return dispatchTableNative_.vkCreateExecutionGraphPipelinesAMDX(device, pipelineCache, createInfoCount, pCreateInfos, pAllocator, pPipelines);
     }
 
-    virtual VkResult vkGetExecutionGraphPipelineScratchSizeAMDX(VkDevice                                        device, VkPipeline                                      executionGraph, VkExecutionGraphPipelineScratchSizeAMDX*        pSizeInfo) override {
+    virtual VkResult vkGetExecutionGraphPipelineScratchSizeAMDX(VkDevice device, VkPipeline executionGraph, VkExecutionGraphPipelineScratchSizeAMDX* pSizeInfo) override {
         return dispatchTableNative_.vkGetExecutionGraphPipelineScratchSizeAMDX(device, executionGraph, pSizeInfo);
     }
 
-    virtual VkResult vkGetExecutionGraphPipelineNodeIndexAMDX(VkDevice                                        device, VkPipeline                                      executionGraph, const VkPipelineShaderStageNodeCreateInfoAMDX*  pNodeInfo, uint32_t*                                       pNodeIndex) override {
+    virtual VkResult vkGetExecutionGraphPipelineNodeIndexAMDX(VkDevice device, VkPipeline executionGraph, const VkPipelineShaderStageNodeCreateInfoAMDX* pNodeInfo, uint32_t* pNodeIndex) override {
         return dispatchTableNative_.vkGetExecutionGraphPipelineNodeIndexAMDX(device, executionGraph, pNodeInfo, pNodeIndex);
     }
 
-    virtual void vkCmdInitializeGraphScratchMemoryAMDX(VkCommandBuffer                                 commandBuffer, VkPipeline                                      executionGraph, VkDeviceAddress                                 scratch, VkDeviceSize                                    scratchSize) override {
+    virtual void vkCmdInitializeGraphScratchMemoryAMDX(VkCommandBuffer commandBuffer, VkPipeline executionGraph, VkDeviceAddress scratch, VkDeviceSize scratchSize) override {
         dispatchTableNative_.vkCmdInitializeGraphScratchMemoryAMDX(commandBuffer, executionGraph, scratch, scratchSize);
     }
 
-    virtual void vkCmdDispatchGraphAMDX(VkCommandBuffer                                 commandBuffer, VkDeviceAddress                                 scratch, VkDeviceSize                                    scratchSize, const VkDispatchGraphCountInfoAMDX*             pCountInfo) override {
+    virtual void vkCmdDispatchGraphAMDX(VkCommandBuffer commandBuffer, VkDeviceAddress scratch, VkDeviceSize scratchSize, const VkDispatchGraphCountInfoAMDX* pCountInfo) override {
         dispatchTableNative_.vkCmdDispatchGraphAMDX(commandBuffer, scratch, scratchSize, pCountInfo);
     }
 
-    virtual void vkCmdDispatchGraphIndirectAMDX(VkCommandBuffer                                 commandBuffer, VkDeviceAddress                                 scratch, VkDeviceSize                                    scratchSize, const VkDispatchGraphCountInfoAMDX*             pCountInfo) override {
+    virtual void vkCmdDispatchGraphIndirectAMDX(VkCommandBuffer commandBuffer, VkDeviceAddress scratch, VkDeviceSize scratchSize, const VkDispatchGraphCountInfoAMDX* pCountInfo) override {
         dispatchTableNative_.vkCmdDispatchGraphIndirectAMDX(commandBuffer, scratch, scratchSize, pCountInfo);
     }
 
-    virtual void vkCmdDispatchGraphIndirectCountAMDX(VkCommandBuffer                                 commandBuffer, VkDeviceAddress                                 scratch, VkDeviceSize                                    scratchSize, VkDeviceAddress                                 countInfo) override {
+    virtual void vkCmdDispatchGraphIndirectCountAMDX(VkCommandBuffer commandBuffer, VkDeviceAddress scratch, VkDeviceSize scratchSize, VkDeviceAddress countInfo) override {
         dispatchTableNative_.vkCmdDispatchGraphIndirectCountAMDX(commandBuffer, scratch, scratchSize, countInfo);
     }
 
@@ -1991,7 +1991,7 @@ public:
         dispatchTableNative_.vkCmdWriteBufferMarkerAMD(commandBuffer, pipelineStage, dstBuffer, dstOffset, marker);
     }
 
-    virtual void vkCmdWriteBufferMarker2AMD(VkCommandBuffer                   commandBuffer, VkPipelineStageFlags2               stage, VkBuffer                                            dstBuffer, VkDeviceSize                                        dstOffset, uint32_t                                            marker) override {
+    virtual void vkCmdWriteBufferMarker2AMD(VkCommandBuffer commandBuffer, VkPipelineStageFlags2 stage, VkBuffer dstBuffer, VkDeviceSize dstOffset, uint32_t marker) override {
         dispatchTableNative_.vkCmdWriteBufferMarker2AMD(commandBuffer, stage, dstBuffer, dstOffset, marker);
     }
 
@@ -2191,19 +2191,19 @@ public:
         dispatchTableNative_.vkCmdSetStencilOpEXT(commandBuffer, faceMask, failOp, passOp, depthFailOp, compareOp);
     }
 
-    virtual VkResult vkCopyMemoryToImageEXT(VkDevice device, const VkCopyMemoryToImageInfo*    pCopyMemoryToImageInfo) override {
+    virtual VkResult vkCopyMemoryToImageEXT(VkDevice device, const VkCopyMemoryToImageInfo* pCopyMemoryToImageInfo) override {
         return dispatchTableNative_.vkCopyMemoryToImageEXT(device, pCopyMemoryToImageInfo);
     }
 
-    virtual VkResult vkCopyImageToMemoryEXT(VkDevice device, const VkCopyImageToMemoryInfo*    pCopyImageToMemoryInfo) override {
+    virtual VkResult vkCopyImageToMemoryEXT(VkDevice device, const VkCopyImageToMemoryInfo* pCopyImageToMemoryInfo) override {
         return dispatchTableNative_.vkCopyImageToMemoryEXT(device, pCopyImageToMemoryInfo);
     }
 
-    virtual VkResult vkCopyImageToImageEXT(VkDevice device, const VkCopyImageToImageInfo*    pCopyImageToImageInfo) override {
+    virtual VkResult vkCopyImageToImageEXT(VkDevice device, const VkCopyImageToImageInfo* pCopyImageToImageInfo) override {
         return dispatchTableNative_.vkCopyImageToImageEXT(device, pCopyImageToImageInfo);
     }
 
-    virtual VkResult vkTransitionImageLayoutEXT(VkDevice device, uint32_t transitionCount, const VkHostImageLayoutTransitionInfo*    pTransitions) override {
+    virtual VkResult vkTransitionImageLayoutEXT(VkDevice device, uint32_t transitionCount, const VkHostImageLayoutTransitionInfo* pTransitions) override {
         return dispatchTableNative_.vkTransitionImageLayoutEXT(device, transitionCount, pTransitions);
     }
 
@@ -2239,7 +2239,7 @@ public:
         dispatchTableNative_.vkDestroyIndirectCommandsLayoutNV(device, indirectCommandsLayout, pAllocator);
     }
 
-    virtual void vkCmdSetDepthBias2EXT(VkCommandBuffer commandBuffer, const VkDepthBiasInfoEXT*         pDepthBiasInfo) override {
+    virtual void vkCmdSetDepthBias2EXT(VkCommandBuffer commandBuffer, const VkDepthBiasInfoEXT* pDepthBiasInfo) override {
         dispatchTableNative_.vkCmdSetDepthBias2EXT(commandBuffer, pDepthBiasInfo);
     }
 
@@ -2351,7 +2351,7 @@ public:
         return dispatchTableNative_.vkGetAccelerationStructureOpaqueCaptureDescriptorDataEXT(device, pInfo, pData);
     }
 
-    virtual void vkCmdSetFragmentShadingRateEnumNV(VkCommandBuffer           commandBuffer, VkFragmentShadingRateNV                     shadingRate, const VkFragmentShadingRateCombinerOpKHR    combinerOps[2]) override {
+    virtual void vkCmdSetFragmentShadingRateEnumNV(VkCommandBuffer commandBuffer, VkFragmentShadingRateNV shadingRate, const VkFragmentShadingRateCombinerOpKHR combinerOps[2]) override {
         dispatchTableNative_.vkCmdSetFragmentShadingRateEnumNV(commandBuffer, shadingRate, combinerOps);
     }
 
@@ -2463,7 +2463,7 @@ public:
         return dispatchTableNative_.vkGetPhysicalDeviceScreenPresentationSupportQNX(physicalDevice, queueFamilyIndex, window);
     }
 
-    virtual void vkCmdSetColorWriteEnableEXT(VkCommandBuffer       commandBuffer, uint32_t                                attachmentCount, const VkBool32*   pColorWriteEnables) override {
+    virtual void vkCmdSetColorWriteEnableEXT(VkCommandBuffer commandBuffer, uint32_t attachmentCount, const VkBool32* pColorWriteEnables) override {
         dispatchTableNative_.vkCmdSetColorWriteEnableEXT(commandBuffer, attachmentCount, pColorWriteEnables);
     }
 
@@ -2475,7 +2475,7 @@ public:
         dispatchTableNative_.vkCmdDrawMultiIndexedEXT(commandBuffer, drawCount, pIndexInfo, instanceCount, firstInstance, stride, pVertexOffset);
     }
 
-    virtual VkResult vkCreateMicromapEXT(VkDevice                                           device, const VkMicromapCreateInfoEXT*        pCreateInfo, const VkAllocationCallbacks*       pAllocator, VkMicromapEXT*                        pMicromap) override {
+    virtual VkResult vkCreateMicromapEXT(VkDevice device, const VkMicromapCreateInfoEXT* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkMicromapEXT* pMicromap) override {
         return dispatchTableNative_.vkCreateMicromapEXT(device, pCreateInfo, pAllocator, pMicromap);
     }
 
@@ -2483,11 +2483,11 @@ public:
         dispatchTableNative_.vkDestroyMicromapEXT(device, micromap, pAllocator);
     }
 
-    virtual void vkCmdBuildMicromapsEXT(VkCommandBuffer                                    commandBuffer, uint32_t infoCount, const VkMicromapBuildInfoEXT* pInfos) override {
+    virtual void vkCmdBuildMicromapsEXT(VkCommandBuffer commandBuffer, uint32_t infoCount, const VkMicromapBuildInfoEXT* pInfos) override {
         dispatchTableNative_.vkCmdBuildMicromapsEXT(commandBuffer, infoCount, pInfos);
     }
 
-    virtual VkResult vkBuildMicromapsEXT(VkDevice                                           device, VkDeferredOperationKHR deferredOperation, uint32_t infoCount, const VkMicromapBuildInfoEXT* pInfos) override {
+    virtual VkResult vkBuildMicromapsEXT(VkDevice device, VkDeferredOperationKHR deferredOperation, uint32_t infoCount, const VkMicromapBuildInfoEXT* pInfos) override {
         return dispatchTableNative_.vkBuildMicromapsEXT(device, deferredOperation, infoCount, pInfos);
     }
 
@@ -2503,7 +2503,7 @@ public:
         return dispatchTableNative_.vkCopyMemoryToMicromapEXT(device, deferredOperation, pInfo);
     }
 
-    virtual VkResult vkWriteMicromapsPropertiesEXT(VkDevice device, uint32_t micromapCount, const VkMicromapEXT* pMicromaps, VkQueryType  queryType, size_t       dataSize, void* pData, size_t stride) override {
+    virtual VkResult vkWriteMicromapsPropertiesEXT(VkDevice device, uint32_t micromapCount, const VkMicromapEXT* pMicromaps, VkQueryType queryType, size_t dataSize, void* pData, size_t stride) override {
         return dispatchTableNative_.vkWriteMicromapsPropertiesEXT(device, micromapCount, pMicromaps, queryType, dataSize, pData, stride);
     }
 
@@ -2527,7 +2527,7 @@ public:
         dispatchTableNative_.vkGetDeviceMicromapCompatibilityEXT(device, pVersionInfo, pCompatibility);
     }
 
-    virtual void vkGetMicromapBuildSizesEXT(VkDevice                                            device, VkAccelerationStructureBuildTypeKHR                 buildType, const VkMicromapBuildInfoEXT*  pBuildInfo, VkMicromapBuildSizesInfoEXT*           pSizeInfo) override {
+    virtual void vkGetMicromapBuildSizesEXT(VkDevice device, VkAccelerationStructureBuildTypeKHR buildType, const VkMicromapBuildInfoEXT* pBuildInfo, VkMicromapBuildSizesInfoEXT* pSizeInfo) override {
         dispatchTableNative_.vkGetMicromapBuildSizesEXT(device, buildType, pBuildInfo, pSizeInfo);
     }
 
@@ -2539,7 +2539,7 @@ public:
         dispatchTableNative_.vkCmdDrawClusterIndirectHUAWEI(commandBuffer, buffer, offset);
     }
 
-    virtual void vkSetDeviceMemoryPriorityEXT(VkDevice       device, VkDeviceMemory memory, float          priority) override {
+    virtual void vkSetDeviceMemoryPriorityEXT(VkDevice device, VkDeviceMemory memory, float priority) override {
         dispatchTableNative_.vkSetDeviceMemoryPriorityEXT(device, memory, priority);
     }
 
@@ -2571,7 +2571,7 @@ public:
         dispatchTableNative_.vkGetPipelineIndirectMemoryRequirementsNV(device, pCreateInfo, pMemoryRequirements);
     }
 
-    virtual void vkCmdUpdatePipelineIndirectBufferNV(VkCommandBuffer commandBuffer, VkPipelineBindPoint           pipelineBindPoint, VkPipeline                    pipeline) override {
+    virtual void vkCmdUpdatePipelineIndirectBufferNV(VkCommandBuffer commandBuffer, VkPipelineBindPoint pipelineBindPoint, VkPipeline pipeline) override {
         dispatchTableNative_.vkCmdUpdatePipelineIndirectBufferNV(commandBuffer, pipelineBindPoint, pipeline);
     }
 
@@ -2595,11 +2595,11 @@ public:
         dispatchTableNative_.vkCmdSetPolygonModeEXT(commandBuffer, polygonMode);
     }
 
-    virtual void vkCmdSetRasterizationSamplesEXT(VkCommandBuffer commandBuffer, VkSampleCountFlagBits  rasterizationSamples) override {
+    virtual void vkCmdSetRasterizationSamplesEXT(VkCommandBuffer commandBuffer, VkSampleCountFlagBits rasterizationSamples) override {
         dispatchTableNative_.vkCmdSetRasterizationSamplesEXT(commandBuffer, rasterizationSamples);
     }
 
-    virtual void vkCmdSetSampleMaskEXT(VkCommandBuffer commandBuffer, VkSampleCountFlagBits  samples, const VkSampleMask*    pSampleMask) override {
+    virtual void vkCmdSetSampleMaskEXT(VkCommandBuffer commandBuffer, VkSampleCountFlagBits samples, const VkSampleMask* pSampleMask) override {
         dispatchTableNative_.vkCmdSetSampleMaskEXT(commandBuffer, samples, pSampleMask);
     }
 
@@ -2743,15 +2743,15 @@ public:
         dispatchTableNative_.vkCmdCopyTensorARM(commandBuffer, pCopyTensorInfo);
     }
 
-    virtual void vkGetPhysicalDeviceExternalTensorPropertiesARM(VkPhysicalDevice                             physicalDevice, const VkPhysicalDeviceExternalTensorInfoARM* pExternalTensorInfo, VkExternalTensorPropertiesARM*               pExternalTensorProperties) override {
+    virtual void vkGetPhysicalDeviceExternalTensorPropertiesARM(VkPhysicalDevice physicalDevice, const VkPhysicalDeviceExternalTensorInfoARM* pExternalTensorInfo, VkExternalTensorPropertiesARM* pExternalTensorProperties) override {
         dispatchTableNative_.vkGetPhysicalDeviceExternalTensorPropertiesARM(physicalDevice, pExternalTensorInfo, pExternalTensorProperties);
     }
 
-    virtual VkResult vkGetTensorOpaqueCaptureDescriptorDataARM(VkDevice                                    device, const VkTensorCaptureDescriptorDataInfoARM* pInfo, void*                                       pData) override {
+    virtual VkResult vkGetTensorOpaqueCaptureDescriptorDataARM(VkDevice device, const VkTensorCaptureDescriptorDataInfoARM* pInfo, void* pData) override {
         return dispatchTableNative_.vkGetTensorOpaqueCaptureDescriptorDataARM(device, pInfo, pData);
     }
 
-    virtual VkResult vkGetTensorViewOpaqueCaptureDescriptorDataARM(VkDevice                                        device, const VkTensorViewCaptureDescriptorDataInfoARM* pInfo, void*                                           pData) override {
+    virtual VkResult vkGetTensorViewOpaqueCaptureDescriptorDataARM(VkDevice device, const VkTensorViewCaptureDescriptorDataInfoARM* pInfo, void* pData) override {
         return dispatchTableNative_.vkGetTensorViewOpaqueCaptureDescriptorDataARM(device, pInfo, pData);
     }
 
@@ -2847,11 +2847,11 @@ public:
         dispatchTableNative_.vkQueueNotifyOutOfBandNV(queue, pQueueTypeInfo);
     }
 
-    virtual VkResult vkCreateDataGraphPipelinesARM(VkDevice               device, VkDeferredOperationKHR deferredOperation, VkPipelineCache        pipelineCache, uint32_t               createInfoCount, const VkDataGraphPipelineCreateInfoARM* pCreateInfos, const VkAllocationCallbacks* pAllocator, VkPipeline*     pPipelines) override {
+    virtual VkResult vkCreateDataGraphPipelinesARM(VkDevice device, VkDeferredOperationKHR deferredOperation, VkPipelineCache pipelineCache, uint32_t createInfoCount, const VkDataGraphPipelineCreateInfoARM* pCreateInfos, const VkAllocationCallbacks* pAllocator, VkPipeline* pPipelines) override {
         return dispatchTableNative_.vkCreateDataGraphPipelinesARM(device, deferredOperation, pipelineCache, createInfoCount, pCreateInfos, pAllocator, pPipelines);
     }
 
-    virtual VkResult vkCreateDataGraphPipelineSessionARM(VkDevice                                     device, const VkDataGraphPipelineSessionCreateInfoARM*   pCreateInfo, const VkAllocationCallbacks* pAllocator, VkDataGraphPipelineSessionARM*                   pSession) override {
+    virtual VkResult vkCreateDataGraphPipelineSessionARM(VkDevice device, const VkDataGraphPipelineSessionCreateInfoARM* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkDataGraphPipelineSessionARM* pSession) override {
         return dispatchTableNative_.vkCreateDataGraphPipelineSessionARM(device, pCreateInfo, pAllocator, pSession);
     }
 
@@ -2879,15 +2879,15 @@ public:
         return dispatchTableNative_.vkGetDataGraphPipelineAvailablePropertiesARM(device, pPipelineInfo, pPropertiesCount, pProperties);
     }
 
-    virtual VkResult vkGetDataGraphPipelinePropertiesARM(VkDevice                          device, const VkDataGraphPipelineInfoARM* pPipelineInfo, uint32_t                          propertiesCount, VkDataGraphPipelinePropertyQueryResultARM* pProperties) override {
+    virtual VkResult vkGetDataGraphPipelinePropertiesARM(VkDevice device, const VkDataGraphPipelineInfoARM* pPipelineInfo, uint32_t propertiesCount, VkDataGraphPipelinePropertyQueryResultARM* pProperties) override {
         return dispatchTableNative_.vkGetDataGraphPipelinePropertiesARM(device, pPipelineInfo, propertiesCount, pProperties);
     }
 
-    virtual VkResult vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM(VkPhysicalDevice                     physicalDevice, uint32_t                             queueFamilyIndex, uint32_t*                            pQueueFamilyDataGraphPropertyCount, VkQueueFamilyDataGraphPropertiesARM* pQueueFamilyDataGraphProperties) override {
+    virtual VkResult vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM(VkPhysicalDevice physicalDevice, uint32_t queueFamilyIndex, uint32_t* pQueueFamilyDataGraphPropertyCount, VkQueueFamilyDataGraphPropertiesARM* pQueueFamilyDataGraphProperties) override {
         return dispatchTableNative_.vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM(physicalDevice, queueFamilyIndex, pQueueFamilyDataGraphPropertyCount, pQueueFamilyDataGraphProperties);
     }
 
-    virtual void vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM(VkPhysicalDevice                                 physicalDevice, const VkPhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM* pQueueFamilyDataGraphProcessingEngineInfo, VkQueueFamilyDataGraphProcessingEnginePropertiesARM*               pQueueFamilyDataGraphProcessingEngineProperties) override {
+    virtual void vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM(VkPhysicalDevice physicalDevice, const VkPhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM* pQueueFamilyDataGraphProcessingEngineInfo, VkQueueFamilyDataGraphProcessingEnginePropertiesARM* pQueueFamilyDataGraphProcessingEngineProperties) override {
         dispatchTableNative_.vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM(physicalDevice, pQueueFamilyDataGraphProcessingEngineInfo, pQueueFamilyDataGraphProcessingEngineProperties);
     }
 
@@ -2927,15 +2927,15 @@ public:
         dispatchTableNative_.vkGetClusterAccelerationStructureBuildSizesNV(device, pInfo, pSizeInfo);
     }
 
-    virtual void vkCmdBuildClusterAccelerationStructureIndirectNV(VkCommandBuffer                     commandBuffer, const VkClusterAccelerationStructureCommandsInfoNV*  pCommandInfos) override {
+    virtual void vkCmdBuildClusterAccelerationStructureIndirectNV(VkCommandBuffer commandBuffer, const VkClusterAccelerationStructureCommandsInfoNV* pCommandInfos) override {
         dispatchTableNative_.vkCmdBuildClusterAccelerationStructureIndirectNV(commandBuffer, pCommandInfos);
     }
 
-    virtual void vkGetPartitionedAccelerationStructuresBuildSizesNV(VkDevice device, const VkPartitionedAccelerationStructureInstancesInputNV* pInfo, VkAccelerationStructureBuildSizesInfoKHR*                  pSizeInfo) override {
+    virtual void vkGetPartitionedAccelerationStructuresBuildSizesNV(VkDevice device, const VkPartitionedAccelerationStructureInstancesInputNV* pInfo, VkAccelerationStructureBuildSizesInfoKHR* pSizeInfo) override {
         dispatchTableNative_.vkGetPartitionedAccelerationStructuresBuildSizesNV(device, pInfo, pSizeInfo);
     }
 
-    virtual void vkCmdBuildPartitionedAccelerationStructuresNV(VkCommandBuffer                     commandBuffer, const VkBuildPartitionedAccelerationStructureInfoNV*  pBuildInfo) override {
+    virtual void vkCmdBuildPartitionedAccelerationStructuresNV(VkCommandBuffer commandBuffer, const VkBuildPartitionedAccelerationStructureInfoNV* pBuildInfo) override {
         dispatchTableNative_.vkCmdBuildPartitionedAccelerationStructuresNV(commandBuffer, pBuildInfo);
     }
 
@@ -3007,7 +3007,7 @@ public:
         return dispatchTableNative_.vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARM(physicalDevice, queueFamilyIndex, pCounterCount, pCounters, pCounterDescriptions);
     }
 
-    virtual void vkCmdEndRendering2EXT(VkCommandBuffer                   commandBuffer, const VkRenderingEndInfoKHR*        pRenderingEndInfo) override {
+    virtual void vkCmdEndRendering2EXT(VkCommandBuffer commandBuffer, const VkRenderingEndInfoKHR* pRenderingEndInfo) override {
         dispatchTableNative_.vkCmdEndRendering2EXT(commandBuffer, pRenderingEndInfo);
     }
 
@@ -3015,7 +3015,7 @@ public:
         dispatchTableNative_.vkCmdBeginCustomResolveEXT(commandBuffer, pBeginCustomResolveInfo);
     }
 
-    virtual VkResult vkCreateAccelerationStructureKHR(VkDevice                                           device, const VkAccelerationStructureCreateInfoKHR*        pCreateInfo, const VkAllocationCallbacks*       pAllocator, VkAccelerationStructureKHR*                        pAccelerationStructure) override {
+    virtual VkResult vkCreateAccelerationStructureKHR(VkDevice device, const VkAccelerationStructureCreateInfoKHR* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkAccelerationStructureKHR* pAccelerationStructure) override {
         return dispatchTableNative_.vkCreateAccelerationStructureKHR(device, pCreateInfo, pAllocator, pAccelerationStructure);
     }
 
@@ -3023,15 +3023,15 @@ public:
         dispatchTableNative_.vkDestroyAccelerationStructureKHR(device, accelerationStructure, pAllocator);
     }
 
-    virtual void vkCmdBuildAccelerationStructuresKHR(VkCommandBuffer                                    commandBuffer, uint32_t infoCount, const VkAccelerationStructureBuildGeometryInfoKHR* pInfos, const VkAccelerationStructureBuildRangeInfoKHR* const* ppBuildRangeInfos) override {
+    virtual void vkCmdBuildAccelerationStructuresKHR(VkCommandBuffer commandBuffer, uint32_t infoCount, const VkAccelerationStructureBuildGeometryInfoKHR* pInfos, const VkAccelerationStructureBuildRangeInfoKHR* const* ppBuildRangeInfos) override {
         dispatchTableNative_.vkCmdBuildAccelerationStructuresKHR(commandBuffer, infoCount, pInfos, ppBuildRangeInfos);
     }
 
-    virtual void vkCmdBuildAccelerationStructuresIndirectKHR(VkCommandBuffer                  commandBuffer, uint32_t                                           infoCount, const VkAccelerationStructureBuildGeometryInfoKHR* pInfos, const VkDeviceAddress*             pIndirectDeviceAddresses, const uint32_t*                    pIndirectStrides, const uint32_t* const*             ppMaxPrimitiveCounts) override {
+    virtual void vkCmdBuildAccelerationStructuresIndirectKHR(VkCommandBuffer commandBuffer, uint32_t infoCount, const VkAccelerationStructureBuildGeometryInfoKHR* pInfos, const VkDeviceAddress* pIndirectDeviceAddresses, const uint32_t* pIndirectStrides, const uint32_t* const* ppMaxPrimitiveCounts) override {
         dispatchTableNative_.vkCmdBuildAccelerationStructuresIndirectKHR(commandBuffer, infoCount, pInfos, pIndirectDeviceAddresses, pIndirectStrides, ppMaxPrimitiveCounts);
     }
 
-    virtual VkResult vkBuildAccelerationStructuresKHR(VkDevice                                           device, VkDeferredOperationKHR deferredOperation, uint32_t infoCount, const VkAccelerationStructureBuildGeometryInfoKHR* pInfos, const VkAccelerationStructureBuildRangeInfoKHR* const* ppBuildRangeInfos) override {
+    virtual VkResult vkBuildAccelerationStructuresKHR(VkDevice device, VkDeferredOperationKHR deferredOperation, uint32_t infoCount, const VkAccelerationStructureBuildGeometryInfoKHR* pInfos, const VkAccelerationStructureBuildRangeInfoKHR* const* ppBuildRangeInfos) override {
         return dispatchTableNative_.vkBuildAccelerationStructuresKHR(device, deferredOperation, infoCount, pInfos, ppBuildRangeInfos);
     }
 
@@ -3047,7 +3047,7 @@ public:
         return dispatchTableNative_.vkCopyMemoryToAccelerationStructureKHR(device, deferredOperation, pInfo);
     }
 
-    virtual VkResult vkWriteAccelerationStructuresPropertiesKHR(VkDevice device, uint32_t accelerationStructureCount, const VkAccelerationStructureKHR* pAccelerationStructures, VkQueryType  queryType, size_t       dataSize, void* pData, size_t stride) override {
+    virtual VkResult vkWriteAccelerationStructuresPropertiesKHR(VkDevice device, uint32_t accelerationStructureCount, const VkAccelerationStructureKHR* pAccelerationStructures, VkQueryType queryType, size_t dataSize, void* pData, size_t stride) override {
         return dispatchTableNative_.vkWriteAccelerationStructuresPropertiesKHR(device, accelerationStructureCount, pAccelerationStructures, queryType, dataSize, pData, stride);
     }
 
@@ -3075,7 +3075,7 @@ public:
         dispatchTableNative_.vkGetDeviceAccelerationStructureCompatibilityKHR(device, pVersionInfo, pCompatibility);
     }
 
-    virtual void vkGetAccelerationStructureBuildSizesKHR(VkDevice                                            device, VkAccelerationStructureBuildTypeKHR                 buildType, const VkAccelerationStructureBuildGeometryInfoKHR*  pBuildInfo, const uint32_t*  pMaxPrimitiveCounts, VkAccelerationStructureBuildSizesInfoKHR*           pSizeInfo) override {
+    virtual void vkGetAccelerationStructureBuildSizesKHR(VkDevice device, VkAccelerationStructureBuildTypeKHR buildType, const VkAccelerationStructureBuildGeometryInfoKHR* pBuildInfo, const uint32_t* pMaxPrimitiveCounts, VkAccelerationStructureBuildSizesInfoKHR* pSizeInfo) override {
         dispatchTableNative_.vkGetAccelerationStructureBuildSizesKHR(device, buildType, pBuildInfo, pMaxPrimitiveCounts, pSizeInfo);
     }
 

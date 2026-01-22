@@ -1,6 +1,7 @@
 import sys
 import os
 import re
+import enum
 
 SCRIPT_PATH = os.path.abspath(__file__)
 SCRIPT_DIR = os.path.dirname(SCRIPT_PATH)
@@ -9,6 +10,7 @@ EXTERNAL_DIR = os.path.join(ROOT_DIR, 'External')
 VK_HEADERS_DIR = os.path.join(EXTERNAL_DIR, 'Vulkan-Headers')
 REGISTRY_DIR = os.path.join(VK_HEADERS_DIR, 'registry')
 REGISTRY_PATH = os.path.join(REGISTRY_DIR, 'vk.xml')
+VIDEO_REGISTRY_PATH = os.path.join(REGISTRY_DIR, 'video.xml')
 
 sys.path.append(REGISTRY_DIR)
 
@@ -18,6 +20,107 @@ import vkconventions
 
 from generator import OutputGenerator
 from cgenerator import COutputGenerator, CGeneratorOptions
+
+
+class ParamTypeKind(enum.IntEnum):
+    PRIMITIVE                    = 0
+    HANDLE                       = 1
+    STRUCT                       = 2
+    PRIMITIVE_PTR                = 3
+    HANDLE_PTR                   = 4
+    STRUCT_PTR                   = 5
+    PRIMITIVE_STATIC_ARRAY_1D    = 6
+    HANDLE_STATIC_ARRAY_1D       = 7
+    STRUCT_STATIC_ARRAY_1D       = 8
+    PRIMITIVE_DYNAMIC_ARRAY_1D   = 9
+    HANDLE_DYNAMIC_ARRAY_1D      = 10
+    STRUCT_DYNAMIC_ARRAY_1D      = 11
+    PRIMITIVE_STATIC_ARRAY_2D    = 12
+    HANDLE_STATIC_ARRAY_2D       = 13
+    STRUCT_STATIC_ARRAY_2D       = 14
+    PRIMITIVE_DYNAMIC_ARRAY_2D   = 15
+    HANDLE_DYNAMIC_ARRAY_2D      = 16
+    STRUCT_DYNAMIC_ARRAY_2D      = 17
+    STRING                       = 18
+    WSTRING                      = 19
+    STRING_DYNAMIC_ARRAY_1D      = 20
+    VOID_PTR                     = 21
+    VOID_PTR_PTR                 = 22
+    VOID_PTR_DYNAMIC_ARRAY_1D    = 23
+    EXTERNAL_PTR                 = 24
+    EXTERNAL_PTR_PTR             = 25
+    FUNCTION_PTR                 = 26
+    PNEXT                        = 27
+
+
+BASE_TYPES = [
+    'void',
+    'char',
+    'float',
+    'double',
+    'int8_t',
+    'uint8_t',
+    'int16_t',
+    'uint16_t',
+    'uint32_t',
+    'uint64_t',
+    'int32_t',
+    'int64_t',
+    'size_t',
+    'int',
+    'DWORD'
+]
+
+EXTERNAL_TYPES = [
+    'ANativeWindow',
+    'AHardwareBuffer',
+    'OHNativeWindow',
+    'OHBufferHandle',
+    'OH_NativeBuffer',
+    'CAMetalLayer',
+    '_screen_context',
+    '_screen_window',
+    '_screen_buffer',
+    'wl_display',
+    'wl_surface',
+    'SECURITY_ATTRIBUTES'
+]
+
+EXTERNAL_TYPES_PTR = [
+    'MTLDevice_id',
+    'MTLCommandQueue_id',
+    'MTLBuffer_id',
+    'MTLTexture_id',
+    'IOSurfaceRef',
+    'MTLSharedEvent_id',
+    'VkRemoteAddressNV',
+    'Display',
+    'Window',
+    'VisualID',
+    'xcb_connection_t',
+    'xcb_window_t',
+    'xcb_visualid_t',
+    'GgpStreamDescriptor',
+    'GgpFrameToken',
+    'zx_handle_t',
+    'IDirectFBSurface',
+    'IDirectFB',
+    'RROutput',
+    'HINSTANCE',
+    'HWND',
+    'HMONITOR',
+    'HANDLE',
+]
+
+
+SPECIAL_INSTANCE_COMMANDS = [
+    'vkCreateInstance',
+    'vkGetInstanceProcAddr',
+    'vkEnumerateInstanceExtensionProperties',
+    'vkEnumerateInstanceLayerProperties',
+    'vkEnumerateInstanceVersion'
+]
+
 
 args = ''.join(sys.argv)
 
@@ -29,14 +132,6 @@ autogen_message = f'''
  */
 
 '''
-
-special_instance_commands = [
-    'vkCreateInstance',
-    'vkGetInstanceProcAddr',
-    'vkEnumerateInstanceExtensionProperties',
-    'vkEnumerateInstanceLayerProperties',
-    'vkEnumerateInstanceVersion'
-]
 
 
 def getMacroForFilename(filename):
@@ -50,12 +145,367 @@ def getFirstParamType(cmdinfo):
         return None
 
     first_param = params[0]
-    return first_param.find('type').text
+    return first_param.find('type').text.strip()
 
 def safeStr(s):
     if s is not None:
         return s
     return ''
+
+def getNonAliasTypeElem(type, registry):
+    typeElem = registry.lookupElementInfo(type, registry.typedict).elem
+    typeAlias = registry.getAlias(typeElem, registry.typedict)
+    while typeAlias:
+        typeElem = registry.lookupElementInfo(typeAlias, registry.typedict).elem
+        typeAlias = typeElem.get('alias')
+    return typeElem
+
+def patchLengthMember(length, prependStr):
+    memberIdentifiers = re.findall(r'[a-zA-Z_]\w*', length)
+    memberIdentifiers = set(memberIdentifiers)
+    for id in memberIdentifiers:
+        if id.isupper():
+            continue
+        length = length.replace(id, prependStr + id)
+    return length
+
+def patchDynamicArrayLengthMember(length, prependStr):
+    # Freaking StdVideoH265HrdParameters::pSubLayerHrdParametersNal and StdVideoH265HrdParameters::pSubLayerHrdParametersVcl
+    if length.startswith('*'):
+        length = '1'
+
+    ptr = False
+    ptrCond = ''
+    if '->' in length:
+        arrowPos = length.find('->')
+        finalMember = length[arrowPos + 2:]
+        ptr = (finalMember[0] == 'p' and finalMember[1].isupper())
+        length = prependStr + length
+    else:
+        ptr = (length[0] == 'p' and length[1].isupper())
+        length = patchLengthMember(length, prependStr)
+
+    if ptr:
+        ptrCond += f' && {length}'
+        length = '*' + length
+
+    return (length, ptrCond)
+
+
+def addVideoTree(registry, video_tree):
+    video_reg = video_tree.getroot()
+
+    for typeElem in video_reg.findall('types/type'):
+        name = typeElem.get('name')
+        if name is None:
+            nameElem = typeElem.find('name')
+            if nameElem is None or not nameElem.text:
+                raise RuntimeError("Type without a name!")
+            name = nameElem.text
+            typeElem.set('name', name)
+
+        typeInfo = reg.TypeInfo(typeElem)
+        registry.typedict[name] = typeInfo
+
+        alias = typeElem.get('alias')
+        if alias:
+            registry.aliasdict[name] = alias
+
+    for group in video_reg.findall('enums'):
+        name = group.get('name')
+        groupInfo = reg.GroupInfo(group)
+        registry.groupdict[name] = groupInfo
+
+    for enums in video_reg.findall('enums'):
+        required = (enums.get('type') is not None)
+        type_name = enums.get('name')
+        for enum in enums.findall('enum'):
+            enumName = enum.get('name')
+            enumInfo = reg.EnumInfo(enum)
+            enumInfo.required = required
+            registry.enumdict[enumName] = enumInfo
+            registry.addEnumValue(enum, type_name)
+
+    for feature in video_reg.findall('extensions/extension'):
+        featureName = feature.get('name')
+        featureInfo = reg.FeatureInfo(feature)
+        registry.extdict[featureName] = featureInfo
+
+        for elem in feature.findall('require'):
+            for enum in elem.findall('enum'):
+                groupName = enum.get('extends')
+                if enum.get('value') or enum.get('bitpos') or enum.get('alias'):
+                    enumName = enum.get('name')
+                    enumInfo = reg.EnumInfo(enum)
+                    registry.enumdict[enumName] = enumInfo
+                    registry.addEnumValue(enum, groupName)
+
+
+def getParamTypeKind(paramElem, registry):
+    name = safeStr(paramElem.find('name').text).strip()
+    type = safeStr(paramElem.find('type').text).strip()
+    type_ptrs = safeStr(paramElem.find('type').tail).strip()
+    type_brackets = safeStr(paramElem.find('name').tail).strip()
+    for e in paramElem.findall('enum'):
+        type_brackets += e.text + e.tail
+    length = safeStr(paramElem.get('altlen')).strip()
+    if length == '':
+        length = safeStr(paramElem.get('len')).strip()
+
+    if name == 'pNext':
+        return ParamTypeKind.PNEXT
+    if type == 'LPCWSTR':
+        return ParamTypeKind.WSTRING
+
+    typeElem = getNonAliasTypeElem(type, registry)
+    category = safeStr(typeElem.get('category'))
+    if category == 'funcpointer':
+        return ParamTypeKind.FUNCTION_PTR
+
+    stars = type_ptrs.count('*')
+    brackets = type_brackets.count('[')
+
+    if type in BASE_TYPES or type in EXTERNAL_TYPES or type in EXTERNAL_TYPES_PTR or category in ['basetype', 'enum', 'bitmask']:
+        if stars == 0:
+            if type in EXTERNAL_TYPES_PTR:
+                return ParamTypeKind.EXTERNAL_PTR
+            if brackets == 0:
+                return ParamTypeKind.PRIMITIVE
+            if brackets == 1:
+                return ParamTypeKind.PRIMITIVE_STATIC_ARRAY_1D
+            if brackets == 2:
+                return ParamTypeKind.PRIMITIVE_STATIC_ARRAY_2D
+        if stars == 1:
+            if type == 'char':
+                return ParamTypeKind.STRING
+            if type == 'void' and length == '':
+                return ParamTypeKind.VOID_PTR
+            if type in EXTERNAL_TYPES:
+                return ParamTypeKind.EXTERNAL_PTR
+            if type in EXTERNAL_TYPES_PTR:
+                return ParamTypeKind.EXTERNAL_PTR_PTR
+            if length != '':
+                return ParamTypeKind.PRIMITIVE_DYNAMIC_ARRAY_1D
+            return ParamTypeKind.PRIMITIVE_PTR
+        if stars == 2:
+            if type == 'char':
+                return ParamTypeKind.STRING_DYNAMIC_ARRAY_1D
+            if type == 'void':
+                if length != '':
+                    return ParamTypeKind.VOID_PTR_DYNAMIC_ARRAY_1D
+                return ParamTypeKind.VOID_PTR_PTR
+            if type in EXTERNAL_TYPES:
+                return ParamTypeKind.EXTERNAL_PTR_PTR
+            return ParamTypeKind.PRIMITIVE_DYNAMIC_ARRAY_2D
+
+    if category == 'handle':
+        if stars == 0:
+            if brackets == 0:
+                return ParamTypeKind.HANDLE
+            if brackets == 1:
+                return ParamTypeKind.HANDLE_STATIC_ARRAY_1D
+            if brackets == 2:
+                return ParamTypeKind.HANDLE_STATIC_ARRAY_2D
+        if stars == 1:
+            if length != '':
+                return ParamTypeKind.HANDLE_DYNAMIC_ARRAY_1D
+            return ParamTypeKind.HANDLE_PTR
+        if stars == 2:
+            return ParamTypeKind.HANDLE_DYNAMIC_ARRAY_2D
+
+    if category in ['struct', 'union']:
+        if stars == 0:
+            if brackets == 0:
+                return ParamTypeKind.STRUCT
+            if brackets == 1:
+                return ParamTypeKind.STRUCT_STATIC_ARRAY_1D
+            if brackets == 2:
+                return ParamTypeKind.STRUCT_STATIC_ARRAY_2D
+        if stars == 1:
+            if length != '':
+                return ParamTypeKind.STRUCT_DYNAMIC_ARRAY_1D
+            return ParamTypeKind.STRUCT_PTR
+        if stars == 2:
+            return ParamTypeKind.STRUCT_DYNAMIC_ARRAY_2D
+
+    return None
+
+
+def genParamSerializeToString(param, registry, indent, paramAccess):
+    out = ''
+
+    paramName = safeStr(param.find('name').text).strip()
+    paramType = safeStr(param.find('type').text).strip()
+    paramTypeKind = getParamTypeKind(param, registry)
+
+    customSerializer = ''
+    paramTypeElem = getNonAliasTypeElem(paramType, registry)
+    paramTypeCategory = safeStr(paramTypeElem.get('category'))
+    paramTypeRequires = safeStr(paramTypeElem.get('requires'))
+    if paramTypeCategory == 'bitmask' and paramTypeRequires != '':
+        customSerializer = paramTypeElem.get('name')
+
+    # out += indent + f'// Kind: {paramTypeKind.name}\n'
+    match paramTypeKind:
+        case (ParamTypeKind.PRIMITIVE |
+              ParamTypeKind.HANDLE |
+              ParamTypeKind.STRUCT |
+              ParamTypeKind.STRING |
+              ParamTypeKind.WSTRING |
+              ParamTypeKind.VOID_PTR |
+              ParamTypeKind.EXTERNAL_PTR |
+              ParamTypeKind.FUNCTION_PTR):
+
+            cast = ''
+            if paramTypeKind == ParamTypeKind.FUNCTION_PTR:
+                cast = '(void*)'
+
+            out += indent + f'SerializeToString{customSerializer}({cast}{paramAccess}{paramName}, stream);\n'
+
+        case (ParamTypeKind.PRIMITIVE_PTR |
+              ParamTypeKind.HANDLE_PTR |
+              ParamTypeKind.STRUCT_PTR |
+              ParamTypeKind.VOID_PTR_PTR |
+              ParamTypeKind.EXTERNAL_PTR_PTR):
+
+            out += indent + f'if ({paramAccess}{paramName}) {{\n'
+            out += 2 * indent + f'stream << \"{{[\";\n'
+            out += 2 * indent + f'SerializeToString{customSerializer}(*{paramAccess}{paramName}, stream);\n'
+            out += 2 * indent + f'stream << \"], 1}}\";\n'
+            out += indent + f'}}\n'
+            out += indent + f'else {{\n'
+            out += 2 * indent + f'SerializeToString(nullptr, stream);\n'
+            out += indent + f'}}\n'
+
+        case (ParamTypeKind.PRIMITIVE_STATIC_ARRAY_1D |
+              ParamTypeKind.HANDLE_STATIC_ARRAY_1D |
+              ParamTypeKind.STRUCT_STATIC_ARRAY_1D):
+
+            if paramType == 'char':
+                out += indent + f'SerializeToString{customSerializer}({paramAccess}{paramName}, stream);\n'
+            else:
+                brackets = safeStr(param.find('name').tail).strip()
+                for e in param.findall('enum'):
+                    brackets += e.text + e.tail
+
+                length = brackets[1:-1]
+
+                out += indent + f'stream << \"{{[\";\n'
+                out += indent + f'for (int i = 0; i < {length}; ++i) {{\n'
+                out += 2 * indent + f'if (i > 0) {{ stream << \", \"; }}\n'
+                out += 2 * indent + f'SerializeToString{customSerializer}({paramAccess}{paramName}[i], stream);\n'
+                out += indent + f'}}\n'
+                out += indent + f'stream << \"], \" << {length} << \"}}\";\n'
+
+        case (ParamTypeKind.PRIMITIVE_DYNAMIC_ARRAY_1D |
+              ParamTypeKind.HANDLE_DYNAMIC_ARRAY_1D |
+              ParamTypeKind.STRUCT_DYNAMIC_ARRAY_1D |
+              ParamTypeKind.STRING_DYNAMIC_ARRAY_1D |
+              ParamTypeKind.VOID_PTR_DYNAMIC_ARRAY_1D):
+
+            length = safeStr(param.get('altlen')).strip()
+            if length == '':
+                length = safeStr(param.get('len')).strip()
+
+            if paramTypeKind == ParamTypeKind.STRING_DYNAMIC_ARRAY_1D:
+                commaPos = length.find(',')
+                length = length[:commaPos]
+
+            length, ptrCond = patchDynamicArrayLengthMember(length, paramAccess)
+            arrayName = f'{paramAccess}{paramName}'
+
+            out += indent + f'if ({paramAccess}{paramName}{ptrCond}) {{\n'
+            out += 2 * indent + f'stream << \"{{[\";\n'
+            if paramTypeKind != ParamTypeKind.VOID_PTR_DYNAMIC_ARRAY_1D and paramType == 'void':
+                out += 2 * indent + f'const uint8_t* ptr = reinterpret_cast<const uint8_t*>({paramAccess}{paramName});\n'
+                arrayName = 'ptr'
+
+            out += 2 * indent + f'for (int i = 0; i < {length}; ++i) {{\n'
+            out += 3 * indent +     f'if (i > 0) {{ stream << \", \"; }}\n'
+            out += 3 * indent +     f'SerializeToString{customSerializer}({arrayName}[i], stream);\n'
+            out += 2 * indent + f'}}\n'
+            out += 2 * indent + f'stream << \"], \" << {length} << \"}}\";\n'
+            out += indent + f'}}\n'
+            out += indent + f'else {{\n'
+            out += 2 * indent + f'SerializeToString(nullptr, stream);\n'
+            out += indent + f'}}\n'
+
+        case (ParamTypeKind.PRIMITIVE_STATIC_ARRAY_2D |
+              ParamTypeKind.HANDLE_STATIC_ARRAY_2D |
+              ParamTypeKind.STRUCT_STATIC_ARRAY_2D):
+
+            brackets = safeStr(param.find('name').tail).strip()
+            for e in param.findall('enum'):
+                brackets += e.text + e.tail
+
+            lengths = brackets[1:-1]
+            rBracketPos = lengths.find(']')
+            lBracketPos = lengths.find('[')
+            lengthOuter = lengths[:rBracketPos]
+            lengthInner = lengths[lBracketPos + 1:]
+
+            out += indent + f'stream << \"{{[\";\n'
+            out += indent + f'for (int i = 0; i < {lengthOuter}; ++i) {{\n'
+            out += 2 * indent + f'if (i > 0) {{ stream << \", \"; }}\n'
+            out += 2 * indent + f'stream << \"{{[\";\n'
+            out += 2 * indent + f'for (int j = 0; j < {lengthInner}; ++j) {{\n'
+            out += 3 * indent +     f'if (j > 0) {{ stream << \", \"; }}\n'
+            out += 3 * indent +     f'SerializeToString{customSerializer}({paramAccess}{paramName}[i][j], stream);\n'
+            out += 2 * indent + f'}}\n'
+            out += 2 * indent + f'stream << \"], \" << {lengthInner} << \"}}\";\n'
+            out += indent + f'}}\n'
+            out += indent + f'stream << \"], \" << {lengthOuter} << \"}}\";\n'
+
+        case (ParamTypeKind.PRIMITIVE_DYNAMIC_ARRAY_2D |
+              ParamTypeKind.HANDLE_DYNAMIC_ARRAY_2D |
+              ParamTypeKind.STRUCT_DYNAMIC_ARRAY_2D):
+
+            lengths = safeStr(param.get('altlen')).strip()
+            if lengths == '':
+                lengths = safeStr(param.get('len')).strip()
+
+            commaPos = lengths.find(',')
+            lengthOuter = ''
+            lengthInner = ''
+            ptrCondOuter = ''
+            ptrCondInner = ''
+            if commaPos != -1:
+                lengthOuter = lengths[:commaPos]
+                lengthInner = lengths[commaPos + 1:]
+                lengthOuter, ptrCondOuter = patchDynamicArrayLengthMember(lengthOuter, paramAccess)
+                lengthInner, ptrCondInner = patchDynamicArrayLengthMember(lengthInner, paramAccess)
+            else:
+                lengthOuter = lengths
+                lengthOuter, ptrCondOuter = patchDynamicArrayLengthMember(lengthOuter, paramAccess)
+                lengthInner = f'{paramAccess}pInfos[i].geometryCount'
+                ptrCondInner = f' && {paramAccess}pInfos'
+
+            out += indent + f'if ({paramAccess}{paramName}{ptrCondOuter}) {{\n'
+            out += 2 * indent + f'stream << \"{{[\";\n'
+            out += 2 * indent + f'for (int i = 0; i < {lengthOuter}; ++i) {{\n'
+            out += 3 * indent +     f'if (i > 0) {{ stream << \", \"; }}\n'
+            out += 3 * indent +     f'if ({paramAccess}{paramName}[i]{ptrCondInner}) {{\n'
+            out += 4 * indent +         f'for (int j = 0; j < {lengthInner}; ++j) {{\n'
+            out += 5 * indent +             f'if (j > 0) {{ stream << \", \"; }}\n'
+            out += 5 * indent +             f'SerializeToString{customSerializer}({paramAccess}{paramName}[i][j], stream);\n'
+            out += 4 * indent +         f'}}\n'
+            out += 4 * indent +         f'stream << \"], \" << {lengthInner} << \"}}\";\n'
+            out += 3 * indent +     f'}}\n'
+            out += 3 * indent +     f'else {{\n'
+            out += 4 * indent +         f'SerializeToString(nullptr, stream);\n'
+            out += 3 * indent +     f'}}\n'
+            out += 2 * indent + f'}}\n'
+            out += 2 * indent + f'stream << \"], \" << {lengthOuter} << \"}}\";\n'
+            out += indent + f'}}\n'
+            out += indent + f'else {{\n'
+            out += 2 * indent + f'SerializeToString(nullptr, stream);\n'
+            out += indent + f'}}\n'
+
+        case ParamTypeKind.PNEXT:
+
+            out += indent + f'SerializeToStringPNext({paramAccess}{paramName}, stream);\n'
+
+    return out
 
 
 class COutputGeneratorCustom(COutputGenerator):
@@ -155,7 +605,7 @@ class COutputGeneratorVulkanDispatchTables(OutputGenerator):
 
         first_param_type = getFirstParamType(cmdinfo)
         if first_param_type is not None:
-            if first_param_type == 'VkInstance' or first_param_type == 'VkPhysicalDevice' or name in special_instance_commands:
+            if first_param_type == 'VkInstance' or first_param_type == 'VkPhysicalDevice' or name in SPECIAL_INSTANCE_COMMANDS:
                 self.instance_table += indent + f'PFN_{name} {name}{{nullptr}};\n'
             else:
                 self.device_table   += indent + f'PFN_{name} {name}{{nullptr}};\n'
@@ -164,7 +614,7 @@ class COutputGeneratorVulkanDispatchTables(OutputGenerator):
                 self.load_instance += indent + f'dt.{name} = gipa;\n'
             elif name == 'vkGetDeviceProcAddr':
                 self.load_device   += indent + f'dt.{name} = gdpa;\n'
-            elif name in special_instance_commands:
+            elif name in SPECIAL_INSTANCE_COMMANDS:
                 self.load_instance += indent + f'dt.{name} = (PFN_{name})gipa(nullptr, \"{name}\");\n'
             elif first_param_type == 'VkInstance' or first_param_type == 'VkPhysicalDevice':
                 self.load_instance += indent + f'dt.{name} = (PFN_{name})gipa(instance, \"{name}\");\n'
@@ -211,14 +661,14 @@ class COutputGeneratorVulkanLayerEntry(OutputGenerator):
         indent = '    '
 
         proto = cmdinfo.elem.find('proto')
-        type = proto.find('type').text
+        type = proto.find('type').text.strip()
         params = cmdinfo.elem.findall('param')
 
         decl = ''
         defi = ''
 
         defi += indent
-        if name in special_instance_commands:
+        if name in SPECIAL_INSTANCE_COMMANDS:
             defi += f'sLayerManager.Init();\n'
             defi += indent
         if type != 'void':
@@ -226,16 +676,16 @@ class COutputGeneratorVulkanLayerEntry(OutputGenerator):
         defi += f'sLayerManager.GetFrontLayer()->{name}('
         for i in range(len(params)):
             param = params[i]
-            param_qual = safeStr(param.text)
-            param_type = safeStr(param.find('type').text) + safeStr(param.find('type').tail)
-            param_name = safeStr(param.find('name').text)
-            param_tail = safeStr(param.find('name').tail)
+            param_qual = safeStr(param.text).strip()
+            param_type = safeStr(param.find('type').text).strip() + safeStr(param.find('type').tail).strip()
+            param_name = safeStr(param.find('name').text).strip()
+            param_tail = safeStr(param.find('name').tail).strip()
 
             if i > 0:
                 decl += f', '
                 defi += f', '
 
-            decl += f'{param_qual}{param_type}{param_name}{param_tail}'
+            decl += f'{param_qual} {param_type} {param_name}{param_tail}'.strip()
             defi += f'{param_name}'
         defi += ');'
 
@@ -290,21 +740,21 @@ class COutputGeneratorVulkanLayerInterface(OutputGenerator):
         OutputGenerator.genCmd(self, cmdinfo, name, alias)
 
         proto = cmdinfo.elem.find('proto')
-        type = proto.find('type').text
+        type = proto.find('type').text.strip()
         params = cmdinfo.elem.findall('param')
 
         decl = ''
         for i in range(len(params)):
             param = params[i]
-            param_qual = safeStr(param.text)
-            param_type = safeStr(param.find('type').text) + safeStr(param.find('type').tail)
-            param_name = safeStr(param.find('name').text)
-            param_tail = safeStr(param.find('name').tail)
+            param_qual = safeStr(param.text).strip()
+            param_type = safeStr(param.find('type').text).strip() + safeStr(param.find('type').tail).strip()
+            param_name = safeStr(param.find('name').text).strip()
+            param_tail = safeStr(param.find('name').tail).strip()
 
             if i > 0:
                 decl += f', '
 
-            decl += f'{param_qual}{param_type}{param_name}{param_tail}'
+            decl += f'{param_qual} {param_type} {param_name}{param_tail}'.strip()
 
         self.body += self.indent + f'virtual {type} {name}({decl}) = 0;\n'
 
@@ -349,7 +799,7 @@ class COutputGeneratorVulkanLayerTerminatorBase(OutputGenerator):
         OutputGenerator.genCmd(self, cmdinfo, name, alias)
 
         proto = cmdinfo.elem.find('proto')
-        type = proto.find('type').text
+        type = proto.find('type').text.strip()
         params = cmdinfo.elem.findall('param')
 
         decl = ''
@@ -361,16 +811,16 @@ class COutputGeneratorVulkanLayerTerminatorBase(OutputGenerator):
         defi += f'dispatchTableNative_.{name}('
         for i in range(len(params)):
             param = params[i]
-            param_qual = safeStr(param.text)
-            param_type = safeStr(param.find('type').text) + safeStr(param.find('type').tail)
-            param_name = safeStr(param.find('name').text)
-            param_tail = safeStr(param.find('name').tail)
+            param_qual = safeStr(param.text).strip()
+            param_type = safeStr(param.find('type').text).strip() + safeStr(param.find('type').tail).strip()
+            param_name = safeStr(param.find('name').text).strip()
+            param_tail = safeStr(param.find('name').tail).strip()
 
             if i > 0:
                 decl += f', '
                 defi += f', '
 
-            decl += f'{param_qual}{param_type}{param_name}{param_tail}'
+            decl += f'{param_qual} {param_type} {param_name}{param_tail}'.strip()
             defi += f'{param_name}'
         defi += ');'
 
@@ -428,7 +878,7 @@ class COutputGeneratorVulkanLayerPrinter(OutputGenerator):
         OutputGenerator.genCmd(self, cmdinfo, name, alias)
 
         proto = cmdinfo.elem.find('proto')
-        type = proto.find('type').text
+        type = proto.find('type').text.strip()
         params = cmdinfo.elem.findall('param')
 
         decl = ''
@@ -441,16 +891,16 @@ class COutputGeneratorVulkanLayerPrinter(OutputGenerator):
         defi += f'next_->{name}('
         for i in range(len(params)):
             param = params[i]
-            param_qual = safeStr(param.text)
-            param_type = safeStr(param.find('type').text) + safeStr(param.find('type').tail)
-            param_name = safeStr(param.find('name').text)
-            param_tail = safeStr(param.find('name').tail)
+            param_qual = safeStr(param.text).strip()
+            param_type = safeStr(param.find('type').text).strip() + safeStr(param.find('type').tail).strip()
+            param_name = safeStr(param.find('name').text).strip()
+            param_tail = safeStr(param.find('name').tail).strip()
 
             if i > 0:
                 decl += f', '
                 defi += f', '
 
-            decl += f'{param_qual}{param_type}{param_name}{param_tail}'
+            decl += f'{param_qual} {param_type} {param_name}{param_tail}'.strip()
             defi += f'{param_name}'
         defi += ');'
 
@@ -497,7 +947,7 @@ class COutputGeneratorVulkanLayerPassThrough(OutputGenerator):
         OutputGenerator.genCmd(self, cmdinfo, name, alias)
 
         proto = cmdinfo.elem.find('proto')
-        type = proto.find('type').text
+        type = proto.find('type').text.strip()
         params = cmdinfo.elem.findall('param')
 
         decl = ''
@@ -509,21 +959,736 @@ class COutputGeneratorVulkanLayerPassThrough(OutputGenerator):
         defi += f'next_->{name}('
         for i in range(len(params)):
             param = params[i]
-            param_qual = safeStr(param.text)
-            param_type = safeStr(param.find('type').text) + safeStr(param.find('type').tail)
-            param_name = safeStr(param.find('name').text)
-            param_tail = safeStr(param.find('name').tail)
+            param_qual = safeStr(param.text).strip()
+            param_type = safeStr(param.find('type').text).strip() + safeStr(param.find('type').tail).strip()
+            param_name = safeStr(param.find('name').text).strip()
+            param_tail = safeStr(param.find('name').tail).strip()
 
             if i > 0:
                 decl += f', '
                 defi += f', '
 
-            decl += f'{param_qual}{param_type}{param_name}{param_tail}'
+            decl += f'{param_qual} {param_type} {param_name}{param_tail}'.strip()
             defi += f'{param_name}'
         defi += ');'
 
         self.body += self.indent + f'virtual {type} {name}({decl}) override {{\n'
         self.body += f'{defi}\n'
+        self.body += self.indent + f'}}\n\n'
+
+
+class COutputGeneratorVulkanAPICallID(OutputGenerator):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.body = ''
+        self.header_guard = ''
+        self.call_id_enum = ''
+        self.call_id_name = ''
+        self.indent = '    '
+        self.call_id = 0
+
+    def beginFile(self, genOpts):
+        OutputGenerator.beginFile(self, genOpts)
+
+        self.body += autogen_message
+
+        self.header_guard = getMacroForFilename(self.genOpts.filename)
+        self.body += f'#ifndef {self.header_guard}\n'
+        self.body += f'#define {self.header_guard}\n\n'
+        self.body += f'#include <cstdint>\n\n'
+        self.body += f'namespace OVS {{\n'
+
+        self.call_id_enum += f'enum class APICallID : uint16_t {{\n'
+        self.call_id_enum += self.indent + f'Unknown = {self.call_id},\n'
+
+        self.call_id_name += f'static const char* GetAPICallName(APICallID id) {{\n'
+        self.call_id_name += self.indent + f'switch (id) {{\n'
+        self.call_id_name += 2 * self.indent + f'default: return \"Unknown\";\n'
+
+        self.call_id += 1
+
+    def endFile(self):
+        self.call_id_enum += f'\n'
+        self.call_id_enum += self.indent + f'Count\n'
+        self.call_id_enum += f'}};\n'
+
+        self.call_id_name += self.indent + f'}};\n'
+        self.call_id_name += f'}};\n'
+
+        self.body += f'\n'
+        self.body += self.call_id_enum
+        self.body += f'\n'
+        self.body += self.call_id_name
+        self.body += f'\n'
+
+        self.body += f'}} // namespace OVS\n\n'
+        self.body += f'#endif // {self.header_guard}'
+
+        self.outFile.write(self.body)
+
+        OutputGenerator.endFile(self)
+
+    def genCmd(self, cmdinfo, name, alias):
+        OutputGenerator.genCmd(self, cmdinfo, name, alias)
+
+        self.call_id_enum += self.indent + f'{name} = {self.call_id},\n'
+
+        self.call_id_name += 2 * self.indent + f'case APICallID::{name}: return \"{name}\";\n'
+
+        self.call_id += 1
+
+
+class COutputGeneratorVulkanAPIStructID(OutputGenerator):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.body = ''
+        self.header_guard = ''
+        self.indent = '    '
+        self.struct_id = 0
+
+    def beginFile(self, genOpts):
+        OutputGenerator.beginFile(self, genOpts)
+
+        self.body += autogen_message
+
+        self.header_guard = getMacroForFilename(self.genOpts.filename)
+        self.body += f'#ifndef {self.header_guard}\n'
+        self.body += f'#define {self.header_guard}\n\n'
+        self.body += f'#include <cstdint>\n\n'
+        self.body += f'namespace OVS {{\n\n'
+        self.body += f'enum class APIStructID : uint16_t {{\n'
+        self.body += self.indent + f'Unknown = {self.struct_id},\n'
+        self.struct_id += 1
+
+    def endFile(self):
+        self.body += f'\n'
+        self.body += self.indent + f'Count\n'
+        self.body += f'}};\n\n'
+        self.body += f'}} // namespace OVS\n\n'
+        self.body += f'#endif // {self.header_guard}'
+
+        self.outFile.write(self.body)
+
+        OutputGenerator.endFile(self)
+
+    def genType(self, typeinfo, name, alias):
+        OutputGenerator.genType(self, typeinfo, name, alias)
+
+        category = typeinfo.elem.get('category')
+        if category not in ('struct', 'union') or alias:
+            return
+
+        self.body += self.indent + f'{name} = {self.struct_id},\n'
+        self.struct_id += 1
+
+
+class COutputGeneratorSignatureDeclaration(OutputGenerator):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.body = ''
+        self.header_guard = ''
+        self.indent = '    '
+        self.sig_decl = ''
+        self.ser_to_str = ''
+        self.ser_to_json = ''
+        self.ser_to_stream = ''
+        self.deser_from_stream = ''
+        self.deser_from_json = ''
+
+    def beginFile(self, genOpts):
+        OutputGenerator.beginFile(self, genOpts)
+
+        self.body += autogen_message
+
+        self.header_guard = getMacroForFilename(self.genOpts.filename)
+        self.body += f'#ifndef {self.header_guard}\n'
+        self.body += f'#define {self.header_guard}\n\n'
+        self.body += f'#include <Vulkan.h>\n'
+        self.body += f'#include <SignatureUtils.h>\n\n'
+        self.body += f'namespace OVS {{\n'
+        self.body += f'namespace SignatureSerializer {{\n\n'
+
+    def endFile(self):
+        self.body += self.sig_decl
+        self.body += f'\n'
+        self.body += self.ser_to_str
+        self.body += f'\n'
+        self.body += self.ser_to_json
+        self.body += f'\n'
+        self.body += self.ser_to_stream
+        self.body += f'\n'
+        self.body += self.deser_from_stream
+        self.body += f'\n'
+        self.body += self.deser_from_json
+        self.body += f'\n'
+        self.body += f'}} // namespace SignatureSerializer\n'
+        self.body += f'}} // namespace OVS\n\n'
+        self.body += f'#endif // {self.header_guard}'
+
+        self.outFile.write(self.body)
+
+        OutputGenerator.endFile(self)
+
+    def genCmd(self, cmdinfo, name, alias):
+        OutputGenerator.genCmd(self, cmdinfo, name, alias)
+
+        proto = cmdinfo.elem.find('proto')
+        type = proto.find('type').text.strip()
+        params = cmdinfo.elem.findall('param')
+
+        self.sig_decl += f'struct {name}Signature {{\n'
+        self.sig_decl += self.indent + f'SignatureHeader header{{}};\n\n'
+        if type != 'void':
+            retParamTypeKind = None
+            typeElem = getNonAliasTypeElem(type, self.registry)
+            category = safeStr(typeElem.get('category'))
+            if category == 'funcpointer':
+                retParamTypeKind = ParamTypeKind.FUNCTION_PTR
+            if type in BASE_TYPES or category in ['basetype', 'enum', 'bitmask']:
+                retParamTypeKind = ParamTypeKind.PRIMITIVE
+
+            self.sig_decl += self.indent + f'{type} ret{{}}; // Kind: {retParamTypeKind.name}\n'
+
+        for i in range(len(params)):
+            param = params[i]
+            param_type = safeStr(param.find('type').text).strip() + safeStr(param.find('type').tail).strip()
+            param_name = safeStr(param.find('name').text).strip()
+            param_tail = safeStr(param.find('name').tail).strip()
+
+            paramTypeKind = getParamTypeKind(param, self.registry)
+
+            self.sig_decl += self.indent + f'{param_type} {param_name}{param_tail}{{}}; // Kind: {paramTypeKind.name}\n'
+
+        self.sig_decl += f'}};\n\n'
+
+        self.ser_to_str         += f'void SerializeToString(const {name}Signature& sig, std::stringstream& stream);\n'
+        self.ser_to_json        += f'void SerializeToJSON(const {name}Signature& sig, std::stringstream& stream);\n'
+        self.ser_to_stream      += f'void SerializeToStream(const {name}Signature& sig, WriteStream& stream);\n'
+        self.deser_from_stream  += f'void DeserializeFromStream({name}Signature& sig, const ReadStream& stream);\n'
+        self.deser_from_json    += f'void DeserializeFromJSON({name}Signature& sig, const std::string& json);\n'
+
+
+class COutputGeneratorStructSerializeDeclaration(OutputGenerator):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.body = ''
+        self.header_guard = ''
+        self.indent = '    '
+        self.ser_to_str = ''
+        self.ser_to_json = ''
+        self.ser_to_stream = ''
+        self.deser_from_stream = ''
+        self.deser_from_json = ''
+
+    def beginFile(self, genOpts):
+        OutputGenerator.beginFile(self, genOpts)
+
+        self.body += autogen_message
+
+        self.header_guard = getMacroForFilename(self.genOpts.filename)
+        self.body += f'#ifndef {self.header_guard}\n'
+        self.body += f'#define {self.header_guard}\n\n'
+        self.body += f'#include <Vulkan.h>\n\n'
+        self.body += f'namespace OVS {{\n'
+        self.body += f'namespace SignatureSerializer {{\n\n'
+
+    def endFile(self):
+        self.ser_to_str         += f'void SerializeToStringPNext(const void* pNext, std::stringstream& stream);\n'
+        self.ser_to_json        += f'void SerializeToJSONPNext(const void* pNext, std::stringstream& stream);\n'
+        self.ser_to_stream      += f'void SerializeToStreamPNext(const void* pNext, WriteStream& stream);\n'
+        self.deser_from_stream  += f'void DeserializeFromStreamPNext(void** ppNext, const ReadStream& stream);\n'
+        self.deser_from_json    += f'void DeserializeFromJSONPNext(void** ppNext, const std::string& json);\n'
+
+        self.body += self.ser_to_str
+        self.body += f'\n'
+        self.body += self.ser_to_json
+        self.body += f'\n'
+        self.body += self.ser_to_stream
+        self.body += f'\n'
+        self.body += self.deser_from_stream
+        self.body += f'\n'
+        self.body += self.deser_from_json
+        self.body += f'\n'
+        self.body += f'}} // namespace SignatureSerializer\n'
+        self.body += f'}} // namespace OVS\n\n'
+        self.body += f'#endif // {self.header_guard}'
+
+        self.outFile.write(self.body)
+
+        OutputGenerator.endFile(self)
+
+    def genType(self, typeinfo, name, alias):
+        OutputGenerator.genType(self, typeinfo, name, alias)
+
+        category = typeinfo.elem.get('category')
+        if category not in ('struct', 'union') or alias:
+            return
+
+        self.ser_to_str         += f'void SerializeToString(const {name}& value, std::stringstream& stream);\n'
+        self.ser_to_json        += f'void SerializeToJSON(const {name}& value, std::stringstream& stream);\n'
+        self.ser_to_stream      += f'void SerializeToStream(const {name}& value, WriteStream& stream);\n'
+        self.deser_from_stream  += f'void DeserializeFromStream({name}& value, const ReadStream& stream);\n'
+        self.deser_from_json    += f'void DeserializeFromJSON({name}& value, const std::string& json);\n'
+
+
+class COutputGeneratorStructSerializeToString(OutputGenerator):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.body = ''
+        self.indent = '    '
+        self.ser_to_str = ''
+        self.ser_pnext = ''
+
+    def beginFile(self, genOpts):
+        OutputGenerator.beginFile(self, genOpts)
+
+        self.body += autogen_message
+
+        self.body += f'#include <SignatureUtils.h>\n'
+        self.body += f'#include <StructSerializeGenerated.h>\n'
+        self.body += f'#include <EnumSerializeGenerated.h>\n\n'
+        self.body += f'namespace OVS {{\n'
+        self.body += f'namespace SignatureSerializer {{\n\n'
+
+        self.ser_pnext += f'void SerializeToStringPNext(const void* pNext, std::stringstream& stream) {{\n'
+        self.ser_pnext += self.indent + f'if (!pNext) {{\n'
+        self.ser_pnext += 2 * self.indent + f'SerializeToString(pNext, stream);\n'
+        self.ser_pnext += 2 * self.indent + f'return;\n'
+        self.ser_pnext += self.indent + f'}}\n\n'
+        self.ser_pnext += self.indent + f'const VkBaseInStructure* pNextStruct = reinterpret_cast<const VkBaseInStructure*>(pNext);\n'
+        self.ser_pnext += self.indent + f'switch (pNextStruct->sType) {{\n'
+
+    def endFile(self):
+        self.ser_pnext += 2 * self.indent + f'default: {{\n'
+        self.ser_pnext += 3 * self.indent +     f'SerializeToString(*pNextStruct, stream);\n'
+        self.ser_pnext += 2 * self.indent + f'}}\n'
+        self.ser_pnext += self.indent + f'}}\n'
+        self.ser_pnext += f'}}\n'
+
+        self.body += self.ser_to_str
+        self.body += f'\n'
+        self.body += self.ser_pnext
+        self.body += f'\n'
+        self.body += f'}} // namespace SignatureSerializer\n'
+        self.body += f'}} // namespace OVS'
+
+        self.outFile.write(self.body)
+
+        OutputGenerator.endFile(self)
+
+    def genType(self, typeinfo, name, alias):
+        OutputGenerator.genType(self, typeinfo, name, alias)
+
+        category = typeinfo.elem.get('category')
+        if category not in ('struct', 'union') or alias:
+            return
+
+        members = typeinfo.elem.findall('member')
+
+        self.ser_to_str += f'void SerializeToString(const {name}& value, std::stringstream& stream) {{\n'
+        self.ser_to_str += self.indent + f'stream << \"{name}{{\";\n'
+
+        memberAccess = 'value.'
+        for i in range(len(members)):
+            member = members[i]
+            memberName = safeStr(member.find('name').text).strip()
+
+            if i > 0:
+                self.ser_to_str += self.indent + f'stream << \", \";\n'
+
+            self.ser_to_str += genParamSerializeToString(member, self.registry, self.indent, memberAccess)
+            if memberName == 'sType':
+                sTypeValue = member.get('values')
+                if sTypeValue is not None:
+                    enumProtect = None
+                    enumInfo = self.registry.lookupElementInfo(sTypeValue, self.registry.enumdict)
+                    if enumInfo is not None:
+                        enumElem = enumInfo.elem
+                        enumProtect = enumElem.get('protect')
+
+                    if enumProtect:
+                        self.ser_pnext += f'#ifdef {enumProtect}\n'
+
+                    self.ser_pnext += 2 * self.indent + f'case {sTypeValue}: {{\n'
+                    self.ser_pnext += 3 * self.indent +     f'const {name}* pValue = reinterpret_cast<const {name}*>(pNext);\n'
+                    self.ser_pnext += 3 * self.indent +     f'SerializeToString(*pValue, stream);\n'
+                    self.ser_pnext += 2 * self.indent + f'}}\n'
+
+                    if enumProtect:
+                        self.ser_pnext += f'#endif\n'
+
+        self.ser_to_str += self.indent + f'stream << \"}}\";\n'
+        self.ser_to_str += f'}}\n\n'
+
+
+class COutputGeneratorEnumSerializeDeclaration(OutputGenerator):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.body = ''
+        self.indent = '    '
+        self.group_enums = ''
+        self.bitmask_enums = ''
+
+    def beginFile(self, genOpts):
+        OutputGenerator.beginFile(self, genOpts)
+
+        self.body += autogen_message
+
+        self.body += f'#include <Vulkan.h>\n\n'
+        self.body += f'#include <sstream>\n\n'
+        self.body += f'namespace OVS {{\n'
+        self.body += f'namespace SignatureSerializer {{\n\n'
+
+    def endFile(self):
+        self.body += self.group_enums
+        self.body += f'\n'
+        self.body += self.bitmask_enums
+        self.body += f'\n'
+        self.body += f'}} // namespace SignatureSerializer\n'
+        self.body += f'}} // namespace OVS'
+
+        self.outFile.write(self.body)
+
+        OutputGenerator.endFile(self)
+
+    def genGroup(self, groupinfo, groupName, alias=None):
+        OutputGenerator.genGroup(self, groupinfo, groupName, alias)
+
+        if alias:
+            return
+
+        groupElem = groupinfo.elem
+        if groupElem.get('type') == "enum":
+            self.group_enums += f'void SerializeToString({groupName} value, std::stringstream& stream);\n'
+        else:
+            flags = groupName.replace('FlagBits', 'Flags')
+            self.bitmask_enums += f'void SerializeToString{flags}({flags} value, std::stringstream& stream);\n'
+
+
+class COutputGeneratorEnumSerialize(OutputGenerator):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.body = ''
+        self.indent = '    '
+        self.group_enums = ''
+        self.bitmask_enums = ''
+
+    def beginFile(self, genOpts):
+        OutputGenerator.beginFile(self, genOpts)
+
+        self.body += autogen_message
+
+        self.body += f'#include <SignatureUtils.h>\n'
+        self.body += f'#include <EnumSerializeGenerated.h>\n\n'
+        self.body += f'namespace OVS {{\n'
+        self.body += f'namespace SignatureSerializer {{\n\n'
+
+    def endFile(self):
+        self.body += self.group_enums
+        self.body += f'\n'
+        self.body += self.bitmask_enums
+        self.body += f'}} // namespace SignatureSerializer\n'
+        self.body += f'}} // namespace OVS'
+
+        self.outFile.write(self.body)
+
+        OutputGenerator.endFile(self)
+
+    def genGroup(self, groupinfo, groupName, alias=None):
+        OutputGenerator.genGroup(self, groupinfo, groupName, alias)
+
+        if alias:
+            return
+
+        groupElem = groupinfo.elem
+        if groupElem.get('type') == "enum":
+            self.group_enums += f'void SerializeToString({groupName} value, std::stringstream& stream) {{\n'
+            self.group_enums += self.indent + f'switch (value) {{\n'
+            self.group_enums += 2 * self.indent + f'default: stream << value; break;\n'
+
+            enums = groupElem.findall('enum')
+            enums = self.checkDuplicateEnums(enums)
+            for enum in enums:
+                enumAlias = enum.get('alias')
+                if enumAlias:
+                    continue
+
+                enumName = enum.get('name')
+                enumValue = enum.get('value')
+                enumProtect = enum.get('protect')
+                enumRequired = enum.get('required')
+                if enumRequired is None:
+                    continue
+
+                if enumProtect:
+                    self.group_enums += f'#ifdef {enumProtect}\n'
+
+                self.group_enums += 2 * self.indent + f'case {enumName}: stream << \"{enumName}\"; break;\n'
+
+                if enumProtect:
+                    self.group_enums += f'#endif\n'
+
+            self.group_enums += self.indent + f'}}\n'
+            self.group_enums += f'}}\n\n'
+        else:
+            zeroEnumName = ''
+
+            flags = groupName.replace('FlagBits', 'Flags')
+            self.bitmask_enums += f'void SerializeToString{flags}({flags} value, std::stringstream& stream) {{\n'
+
+            enums = groupElem.findall('enum')
+            enums = self.checkDuplicateEnums(enums)
+            for enum in enums:
+                enumAlias = enum.get('alias')
+                if enumAlias:
+                    continue
+
+                enumName = enum.get('name')
+                enumValue = enum.get('value')
+                enumBitpos = enum.get('bitpos')
+                enumProtect = enum.get('protect')
+                enumRequired = enum.get('required')
+                if enumRequired is None:
+                    continue
+                if enumValue is None:
+                    continue
+
+                numValue = int(enumValue, 16)
+                if numValue == 0:
+                    zeroEnumName = enumName
+
+                    if enumProtect:
+                        self.bitmask_enums += f'#ifdef {enumProtect}\n'
+
+                    self.bitmask_enums += self.indent + f'if (value == {enumName}) {{\n'
+                    self.bitmask_enums += 2 * self.indent + f'stream << \"{enumName}\";\n'
+                    self.bitmask_enums += 2 * self.indent + f'return;\n'
+                    self.bitmask_enums += self.indent + f'}}\n\n'
+
+                    if enumProtect:
+                        self.bitmask_enums += f'#endif\n'
+
+            if zeroEnumName == '':
+                self.bitmask_enums += self.indent + f'if (value == 0) {{\n'
+                self.bitmask_enums += 2 * self.indent + f'stream << 0;\n'
+                self.bitmask_enums += 2 * self.indent + f'return;\n'
+                self.bitmask_enums += self.indent + f'}}\n\n'
+
+            self.bitmask_enums += self.indent + f'std::string out;\n\n'
+            for enum in enums:
+                enumAlias = enum.get('alias')
+                if enumAlias:
+                    continue
+
+                enumName = enum.get('name')
+                enumValue = enum.get('value')
+                enumBitpos = enum.get('bitpos')
+                enumProtect = enum.get('protect')
+                enumRequired = enum.get('required')
+                if enumRequired is None:
+                    continue
+
+                if enumName == zeroEnumName:
+                    continue
+
+                if enumProtect:
+                    self.bitmask_enums += f'#ifdef {enumProtect}\n'
+
+                self.bitmask_enums += self.indent + f'if (value & {enumName}) {{\n'
+                self.bitmask_enums += 2 * self.indent + f'if (!out.empty()) {{ out.push_back(\'|\'); }}\n'
+                self.bitmask_enums += 2 * self.indent + f'out += \"{enumName}\";\n'
+                self.bitmask_enums += 2 * self.indent + f'value &= ~{enumName};\n'
+                self.bitmask_enums += self.indent + f'}}\n'
+
+                if enumProtect:
+                    self.bitmask_enums += f'#endif\n'
+
+            self.bitmask_enums += self.indent + f'if (value) {{\n'
+            self.bitmask_enums += 2 * self.indent + f'if (!out.empty()) {{ out.push_back(\'|\'); }}\n'
+            self.bitmask_enums += 2 * self.indent + f'out += \"UNKNOWN_BITS(\";\n'
+            self.bitmask_enums += 2 * self.indent + f'out += std::to_string(value);\n'
+            self.bitmask_enums += 2 * self.indent + f'out += \")\";\n'
+            self.bitmask_enums += self.indent + f'}}\n\n'
+            self.bitmask_enums += self.indent + f'stream << out;\n'
+            self.bitmask_enums += f'}}\n\n'
+
+
+class COutputGeneratorSignatureSerializeToString(OutputGenerator):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.body = ''
+        self.indent = '    '
+
+    def beginFile(self, genOpts):
+        OutputGenerator.beginFile(self, genOpts)
+
+        self.body += autogen_message
+
+        self.body += f'#include <SignatureUtils.h>\n'
+        self.body += f'#include <SignatureGenerated.h>\n'
+        self.body += f'#include <EnumSerializeGenerated.h>\n'
+        self.body += f'#include <StructSerializeGenerated.h>\n\n'
+        self.body += f'namespace OVS {{\n'
+        self.body += f'namespace SignatureSerializer {{\n\n'
+
+    def endFile(self):
+        self.body += f'}} // namespace SignatureSerializer\n'
+        self.body += f'}} // namespace OVS'
+
+        self.outFile.write(self.body)
+
+        OutputGenerator.endFile(self)
+
+    def genCmd(self, cmdinfo, name, alias):
+        OutputGenerator.genCmd(self, cmdinfo, name, alias)
+
+        proto = cmdinfo.elem.find('proto')
+        type = proto.find('type').text.strip()
+        params = cmdinfo.elem.findall('param')
+
+        self.body += f'void SerializeToString(const {name}Signature& sig, std::stringstream& stream) {{\n'
+        self.body += self.indent + f'stream << \"{name}(\";\n'
+
+        paramAccess = 'sig.'
+        for i in range(len(params)):
+            param = params[i]
+
+            if i > 0:
+                self.body += self.indent + f'stream << \", \";\n'
+
+            self.body += genParamSerializeToString(param, self.registry, self.indent, paramAccess)
+
+        self.body += self.indent + f'stream << \")\";\n'
+        if type != 'void':
+            self.body += self.indent + f'stream << \" -> \";\n'
+
+            cast = ''
+            customSerializer = ''
+            retParamTypeKind = None
+            typeElem = getNonAliasTypeElem(type, self.registry)
+            category = safeStr(typeElem.get('category'))
+            requires = safeStr(typeElem.get('requires'))
+            if category == 'funcpointer':
+                retParamTypeKind = ParamTypeKind.FUNCTION_PTR
+                cast = '(void*)'
+            if type in BASE_TYPES or category in ['basetype', 'enum', 'bitmask']:
+                retParamTypeKind = ParamTypeKind.PRIMITIVE
+                if category == 'bitmask' and requires != '':
+                    customSerializer = typeElem.get('name')
+
+            # self.body += self.indent + f'// Kind: {retParamTypeKind.name}\n'
+            self.body += self.indent + f'SerializeToString{customSerializer}({cast}{paramAccess}ret, stream);\n'
+
+        self.body += f'}};\n\n'
+
+
+class COutputGeneratorVulkanLayerAPIDump(OutputGenerator):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.body = ''
+        self.header_guard = ''
+        self.indent = '    '
+
+    def beginFile(self, genOpts):
+        OutputGenerator.beginFile(self, genOpts)
+
+        self.body += autogen_message
+
+        self.header_guard = getMacroForFilename(self.genOpts.filename)
+        self.body += f'#ifndef {self.header_guard}\n'
+        self.body += f'#define {self.header_guard}\n\n'
+        self.body += f'#include <VulkanLayerInterfaceGenerated.h>\n\n'
+        self.body += f'#include <SignatureGenerated.h>\n\n'
+        self.body += f'#include <iostream>\n\n'
+        self.body += f'namespace OVS {{\n\n'
+        self.body += f'class VulkanLayerAPIDump : public VulkanLayerInterface {{\n'
+        self.body += f'public:\n'
+
+    def endFile(self):
+        self.body += self.indent + f'explicit VulkanLayerAPIDump(const VulkanLayerAPIDumpSettings& settings) : VulkanLayerInterface(VulkanLayerType::APIDump), settings_{{settings}} {{\n'
+        self.body += 2 * self.indent + f'std::streambuf* buf = std::cout.rdbuf();\n'
+        self.body += 2 * self.indent + f'if (settings_.filename != \"stdout\") {{\n'
+        self.body += 3 * self.indent +     f'fout_ = std::ofstream(settings_.filename);\n'
+        self.body += 3 * self.indent +     f'buf = fout_.rdbuf();\n'
+        self.body += 2 * self.indent + f'}}\n'
+        self.body += 2 * self.indent + f'out_.set_rdbuf(buf);\n'
+        self.body += self.indent + f'}}\n\n'
+        self.body += self.indent + f'virtual ~VulkanLayerAPIDump() {{}}\n\n'
+        self.body += f'private:\n'
+        self.body += self.indent + f'VulkanLayerAPIDumpSettings settings_{{}};\n'
+        self.body += self.indent + f'std::ofstream fout_;\n'
+        self.body += self.indent + f'std::ostream out_{{std::cout.rdbuf()}};\n'
+        self.body += f'}};\n\n'
+        self.body += f'}} // namespace OVS\n\n'
+        self.body += f'#endif // {self.header_guard}'
+
+        self.outFile.write(self.body)
+
+        OutputGenerator.endFile(self)
+
+    def genCmd(self, cmdinfo, name, alias):
+        OutputGenerator.genCmd(self, cmdinfo, name, alias)
+
+        proto = cmdinfo.elem.find('proto')
+        type = proto.find('type').text.strip()
+        params = cmdinfo.elem.findall('param')
+
+        decl = ''
+        call = ''
+        sign = ''
+
+        call += 2 * self.indent
+        if type != 'void':
+            call += f'{type} ret = '
+        call += f'next_->{name}('
+        sign += 2 * self.indent + f'SignatureSerializer::{name}Signature sig{{}};\n'
+
+        paramAccess = 'sig.'
+        for i in range(len(params)):
+            param = params[i]
+            param_qual = safeStr(param.text).strip()
+            param_type = safeStr(param.find('type').text).strip() + safeStr(param.find('type').tail).strip()
+            param_name = safeStr(param.find('name').text).strip()
+            param_tail = safeStr(param.find('name').tail).strip()
+
+            paramTypeKind = getParamTypeKind(param, self.registry)
+
+            if i > 0:
+                decl += f', '
+                call += f', '
+
+            decl += f'{param_qual} {param_type} {param_name}{param_tail}'.strip()
+            call += f'{param_name}'
+            if ('const' in param_qual or 'const' in param_type) and ('*' in param_type):
+                sign += 2 * self.indent + f'{paramAccess}{param_name} = const_cast<{param_type}>({param_name});\n'
+            elif paramTypeKind in [ParamTypeKind.PRIMITIVE_STATIC_ARRAY_1D, ParamTypeKind.HANDLE_STATIC_ARRAY_1D, ParamTypeKind.STRUCT_STATIC_ARRAY_1D]:
+                sign += 2 * self.indent + f'std::memcpy({paramAccess}{param_name}, {param_name}, sizeof({paramAccess}{param_name}));\n'
+            else:
+                sign += 2 * self.indent + f'{paramAccess}{param_name} = {param_name};\n'
+
+        call += ');\n'
+
+        if type != 'void':
+            sign += 2 * self.indent + f'{paramAccess}ret = ret;\n'
+
+        self.body += self.indent + f'virtual {type} {name}({decl}) override {{\n'
+        self.body += f'{call}\n'
+        self.body += f'{sign}\n'
+        self.body += 2 * self.indent + f'std::stringstream stream;\n'
+        self.body += 2 * self.indent + f'SignatureSerializer::SerializeToString(sig, stream);\n'
+        self.body += 2 * self.indent + f'out_ << stream.str() << \'\\n\';\n'
+        if type != 'void':
+            self.body += 2 * self.indent + f'return ret;\n'
+
         self.body += self.indent + f'}}\n\n'
 
 
@@ -625,11 +1790,136 @@ generate_targets = [
                        apiname='vulkan',
                        defaultExtensions='vulkan',
                        emitExtensions = '.*')],
+
+    [COutputGeneratorVulkanAPICallID,
+     CGeneratorOptions(prefixText='',
+                       apicall='VKAPI_ATTR ',
+                       apientry='VKAPI_CALL ',
+                       apientryp='VKAPI_PTR *',
+                       indentFuncProto=True,
+                       protectFeature=False,
+                       conventions=vkconventions.VulkanConventions(),
+                       filename='VulkanAPICallIDGenerated.h',
+                       directory='.',
+                       apiname='vulkan',
+                       defaultExtensions='vulkan',
+                       emitExtensions = '.*')],
+
+    [COutputGeneratorVulkanAPIStructID,
+     CGeneratorOptions(prefixText='',
+                       apicall='VKAPI_ATTR ',
+                       apientry='VKAPI_CALL ',
+                       apientryp='VKAPI_PTR *',
+                       indentFuncProto=True,
+                       protectFeature=False,
+                       conventions=vkconventions.VulkanConventions(),
+                       filename='VulkanAPIStructIDGenerated.h',
+                       directory='.',
+                       apiname='vulkan',
+                       defaultExtensions='vulkan',
+                       emitExtensions = '.*')],
+
+    [COutputGeneratorSignatureDeclaration,
+     CGeneratorOptions(prefixText='',
+                       apicall='VKAPI_ATTR ',
+                       apientry='VKAPI_CALL ',
+                       apientryp='VKAPI_PTR *',
+                       indentFuncProto=True,
+                       protectFeature=False,
+                       conventions=vkconventions.VulkanConventions(),
+                       filename='SignatureGenerated.h',
+                       directory='.',
+                       apiname='vulkan',
+                       defaultExtensions='vulkan',
+                       emitExtensions = '.*')],
+
+    [COutputGeneratorStructSerializeDeclaration,
+     CGeneratorOptions(prefixText='',
+                       apicall='VKAPI_ATTR ',
+                       apientry='VKAPI_CALL ',
+                       apientryp='VKAPI_PTR *',
+                       indentFuncProto=True,
+                       protectFeature=False,
+                       conventions=vkconventions.VulkanConventions(),
+                       filename='StructSerializeGenerated.h',
+                       directory='.',
+                       apiname='vulkan',
+                       defaultExtensions='vulkan',
+                       emitExtensions = '.*')],
+
+    [COutputGeneratorStructSerializeToString,
+     CGeneratorOptions(prefixText='',
+                       apicall='VKAPI_ATTR ',
+                       apientry='VKAPI_CALL ',
+                       apientryp='VKAPI_PTR *',
+                       indentFuncProto=True,
+                       protectFeature=False,
+                       conventions=vkconventions.VulkanConventions(),
+                       filename='StructSerializeToStringGenerated.cpp',
+                       directory='.',
+                       apiname='vulkan',
+                       defaultExtensions='vulkan',
+                       emitExtensions = '.*')],
+
+    [COutputGeneratorEnumSerializeDeclaration,
+     CGeneratorOptions(prefixText='',
+                       apicall='VKAPI_ATTR ',
+                       apientry='VKAPI_CALL ',
+                       apientryp='VKAPI_PTR *',
+                       indentFuncProto=True,
+                       protectFeature=False,
+                       conventions=vkconventions.VulkanConventions(),
+                       filename='EnumSerializeGenerated.h',
+                       directory='.',
+                       apiname='vulkan',
+                       defaultExtensions='vulkan',
+                       emitExtensions = '.*')],
+
+    [COutputGeneratorEnumSerialize,
+     CGeneratorOptions(prefixText='',
+                       apicall='VKAPI_ATTR ',
+                       apientry='VKAPI_CALL ',
+                       apientryp='VKAPI_PTR *',
+                       indentFuncProto=True,
+                       protectFeature=False,
+                       conventions=vkconventions.VulkanConventions(),
+                       filename='EnumSerializeGenerated.cpp',
+                       directory='.',
+                       apiname='vulkan',
+                       defaultExtensions='vulkan',
+                       emitExtensions = '.*')],
+
+    [COutputGeneratorSignatureSerializeToString,
+     CGeneratorOptions(prefixText='',
+                       apicall='VKAPI_ATTR ',
+                       apientry='VKAPI_CALL ',
+                       apientryp='VKAPI_PTR *',
+                       indentFuncProto=True,
+                       protectFeature=False,
+                       conventions=vkconventions.VulkanConventions(),
+                       filename='SignatureSerializeToStringGenerated.cpp',
+                       directory='.',
+                       apiname='vulkan',
+                       defaultExtensions='vulkan',
+                       emitExtensions = '.*')],
+
+    [COutputGeneratorVulkanLayerAPIDump,
+     CGeneratorOptions(prefixText='',
+                       apicall='VKAPI_ATTR ',
+                       apientry='VKAPI_CALL ',
+                       apientryp='VKAPI_PTR *',
+                       indentFuncProto=True,
+                       protectFeature=False,
+                       conventions=vkconventions.VulkanConventions(),
+                       filename='VulkanLayerAPIDumpGenerated.h',
+                       directory='.',
+                       apiname='vulkan',
+                       defaultExtensions='vulkan',
+                       emitExtensions = '.*')],
 ]
 
 
 def main():
-
     with open('Diag.txt', 'w') as diagFile:
         for index, target in enumerate(generate_targets):
             gen = target[0]
@@ -637,7 +1927,7 @@ def main():
 
             index = index + 1
             targets_count = len(generate_targets)
-            print(f'[{index}/{targets_count}] Generating target \'{options.filename}\'')
+            print(f'[{index:>2}/{targets_count}] Generating target \'{options.filename}\'')
 
             gen = gen(errFile=diagFile, warnFile=diagFile, diagFile=diagFile)
 
@@ -645,6 +1935,11 @@ def main():
 
             tree = etree.parse(REGISTRY_PATH)
             registry.loadElementTree(tree)
+
+            if not isinstance(gen, COutputGeneratorCustom):
+                video_tree = etree.parse(VIDEO_REGISTRY_PATH)
+                addVideoTree(registry, video_tree)
+
             registry.apiGen()
 
 

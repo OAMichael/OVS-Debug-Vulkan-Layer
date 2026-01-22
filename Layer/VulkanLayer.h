@@ -20,6 +20,7 @@ enum class VulkanLayerType {
     Terminator,
     Printer,
     Screenshot,
+    APIDump,
 
     Count
 };
@@ -30,6 +31,7 @@ static inline const char* GetLayerTypeName(VulkanLayerType type) {
         case VulkanLayerType::TerminatorBase:   return "TerminatorBase";
         case VulkanLayerType::Terminator:       return "Terminator";
         case VulkanLayerType::Printer:          return "Printer";
+        case VulkanLayerType::APIDump:          return "APIDump";
         case VulkanLayerType::Screenshot:       return "Screenshot";
         default:                                return "Unknown";
     }
@@ -51,6 +53,9 @@ static inline VulkanLayerType GetLayerTypeByName(std::string_view name) {
     if (name == "Screenshot") {
         return VulkanLayerType::Screenshot;
     }
+    if (name == "APIDump") {
+        return VulkanLayerType::APIDump;
+    }
     return VulkanLayerType::None;
 }
 
@@ -58,6 +63,10 @@ class VulkanLayerInterface;
 using VulkanLayerPtr = std::unique_ptr<VulkanLayerInterface>;
 
 struct VulkanLayerPrinterSettings {
+    std::string filename;
+};
+
+struct VulkanLayerAPIDumpSettings {
     std::string filename;
 };
 

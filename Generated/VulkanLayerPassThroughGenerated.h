@@ -714,15 +714,15 @@ public:
         return next_->vkCreateRenderPass2(device, pCreateInfo, pAllocator, pRenderPass);
     }
 
-    virtual void vkCmdBeginRenderPass2(VkCommandBuffer commandBuffer, const VkRenderPassBeginInfo*      pRenderPassBegin, const VkSubpassBeginInfo*      pSubpassBeginInfo) override {
+    virtual void vkCmdBeginRenderPass2(VkCommandBuffer commandBuffer, const VkRenderPassBeginInfo* pRenderPassBegin, const VkSubpassBeginInfo* pSubpassBeginInfo) override {
         next_->vkCmdBeginRenderPass2(commandBuffer, pRenderPassBegin, pSubpassBeginInfo);
     }
 
-    virtual void vkCmdNextSubpass2(VkCommandBuffer commandBuffer, const VkSubpassBeginInfo*      pSubpassBeginInfo, const VkSubpassEndInfo*        pSubpassEndInfo) override {
+    virtual void vkCmdNextSubpass2(VkCommandBuffer commandBuffer, const VkSubpassBeginInfo* pSubpassBeginInfo, const VkSubpassEndInfo* pSubpassEndInfo) override {
         next_->vkCmdNextSubpass2(commandBuffer, pSubpassBeginInfo, pSubpassEndInfo);
     }
 
-    virtual void vkCmdEndRenderPass2(VkCommandBuffer commandBuffer, const VkSubpassEndInfo*        pSubpassEndInfo) override {
+    virtual void vkCmdEndRenderPass2(VkCommandBuffer commandBuffer, const VkSubpassEndInfo* pSubpassEndInfo) override {
         next_->vkCmdEndRenderPass2(commandBuffer, pSubpassEndInfo);
     }
 
@@ -746,15 +746,15 @@ public:
         next_->vkGetPrivateData(device, objectType, objectHandle, privateDataSlot, pData);
     }
 
-    virtual void vkCmdPipelineBarrier2(VkCommandBuffer                   commandBuffer, const VkDependencyInfo*                             pDependencyInfo) override {
+    virtual void vkCmdPipelineBarrier2(VkCommandBuffer commandBuffer, const VkDependencyInfo* pDependencyInfo) override {
         next_->vkCmdPipelineBarrier2(commandBuffer, pDependencyInfo);
     }
 
-    virtual void vkCmdWriteTimestamp2(VkCommandBuffer                   commandBuffer, VkPipelineStageFlags2               stage, VkQueryPool                                         queryPool, uint32_t                                            query) override {
+    virtual void vkCmdWriteTimestamp2(VkCommandBuffer commandBuffer, VkPipelineStageFlags2 stage, VkQueryPool queryPool, uint32_t query) override {
         next_->vkCmdWriteTimestamp2(commandBuffer, stage, queryPool, query);
     }
 
-    virtual VkResult vkQueueSubmit2(VkQueue                           queue, uint32_t                            submitCount, const VkSubmitInfo2*              pSubmits, VkFence           fence) override {
+    virtual VkResult vkQueueSubmit2(VkQueue queue, uint32_t submitCount, const VkSubmitInfo2* pSubmits, VkFence fence) override {
         return next_->vkQueueSubmit2(queue, submitCount, pSubmits, fence);
     }
 
@@ -786,15 +786,15 @@ public:
         next_->vkGetDeviceImageSparseMemoryRequirements(device, pInfo, pSparseMemoryRequirementCount, pSparseMemoryRequirements);
     }
 
-    virtual void vkCmdSetEvent2(VkCommandBuffer                   commandBuffer, VkEvent                                             event, const VkDependencyInfo*                             pDependencyInfo) override {
+    virtual void vkCmdSetEvent2(VkCommandBuffer commandBuffer, VkEvent event, const VkDependencyInfo* pDependencyInfo) override {
         next_->vkCmdSetEvent2(commandBuffer, event, pDependencyInfo);
     }
 
-    virtual void vkCmdResetEvent2(VkCommandBuffer                   commandBuffer, VkEvent                                             event, VkPipelineStageFlags2               stageMask) override {
+    virtual void vkCmdResetEvent2(VkCommandBuffer commandBuffer, VkEvent event, VkPipelineStageFlags2 stageMask) override {
         next_->vkCmdResetEvent2(commandBuffer, event, stageMask);
     }
 
-    virtual void vkCmdWaitEvents2(VkCommandBuffer                   commandBuffer, uint32_t                                            eventCount, const VkEvent*                     pEvents, const VkDependencyInfo*            pDependencyInfos) override {
+    virtual void vkCmdWaitEvents2(VkCommandBuffer commandBuffer, uint32_t eventCount, const VkEvent* pEvents, const VkDependencyInfo* pDependencyInfos) override {
         next_->vkCmdWaitEvents2(commandBuffer, eventCount, pEvents, pDependencyInfos);
     }
 
@@ -806,11 +806,11 @@ public:
         next_->vkCmdResolveImage2(commandBuffer, pResolveImageInfo);
     }
 
-    virtual void vkCmdBeginRendering(VkCommandBuffer                   commandBuffer, const VkRenderingInfo*                              pRenderingInfo) override {
+    virtual void vkCmdBeginRendering(VkCommandBuffer commandBuffer, const VkRenderingInfo* pRenderingInfo) override {
         next_->vkCmdBeginRendering(commandBuffer, pRenderingInfo);
     }
 
-    virtual void vkCmdEndRendering(VkCommandBuffer                   commandBuffer) override {
+    virtual void vkCmdEndRendering(VkCommandBuffer commandBuffer) override {
         next_->vkCmdEndRendering(commandBuffer);
     }
 
@@ -890,19 +890,19 @@ public:
         next_->vkGetImageSubresourceLayout2(device, image, pSubresource, pLayout);
     }
 
-    virtual VkResult vkCopyMemoryToImage(VkDevice device, const VkCopyMemoryToImageInfo*    pCopyMemoryToImageInfo) override {
+    virtual VkResult vkCopyMemoryToImage(VkDevice device, const VkCopyMemoryToImageInfo* pCopyMemoryToImageInfo) override {
         return next_->vkCopyMemoryToImage(device, pCopyMemoryToImageInfo);
     }
 
-    virtual VkResult vkCopyImageToMemory(VkDevice device, const VkCopyImageToMemoryInfo*    pCopyImageToMemoryInfo) override {
+    virtual VkResult vkCopyImageToMemory(VkDevice device, const VkCopyImageToMemoryInfo* pCopyImageToMemoryInfo) override {
         return next_->vkCopyImageToMemory(device, pCopyImageToMemoryInfo);
     }
 
-    virtual VkResult vkCopyImageToImage(VkDevice device, const VkCopyImageToImageInfo*    pCopyImageToImageInfo) override {
+    virtual VkResult vkCopyImageToImage(VkDevice device, const VkCopyImageToImageInfo* pCopyImageToImageInfo) override {
         return next_->vkCopyImageToImage(device, pCopyImageToImageInfo);
     }
 
-    virtual VkResult vkTransitionImageLayout(VkDevice device, uint32_t transitionCount, const VkHostImageLayoutTransitionInfo*    pTransitions) override {
+    virtual VkResult vkTransitionImageLayout(VkDevice device, uint32_t transitionCount, const VkHostImageLayoutTransitionInfo* pTransitions) override {
         return next_->vkTransitionImageLayout(device, transitionCount, pTransitions);
     }
 
@@ -914,15 +914,15 @@ public:
         next_->vkCmdPushDescriptorSetWithTemplate(commandBuffer, descriptorUpdateTemplate, layout, set, pData);
     }
 
-    virtual void vkCmdBindDescriptorSets2(VkCommandBuffer commandBuffer, const VkBindDescriptorSetsInfo*   pBindDescriptorSetsInfo) override {
+    virtual void vkCmdBindDescriptorSets2(VkCommandBuffer commandBuffer, const VkBindDescriptorSetsInfo* pBindDescriptorSetsInfo) override {
         next_->vkCmdBindDescriptorSets2(commandBuffer, pBindDescriptorSetsInfo);
     }
 
-    virtual void vkCmdPushConstants2(VkCommandBuffer commandBuffer, const VkPushConstantsInfo*        pPushConstantsInfo) override {
+    virtual void vkCmdPushConstants2(VkCommandBuffer commandBuffer, const VkPushConstantsInfo* pPushConstantsInfo) override {
         next_->vkCmdPushConstants2(commandBuffer, pPushConstantsInfo);
     }
 
-    virtual void vkCmdPushDescriptorSet2(VkCommandBuffer commandBuffer, const VkPushDescriptorSetInfo*    pPushDescriptorSetInfo) override {
+    virtual void vkCmdPushDescriptorSet2(VkCommandBuffer commandBuffer, const VkPushDescriptorSetInfo* pPushDescriptorSetInfo) override {
         next_->vkCmdPushDescriptorSet2(commandBuffer, pPushDescriptorSetInfo);
     }
 
@@ -1126,11 +1126,11 @@ public:
         next_->vkCmdDecodeVideoKHR(commandBuffer, pDecodeInfo);
     }
 
-    virtual void vkCmdBeginRenderingKHR(VkCommandBuffer                   commandBuffer, const VkRenderingInfo*                              pRenderingInfo) override {
+    virtual void vkCmdBeginRenderingKHR(VkCommandBuffer commandBuffer, const VkRenderingInfo* pRenderingInfo) override {
         next_->vkCmdBeginRenderingKHR(commandBuffer, pRenderingInfo);
     }
 
-    virtual void vkCmdEndRenderingKHR(VkCommandBuffer                   commandBuffer) override {
+    virtual void vkCmdEndRenderingKHR(VkCommandBuffer commandBuffer) override {
         next_->vkCmdEndRenderingKHR(commandBuffer);
     }
 
@@ -1246,15 +1246,15 @@ public:
         return next_->vkCreateRenderPass2KHR(device, pCreateInfo, pAllocator, pRenderPass);
     }
 
-    virtual void vkCmdBeginRenderPass2KHR(VkCommandBuffer commandBuffer, const VkRenderPassBeginInfo*      pRenderPassBegin, const VkSubpassBeginInfo*      pSubpassBeginInfo) override {
+    virtual void vkCmdBeginRenderPass2KHR(VkCommandBuffer commandBuffer, const VkRenderPassBeginInfo* pRenderPassBegin, const VkSubpassBeginInfo* pSubpassBeginInfo) override {
         next_->vkCmdBeginRenderPass2KHR(commandBuffer, pRenderPassBegin, pSubpassBeginInfo);
     }
 
-    virtual void vkCmdNextSubpass2KHR(VkCommandBuffer commandBuffer, const VkSubpassBeginInfo*      pSubpassBeginInfo, const VkSubpassEndInfo*        pSubpassEndInfo) override {
+    virtual void vkCmdNextSubpass2KHR(VkCommandBuffer commandBuffer, const VkSubpassBeginInfo* pSubpassBeginInfo, const VkSubpassEndInfo* pSubpassEndInfo) override {
         next_->vkCmdNextSubpass2KHR(commandBuffer, pSubpassBeginInfo, pSubpassEndInfo);
     }
 
-    virtual void vkCmdEndRenderPass2KHR(VkCommandBuffer commandBuffer, const VkSubpassEndInfo*        pSubpassEndInfo) override {
+    virtual void vkCmdEndRenderPass2KHR(VkCommandBuffer commandBuffer, const VkSubpassEndInfo* pSubpassEndInfo) override {
         next_->vkCmdEndRenderPass2KHR(commandBuffer, pSubpassEndInfo);
     }
 
@@ -1378,7 +1378,7 @@ public:
         return next_->vkGetPhysicalDeviceFragmentShadingRatesKHR(physicalDevice, pFragmentShadingRateCount, pFragmentShadingRates);
     }
 
-    virtual void vkCmdSetFragmentShadingRateKHR(VkCommandBuffer           commandBuffer, const VkExtent2D*                           pFragmentSize, const VkFragmentShadingRateCombinerOpKHR    combinerOps[2]) override {
+    virtual void vkCmdSetFragmentShadingRateKHR(VkCommandBuffer commandBuffer, const VkExtent2D* pFragmentSize, const VkFragmentShadingRateCombinerOpKHR combinerOps[2]) override {
         next_->vkCmdSetFragmentShadingRateKHR(commandBuffer, pFragmentSize, combinerOps);
     }
 
@@ -1426,15 +1426,15 @@ public:
         return next_->vkDeferredOperationJoinKHR(device, operation);
     }
 
-    virtual VkResult vkGetPipelineExecutablePropertiesKHR(VkDevice                        device, const VkPipelineInfoKHR*        pPipelineInfo, uint32_t* pExecutableCount, VkPipelineExecutablePropertiesKHR* pProperties) override {
+    virtual VkResult vkGetPipelineExecutablePropertiesKHR(VkDevice device, const VkPipelineInfoKHR* pPipelineInfo, uint32_t* pExecutableCount, VkPipelineExecutablePropertiesKHR* pProperties) override {
         return next_->vkGetPipelineExecutablePropertiesKHR(device, pPipelineInfo, pExecutableCount, pProperties);
     }
 
-    virtual VkResult vkGetPipelineExecutableStatisticsKHR(VkDevice                        device, const VkPipelineExecutableInfoKHR*  pExecutableInfo, uint32_t* pStatisticCount, VkPipelineExecutableStatisticKHR* pStatistics) override {
+    virtual VkResult vkGetPipelineExecutableStatisticsKHR(VkDevice device, const VkPipelineExecutableInfoKHR* pExecutableInfo, uint32_t* pStatisticCount, VkPipelineExecutableStatisticKHR* pStatistics) override {
         return next_->vkGetPipelineExecutableStatisticsKHR(device, pExecutableInfo, pStatisticCount, pStatistics);
     }
 
-    virtual VkResult vkGetPipelineExecutableInternalRepresentationsKHR(VkDevice                        device, const VkPipelineExecutableInfoKHR*  pExecutableInfo, uint32_t* pInternalRepresentationCount, VkPipelineExecutableInternalRepresentationKHR* pInternalRepresentations) override {
+    virtual VkResult vkGetPipelineExecutableInternalRepresentationsKHR(VkDevice device, const VkPipelineExecutableInfoKHR* pExecutableInfo, uint32_t* pInternalRepresentationCount, VkPipelineExecutableInternalRepresentationKHR* pInternalRepresentations) override {
         return next_->vkGetPipelineExecutableInternalRepresentationsKHR(device, pExecutableInfo, pInternalRepresentationCount, pInternalRepresentations);
     }
 
@@ -1458,27 +1458,27 @@ public:
         next_->vkCmdEncodeVideoKHR(commandBuffer, pEncodeInfo);
     }
 
-    virtual void vkCmdSetEvent2KHR(VkCommandBuffer                   commandBuffer, VkEvent                                             event, const VkDependencyInfo*                             pDependencyInfo) override {
+    virtual void vkCmdSetEvent2KHR(VkCommandBuffer commandBuffer, VkEvent event, const VkDependencyInfo* pDependencyInfo) override {
         next_->vkCmdSetEvent2KHR(commandBuffer, event, pDependencyInfo);
     }
 
-    virtual void vkCmdResetEvent2KHR(VkCommandBuffer                   commandBuffer, VkEvent                                             event, VkPipelineStageFlags2               stageMask) override {
+    virtual void vkCmdResetEvent2KHR(VkCommandBuffer commandBuffer, VkEvent event, VkPipelineStageFlags2 stageMask) override {
         next_->vkCmdResetEvent2KHR(commandBuffer, event, stageMask);
     }
 
-    virtual void vkCmdWaitEvents2KHR(VkCommandBuffer                   commandBuffer, uint32_t                                            eventCount, const VkEvent*                     pEvents, const VkDependencyInfo*            pDependencyInfos) override {
+    virtual void vkCmdWaitEvents2KHR(VkCommandBuffer commandBuffer, uint32_t eventCount, const VkEvent* pEvents, const VkDependencyInfo* pDependencyInfos) override {
         next_->vkCmdWaitEvents2KHR(commandBuffer, eventCount, pEvents, pDependencyInfos);
     }
 
-    virtual void vkCmdPipelineBarrier2KHR(VkCommandBuffer                   commandBuffer, const VkDependencyInfo*                             pDependencyInfo) override {
+    virtual void vkCmdPipelineBarrier2KHR(VkCommandBuffer commandBuffer, const VkDependencyInfo* pDependencyInfo) override {
         next_->vkCmdPipelineBarrier2KHR(commandBuffer, pDependencyInfo);
     }
 
-    virtual void vkCmdWriteTimestamp2KHR(VkCommandBuffer                   commandBuffer, VkPipelineStageFlags2               stage, VkQueryPool                                         queryPool, uint32_t                                            query) override {
+    virtual void vkCmdWriteTimestamp2KHR(VkCommandBuffer commandBuffer, VkPipelineStageFlags2 stage, VkQueryPool queryPool, uint32_t query) override {
         next_->vkCmdWriteTimestamp2KHR(commandBuffer, stage, queryPool, query);
     }
 
-    virtual VkResult vkQueueSubmit2KHR(VkQueue                           queue, uint32_t                            submitCount, const VkSubmitInfo2*              pSubmits, VkFence           fence) override {
+    virtual VkResult vkQueueSubmit2KHR(VkQueue queue, uint32_t submitCount, const VkSubmitInfo2* pSubmits, VkFence fence) override {
         return next_->vkQueueSubmit2KHR(queue, submitCount, pSubmits, fence);
     }
 
@@ -1582,15 +1582,15 @@ public:
         return next_->vkGetCalibratedTimestampsKHR(device, timestampCount, pTimestampInfos, pTimestamps, pMaxDeviation);
     }
 
-    virtual void vkCmdBindDescriptorSets2KHR(VkCommandBuffer commandBuffer, const VkBindDescriptorSetsInfo*   pBindDescriptorSetsInfo) override {
+    virtual void vkCmdBindDescriptorSets2KHR(VkCommandBuffer commandBuffer, const VkBindDescriptorSetsInfo* pBindDescriptorSetsInfo) override {
         next_->vkCmdBindDescriptorSets2KHR(commandBuffer, pBindDescriptorSetsInfo);
     }
 
-    virtual void vkCmdPushConstants2KHR(VkCommandBuffer commandBuffer, const VkPushConstantsInfo*        pPushConstantsInfo) override {
+    virtual void vkCmdPushConstants2KHR(VkCommandBuffer commandBuffer, const VkPushConstantsInfo* pPushConstantsInfo) override {
         next_->vkCmdPushConstants2KHR(commandBuffer, pPushConstantsInfo);
     }
 
-    virtual void vkCmdPushDescriptorSet2KHR(VkCommandBuffer commandBuffer, const VkPushDescriptorSetInfo*    pPushDescriptorSetInfo) override {
+    virtual void vkCmdPushDescriptorSet2KHR(VkCommandBuffer commandBuffer, const VkPushDescriptorSetInfo* pPushDescriptorSetInfo) override {
         next_->vkCmdPushDescriptorSet2KHR(commandBuffer, pPushDescriptorSetInfo);
     }
 
@@ -1614,7 +1614,7 @@ public:
         next_->vkCmdCopyMemoryToImageIndirectKHR(commandBuffer, pCopyMemoryToImageIndirectInfo);
     }
 
-    virtual void vkCmdEndRendering2KHR(VkCommandBuffer                   commandBuffer, const VkRenderingEndInfoKHR*        pRenderingEndInfo) override {
+    virtual void vkCmdEndRendering2KHR(VkCommandBuffer commandBuffer, const VkRenderingEndInfoKHR* pRenderingEndInfo) override {
         next_->vkCmdEndRendering2KHR(commandBuffer, pRenderingEndInfo);
     }
 
@@ -1862,31 +1862,31 @@ public:
         return next_->vkGetMemoryAndroidHardwareBufferANDROID(device, pInfo, pBuffer);
     }
 
-    virtual VkResult vkCreateExecutionGraphPipelinesAMDX(VkDevice                                        device, VkPipelineCache pipelineCache, uint32_t                                        createInfoCount, const VkExecutionGraphPipelineCreateInfoAMDX* pCreateInfos, const VkAllocationCallbacks*    pAllocator, VkPipeline*               pPipelines) override {
+    virtual VkResult vkCreateExecutionGraphPipelinesAMDX(VkDevice device, VkPipelineCache pipelineCache, uint32_t createInfoCount, const VkExecutionGraphPipelineCreateInfoAMDX* pCreateInfos, const VkAllocationCallbacks* pAllocator, VkPipeline* pPipelines) override {
         return next_->vkCreateExecutionGraphPipelinesAMDX(device, pipelineCache, createInfoCount, pCreateInfos, pAllocator, pPipelines);
     }
 
-    virtual VkResult vkGetExecutionGraphPipelineScratchSizeAMDX(VkDevice                                        device, VkPipeline                                      executionGraph, VkExecutionGraphPipelineScratchSizeAMDX*        pSizeInfo) override {
+    virtual VkResult vkGetExecutionGraphPipelineScratchSizeAMDX(VkDevice device, VkPipeline executionGraph, VkExecutionGraphPipelineScratchSizeAMDX* pSizeInfo) override {
         return next_->vkGetExecutionGraphPipelineScratchSizeAMDX(device, executionGraph, pSizeInfo);
     }
 
-    virtual VkResult vkGetExecutionGraphPipelineNodeIndexAMDX(VkDevice                                        device, VkPipeline                                      executionGraph, const VkPipelineShaderStageNodeCreateInfoAMDX*  pNodeInfo, uint32_t*                                       pNodeIndex) override {
+    virtual VkResult vkGetExecutionGraphPipelineNodeIndexAMDX(VkDevice device, VkPipeline executionGraph, const VkPipelineShaderStageNodeCreateInfoAMDX* pNodeInfo, uint32_t* pNodeIndex) override {
         return next_->vkGetExecutionGraphPipelineNodeIndexAMDX(device, executionGraph, pNodeInfo, pNodeIndex);
     }
 
-    virtual void vkCmdInitializeGraphScratchMemoryAMDX(VkCommandBuffer                                 commandBuffer, VkPipeline                                      executionGraph, VkDeviceAddress                                 scratch, VkDeviceSize                                    scratchSize) override {
+    virtual void vkCmdInitializeGraphScratchMemoryAMDX(VkCommandBuffer commandBuffer, VkPipeline executionGraph, VkDeviceAddress scratch, VkDeviceSize scratchSize) override {
         next_->vkCmdInitializeGraphScratchMemoryAMDX(commandBuffer, executionGraph, scratch, scratchSize);
     }
 
-    virtual void vkCmdDispatchGraphAMDX(VkCommandBuffer                                 commandBuffer, VkDeviceAddress                                 scratch, VkDeviceSize                                    scratchSize, const VkDispatchGraphCountInfoAMDX*             pCountInfo) override {
+    virtual void vkCmdDispatchGraphAMDX(VkCommandBuffer commandBuffer, VkDeviceAddress scratch, VkDeviceSize scratchSize, const VkDispatchGraphCountInfoAMDX* pCountInfo) override {
         next_->vkCmdDispatchGraphAMDX(commandBuffer, scratch, scratchSize, pCountInfo);
     }
 
-    virtual void vkCmdDispatchGraphIndirectAMDX(VkCommandBuffer                                 commandBuffer, VkDeviceAddress                                 scratch, VkDeviceSize                                    scratchSize, const VkDispatchGraphCountInfoAMDX*             pCountInfo) override {
+    virtual void vkCmdDispatchGraphIndirectAMDX(VkCommandBuffer commandBuffer, VkDeviceAddress scratch, VkDeviceSize scratchSize, const VkDispatchGraphCountInfoAMDX* pCountInfo) override {
         next_->vkCmdDispatchGraphIndirectAMDX(commandBuffer, scratch, scratchSize, pCountInfo);
     }
 
-    virtual void vkCmdDispatchGraphIndirectCountAMDX(VkCommandBuffer                                 commandBuffer, VkDeviceAddress                                 scratch, VkDeviceSize                                    scratchSize, VkDeviceAddress                                 countInfo) override {
+    virtual void vkCmdDispatchGraphIndirectCountAMDX(VkCommandBuffer commandBuffer, VkDeviceAddress scratch, VkDeviceSize scratchSize, VkDeviceAddress countInfo) override {
         next_->vkCmdDispatchGraphIndirectCountAMDX(commandBuffer, scratch, scratchSize, countInfo);
     }
 
@@ -1990,7 +1990,7 @@ public:
         next_->vkCmdWriteBufferMarkerAMD(commandBuffer, pipelineStage, dstBuffer, dstOffset, marker);
     }
 
-    virtual void vkCmdWriteBufferMarker2AMD(VkCommandBuffer                   commandBuffer, VkPipelineStageFlags2               stage, VkBuffer                                            dstBuffer, VkDeviceSize                                        dstOffset, uint32_t                                            marker) override {
+    virtual void vkCmdWriteBufferMarker2AMD(VkCommandBuffer commandBuffer, VkPipelineStageFlags2 stage, VkBuffer dstBuffer, VkDeviceSize dstOffset, uint32_t marker) override {
         next_->vkCmdWriteBufferMarker2AMD(commandBuffer, stage, dstBuffer, dstOffset, marker);
     }
 
@@ -2190,19 +2190,19 @@ public:
         next_->vkCmdSetStencilOpEXT(commandBuffer, faceMask, failOp, passOp, depthFailOp, compareOp);
     }
 
-    virtual VkResult vkCopyMemoryToImageEXT(VkDevice device, const VkCopyMemoryToImageInfo*    pCopyMemoryToImageInfo) override {
+    virtual VkResult vkCopyMemoryToImageEXT(VkDevice device, const VkCopyMemoryToImageInfo* pCopyMemoryToImageInfo) override {
         return next_->vkCopyMemoryToImageEXT(device, pCopyMemoryToImageInfo);
     }
 
-    virtual VkResult vkCopyImageToMemoryEXT(VkDevice device, const VkCopyImageToMemoryInfo*    pCopyImageToMemoryInfo) override {
+    virtual VkResult vkCopyImageToMemoryEXT(VkDevice device, const VkCopyImageToMemoryInfo* pCopyImageToMemoryInfo) override {
         return next_->vkCopyImageToMemoryEXT(device, pCopyImageToMemoryInfo);
     }
 
-    virtual VkResult vkCopyImageToImageEXT(VkDevice device, const VkCopyImageToImageInfo*    pCopyImageToImageInfo) override {
+    virtual VkResult vkCopyImageToImageEXT(VkDevice device, const VkCopyImageToImageInfo* pCopyImageToImageInfo) override {
         return next_->vkCopyImageToImageEXT(device, pCopyImageToImageInfo);
     }
 
-    virtual VkResult vkTransitionImageLayoutEXT(VkDevice device, uint32_t transitionCount, const VkHostImageLayoutTransitionInfo*    pTransitions) override {
+    virtual VkResult vkTransitionImageLayoutEXT(VkDevice device, uint32_t transitionCount, const VkHostImageLayoutTransitionInfo* pTransitions) override {
         return next_->vkTransitionImageLayoutEXT(device, transitionCount, pTransitions);
     }
 
@@ -2238,7 +2238,7 @@ public:
         next_->vkDestroyIndirectCommandsLayoutNV(device, indirectCommandsLayout, pAllocator);
     }
 
-    virtual void vkCmdSetDepthBias2EXT(VkCommandBuffer commandBuffer, const VkDepthBiasInfoEXT*         pDepthBiasInfo) override {
+    virtual void vkCmdSetDepthBias2EXT(VkCommandBuffer commandBuffer, const VkDepthBiasInfoEXT* pDepthBiasInfo) override {
         next_->vkCmdSetDepthBias2EXT(commandBuffer, pDepthBiasInfo);
     }
 
@@ -2350,7 +2350,7 @@ public:
         return next_->vkGetAccelerationStructureOpaqueCaptureDescriptorDataEXT(device, pInfo, pData);
     }
 
-    virtual void vkCmdSetFragmentShadingRateEnumNV(VkCommandBuffer           commandBuffer, VkFragmentShadingRateNV                     shadingRate, const VkFragmentShadingRateCombinerOpKHR    combinerOps[2]) override {
+    virtual void vkCmdSetFragmentShadingRateEnumNV(VkCommandBuffer commandBuffer, VkFragmentShadingRateNV shadingRate, const VkFragmentShadingRateCombinerOpKHR combinerOps[2]) override {
         next_->vkCmdSetFragmentShadingRateEnumNV(commandBuffer, shadingRate, combinerOps);
     }
 
@@ -2462,7 +2462,7 @@ public:
         return next_->vkGetPhysicalDeviceScreenPresentationSupportQNX(physicalDevice, queueFamilyIndex, window);
     }
 
-    virtual void vkCmdSetColorWriteEnableEXT(VkCommandBuffer       commandBuffer, uint32_t                                attachmentCount, const VkBool32*   pColorWriteEnables) override {
+    virtual void vkCmdSetColorWriteEnableEXT(VkCommandBuffer commandBuffer, uint32_t attachmentCount, const VkBool32* pColorWriteEnables) override {
         next_->vkCmdSetColorWriteEnableEXT(commandBuffer, attachmentCount, pColorWriteEnables);
     }
 
@@ -2474,7 +2474,7 @@ public:
         next_->vkCmdDrawMultiIndexedEXT(commandBuffer, drawCount, pIndexInfo, instanceCount, firstInstance, stride, pVertexOffset);
     }
 
-    virtual VkResult vkCreateMicromapEXT(VkDevice                                           device, const VkMicromapCreateInfoEXT*        pCreateInfo, const VkAllocationCallbacks*       pAllocator, VkMicromapEXT*                        pMicromap) override {
+    virtual VkResult vkCreateMicromapEXT(VkDevice device, const VkMicromapCreateInfoEXT* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkMicromapEXT* pMicromap) override {
         return next_->vkCreateMicromapEXT(device, pCreateInfo, pAllocator, pMicromap);
     }
 
@@ -2482,11 +2482,11 @@ public:
         next_->vkDestroyMicromapEXT(device, micromap, pAllocator);
     }
 
-    virtual void vkCmdBuildMicromapsEXT(VkCommandBuffer                                    commandBuffer, uint32_t infoCount, const VkMicromapBuildInfoEXT* pInfos) override {
+    virtual void vkCmdBuildMicromapsEXT(VkCommandBuffer commandBuffer, uint32_t infoCount, const VkMicromapBuildInfoEXT* pInfos) override {
         next_->vkCmdBuildMicromapsEXT(commandBuffer, infoCount, pInfos);
     }
 
-    virtual VkResult vkBuildMicromapsEXT(VkDevice                                           device, VkDeferredOperationKHR deferredOperation, uint32_t infoCount, const VkMicromapBuildInfoEXT* pInfos) override {
+    virtual VkResult vkBuildMicromapsEXT(VkDevice device, VkDeferredOperationKHR deferredOperation, uint32_t infoCount, const VkMicromapBuildInfoEXT* pInfos) override {
         return next_->vkBuildMicromapsEXT(device, deferredOperation, infoCount, pInfos);
     }
 
@@ -2502,7 +2502,7 @@ public:
         return next_->vkCopyMemoryToMicromapEXT(device, deferredOperation, pInfo);
     }
 
-    virtual VkResult vkWriteMicromapsPropertiesEXT(VkDevice device, uint32_t micromapCount, const VkMicromapEXT* pMicromaps, VkQueryType  queryType, size_t       dataSize, void* pData, size_t stride) override {
+    virtual VkResult vkWriteMicromapsPropertiesEXT(VkDevice device, uint32_t micromapCount, const VkMicromapEXT* pMicromaps, VkQueryType queryType, size_t dataSize, void* pData, size_t stride) override {
         return next_->vkWriteMicromapsPropertiesEXT(device, micromapCount, pMicromaps, queryType, dataSize, pData, stride);
     }
 
@@ -2526,7 +2526,7 @@ public:
         next_->vkGetDeviceMicromapCompatibilityEXT(device, pVersionInfo, pCompatibility);
     }
 
-    virtual void vkGetMicromapBuildSizesEXT(VkDevice                                            device, VkAccelerationStructureBuildTypeKHR                 buildType, const VkMicromapBuildInfoEXT*  pBuildInfo, VkMicromapBuildSizesInfoEXT*           pSizeInfo) override {
+    virtual void vkGetMicromapBuildSizesEXT(VkDevice device, VkAccelerationStructureBuildTypeKHR buildType, const VkMicromapBuildInfoEXT* pBuildInfo, VkMicromapBuildSizesInfoEXT* pSizeInfo) override {
         next_->vkGetMicromapBuildSizesEXT(device, buildType, pBuildInfo, pSizeInfo);
     }
 
@@ -2538,7 +2538,7 @@ public:
         next_->vkCmdDrawClusterIndirectHUAWEI(commandBuffer, buffer, offset);
     }
 
-    virtual void vkSetDeviceMemoryPriorityEXT(VkDevice       device, VkDeviceMemory memory, float          priority) override {
+    virtual void vkSetDeviceMemoryPriorityEXT(VkDevice device, VkDeviceMemory memory, float priority) override {
         next_->vkSetDeviceMemoryPriorityEXT(device, memory, priority);
     }
 
@@ -2570,7 +2570,7 @@ public:
         next_->vkGetPipelineIndirectMemoryRequirementsNV(device, pCreateInfo, pMemoryRequirements);
     }
 
-    virtual void vkCmdUpdatePipelineIndirectBufferNV(VkCommandBuffer commandBuffer, VkPipelineBindPoint           pipelineBindPoint, VkPipeline                    pipeline) override {
+    virtual void vkCmdUpdatePipelineIndirectBufferNV(VkCommandBuffer commandBuffer, VkPipelineBindPoint pipelineBindPoint, VkPipeline pipeline) override {
         next_->vkCmdUpdatePipelineIndirectBufferNV(commandBuffer, pipelineBindPoint, pipeline);
     }
 
@@ -2594,11 +2594,11 @@ public:
         next_->vkCmdSetPolygonModeEXT(commandBuffer, polygonMode);
     }
 
-    virtual void vkCmdSetRasterizationSamplesEXT(VkCommandBuffer commandBuffer, VkSampleCountFlagBits  rasterizationSamples) override {
+    virtual void vkCmdSetRasterizationSamplesEXT(VkCommandBuffer commandBuffer, VkSampleCountFlagBits rasterizationSamples) override {
         next_->vkCmdSetRasterizationSamplesEXT(commandBuffer, rasterizationSamples);
     }
 
-    virtual void vkCmdSetSampleMaskEXT(VkCommandBuffer commandBuffer, VkSampleCountFlagBits  samples, const VkSampleMask*    pSampleMask) override {
+    virtual void vkCmdSetSampleMaskEXT(VkCommandBuffer commandBuffer, VkSampleCountFlagBits samples, const VkSampleMask* pSampleMask) override {
         next_->vkCmdSetSampleMaskEXT(commandBuffer, samples, pSampleMask);
     }
 
@@ -2742,15 +2742,15 @@ public:
         next_->vkCmdCopyTensorARM(commandBuffer, pCopyTensorInfo);
     }
 
-    virtual void vkGetPhysicalDeviceExternalTensorPropertiesARM(VkPhysicalDevice                             physicalDevice, const VkPhysicalDeviceExternalTensorInfoARM* pExternalTensorInfo, VkExternalTensorPropertiesARM*               pExternalTensorProperties) override {
+    virtual void vkGetPhysicalDeviceExternalTensorPropertiesARM(VkPhysicalDevice physicalDevice, const VkPhysicalDeviceExternalTensorInfoARM* pExternalTensorInfo, VkExternalTensorPropertiesARM* pExternalTensorProperties) override {
         next_->vkGetPhysicalDeviceExternalTensorPropertiesARM(physicalDevice, pExternalTensorInfo, pExternalTensorProperties);
     }
 
-    virtual VkResult vkGetTensorOpaqueCaptureDescriptorDataARM(VkDevice                                    device, const VkTensorCaptureDescriptorDataInfoARM* pInfo, void*                                       pData) override {
+    virtual VkResult vkGetTensorOpaqueCaptureDescriptorDataARM(VkDevice device, const VkTensorCaptureDescriptorDataInfoARM* pInfo, void* pData) override {
         return next_->vkGetTensorOpaqueCaptureDescriptorDataARM(device, pInfo, pData);
     }
 
-    virtual VkResult vkGetTensorViewOpaqueCaptureDescriptorDataARM(VkDevice                                        device, const VkTensorViewCaptureDescriptorDataInfoARM* pInfo, void*                                           pData) override {
+    virtual VkResult vkGetTensorViewOpaqueCaptureDescriptorDataARM(VkDevice device, const VkTensorViewCaptureDescriptorDataInfoARM* pInfo, void* pData) override {
         return next_->vkGetTensorViewOpaqueCaptureDescriptorDataARM(device, pInfo, pData);
     }
 
@@ -2846,11 +2846,11 @@ public:
         next_->vkQueueNotifyOutOfBandNV(queue, pQueueTypeInfo);
     }
 
-    virtual VkResult vkCreateDataGraphPipelinesARM(VkDevice               device, VkDeferredOperationKHR deferredOperation, VkPipelineCache        pipelineCache, uint32_t               createInfoCount, const VkDataGraphPipelineCreateInfoARM* pCreateInfos, const VkAllocationCallbacks* pAllocator, VkPipeline*     pPipelines) override {
+    virtual VkResult vkCreateDataGraphPipelinesARM(VkDevice device, VkDeferredOperationKHR deferredOperation, VkPipelineCache pipelineCache, uint32_t createInfoCount, const VkDataGraphPipelineCreateInfoARM* pCreateInfos, const VkAllocationCallbacks* pAllocator, VkPipeline* pPipelines) override {
         return next_->vkCreateDataGraphPipelinesARM(device, deferredOperation, pipelineCache, createInfoCount, pCreateInfos, pAllocator, pPipelines);
     }
 
-    virtual VkResult vkCreateDataGraphPipelineSessionARM(VkDevice                                     device, const VkDataGraphPipelineSessionCreateInfoARM*   pCreateInfo, const VkAllocationCallbacks* pAllocator, VkDataGraphPipelineSessionARM*                   pSession) override {
+    virtual VkResult vkCreateDataGraphPipelineSessionARM(VkDevice device, const VkDataGraphPipelineSessionCreateInfoARM* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkDataGraphPipelineSessionARM* pSession) override {
         return next_->vkCreateDataGraphPipelineSessionARM(device, pCreateInfo, pAllocator, pSession);
     }
 
@@ -2878,15 +2878,15 @@ public:
         return next_->vkGetDataGraphPipelineAvailablePropertiesARM(device, pPipelineInfo, pPropertiesCount, pProperties);
     }
 
-    virtual VkResult vkGetDataGraphPipelinePropertiesARM(VkDevice                          device, const VkDataGraphPipelineInfoARM* pPipelineInfo, uint32_t                          propertiesCount, VkDataGraphPipelinePropertyQueryResultARM* pProperties) override {
+    virtual VkResult vkGetDataGraphPipelinePropertiesARM(VkDevice device, const VkDataGraphPipelineInfoARM* pPipelineInfo, uint32_t propertiesCount, VkDataGraphPipelinePropertyQueryResultARM* pProperties) override {
         return next_->vkGetDataGraphPipelinePropertiesARM(device, pPipelineInfo, propertiesCount, pProperties);
     }
 
-    virtual VkResult vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM(VkPhysicalDevice                     physicalDevice, uint32_t                             queueFamilyIndex, uint32_t*                            pQueueFamilyDataGraphPropertyCount, VkQueueFamilyDataGraphPropertiesARM* pQueueFamilyDataGraphProperties) override {
+    virtual VkResult vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM(VkPhysicalDevice physicalDevice, uint32_t queueFamilyIndex, uint32_t* pQueueFamilyDataGraphPropertyCount, VkQueueFamilyDataGraphPropertiesARM* pQueueFamilyDataGraphProperties) override {
         return next_->vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM(physicalDevice, queueFamilyIndex, pQueueFamilyDataGraphPropertyCount, pQueueFamilyDataGraphProperties);
     }
 
-    virtual void vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM(VkPhysicalDevice                                 physicalDevice, const VkPhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM* pQueueFamilyDataGraphProcessingEngineInfo, VkQueueFamilyDataGraphProcessingEnginePropertiesARM*               pQueueFamilyDataGraphProcessingEngineProperties) override {
+    virtual void vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM(VkPhysicalDevice physicalDevice, const VkPhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM* pQueueFamilyDataGraphProcessingEngineInfo, VkQueueFamilyDataGraphProcessingEnginePropertiesARM* pQueueFamilyDataGraphProcessingEngineProperties) override {
         next_->vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM(physicalDevice, pQueueFamilyDataGraphProcessingEngineInfo, pQueueFamilyDataGraphProcessingEngineProperties);
     }
 
@@ -2926,15 +2926,15 @@ public:
         next_->vkGetClusterAccelerationStructureBuildSizesNV(device, pInfo, pSizeInfo);
     }
 
-    virtual void vkCmdBuildClusterAccelerationStructureIndirectNV(VkCommandBuffer                     commandBuffer, const VkClusterAccelerationStructureCommandsInfoNV*  pCommandInfos) override {
+    virtual void vkCmdBuildClusterAccelerationStructureIndirectNV(VkCommandBuffer commandBuffer, const VkClusterAccelerationStructureCommandsInfoNV* pCommandInfos) override {
         next_->vkCmdBuildClusterAccelerationStructureIndirectNV(commandBuffer, pCommandInfos);
     }
 
-    virtual void vkGetPartitionedAccelerationStructuresBuildSizesNV(VkDevice device, const VkPartitionedAccelerationStructureInstancesInputNV* pInfo, VkAccelerationStructureBuildSizesInfoKHR*                  pSizeInfo) override {
+    virtual void vkGetPartitionedAccelerationStructuresBuildSizesNV(VkDevice device, const VkPartitionedAccelerationStructureInstancesInputNV* pInfo, VkAccelerationStructureBuildSizesInfoKHR* pSizeInfo) override {
         next_->vkGetPartitionedAccelerationStructuresBuildSizesNV(device, pInfo, pSizeInfo);
     }
 
-    virtual void vkCmdBuildPartitionedAccelerationStructuresNV(VkCommandBuffer                     commandBuffer, const VkBuildPartitionedAccelerationStructureInfoNV*  pBuildInfo) override {
+    virtual void vkCmdBuildPartitionedAccelerationStructuresNV(VkCommandBuffer commandBuffer, const VkBuildPartitionedAccelerationStructureInfoNV* pBuildInfo) override {
         next_->vkCmdBuildPartitionedAccelerationStructuresNV(commandBuffer, pBuildInfo);
     }
 
@@ -3006,7 +3006,7 @@ public:
         return next_->vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARM(physicalDevice, queueFamilyIndex, pCounterCount, pCounters, pCounterDescriptions);
     }
 
-    virtual void vkCmdEndRendering2EXT(VkCommandBuffer                   commandBuffer, const VkRenderingEndInfoKHR*        pRenderingEndInfo) override {
+    virtual void vkCmdEndRendering2EXT(VkCommandBuffer commandBuffer, const VkRenderingEndInfoKHR* pRenderingEndInfo) override {
         next_->vkCmdEndRendering2EXT(commandBuffer, pRenderingEndInfo);
     }
 
@@ -3014,7 +3014,7 @@ public:
         next_->vkCmdBeginCustomResolveEXT(commandBuffer, pBeginCustomResolveInfo);
     }
 
-    virtual VkResult vkCreateAccelerationStructureKHR(VkDevice                                           device, const VkAccelerationStructureCreateInfoKHR*        pCreateInfo, const VkAllocationCallbacks*       pAllocator, VkAccelerationStructureKHR*                        pAccelerationStructure) override {
+    virtual VkResult vkCreateAccelerationStructureKHR(VkDevice device, const VkAccelerationStructureCreateInfoKHR* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkAccelerationStructureKHR* pAccelerationStructure) override {
         return next_->vkCreateAccelerationStructureKHR(device, pCreateInfo, pAllocator, pAccelerationStructure);
     }
 
@@ -3022,15 +3022,15 @@ public:
         next_->vkDestroyAccelerationStructureKHR(device, accelerationStructure, pAllocator);
     }
 
-    virtual void vkCmdBuildAccelerationStructuresKHR(VkCommandBuffer                                    commandBuffer, uint32_t infoCount, const VkAccelerationStructureBuildGeometryInfoKHR* pInfos, const VkAccelerationStructureBuildRangeInfoKHR* const* ppBuildRangeInfos) override {
+    virtual void vkCmdBuildAccelerationStructuresKHR(VkCommandBuffer commandBuffer, uint32_t infoCount, const VkAccelerationStructureBuildGeometryInfoKHR* pInfos, const VkAccelerationStructureBuildRangeInfoKHR* const* ppBuildRangeInfos) override {
         next_->vkCmdBuildAccelerationStructuresKHR(commandBuffer, infoCount, pInfos, ppBuildRangeInfos);
     }
 
-    virtual void vkCmdBuildAccelerationStructuresIndirectKHR(VkCommandBuffer                  commandBuffer, uint32_t                                           infoCount, const VkAccelerationStructureBuildGeometryInfoKHR* pInfos, const VkDeviceAddress*             pIndirectDeviceAddresses, const uint32_t*                    pIndirectStrides, const uint32_t* const*             ppMaxPrimitiveCounts) override {
+    virtual void vkCmdBuildAccelerationStructuresIndirectKHR(VkCommandBuffer commandBuffer, uint32_t infoCount, const VkAccelerationStructureBuildGeometryInfoKHR* pInfos, const VkDeviceAddress* pIndirectDeviceAddresses, const uint32_t* pIndirectStrides, const uint32_t* const* ppMaxPrimitiveCounts) override {
         next_->vkCmdBuildAccelerationStructuresIndirectKHR(commandBuffer, infoCount, pInfos, pIndirectDeviceAddresses, pIndirectStrides, ppMaxPrimitiveCounts);
     }
 
-    virtual VkResult vkBuildAccelerationStructuresKHR(VkDevice                                           device, VkDeferredOperationKHR deferredOperation, uint32_t infoCount, const VkAccelerationStructureBuildGeometryInfoKHR* pInfos, const VkAccelerationStructureBuildRangeInfoKHR* const* ppBuildRangeInfos) override {
+    virtual VkResult vkBuildAccelerationStructuresKHR(VkDevice device, VkDeferredOperationKHR deferredOperation, uint32_t infoCount, const VkAccelerationStructureBuildGeometryInfoKHR* pInfos, const VkAccelerationStructureBuildRangeInfoKHR* const* ppBuildRangeInfos) override {
         return next_->vkBuildAccelerationStructuresKHR(device, deferredOperation, infoCount, pInfos, ppBuildRangeInfos);
     }
 
@@ -3046,7 +3046,7 @@ public:
         return next_->vkCopyMemoryToAccelerationStructureKHR(device, deferredOperation, pInfo);
     }
 
-    virtual VkResult vkWriteAccelerationStructuresPropertiesKHR(VkDevice device, uint32_t accelerationStructureCount, const VkAccelerationStructureKHR* pAccelerationStructures, VkQueryType  queryType, size_t       dataSize, void* pData, size_t stride) override {
+    virtual VkResult vkWriteAccelerationStructuresPropertiesKHR(VkDevice device, uint32_t accelerationStructureCount, const VkAccelerationStructureKHR* pAccelerationStructures, VkQueryType queryType, size_t dataSize, void* pData, size_t stride) override {
         return next_->vkWriteAccelerationStructuresPropertiesKHR(device, accelerationStructureCount, pAccelerationStructures, queryType, dataSize, pData, stride);
     }
 
@@ -3074,7 +3074,7 @@ public:
         next_->vkGetDeviceAccelerationStructureCompatibilityKHR(device, pVersionInfo, pCompatibility);
     }
 
-    virtual void vkGetAccelerationStructureBuildSizesKHR(VkDevice                                            device, VkAccelerationStructureBuildTypeKHR                 buildType, const VkAccelerationStructureBuildGeometryInfoKHR*  pBuildInfo, const uint32_t*  pMaxPrimitiveCounts, VkAccelerationStructureBuildSizesInfoKHR*           pSizeInfo) override {
+    virtual void vkGetAccelerationStructureBuildSizesKHR(VkDevice device, VkAccelerationStructureBuildTypeKHR buildType, const VkAccelerationStructureBuildGeometryInfoKHR* pBuildInfo, const uint32_t* pMaxPrimitiveCounts, VkAccelerationStructureBuildSizesInfoKHR* pSizeInfo) override {
         next_->vkGetAccelerationStructureBuildSizesKHR(device, buildType, pBuildInfo, pMaxPrimitiveCounts, pSizeInfo);
     }
 

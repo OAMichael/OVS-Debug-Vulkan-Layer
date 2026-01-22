@@ -40,6 +40,16 @@ set(OVS_LAYER_SOURCES
     ${GENERATED_DIR}/VulkanLayerPassThroughGenerated.h
     ${GENERATED_DIR}/VulkanLayerTerminatorBaseGenerated.h
     ${GENERATED_DIR}/VulkanLayerPrinterGenerated.h
+    ${GENERATED_DIR}/VulkanLayerAPIDumpGenerated.h
+
+    ${GENERATED_DIR}/SignatureGenerated.h
+    ${GENERATED_DIR}/VulkanAPICallIDGenerated.h
+    ${GENERATED_DIR}/VulkanAPIStructIDGenerated.h
+    ${GENERATED_DIR}/EnumSerializeGenerated.h
+    ${GENERATED_DIR}/EnumSerializeGenerated.cpp
+    ${GENERATED_DIR}/StructSerializeGenerated.h
+    ${GENERATED_DIR}/StructSerializeToStringGenerated.cpp
+    ${GENERATED_DIR}/SignatureSerializeToStringGenerated.cpp
 
     ${UTILS_DIR}/Macros.h
     ${UTILS_DIR}/Vulkan.h

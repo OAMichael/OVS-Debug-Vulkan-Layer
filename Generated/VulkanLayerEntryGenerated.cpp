@@ -720,15 +720,15 @@ OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkCreateRenderPass2(VkDevice
     return sLayerManager.GetFrontLayer()->vkCreateRenderPass2(device, pCreateInfo, pAllocator, pRenderPass);
 }
 
-OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdBeginRenderPass2(VkCommandBuffer commandBuffer, const VkRenderPassBeginInfo*      pRenderPassBegin, const VkSubpassBeginInfo*      pSubpassBeginInfo) {
+OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdBeginRenderPass2(VkCommandBuffer commandBuffer, const VkRenderPassBeginInfo* pRenderPassBegin, const VkSubpassBeginInfo* pSubpassBeginInfo) {
     sLayerManager.GetFrontLayer()->vkCmdBeginRenderPass2(commandBuffer, pRenderPassBegin, pSubpassBeginInfo);
 }
 
-OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdNextSubpass2(VkCommandBuffer commandBuffer, const VkSubpassBeginInfo*      pSubpassBeginInfo, const VkSubpassEndInfo*        pSubpassEndInfo) {
+OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdNextSubpass2(VkCommandBuffer commandBuffer, const VkSubpassBeginInfo* pSubpassBeginInfo, const VkSubpassEndInfo* pSubpassEndInfo) {
     sLayerManager.GetFrontLayer()->vkCmdNextSubpass2(commandBuffer, pSubpassBeginInfo, pSubpassEndInfo);
 }
 
-OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdEndRenderPass2(VkCommandBuffer commandBuffer, const VkSubpassEndInfo*        pSubpassEndInfo) {
+OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdEndRenderPass2(VkCommandBuffer commandBuffer, const VkSubpassEndInfo* pSubpassEndInfo) {
     sLayerManager.GetFrontLayer()->vkCmdEndRenderPass2(commandBuffer, pSubpassEndInfo);
 }
 
@@ -752,15 +752,15 @@ OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkGetPrivateData(VkDevice device
     sLayerManager.GetFrontLayer()->vkGetPrivateData(device, objectType, objectHandle, privateDataSlot, pData);
 }
 
-OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdPipelineBarrier2(VkCommandBuffer                   commandBuffer, const VkDependencyInfo*                             pDependencyInfo) {
+OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdPipelineBarrier2(VkCommandBuffer commandBuffer, const VkDependencyInfo* pDependencyInfo) {
     sLayerManager.GetFrontLayer()->vkCmdPipelineBarrier2(commandBuffer, pDependencyInfo);
 }
 
-OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdWriteTimestamp2(VkCommandBuffer                   commandBuffer, VkPipelineStageFlags2               stage, VkQueryPool                                         queryPool, uint32_t                                            query) {
+OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdWriteTimestamp2(VkCommandBuffer commandBuffer, VkPipelineStageFlags2 stage, VkQueryPool queryPool, uint32_t query) {
     sLayerManager.GetFrontLayer()->vkCmdWriteTimestamp2(commandBuffer, stage, queryPool, query);
 }
 
-OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkQueueSubmit2(VkQueue                           queue, uint32_t                            submitCount, const VkSubmitInfo2*              pSubmits, VkFence           fence) {
+OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkQueueSubmit2(VkQueue queue, uint32_t submitCount, const VkSubmitInfo2* pSubmits, VkFence fence) {
     return sLayerManager.GetFrontLayer()->vkQueueSubmit2(queue, submitCount, pSubmits, fence);
 }
 
@@ -792,15 +792,15 @@ OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkGetDeviceImageSparseMemoryRequ
     sLayerManager.GetFrontLayer()->vkGetDeviceImageSparseMemoryRequirements(device, pInfo, pSparseMemoryRequirementCount, pSparseMemoryRequirements);
 }
 
-OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdSetEvent2(VkCommandBuffer                   commandBuffer, VkEvent                                             event, const VkDependencyInfo*                             pDependencyInfo) {
+OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdSetEvent2(VkCommandBuffer commandBuffer, VkEvent event, const VkDependencyInfo* pDependencyInfo) {
     sLayerManager.GetFrontLayer()->vkCmdSetEvent2(commandBuffer, event, pDependencyInfo);
 }
 
-OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdResetEvent2(VkCommandBuffer                   commandBuffer, VkEvent                                             event, VkPipelineStageFlags2               stageMask) {
+OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdResetEvent2(VkCommandBuffer commandBuffer, VkEvent event, VkPipelineStageFlags2 stageMask) {
     sLayerManager.GetFrontLayer()->vkCmdResetEvent2(commandBuffer, event, stageMask);
 }
 
-OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdWaitEvents2(VkCommandBuffer                   commandBuffer, uint32_t                                            eventCount, const VkEvent*                     pEvents, const VkDependencyInfo*            pDependencyInfos) {
+OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdWaitEvents2(VkCommandBuffer commandBuffer, uint32_t eventCount, const VkEvent* pEvents, const VkDependencyInfo* pDependencyInfos) {
     sLayerManager.GetFrontLayer()->vkCmdWaitEvents2(commandBuffer, eventCount, pEvents, pDependencyInfos);
 }
 
@@ -812,11 +812,11 @@ OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdResolveImage2(VkCommandBuff
     sLayerManager.GetFrontLayer()->vkCmdResolveImage2(commandBuffer, pResolveImageInfo);
 }
 
-OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdBeginRendering(VkCommandBuffer                   commandBuffer, const VkRenderingInfo*                              pRenderingInfo) {
+OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdBeginRendering(VkCommandBuffer commandBuffer, const VkRenderingInfo* pRenderingInfo) {
     sLayerManager.GetFrontLayer()->vkCmdBeginRendering(commandBuffer, pRenderingInfo);
 }
 
-OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdEndRendering(VkCommandBuffer                   commandBuffer) {
+OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdEndRendering(VkCommandBuffer commandBuffer) {
     sLayerManager.GetFrontLayer()->vkCmdEndRendering(commandBuffer);
 }
 
@@ -896,19 +896,19 @@ OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkGetImageSubresourceLayout2(VkD
     sLayerManager.GetFrontLayer()->vkGetImageSubresourceLayout2(device, image, pSubresource, pLayout);
 }
 
-OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkCopyMemoryToImage(VkDevice device, const VkCopyMemoryToImageInfo*    pCopyMemoryToImageInfo) {
+OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkCopyMemoryToImage(VkDevice device, const VkCopyMemoryToImageInfo* pCopyMemoryToImageInfo) {
     return sLayerManager.GetFrontLayer()->vkCopyMemoryToImage(device, pCopyMemoryToImageInfo);
 }
 
-OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkCopyImageToMemory(VkDevice device, const VkCopyImageToMemoryInfo*    pCopyImageToMemoryInfo) {
+OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkCopyImageToMemory(VkDevice device, const VkCopyImageToMemoryInfo* pCopyImageToMemoryInfo) {
     return sLayerManager.GetFrontLayer()->vkCopyImageToMemory(device, pCopyImageToMemoryInfo);
 }
 
-OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkCopyImageToImage(VkDevice device, const VkCopyImageToImageInfo*    pCopyImageToImageInfo) {
+OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkCopyImageToImage(VkDevice device, const VkCopyImageToImageInfo* pCopyImageToImageInfo) {
     return sLayerManager.GetFrontLayer()->vkCopyImageToImage(device, pCopyImageToImageInfo);
 }
 
-OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkTransitionImageLayout(VkDevice device, uint32_t transitionCount, const VkHostImageLayoutTransitionInfo*    pTransitions) {
+OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkTransitionImageLayout(VkDevice device, uint32_t transitionCount, const VkHostImageLayoutTransitionInfo* pTransitions) {
     return sLayerManager.GetFrontLayer()->vkTransitionImageLayout(device, transitionCount, pTransitions);
 }
 
@@ -920,15 +920,15 @@ OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdPushDescriptorSetWithTempla
     sLayerManager.GetFrontLayer()->vkCmdPushDescriptorSetWithTemplate(commandBuffer, descriptorUpdateTemplate, layout, set, pData);
 }
 
-OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdBindDescriptorSets2(VkCommandBuffer commandBuffer, const VkBindDescriptorSetsInfo*   pBindDescriptorSetsInfo) {
+OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdBindDescriptorSets2(VkCommandBuffer commandBuffer, const VkBindDescriptorSetsInfo* pBindDescriptorSetsInfo) {
     sLayerManager.GetFrontLayer()->vkCmdBindDescriptorSets2(commandBuffer, pBindDescriptorSetsInfo);
 }
 
-OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdPushConstants2(VkCommandBuffer commandBuffer, const VkPushConstantsInfo*        pPushConstantsInfo) {
+OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdPushConstants2(VkCommandBuffer commandBuffer, const VkPushConstantsInfo* pPushConstantsInfo) {
     sLayerManager.GetFrontLayer()->vkCmdPushConstants2(commandBuffer, pPushConstantsInfo);
 }
 
-OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdPushDescriptorSet2(VkCommandBuffer commandBuffer, const VkPushDescriptorSetInfo*    pPushDescriptorSetInfo) {
+OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdPushDescriptorSet2(VkCommandBuffer commandBuffer, const VkPushDescriptorSetInfo* pPushDescriptorSetInfo) {
     sLayerManager.GetFrontLayer()->vkCmdPushDescriptorSet2(commandBuffer, pPushDescriptorSetInfo);
 }
 
@@ -1132,11 +1132,11 @@ OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdDecodeVideoKHR(VkCommandBuf
     sLayerManager.GetFrontLayer()->vkCmdDecodeVideoKHR(commandBuffer, pDecodeInfo);
 }
 
-OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdBeginRenderingKHR(VkCommandBuffer                   commandBuffer, const VkRenderingInfo*                              pRenderingInfo) {
+OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdBeginRenderingKHR(VkCommandBuffer commandBuffer, const VkRenderingInfo* pRenderingInfo) {
     sLayerManager.GetFrontLayer()->vkCmdBeginRenderingKHR(commandBuffer, pRenderingInfo);
 }
 
-OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdEndRenderingKHR(VkCommandBuffer                   commandBuffer) {
+OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdEndRenderingKHR(VkCommandBuffer commandBuffer) {
     sLayerManager.GetFrontLayer()->vkCmdEndRenderingKHR(commandBuffer);
 }
 
@@ -1252,15 +1252,15 @@ OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkCreateRenderPass2KHR(VkDev
     return sLayerManager.GetFrontLayer()->vkCreateRenderPass2KHR(device, pCreateInfo, pAllocator, pRenderPass);
 }
 
-OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdBeginRenderPass2KHR(VkCommandBuffer commandBuffer, const VkRenderPassBeginInfo*      pRenderPassBegin, const VkSubpassBeginInfo*      pSubpassBeginInfo) {
+OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdBeginRenderPass2KHR(VkCommandBuffer commandBuffer, const VkRenderPassBeginInfo* pRenderPassBegin, const VkSubpassBeginInfo* pSubpassBeginInfo) {
     sLayerManager.GetFrontLayer()->vkCmdBeginRenderPass2KHR(commandBuffer, pRenderPassBegin, pSubpassBeginInfo);
 }
 
-OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdNextSubpass2KHR(VkCommandBuffer commandBuffer, const VkSubpassBeginInfo*      pSubpassBeginInfo, const VkSubpassEndInfo*        pSubpassEndInfo) {
+OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdNextSubpass2KHR(VkCommandBuffer commandBuffer, const VkSubpassBeginInfo* pSubpassBeginInfo, const VkSubpassEndInfo* pSubpassEndInfo) {
     sLayerManager.GetFrontLayer()->vkCmdNextSubpass2KHR(commandBuffer, pSubpassBeginInfo, pSubpassEndInfo);
 }
 
-OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdEndRenderPass2KHR(VkCommandBuffer commandBuffer, const VkSubpassEndInfo*        pSubpassEndInfo) {
+OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdEndRenderPass2KHR(VkCommandBuffer commandBuffer, const VkSubpassEndInfo* pSubpassEndInfo) {
     sLayerManager.GetFrontLayer()->vkCmdEndRenderPass2KHR(commandBuffer, pSubpassEndInfo);
 }
 
@@ -1384,7 +1384,7 @@ OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkGetPhysicalDeviceFragmentS
     return sLayerManager.GetFrontLayer()->vkGetPhysicalDeviceFragmentShadingRatesKHR(physicalDevice, pFragmentShadingRateCount, pFragmentShadingRates);
 }
 
-OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdSetFragmentShadingRateKHR(VkCommandBuffer           commandBuffer, const VkExtent2D*                           pFragmentSize, const VkFragmentShadingRateCombinerOpKHR    combinerOps[2]) {
+OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdSetFragmentShadingRateKHR(VkCommandBuffer commandBuffer, const VkExtent2D* pFragmentSize, const VkFragmentShadingRateCombinerOpKHR combinerOps[2]) {
     sLayerManager.GetFrontLayer()->vkCmdSetFragmentShadingRateKHR(commandBuffer, pFragmentSize, combinerOps);
 }
 
@@ -1432,15 +1432,15 @@ OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkDeferredOperationJoinKHR(V
     return sLayerManager.GetFrontLayer()->vkDeferredOperationJoinKHR(device, operation);
 }
 
-OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkGetPipelineExecutablePropertiesKHR(VkDevice                        device, const VkPipelineInfoKHR*        pPipelineInfo, uint32_t* pExecutableCount, VkPipelineExecutablePropertiesKHR* pProperties) {
+OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkGetPipelineExecutablePropertiesKHR(VkDevice device, const VkPipelineInfoKHR* pPipelineInfo, uint32_t* pExecutableCount, VkPipelineExecutablePropertiesKHR* pProperties) {
     return sLayerManager.GetFrontLayer()->vkGetPipelineExecutablePropertiesKHR(device, pPipelineInfo, pExecutableCount, pProperties);
 }
 
-OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkGetPipelineExecutableStatisticsKHR(VkDevice                        device, const VkPipelineExecutableInfoKHR*  pExecutableInfo, uint32_t* pStatisticCount, VkPipelineExecutableStatisticKHR* pStatistics) {
+OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkGetPipelineExecutableStatisticsKHR(VkDevice device, const VkPipelineExecutableInfoKHR* pExecutableInfo, uint32_t* pStatisticCount, VkPipelineExecutableStatisticKHR* pStatistics) {
     return sLayerManager.GetFrontLayer()->vkGetPipelineExecutableStatisticsKHR(device, pExecutableInfo, pStatisticCount, pStatistics);
 }
 
-OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkGetPipelineExecutableInternalRepresentationsKHR(VkDevice                        device, const VkPipelineExecutableInfoKHR*  pExecutableInfo, uint32_t* pInternalRepresentationCount, VkPipelineExecutableInternalRepresentationKHR* pInternalRepresentations) {
+OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkGetPipelineExecutableInternalRepresentationsKHR(VkDevice device, const VkPipelineExecutableInfoKHR* pExecutableInfo, uint32_t* pInternalRepresentationCount, VkPipelineExecutableInternalRepresentationKHR* pInternalRepresentations) {
     return sLayerManager.GetFrontLayer()->vkGetPipelineExecutableInternalRepresentationsKHR(device, pExecutableInfo, pInternalRepresentationCount, pInternalRepresentations);
 }
 
@@ -1464,27 +1464,27 @@ OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdEncodeVideoKHR(VkCommandBuf
     sLayerManager.GetFrontLayer()->vkCmdEncodeVideoKHR(commandBuffer, pEncodeInfo);
 }
 
-OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdSetEvent2KHR(VkCommandBuffer                   commandBuffer, VkEvent                                             event, const VkDependencyInfo*                             pDependencyInfo) {
+OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdSetEvent2KHR(VkCommandBuffer commandBuffer, VkEvent event, const VkDependencyInfo* pDependencyInfo) {
     sLayerManager.GetFrontLayer()->vkCmdSetEvent2KHR(commandBuffer, event, pDependencyInfo);
 }
 
-OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdResetEvent2KHR(VkCommandBuffer                   commandBuffer, VkEvent                                             event, VkPipelineStageFlags2               stageMask) {
+OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdResetEvent2KHR(VkCommandBuffer commandBuffer, VkEvent event, VkPipelineStageFlags2 stageMask) {
     sLayerManager.GetFrontLayer()->vkCmdResetEvent2KHR(commandBuffer, event, stageMask);
 }
 
-OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdWaitEvents2KHR(VkCommandBuffer                   commandBuffer, uint32_t                                            eventCount, const VkEvent*                     pEvents, const VkDependencyInfo*            pDependencyInfos) {
+OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdWaitEvents2KHR(VkCommandBuffer commandBuffer, uint32_t eventCount, const VkEvent* pEvents, const VkDependencyInfo* pDependencyInfos) {
     sLayerManager.GetFrontLayer()->vkCmdWaitEvents2KHR(commandBuffer, eventCount, pEvents, pDependencyInfos);
 }
 
-OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdPipelineBarrier2KHR(VkCommandBuffer                   commandBuffer, const VkDependencyInfo*                             pDependencyInfo) {
+OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdPipelineBarrier2KHR(VkCommandBuffer commandBuffer, const VkDependencyInfo* pDependencyInfo) {
     sLayerManager.GetFrontLayer()->vkCmdPipelineBarrier2KHR(commandBuffer, pDependencyInfo);
 }
 
-OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdWriteTimestamp2KHR(VkCommandBuffer                   commandBuffer, VkPipelineStageFlags2               stage, VkQueryPool                                         queryPool, uint32_t                                            query) {
+OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdWriteTimestamp2KHR(VkCommandBuffer commandBuffer, VkPipelineStageFlags2 stage, VkQueryPool queryPool, uint32_t query) {
     sLayerManager.GetFrontLayer()->vkCmdWriteTimestamp2KHR(commandBuffer, stage, queryPool, query);
 }
 
-OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkQueueSubmit2KHR(VkQueue                           queue, uint32_t                            submitCount, const VkSubmitInfo2*              pSubmits, VkFence           fence) {
+OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkQueueSubmit2KHR(VkQueue queue, uint32_t submitCount, const VkSubmitInfo2* pSubmits, VkFence fence) {
     return sLayerManager.GetFrontLayer()->vkQueueSubmit2KHR(queue, submitCount, pSubmits, fence);
 }
 
@@ -1588,15 +1588,15 @@ OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkGetCalibratedTimestampsKHR
     return sLayerManager.GetFrontLayer()->vkGetCalibratedTimestampsKHR(device, timestampCount, pTimestampInfos, pTimestamps, pMaxDeviation);
 }
 
-OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdBindDescriptorSets2KHR(VkCommandBuffer commandBuffer, const VkBindDescriptorSetsInfo*   pBindDescriptorSetsInfo) {
+OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdBindDescriptorSets2KHR(VkCommandBuffer commandBuffer, const VkBindDescriptorSetsInfo* pBindDescriptorSetsInfo) {
     sLayerManager.GetFrontLayer()->vkCmdBindDescriptorSets2KHR(commandBuffer, pBindDescriptorSetsInfo);
 }
 
-OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdPushConstants2KHR(VkCommandBuffer commandBuffer, const VkPushConstantsInfo*        pPushConstantsInfo) {
+OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdPushConstants2KHR(VkCommandBuffer commandBuffer, const VkPushConstantsInfo* pPushConstantsInfo) {
     sLayerManager.GetFrontLayer()->vkCmdPushConstants2KHR(commandBuffer, pPushConstantsInfo);
 }
 
-OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdPushDescriptorSet2KHR(VkCommandBuffer commandBuffer, const VkPushDescriptorSetInfo*    pPushDescriptorSetInfo) {
+OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdPushDescriptorSet2KHR(VkCommandBuffer commandBuffer, const VkPushDescriptorSetInfo* pPushDescriptorSetInfo) {
     sLayerManager.GetFrontLayer()->vkCmdPushDescriptorSet2KHR(commandBuffer, pPushDescriptorSetInfo);
 }
 
@@ -1620,7 +1620,7 @@ OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdCopyMemoryToImageIndirectKH
     sLayerManager.GetFrontLayer()->vkCmdCopyMemoryToImageIndirectKHR(commandBuffer, pCopyMemoryToImageIndirectInfo);
 }
 
-OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdEndRendering2KHR(VkCommandBuffer                   commandBuffer, const VkRenderingEndInfoKHR*        pRenderingEndInfo) {
+OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdEndRendering2KHR(VkCommandBuffer commandBuffer, const VkRenderingEndInfoKHR* pRenderingEndInfo) {
     sLayerManager.GetFrontLayer()->vkCmdEndRendering2KHR(commandBuffer, pRenderingEndInfo);
 }
 
@@ -1868,31 +1868,31 @@ OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkGetMemoryAndroidHardwareBu
     return sLayerManager.GetFrontLayer()->vkGetMemoryAndroidHardwareBufferANDROID(device, pInfo, pBuffer);
 }
 
-OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkCreateExecutionGraphPipelinesAMDX(VkDevice                                        device, VkPipelineCache pipelineCache, uint32_t                                        createInfoCount, const VkExecutionGraphPipelineCreateInfoAMDX* pCreateInfos, const VkAllocationCallbacks*    pAllocator, VkPipeline*               pPipelines) {
+OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkCreateExecutionGraphPipelinesAMDX(VkDevice device, VkPipelineCache pipelineCache, uint32_t createInfoCount, const VkExecutionGraphPipelineCreateInfoAMDX* pCreateInfos, const VkAllocationCallbacks* pAllocator, VkPipeline* pPipelines) {
     return sLayerManager.GetFrontLayer()->vkCreateExecutionGraphPipelinesAMDX(device, pipelineCache, createInfoCount, pCreateInfos, pAllocator, pPipelines);
 }
 
-OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkGetExecutionGraphPipelineScratchSizeAMDX(VkDevice                                        device, VkPipeline                                      executionGraph, VkExecutionGraphPipelineScratchSizeAMDX*        pSizeInfo) {
+OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkGetExecutionGraphPipelineScratchSizeAMDX(VkDevice device, VkPipeline executionGraph, VkExecutionGraphPipelineScratchSizeAMDX* pSizeInfo) {
     return sLayerManager.GetFrontLayer()->vkGetExecutionGraphPipelineScratchSizeAMDX(device, executionGraph, pSizeInfo);
 }
 
-OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkGetExecutionGraphPipelineNodeIndexAMDX(VkDevice                                        device, VkPipeline                                      executionGraph, const VkPipelineShaderStageNodeCreateInfoAMDX*  pNodeInfo, uint32_t*                                       pNodeIndex) {
+OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkGetExecutionGraphPipelineNodeIndexAMDX(VkDevice device, VkPipeline executionGraph, const VkPipelineShaderStageNodeCreateInfoAMDX* pNodeInfo, uint32_t* pNodeIndex) {
     return sLayerManager.GetFrontLayer()->vkGetExecutionGraphPipelineNodeIndexAMDX(device, executionGraph, pNodeInfo, pNodeIndex);
 }
 
-OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdInitializeGraphScratchMemoryAMDX(VkCommandBuffer                                 commandBuffer, VkPipeline                                      executionGraph, VkDeviceAddress                                 scratch, VkDeviceSize                                    scratchSize) {
+OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdInitializeGraphScratchMemoryAMDX(VkCommandBuffer commandBuffer, VkPipeline executionGraph, VkDeviceAddress scratch, VkDeviceSize scratchSize) {
     sLayerManager.GetFrontLayer()->vkCmdInitializeGraphScratchMemoryAMDX(commandBuffer, executionGraph, scratch, scratchSize);
 }
 
-OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdDispatchGraphAMDX(VkCommandBuffer                                 commandBuffer, VkDeviceAddress                                 scratch, VkDeviceSize                                    scratchSize, const VkDispatchGraphCountInfoAMDX*             pCountInfo) {
+OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdDispatchGraphAMDX(VkCommandBuffer commandBuffer, VkDeviceAddress scratch, VkDeviceSize scratchSize, const VkDispatchGraphCountInfoAMDX* pCountInfo) {
     sLayerManager.GetFrontLayer()->vkCmdDispatchGraphAMDX(commandBuffer, scratch, scratchSize, pCountInfo);
 }
 
-OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdDispatchGraphIndirectAMDX(VkCommandBuffer                                 commandBuffer, VkDeviceAddress                                 scratch, VkDeviceSize                                    scratchSize, const VkDispatchGraphCountInfoAMDX*             pCountInfo) {
+OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdDispatchGraphIndirectAMDX(VkCommandBuffer commandBuffer, VkDeviceAddress scratch, VkDeviceSize scratchSize, const VkDispatchGraphCountInfoAMDX* pCountInfo) {
     sLayerManager.GetFrontLayer()->vkCmdDispatchGraphIndirectAMDX(commandBuffer, scratch, scratchSize, pCountInfo);
 }
 
-OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdDispatchGraphIndirectCountAMDX(VkCommandBuffer                                 commandBuffer, VkDeviceAddress                                 scratch, VkDeviceSize                                    scratchSize, VkDeviceAddress                                 countInfo) {
+OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdDispatchGraphIndirectCountAMDX(VkCommandBuffer commandBuffer, VkDeviceAddress scratch, VkDeviceSize scratchSize, VkDeviceAddress countInfo) {
     sLayerManager.GetFrontLayer()->vkCmdDispatchGraphIndirectCountAMDX(commandBuffer, scratch, scratchSize, countInfo);
 }
 
@@ -1996,7 +1996,7 @@ OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdWriteBufferMarkerAMD(VkComm
     sLayerManager.GetFrontLayer()->vkCmdWriteBufferMarkerAMD(commandBuffer, pipelineStage, dstBuffer, dstOffset, marker);
 }
 
-OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdWriteBufferMarker2AMD(VkCommandBuffer                   commandBuffer, VkPipelineStageFlags2               stage, VkBuffer                                            dstBuffer, VkDeviceSize                                        dstOffset, uint32_t                                            marker) {
+OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdWriteBufferMarker2AMD(VkCommandBuffer commandBuffer, VkPipelineStageFlags2 stage, VkBuffer dstBuffer, VkDeviceSize dstOffset, uint32_t marker) {
     sLayerManager.GetFrontLayer()->vkCmdWriteBufferMarker2AMD(commandBuffer, stage, dstBuffer, dstOffset, marker);
 }
 
@@ -2196,19 +2196,19 @@ OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdSetStencilOpEXT(VkCommandBu
     sLayerManager.GetFrontLayer()->vkCmdSetStencilOpEXT(commandBuffer, faceMask, failOp, passOp, depthFailOp, compareOp);
 }
 
-OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkCopyMemoryToImageEXT(VkDevice device, const VkCopyMemoryToImageInfo*    pCopyMemoryToImageInfo) {
+OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkCopyMemoryToImageEXT(VkDevice device, const VkCopyMemoryToImageInfo* pCopyMemoryToImageInfo) {
     return sLayerManager.GetFrontLayer()->vkCopyMemoryToImageEXT(device, pCopyMemoryToImageInfo);
 }
 
-OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkCopyImageToMemoryEXT(VkDevice device, const VkCopyImageToMemoryInfo*    pCopyImageToMemoryInfo) {
+OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkCopyImageToMemoryEXT(VkDevice device, const VkCopyImageToMemoryInfo* pCopyImageToMemoryInfo) {
     return sLayerManager.GetFrontLayer()->vkCopyImageToMemoryEXT(device, pCopyImageToMemoryInfo);
 }
 
-OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkCopyImageToImageEXT(VkDevice device, const VkCopyImageToImageInfo*    pCopyImageToImageInfo) {
+OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkCopyImageToImageEXT(VkDevice device, const VkCopyImageToImageInfo* pCopyImageToImageInfo) {
     return sLayerManager.GetFrontLayer()->vkCopyImageToImageEXT(device, pCopyImageToImageInfo);
 }
 
-OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkTransitionImageLayoutEXT(VkDevice device, uint32_t transitionCount, const VkHostImageLayoutTransitionInfo*    pTransitions) {
+OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkTransitionImageLayoutEXT(VkDevice device, uint32_t transitionCount, const VkHostImageLayoutTransitionInfo* pTransitions) {
     return sLayerManager.GetFrontLayer()->vkTransitionImageLayoutEXT(device, transitionCount, pTransitions);
 }
 
@@ -2244,7 +2244,7 @@ OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkDestroyIndirectCommandsLayoutN
     sLayerManager.GetFrontLayer()->vkDestroyIndirectCommandsLayoutNV(device, indirectCommandsLayout, pAllocator);
 }
 
-OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdSetDepthBias2EXT(VkCommandBuffer commandBuffer, const VkDepthBiasInfoEXT*         pDepthBiasInfo) {
+OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdSetDepthBias2EXT(VkCommandBuffer commandBuffer, const VkDepthBiasInfoEXT* pDepthBiasInfo) {
     sLayerManager.GetFrontLayer()->vkCmdSetDepthBias2EXT(commandBuffer, pDepthBiasInfo);
 }
 
@@ -2356,7 +2356,7 @@ OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkGetAccelerationStructureOp
     return sLayerManager.GetFrontLayer()->vkGetAccelerationStructureOpaqueCaptureDescriptorDataEXT(device, pInfo, pData);
 }
 
-OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdSetFragmentShadingRateEnumNV(VkCommandBuffer           commandBuffer, VkFragmentShadingRateNV                     shadingRate, const VkFragmentShadingRateCombinerOpKHR    combinerOps[2]) {
+OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdSetFragmentShadingRateEnumNV(VkCommandBuffer commandBuffer, VkFragmentShadingRateNV shadingRate, const VkFragmentShadingRateCombinerOpKHR combinerOps[2]) {
     sLayerManager.GetFrontLayer()->vkCmdSetFragmentShadingRateEnumNV(commandBuffer, shadingRate, combinerOps);
 }
 
@@ -2468,7 +2468,7 @@ OVS_EXPORT VKAPI_ATTR VkBool32 VKAPI_CALL OVS_Debug_vkGetPhysicalDeviceScreenPre
     return sLayerManager.GetFrontLayer()->vkGetPhysicalDeviceScreenPresentationSupportQNX(physicalDevice, queueFamilyIndex, window);
 }
 
-OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdSetColorWriteEnableEXT(VkCommandBuffer       commandBuffer, uint32_t                                attachmentCount, const VkBool32*   pColorWriteEnables) {
+OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdSetColorWriteEnableEXT(VkCommandBuffer commandBuffer, uint32_t attachmentCount, const VkBool32* pColorWriteEnables) {
     sLayerManager.GetFrontLayer()->vkCmdSetColorWriteEnableEXT(commandBuffer, attachmentCount, pColorWriteEnables);
 }
 
@@ -2480,7 +2480,7 @@ OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdDrawMultiIndexedEXT(VkComma
     sLayerManager.GetFrontLayer()->vkCmdDrawMultiIndexedEXT(commandBuffer, drawCount, pIndexInfo, instanceCount, firstInstance, stride, pVertexOffset);
 }
 
-OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkCreateMicromapEXT(VkDevice                                           device, const VkMicromapCreateInfoEXT*        pCreateInfo, const VkAllocationCallbacks*       pAllocator, VkMicromapEXT*                        pMicromap) {
+OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkCreateMicromapEXT(VkDevice device, const VkMicromapCreateInfoEXT* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkMicromapEXT* pMicromap) {
     return sLayerManager.GetFrontLayer()->vkCreateMicromapEXT(device, pCreateInfo, pAllocator, pMicromap);
 }
 
@@ -2488,11 +2488,11 @@ OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkDestroyMicromapEXT(VkDevice de
     sLayerManager.GetFrontLayer()->vkDestroyMicromapEXT(device, micromap, pAllocator);
 }
 
-OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdBuildMicromapsEXT(VkCommandBuffer                                    commandBuffer, uint32_t infoCount, const VkMicromapBuildInfoEXT* pInfos) {
+OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdBuildMicromapsEXT(VkCommandBuffer commandBuffer, uint32_t infoCount, const VkMicromapBuildInfoEXT* pInfos) {
     sLayerManager.GetFrontLayer()->vkCmdBuildMicromapsEXT(commandBuffer, infoCount, pInfos);
 }
 
-OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkBuildMicromapsEXT(VkDevice                                           device, VkDeferredOperationKHR deferredOperation, uint32_t infoCount, const VkMicromapBuildInfoEXT* pInfos) {
+OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkBuildMicromapsEXT(VkDevice device, VkDeferredOperationKHR deferredOperation, uint32_t infoCount, const VkMicromapBuildInfoEXT* pInfos) {
     return sLayerManager.GetFrontLayer()->vkBuildMicromapsEXT(device, deferredOperation, infoCount, pInfos);
 }
 
@@ -2508,7 +2508,7 @@ OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkCopyMemoryToMicromapEXT(Vk
     return sLayerManager.GetFrontLayer()->vkCopyMemoryToMicromapEXT(device, deferredOperation, pInfo);
 }
 
-OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkWriteMicromapsPropertiesEXT(VkDevice device, uint32_t micromapCount, const VkMicromapEXT* pMicromaps, VkQueryType  queryType, size_t       dataSize, void* pData, size_t stride) {
+OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkWriteMicromapsPropertiesEXT(VkDevice device, uint32_t micromapCount, const VkMicromapEXT* pMicromaps, VkQueryType queryType, size_t dataSize, void* pData, size_t stride) {
     return sLayerManager.GetFrontLayer()->vkWriteMicromapsPropertiesEXT(device, micromapCount, pMicromaps, queryType, dataSize, pData, stride);
 }
 
@@ -2532,7 +2532,7 @@ OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkGetDeviceMicromapCompatibility
     sLayerManager.GetFrontLayer()->vkGetDeviceMicromapCompatibilityEXT(device, pVersionInfo, pCompatibility);
 }
 
-OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkGetMicromapBuildSizesEXT(VkDevice                                            device, VkAccelerationStructureBuildTypeKHR                 buildType, const VkMicromapBuildInfoEXT*  pBuildInfo, VkMicromapBuildSizesInfoEXT*           pSizeInfo) {
+OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkGetMicromapBuildSizesEXT(VkDevice device, VkAccelerationStructureBuildTypeKHR buildType, const VkMicromapBuildInfoEXT* pBuildInfo, VkMicromapBuildSizesInfoEXT* pSizeInfo) {
     sLayerManager.GetFrontLayer()->vkGetMicromapBuildSizesEXT(device, buildType, pBuildInfo, pSizeInfo);
 }
 
@@ -2544,7 +2544,7 @@ OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdDrawClusterIndirectHUAWEI(V
     sLayerManager.GetFrontLayer()->vkCmdDrawClusterIndirectHUAWEI(commandBuffer, buffer, offset);
 }
 
-OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkSetDeviceMemoryPriorityEXT(VkDevice       device, VkDeviceMemory memory, float          priority) {
+OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkSetDeviceMemoryPriorityEXT(VkDevice device, VkDeviceMemory memory, float priority) {
     sLayerManager.GetFrontLayer()->vkSetDeviceMemoryPriorityEXT(device, memory, priority);
 }
 
@@ -2576,7 +2576,7 @@ OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkGetPipelineIndirectMemoryRequi
     sLayerManager.GetFrontLayer()->vkGetPipelineIndirectMemoryRequirementsNV(device, pCreateInfo, pMemoryRequirements);
 }
 
-OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdUpdatePipelineIndirectBufferNV(VkCommandBuffer commandBuffer, VkPipelineBindPoint           pipelineBindPoint, VkPipeline                    pipeline) {
+OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdUpdatePipelineIndirectBufferNV(VkCommandBuffer commandBuffer, VkPipelineBindPoint pipelineBindPoint, VkPipeline pipeline) {
     sLayerManager.GetFrontLayer()->vkCmdUpdatePipelineIndirectBufferNV(commandBuffer, pipelineBindPoint, pipeline);
 }
 
@@ -2600,11 +2600,11 @@ OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdSetPolygonModeEXT(VkCommand
     sLayerManager.GetFrontLayer()->vkCmdSetPolygonModeEXT(commandBuffer, polygonMode);
 }
 
-OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdSetRasterizationSamplesEXT(VkCommandBuffer commandBuffer, VkSampleCountFlagBits  rasterizationSamples) {
+OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdSetRasterizationSamplesEXT(VkCommandBuffer commandBuffer, VkSampleCountFlagBits rasterizationSamples) {
     sLayerManager.GetFrontLayer()->vkCmdSetRasterizationSamplesEXT(commandBuffer, rasterizationSamples);
 }
 
-OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdSetSampleMaskEXT(VkCommandBuffer commandBuffer, VkSampleCountFlagBits  samples, const VkSampleMask*    pSampleMask) {
+OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdSetSampleMaskEXT(VkCommandBuffer commandBuffer, VkSampleCountFlagBits samples, const VkSampleMask* pSampleMask) {
     sLayerManager.GetFrontLayer()->vkCmdSetSampleMaskEXT(commandBuffer, samples, pSampleMask);
 }
 
@@ -2748,15 +2748,15 @@ OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdCopyTensorARM(VkCommandBuff
     sLayerManager.GetFrontLayer()->vkCmdCopyTensorARM(commandBuffer, pCopyTensorInfo);
 }
 
-OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkGetPhysicalDeviceExternalTensorPropertiesARM(VkPhysicalDevice                             physicalDevice, const VkPhysicalDeviceExternalTensorInfoARM* pExternalTensorInfo, VkExternalTensorPropertiesARM*               pExternalTensorProperties) {
+OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkGetPhysicalDeviceExternalTensorPropertiesARM(VkPhysicalDevice physicalDevice, const VkPhysicalDeviceExternalTensorInfoARM* pExternalTensorInfo, VkExternalTensorPropertiesARM* pExternalTensorProperties) {
     sLayerManager.GetFrontLayer()->vkGetPhysicalDeviceExternalTensorPropertiesARM(physicalDevice, pExternalTensorInfo, pExternalTensorProperties);
 }
 
-OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkGetTensorOpaqueCaptureDescriptorDataARM(VkDevice                                    device, const VkTensorCaptureDescriptorDataInfoARM* pInfo, void*                                       pData) {
+OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkGetTensorOpaqueCaptureDescriptorDataARM(VkDevice device, const VkTensorCaptureDescriptorDataInfoARM* pInfo, void* pData) {
     return sLayerManager.GetFrontLayer()->vkGetTensorOpaqueCaptureDescriptorDataARM(device, pInfo, pData);
 }
 
-OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkGetTensorViewOpaqueCaptureDescriptorDataARM(VkDevice                                        device, const VkTensorViewCaptureDescriptorDataInfoARM* pInfo, void*                                           pData) {
+OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkGetTensorViewOpaqueCaptureDescriptorDataARM(VkDevice device, const VkTensorViewCaptureDescriptorDataInfoARM* pInfo, void* pData) {
     return sLayerManager.GetFrontLayer()->vkGetTensorViewOpaqueCaptureDescriptorDataARM(device, pInfo, pData);
 }
 
@@ -2852,11 +2852,11 @@ OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkQueueNotifyOutOfBandNV(VkQueue
     sLayerManager.GetFrontLayer()->vkQueueNotifyOutOfBandNV(queue, pQueueTypeInfo);
 }
 
-OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkCreateDataGraphPipelinesARM(VkDevice               device, VkDeferredOperationKHR deferredOperation, VkPipelineCache        pipelineCache, uint32_t               createInfoCount, const VkDataGraphPipelineCreateInfoARM* pCreateInfos, const VkAllocationCallbacks* pAllocator, VkPipeline*     pPipelines) {
+OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkCreateDataGraphPipelinesARM(VkDevice device, VkDeferredOperationKHR deferredOperation, VkPipelineCache pipelineCache, uint32_t createInfoCount, const VkDataGraphPipelineCreateInfoARM* pCreateInfos, const VkAllocationCallbacks* pAllocator, VkPipeline* pPipelines) {
     return sLayerManager.GetFrontLayer()->vkCreateDataGraphPipelinesARM(device, deferredOperation, pipelineCache, createInfoCount, pCreateInfos, pAllocator, pPipelines);
 }
 
-OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkCreateDataGraphPipelineSessionARM(VkDevice                                     device, const VkDataGraphPipelineSessionCreateInfoARM*   pCreateInfo, const VkAllocationCallbacks* pAllocator, VkDataGraphPipelineSessionARM*                   pSession) {
+OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkCreateDataGraphPipelineSessionARM(VkDevice device, const VkDataGraphPipelineSessionCreateInfoARM* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkDataGraphPipelineSessionARM* pSession) {
     return sLayerManager.GetFrontLayer()->vkCreateDataGraphPipelineSessionARM(device, pCreateInfo, pAllocator, pSession);
 }
 
@@ -2884,15 +2884,15 @@ OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkGetDataGraphPipelineAvaila
     return sLayerManager.GetFrontLayer()->vkGetDataGraphPipelineAvailablePropertiesARM(device, pPipelineInfo, pPropertiesCount, pProperties);
 }
 
-OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkGetDataGraphPipelinePropertiesARM(VkDevice                          device, const VkDataGraphPipelineInfoARM* pPipelineInfo, uint32_t                          propertiesCount, VkDataGraphPipelinePropertyQueryResultARM* pProperties) {
+OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkGetDataGraphPipelinePropertiesARM(VkDevice device, const VkDataGraphPipelineInfoARM* pPipelineInfo, uint32_t propertiesCount, VkDataGraphPipelinePropertyQueryResultARM* pProperties) {
     return sLayerManager.GetFrontLayer()->vkGetDataGraphPipelinePropertiesARM(device, pPipelineInfo, propertiesCount, pProperties);
 }
 
-OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM(VkPhysicalDevice                     physicalDevice, uint32_t                             queueFamilyIndex, uint32_t*                            pQueueFamilyDataGraphPropertyCount, VkQueueFamilyDataGraphPropertiesARM* pQueueFamilyDataGraphProperties) {
+OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM(VkPhysicalDevice physicalDevice, uint32_t queueFamilyIndex, uint32_t* pQueueFamilyDataGraphPropertyCount, VkQueueFamilyDataGraphPropertiesARM* pQueueFamilyDataGraphProperties) {
     return sLayerManager.GetFrontLayer()->vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM(physicalDevice, queueFamilyIndex, pQueueFamilyDataGraphPropertyCount, pQueueFamilyDataGraphProperties);
 }
 
-OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM(VkPhysicalDevice                                 physicalDevice, const VkPhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM* pQueueFamilyDataGraphProcessingEngineInfo, VkQueueFamilyDataGraphProcessingEnginePropertiesARM*               pQueueFamilyDataGraphProcessingEngineProperties) {
+OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM(VkPhysicalDevice physicalDevice, const VkPhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM* pQueueFamilyDataGraphProcessingEngineInfo, VkQueueFamilyDataGraphProcessingEnginePropertiesARM* pQueueFamilyDataGraphProcessingEngineProperties) {
     sLayerManager.GetFrontLayer()->vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM(physicalDevice, pQueueFamilyDataGraphProcessingEngineInfo, pQueueFamilyDataGraphProcessingEngineProperties);
 }
 
@@ -2932,15 +2932,15 @@ OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkGetClusterAccelerationStructur
     sLayerManager.GetFrontLayer()->vkGetClusterAccelerationStructureBuildSizesNV(device, pInfo, pSizeInfo);
 }
 
-OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdBuildClusterAccelerationStructureIndirectNV(VkCommandBuffer                     commandBuffer, const VkClusterAccelerationStructureCommandsInfoNV*  pCommandInfos) {
+OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdBuildClusterAccelerationStructureIndirectNV(VkCommandBuffer commandBuffer, const VkClusterAccelerationStructureCommandsInfoNV* pCommandInfos) {
     sLayerManager.GetFrontLayer()->vkCmdBuildClusterAccelerationStructureIndirectNV(commandBuffer, pCommandInfos);
 }
 
-OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkGetPartitionedAccelerationStructuresBuildSizesNV(VkDevice device, const VkPartitionedAccelerationStructureInstancesInputNV* pInfo, VkAccelerationStructureBuildSizesInfoKHR*                  pSizeInfo) {
+OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkGetPartitionedAccelerationStructuresBuildSizesNV(VkDevice device, const VkPartitionedAccelerationStructureInstancesInputNV* pInfo, VkAccelerationStructureBuildSizesInfoKHR* pSizeInfo) {
     sLayerManager.GetFrontLayer()->vkGetPartitionedAccelerationStructuresBuildSizesNV(device, pInfo, pSizeInfo);
 }
 
-OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdBuildPartitionedAccelerationStructuresNV(VkCommandBuffer                     commandBuffer, const VkBuildPartitionedAccelerationStructureInfoNV*  pBuildInfo) {
+OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdBuildPartitionedAccelerationStructuresNV(VkCommandBuffer commandBuffer, const VkBuildPartitionedAccelerationStructureInfoNV* pBuildInfo) {
     sLayerManager.GetFrontLayer()->vkCmdBuildPartitionedAccelerationStructuresNV(commandBuffer, pBuildInfo);
 }
 
@@ -3012,7 +3012,7 @@ OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkEnumeratePhysicalDeviceQue
     return sLayerManager.GetFrontLayer()->vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARM(physicalDevice, queueFamilyIndex, pCounterCount, pCounters, pCounterDescriptions);
 }
 
-OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdEndRendering2EXT(VkCommandBuffer                   commandBuffer, const VkRenderingEndInfoKHR*        pRenderingEndInfo) {
+OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdEndRendering2EXT(VkCommandBuffer commandBuffer, const VkRenderingEndInfoKHR* pRenderingEndInfo) {
     sLayerManager.GetFrontLayer()->vkCmdEndRendering2EXT(commandBuffer, pRenderingEndInfo);
 }
 
@@ -3020,7 +3020,7 @@ OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdBeginCustomResolveEXT(VkCom
     sLayerManager.GetFrontLayer()->vkCmdBeginCustomResolveEXT(commandBuffer, pBeginCustomResolveInfo);
 }
 
-OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkCreateAccelerationStructureKHR(VkDevice                                           device, const VkAccelerationStructureCreateInfoKHR*        pCreateInfo, const VkAllocationCallbacks*       pAllocator, VkAccelerationStructureKHR*                        pAccelerationStructure) {
+OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkCreateAccelerationStructureKHR(VkDevice device, const VkAccelerationStructureCreateInfoKHR* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkAccelerationStructureKHR* pAccelerationStructure) {
     return sLayerManager.GetFrontLayer()->vkCreateAccelerationStructureKHR(device, pCreateInfo, pAllocator, pAccelerationStructure);
 }
 
@@ -3028,15 +3028,15 @@ OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkDestroyAccelerationStructureKH
     sLayerManager.GetFrontLayer()->vkDestroyAccelerationStructureKHR(device, accelerationStructure, pAllocator);
 }
 
-OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdBuildAccelerationStructuresKHR(VkCommandBuffer                                    commandBuffer, uint32_t infoCount, const VkAccelerationStructureBuildGeometryInfoKHR* pInfos, const VkAccelerationStructureBuildRangeInfoKHR* const* ppBuildRangeInfos) {
+OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdBuildAccelerationStructuresKHR(VkCommandBuffer commandBuffer, uint32_t infoCount, const VkAccelerationStructureBuildGeometryInfoKHR* pInfos, const VkAccelerationStructureBuildRangeInfoKHR* const* ppBuildRangeInfos) {
     sLayerManager.GetFrontLayer()->vkCmdBuildAccelerationStructuresKHR(commandBuffer, infoCount, pInfos, ppBuildRangeInfos);
 }
 
-OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdBuildAccelerationStructuresIndirectKHR(VkCommandBuffer                  commandBuffer, uint32_t                                           infoCount, const VkAccelerationStructureBuildGeometryInfoKHR* pInfos, const VkDeviceAddress*             pIndirectDeviceAddresses, const uint32_t*                    pIndirectStrides, const uint32_t* const*             ppMaxPrimitiveCounts) {
+OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkCmdBuildAccelerationStructuresIndirectKHR(VkCommandBuffer commandBuffer, uint32_t infoCount, const VkAccelerationStructureBuildGeometryInfoKHR* pInfos, const VkDeviceAddress* pIndirectDeviceAddresses, const uint32_t* pIndirectStrides, const uint32_t* const* ppMaxPrimitiveCounts) {
     sLayerManager.GetFrontLayer()->vkCmdBuildAccelerationStructuresIndirectKHR(commandBuffer, infoCount, pInfos, pIndirectDeviceAddresses, pIndirectStrides, ppMaxPrimitiveCounts);
 }
 
-OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkBuildAccelerationStructuresKHR(VkDevice                                           device, VkDeferredOperationKHR deferredOperation, uint32_t infoCount, const VkAccelerationStructureBuildGeometryInfoKHR* pInfos, const VkAccelerationStructureBuildRangeInfoKHR* const* ppBuildRangeInfos) {
+OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkBuildAccelerationStructuresKHR(VkDevice device, VkDeferredOperationKHR deferredOperation, uint32_t infoCount, const VkAccelerationStructureBuildGeometryInfoKHR* pInfos, const VkAccelerationStructureBuildRangeInfoKHR* const* ppBuildRangeInfos) {
     return sLayerManager.GetFrontLayer()->vkBuildAccelerationStructuresKHR(device, deferredOperation, infoCount, pInfos, ppBuildRangeInfos);
 }
 
@@ -3052,7 +3052,7 @@ OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkCopyMemoryToAccelerationSt
     return sLayerManager.GetFrontLayer()->vkCopyMemoryToAccelerationStructureKHR(device, deferredOperation, pInfo);
 }
 
-OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkWriteAccelerationStructuresPropertiesKHR(VkDevice device, uint32_t accelerationStructureCount, const VkAccelerationStructureKHR* pAccelerationStructures, VkQueryType  queryType, size_t       dataSize, void* pData, size_t stride) {
+OVS_EXPORT VKAPI_ATTR VkResult VKAPI_CALL OVS_Debug_vkWriteAccelerationStructuresPropertiesKHR(VkDevice device, uint32_t accelerationStructureCount, const VkAccelerationStructureKHR* pAccelerationStructures, VkQueryType queryType, size_t dataSize, void* pData, size_t stride) {
     return sLayerManager.GetFrontLayer()->vkWriteAccelerationStructuresPropertiesKHR(device, accelerationStructureCount, pAccelerationStructures, queryType, dataSize, pData, stride);
 }
 
@@ -3080,7 +3080,7 @@ OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkGetDeviceAccelerationStructure
     sLayerManager.GetFrontLayer()->vkGetDeviceAccelerationStructureCompatibilityKHR(device, pVersionInfo, pCompatibility);
 }
 
-OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkGetAccelerationStructureBuildSizesKHR(VkDevice                                            device, VkAccelerationStructureBuildTypeKHR                 buildType, const VkAccelerationStructureBuildGeometryInfoKHR*  pBuildInfo, const uint32_t*  pMaxPrimitiveCounts, VkAccelerationStructureBuildSizesInfoKHR*           pSizeInfo) {
+OVS_EXPORT VKAPI_ATTR void VKAPI_CALL OVS_Debug_vkGetAccelerationStructureBuildSizesKHR(VkDevice device, VkAccelerationStructureBuildTypeKHR buildType, const VkAccelerationStructureBuildGeometryInfoKHR* pBuildInfo, const uint32_t* pMaxPrimitiveCounts, VkAccelerationStructureBuildSizesInfoKHR* pSizeInfo) {
     sLayerManager.GetFrontLayer()->vkGetAccelerationStructureBuildSizesKHR(device, buildType, pBuildInfo, pMaxPrimitiveCounts, pSizeInfo);
 }
 
