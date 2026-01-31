@@ -22,6 +22,8 @@ from generator import OutputGenerator
 from cgenerator import COutputGenerator, CGeneratorOptions
 
 
+DEBUG_PARAM_TYPE_KIND = False
+
 class ParamTypeKind(enum.IntEnum):
     PRIMITIVE                    = 0
     HANDLE                       = 1
@@ -189,6 +191,8 @@ def patchDynamicArrayLengthMember(length, prependStr):
         ptrCond += f' && {length}'
         length = '*' + length
 
+    ptrCond += f' && {length} > 0'
+
     return (length, ptrCond)
 
 
@@ -340,12 +344,18 @@ def genParamSerializeToString(param, registry, indent, paramAccess):
 
     customSerializer = ''
     paramTypeElem = getNonAliasTypeElem(paramType, registry)
+    paramTypeName = safeStr(paramTypeElem.get('name'))
     paramTypeCategory = safeStr(paramTypeElem.get('category'))
     paramTypeRequires = safeStr(paramTypeElem.get('requires'))
     if paramTypeCategory == 'bitmask' and paramTypeRequires != '':
-        customSerializer = paramTypeElem.get('name')
+        customSerializer = paramTypeName
 
-    # out += indent + f'// Kind: {paramTypeKind.name}\n'
+    if 'FlagBits' in paramTypeName:
+        customSerializer = paramTypeName.replace('FlagBits', 'Flags')
+
+    if DEBUG_PARAM_TYPE_KIND:
+        out += indent + f'// Kind: {paramTypeKind.name}\n'
+
     match paramTypeKind:
         case (ParamTypeKind.PRIMITIVE |
               ParamTypeKind.HANDLE |
@@ -416,7 +426,7 @@ def genParamSerializeToString(param, registry, indent, paramAccess):
 
             out += indent + f'if ({paramAccess}{paramName}{ptrCond}) {{\n'
             out += 2 * indent + f'stream << \"{{[\";\n'
-            if paramTypeKind != ParamTypeKind.VOID_PTR_DYNAMIC_ARRAY_1D and paramType == 'void':
+            if paramType == 'void' and paramTypeKind != ParamTypeKind.VOID_PTR_DYNAMIC_ARRAY_1D:
                 out += 2 * indent + f'const uint8_t* ptr = reinterpret_cast<const uint8_t*>({paramAccess}{paramName});\n'
                 arrayName = 'ptr'
 
@@ -504,6 +514,334 @@ def genParamSerializeToString(param, registry, indent, paramAccess):
         case ParamTypeKind.PNEXT:
 
             out += indent + f'SerializeToStringPNext({paramAccess}{paramName}, stream);\n'
+
+    return out
+
+
+def genParamSerializeToStream(param, registry, indent, paramAccess):
+    out = ''
+
+    paramName = safeStr(param.find('name').text).strip()
+    paramType = safeStr(param.find('type').text).strip()
+    paramTypeKind = getParamTypeKind(param, registry)
+
+    if DEBUG_PARAM_TYPE_KIND:
+        out += indent + f'// Kind: {paramTypeKind.name}\n'
+
+    match paramTypeKind:
+        case (ParamTypeKind.PRIMITIVE |
+              ParamTypeKind.HANDLE |
+              ParamTypeKind.STRUCT |
+              ParamTypeKind.STRING |
+              ParamTypeKind.WSTRING |
+              ParamTypeKind.VOID_PTR |
+              ParamTypeKind.EXTERNAL_PTR |
+              ParamTypeKind.FUNCTION_PTR):
+
+            out += indent + f'SerializeToStream({paramAccess}{paramName}, stream);\n'
+
+        case (ParamTypeKind.PRIMITIVE_PTR |
+              ParamTypeKind.HANDLE_PTR |
+              ParamTypeKind.STRUCT_PTR |
+              ParamTypeKind.VOID_PTR_PTR |
+              ParamTypeKind.EXTERNAL_PTR_PTR):
+
+            out += indent + f'if ({paramAccess}{paramName}) {{\n'
+            out += 2 * indent + f'SerializeToStream(uint64_t(1), stream);\n'
+            out += 2 * indent + f'SerializeToStream(*{paramAccess}{paramName}, stream);\n'
+            out += indent + f'}}\n'
+            out += indent + f'else {{\n'
+            out += 2 * indent + f'SerializeToStream(uint64_t(0), stream);\n'
+            out += indent + f'}}\n'
+
+        case (ParamTypeKind.PRIMITIVE_STATIC_ARRAY_1D |
+              ParamTypeKind.HANDLE_STATIC_ARRAY_1D |
+              ParamTypeKind.PRIMITIVE_STATIC_ARRAY_2D |
+              ParamTypeKind.HANDLE_STATIC_ARRAY_2D):
+
+            out += indent + f'SerializeToStream({paramAccess}{paramName}, sizeof({paramAccess}{paramName}), stream);\n'
+
+        case (ParamTypeKind.PRIMITIVE_DYNAMIC_ARRAY_1D |
+              ParamTypeKind.HANDLE_DYNAMIC_ARRAY_1D |
+              ParamTypeKind.STRUCT_DYNAMIC_ARRAY_1D |
+              ParamTypeKind.STRING_DYNAMIC_ARRAY_1D |
+              ParamTypeKind.VOID_PTR_DYNAMIC_ARRAY_1D):
+
+            length = safeStr(param.get('altlen')).strip()
+            if length == '':
+                length = safeStr(param.get('len')).strip()
+
+            if paramTypeKind == ParamTypeKind.STRING_DYNAMIC_ARRAY_1D:
+                commaPos = length.find(',')
+                length = length[:commaPos]
+
+            length, ptrCond = patchDynamicArrayLengthMember(length, paramAccess)
+
+            out += indent + f'if ({paramAccess}{paramName}{ptrCond}) {{\n'
+            out += 2 * indent + f'SerializeToStream(uint64_t({length}), stream);\n'
+
+            if paramTypeKind in [ParamTypeKind.STRUCT_DYNAMIC_ARRAY_1D, ParamTypeKind.STRING_DYNAMIC_ARRAY_1D]:
+                out += 2 * indent + f'for (int i = 0; i < {length}; ++i) {{\n'
+                out += 3 * indent +     f'SerializeToStream({paramAccess}{paramName}[i], stream);\n'
+                out += 2 * indent + f'}}\n'
+            else:
+                size = f'{length}'
+                if paramTypeKind == ParamTypeKind.VOID_PTR_DYNAMIC_ARRAY_1D:
+                    size += f' * sizeof(void*)'
+                elif paramType != 'void':
+                    size += f' * sizeof({paramType})'
+
+                out += 2 * indent + f'SerializeToStream({paramAccess}{paramName}, {size}, stream);\n'
+
+            out += indent + f'}}\n'
+            out += indent + f'else {{\n'
+            out += 2 * indent + f'SerializeToStream(uint64_t(0), stream);\n'
+            out += indent + f'}}\n'
+
+        case (ParamTypeKind.PRIMITIVE_DYNAMIC_ARRAY_2D |
+              ParamTypeKind.HANDLE_DYNAMIC_ARRAY_2D |
+              ParamTypeKind.STRUCT_DYNAMIC_ARRAY_2D):
+
+            lengths = safeStr(param.get('altlen')).strip()
+            if lengths == '':
+                lengths = safeStr(param.get('len')).strip()
+
+            commaPos = lengths.find(',')
+            lengthOuter = ''
+            lengthInner = ''
+            ptrCondOuter = ''
+            ptrCondInner = ''
+            if commaPos != -1:
+                lengthOuter = lengths[:commaPos]
+                lengthInner = lengths[commaPos + 1:]
+                lengthOuter, ptrCondOuter = patchDynamicArrayLengthMember(lengthOuter, paramAccess)
+                lengthInner, ptrCondInner = patchDynamicArrayLengthMember(lengthInner, paramAccess)
+            else:
+                lengthOuter = lengths
+                lengthOuter, ptrCondOuter = patchDynamicArrayLengthMember(lengthOuter, paramAccess)
+                lengthInner = f'{paramAccess}pInfos[i].geometryCount'
+                ptrCondInner = f' && {paramAccess}pInfos'
+
+            out += indent + f'if ({paramAccess}{paramName}{ptrCondOuter}) {{\n'
+            out += 2 * indent + f'SerializeToStream(uint64_t({lengthOuter}), stream);\n'
+            out += 2 * indent + f'for (int i = 0; i < {lengthOuter}; ++i) {{\n'
+            out += 3 * indent +     f'if ({paramAccess}{paramName}[i]{ptrCondInner}) {{\n'
+            out += 4 * indent +         f'SerializeToStream(uint64_t({lengthInner}), stream);\n'
+
+            if paramTypeKind in [ParamTypeKind.STRUCT_DYNAMIC_ARRAY_2D]:
+                out += 4 * indent +     f'for (int j = 0; j < {lengthInner}; ++j) {{\n'
+                out += 5 * indent +         f'SerializeToStream({paramAccess}{paramName}[i][j], stream);\n'
+                out += 4 * indent +     f'}}\n'
+            else:
+                out += 4 * indent +     f'SerializeToStream({paramAccess}{paramName}[i], {lengthInner} * sizeof({paramType}), stream);\n'
+
+            out += 3 * indent +     f'}}\n'
+            out += 3 * indent +     f'else {{\n'
+            out += 4 * indent +         f'SerializeToStream(uint64_t(0), stream);\n'
+            out += 3 * indent +     f'}}\n'
+            out += 2 * indent + f'}}\n'
+            out += indent + f'}}\n'
+            out += indent + f'else {{\n'
+            out += 2 * indent + f'SerializeToStream(uint64_t(0), stream);\n'
+            out += indent + f'}}\n'
+
+        case ParamTypeKind.PNEXT:
+
+            out += indent + f'SerializeToStreamPNext({paramAccess}{paramName}, stream);\n'
+
+        case ParamTypeKind.STRUCT_STATIC_ARRAY_1D:
+
+            brackets = safeStr(param.find('name').tail).strip()
+            for e in param.findall('enum'):
+                brackets += e.text + e.tail
+
+            length = brackets[1:-1]
+
+            out += indent + f'for (int i = 0; i < {length}; ++i) {{\n'
+            out += 2 * indent + f'SerializeToStream({paramAccess}{paramName}[i], stream);\n'
+            out += indent + f'}}\n'
+
+        case ParamTypeKind.STRUCT_STATIC_ARRAY_2D:
+
+            brackets = safeStr(param.find('name').tail).strip()
+            for e in param.findall('enum'):
+                brackets += e.text + e.tail
+
+            lengths = brackets[1:-1]
+            rBracketPos = lengths.find(']')
+            lBracketPos = lengths.find('[')
+            lengthOuter = lengths[:rBracketPos]
+            lengthInner = lengths[lBracketPos + 1:]
+
+            out += indent + f'for (int i = 0; i < {lengthOuter}; ++i) {{\n'
+            out += 2 * indent + f'for (int j = 0; j < {lengthInner}; ++j) {{\n'
+            out += 3 * indent +     f'SerializeToStream({paramAccess}{paramName}[i][j], stream);\n'
+            out += 2 * indent + f'}}\n'
+            out += indent + f'}}\n'
+
+    return out
+
+
+def genParamDeserializeFromStream(param, registry, indent, paramAccess):
+    out = ''
+
+    paramName = safeStr(param.find('name').text).strip()
+    paramType = safeStr(param.find('type').text).strip()
+    paramTypeKind = getParamTypeKind(param, registry)
+
+    paramFullType = safeStr(param.text).strip() + ' ' + safeStr(param.find('type').text).strip() + safeStr(param.find('type').tail).strip()
+
+    paramFullStrippedType = paramFullType
+    paramFullStrippedType = paramFullStrippedType.replace('const', '')
+    paramFullStrippedType = paramFullStrippedType.replace('volatile', '')
+    paramFullStrippedType = paramFullStrippedType.replace('struct', '')
+    paramFullStrippedType = paramFullStrippedType.replace('union', '')
+    paramFullStrippedType = paramFullStrippedType.strip()
+
+    if DEBUG_PARAM_TYPE_KIND:
+        out += indent + f'// Kind: {paramTypeKind.name}\n'
+
+    match paramTypeKind:
+        case (ParamTypeKind.PRIMITIVE |
+              ParamTypeKind.HANDLE |
+              ParamTypeKind.STRUCT |
+              ParamTypeKind.STRING |
+              ParamTypeKind.WSTRING |
+              ParamTypeKind.VOID_PTR |
+              ParamTypeKind.EXTERNAL_PTR |
+              ParamTypeKind.FUNCTION_PTR):
+
+            tail = safeStr(param.find('name').tail).strip()
+            if ':' in tail:
+                out += indent + f'{paramType} {paramName}Bitfield = 0;\n'
+                out += indent + f'DeserializeFromStream({paramName}Bitfield, allocator, stream);\n'
+                out += indent + f'{paramAccess}{paramName} = {paramName}Bitfield;\n'
+            else:
+                cast = ''
+                if 'const' in paramFullType:
+                    cast = f'({paramFullStrippedType}&)'
+                if paramTypeKind == ParamTypeKind.WSTRING:
+                    cast = '(LPWSTR&)'
+
+                out += indent + f'DeserializeFromStream({cast}{paramAccess}{paramName}, allocator, stream);\n'
+
+        case (ParamTypeKind.PRIMITIVE_PTR |
+              ParamTypeKind.HANDLE_PTR |
+              ParamTypeKind.STRUCT_PTR |
+              ParamTypeKind.VOID_PTR_PTR |
+              ParamTypeKind.EXTERNAL_PTR_PTR):
+
+            allocType = paramFullStrippedType[:-1].strip()
+
+            out += indent + f'{allocType}* {paramName}Ptr = nullptr;\n'
+            out += indent + f'uint64_t {paramName}Size = 0;\n'
+            out += indent + f'DeserializeFromStream({paramName}Size, allocator, stream);\n'
+            out += indent + f'if ({paramName}Size != 0) {{\n'
+            out += 2 * indent + f'{paramName}Ptr = allocator.Allocate<{allocType}>();\n'
+            out += 2 * indent + f'DeserializeFromStream(*{paramName}Ptr, allocator, stream);\n'
+            out += indent + f'}}\n'
+            out += indent + f'{paramAccess}{paramName} = {paramName}Ptr;\n'
+
+        case (ParamTypeKind.PRIMITIVE_STATIC_ARRAY_1D |
+              ParamTypeKind.HANDLE_STATIC_ARRAY_1D |
+              ParamTypeKind.PRIMITIVE_STATIC_ARRAY_2D |
+              ParamTypeKind.HANDLE_STATIC_ARRAY_2D):
+
+            out += indent + f'DeserializeFromStream((void*){paramAccess}{paramName}, sizeof({paramAccess}{paramName}), allocator, stream);\n'
+
+        case (ParamTypeKind.PRIMITIVE_DYNAMIC_ARRAY_1D |
+              ParamTypeKind.HANDLE_DYNAMIC_ARRAY_1D |
+              ParamTypeKind.STRUCT_DYNAMIC_ARRAY_1D |
+              ParamTypeKind.STRING_DYNAMIC_ARRAY_1D |
+              ParamTypeKind.VOID_PTR_DYNAMIC_ARRAY_1D):
+
+            allocType = paramFullStrippedType[:-1].strip()
+            if allocType == 'void':
+                allocType = 'uint8_t'
+
+            out += indent + f'{allocType}* {paramName}Ptr = nullptr;\n'
+            out += indent + f'uint64_t {paramName}Size = 0;\n'
+            out += indent + f'DeserializeFromStream({paramName}Size, allocator, stream);\n'
+            out += indent + f'if ({paramName}Size != 0) {{\n'
+            out += 2 * indent + f'{paramName}Ptr = allocator.Allocate<{allocType}>({paramName}Size);\n'
+
+            if paramTypeKind in [ParamTypeKind.STRUCT_DYNAMIC_ARRAY_1D, ParamTypeKind.STRING_DYNAMIC_ARRAY_1D]:
+                out += 2 * indent + f'for (int i = 0; i < {paramName}Size; ++i) {{\n'
+                out += 3 * indent +     f'DeserializeFromStream({paramName}Ptr[i], allocator, stream);\n'
+                out += 2 * indent + f'}}\n'
+            else:
+                out += 2 * indent + f'DeserializeFromStream((void*){paramName}Ptr, {paramName}Size * sizeof({allocType}), allocator, stream);\n'
+
+            out += indent + f'}}\n'
+            out += indent + f'{paramAccess}{paramName} = {paramName}Ptr;\n'
+
+        case (ParamTypeKind.PRIMITIVE_DYNAMIC_ARRAY_2D |
+              ParamTypeKind.HANDLE_DYNAMIC_ARRAY_2D |
+              ParamTypeKind.STRUCT_DYNAMIC_ARRAY_2D):
+
+            allocType = paramType
+
+            out += indent + f'{allocType}** {paramName}Ptr = nullptr;\n'
+            out += indent + f'uint64_t {paramName}SizeOuter = 0;\n'
+            out += indent + f'DeserializeFromStream({paramName}SizeOuter, allocator, stream);\n'
+            out += indent + f'if ({paramName}SizeOuter != 0) {{\n'
+            out += 2 * indent + f'{paramName}Ptr = allocator.Allocate<{allocType}*>({paramName}SizeOuter);\n'
+            out += 2 * indent + f'for (int i = 0; i < {paramName}SizeOuter; ++i) {{\n'
+            out += 3 * indent +     f'{paramName}Ptr[i] = nullptr;\n'
+            out += 3 * indent +     f'uint64_t {paramName}SizeInner = 0;\n'
+            out += 3 * indent +     f'DeserializeFromStream({paramName}SizeInner, allocator, stream);\n'
+            out += 3 * indent +     f'if ({paramName}SizeInner != 0) {{\n'
+            out += 4 * indent +         f'{paramName}Ptr[i] = allocator.Allocate<{allocType}>({paramName}SizeInner);\n'
+
+            if paramTypeKind in [ParamTypeKind.STRUCT_DYNAMIC_ARRAY_2D]:
+                out += 4 * indent +     f'for (int j = 0; j < {paramName}SizeInner; ++j) {{\n'
+                out += 5 * indent +         f'DeserializeFromStream({paramName}Ptr[i][j], allocator, stream);\n'
+                out += 4 * indent +     f'}}\n'
+            else:
+                out += 4 * indent +     f'DeserializeFromStream((void*){paramName}Ptr[i], {paramName}SizeInner * sizeof({paramType}), allocator, stream);\n'
+
+            out += 3 * indent +     f'}}\n'
+            out += 2 * indent + f'}}\n'
+            out += indent + f'}}\n'
+            out += indent + f'{paramAccess}{paramName} = {paramName}Ptr;\n'
+
+        case ParamTypeKind.PNEXT:
+
+            cast = ''
+            if paramType != 'void' or 'const' in paramFullType:
+                cast = '(void**)'
+
+            out += indent + f'DeserializeFromStreamPNext({cast}&{paramAccess}{paramName}, allocator, stream);\n'
+
+        case ParamTypeKind.STRUCT_STATIC_ARRAY_1D:
+
+            brackets = safeStr(param.find('name').tail).strip()
+            for e in param.findall('enum'):
+                brackets += e.text + e.tail
+
+            length = brackets[1:-1]
+
+            out += indent + f'for (int i = 0; i < {length}; ++i) {{\n'
+            out += 2 * indent + f'DeserializeFromStream({paramAccess}{paramName}[i], allocator, stream);\n'
+            out += indent + f'}}\n'
+
+        case ParamTypeKind.STRUCT_STATIC_ARRAY_2D:
+
+            brackets = safeStr(param.find('name').tail).strip()
+            for e in param.findall('enum'):
+                brackets += e.text + e.tail
+
+            lengths = brackets[1:-1]
+            rBracketPos = lengths.find(']')
+            lBracketPos = lengths.find('[')
+            lengthOuter = lengths[:rBracketPos]
+            lengthInner = lengths[lBracketPos + 1:]
+
+            out += indent + f'for (int i = 0; i < {lengthOuter}; ++i) {{\n'
+            out += 2 * indent + f'for (int j = 0; j < {lengthInner}; ++j) {{\n'
+            out += 3 * indent +     f'DeserializeFromStream({paramAccess}{paramName}[i][j], allocator, stream);\n'
+            out += 2 * indent + f'}}\n'
+            out += indent + f'}}\n'
 
     return out
 
@@ -1091,7 +1429,9 @@ class COutputGeneratorSignatureDeclaration(OutputGenerator):
         self.body = ''
         self.header_guard = ''
         self.indent = '    '
+        self.sig_forward_decl = ''
         self.sig_decl = ''
+        self.sig_create = ''
         self.ser_to_str = ''
         self.ser_to_json = ''
         self.ser_to_stream = ''
@@ -1111,8 +1451,15 @@ class COutputGeneratorSignatureDeclaration(OutputGenerator):
         self.body += f'namespace OVS {{\n'
         self.body += f'namespace SignatureSerializer {{\n\n'
 
+        self.sig_create += f'static SignaturePtr CreateSignature(APICallID callID) {{\n'
+        self.sig_create += self.indent + f'switch (callID) {{\n'
+
     def endFile(self):
-        self.body += self.sig_decl
+        self.sig_create += 2 * self.indent + f'default: return nullptr;\n'
+        self.sig_create += self.indent + f'}}\n'
+        self.sig_create += f'}}\n'
+
+        self.body += self.sig_forward_decl
         self.body += f'\n'
         self.body += self.ser_to_str
         self.body += f'\n'
@@ -1123,6 +1470,10 @@ class COutputGeneratorSignatureDeclaration(OutputGenerator):
         self.body += self.deser_from_stream
         self.body += f'\n'
         self.body += self.deser_from_json
+        self.body += f'\n'
+        self.body += self.sig_decl
+        self.body += f'\n'
+        self.body += self.sig_create
         self.body += f'\n'
         self.body += f'}} // namespace SignatureSerializer\n'
         self.body += f'}} // namespace OVS\n\n'
@@ -1139,8 +1490,7 @@ class COutputGeneratorSignatureDeclaration(OutputGenerator):
         type = proto.find('type').text.strip()
         params = cmdinfo.elem.findall('param')
 
-        self.sig_decl += f'struct {name}Signature {{\n'
-        self.sig_decl += self.indent + f'SignatureHeader header{{}};\n\n'
+        self.sig_decl += f'struct {name}Signature : public BaseSignature {{\n'
         if type != 'void':
             retParamTypeKind = None
             typeElem = getNonAliasTypeElem(type, self.registry)
@@ -1150,7 +1500,10 @@ class COutputGeneratorSignatureDeclaration(OutputGenerator):
             if type in BASE_TYPES or category in ['basetype', 'enum', 'bitmask']:
                 retParamTypeKind = ParamTypeKind.PRIMITIVE
 
-            self.sig_decl += self.indent + f'{type} ret{{}}; // Kind: {retParamTypeKind.name}\n'
+            if DEBUG_PARAM_TYPE_KIND:
+                self.sig_decl += self.indent + f'// Kind: {retParamTypeKind.name}\n'
+
+            self.sig_decl += self.indent + f'{type} ret{{}};\n'
 
         for i in range(len(params)):
             param = params[i]
@@ -1160,10 +1513,22 @@ class COutputGeneratorSignatureDeclaration(OutputGenerator):
 
             paramTypeKind = getParamTypeKind(param, self.registry)
 
-            self.sig_decl += self.indent + f'{param_type} {param_name}{param_tail}{{}}; // Kind: {paramTypeKind.name}\n'
+            if DEBUG_PARAM_TYPE_KIND:
+                self.sig_decl += self.indent + f'// Kind: {paramTypeKind.name}\n'
 
+            self.sig_decl += self.indent + f'{param_type} {param_name}{param_tail}{{}};\n'
+
+        self.sig_decl += f'\n'
+        self.sig_decl += self.indent + f'virtual void SerializeToString(std::stringstream& stream) const {{ SignatureSerializer::SerializeToString(*this, stream); }}\n'
+        self.sig_decl += self.indent + f'virtual void SerializeToJSON(std::stringstream& stream) const {{ /*TODO*/ }}\n'
+        self.sig_decl += self.indent + f'virtual void SerializeToStream(WriteStream& stream) const {{ SignatureSerializer::SerializeToStream(*this, stream); }}\n'
+        self.sig_decl += self.indent + f'virtual void DeserializeFromStream(const ReadStream& stream) {{ SignatureSerializer::DeserializeFromStream(*this, stream); }}\n'
+        self.sig_decl += self.indent + f'virtual void DeserializeFromJSON(const std::string& json) {{ /*TODO*/ }}\n'
+        self.sig_decl += self.indent + f'virtual ~{name}Signature() {{}}\n'
         self.sig_decl += f'}};\n\n'
 
+        self.sig_forward_decl   += f'struct {name}Signature;\n'
+        self.sig_create         += 2 * self.indent + f'case APICallID::{name}: return std::make_unique<{name}Signature>();\n'
         self.ser_to_str         += f'void SerializeToString(const {name}Signature& sig, std::stringstream& stream);\n'
         self.ser_to_json        += f'void SerializeToJSON(const {name}Signature& sig, std::stringstream& stream);\n'
         self.ser_to_stream      += f'void SerializeToStream(const {name}Signature& sig, WriteStream& stream);\n'
@@ -1200,8 +1565,8 @@ class COutputGeneratorStructSerializeDeclaration(OutputGenerator):
         self.ser_to_str         += f'void SerializeToStringPNext(const void* pNext, std::stringstream& stream);\n'
         self.ser_to_json        += f'void SerializeToJSONPNext(const void* pNext, std::stringstream& stream);\n'
         self.ser_to_stream      += f'void SerializeToStreamPNext(const void* pNext, WriteStream& stream);\n'
-        self.deser_from_stream  += f'void DeserializeFromStreamPNext(void** ppNext, const ReadStream& stream);\n'
-        self.deser_from_json    += f'void DeserializeFromJSONPNext(void** ppNext, const std::string& json);\n'
+        self.deser_from_stream  += f'void DeserializeFromStreamPNext(void** ppNext, Allocator& allocator, const ReadStream& stream);\n'
+        self.deser_from_json    += f'void DeserializeFromJSONPNext(void** ppNext, Allocator& allocator, const std::string& json);\n'
 
         self.body += self.ser_to_str
         self.body += f'\n'
@@ -1231,8 +1596,8 @@ class COutputGeneratorStructSerializeDeclaration(OutputGenerator):
         self.ser_to_str         += f'void SerializeToString(const {name}& value, std::stringstream& stream);\n'
         self.ser_to_json        += f'void SerializeToJSON(const {name}& value, std::stringstream& stream);\n'
         self.ser_to_stream      += f'void SerializeToStream(const {name}& value, WriteStream& stream);\n'
-        self.deser_from_stream  += f'void DeserializeFromStream({name}& value, const ReadStream& stream);\n'
-        self.deser_from_json    += f'void DeserializeFromJSON({name}& value, const std::string& json);\n'
+        self.deser_from_stream  += f'void DeserializeFromStream({name}& value, Allocator& allocator, const ReadStream& stream);\n'
+        self.deser_from_json    += f'void DeserializeFromJSON({name}& value, Allocator& allocator, const std::string& json);\n'
 
 
 class COutputGeneratorStructSerializeToString(OutputGenerator):
@@ -1266,6 +1631,7 @@ class COutputGeneratorStructSerializeToString(OutputGenerator):
     def endFile(self):
         self.ser_pnext += 2 * self.indent + f'default: {{\n'
         self.ser_pnext += 3 * self.indent +     f'SerializeToString(*pNextStruct, stream);\n'
+        self.ser_pnext += 3 * self.indent +     f'break;\n'
         self.ser_pnext += 2 * self.indent + f'}}\n'
         self.ser_pnext += self.indent + f'}}\n'
         self.ser_pnext += f'}}\n'
@@ -1317,6 +1683,7 @@ class COutputGeneratorStructSerializeToString(OutputGenerator):
                     self.ser_pnext += 2 * self.indent + f'case {sTypeValue}: {{\n'
                     self.ser_pnext += 3 * self.indent +     f'const {name}* pValue = reinterpret_cast<const {name}*>(pNext);\n'
                     self.ser_pnext += 3 * self.indent +     f'SerializeToString(*pValue, stream);\n'
+                    self.ser_pnext += 3 * self.indent +     f'break;\n'
                     self.ser_pnext += 2 * self.indent + f'}}\n'
 
                     if enumProtect:
@@ -1324,6 +1691,191 @@ class COutputGeneratorStructSerializeToString(OutputGenerator):
 
         self.ser_to_str += self.indent + f'stream << \"}}\";\n'
         self.ser_to_str += f'}}\n\n'
+
+
+class COutputGeneratorStructSerializeToStream(OutputGenerator):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.body = ''
+        self.indent = '    '
+        self.ser = ''
+        self.ser_pnext = ''
+
+    def beginFile(self, genOpts):
+        OutputGenerator.beginFile(self, genOpts)
+
+        self.body += autogen_message
+
+        self.body += f'#include <SignatureUtils.h>\n'
+        self.body += f'#include <StructSerializeGenerated.h>\n\n'
+        self.body += f'namespace OVS {{\n'
+        self.body += f'namespace SignatureSerializer {{\n\n'
+
+        self.ser_pnext += f'void SerializeToStreamPNext(const void* pNext, WriteStream& stream) {{\n'
+        self.ser_pnext += self.indent + f'if (!pNext) {{\n'
+        self.ser_pnext += 2 * self.indent + f'SerializeToStream(uint64_t(0), stream);\n'
+        self.ser_pnext += 2 * self.indent + f'return;\n'
+        self.ser_pnext += self.indent + f'}}\n\n'
+        self.ser_pnext += self.indent + f'SerializeToStream(uint64_t(1), stream);\n\n'
+        self.ser_pnext += self.indent + f'const VkBaseInStructure* pNextStruct = reinterpret_cast<const VkBaseInStructure*>(pNext);\n'
+        self.ser_pnext += self.indent + f'switch (pNextStruct->sType) {{\n'
+
+    def endFile(self):
+        self.ser_pnext += 2 * self.indent + f'default: {{\n'
+        self.ser_pnext += 3 * self.indent +     f'SerializeToStream(*pNextStruct, stream);\n'
+        self.ser_pnext += 3 * self.indent +     f'break;\n'
+        self.ser_pnext += 2 * self.indent + f'}}\n'
+        self.ser_pnext += self.indent + f'}}\n'
+        self.ser_pnext += f'}}\n'
+
+        self.body += self.ser
+        self.body += f'\n'
+        self.body += self.ser_pnext
+        self.body += f'\n'
+        self.body += f'}} // namespace SignatureSerializer\n'
+        self.body += f'}} // namespace OVS'
+
+        self.outFile.write(self.body)
+
+        OutputGenerator.endFile(self)
+
+    def genType(self, typeinfo, name, alias):
+        OutputGenerator.genType(self, typeinfo, name, alias)
+
+        category = typeinfo.elem.get('category')
+        if category not in ('struct', 'union') or alias:
+            return
+
+        members = typeinfo.elem.findall('member')
+
+        self.ser += f'void SerializeToStream(const {name}& value, WriteStream& stream) {{\n'
+
+        memberAccess = 'value.'
+        for i in range(len(members)):
+            member = members[i]
+            memberName = safeStr(member.find('name').text).strip()
+
+            self.ser += genParamSerializeToStream(member, self.registry, self.indent, memberAccess)
+            if memberName == 'sType':
+                sTypeValue = member.get('values')
+                if sTypeValue is not None:
+                    enumProtect = None
+                    enumInfo = self.registry.lookupElementInfo(sTypeValue, self.registry.enumdict)
+                    if enumInfo is not None:
+                        enumElem = enumInfo.elem
+                        enumProtect = enumElem.get('protect')
+
+                    if enumProtect:
+                        self.ser_pnext += f'#ifdef {enumProtect}\n'
+
+                    self.ser_pnext += 2 * self.indent + f'case {sTypeValue}: {{\n'
+                    self.ser_pnext += 3 * self.indent +     f'const {name}* pValue = reinterpret_cast<const {name}*>(pNext);\n'
+                    self.ser_pnext += 3 * self.indent +     f'SerializeToStream(*pValue, stream);\n'
+                    self.ser_pnext += 3 * self.indent +     f'break;\n'
+                    self.ser_pnext += 2 * self.indent + f'}}\n'
+
+                    if enumProtect:
+                        self.ser_pnext += f'#endif\n'
+
+        self.ser += f'}}\n\n'
+
+
+class COutputGeneratorStructDeserializeFromStream(OutputGenerator):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.body = ''
+        self.indent = '    '
+        self.deser = ''
+        self.deser_pnext = ''
+
+    def beginFile(self, genOpts):
+        OutputGenerator.beginFile(self, genOpts)
+
+        self.body += autogen_message
+
+        self.body += f'#include <SignatureUtils.h>\n'
+        self.body += f'#include <StructSerializeGenerated.h>\n\n'
+        self.body += f'namespace OVS {{\n'
+        self.body += f'namespace SignatureSerializer {{\n\n'
+
+        self.deser_pnext += f'void DeserializeFromStreamPNext(void** ppNext, Allocator& allocator, const ReadStream& stream) {{\n'
+        self.deser_pnext += self.indent + f'if (!ppNext) {{\n'
+        self.deser_pnext += 2 * self.indent + f'return;\n'
+        self.deser_pnext += self.indent + f'}}\n\n'
+        self.deser_pnext += self.indent + f'uint64_t size = 0;\n'
+        self.deser_pnext += self.indent + f'DeserializeFromStream(size, allocator, stream);\n\n'
+        self.deser_pnext += self.indent + f'if (size == 0) {{\n'
+        self.deser_pnext += 2 * self.indent + f'*ppNext = nullptr;\n'
+        self.deser_pnext += 2 * self.indent + f'return;\n'
+        self.deser_pnext += self.indent + f'}}\n\n'
+
+        self.deser_pnext += self.indent + f'VkBaseInStructure nextStruct{{}};\n'
+        self.deser_pnext += self.indent + f'stream.ReadNoAdvance(nextStruct);\n'
+        self.deser_pnext += self.indent + f'switch (nextStruct.sType) {{\n'
+
+    def endFile(self):
+        self.deser_pnext += 2 * self.indent + f'default: {{\n'
+        self.deser_pnext += 3 * self.indent +     f'VkBaseInStructure* pNext = allocator.Allocate<VkBaseInStructure>();\n'
+        self.deser_pnext += 3 * self.indent +     f'DeserializeFromStream(*pNext, allocator, stream);\n'
+        self.deser_pnext += 3 * self.indent +     f'*ppNext = pNext;\n'
+        self.deser_pnext += 3 * self.indent +     f'break;\n'
+        self.deser_pnext += 2 * self.indent + f'}}\n'
+        self.deser_pnext += self.indent + f'}}\n'
+        self.deser_pnext += f'}}\n'
+
+        self.body += self.deser
+        self.body += f'\n'
+        self.body += self.deser_pnext
+        self.body += f'\n'
+        self.body += f'}} // namespace SignatureSerializer\n'
+        self.body += f'}} // namespace OVS'
+
+        self.outFile.write(self.body)
+
+        OutputGenerator.endFile(self)
+
+    def genType(self, typeinfo, name, alias):
+        OutputGenerator.genType(self, typeinfo, name, alias)
+
+        category = typeinfo.elem.get('category')
+        if category not in ('struct', 'union') or alias:
+            return
+
+        members = typeinfo.elem.findall('member')
+
+        self.deser += f'void DeserializeFromStream({name}& value, Allocator& allocator, const ReadStream& stream) {{\n'
+
+        memberAccess = 'value.'
+        for i in range(len(members)):
+            member = members[i]
+            memberName = safeStr(member.find('name').text).strip()
+
+            self.deser += genParamDeserializeFromStream(member, self.registry, self.indent, memberAccess)
+            if memberName == 'sType':
+                sTypeValue = member.get('values')
+                if sTypeValue is not None:
+                    enumProtect = None
+                    enumInfo = self.registry.lookupElementInfo(sTypeValue, self.registry.enumdict)
+                    if enumInfo is not None:
+                        enumElem = enumInfo.elem
+                        enumProtect = enumElem.get('protect')
+
+                    if enumProtect:
+                        self.deser_pnext += f'#ifdef {enumProtect}\n'
+
+                    self.deser_pnext += 2 * self.indent + f'case {sTypeValue}: {{\n'
+                    self.deser_pnext += 3 * self.indent +     f'{name}* pNext = allocator.Allocate<{name}>();\n'
+                    self.deser_pnext += 3 * self.indent +     f'DeserializeFromStream(*pNext, allocator, stream);\n'
+                    self.deser_pnext += 3 * self.indent +     f'*ppNext = pNext;\n'
+                    self.deser_pnext += 3 * self.indent +     f'break;\n'
+                    self.deser_pnext += 2 * self.indent + f'}}\n'
+
+                    if enumProtect:
+                        self.deser_pnext += f'#endif\n'
+
+        self.deser += f'}}\n\n'
 
 
 class COutputGeneratorEnumSerializeDeclaration(OutputGenerator):
@@ -1584,8 +2136,131 @@ class COutputGeneratorSignatureSerializeToString(OutputGenerator):
                 if category == 'bitmask' and requires != '':
                     customSerializer = typeElem.get('name')
 
-            # self.body += self.indent + f'// Kind: {retParamTypeKind.name}\n'
+            if DEBUG_PARAM_TYPE_KIND:
+                self.body += self.indent + f'// Kind: {retParamTypeKind.name}\n'
+
             self.body += self.indent + f'SerializeToString{customSerializer}({cast}{paramAccess}ret, stream);\n'
+
+        self.body += f'}};\n\n'
+
+
+class COutputGeneratorSignatureSerializeToStream(OutputGenerator):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.body = ''
+        self.indent = '    '
+
+    def beginFile(self, genOpts):
+        OutputGenerator.beginFile(self, genOpts)
+
+        self.body += autogen_message
+
+        self.body += f'#include <SignatureUtils.h>\n'
+        self.body += f'#include <SignatureGenerated.h>\n'
+        self.body += f'#include <StructSerializeGenerated.h>\n\n'
+        self.body += f'namespace OVS {{\n'
+        self.body += f'namespace SignatureSerializer {{\n\n'
+
+    def endFile(self):
+        self.body += f'}} // namespace SignatureSerializer\n'
+        self.body += f'}} // namespace OVS'
+
+        self.outFile.write(self.body)
+
+        OutputGenerator.endFile(self)
+
+    def genCmd(self, cmdinfo, name, alias):
+        OutputGenerator.genCmd(self, cmdinfo, name, alias)
+
+        proto = cmdinfo.elem.find('proto')
+        type = proto.find('type').text.strip()
+        params = cmdinfo.elem.findall('param')
+
+        self.body += f'void SerializeToStream(const {name}Signature& sig, WriteStream& stream) {{\n'
+        self.body += self.indent + f'SerializeToStream(sig.header, stream);\n'
+
+        paramAccess = 'sig.'
+        for i in range(len(params)):
+            param = params[i]
+
+            self.body += genParamSerializeToStream(param, self.registry, self.indent, paramAccess)
+
+        if type != 'void':
+            retParamTypeKind = None
+            typeElem = getNonAliasTypeElem(type, self.registry)
+            category = safeStr(typeElem.get('category'))
+            requires = safeStr(typeElem.get('requires'))
+            if category == 'funcpointer':
+                retParamTypeKind = ParamTypeKind.FUNCTION_PTR
+            if type in BASE_TYPES or category in ['basetype', 'enum', 'bitmask']:
+                retParamTypeKind = ParamTypeKind.PRIMITIVE
+
+            if DEBUG_PARAM_TYPE_KIND:
+                self.body += self.indent + f'// Kind: {retParamTypeKind.name}\n'
+
+            self.body += self.indent + f'SerializeToStream({paramAccess}ret, stream);\n'
+
+        self.body += f'}};\n\n'
+
+
+class COutputGeneratorSignatureDeserializeFromStream(OutputGenerator):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.body = ''
+        self.indent = '    '
+
+    def beginFile(self, genOpts):
+        OutputGenerator.beginFile(self, genOpts)
+
+        self.body += autogen_message
+
+        self.body += f'#include <SignatureUtils.h>\n'
+        self.body += f'#include <SignatureGenerated.h>\n'
+        self.body += f'#include <StructSerializeGenerated.h>\n\n'
+        self.body += f'namespace OVS {{\n'
+        self.body += f'namespace SignatureSerializer {{\n\n'
+
+    def endFile(self):
+        self.body += f'}} // namespace SignatureSerializer\n'
+        self.body += f'}} // namespace OVS'
+
+        self.outFile.write(self.body)
+
+        OutputGenerator.endFile(self)
+
+    def genCmd(self, cmdinfo, name, alias):
+        OutputGenerator.genCmd(self, cmdinfo, name, alias)
+
+        proto = cmdinfo.elem.find('proto')
+        type = proto.find('type').text.strip()
+        params = cmdinfo.elem.findall('param')
+
+        self.body += f'void DeserializeFromStream({name}Signature& sig, const ReadStream& stream) {{\n'
+        self.body += self.indent + f'auto& allocator = sig.allocator;\n'
+        self.body += self.indent + f'DeserializeFromStream(sig.header, allocator, stream);\n'
+
+        paramAccess = 'sig.'
+        for i in range(len(params)):
+            param = params[i]
+
+            self.body += genParamDeserializeFromStream(param, self.registry, self.indent, paramAccess)
+
+        if type != 'void':
+            retParamTypeKind = None
+            typeElem = getNonAliasTypeElem(type, self.registry)
+            category = safeStr(typeElem.get('category'))
+            requires = safeStr(typeElem.get('requires'))
+            if category == 'funcpointer':
+                retParamTypeKind = ParamTypeKind.FUNCTION_PTR
+            if type in BASE_TYPES or category in ['basetype', 'enum', 'bitmask']:
+                retParamTypeKind = ParamTypeKind.PRIMITIVE
+
+            if DEBUG_PARAM_TYPE_KIND:
+                self.body += self.indent + f'// Kind: {retParamTypeKind.name}\n'
+
+            self.body += self.indent + f'DeserializeFromStream({paramAccess}ret, allocator, stream);\n'
 
         self.body += f'}};\n\n'
 
@@ -1686,6 +2361,132 @@ class COutputGeneratorVulkanLayerAPIDump(OutputGenerator):
         self.body += 2 * self.indent + f'std::stringstream stream;\n'
         self.body += 2 * self.indent + f'SignatureSerializer::SerializeToString(sig, stream);\n'
         self.body += 2 * self.indent + f'out_ << stream.str() << \'\\n\';\n'
+        if type != 'void':
+            self.body += 2 * self.indent + f'return ret;\n'
+
+        self.body += self.indent + f'}}\n\n'
+
+
+class COutputGeneratorVulkanLayerAPITrace(OutputGenerator):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.body = ''
+        self.header_guard = ''
+        self.indent = '    '
+
+    def beginFile(self, genOpts):
+        OutputGenerator.beginFile(self, genOpts)
+
+        self.body += autogen_message
+
+        self.header_guard = getMacroForFilename(self.genOpts.filename)
+        self.body += f'#ifndef {self.header_guard}\n'
+        self.body += f'#define {self.header_guard}\n\n'
+        self.body += f'#include <PlatformUtils.h>\n\n'
+        self.body += f'#include <VulkanLayerInterfaceGenerated.h>\n\n'
+        self.body += f'#include <SignatureGenerated.h>\n\n'
+        self.body += f'namespace OVS {{\n\n'
+        self.body += f'class VulkanLayerAPITrace : public VulkanLayerInterface {{\n'
+        self.body += f'public:\n'
+
+    def endFile(self):
+        self.body += self.indent + f'explicit VulkanLayerAPITrace(const VulkanLayerAPITraceSettings& settings) : VulkanLayerInterface(VulkanLayerType::APITrace), settings_{{settings}}, buffered_(settings.flushSize) {{\n'
+        self.body += 2 * self.indent + f'file_ = std::fopen(settings_.filename.c_str(), \"wb\");\n'
+        self.body += self.indent + f'}}\n\n'
+
+        self.body += self.indent + f'virtual ~VulkanLayerAPITrace() {{\n'
+        self.body += 2 * self.indent + f'std::lock_guard lock(bufferedMutex_);\n'
+        self.body += 2 * self.indent + f'std::fwrite(buffered_.data(), sizeof(uint8_t), bufferedSize_, file_);\n'
+        self.body += 2 * self.indent + f'std::fclose(file_);\n'
+        self.body += self.indent + f'}}\n\n'
+
+        self.body += f'private:\n'
+
+        self.body += self.indent + f'void SaveData(std::vector<uint8_t>& data) {{\n'
+        self.body += 2 * self.indent + f'std::lock_guard lock(bufferedMutex_);\n\n'
+        self.body += 2 * self.indent + f'auto* header = reinterpret_cast<SignatureSerializer::SignatureHeader*>(data.data());\n'
+        self.body += 2 * self.indent + f'header->thread = GetThreadID();\n'
+        self.body += 2 * self.indent + f'header->byteSize = data.size();\n'
+        self.body += 2 * self.indent + f'header->globalIndex = signatureIndex_++;\n\n'
+        self.body += 2 * self.indent + f'if (bufferedSize_ + settings_.flushSize > buffered_.size()) {{\n'
+        self.body += 3 * self.indent +     f'buffered_.resize(bufferedSize_ + settings_.flushSize);\n'
+        self.body += 2 * self.indent + f'}}\n'
+        self.body += 2 * self.indent + f'std::memcpy(buffered_.data() + bufferedSize_, data.data(), data.size());\n'
+        self.body += 2 * self.indent + f'bufferedSize_ += data.size();\n\n'
+        self.body += 2 * self.indent + f'if (bufferedSize_ >= settings_.flushSize) {{\n'
+        self.body += 3 * self.indent +     f'std::fwrite(buffered_.data(), sizeof(uint8_t), bufferedSize_, file_);\n'
+        self.body += 3 * self.indent +     f'bufferedSize_ = 0;\n'
+        self.body += 2 * self.indent + f'}}\n'
+        self.body += self.indent + f'}}\n\n'
+
+        self.body += self.indent + f'VulkanLayerAPITraceSettings settings_{{}};\n'
+        self.body += self.indent + f'std::vector<uint8_t> buffered_;\n'
+        self.body += self.indent + f'std::size_t bufferedSize_{{0}};\n'
+        self.body += self.indent + f'std::mutex bufferedMutex_;\n'
+        self.body += self.indent + f'std::FILE* file_{{nullptr}};\n'
+        self.body += self.indent + f'uint64_t signatureIndex_{{0}};\n'
+        self.body += f'}};\n\n'
+        self.body += f'}} // namespace OVS\n\n'
+        self.body += f'#endif // {self.header_guard}'
+
+        self.outFile.write(self.body)
+
+        OutputGenerator.endFile(self)
+
+    def genCmd(self, cmdinfo, name, alias):
+        OutputGenerator.genCmd(self, cmdinfo, name, alias)
+
+        proto = cmdinfo.elem.find('proto')
+        type = proto.find('type').text.strip()
+        params = cmdinfo.elem.findall('param')
+
+        decl = ''
+        call = ''
+        sign = ''
+
+        call += 2 * self.indent
+        if type != 'void':
+            call += f'{type} ret = '
+        call += f'next_->{name}('
+        sign += 2 * self.indent + f'SignatureSerializer::{name}Signature sig{{}};\n'
+        sign += 2 * self.indent + f'sig.header.callID = APICallID::{name};\n'
+
+        paramAccess = 'sig.'
+        for i in range(len(params)):
+            param = params[i]
+            param_qual = safeStr(param.text).strip()
+            param_type = safeStr(param.find('type').text).strip() + safeStr(param.find('type').tail).strip()
+            param_name = safeStr(param.find('name').text).strip()
+            param_tail = safeStr(param.find('name').tail).strip()
+
+            paramTypeKind = getParamTypeKind(param, self.registry)
+
+            if i > 0:
+                decl += f', '
+                call += f', '
+
+            decl += f'{param_qual} {param_type} {param_name}{param_tail}'.strip()
+            call += f'{param_name}'
+            if ('const' in param_qual or 'const' in param_type) and ('*' in param_type):
+                sign += 2 * self.indent + f'{paramAccess}{param_name} = const_cast<{param_type}>({param_name});\n'
+            elif paramTypeKind in [ParamTypeKind.PRIMITIVE_STATIC_ARRAY_1D, ParamTypeKind.HANDLE_STATIC_ARRAY_1D, ParamTypeKind.STRUCT_STATIC_ARRAY_1D]:
+                sign += 2 * self.indent + f'std::memcpy({paramAccess}{param_name}, {param_name}, sizeof({paramAccess}{param_name}));\n'
+            else:
+                sign += 2 * self.indent + f'{paramAccess}{param_name} = {param_name};\n'
+
+        call += ');\n'
+
+        if type != 'void':
+            sign += 2 * self.indent + f'{paramAccess}ret = ret;\n'
+
+        self.body += self.indent + f'virtual {type} {name}({decl}) override {{\n'
+        self.body += f'{call}\n'
+        self.body += f'{sign}\n'
+        self.body += 2 * self.indent + f'std::vector<uint8_t> sigdata;\n'
+        self.body += 2 * self.indent + f'SignatureSerializer::WriteStream stream(sigdata);\n'
+        self.body += 2 * self.indent + f'SignatureSerializer::SerializeToStream(sig, stream);\n'
+        self.body += 2 * self.indent + f'SaveData(sigdata);\n'
         if type != 'void':
             self.body += 2 * self.indent + f'return ret;\n'
 
@@ -1861,6 +2662,34 @@ generate_targets = [
                        defaultExtensions='vulkan',
                        emitExtensions = '.*')],
 
+    [COutputGeneratorStructSerializeToStream,
+     CGeneratorOptions(prefixText='',
+                       apicall='VKAPI_ATTR ',
+                       apientry='VKAPI_CALL ',
+                       apientryp='VKAPI_PTR *',
+                       indentFuncProto=True,
+                       protectFeature=False,
+                       conventions=vkconventions.VulkanConventions(),
+                       filename='StructSerializeToStreamGenerated.cpp',
+                       directory='.',
+                       apiname='vulkan',
+                       defaultExtensions='vulkan',
+                       emitExtensions = '.*')],
+
+    [COutputGeneratorStructDeserializeFromStream,
+     CGeneratorOptions(prefixText='',
+                       apicall='VKAPI_ATTR ',
+                       apientry='VKAPI_CALL ',
+                       apientryp='VKAPI_PTR *',
+                       indentFuncProto=True,
+                       protectFeature=False,
+                       conventions=vkconventions.VulkanConventions(),
+                       filename='StructDeserializeFromStreamGenerated.cpp',
+                       directory='.',
+                       apiname='vulkan',
+                       defaultExtensions='vulkan',
+                       emitExtensions = '.*')],
+
     [COutputGeneratorEnumSerializeDeclaration,
      CGeneratorOptions(prefixText='',
                        apicall='VKAPI_ATTR ',
@@ -1903,6 +2732,34 @@ generate_targets = [
                        defaultExtensions='vulkan',
                        emitExtensions = '.*')],
 
+    [COutputGeneratorSignatureSerializeToStream,
+     CGeneratorOptions(prefixText='',
+                       apicall='VKAPI_ATTR ',
+                       apientry='VKAPI_CALL ',
+                       apientryp='VKAPI_PTR *',
+                       indentFuncProto=True,
+                       protectFeature=False,
+                       conventions=vkconventions.VulkanConventions(),
+                       filename='SignatureSerializeToStreamGenerated.cpp',
+                       directory='.',
+                       apiname='vulkan',
+                       defaultExtensions='vulkan',
+                       emitExtensions = '.*')],
+
+    [COutputGeneratorSignatureDeserializeFromStream,
+     CGeneratorOptions(prefixText='',
+                       apicall='VKAPI_ATTR ',
+                       apientry='VKAPI_CALL ',
+                       apientryp='VKAPI_PTR *',
+                       indentFuncProto=True,
+                       protectFeature=False,
+                       conventions=vkconventions.VulkanConventions(),
+                       filename='SignatureDeserializeFromStreamGenerated.cpp',
+                       directory='.',
+                       apiname='vulkan',
+                       defaultExtensions='vulkan',
+                       emitExtensions = '.*')],
+
     [COutputGeneratorVulkanLayerAPIDump,
      CGeneratorOptions(prefixText='',
                        apicall='VKAPI_ATTR ',
@@ -1912,6 +2769,20 @@ generate_targets = [
                        protectFeature=False,
                        conventions=vkconventions.VulkanConventions(),
                        filename='VulkanLayerAPIDumpGenerated.h',
+                       directory='.',
+                       apiname='vulkan',
+                       defaultExtensions='vulkan',
+                       emitExtensions = '.*')],
+
+    [COutputGeneratorVulkanLayerAPITrace,
+     CGeneratorOptions(prefixText='',
+                       apicall='VKAPI_ATTR ',
+                       apientry='VKAPI_CALL ',
+                       apientryp='VKAPI_PTR *',
+                       indentFuncProto=True,
+                       protectFeature=False,
+                       conventions=vkconventions.VulkanConventions(),
+                       filename='VulkanLayerAPITraceGenerated.h',
                        directory='.',
                        apiname='vulkan',
                        defaultExtensions='vulkan',

@@ -3,16 +3,13 @@
 
 #include <string>
 #include <cstdlib>
+#include <cstdint>
 
 namespace OVS {
 
-static std::string GetEnvVar(const std::string& name) {
-    const char* var = std::getenv(name.c_str());
-    if (!var) {
-        var = "";
-    }
-    return std::string(var);
-}
+std::string GetEnvVar(const std::string& name);
+
+uint16_t GetThreadID();
 
 } // namespace OVS
 

@@ -1,6 +1,12 @@
 {
     "Layers": [
         {
+            "Type": "APITrace",
+            "Settings": {
+                "Filename": "CubeAPIDump.ovs"
+            }
+        },
+        {
             "Type": "APIDump",
             "Settings": {
                 "Filename": "CubeAPIDump.txt"

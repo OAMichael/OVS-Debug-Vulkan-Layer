@@ -12,6 +12,7 @@ typedef void* HINSTANCE;
 typedef void* HWND;
 typedef void* HANDLE;
 typedef void* HMONITOR;
+typedef wchar_t* LPWSTR;
 typedef const wchar_t* LPCWSTR;
 typedef void* SECURITY_ATTRIBUTES;
 typedef uint32_t DWORD;

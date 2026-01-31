@@ -10,6 +10,7 @@ namespace OVS {
 class VulkanLayerManager {
 public:
     void Init();
+    void Cleanup();
 
     inline VulkanLayerPtr& GetFrontLayer() { return layers_.front(); }
 

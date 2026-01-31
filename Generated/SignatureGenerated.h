@@ -14,6829 +14,781 @@
 namespace OVS {
 namespace SignatureSerializer {
 
-struct vkCreateInstanceSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkInstanceCreateInfo* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkInstance* pInstance{}; // Kind: HANDLE_PTR
-};
-
-struct vkDestroyInstanceSignature {
-    SignatureHeader header{};
-
-    VkInstance instance{}; // Kind: HANDLE
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-};
-
-struct vkEnumeratePhysicalDevicesSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkInstance instance{}; // Kind: HANDLE
-    uint32_t* pPhysicalDeviceCount{}; // Kind: PRIMITIVE_PTR
-    VkPhysicalDevice* pPhysicalDevices{}; // Kind: HANDLE_DYNAMIC_ARRAY_1D
-};
-
-struct vkGetPhysicalDeviceFeaturesSignature {
-    SignatureHeader header{};
-
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    VkPhysicalDeviceFeatures* pFeatures{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetPhysicalDeviceFormatPropertiesSignature {
-    SignatureHeader header{};
-
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    VkFormat format{}; // Kind: PRIMITIVE
-    VkFormatProperties* pFormatProperties{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetPhysicalDeviceImageFormatPropertiesSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    VkFormat format{}; // Kind: PRIMITIVE
-    VkImageType type{}; // Kind: PRIMITIVE
-    VkImageTiling tiling{}; // Kind: PRIMITIVE
-    VkImageUsageFlags usage{}; // Kind: PRIMITIVE
-    VkImageCreateFlags flags{}; // Kind: PRIMITIVE
-    VkImageFormatProperties* pImageFormatProperties{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetPhysicalDevicePropertiesSignature {
-    SignatureHeader header{};
-
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    VkPhysicalDeviceProperties* pProperties{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetPhysicalDeviceQueueFamilyPropertiesSignature {
-    SignatureHeader header{};
-
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    uint32_t* pQueueFamilyPropertyCount{}; // Kind: PRIMITIVE_PTR
-    VkQueueFamilyProperties* pQueueFamilyProperties{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkGetPhysicalDeviceMemoryPropertiesSignature {
-    SignatureHeader header{};
-
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    VkPhysicalDeviceMemoryProperties* pMemoryProperties{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetInstanceProcAddrSignature {
-    SignatureHeader header{};
-
-    PFN_vkVoidFunction ret{}; // Kind: FUNCTION_PTR
-    VkInstance instance{}; // Kind: HANDLE
-    char* pName{}; // Kind: STRING
-};
-
-struct vkGetDeviceProcAddrSignature {
-    SignatureHeader header{};
-
-    PFN_vkVoidFunction ret{}; // Kind: FUNCTION_PTR
-    VkDevice device{}; // Kind: HANDLE
-    char* pName{}; // Kind: STRING
-};
-
-struct vkCreateDeviceSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    VkDeviceCreateInfo* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkDevice* pDevice{}; // Kind: HANDLE_PTR
-};
-
-struct vkDestroyDeviceSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-};
-
-struct vkEnumerateInstanceExtensionPropertiesSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    char* pLayerName{}; // Kind: STRING
-    uint32_t* pPropertyCount{}; // Kind: PRIMITIVE_PTR
-    VkExtensionProperties* pProperties{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkEnumerateDeviceExtensionPropertiesSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    char* pLayerName{}; // Kind: STRING
-    uint32_t* pPropertyCount{}; // Kind: PRIMITIVE_PTR
-    VkExtensionProperties* pProperties{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkEnumerateInstanceLayerPropertiesSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    uint32_t* pPropertyCount{}; // Kind: PRIMITIVE_PTR
-    VkLayerProperties* pProperties{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkEnumerateDeviceLayerPropertiesSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    uint32_t* pPropertyCount{}; // Kind: PRIMITIVE_PTR
-    VkLayerProperties* pProperties{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkGetDeviceQueueSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    uint32_t queueFamilyIndex{}; // Kind: PRIMITIVE
-    uint32_t queueIndex{}; // Kind: PRIMITIVE
-    VkQueue* pQueue{}; // Kind: HANDLE_PTR
-};
-
-struct vkQueueSubmitSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkQueue queue{}; // Kind: HANDLE
-    uint32_t submitCount{}; // Kind: PRIMITIVE
-    VkSubmitInfo* pSubmits{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-    VkFence fence{}; // Kind: HANDLE
-};
-
-struct vkQueueWaitIdleSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkQueue queue{}; // Kind: HANDLE
-};
-
-struct vkDeviceWaitIdleSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-};
-
-struct vkAllocateMemorySignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkMemoryAllocateInfo* pAllocateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkDeviceMemory* pMemory{}; // Kind: HANDLE_PTR
-};
-
-struct vkFreeMemorySignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkDeviceMemory memory{}; // Kind: HANDLE
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-};
-
-struct vkMapMemorySignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkDeviceMemory memory{}; // Kind: HANDLE
-    VkDeviceSize offset{}; // Kind: PRIMITIVE
-    VkDeviceSize size{}; // Kind: PRIMITIVE
-    VkMemoryMapFlags flags{}; // Kind: PRIMITIVE
-    void** ppData{}; // Kind: VOID_PTR_PTR
-};
-
-struct vkUnmapMemorySignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkDeviceMemory memory{}; // Kind: HANDLE
-};
-
-struct vkFlushMappedMemoryRangesSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    uint32_t memoryRangeCount{}; // Kind: PRIMITIVE
-    VkMappedMemoryRange* pMemoryRanges{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkInvalidateMappedMemoryRangesSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    uint32_t memoryRangeCount{}; // Kind: PRIMITIVE
-    VkMappedMemoryRange* pMemoryRanges{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkGetDeviceMemoryCommitmentSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkDeviceMemory memory{}; // Kind: HANDLE
-    VkDeviceSize* pCommittedMemoryInBytes{}; // Kind: PRIMITIVE_PTR
-};
-
-struct vkBindBufferMemorySignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkBuffer buffer{}; // Kind: HANDLE
-    VkDeviceMemory memory{}; // Kind: HANDLE
-    VkDeviceSize memoryOffset{}; // Kind: PRIMITIVE
-};
-
-struct vkBindImageMemorySignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkImage image{}; // Kind: HANDLE
-    VkDeviceMemory memory{}; // Kind: HANDLE
-    VkDeviceSize memoryOffset{}; // Kind: PRIMITIVE
-};
-
-struct vkGetBufferMemoryRequirementsSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkBuffer buffer{}; // Kind: HANDLE
-    VkMemoryRequirements* pMemoryRequirements{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetImageMemoryRequirementsSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkImage image{}; // Kind: HANDLE
-    VkMemoryRequirements* pMemoryRequirements{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetImageSparseMemoryRequirementsSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkImage image{}; // Kind: HANDLE
-    uint32_t* pSparseMemoryRequirementCount{}; // Kind: PRIMITIVE_PTR
-    VkSparseImageMemoryRequirements* pSparseMemoryRequirements{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkGetPhysicalDeviceSparseImageFormatPropertiesSignature {
-    SignatureHeader header{};
-
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    VkFormat format{}; // Kind: PRIMITIVE
-    VkImageType type{}; // Kind: PRIMITIVE
-    VkSampleCountFlagBits samples{}; // Kind: PRIMITIVE
-    VkImageUsageFlags usage{}; // Kind: PRIMITIVE
-    VkImageTiling tiling{}; // Kind: PRIMITIVE
-    uint32_t* pPropertyCount{}; // Kind: PRIMITIVE_PTR
-    VkSparseImageFormatProperties* pProperties{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkQueueBindSparseSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkQueue queue{}; // Kind: HANDLE
-    uint32_t bindInfoCount{}; // Kind: PRIMITIVE
-    VkBindSparseInfo* pBindInfo{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-    VkFence fence{}; // Kind: HANDLE
-};
-
-struct vkCreateFenceSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkFenceCreateInfo* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkFence* pFence{}; // Kind: HANDLE_PTR
-};
-
-struct vkDestroyFenceSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkFence fence{}; // Kind: HANDLE
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-};
-
-struct vkResetFencesSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    uint32_t fenceCount{}; // Kind: PRIMITIVE
-    VkFence* pFences{}; // Kind: HANDLE_DYNAMIC_ARRAY_1D
-};
-
-struct vkGetFenceStatusSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkFence fence{}; // Kind: HANDLE
-};
-
-struct vkWaitForFencesSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    uint32_t fenceCount{}; // Kind: PRIMITIVE
-    VkFence* pFences{}; // Kind: HANDLE_DYNAMIC_ARRAY_1D
-    VkBool32 waitAll{}; // Kind: PRIMITIVE
-    uint64_t timeout{}; // Kind: PRIMITIVE
-};
-
-struct vkCreateSemaphoreSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkSemaphoreCreateInfo* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkSemaphore* pSemaphore{}; // Kind: HANDLE_PTR
-};
-
-struct vkDestroySemaphoreSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkSemaphore semaphore{}; // Kind: HANDLE
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-};
-
-struct vkCreateQueryPoolSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkQueryPoolCreateInfo* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkQueryPool* pQueryPool{}; // Kind: HANDLE_PTR
-};
-
-struct vkDestroyQueryPoolSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkQueryPool queryPool{}; // Kind: HANDLE
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetQueryPoolResultsSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkQueryPool queryPool{}; // Kind: HANDLE
-    uint32_t firstQuery{}; // Kind: PRIMITIVE
-    uint32_t queryCount{}; // Kind: PRIMITIVE
-    size_t dataSize{}; // Kind: PRIMITIVE
-    void* pData{}; // Kind: PRIMITIVE_DYNAMIC_ARRAY_1D
-    VkDeviceSize stride{}; // Kind: PRIMITIVE
-    VkQueryResultFlags flags{}; // Kind: PRIMITIVE
-};
-
-struct vkCreateBufferSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkBufferCreateInfo* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkBuffer* pBuffer{}; // Kind: HANDLE_PTR
-};
-
-struct vkDestroyBufferSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkBuffer buffer{}; // Kind: HANDLE
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-};
-
-struct vkCreateImageSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkImageCreateInfo* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkImage* pImage{}; // Kind: HANDLE_PTR
-};
-
-struct vkDestroyImageSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkImage image{}; // Kind: HANDLE
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetImageSubresourceLayoutSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkImage image{}; // Kind: HANDLE
-    VkImageSubresource* pSubresource{}; // Kind: STRUCT_PTR
-    VkSubresourceLayout* pLayout{}; // Kind: STRUCT_PTR
-};
-
-struct vkCreateImageViewSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkImageViewCreateInfo* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkImageView* pView{}; // Kind: HANDLE_PTR
-};
-
-struct vkDestroyImageViewSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkImageView imageView{}; // Kind: HANDLE
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-};
-
-struct vkCreateCommandPoolSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkCommandPoolCreateInfo* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkCommandPool* pCommandPool{}; // Kind: HANDLE_PTR
-};
-
-struct vkDestroyCommandPoolSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkCommandPool commandPool{}; // Kind: HANDLE
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-};
-
-struct vkResetCommandPoolSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkCommandPool commandPool{}; // Kind: HANDLE
-    VkCommandPoolResetFlags flags{}; // Kind: PRIMITIVE
-};
-
-struct vkAllocateCommandBuffersSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkCommandBufferAllocateInfo* pAllocateInfo{}; // Kind: STRUCT_PTR
-    VkCommandBuffer* pCommandBuffers{}; // Kind: HANDLE_DYNAMIC_ARRAY_1D
-};
-
-struct vkFreeCommandBuffersSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkCommandPool commandPool{}; // Kind: HANDLE
-    uint32_t commandBufferCount{}; // Kind: PRIMITIVE
-    VkCommandBuffer* pCommandBuffers{}; // Kind: HANDLE_DYNAMIC_ARRAY_1D
-};
-
-struct vkBeginCommandBufferSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkCommandBufferBeginInfo* pBeginInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkEndCommandBufferSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-};
-
-struct vkResetCommandBufferSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkCommandBufferResetFlags flags{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdCopyBufferSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkBuffer srcBuffer{}; // Kind: HANDLE
-    VkBuffer dstBuffer{}; // Kind: HANDLE
-    uint32_t regionCount{}; // Kind: PRIMITIVE
-    VkBufferCopy* pRegions{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkCmdCopyImageSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkImage srcImage{}; // Kind: HANDLE
-    VkImageLayout srcImageLayout{}; // Kind: PRIMITIVE
-    VkImage dstImage{}; // Kind: HANDLE
-    VkImageLayout dstImageLayout{}; // Kind: PRIMITIVE
-    uint32_t regionCount{}; // Kind: PRIMITIVE
-    VkImageCopy* pRegions{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkCmdCopyBufferToImageSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkBuffer srcBuffer{}; // Kind: HANDLE
-    VkImage dstImage{}; // Kind: HANDLE
-    VkImageLayout dstImageLayout{}; // Kind: PRIMITIVE
-    uint32_t regionCount{}; // Kind: PRIMITIVE
-    VkBufferImageCopy* pRegions{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkCmdCopyImageToBufferSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkImage srcImage{}; // Kind: HANDLE
-    VkImageLayout srcImageLayout{}; // Kind: PRIMITIVE
-    VkBuffer dstBuffer{}; // Kind: HANDLE
-    uint32_t regionCount{}; // Kind: PRIMITIVE
-    VkBufferImageCopy* pRegions{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkCmdUpdateBufferSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkBuffer dstBuffer{}; // Kind: HANDLE
-    VkDeviceSize dstOffset{}; // Kind: PRIMITIVE
-    VkDeviceSize dataSize{}; // Kind: PRIMITIVE
-    void* pData{}; // Kind: PRIMITIVE_DYNAMIC_ARRAY_1D
-};
-
-struct vkCmdFillBufferSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkBuffer dstBuffer{}; // Kind: HANDLE
-    VkDeviceSize dstOffset{}; // Kind: PRIMITIVE
-    VkDeviceSize size{}; // Kind: PRIMITIVE
-    uint32_t data{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdPipelineBarrierSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkPipelineStageFlags srcStageMask{}; // Kind: PRIMITIVE
-    VkPipelineStageFlags dstStageMask{}; // Kind: PRIMITIVE
-    VkDependencyFlags dependencyFlags{}; // Kind: PRIMITIVE
-    uint32_t memoryBarrierCount{}; // Kind: PRIMITIVE
-    VkMemoryBarrier* pMemoryBarriers{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-    uint32_t bufferMemoryBarrierCount{}; // Kind: PRIMITIVE
-    VkBufferMemoryBarrier* pBufferMemoryBarriers{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-    uint32_t imageMemoryBarrierCount{}; // Kind: PRIMITIVE
-    VkImageMemoryBarrier* pImageMemoryBarriers{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkCmdBeginQuerySignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkQueryPool queryPool{}; // Kind: HANDLE
-    uint32_t query{}; // Kind: PRIMITIVE
-    VkQueryControlFlags flags{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdEndQuerySignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkQueryPool queryPool{}; // Kind: HANDLE
-    uint32_t query{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdResetQueryPoolSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkQueryPool queryPool{}; // Kind: HANDLE
-    uint32_t firstQuery{}; // Kind: PRIMITIVE
-    uint32_t queryCount{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdWriteTimestampSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkPipelineStageFlagBits pipelineStage{}; // Kind: PRIMITIVE
-    VkQueryPool queryPool{}; // Kind: HANDLE
-    uint32_t query{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdCopyQueryPoolResultsSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkQueryPool queryPool{}; // Kind: HANDLE
-    uint32_t firstQuery{}; // Kind: PRIMITIVE
-    uint32_t queryCount{}; // Kind: PRIMITIVE
-    VkBuffer dstBuffer{}; // Kind: HANDLE
-    VkDeviceSize dstOffset{}; // Kind: PRIMITIVE
-    VkDeviceSize stride{}; // Kind: PRIMITIVE
-    VkQueryResultFlags flags{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdExecuteCommandsSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    uint32_t commandBufferCount{}; // Kind: PRIMITIVE
-    VkCommandBuffer* pCommandBuffers{}; // Kind: HANDLE_DYNAMIC_ARRAY_1D
-};
-
-struct vkCreateEventSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkEventCreateInfo* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkEvent* pEvent{}; // Kind: HANDLE_PTR
-};
-
-struct vkDestroyEventSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkEvent event{}; // Kind: HANDLE
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetEventStatusSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkEvent event{}; // Kind: HANDLE
-};
-
-struct vkSetEventSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkEvent event{}; // Kind: HANDLE
-};
-
-struct vkResetEventSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkEvent event{}; // Kind: HANDLE
-};
-
-struct vkCreateBufferViewSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkBufferViewCreateInfo* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkBufferView* pView{}; // Kind: HANDLE_PTR
-};
-
-struct vkDestroyBufferViewSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkBufferView bufferView{}; // Kind: HANDLE
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-};
-
-struct vkCreateShaderModuleSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkShaderModuleCreateInfo* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkShaderModule* pShaderModule{}; // Kind: HANDLE_PTR
-};
-
-struct vkDestroyShaderModuleSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkShaderModule shaderModule{}; // Kind: HANDLE
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-};
-
-struct vkCreatePipelineCacheSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkPipelineCacheCreateInfo* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkPipelineCache* pPipelineCache{}; // Kind: HANDLE_PTR
-};
-
-struct vkDestroyPipelineCacheSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkPipelineCache pipelineCache{}; // Kind: HANDLE
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetPipelineCacheDataSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkPipelineCache pipelineCache{}; // Kind: HANDLE
-    size_t* pDataSize{}; // Kind: PRIMITIVE_PTR
-    void* pData{}; // Kind: PRIMITIVE_DYNAMIC_ARRAY_1D
-};
-
-struct vkMergePipelineCachesSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkPipelineCache dstCache{}; // Kind: HANDLE
-    uint32_t srcCacheCount{}; // Kind: PRIMITIVE
-    VkPipelineCache* pSrcCaches{}; // Kind: HANDLE_DYNAMIC_ARRAY_1D
-};
-
-struct vkCreateComputePipelinesSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkPipelineCache pipelineCache{}; // Kind: HANDLE
-    uint32_t createInfoCount{}; // Kind: PRIMITIVE
-    VkComputePipelineCreateInfo* pCreateInfos{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkPipeline* pPipelines{}; // Kind: HANDLE_DYNAMIC_ARRAY_1D
-};
-
-struct vkDestroyPipelineSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkPipeline pipeline{}; // Kind: HANDLE
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-};
-
-struct vkCreatePipelineLayoutSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkPipelineLayoutCreateInfo* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkPipelineLayout* pPipelineLayout{}; // Kind: HANDLE_PTR
-};
-
-struct vkDestroyPipelineLayoutSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkPipelineLayout pipelineLayout{}; // Kind: HANDLE
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-};
-
-struct vkCreateSamplerSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkSamplerCreateInfo* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkSampler* pSampler{}; // Kind: HANDLE_PTR
-};
-
-struct vkDestroySamplerSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkSampler sampler{}; // Kind: HANDLE
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-};
-
-struct vkCreateDescriptorSetLayoutSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkDescriptorSetLayoutCreateInfo* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkDescriptorSetLayout* pSetLayout{}; // Kind: HANDLE_PTR
-};
-
-struct vkDestroyDescriptorSetLayoutSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkDescriptorSetLayout descriptorSetLayout{}; // Kind: HANDLE
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-};
-
-struct vkCreateDescriptorPoolSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkDescriptorPoolCreateInfo* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkDescriptorPool* pDescriptorPool{}; // Kind: HANDLE_PTR
-};
-
-struct vkDestroyDescriptorPoolSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkDescriptorPool descriptorPool{}; // Kind: HANDLE
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-};
-
-struct vkResetDescriptorPoolSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkDescriptorPool descriptorPool{}; // Kind: HANDLE
-    VkDescriptorPoolResetFlags flags{}; // Kind: PRIMITIVE
-};
-
-struct vkAllocateDescriptorSetsSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkDescriptorSetAllocateInfo* pAllocateInfo{}; // Kind: STRUCT_PTR
-    VkDescriptorSet* pDescriptorSets{}; // Kind: HANDLE_DYNAMIC_ARRAY_1D
-};
-
-struct vkFreeDescriptorSetsSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkDescriptorPool descriptorPool{}; // Kind: HANDLE
-    uint32_t descriptorSetCount{}; // Kind: PRIMITIVE
-    VkDescriptorSet* pDescriptorSets{}; // Kind: HANDLE_DYNAMIC_ARRAY_1D
-};
-
-struct vkUpdateDescriptorSetsSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    uint32_t descriptorWriteCount{}; // Kind: PRIMITIVE
-    VkWriteDescriptorSet* pDescriptorWrites{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-    uint32_t descriptorCopyCount{}; // Kind: PRIMITIVE
-    VkCopyDescriptorSet* pDescriptorCopies{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkCmdBindPipelineSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkPipelineBindPoint pipelineBindPoint{}; // Kind: PRIMITIVE
-    VkPipeline pipeline{}; // Kind: HANDLE
-};
-
-struct vkCmdBindDescriptorSetsSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkPipelineBindPoint pipelineBindPoint{}; // Kind: PRIMITIVE
-    VkPipelineLayout layout{}; // Kind: HANDLE
-    uint32_t firstSet{}; // Kind: PRIMITIVE
-    uint32_t descriptorSetCount{}; // Kind: PRIMITIVE
-    VkDescriptorSet* pDescriptorSets{}; // Kind: HANDLE_DYNAMIC_ARRAY_1D
-    uint32_t dynamicOffsetCount{}; // Kind: PRIMITIVE
-    uint32_t* pDynamicOffsets{}; // Kind: PRIMITIVE_DYNAMIC_ARRAY_1D
-};
-
-struct vkCmdClearColorImageSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkImage image{}; // Kind: HANDLE
-    VkImageLayout imageLayout{}; // Kind: PRIMITIVE
-    VkClearColorValue* pColor{}; // Kind: STRUCT_PTR
-    uint32_t rangeCount{}; // Kind: PRIMITIVE
-    VkImageSubresourceRange* pRanges{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkCmdDispatchSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    uint32_t groupCountX{}; // Kind: PRIMITIVE
-    uint32_t groupCountY{}; // Kind: PRIMITIVE
-    uint32_t groupCountZ{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdDispatchIndirectSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkBuffer buffer{}; // Kind: HANDLE
-    VkDeviceSize offset{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdSetEventSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkEvent event{}; // Kind: HANDLE
-    VkPipelineStageFlags stageMask{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdResetEventSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkEvent event{}; // Kind: HANDLE
-    VkPipelineStageFlags stageMask{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdWaitEventsSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    uint32_t eventCount{}; // Kind: PRIMITIVE
-    VkEvent* pEvents{}; // Kind: HANDLE_DYNAMIC_ARRAY_1D
-    VkPipelineStageFlags srcStageMask{}; // Kind: PRIMITIVE
-    VkPipelineStageFlags dstStageMask{}; // Kind: PRIMITIVE
-    uint32_t memoryBarrierCount{}; // Kind: PRIMITIVE
-    VkMemoryBarrier* pMemoryBarriers{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-    uint32_t bufferMemoryBarrierCount{}; // Kind: PRIMITIVE
-    VkBufferMemoryBarrier* pBufferMemoryBarriers{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-    uint32_t imageMemoryBarrierCount{}; // Kind: PRIMITIVE
-    VkImageMemoryBarrier* pImageMemoryBarriers{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkCmdPushConstantsSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkPipelineLayout layout{}; // Kind: HANDLE
-    VkShaderStageFlags stageFlags{}; // Kind: PRIMITIVE
-    uint32_t offset{}; // Kind: PRIMITIVE
-    uint32_t size{}; // Kind: PRIMITIVE
-    void* pValues{}; // Kind: PRIMITIVE_DYNAMIC_ARRAY_1D
-};
-
-struct vkCreateGraphicsPipelinesSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkPipelineCache pipelineCache{}; // Kind: HANDLE
-    uint32_t createInfoCount{}; // Kind: PRIMITIVE
-    VkGraphicsPipelineCreateInfo* pCreateInfos{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkPipeline* pPipelines{}; // Kind: HANDLE_DYNAMIC_ARRAY_1D
-};
-
-struct vkCreateFramebufferSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkFramebufferCreateInfo* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkFramebuffer* pFramebuffer{}; // Kind: HANDLE_PTR
-};
-
-struct vkDestroyFramebufferSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkFramebuffer framebuffer{}; // Kind: HANDLE
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-};
-
-struct vkCreateRenderPassSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkRenderPassCreateInfo* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkRenderPass* pRenderPass{}; // Kind: HANDLE_PTR
-};
-
-struct vkDestroyRenderPassSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkRenderPass renderPass{}; // Kind: HANDLE
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetRenderAreaGranularitySignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkRenderPass renderPass{}; // Kind: HANDLE
-    VkExtent2D* pGranularity{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdSetViewportSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    uint32_t firstViewport{}; // Kind: PRIMITIVE
-    uint32_t viewportCount{}; // Kind: PRIMITIVE
-    VkViewport* pViewports{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkCmdSetScissorSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    uint32_t firstScissor{}; // Kind: PRIMITIVE
-    uint32_t scissorCount{}; // Kind: PRIMITIVE
-    VkRect2D* pScissors{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkCmdSetLineWidthSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    float lineWidth{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdSetDepthBiasSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    float depthBiasConstantFactor{}; // Kind: PRIMITIVE
-    float depthBiasClamp{}; // Kind: PRIMITIVE
-    float depthBiasSlopeFactor{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdSetBlendConstantsSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    float blendConstants[4]{}; // Kind: PRIMITIVE_STATIC_ARRAY_1D
-};
-
-struct vkCmdSetDepthBoundsSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    float minDepthBounds{}; // Kind: PRIMITIVE
-    float maxDepthBounds{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdSetStencilCompareMaskSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkStencilFaceFlags faceMask{}; // Kind: PRIMITIVE
-    uint32_t compareMask{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdSetStencilWriteMaskSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkStencilFaceFlags faceMask{}; // Kind: PRIMITIVE
-    uint32_t writeMask{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdSetStencilReferenceSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkStencilFaceFlags faceMask{}; // Kind: PRIMITIVE
-    uint32_t reference{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdBindIndexBufferSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkBuffer buffer{}; // Kind: HANDLE
-    VkDeviceSize offset{}; // Kind: PRIMITIVE
-    VkIndexType indexType{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdBindVertexBuffersSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    uint32_t firstBinding{}; // Kind: PRIMITIVE
-    uint32_t bindingCount{}; // Kind: PRIMITIVE
-    VkBuffer* pBuffers{}; // Kind: HANDLE_DYNAMIC_ARRAY_1D
-    VkDeviceSize* pOffsets{}; // Kind: PRIMITIVE_DYNAMIC_ARRAY_1D
-};
-
-struct vkCmdDrawSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    uint32_t vertexCount{}; // Kind: PRIMITIVE
-    uint32_t instanceCount{}; // Kind: PRIMITIVE
-    uint32_t firstVertex{}; // Kind: PRIMITIVE
-    uint32_t firstInstance{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdDrawIndexedSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    uint32_t indexCount{}; // Kind: PRIMITIVE
-    uint32_t instanceCount{}; // Kind: PRIMITIVE
-    uint32_t firstIndex{}; // Kind: PRIMITIVE
-    int32_t vertexOffset{}; // Kind: PRIMITIVE
-    uint32_t firstInstance{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdDrawIndirectSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkBuffer buffer{}; // Kind: HANDLE
-    VkDeviceSize offset{}; // Kind: PRIMITIVE
-    uint32_t drawCount{}; // Kind: PRIMITIVE
-    uint32_t stride{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdDrawIndexedIndirectSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkBuffer buffer{}; // Kind: HANDLE
-    VkDeviceSize offset{}; // Kind: PRIMITIVE
-    uint32_t drawCount{}; // Kind: PRIMITIVE
-    uint32_t stride{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdBlitImageSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkImage srcImage{}; // Kind: HANDLE
-    VkImageLayout srcImageLayout{}; // Kind: PRIMITIVE
-    VkImage dstImage{}; // Kind: HANDLE
-    VkImageLayout dstImageLayout{}; // Kind: PRIMITIVE
-    uint32_t regionCount{}; // Kind: PRIMITIVE
-    VkImageBlit* pRegions{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-    VkFilter filter{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdClearDepthStencilImageSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkImage image{}; // Kind: HANDLE
-    VkImageLayout imageLayout{}; // Kind: PRIMITIVE
-    VkClearDepthStencilValue* pDepthStencil{}; // Kind: STRUCT_PTR
-    uint32_t rangeCount{}; // Kind: PRIMITIVE
-    VkImageSubresourceRange* pRanges{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkCmdClearAttachmentsSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    uint32_t attachmentCount{}; // Kind: PRIMITIVE
-    VkClearAttachment* pAttachments{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-    uint32_t rectCount{}; // Kind: PRIMITIVE
-    VkClearRect* pRects{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkCmdResolveImageSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkImage srcImage{}; // Kind: HANDLE
-    VkImageLayout srcImageLayout{}; // Kind: PRIMITIVE
-    VkImage dstImage{}; // Kind: HANDLE
-    VkImageLayout dstImageLayout{}; // Kind: PRIMITIVE
-    uint32_t regionCount{}; // Kind: PRIMITIVE
-    VkImageResolve* pRegions{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkCmdBeginRenderPassSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkRenderPassBeginInfo* pRenderPassBegin{}; // Kind: STRUCT_PTR
-    VkSubpassContents contents{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdNextSubpassSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkSubpassContents contents{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdEndRenderPassSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-};
-
-struct vkEnumerateInstanceVersionSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    uint32_t* pApiVersion{}; // Kind: PRIMITIVE_PTR
-};
-
-struct vkBindBufferMemory2Signature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    uint32_t bindInfoCount{}; // Kind: PRIMITIVE
-    VkBindBufferMemoryInfo* pBindInfos{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkBindImageMemory2Signature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    uint32_t bindInfoCount{}; // Kind: PRIMITIVE
-    VkBindImageMemoryInfo* pBindInfos{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkGetDeviceGroupPeerMemoryFeaturesSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    uint32_t heapIndex{}; // Kind: PRIMITIVE
-    uint32_t localDeviceIndex{}; // Kind: PRIMITIVE
-    uint32_t remoteDeviceIndex{}; // Kind: PRIMITIVE
-    VkPeerMemoryFeatureFlags* pPeerMemoryFeatures{}; // Kind: PRIMITIVE_PTR
-};
-
-struct vkCmdSetDeviceMaskSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    uint32_t deviceMask{}; // Kind: PRIMITIVE
-};
-
-struct vkEnumeratePhysicalDeviceGroupsSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkInstance instance{}; // Kind: HANDLE
-    uint32_t* pPhysicalDeviceGroupCount{}; // Kind: PRIMITIVE_PTR
-    VkPhysicalDeviceGroupProperties* pPhysicalDeviceGroupProperties{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkGetImageMemoryRequirements2Signature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkImageMemoryRequirementsInfo2* pInfo{}; // Kind: STRUCT_PTR
-    VkMemoryRequirements2* pMemoryRequirements{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetBufferMemoryRequirements2Signature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkBufferMemoryRequirementsInfo2* pInfo{}; // Kind: STRUCT_PTR
-    VkMemoryRequirements2* pMemoryRequirements{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetImageSparseMemoryRequirements2Signature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkImageSparseMemoryRequirementsInfo2* pInfo{}; // Kind: STRUCT_PTR
-    uint32_t* pSparseMemoryRequirementCount{}; // Kind: PRIMITIVE_PTR
-    VkSparseImageMemoryRequirements2* pSparseMemoryRequirements{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkGetPhysicalDeviceFeatures2Signature {
-    SignatureHeader header{};
-
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    VkPhysicalDeviceFeatures2* pFeatures{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetPhysicalDeviceProperties2Signature {
-    SignatureHeader header{};
-
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    VkPhysicalDeviceProperties2* pProperties{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetPhysicalDeviceFormatProperties2Signature {
-    SignatureHeader header{};
-
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    VkFormat format{}; // Kind: PRIMITIVE
-    VkFormatProperties2* pFormatProperties{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetPhysicalDeviceImageFormatProperties2Signature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    VkPhysicalDeviceImageFormatInfo2* pImageFormatInfo{}; // Kind: STRUCT_PTR
-    VkImageFormatProperties2* pImageFormatProperties{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetPhysicalDeviceQueueFamilyProperties2Signature {
-    SignatureHeader header{};
-
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    uint32_t* pQueueFamilyPropertyCount{}; // Kind: PRIMITIVE_PTR
-    VkQueueFamilyProperties2* pQueueFamilyProperties{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkGetPhysicalDeviceMemoryProperties2Signature {
-    SignatureHeader header{};
-
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    VkPhysicalDeviceMemoryProperties2* pMemoryProperties{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetPhysicalDeviceSparseImageFormatProperties2Signature {
-    SignatureHeader header{};
-
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    VkPhysicalDeviceSparseImageFormatInfo2* pFormatInfo{}; // Kind: STRUCT_PTR
-    uint32_t* pPropertyCount{}; // Kind: PRIMITIVE_PTR
-    VkSparseImageFormatProperties2* pProperties{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkTrimCommandPoolSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkCommandPool commandPool{}; // Kind: HANDLE
-    VkCommandPoolTrimFlags flags{}; // Kind: PRIMITIVE
-};
-
-struct vkGetDeviceQueue2Signature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkDeviceQueueInfo2* pQueueInfo{}; // Kind: STRUCT_PTR
-    VkQueue* pQueue{}; // Kind: HANDLE_PTR
-};
-
-struct vkGetPhysicalDeviceExternalBufferPropertiesSignature {
-    SignatureHeader header{};
-
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    VkPhysicalDeviceExternalBufferInfo* pExternalBufferInfo{}; // Kind: STRUCT_PTR
-    VkExternalBufferProperties* pExternalBufferProperties{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetPhysicalDeviceExternalFencePropertiesSignature {
-    SignatureHeader header{};
-
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    VkPhysicalDeviceExternalFenceInfo* pExternalFenceInfo{}; // Kind: STRUCT_PTR
-    VkExternalFenceProperties* pExternalFenceProperties{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetPhysicalDeviceExternalSemaphorePropertiesSignature {
-    SignatureHeader header{};
-
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    VkPhysicalDeviceExternalSemaphoreInfo* pExternalSemaphoreInfo{}; // Kind: STRUCT_PTR
-    VkExternalSemaphoreProperties* pExternalSemaphoreProperties{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdDispatchBaseSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    uint32_t baseGroupX{}; // Kind: PRIMITIVE
-    uint32_t baseGroupY{}; // Kind: PRIMITIVE
-    uint32_t baseGroupZ{}; // Kind: PRIMITIVE
-    uint32_t groupCountX{}; // Kind: PRIMITIVE
-    uint32_t groupCountY{}; // Kind: PRIMITIVE
-    uint32_t groupCountZ{}; // Kind: PRIMITIVE
-};
-
-struct vkCreateDescriptorUpdateTemplateSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkDescriptorUpdateTemplateCreateInfo* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkDescriptorUpdateTemplate* pDescriptorUpdateTemplate{}; // Kind: HANDLE_PTR
-};
-
-struct vkDestroyDescriptorUpdateTemplateSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkDescriptorUpdateTemplate descriptorUpdateTemplate{}; // Kind: HANDLE
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-};
-
-struct vkUpdateDescriptorSetWithTemplateSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkDescriptorSet descriptorSet{}; // Kind: HANDLE
-    VkDescriptorUpdateTemplate descriptorUpdateTemplate{}; // Kind: HANDLE
-    void* pData{}; // Kind: VOID_PTR
-};
-
-struct vkGetDescriptorSetLayoutSupportSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkDescriptorSetLayoutCreateInfo* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkDescriptorSetLayoutSupport* pSupport{}; // Kind: STRUCT_PTR
-};
-
-struct vkCreateSamplerYcbcrConversionSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkSamplerYcbcrConversionCreateInfo* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkSamplerYcbcrConversion* pYcbcrConversion{}; // Kind: HANDLE_PTR
-};
-
-struct vkDestroySamplerYcbcrConversionSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkSamplerYcbcrConversion ycbcrConversion{}; // Kind: HANDLE
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-};
-
-struct vkResetQueryPoolSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkQueryPool queryPool{}; // Kind: HANDLE
-    uint32_t firstQuery{}; // Kind: PRIMITIVE
-    uint32_t queryCount{}; // Kind: PRIMITIVE
-};
-
-struct vkGetSemaphoreCounterValueSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkSemaphore semaphore{}; // Kind: HANDLE
-    uint64_t* pValue{}; // Kind: PRIMITIVE_PTR
-};
-
-struct vkWaitSemaphoresSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkSemaphoreWaitInfo* pWaitInfo{}; // Kind: STRUCT_PTR
-    uint64_t timeout{}; // Kind: PRIMITIVE
-};
-
-struct vkSignalSemaphoreSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkSemaphoreSignalInfo* pSignalInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetBufferDeviceAddressSignature {
-    SignatureHeader header{};
-
-    VkDeviceAddress ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkBufferDeviceAddressInfo* pInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetBufferOpaqueCaptureAddressSignature {
-    SignatureHeader header{};
-
-    uint64_t ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkBufferDeviceAddressInfo* pInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetDeviceMemoryOpaqueCaptureAddressSignature {
-    SignatureHeader header{};
-
-    uint64_t ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkDeviceMemoryOpaqueCaptureAddressInfo* pInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdDrawIndirectCountSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkBuffer buffer{}; // Kind: HANDLE
-    VkDeviceSize offset{}; // Kind: PRIMITIVE
-    VkBuffer countBuffer{}; // Kind: HANDLE
-    VkDeviceSize countBufferOffset{}; // Kind: PRIMITIVE
-    uint32_t maxDrawCount{}; // Kind: PRIMITIVE
-    uint32_t stride{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdDrawIndexedIndirectCountSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkBuffer buffer{}; // Kind: HANDLE
-    VkDeviceSize offset{}; // Kind: PRIMITIVE
-    VkBuffer countBuffer{}; // Kind: HANDLE
-    VkDeviceSize countBufferOffset{}; // Kind: PRIMITIVE
-    uint32_t maxDrawCount{}; // Kind: PRIMITIVE
-    uint32_t stride{}; // Kind: PRIMITIVE
-};
-
-struct vkCreateRenderPass2Signature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkRenderPassCreateInfo2* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkRenderPass* pRenderPass{}; // Kind: HANDLE_PTR
-};
-
-struct vkCmdBeginRenderPass2Signature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkRenderPassBeginInfo* pRenderPassBegin{}; // Kind: STRUCT_PTR
-    VkSubpassBeginInfo* pSubpassBeginInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdNextSubpass2Signature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkSubpassBeginInfo* pSubpassBeginInfo{}; // Kind: STRUCT_PTR
-    VkSubpassEndInfo* pSubpassEndInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdEndRenderPass2Signature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkSubpassEndInfo* pSubpassEndInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetPhysicalDeviceToolPropertiesSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    uint32_t* pToolCount{}; // Kind: PRIMITIVE_PTR
-    VkPhysicalDeviceToolProperties* pToolProperties{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkCreatePrivateDataSlotSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkPrivateDataSlotCreateInfo* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkPrivateDataSlot* pPrivateDataSlot{}; // Kind: HANDLE_PTR
-};
-
-struct vkDestroyPrivateDataSlotSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkPrivateDataSlot privateDataSlot{}; // Kind: HANDLE
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-};
-
-struct vkSetPrivateDataSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkObjectType objectType{}; // Kind: PRIMITIVE
-    uint64_t objectHandle{}; // Kind: PRIMITIVE
-    VkPrivateDataSlot privateDataSlot{}; // Kind: HANDLE
-    uint64_t data{}; // Kind: PRIMITIVE
-};
-
-struct vkGetPrivateDataSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkObjectType objectType{}; // Kind: PRIMITIVE
-    uint64_t objectHandle{}; // Kind: PRIMITIVE
-    VkPrivateDataSlot privateDataSlot{}; // Kind: HANDLE
-    uint64_t* pData{}; // Kind: PRIMITIVE_PTR
-};
-
-struct vkCmdPipelineBarrier2Signature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkDependencyInfo* pDependencyInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdWriteTimestamp2Signature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkPipelineStageFlags2 stage{}; // Kind: PRIMITIVE
-    VkQueryPool queryPool{}; // Kind: HANDLE
-    uint32_t query{}; // Kind: PRIMITIVE
-};
-
-struct vkQueueSubmit2Signature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkQueue queue{}; // Kind: HANDLE
-    uint32_t submitCount{}; // Kind: PRIMITIVE
-    VkSubmitInfo2* pSubmits{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-    VkFence fence{}; // Kind: HANDLE
-};
-
-struct vkCmdCopyBuffer2Signature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkCopyBufferInfo2* pCopyBufferInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdCopyImage2Signature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkCopyImageInfo2* pCopyImageInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdCopyBufferToImage2Signature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkCopyBufferToImageInfo2* pCopyBufferToImageInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdCopyImageToBuffer2Signature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkCopyImageToBufferInfo2* pCopyImageToBufferInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetDeviceBufferMemoryRequirementsSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkDeviceBufferMemoryRequirements* pInfo{}; // Kind: STRUCT_PTR
-    VkMemoryRequirements2* pMemoryRequirements{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetDeviceImageMemoryRequirementsSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkDeviceImageMemoryRequirements* pInfo{}; // Kind: STRUCT_PTR
-    VkMemoryRequirements2* pMemoryRequirements{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetDeviceImageSparseMemoryRequirementsSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkDeviceImageMemoryRequirements* pInfo{}; // Kind: STRUCT_PTR
-    uint32_t* pSparseMemoryRequirementCount{}; // Kind: PRIMITIVE_PTR
-    VkSparseImageMemoryRequirements2* pSparseMemoryRequirements{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkCmdSetEvent2Signature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkEvent event{}; // Kind: HANDLE
-    VkDependencyInfo* pDependencyInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdResetEvent2Signature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkEvent event{}; // Kind: HANDLE
-    VkPipelineStageFlags2 stageMask{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdWaitEvents2Signature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    uint32_t eventCount{}; // Kind: PRIMITIVE
-    VkEvent* pEvents{}; // Kind: HANDLE_DYNAMIC_ARRAY_1D
-    VkDependencyInfo* pDependencyInfos{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkCmdBlitImage2Signature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkBlitImageInfo2* pBlitImageInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdResolveImage2Signature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkResolveImageInfo2* pResolveImageInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdBeginRenderingSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkRenderingInfo* pRenderingInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdEndRenderingSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-};
-
-struct vkCmdSetCullModeSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkCullModeFlags cullMode{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdSetFrontFaceSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkFrontFace frontFace{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdSetPrimitiveTopologySignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkPrimitiveTopology primitiveTopology{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdSetViewportWithCountSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    uint32_t viewportCount{}; // Kind: PRIMITIVE
-    VkViewport* pViewports{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkCmdSetScissorWithCountSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    uint32_t scissorCount{}; // Kind: PRIMITIVE
-    VkRect2D* pScissors{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkCmdBindVertexBuffers2Signature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    uint32_t firstBinding{}; // Kind: PRIMITIVE
-    uint32_t bindingCount{}; // Kind: PRIMITIVE
-    VkBuffer* pBuffers{}; // Kind: HANDLE_DYNAMIC_ARRAY_1D
-    VkDeviceSize* pOffsets{}; // Kind: PRIMITIVE_DYNAMIC_ARRAY_1D
-    VkDeviceSize* pSizes{}; // Kind: PRIMITIVE_DYNAMIC_ARRAY_1D
-    VkDeviceSize* pStrides{}; // Kind: PRIMITIVE_DYNAMIC_ARRAY_1D
-};
-
-struct vkCmdSetDepthTestEnableSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkBool32 depthTestEnable{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdSetDepthWriteEnableSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkBool32 depthWriteEnable{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdSetDepthCompareOpSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkCompareOp depthCompareOp{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdSetDepthBoundsTestEnableSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkBool32 depthBoundsTestEnable{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdSetStencilTestEnableSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkBool32 stencilTestEnable{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdSetStencilOpSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkStencilFaceFlags faceMask{}; // Kind: PRIMITIVE
-    VkStencilOp failOp{}; // Kind: PRIMITIVE
-    VkStencilOp passOp{}; // Kind: PRIMITIVE
-    VkStencilOp depthFailOp{}; // Kind: PRIMITIVE
-    VkCompareOp compareOp{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdSetRasterizerDiscardEnableSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkBool32 rasterizerDiscardEnable{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdSetDepthBiasEnableSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkBool32 depthBiasEnable{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdSetPrimitiveRestartEnableSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkBool32 primitiveRestartEnable{}; // Kind: PRIMITIVE
-};
-
-struct vkMapMemory2Signature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkMemoryMapInfo* pMemoryMapInfo{}; // Kind: STRUCT_PTR
-    void** ppData{}; // Kind: VOID_PTR_PTR
-};
-
-struct vkUnmapMemory2Signature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkMemoryUnmapInfo* pMemoryUnmapInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetDeviceImageSubresourceLayoutSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkDeviceImageSubresourceInfo* pInfo{}; // Kind: STRUCT_PTR
-    VkSubresourceLayout2* pLayout{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetImageSubresourceLayout2Signature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkImage image{}; // Kind: HANDLE
-    VkImageSubresource2* pSubresource{}; // Kind: STRUCT_PTR
-    VkSubresourceLayout2* pLayout{}; // Kind: STRUCT_PTR
-};
-
-struct vkCopyMemoryToImageSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkCopyMemoryToImageInfo* pCopyMemoryToImageInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCopyImageToMemorySignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkCopyImageToMemoryInfo* pCopyImageToMemoryInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCopyImageToImageSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkCopyImageToImageInfo* pCopyImageToImageInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkTransitionImageLayoutSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    uint32_t transitionCount{}; // Kind: PRIMITIVE
-    VkHostImageLayoutTransitionInfo* pTransitions{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkCmdPushDescriptorSetSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkPipelineBindPoint pipelineBindPoint{}; // Kind: PRIMITIVE
-    VkPipelineLayout layout{}; // Kind: HANDLE
-    uint32_t set{}; // Kind: PRIMITIVE
-    uint32_t descriptorWriteCount{}; // Kind: PRIMITIVE
-    VkWriteDescriptorSet* pDescriptorWrites{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkCmdPushDescriptorSetWithTemplateSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkDescriptorUpdateTemplate descriptorUpdateTemplate{}; // Kind: HANDLE
-    VkPipelineLayout layout{}; // Kind: HANDLE
-    uint32_t set{}; // Kind: PRIMITIVE
-    void* pData{}; // Kind: VOID_PTR
-};
-
-struct vkCmdBindDescriptorSets2Signature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkBindDescriptorSetsInfo* pBindDescriptorSetsInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdPushConstants2Signature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkPushConstantsInfo* pPushConstantsInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdPushDescriptorSet2Signature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkPushDescriptorSetInfo* pPushDescriptorSetInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdPushDescriptorSetWithTemplate2Signature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkPushDescriptorSetWithTemplateInfo* pPushDescriptorSetWithTemplateInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdSetLineStippleSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    uint32_t lineStippleFactor{}; // Kind: PRIMITIVE
-    uint16_t lineStipplePattern{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdBindIndexBuffer2Signature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkBuffer buffer{}; // Kind: HANDLE
-    VkDeviceSize offset{}; // Kind: PRIMITIVE
-    VkDeviceSize size{}; // Kind: PRIMITIVE
-    VkIndexType indexType{}; // Kind: PRIMITIVE
-};
-
-struct vkGetRenderingAreaGranularitySignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkRenderingAreaInfo* pRenderingAreaInfo{}; // Kind: STRUCT_PTR
-    VkExtent2D* pGranularity{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdSetRenderingAttachmentLocationsSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkRenderingAttachmentLocationInfo* pLocationInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdSetRenderingInputAttachmentIndicesSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkRenderingInputAttachmentIndexInfo* pInputAttachmentIndexInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkDestroySurfaceKHRSignature {
-    SignatureHeader header{};
-
-    VkInstance instance{}; // Kind: HANDLE
-    VkSurfaceKHR surface{}; // Kind: HANDLE
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetPhysicalDeviceSurfaceSupportKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    uint32_t queueFamilyIndex{}; // Kind: PRIMITIVE
-    VkSurfaceKHR surface{}; // Kind: HANDLE
-    VkBool32* pSupported{}; // Kind: PRIMITIVE_PTR
-};
-
-struct vkGetPhysicalDeviceSurfaceCapabilitiesKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    VkSurfaceKHR surface{}; // Kind: HANDLE
-    VkSurfaceCapabilitiesKHR* pSurfaceCapabilities{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetPhysicalDeviceSurfaceFormatsKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    VkSurfaceKHR surface{}; // Kind: HANDLE
-    uint32_t* pSurfaceFormatCount{}; // Kind: PRIMITIVE_PTR
-    VkSurfaceFormatKHR* pSurfaceFormats{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkGetPhysicalDeviceSurfacePresentModesKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    VkSurfaceKHR surface{}; // Kind: HANDLE
-    uint32_t* pPresentModeCount{}; // Kind: PRIMITIVE_PTR
-    VkPresentModeKHR* pPresentModes{}; // Kind: PRIMITIVE_DYNAMIC_ARRAY_1D
-};
-
-struct vkCreateSwapchainKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkSwapchainCreateInfoKHR* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkSwapchainKHR* pSwapchain{}; // Kind: HANDLE_PTR
-};
-
-struct vkDestroySwapchainKHRSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkSwapchainKHR swapchain{}; // Kind: HANDLE
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetSwapchainImagesKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkSwapchainKHR swapchain{}; // Kind: HANDLE
-    uint32_t* pSwapchainImageCount{}; // Kind: PRIMITIVE_PTR
-    VkImage* pSwapchainImages{}; // Kind: HANDLE_DYNAMIC_ARRAY_1D
-};
-
-struct vkAcquireNextImageKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkSwapchainKHR swapchain{}; // Kind: HANDLE
-    uint64_t timeout{}; // Kind: PRIMITIVE
-    VkSemaphore semaphore{}; // Kind: HANDLE
-    VkFence fence{}; // Kind: HANDLE
-    uint32_t* pImageIndex{}; // Kind: PRIMITIVE_PTR
-};
-
-struct vkQueuePresentKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkQueue queue{}; // Kind: HANDLE
-    VkPresentInfoKHR* pPresentInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetDeviceGroupPresentCapabilitiesKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkDeviceGroupPresentCapabilitiesKHR* pDeviceGroupPresentCapabilities{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetDeviceGroupSurfacePresentModesKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkSurfaceKHR surface{}; // Kind: HANDLE
-    VkDeviceGroupPresentModeFlagsKHR* pModes{}; // Kind: PRIMITIVE_PTR
-};
-
-struct vkGetPhysicalDevicePresentRectanglesKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    VkSurfaceKHR surface{}; // Kind: HANDLE
-    uint32_t* pRectCount{}; // Kind: PRIMITIVE_PTR
-    VkRect2D* pRects{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkAcquireNextImage2KHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkAcquireNextImageInfoKHR* pAcquireInfo{}; // Kind: STRUCT_PTR
-    uint32_t* pImageIndex{}; // Kind: PRIMITIVE_PTR
-};
-
-struct vkGetPhysicalDeviceDisplayPropertiesKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    uint32_t* pPropertyCount{}; // Kind: PRIMITIVE_PTR
-    VkDisplayPropertiesKHR* pProperties{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkGetPhysicalDeviceDisplayPlanePropertiesKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    uint32_t* pPropertyCount{}; // Kind: PRIMITIVE_PTR
-    VkDisplayPlanePropertiesKHR* pProperties{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkGetDisplayPlaneSupportedDisplaysKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    uint32_t planeIndex{}; // Kind: PRIMITIVE
-    uint32_t* pDisplayCount{}; // Kind: PRIMITIVE_PTR
-    VkDisplayKHR* pDisplays{}; // Kind: HANDLE_DYNAMIC_ARRAY_1D
-};
-
-struct vkGetDisplayModePropertiesKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    VkDisplayKHR display{}; // Kind: HANDLE
-    uint32_t* pPropertyCount{}; // Kind: PRIMITIVE_PTR
-    VkDisplayModePropertiesKHR* pProperties{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkCreateDisplayModeKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    VkDisplayKHR display{}; // Kind: HANDLE
-    VkDisplayModeCreateInfoKHR* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkDisplayModeKHR* pMode{}; // Kind: HANDLE_PTR
-};
-
-struct vkGetDisplayPlaneCapabilitiesKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    VkDisplayModeKHR mode{}; // Kind: HANDLE
-    uint32_t planeIndex{}; // Kind: PRIMITIVE
-    VkDisplayPlaneCapabilitiesKHR* pCapabilities{}; // Kind: STRUCT_PTR
-};
-
-struct vkCreateDisplayPlaneSurfaceKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkInstance instance{}; // Kind: HANDLE
-    VkDisplaySurfaceCreateInfoKHR* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkSurfaceKHR* pSurface{}; // Kind: HANDLE_PTR
-};
-
-struct vkCreateSharedSwapchainsKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    uint32_t swapchainCount{}; // Kind: PRIMITIVE
-    VkSwapchainCreateInfoKHR* pCreateInfos{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkSwapchainKHR* pSwapchains{}; // Kind: HANDLE_DYNAMIC_ARRAY_1D
-};
-
-struct vkCreateXlibSurfaceKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkInstance instance{}; // Kind: HANDLE
-    VkXlibSurfaceCreateInfoKHR* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkSurfaceKHR* pSurface{}; // Kind: HANDLE_PTR
-};
-
-struct vkGetPhysicalDeviceXlibPresentationSupportKHRSignature {
-    SignatureHeader header{};
-
-    VkBool32 ret{}; // Kind: PRIMITIVE
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    uint32_t queueFamilyIndex{}; // Kind: PRIMITIVE
-    Display* dpy{}; // Kind: EXTERNAL_PTR_PTR
-    VisualID visualID{}; // Kind: EXTERNAL_PTR
-};
-
-struct vkCreateXcbSurfaceKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkInstance instance{}; // Kind: HANDLE
-    VkXcbSurfaceCreateInfoKHR* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkSurfaceKHR* pSurface{}; // Kind: HANDLE_PTR
-};
-
-struct vkGetPhysicalDeviceXcbPresentationSupportKHRSignature {
-    SignatureHeader header{};
-
-    VkBool32 ret{}; // Kind: PRIMITIVE
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    uint32_t queueFamilyIndex{}; // Kind: PRIMITIVE
-    xcb_connection_t* connection{}; // Kind: EXTERNAL_PTR_PTR
-    xcb_visualid_t visual_id{}; // Kind: EXTERNAL_PTR
-};
-
-struct vkCreateWaylandSurfaceKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkInstance instance{}; // Kind: HANDLE
-    VkWaylandSurfaceCreateInfoKHR* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkSurfaceKHR* pSurface{}; // Kind: HANDLE_PTR
-};
-
-struct vkGetPhysicalDeviceWaylandPresentationSupportKHRSignature {
-    SignatureHeader header{};
-
-    VkBool32 ret{}; // Kind: PRIMITIVE
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    uint32_t queueFamilyIndex{}; // Kind: PRIMITIVE
-    wl_display* display{}; // Kind: EXTERNAL_PTR
-};
-
-struct vkCreateAndroidSurfaceKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkInstance instance{}; // Kind: HANDLE
-    VkAndroidSurfaceCreateInfoKHR* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkSurfaceKHR* pSurface{}; // Kind: HANDLE_PTR
-};
-
-struct vkCreateWin32SurfaceKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkInstance instance{}; // Kind: HANDLE
-    VkWin32SurfaceCreateInfoKHR* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkSurfaceKHR* pSurface{}; // Kind: HANDLE_PTR
-};
-
-struct vkGetPhysicalDeviceWin32PresentationSupportKHRSignature {
-    SignatureHeader header{};
-
-    VkBool32 ret{}; // Kind: PRIMITIVE
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    uint32_t queueFamilyIndex{}; // Kind: PRIMITIVE
-};
-
-struct vkGetPhysicalDeviceVideoCapabilitiesKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    VkVideoProfileInfoKHR* pVideoProfile{}; // Kind: STRUCT_PTR
-    VkVideoCapabilitiesKHR* pCapabilities{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetPhysicalDeviceVideoFormatPropertiesKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    VkPhysicalDeviceVideoFormatInfoKHR* pVideoFormatInfo{}; // Kind: STRUCT_PTR
-    uint32_t* pVideoFormatPropertyCount{}; // Kind: PRIMITIVE_PTR
-    VkVideoFormatPropertiesKHR* pVideoFormatProperties{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkCreateVideoSessionKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkVideoSessionCreateInfoKHR* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkVideoSessionKHR* pVideoSession{}; // Kind: HANDLE_PTR
-};
-
-struct vkDestroyVideoSessionKHRSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkVideoSessionKHR videoSession{}; // Kind: HANDLE
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetVideoSessionMemoryRequirementsKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkVideoSessionKHR videoSession{}; // Kind: HANDLE
-    uint32_t* pMemoryRequirementsCount{}; // Kind: PRIMITIVE_PTR
-    VkVideoSessionMemoryRequirementsKHR* pMemoryRequirements{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkBindVideoSessionMemoryKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkVideoSessionKHR videoSession{}; // Kind: HANDLE
-    uint32_t bindSessionMemoryInfoCount{}; // Kind: PRIMITIVE
-    VkBindVideoSessionMemoryInfoKHR* pBindSessionMemoryInfos{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkCreateVideoSessionParametersKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkVideoSessionParametersCreateInfoKHR* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkVideoSessionParametersKHR* pVideoSessionParameters{}; // Kind: HANDLE_PTR
-};
-
-struct vkUpdateVideoSessionParametersKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkVideoSessionParametersKHR videoSessionParameters{}; // Kind: HANDLE
-    VkVideoSessionParametersUpdateInfoKHR* pUpdateInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkDestroyVideoSessionParametersKHRSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkVideoSessionParametersKHR videoSessionParameters{}; // Kind: HANDLE
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdBeginVideoCodingKHRSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkVideoBeginCodingInfoKHR* pBeginInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdEndVideoCodingKHRSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkVideoEndCodingInfoKHR* pEndCodingInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdControlVideoCodingKHRSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkVideoCodingControlInfoKHR* pCodingControlInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdDecodeVideoKHRSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkVideoDecodeInfoKHR* pDecodeInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdBeginRenderingKHRSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkRenderingInfo* pRenderingInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdEndRenderingKHRSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-};
-
-struct vkGetPhysicalDeviceFeatures2KHRSignature {
-    SignatureHeader header{};
-
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    VkPhysicalDeviceFeatures2* pFeatures{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetPhysicalDeviceProperties2KHRSignature {
-    SignatureHeader header{};
-
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    VkPhysicalDeviceProperties2* pProperties{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetPhysicalDeviceFormatProperties2KHRSignature {
-    SignatureHeader header{};
-
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    VkFormat format{}; // Kind: PRIMITIVE
-    VkFormatProperties2* pFormatProperties{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetPhysicalDeviceImageFormatProperties2KHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    VkPhysicalDeviceImageFormatInfo2* pImageFormatInfo{}; // Kind: STRUCT_PTR
-    VkImageFormatProperties2* pImageFormatProperties{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetPhysicalDeviceQueueFamilyProperties2KHRSignature {
-    SignatureHeader header{};
-
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    uint32_t* pQueueFamilyPropertyCount{}; // Kind: PRIMITIVE_PTR
-    VkQueueFamilyProperties2* pQueueFamilyProperties{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkGetPhysicalDeviceMemoryProperties2KHRSignature {
-    SignatureHeader header{};
-
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    VkPhysicalDeviceMemoryProperties2* pMemoryProperties{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetPhysicalDeviceSparseImageFormatProperties2KHRSignature {
-    SignatureHeader header{};
-
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    VkPhysicalDeviceSparseImageFormatInfo2* pFormatInfo{}; // Kind: STRUCT_PTR
-    uint32_t* pPropertyCount{}; // Kind: PRIMITIVE_PTR
-    VkSparseImageFormatProperties2* pProperties{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkGetDeviceGroupPeerMemoryFeaturesKHRSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    uint32_t heapIndex{}; // Kind: PRIMITIVE
-    uint32_t localDeviceIndex{}; // Kind: PRIMITIVE
-    uint32_t remoteDeviceIndex{}; // Kind: PRIMITIVE
-    VkPeerMemoryFeatureFlags* pPeerMemoryFeatures{}; // Kind: PRIMITIVE_PTR
-};
-
-struct vkCmdSetDeviceMaskKHRSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    uint32_t deviceMask{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdDispatchBaseKHRSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    uint32_t baseGroupX{}; // Kind: PRIMITIVE
-    uint32_t baseGroupY{}; // Kind: PRIMITIVE
-    uint32_t baseGroupZ{}; // Kind: PRIMITIVE
-    uint32_t groupCountX{}; // Kind: PRIMITIVE
-    uint32_t groupCountY{}; // Kind: PRIMITIVE
-    uint32_t groupCountZ{}; // Kind: PRIMITIVE
-};
-
-struct vkTrimCommandPoolKHRSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkCommandPool commandPool{}; // Kind: HANDLE
-    VkCommandPoolTrimFlags flags{}; // Kind: PRIMITIVE
-};
-
-struct vkEnumeratePhysicalDeviceGroupsKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkInstance instance{}; // Kind: HANDLE
-    uint32_t* pPhysicalDeviceGroupCount{}; // Kind: PRIMITIVE_PTR
-    VkPhysicalDeviceGroupProperties* pPhysicalDeviceGroupProperties{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkGetPhysicalDeviceExternalBufferPropertiesKHRSignature {
-    SignatureHeader header{};
-
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    VkPhysicalDeviceExternalBufferInfo* pExternalBufferInfo{}; // Kind: STRUCT_PTR
-    VkExternalBufferProperties* pExternalBufferProperties{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetMemoryWin32HandleKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkMemoryGetWin32HandleInfoKHR* pGetWin32HandleInfo{}; // Kind: STRUCT_PTR
-    HANDLE* pHandle{}; // Kind: EXTERNAL_PTR_PTR
-};
-
-struct vkGetMemoryWin32HandlePropertiesKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkExternalMemoryHandleTypeFlagBits handleType{}; // Kind: PRIMITIVE
-    HANDLE handle{}; // Kind: EXTERNAL_PTR
-    VkMemoryWin32HandlePropertiesKHR* pMemoryWin32HandleProperties{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetMemoryFdKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkMemoryGetFdInfoKHR* pGetFdInfo{}; // Kind: STRUCT_PTR
-    int* pFd{}; // Kind: PRIMITIVE_PTR
-};
-
-struct vkGetMemoryFdPropertiesKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkExternalMemoryHandleTypeFlagBits handleType{}; // Kind: PRIMITIVE
-    int fd{}; // Kind: PRIMITIVE
-    VkMemoryFdPropertiesKHR* pMemoryFdProperties{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetPhysicalDeviceExternalSemaphorePropertiesKHRSignature {
-    SignatureHeader header{};
-
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    VkPhysicalDeviceExternalSemaphoreInfo* pExternalSemaphoreInfo{}; // Kind: STRUCT_PTR
-    VkExternalSemaphoreProperties* pExternalSemaphoreProperties{}; // Kind: STRUCT_PTR
-};
-
-struct vkImportSemaphoreWin32HandleKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkImportSemaphoreWin32HandleInfoKHR* pImportSemaphoreWin32HandleInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetSemaphoreWin32HandleKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkSemaphoreGetWin32HandleInfoKHR* pGetWin32HandleInfo{}; // Kind: STRUCT_PTR
-    HANDLE* pHandle{}; // Kind: EXTERNAL_PTR_PTR
-};
-
-struct vkImportSemaphoreFdKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkImportSemaphoreFdInfoKHR* pImportSemaphoreFdInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetSemaphoreFdKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkSemaphoreGetFdInfoKHR* pGetFdInfo{}; // Kind: STRUCT_PTR
-    int* pFd{}; // Kind: PRIMITIVE_PTR
-};
-
-struct vkCmdPushDescriptorSetKHRSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkPipelineBindPoint pipelineBindPoint{}; // Kind: PRIMITIVE
-    VkPipelineLayout layout{}; // Kind: HANDLE
-    uint32_t set{}; // Kind: PRIMITIVE
-    uint32_t descriptorWriteCount{}; // Kind: PRIMITIVE
-    VkWriteDescriptorSet* pDescriptorWrites{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkCmdPushDescriptorSetWithTemplateKHRSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkDescriptorUpdateTemplate descriptorUpdateTemplate{}; // Kind: HANDLE
-    VkPipelineLayout layout{}; // Kind: HANDLE
-    uint32_t set{}; // Kind: PRIMITIVE
-    void* pData{}; // Kind: VOID_PTR
-};
-
-struct vkCreateDescriptorUpdateTemplateKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkDescriptorUpdateTemplateCreateInfo* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkDescriptorUpdateTemplate* pDescriptorUpdateTemplate{}; // Kind: HANDLE_PTR
-};
-
-struct vkDestroyDescriptorUpdateTemplateKHRSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkDescriptorUpdateTemplate descriptorUpdateTemplate{}; // Kind: HANDLE
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-};
-
-struct vkUpdateDescriptorSetWithTemplateKHRSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkDescriptorSet descriptorSet{}; // Kind: HANDLE
-    VkDescriptorUpdateTemplate descriptorUpdateTemplate{}; // Kind: HANDLE
-    void* pData{}; // Kind: VOID_PTR
-};
-
-struct vkCreateRenderPass2KHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkRenderPassCreateInfo2* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkRenderPass* pRenderPass{}; // Kind: HANDLE_PTR
-};
-
-struct vkCmdBeginRenderPass2KHRSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkRenderPassBeginInfo* pRenderPassBegin{}; // Kind: STRUCT_PTR
-    VkSubpassBeginInfo* pSubpassBeginInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdNextSubpass2KHRSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkSubpassBeginInfo* pSubpassBeginInfo{}; // Kind: STRUCT_PTR
-    VkSubpassEndInfo* pSubpassEndInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdEndRenderPass2KHRSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkSubpassEndInfo* pSubpassEndInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetSwapchainStatusKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkSwapchainKHR swapchain{}; // Kind: HANDLE
-};
-
-struct vkGetPhysicalDeviceExternalFencePropertiesKHRSignature {
-    SignatureHeader header{};
-
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    VkPhysicalDeviceExternalFenceInfo* pExternalFenceInfo{}; // Kind: STRUCT_PTR
-    VkExternalFenceProperties* pExternalFenceProperties{}; // Kind: STRUCT_PTR
-};
-
-struct vkImportFenceWin32HandleKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkImportFenceWin32HandleInfoKHR* pImportFenceWin32HandleInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetFenceWin32HandleKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkFenceGetWin32HandleInfoKHR* pGetWin32HandleInfo{}; // Kind: STRUCT_PTR
-    HANDLE* pHandle{}; // Kind: EXTERNAL_PTR_PTR
-};
-
-struct vkImportFenceFdKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkImportFenceFdInfoKHR* pImportFenceFdInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetFenceFdKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkFenceGetFdInfoKHR* pGetFdInfo{}; // Kind: STRUCT_PTR
-    int* pFd{}; // Kind: PRIMITIVE_PTR
-};
-
-struct vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    uint32_t queueFamilyIndex{}; // Kind: PRIMITIVE
-    uint32_t* pCounterCount{}; // Kind: PRIMITIVE_PTR
-    VkPerformanceCounterKHR* pCounters{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-    VkPerformanceCounterDescriptionKHR* pCounterDescriptions{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHRSignature {
-    SignatureHeader header{};
-
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    VkQueryPoolPerformanceCreateInfoKHR* pPerformanceQueryCreateInfo{}; // Kind: STRUCT_PTR
-    uint32_t* pNumPasses{}; // Kind: PRIMITIVE_PTR
-};
-
-struct vkAcquireProfilingLockKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkAcquireProfilingLockInfoKHR* pInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkReleaseProfilingLockKHRSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-};
-
-struct vkGetPhysicalDeviceSurfaceCapabilities2KHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    VkPhysicalDeviceSurfaceInfo2KHR* pSurfaceInfo{}; // Kind: STRUCT_PTR
-    VkSurfaceCapabilities2KHR* pSurfaceCapabilities{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetPhysicalDeviceSurfaceFormats2KHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    VkPhysicalDeviceSurfaceInfo2KHR* pSurfaceInfo{}; // Kind: STRUCT_PTR
-    uint32_t* pSurfaceFormatCount{}; // Kind: PRIMITIVE_PTR
-    VkSurfaceFormat2KHR* pSurfaceFormats{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkGetPhysicalDeviceDisplayProperties2KHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    uint32_t* pPropertyCount{}; // Kind: PRIMITIVE_PTR
-    VkDisplayProperties2KHR* pProperties{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkGetPhysicalDeviceDisplayPlaneProperties2KHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    uint32_t* pPropertyCount{}; // Kind: PRIMITIVE_PTR
-    VkDisplayPlaneProperties2KHR* pProperties{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkGetDisplayModeProperties2KHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    VkDisplayKHR display{}; // Kind: HANDLE
-    uint32_t* pPropertyCount{}; // Kind: PRIMITIVE_PTR
-    VkDisplayModeProperties2KHR* pProperties{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkGetDisplayPlaneCapabilities2KHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    VkDisplayPlaneInfo2KHR* pDisplayPlaneInfo{}; // Kind: STRUCT_PTR
-    VkDisplayPlaneCapabilities2KHR* pCapabilities{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetImageMemoryRequirements2KHRSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkImageMemoryRequirementsInfo2* pInfo{}; // Kind: STRUCT_PTR
-    VkMemoryRequirements2* pMemoryRequirements{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetBufferMemoryRequirements2KHRSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkBufferMemoryRequirementsInfo2* pInfo{}; // Kind: STRUCT_PTR
-    VkMemoryRequirements2* pMemoryRequirements{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetImageSparseMemoryRequirements2KHRSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkImageSparseMemoryRequirementsInfo2* pInfo{}; // Kind: STRUCT_PTR
-    uint32_t* pSparseMemoryRequirementCount{}; // Kind: PRIMITIVE_PTR
-    VkSparseImageMemoryRequirements2* pSparseMemoryRequirements{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkCreateSamplerYcbcrConversionKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkSamplerYcbcrConversionCreateInfo* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkSamplerYcbcrConversion* pYcbcrConversion{}; // Kind: HANDLE_PTR
-};
-
-struct vkDestroySamplerYcbcrConversionKHRSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkSamplerYcbcrConversion ycbcrConversion{}; // Kind: HANDLE
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-};
-
-struct vkBindBufferMemory2KHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    uint32_t bindInfoCount{}; // Kind: PRIMITIVE
-    VkBindBufferMemoryInfo* pBindInfos{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkBindImageMemory2KHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    uint32_t bindInfoCount{}; // Kind: PRIMITIVE
-    VkBindImageMemoryInfo* pBindInfos{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkGetDescriptorSetLayoutSupportKHRSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkDescriptorSetLayoutCreateInfo* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkDescriptorSetLayoutSupport* pSupport{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdDrawIndirectCountKHRSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkBuffer buffer{}; // Kind: HANDLE
-    VkDeviceSize offset{}; // Kind: PRIMITIVE
-    VkBuffer countBuffer{}; // Kind: HANDLE
-    VkDeviceSize countBufferOffset{}; // Kind: PRIMITIVE
-    uint32_t maxDrawCount{}; // Kind: PRIMITIVE
-    uint32_t stride{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdDrawIndexedIndirectCountKHRSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkBuffer buffer{}; // Kind: HANDLE
-    VkDeviceSize offset{}; // Kind: PRIMITIVE
-    VkBuffer countBuffer{}; // Kind: HANDLE
-    VkDeviceSize countBufferOffset{}; // Kind: PRIMITIVE
-    uint32_t maxDrawCount{}; // Kind: PRIMITIVE
-    uint32_t stride{}; // Kind: PRIMITIVE
-};
-
-struct vkGetSemaphoreCounterValueKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkSemaphore semaphore{}; // Kind: HANDLE
-    uint64_t* pValue{}; // Kind: PRIMITIVE_PTR
-};
-
-struct vkWaitSemaphoresKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkSemaphoreWaitInfo* pWaitInfo{}; // Kind: STRUCT_PTR
-    uint64_t timeout{}; // Kind: PRIMITIVE
-};
-
-struct vkSignalSemaphoreKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkSemaphoreSignalInfo* pSignalInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetPhysicalDeviceFragmentShadingRatesKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    uint32_t* pFragmentShadingRateCount{}; // Kind: PRIMITIVE_PTR
-    VkPhysicalDeviceFragmentShadingRateKHR* pFragmentShadingRates{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkCmdSetFragmentShadingRateKHRSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkExtent2D* pFragmentSize{}; // Kind: STRUCT_PTR
-    VkFragmentShadingRateCombinerOpKHR combinerOps[2]{}; // Kind: PRIMITIVE_STATIC_ARRAY_1D
-};
-
-struct vkCmdSetRenderingAttachmentLocationsKHRSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkRenderingAttachmentLocationInfo* pLocationInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdSetRenderingInputAttachmentIndicesKHRSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkRenderingInputAttachmentIndexInfo* pInputAttachmentIndexInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkWaitForPresentKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkSwapchainKHR swapchain{}; // Kind: HANDLE
-    uint64_t presentId{}; // Kind: PRIMITIVE
-    uint64_t timeout{}; // Kind: PRIMITIVE
-};
-
-struct vkGetBufferDeviceAddressKHRSignature {
-    SignatureHeader header{};
-
-    VkDeviceAddress ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkBufferDeviceAddressInfo* pInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetBufferOpaqueCaptureAddressKHRSignature {
-    SignatureHeader header{};
-
-    uint64_t ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkBufferDeviceAddressInfo* pInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetDeviceMemoryOpaqueCaptureAddressKHRSignature {
-    SignatureHeader header{};
-
-    uint64_t ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkDeviceMemoryOpaqueCaptureAddressInfo* pInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCreateDeferredOperationKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkDeferredOperationKHR* pDeferredOperation{}; // Kind: HANDLE_PTR
-};
-
-struct vkDestroyDeferredOperationKHRSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkDeferredOperationKHR operation{}; // Kind: HANDLE
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetDeferredOperationMaxConcurrencyKHRSignature {
-    SignatureHeader header{};
-
-    uint32_t ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkDeferredOperationKHR operation{}; // Kind: HANDLE
-};
-
-struct vkGetDeferredOperationResultKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkDeferredOperationKHR operation{}; // Kind: HANDLE
-};
-
-struct vkDeferredOperationJoinKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkDeferredOperationKHR operation{}; // Kind: HANDLE
-};
-
-struct vkGetPipelineExecutablePropertiesKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkPipelineInfoKHR* pPipelineInfo{}; // Kind: STRUCT_PTR
-    uint32_t* pExecutableCount{}; // Kind: PRIMITIVE_PTR
-    VkPipelineExecutablePropertiesKHR* pProperties{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkGetPipelineExecutableStatisticsKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkPipelineExecutableInfoKHR* pExecutableInfo{}; // Kind: STRUCT_PTR
-    uint32_t* pStatisticCount{}; // Kind: PRIMITIVE_PTR
-    VkPipelineExecutableStatisticKHR* pStatistics{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkGetPipelineExecutableInternalRepresentationsKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkPipelineExecutableInfoKHR* pExecutableInfo{}; // Kind: STRUCT_PTR
-    uint32_t* pInternalRepresentationCount{}; // Kind: PRIMITIVE_PTR
-    VkPipelineExecutableInternalRepresentationKHR* pInternalRepresentations{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkMapMemory2KHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkMemoryMapInfo* pMemoryMapInfo{}; // Kind: STRUCT_PTR
-    void** ppData{}; // Kind: VOID_PTR_PTR
-};
-
-struct vkUnmapMemory2KHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkMemoryUnmapInfo* pMemoryUnmapInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetPhysicalDeviceVideoEncodeQualityLevelPropertiesKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    VkPhysicalDeviceVideoEncodeQualityLevelInfoKHR* pQualityLevelInfo{}; // Kind: STRUCT_PTR
-    VkVideoEncodeQualityLevelPropertiesKHR* pQualityLevelProperties{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetEncodedVideoSessionParametersKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkVideoEncodeSessionParametersGetInfoKHR* pVideoSessionParametersInfo{}; // Kind: STRUCT_PTR
-    VkVideoEncodeSessionParametersFeedbackInfoKHR* pFeedbackInfo{}; // Kind: STRUCT_PTR
-    size_t* pDataSize{}; // Kind: PRIMITIVE_PTR
-    void* pData{}; // Kind: PRIMITIVE_DYNAMIC_ARRAY_1D
-};
-
-struct vkCmdEncodeVideoKHRSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkVideoEncodeInfoKHR* pEncodeInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdSetEvent2KHRSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkEvent event{}; // Kind: HANDLE
-    VkDependencyInfo* pDependencyInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdResetEvent2KHRSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkEvent event{}; // Kind: HANDLE
-    VkPipelineStageFlags2 stageMask{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdWaitEvents2KHRSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    uint32_t eventCount{}; // Kind: PRIMITIVE
-    VkEvent* pEvents{}; // Kind: HANDLE_DYNAMIC_ARRAY_1D
-    VkDependencyInfo* pDependencyInfos{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkCmdPipelineBarrier2KHRSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkDependencyInfo* pDependencyInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdWriteTimestamp2KHRSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkPipelineStageFlags2 stage{}; // Kind: PRIMITIVE
-    VkQueryPool queryPool{}; // Kind: HANDLE
-    uint32_t query{}; // Kind: PRIMITIVE
-};
-
-struct vkQueueSubmit2KHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkQueue queue{}; // Kind: HANDLE
-    uint32_t submitCount{}; // Kind: PRIMITIVE
-    VkSubmitInfo2* pSubmits{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-    VkFence fence{}; // Kind: HANDLE
-};
-
-struct vkCmdCopyBuffer2KHRSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkCopyBufferInfo2* pCopyBufferInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdCopyImage2KHRSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkCopyImageInfo2* pCopyImageInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdCopyBufferToImage2KHRSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkCopyBufferToImageInfo2* pCopyBufferToImageInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdCopyImageToBuffer2KHRSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkCopyImageToBufferInfo2* pCopyImageToBufferInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdBlitImage2KHRSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkBlitImageInfo2* pBlitImageInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdResolveImage2KHRSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkResolveImageInfo2* pResolveImageInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdTraceRaysIndirect2KHRSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkDeviceAddress indirectDeviceAddress{}; // Kind: PRIMITIVE
-};
-
-struct vkGetDeviceBufferMemoryRequirementsKHRSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkDeviceBufferMemoryRequirements* pInfo{}; // Kind: STRUCT_PTR
-    VkMemoryRequirements2* pMemoryRequirements{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetDeviceImageMemoryRequirementsKHRSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkDeviceImageMemoryRequirements* pInfo{}; // Kind: STRUCT_PTR
-    VkMemoryRequirements2* pMemoryRequirements{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetDeviceImageSparseMemoryRequirementsKHRSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkDeviceImageMemoryRequirements* pInfo{}; // Kind: STRUCT_PTR
-    uint32_t* pSparseMemoryRequirementCount{}; // Kind: PRIMITIVE_PTR
-    VkSparseImageMemoryRequirements2* pSparseMemoryRequirements{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkCmdBindIndexBuffer2KHRSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkBuffer buffer{}; // Kind: HANDLE
-    VkDeviceSize offset{}; // Kind: PRIMITIVE
-    VkDeviceSize size{}; // Kind: PRIMITIVE
-    VkIndexType indexType{}; // Kind: PRIMITIVE
-};
-
-struct vkGetRenderingAreaGranularityKHRSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkRenderingAreaInfo* pRenderingAreaInfo{}; // Kind: STRUCT_PTR
-    VkExtent2D* pGranularity{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetDeviceImageSubresourceLayoutKHRSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkDeviceImageSubresourceInfo* pInfo{}; // Kind: STRUCT_PTR
-    VkSubresourceLayout2* pLayout{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetImageSubresourceLayout2KHRSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkImage image{}; // Kind: HANDLE
-    VkImageSubresource2* pSubresource{}; // Kind: STRUCT_PTR
-    VkSubresourceLayout2* pLayout{}; // Kind: STRUCT_PTR
-};
-
-struct vkWaitForPresent2KHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkSwapchainKHR swapchain{}; // Kind: HANDLE
-    VkPresentWait2InfoKHR* pPresentWait2Info{}; // Kind: STRUCT_PTR
-};
-
-struct vkCreatePipelineBinariesKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkPipelineBinaryCreateInfoKHR* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkPipelineBinaryHandlesInfoKHR* pBinaries{}; // Kind: STRUCT_PTR
-};
-
-struct vkDestroyPipelineBinaryKHRSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkPipelineBinaryKHR pipelineBinary{}; // Kind: HANDLE
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetPipelineKeyKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkPipelineCreateInfoKHR* pPipelineCreateInfo{}; // Kind: STRUCT_PTR
-    VkPipelineBinaryKeyKHR* pPipelineKey{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetPipelineBinaryDataKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkPipelineBinaryDataInfoKHR* pInfo{}; // Kind: STRUCT_PTR
-    VkPipelineBinaryKeyKHR* pPipelineBinaryKey{}; // Kind: STRUCT_PTR
-    size_t* pPipelineBinaryDataSize{}; // Kind: PRIMITIVE_PTR
-    void* pPipelineBinaryData{}; // Kind: PRIMITIVE_DYNAMIC_ARRAY_1D
-};
-
-struct vkReleaseCapturedPipelineDataKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkReleaseCapturedPipelineDataInfoKHR* pInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-};
-
-struct vkReleaseSwapchainImagesKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkReleaseSwapchainImagesInfoKHR* pReleaseInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetPhysicalDeviceCooperativeMatrixPropertiesKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    uint32_t* pPropertyCount{}; // Kind: PRIMITIVE_PTR
-    VkCooperativeMatrixPropertiesKHR* pProperties{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkCmdSetLineStippleKHRSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    uint32_t lineStippleFactor{}; // Kind: PRIMITIVE
-    uint16_t lineStipplePattern{}; // Kind: PRIMITIVE
-};
-
-struct vkGetPhysicalDeviceCalibrateableTimeDomainsKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    uint32_t* pTimeDomainCount{}; // Kind: PRIMITIVE_PTR
-    VkTimeDomainKHR* pTimeDomains{}; // Kind: PRIMITIVE_DYNAMIC_ARRAY_1D
-};
-
-struct vkGetCalibratedTimestampsKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    uint32_t timestampCount{}; // Kind: PRIMITIVE
-    VkCalibratedTimestampInfoKHR* pTimestampInfos{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-    uint64_t* pTimestamps{}; // Kind: PRIMITIVE_DYNAMIC_ARRAY_1D
-    uint64_t* pMaxDeviation{}; // Kind: PRIMITIVE_PTR
-};
-
-struct vkCmdBindDescriptorSets2KHRSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkBindDescriptorSetsInfo* pBindDescriptorSetsInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdPushConstants2KHRSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkPushConstantsInfo* pPushConstantsInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdPushDescriptorSet2KHRSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkPushDescriptorSetInfo* pPushDescriptorSetInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdPushDescriptorSetWithTemplate2KHRSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkPushDescriptorSetWithTemplateInfo* pPushDescriptorSetWithTemplateInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdSetDescriptorBufferOffsets2EXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkSetDescriptorBufferOffsetsInfoEXT* pSetDescriptorBufferOffsetsInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdBindDescriptorBufferEmbeddedSamplers2EXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkBindDescriptorBufferEmbeddedSamplersInfoEXT* pBindDescriptorBufferEmbeddedSamplersInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdCopyMemoryIndirectKHRSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkCopyMemoryIndirectInfoKHR* pCopyMemoryIndirectInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdCopyMemoryToImageIndirectKHRSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkCopyMemoryToImageIndirectInfoKHR* pCopyMemoryToImageIndirectInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdEndRendering2KHRSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkRenderingEndInfoKHR* pRenderingEndInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCreateDebugReportCallbackEXTSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkInstance instance{}; // Kind: HANDLE
-    VkDebugReportCallbackCreateInfoEXT* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkDebugReportCallbackEXT* pCallback{}; // Kind: HANDLE_PTR
-};
-
-struct vkDestroyDebugReportCallbackEXTSignature {
-    SignatureHeader header{};
-
-    VkInstance instance{}; // Kind: HANDLE
-    VkDebugReportCallbackEXT callback{}; // Kind: HANDLE
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-};
-
-struct vkDebugReportMessageEXTSignature {
-    SignatureHeader header{};
-
-    VkInstance instance{}; // Kind: HANDLE
-    VkDebugReportFlagsEXT flags{}; // Kind: PRIMITIVE
-    VkDebugReportObjectTypeEXT objectType{}; // Kind: PRIMITIVE
-    uint64_t object{}; // Kind: PRIMITIVE
-    size_t location{}; // Kind: PRIMITIVE
-    int32_t messageCode{}; // Kind: PRIMITIVE
-    char* pLayerPrefix{}; // Kind: STRING
-    char* pMessage{}; // Kind: STRING
-};
-
-struct vkDebugMarkerSetObjectTagEXTSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkDebugMarkerObjectTagInfoEXT* pTagInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkDebugMarkerSetObjectNameEXTSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkDebugMarkerObjectNameInfoEXT* pNameInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdDebugMarkerBeginEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkDebugMarkerMarkerInfoEXT* pMarkerInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdDebugMarkerEndEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-};
-
-struct vkCmdDebugMarkerInsertEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkDebugMarkerMarkerInfoEXT* pMarkerInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdBindTransformFeedbackBuffersEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    uint32_t firstBinding{}; // Kind: PRIMITIVE
-    uint32_t bindingCount{}; // Kind: PRIMITIVE
-    VkBuffer* pBuffers{}; // Kind: HANDLE_DYNAMIC_ARRAY_1D
-    VkDeviceSize* pOffsets{}; // Kind: PRIMITIVE_DYNAMIC_ARRAY_1D
-    VkDeviceSize* pSizes{}; // Kind: PRIMITIVE_DYNAMIC_ARRAY_1D
-};
-
-struct vkCmdBeginTransformFeedbackEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    uint32_t firstCounterBuffer{}; // Kind: PRIMITIVE
-    uint32_t counterBufferCount{}; // Kind: PRIMITIVE
-    VkBuffer* pCounterBuffers{}; // Kind: HANDLE_DYNAMIC_ARRAY_1D
-    VkDeviceSize* pCounterBufferOffsets{}; // Kind: PRIMITIVE_DYNAMIC_ARRAY_1D
-};
-
-struct vkCmdEndTransformFeedbackEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    uint32_t firstCounterBuffer{}; // Kind: PRIMITIVE
-    uint32_t counterBufferCount{}; // Kind: PRIMITIVE
-    VkBuffer* pCounterBuffers{}; // Kind: HANDLE_DYNAMIC_ARRAY_1D
-    VkDeviceSize* pCounterBufferOffsets{}; // Kind: PRIMITIVE_DYNAMIC_ARRAY_1D
-};
-
-struct vkCmdBeginQueryIndexedEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkQueryPool queryPool{}; // Kind: HANDLE
-    uint32_t query{}; // Kind: PRIMITIVE
-    VkQueryControlFlags flags{}; // Kind: PRIMITIVE
-    uint32_t index{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdEndQueryIndexedEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkQueryPool queryPool{}; // Kind: HANDLE
-    uint32_t query{}; // Kind: PRIMITIVE
-    uint32_t index{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdDrawIndirectByteCountEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    uint32_t instanceCount{}; // Kind: PRIMITIVE
-    uint32_t firstInstance{}; // Kind: PRIMITIVE
-    VkBuffer counterBuffer{}; // Kind: HANDLE
-    VkDeviceSize counterBufferOffset{}; // Kind: PRIMITIVE
-    uint32_t counterOffset{}; // Kind: PRIMITIVE
-    uint32_t vertexStride{}; // Kind: PRIMITIVE
-};
-
-struct vkCreateCuModuleNVXSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkCuModuleCreateInfoNVX* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkCuModuleNVX* pModule{}; // Kind: HANDLE_PTR
-};
-
-struct vkCreateCuFunctionNVXSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkCuFunctionCreateInfoNVX* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkCuFunctionNVX* pFunction{}; // Kind: HANDLE_PTR
-};
-
-struct vkDestroyCuModuleNVXSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkCuModuleNVX module{}; // Kind: HANDLE
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-};
-
-struct vkDestroyCuFunctionNVXSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkCuFunctionNVX function{}; // Kind: HANDLE
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdCuLaunchKernelNVXSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkCuLaunchInfoNVX* pLaunchInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetImageViewHandleNVXSignature {
-    SignatureHeader header{};
-
-    uint32_t ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkImageViewHandleInfoNVX* pInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetImageViewHandle64NVXSignature {
-    SignatureHeader header{};
-
-    uint64_t ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkImageViewHandleInfoNVX* pInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetImageViewAddressNVXSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkImageView imageView{}; // Kind: HANDLE
-    VkImageViewAddressPropertiesNVX* pProperties{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdDrawIndirectCountAMDSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkBuffer buffer{}; // Kind: HANDLE
-    VkDeviceSize offset{}; // Kind: PRIMITIVE
-    VkBuffer countBuffer{}; // Kind: HANDLE
-    VkDeviceSize countBufferOffset{}; // Kind: PRIMITIVE
-    uint32_t maxDrawCount{}; // Kind: PRIMITIVE
-    uint32_t stride{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdDrawIndexedIndirectCountAMDSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkBuffer buffer{}; // Kind: HANDLE
-    VkDeviceSize offset{}; // Kind: PRIMITIVE
-    VkBuffer countBuffer{}; // Kind: HANDLE
-    VkDeviceSize countBufferOffset{}; // Kind: PRIMITIVE
-    uint32_t maxDrawCount{}; // Kind: PRIMITIVE
-    uint32_t stride{}; // Kind: PRIMITIVE
-};
-
-struct vkGetShaderInfoAMDSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkPipeline pipeline{}; // Kind: HANDLE
-    VkShaderStageFlagBits shaderStage{}; // Kind: PRIMITIVE
-    VkShaderInfoTypeAMD infoType{}; // Kind: PRIMITIVE
-    size_t* pInfoSize{}; // Kind: PRIMITIVE_PTR
-    void* pInfo{}; // Kind: PRIMITIVE_DYNAMIC_ARRAY_1D
-};
-
-struct vkCreateStreamDescriptorSurfaceGGPSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkInstance instance{}; // Kind: HANDLE
-    VkStreamDescriptorSurfaceCreateInfoGGP* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkSurfaceKHR* pSurface{}; // Kind: HANDLE_PTR
-};
-
-struct vkGetPhysicalDeviceExternalImageFormatPropertiesNVSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    VkFormat format{}; // Kind: PRIMITIVE
-    VkImageType type{}; // Kind: PRIMITIVE
-    VkImageTiling tiling{}; // Kind: PRIMITIVE
-    VkImageUsageFlags usage{}; // Kind: PRIMITIVE
-    VkImageCreateFlags flags{}; // Kind: PRIMITIVE
-    VkExternalMemoryHandleTypeFlagsNV externalHandleType{}; // Kind: PRIMITIVE
-    VkExternalImageFormatPropertiesNV* pExternalImageFormatProperties{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetMemoryWin32HandleNVSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkDeviceMemory memory{}; // Kind: HANDLE
-    VkExternalMemoryHandleTypeFlagsNV handleType{}; // Kind: PRIMITIVE
-    HANDLE* pHandle{}; // Kind: EXTERNAL_PTR_PTR
-};
-
-struct vkCreateViSurfaceNNSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkInstance instance{}; // Kind: HANDLE
-    VkViSurfaceCreateInfoNN* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkSurfaceKHR* pSurface{}; // Kind: HANDLE_PTR
-};
-
-struct vkCmdBeginConditionalRenderingEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkConditionalRenderingBeginInfoEXT* pConditionalRenderingBegin{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdEndConditionalRenderingEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-};
-
-struct vkCmdSetViewportWScalingNVSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    uint32_t firstViewport{}; // Kind: PRIMITIVE
-    uint32_t viewportCount{}; // Kind: PRIMITIVE
-    VkViewportWScalingNV* pViewportWScalings{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkReleaseDisplayEXTSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    VkDisplayKHR display{}; // Kind: HANDLE
-};
-
-struct vkAcquireXlibDisplayEXTSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    Display* dpy{}; // Kind: EXTERNAL_PTR_PTR
-    VkDisplayKHR display{}; // Kind: HANDLE
-};
-
-struct vkGetRandROutputDisplayEXTSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    Display* dpy{}; // Kind: EXTERNAL_PTR_PTR
-    RROutput rrOutput{}; // Kind: EXTERNAL_PTR
-    VkDisplayKHR* pDisplay{}; // Kind: HANDLE_PTR
-};
-
-struct vkGetPhysicalDeviceSurfaceCapabilities2EXTSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    VkSurfaceKHR surface{}; // Kind: HANDLE
-    VkSurfaceCapabilities2EXT* pSurfaceCapabilities{}; // Kind: STRUCT_PTR
-};
-
-struct vkDisplayPowerControlEXTSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkDisplayKHR display{}; // Kind: HANDLE
-    VkDisplayPowerInfoEXT* pDisplayPowerInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkRegisterDeviceEventEXTSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkDeviceEventInfoEXT* pDeviceEventInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkFence* pFence{}; // Kind: HANDLE_PTR
-};
-
-struct vkRegisterDisplayEventEXTSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkDisplayKHR display{}; // Kind: HANDLE
-    VkDisplayEventInfoEXT* pDisplayEventInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkFence* pFence{}; // Kind: HANDLE_PTR
-};
-
-struct vkGetSwapchainCounterEXTSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkSwapchainKHR swapchain{}; // Kind: HANDLE
-    VkSurfaceCounterFlagBitsEXT counter{}; // Kind: PRIMITIVE
-    uint64_t* pCounterValue{}; // Kind: PRIMITIVE_PTR
-};
-
-struct vkGetRefreshCycleDurationGOOGLESignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkSwapchainKHR swapchain{}; // Kind: HANDLE
-    VkRefreshCycleDurationGOOGLE* pDisplayTimingProperties{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetPastPresentationTimingGOOGLESignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkSwapchainKHR swapchain{}; // Kind: HANDLE
-    uint32_t* pPresentationTimingCount{}; // Kind: PRIMITIVE_PTR
-    VkPastPresentationTimingGOOGLE* pPresentationTimings{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkCmdSetDiscardRectangleEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    uint32_t firstDiscardRectangle{}; // Kind: PRIMITIVE
-    uint32_t discardRectangleCount{}; // Kind: PRIMITIVE
-    VkRect2D* pDiscardRectangles{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkCmdSetDiscardRectangleEnableEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkBool32 discardRectangleEnable{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdSetDiscardRectangleModeEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkDiscardRectangleModeEXT discardRectangleMode{}; // Kind: PRIMITIVE
-};
-
-struct vkSetHdrMetadataEXTSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    uint32_t swapchainCount{}; // Kind: PRIMITIVE
-    VkSwapchainKHR* pSwapchains{}; // Kind: HANDLE_DYNAMIC_ARRAY_1D
-    VkHdrMetadataEXT* pMetadata{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkCreateIOSSurfaceMVKSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkInstance instance{}; // Kind: HANDLE
-    VkIOSSurfaceCreateInfoMVK* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkSurfaceKHR* pSurface{}; // Kind: HANDLE_PTR
-};
-
-struct vkCreateMacOSSurfaceMVKSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkInstance instance{}; // Kind: HANDLE
-    VkMacOSSurfaceCreateInfoMVK* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkSurfaceKHR* pSurface{}; // Kind: HANDLE_PTR
-};
-
-struct vkSetDebugUtilsObjectNameEXTSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkDebugUtilsObjectNameInfoEXT* pNameInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkSetDebugUtilsObjectTagEXTSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkDebugUtilsObjectTagInfoEXT* pTagInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkQueueBeginDebugUtilsLabelEXTSignature {
-    SignatureHeader header{};
-
-    VkQueue queue{}; // Kind: HANDLE
-    VkDebugUtilsLabelEXT* pLabelInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkQueueEndDebugUtilsLabelEXTSignature {
-    SignatureHeader header{};
-
-    VkQueue queue{}; // Kind: HANDLE
-};
-
-struct vkQueueInsertDebugUtilsLabelEXTSignature {
-    SignatureHeader header{};
-
-    VkQueue queue{}; // Kind: HANDLE
-    VkDebugUtilsLabelEXT* pLabelInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdBeginDebugUtilsLabelEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkDebugUtilsLabelEXT* pLabelInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdEndDebugUtilsLabelEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-};
-
-struct vkCmdInsertDebugUtilsLabelEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkDebugUtilsLabelEXT* pLabelInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCreateDebugUtilsMessengerEXTSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkInstance instance{}; // Kind: HANDLE
-    VkDebugUtilsMessengerCreateInfoEXT* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkDebugUtilsMessengerEXT* pMessenger{}; // Kind: HANDLE_PTR
-};
-
-struct vkDestroyDebugUtilsMessengerEXTSignature {
-    SignatureHeader header{};
-
-    VkInstance instance{}; // Kind: HANDLE
-    VkDebugUtilsMessengerEXT messenger{}; // Kind: HANDLE
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-};
-
-struct vkSubmitDebugUtilsMessageEXTSignature {
-    SignatureHeader header{};
-
-    VkInstance instance{}; // Kind: HANDLE
-    VkDebugUtilsMessageSeverityFlagBitsEXT messageSeverity{}; // Kind: PRIMITIVE
-    VkDebugUtilsMessageTypeFlagsEXT messageTypes{}; // Kind: PRIMITIVE
-    VkDebugUtilsMessengerCallbackDataEXT* pCallbackData{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetAndroidHardwareBufferPropertiesANDROIDSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    AHardwareBuffer* buffer{}; // Kind: EXTERNAL_PTR
-    VkAndroidHardwareBufferPropertiesANDROID* pProperties{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetMemoryAndroidHardwareBufferANDROIDSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkMemoryGetAndroidHardwareBufferInfoANDROID* pInfo{}; // Kind: STRUCT_PTR
-    AHardwareBuffer** pBuffer{}; // Kind: EXTERNAL_PTR_PTR
-};
-
-struct vkCreateExecutionGraphPipelinesAMDXSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkPipelineCache pipelineCache{}; // Kind: HANDLE
-    uint32_t createInfoCount{}; // Kind: PRIMITIVE
-    VkExecutionGraphPipelineCreateInfoAMDX* pCreateInfos{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkPipeline* pPipelines{}; // Kind: HANDLE_DYNAMIC_ARRAY_1D
-};
-
-struct vkGetExecutionGraphPipelineScratchSizeAMDXSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkPipeline executionGraph{}; // Kind: HANDLE
-    VkExecutionGraphPipelineScratchSizeAMDX* pSizeInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetExecutionGraphPipelineNodeIndexAMDXSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkPipeline executionGraph{}; // Kind: HANDLE
-    VkPipelineShaderStageNodeCreateInfoAMDX* pNodeInfo{}; // Kind: STRUCT_PTR
-    uint32_t* pNodeIndex{}; // Kind: PRIMITIVE_PTR
-};
-
-struct vkCmdInitializeGraphScratchMemoryAMDXSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkPipeline executionGraph{}; // Kind: HANDLE
-    VkDeviceAddress scratch{}; // Kind: PRIMITIVE
-    VkDeviceSize scratchSize{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdDispatchGraphAMDXSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkDeviceAddress scratch{}; // Kind: PRIMITIVE
-    VkDeviceSize scratchSize{}; // Kind: PRIMITIVE
-    VkDispatchGraphCountInfoAMDX* pCountInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdDispatchGraphIndirectAMDXSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkDeviceAddress scratch{}; // Kind: PRIMITIVE
-    VkDeviceSize scratchSize{}; // Kind: PRIMITIVE
-    VkDispatchGraphCountInfoAMDX* pCountInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdDispatchGraphIndirectCountAMDXSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkDeviceAddress scratch{}; // Kind: PRIMITIVE
-    VkDeviceSize scratchSize{}; // Kind: PRIMITIVE
-    VkDeviceAddress countInfo{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdSetSampleLocationsEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkSampleLocationsInfoEXT* pSampleLocationsInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetPhysicalDeviceMultisamplePropertiesEXTSignature {
-    SignatureHeader header{};
-
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    VkSampleCountFlagBits samples{}; // Kind: PRIMITIVE
-    VkMultisamplePropertiesEXT* pMultisampleProperties{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetImageDrmFormatModifierPropertiesEXTSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkImage image{}; // Kind: HANDLE
-    VkImageDrmFormatModifierPropertiesEXT* pProperties{}; // Kind: STRUCT_PTR
-};
-
-struct vkCreateValidationCacheEXTSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkValidationCacheCreateInfoEXT* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkValidationCacheEXT* pValidationCache{}; // Kind: HANDLE_PTR
-};
-
-struct vkDestroyValidationCacheEXTSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkValidationCacheEXT validationCache{}; // Kind: HANDLE
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-};
-
-struct vkMergeValidationCachesEXTSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkValidationCacheEXT dstCache{}; // Kind: HANDLE
-    uint32_t srcCacheCount{}; // Kind: PRIMITIVE
-    VkValidationCacheEXT* pSrcCaches{}; // Kind: HANDLE_DYNAMIC_ARRAY_1D
-};
-
-struct vkGetValidationCacheDataEXTSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkValidationCacheEXT validationCache{}; // Kind: HANDLE
-    size_t* pDataSize{}; // Kind: PRIMITIVE_PTR
-    void* pData{}; // Kind: PRIMITIVE_DYNAMIC_ARRAY_1D
-};
-
-struct vkCmdBindShadingRateImageNVSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkImageView imageView{}; // Kind: HANDLE
-    VkImageLayout imageLayout{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdSetViewportShadingRatePaletteNVSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    uint32_t firstViewport{}; // Kind: PRIMITIVE
-    uint32_t viewportCount{}; // Kind: PRIMITIVE
-    VkShadingRatePaletteNV* pShadingRatePalettes{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkCmdSetCoarseSampleOrderNVSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkCoarseSampleOrderTypeNV sampleOrderType{}; // Kind: PRIMITIVE
-    uint32_t customSampleOrderCount{}; // Kind: PRIMITIVE
-    VkCoarseSampleOrderCustomNV* pCustomSampleOrders{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkCreateAccelerationStructureNVSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkAccelerationStructureCreateInfoNV* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkAccelerationStructureNV* pAccelerationStructure{}; // Kind: HANDLE_PTR
-};
-
-struct vkDestroyAccelerationStructureNVSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkAccelerationStructureNV accelerationStructure{}; // Kind: HANDLE
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetAccelerationStructureMemoryRequirementsNVSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkAccelerationStructureMemoryRequirementsInfoNV* pInfo{}; // Kind: STRUCT_PTR
-    VkMemoryRequirements2KHR* pMemoryRequirements{}; // Kind: STRUCT_PTR
-};
-
-struct vkBindAccelerationStructureMemoryNVSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    uint32_t bindInfoCount{}; // Kind: PRIMITIVE
-    VkBindAccelerationStructureMemoryInfoNV* pBindInfos{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkCmdBuildAccelerationStructureNVSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkAccelerationStructureInfoNV* pInfo{}; // Kind: STRUCT_PTR
-    VkBuffer instanceData{}; // Kind: HANDLE
-    VkDeviceSize instanceOffset{}; // Kind: PRIMITIVE
-    VkBool32 update{}; // Kind: PRIMITIVE
-    VkAccelerationStructureNV dst{}; // Kind: HANDLE
-    VkAccelerationStructureNV src{}; // Kind: HANDLE
-    VkBuffer scratch{}; // Kind: HANDLE
-    VkDeviceSize scratchOffset{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdCopyAccelerationStructureNVSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkAccelerationStructureNV dst{}; // Kind: HANDLE
-    VkAccelerationStructureNV src{}; // Kind: HANDLE
-    VkCopyAccelerationStructureModeKHR mode{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdTraceRaysNVSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkBuffer raygenShaderBindingTableBuffer{}; // Kind: HANDLE
-    VkDeviceSize raygenShaderBindingOffset{}; // Kind: PRIMITIVE
-    VkBuffer missShaderBindingTableBuffer{}; // Kind: HANDLE
-    VkDeviceSize missShaderBindingOffset{}; // Kind: PRIMITIVE
-    VkDeviceSize missShaderBindingStride{}; // Kind: PRIMITIVE
-    VkBuffer hitShaderBindingTableBuffer{}; // Kind: HANDLE
-    VkDeviceSize hitShaderBindingOffset{}; // Kind: PRIMITIVE
-    VkDeviceSize hitShaderBindingStride{}; // Kind: PRIMITIVE
-    VkBuffer callableShaderBindingTableBuffer{}; // Kind: HANDLE
-    VkDeviceSize callableShaderBindingOffset{}; // Kind: PRIMITIVE
-    VkDeviceSize callableShaderBindingStride{}; // Kind: PRIMITIVE
-    uint32_t width{}; // Kind: PRIMITIVE
-    uint32_t height{}; // Kind: PRIMITIVE
-    uint32_t depth{}; // Kind: PRIMITIVE
-};
-
-struct vkCreateRayTracingPipelinesNVSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkPipelineCache pipelineCache{}; // Kind: HANDLE
-    uint32_t createInfoCount{}; // Kind: PRIMITIVE
-    VkRayTracingPipelineCreateInfoNV* pCreateInfos{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkPipeline* pPipelines{}; // Kind: HANDLE_DYNAMIC_ARRAY_1D
-};
-
-struct vkGetRayTracingShaderGroupHandlesKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkPipeline pipeline{}; // Kind: HANDLE
-    uint32_t firstGroup{}; // Kind: PRIMITIVE
-    uint32_t groupCount{}; // Kind: PRIMITIVE
-    size_t dataSize{}; // Kind: PRIMITIVE
-    void* pData{}; // Kind: PRIMITIVE_DYNAMIC_ARRAY_1D
-};
-
-struct vkGetRayTracingShaderGroupHandlesNVSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkPipeline pipeline{}; // Kind: HANDLE
-    uint32_t firstGroup{}; // Kind: PRIMITIVE
-    uint32_t groupCount{}; // Kind: PRIMITIVE
-    size_t dataSize{}; // Kind: PRIMITIVE
-    void* pData{}; // Kind: PRIMITIVE_DYNAMIC_ARRAY_1D
-};
-
-struct vkGetAccelerationStructureHandleNVSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkAccelerationStructureNV accelerationStructure{}; // Kind: HANDLE
-    size_t dataSize{}; // Kind: PRIMITIVE
-    void* pData{}; // Kind: PRIMITIVE_DYNAMIC_ARRAY_1D
-};
-
-struct vkCmdWriteAccelerationStructuresPropertiesNVSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    uint32_t accelerationStructureCount{}; // Kind: PRIMITIVE
-    VkAccelerationStructureNV* pAccelerationStructures{}; // Kind: HANDLE_DYNAMIC_ARRAY_1D
-    VkQueryType queryType{}; // Kind: PRIMITIVE
-    VkQueryPool queryPool{}; // Kind: HANDLE
-    uint32_t firstQuery{}; // Kind: PRIMITIVE
-};
-
-struct vkCompileDeferredNVSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkPipeline pipeline{}; // Kind: HANDLE
-    uint32_t shader{}; // Kind: PRIMITIVE
-};
-
-struct vkGetMemoryHostPointerPropertiesEXTSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkExternalMemoryHandleTypeFlagBits handleType{}; // Kind: PRIMITIVE
-    void* pHostPointer{}; // Kind: VOID_PTR
-    VkMemoryHostPointerPropertiesEXT* pMemoryHostPointerProperties{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdWriteBufferMarkerAMDSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkPipelineStageFlagBits pipelineStage{}; // Kind: PRIMITIVE
-    VkBuffer dstBuffer{}; // Kind: HANDLE
-    VkDeviceSize dstOffset{}; // Kind: PRIMITIVE
-    uint32_t marker{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdWriteBufferMarker2AMDSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkPipelineStageFlags2 stage{}; // Kind: PRIMITIVE
-    VkBuffer dstBuffer{}; // Kind: HANDLE
-    VkDeviceSize dstOffset{}; // Kind: PRIMITIVE
-    uint32_t marker{}; // Kind: PRIMITIVE
-};
-
-struct vkGetPhysicalDeviceCalibrateableTimeDomainsEXTSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    uint32_t* pTimeDomainCount{}; // Kind: PRIMITIVE_PTR
-    VkTimeDomainKHR* pTimeDomains{}; // Kind: PRIMITIVE_DYNAMIC_ARRAY_1D
-};
-
-struct vkGetCalibratedTimestampsEXTSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    uint32_t timestampCount{}; // Kind: PRIMITIVE
-    VkCalibratedTimestampInfoKHR* pTimestampInfos{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-    uint64_t* pTimestamps{}; // Kind: PRIMITIVE_DYNAMIC_ARRAY_1D
-    uint64_t* pMaxDeviation{}; // Kind: PRIMITIVE_PTR
-};
-
-struct vkCmdDrawMeshTasksNVSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    uint32_t taskCount{}; // Kind: PRIMITIVE
-    uint32_t firstTask{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdDrawMeshTasksIndirectNVSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkBuffer buffer{}; // Kind: HANDLE
-    VkDeviceSize offset{}; // Kind: PRIMITIVE
-    uint32_t drawCount{}; // Kind: PRIMITIVE
-    uint32_t stride{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdDrawMeshTasksIndirectCountNVSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkBuffer buffer{}; // Kind: HANDLE
-    VkDeviceSize offset{}; // Kind: PRIMITIVE
-    VkBuffer countBuffer{}; // Kind: HANDLE
-    VkDeviceSize countBufferOffset{}; // Kind: PRIMITIVE
-    uint32_t maxDrawCount{}; // Kind: PRIMITIVE
-    uint32_t stride{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdSetExclusiveScissorEnableNVSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    uint32_t firstExclusiveScissor{}; // Kind: PRIMITIVE
-    uint32_t exclusiveScissorCount{}; // Kind: PRIMITIVE
-    VkBool32* pExclusiveScissorEnables{}; // Kind: PRIMITIVE_DYNAMIC_ARRAY_1D
-};
-
-struct vkCmdSetExclusiveScissorNVSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    uint32_t firstExclusiveScissor{}; // Kind: PRIMITIVE
-    uint32_t exclusiveScissorCount{}; // Kind: PRIMITIVE
-    VkRect2D* pExclusiveScissors{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkCmdSetCheckpointNVSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    void* pCheckpointMarker{}; // Kind: VOID_PTR
-};
-
-struct vkGetQueueCheckpointDataNVSignature {
-    SignatureHeader header{};
-
-    VkQueue queue{}; // Kind: HANDLE
-    uint32_t* pCheckpointDataCount{}; // Kind: PRIMITIVE_PTR
-    VkCheckpointDataNV* pCheckpointData{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkGetQueueCheckpointData2NVSignature {
-    SignatureHeader header{};
-
-    VkQueue queue{}; // Kind: HANDLE
-    uint32_t* pCheckpointDataCount{}; // Kind: PRIMITIVE_PTR
-    VkCheckpointData2NV* pCheckpointData{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkSetSwapchainPresentTimingQueueSizeEXTSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkSwapchainKHR swapchain{}; // Kind: HANDLE
-    uint32_t size{}; // Kind: PRIMITIVE
-};
-
-struct vkGetSwapchainTimingPropertiesEXTSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkSwapchainKHR swapchain{}; // Kind: HANDLE
-    VkSwapchainTimingPropertiesEXT* pSwapchainTimingProperties{}; // Kind: STRUCT_PTR
-    uint64_t* pSwapchainTimingPropertiesCounter{}; // Kind: PRIMITIVE_PTR
-};
-
-struct vkGetSwapchainTimeDomainPropertiesEXTSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkSwapchainKHR swapchain{}; // Kind: HANDLE
-    VkSwapchainTimeDomainPropertiesEXT* pSwapchainTimeDomainProperties{}; // Kind: STRUCT_PTR
-    uint64_t* pTimeDomainsCounter{}; // Kind: PRIMITIVE_PTR
-};
-
-struct vkGetPastPresentationTimingEXTSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkPastPresentationTimingInfoEXT* pPastPresentationTimingInfo{}; // Kind: STRUCT_PTR
-    VkPastPresentationTimingPropertiesEXT* pPastPresentationTimingProperties{}; // Kind: STRUCT_PTR
-};
-
-struct vkInitializePerformanceApiINTELSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkInitializePerformanceApiInfoINTEL* pInitializeInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkUninitializePerformanceApiINTELSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-};
-
-struct vkCmdSetPerformanceMarkerINTELSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkPerformanceMarkerInfoINTEL* pMarkerInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdSetPerformanceStreamMarkerINTELSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkPerformanceStreamMarkerInfoINTEL* pMarkerInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdSetPerformanceOverrideINTELSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkPerformanceOverrideInfoINTEL* pOverrideInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkAcquirePerformanceConfigurationINTELSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkPerformanceConfigurationAcquireInfoINTEL* pAcquireInfo{}; // Kind: STRUCT_PTR
-    VkPerformanceConfigurationINTEL* pConfiguration{}; // Kind: HANDLE_PTR
-};
-
-struct vkReleasePerformanceConfigurationINTELSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkPerformanceConfigurationINTEL configuration{}; // Kind: HANDLE
-};
-
-struct vkQueueSetPerformanceConfigurationINTELSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkQueue queue{}; // Kind: HANDLE
-    VkPerformanceConfigurationINTEL configuration{}; // Kind: HANDLE
-};
-
-struct vkGetPerformanceParameterINTELSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkPerformanceParameterTypeINTEL parameter{}; // Kind: PRIMITIVE
-    VkPerformanceValueINTEL* pValue{}; // Kind: STRUCT_PTR
-};
-
-struct vkSetLocalDimmingAMDSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkSwapchainKHR swapChain{}; // Kind: HANDLE
-    VkBool32 localDimmingEnable{}; // Kind: PRIMITIVE
-};
-
-struct vkCreateImagePipeSurfaceFUCHSIASignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkInstance instance{}; // Kind: HANDLE
-    VkImagePipeSurfaceCreateInfoFUCHSIA* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkSurfaceKHR* pSurface{}; // Kind: HANDLE_PTR
-};
-
-struct vkCreateMetalSurfaceEXTSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkInstance instance{}; // Kind: HANDLE
-    VkMetalSurfaceCreateInfoEXT* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkSurfaceKHR* pSurface{}; // Kind: HANDLE_PTR
-};
-
-struct vkGetBufferDeviceAddressEXTSignature {
-    SignatureHeader header{};
-
-    VkDeviceAddress ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkBufferDeviceAddressInfo* pInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetPhysicalDeviceToolPropertiesEXTSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    uint32_t* pToolCount{}; // Kind: PRIMITIVE_PTR
-    VkPhysicalDeviceToolProperties* pToolProperties{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkGetPhysicalDeviceCooperativeMatrixPropertiesNVSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    uint32_t* pPropertyCount{}; // Kind: PRIMITIVE_PTR
-    VkCooperativeMatrixPropertiesNV* pProperties{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNVSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    uint32_t* pCombinationCount{}; // Kind: PRIMITIVE_PTR
-    VkFramebufferMixedSamplesCombinationNV* pCombinations{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkGetPhysicalDeviceSurfacePresentModes2EXTSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    VkPhysicalDeviceSurfaceInfo2KHR* pSurfaceInfo{}; // Kind: STRUCT_PTR
-    uint32_t* pPresentModeCount{}; // Kind: PRIMITIVE_PTR
-    VkPresentModeKHR* pPresentModes{}; // Kind: PRIMITIVE_DYNAMIC_ARRAY_1D
-};
-
-struct vkAcquireFullScreenExclusiveModeEXTSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkSwapchainKHR swapchain{}; // Kind: HANDLE
-};
-
-struct vkReleaseFullScreenExclusiveModeEXTSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkSwapchainKHR swapchain{}; // Kind: HANDLE
-};
-
-struct vkGetDeviceGroupSurfacePresentModes2EXTSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkPhysicalDeviceSurfaceInfo2KHR* pSurfaceInfo{}; // Kind: STRUCT_PTR
-    VkDeviceGroupPresentModeFlagsKHR* pModes{}; // Kind: PRIMITIVE_PTR
-};
-
-struct vkCreateHeadlessSurfaceEXTSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkInstance instance{}; // Kind: HANDLE
-    VkHeadlessSurfaceCreateInfoEXT* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkSurfaceKHR* pSurface{}; // Kind: HANDLE_PTR
-};
-
-struct vkCmdSetLineStippleEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    uint32_t lineStippleFactor{}; // Kind: PRIMITIVE
-    uint16_t lineStipplePattern{}; // Kind: PRIMITIVE
-};
-
-struct vkResetQueryPoolEXTSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkQueryPool queryPool{}; // Kind: HANDLE
-    uint32_t firstQuery{}; // Kind: PRIMITIVE
-    uint32_t queryCount{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdSetCullModeEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkCullModeFlags cullMode{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdSetFrontFaceEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkFrontFace frontFace{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdSetPrimitiveTopologyEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkPrimitiveTopology primitiveTopology{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdSetViewportWithCountEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    uint32_t viewportCount{}; // Kind: PRIMITIVE
-    VkViewport* pViewports{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkCmdSetScissorWithCountEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    uint32_t scissorCount{}; // Kind: PRIMITIVE
-    VkRect2D* pScissors{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkCmdBindVertexBuffers2EXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    uint32_t firstBinding{}; // Kind: PRIMITIVE
-    uint32_t bindingCount{}; // Kind: PRIMITIVE
-    VkBuffer* pBuffers{}; // Kind: HANDLE_DYNAMIC_ARRAY_1D
-    VkDeviceSize* pOffsets{}; // Kind: PRIMITIVE_DYNAMIC_ARRAY_1D
-    VkDeviceSize* pSizes{}; // Kind: PRIMITIVE_DYNAMIC_ARRAY_1D
-    VkDeviceSize* pStrides{}; // Kind: PRIMITIVE_DYNAMIC_ARRAY_1D
-};
-
-struct vkCmdSetDepthTestEnableEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkBool32 depthTestEnable{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdSetDepthWriteEnableEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkBool32 depthWriteEnable{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdSetDepthCompareOpEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkCompareOp depthCompareOp{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdSetDepthBoundsTestEnableEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkBool32 depthBoundsTestEnable{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdSetStencilTestEnableEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkBool32 stencilTestEnable{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdSetStencilOpEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkStencilFaceFlags faceMask{}; // Kind: PRIMITIVE
-    VkStencilOp failOp{}; // Kind: PRIMITIVE
-    VkStencilOp passOp{}; // Kind: PRIMITIVE
-    VkStencilOp depthFailOp{}; // Kind: PRIMITIVE
-    VkCompareOp compareOp{}; // Kind: PRIMITIVE
-};
-
-struct vkCopyMemoryToImageEXTSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkCopyMemoryToImageInfo* pCopyMemoryToImageInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCopyImageToMemoryEXTSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkCopyImageToMemoryInfo* pCopyImageToMemoryInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCopyImageToImageEXTSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkCopyImageToImageInfo* pCopyImageToImageInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkTransitionImageLayoutEXTSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    uint32_t transitionCount{}; // Kind: PRIMITIVE
-    VkHostImageLayoutTransitionInfo* pTransitions{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkGetImageSubresourceLayout2EXTSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkImage image{}; // Kind: HANDLE
-    VkImageSubresource2* pSubresource{}; // Kind: STRUCT_PTR
-    VkSubresourceLayout2* pLayout{}; // Kind: STRUCT_PTR
-};
-
-struct vkReleaseSwapchainImagesEXTSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkReleaseSwapchainImagesInfoKHR* pReleaseInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetGeneratedCommandsMemoryRequirementsNVSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkGeneratedCommandsMemoryRequirementsInfoNV* pInfo{}; // Kind: STRUCT_PTR
-    VkMemoryRequirements2* pMemoryRequirements{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdPreprocessGeneratedCommandsNVSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkGeneratedCommandsInfoNV* pGeneratedCommandsInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdExecuteGeneratedCommandsNVSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkBool32 isPreprocessed{}; // Kind: PRIMITIVE
-    VkGeneratedCommandsInfoNV* pGeneratedCommandsInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdBindPipelineShaderGroupNVSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkPipelineBindPoint pipelineBindPoint{}; // Kind: PRIMITIVE
-    VkPipeline pipeline{}; // Kind: HANDLE
-    uint32_t groupIndex{}; // Kind: PRIMITIVE
-};
-
-struct vkCreateIndirectCommandsLayoutNVSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkIndirectCommandsLayoutCreateInfoNV* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkIndirectCommandsLayoutNV* pIndirectCommandsLayout{}; // Kind: HANDLE_PTR
-};
-
-struct vkDestroyIndirectCommandsLayoutNVSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkIndirectCommandsLayoutNV indirectCommandsLayout{}; // Kind: HANDLE
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdSetDepthBias2EXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkDepthBiasInfoEXT* pDepthBiasInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkAcquireDrmDisplayEXTSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    int32_t drmFd{}; // Kind: PRIMITIVE
-    VkDisplayKHR display{}; // Kind: HANDLE
-};
-
-struct vkGetDrmDisplayEXTSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    int32_t drmFd{}; // Kind: PRIMITIVE
-    uint32_t connectorId{}; // Kind: PRIMITIVE
-    VkDisplayKHR* display{}; // Kind: HANDLE_PTR
-};
-
-struct vkCreatePrivateDataSlotEXTSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkPrivateDataSlotCreateInfo* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkPrivateDataSlot* pPrivateDataSlot{}; // Kind: HANDLE_PTR
-};
-
-struct vkDestroyPrivateDataSlotEXTSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkPrivateDataSlot privateDataSlot{}; // Kind: HANDLE
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-};
-
-struct vkSetPrivateDataEXTSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkObjectType objectType{}; // Kind: PRIMITIVE
-    uint64_t objectHandle{}; // Kind: PRIMITIVE
-    VkPrivateDataSlot privateDataSlot{}; // Kind: HANDLE
-    uint64_t data{}; // Kind: PRIMITIVE
-};
-
-struct vkGetPrivateDataEXTSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkObjectType objectType{}; // Kind: PRIMITIVE
-    uint64_t objectHandle{}; // Kind: PRIMITIVE
-    VkPrivateDataSlot privateDataSlot{}; // Kind: HANDLE
-    uint64_t* pData{}; // Kind: PRIMITIVE_PTR
-};
-
-struct vkCreateCudaModuleNVSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkCudaModuleCreateInfoNV* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkCudaModuleNV* pModule{}; // Kind: HANDLE_PTR
-};
-
-struct vkGetCudaModuleCacheNVSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkCudaModuleNV module{}; // Kind: HANDLE
-    size_t* pCacheSize{}; // Kind: PRIMITIVE_PTR
-    void* pCacheData{}; // Kind: PRIMITIVE_DYNAMIC_ARRAY_1D
-};
-
-struct vkCreateCudaFunctionNVSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkCudaFunctionCreateInfoNV* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkCudaFunctionNV* pFunction{}; // Kind: HANDLE_PTR
-};
-
-struct vkDestroyCudaModuleNVSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkCudaModuleNV module{}; // Kind: HANDLE
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-};
-
-struct vkDestroyCudaFunctionNVSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkCudaFunctionNV function{}; // Kind: HANDLE
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdCudaLaunchKernelNVSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkCudaLaunchInfoNV* pLaunchInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdDispatchTileQCOMSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkDispatchTileInfoQCOM* pDispatchTileInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdBeginPerTileExecutionQCOMSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkPerTileBeginInfoQCOM* pPerTileBeginInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdEndPerTileExecutionQCOMSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkPerTileEndInfoQCOM* pPerTileEndInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkExportMetalObjectsEXTSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkExportMetalObjectsInfoEXT* pMetalObjectsInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetDescriptorSetLayoutSizeEXTSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkDescriptorSetLayout layout{}; // Kind: HANDLE
-    VkDeviceSize* pLayoutSizeInBytes{}; // Kind: PRIMITIVE_PTR
-};
-
-struct vkGetDescriptorSetLayoutBindingOffsetEXTSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkDescriptorSetLayout layout{}; // Kind: HANDLE
-    uint32_t binding{}; // Kind: PRIMITIVE
-    VkDeviceSize* pOffset{}; // Kind: PRIMITIVE_PTR
-};
-
-struct vkGetDescriptorEXTSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkDescriptorGetInfoEXT* pDescriptorInfo{}; // Kind: STRUCT_PTR
-    size_t dataSize{}; // Kind: PRIMITIVE
-    void* pDescriptor{}; // Kind: PRIMITIVE_DYNAMIC_ARRAY_1D
-};
-
-struct vkCmdBindDescriptorBuffersEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    uint32_t bufferCount{}; // Kind: PRIMITIVE
-    VkDescriptorBufferBindingInfoEXT* pBindingInfos{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkCmdSetDescriptorBufferOffsetsEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkPipelineBindPoint pipelineBindPoint{}; // Kind: PRIMITIVE
-    VkPipelineLayout layout{}; // Kind: HANDLE
-    uint32_t firstSet{}; // Kind: PRIMITIVE
-    uint32_t setCount{}; // Kind: PRIMITIVE
-    uint32_t* pBufferIndices{}; // Kind: PRIMITIVE_DYNAMIC_ARRAY_1D
-    VkDeviceSize* pOffsets{}; // Kind: PRIMITIVE_DYNAMIC_ARRAY_1D
-};
-
-struct vkCmdBindDescriptorBufferEmbeddedSamplersEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkPipelineBindPoint pipelineBindPoint{}; // Kind: PRIMITIVE
-    VkPipelineLayout layout{}; // Kind: HANDLE
-    uint32_t set{}; // Kind: PRIMITIVE
-};
-
-struct vkGetBufferOpaqueCaptureDescriptorDataEXTSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkBufferCaptureDescriptorDataInfoEXT* pInfo{}; // Kind: STRUCT_PTR
-    void* pData{}; // Kind: VOID_PTR
-};
-
-struct vkGetImageOpaqueCaptureDescriptorDataEXTSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkImageCaptureDescriptorDataInfoEXT* pInfo{}; // Kind: STRUCT_PTR
-    void* pData{}; // Kind: VOID_PTR
-};
-
-struct vkGetImageViewOpaqueCaptureDescriptorDataEXTSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkImageViewCaptureDescriptorDataInfoEXT* pInfo{}; // Kind: STRUCT_PTR
-    void* pData{}; // Kind: VOID_PTR
-};
-
-struct vkGetSamplerOpaqueCaptureDescriptorDataEXTSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkSamplerCaptureDescriptorDataInfoEXT* pInfo{}; // Kind: STRUCT_PTR
-    void* pData{}; // Kind: VOID_PTR
-};
-
-struct vkGetAccelerationStructureOpaqueCaptureDescriptorDataEXTSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkAccelerationStructureCaptureDescriptorDataInfoEXT* pInfo{}; // Kind: STRUCT_PTR
-    void* pData{}; // Kind: VOID_PTR
-};
-
-struct vkCmdSetFragmentShadingRateEnumNVSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkFragmentShadingRateNV shadingRate{}; // Kind: PRIMITIVE
-    VkFragmentShadingRateCombinerOpKHR combinerOps[2]{}; // Kind: PRIMITIVE_STATIC_ARRAY_1D
-};
-
-struct vkGetDeviceFaultInfoEXTSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkDeviceFaultCountsEXT* pFaultCounts{}; // Kind: STRUCT_PTR
-    VkDeviceFaultInfoEXT* pFaultInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkAcquireWinrtDisplayNVSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    VkDisplayKHR display{}; // Kind: HANDLE
-};
-
-struct vkGetWinrtDisplayNVSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    uint32_t deviceRelativeId{}; // Kind: PRIMITIVE
-    VkDisplayKHR* pDisplay{}; // Kind: HANDLE_PTR
-};
-
-struct vkCreateDirectFBSurfaceEXTSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkInstance instance{}; // Kind: HANDLE
-    VkDirectFBSurfaceCreateInfoEXT* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkSurfaceKHR* pSurface{}; // Kind: HANDLE_PTR
-};
-
-struct vkGetPhysicalDeviceDirectFBPresentationSupportEXTSignature {
-    SignatureHeader header{};
-
-    VkBool32 ret{}; // Kind: PRIMITIVE
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    uint32_t queueFamilyIndex{}; // Kind: PRIMITIVE
-    IDirectFB* dfb{}; // Kind: EXTERNAL_PTR_PTR
-};
-
-struct vkCmdSetVertexInputEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    uint32_t vertexBindingDescriptionCount{}; // Kind: PRIMITIVE
-    VkVertexInputBindingDescription2EXT* pVertexBindingDescriptions{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-    uint32_t vertexAttributeDescriptionCount{}; // Kind: PRIMITIVE
-    VkVertexInputAttributeDescription2EXT* pVertexAttributeDescriptions{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkGetMemoryZirconHandleFUCHSIASignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkMemoryGetZirconHandleInfoFUCHSIA* pGetZirconHandleInfo{}; // Kind: STRUCT_PTR
-    zx_handle_t* pZirconHandle{}; // Kind: EXTERNAL_PTR_PTR
-};
-
-struct vkGetMemoryZirconHandlePropertiesFUCHSIASignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkExternalMemoryHandleTypeFlagBits handleType{}; // Kind: PRIMITIVE
-    zx_handle_t zirconHandle{}; // Kind: EXTERNAL_PTR
-    VkMemoryZirconHandlePropertiesFUCHSIA* pMemoryZirconHandleProperties{}; // Kind: STRUCT_PTR
-};
-
-struct vkImportSemaphoreZirconHandleFUCHSIASignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkImportSemaphoreZirconHandleInfoFUCHSIA* pImportSemaphoreZirconHandleInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetSemaphoreZirconHandleFUCHSIASignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkSemaphoreGetZirconHandleInfoFUCHSIA* pGetZirconHandleInfo{}; // Kind: STRUCT_PTR
-    zx_handle_t* pZirconHandle{}; // Kind: EXTERNAL_PTR_PTR
-};
-
-struct vkCreateBufferCollectionFUCHSIASignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkBufferCollectionCreateInfoFUCHSIA* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkBufferCollectionFUCHSIA* pCollection{}; // Kind: HANDLE_PTR
-};
-
-struct vkSetBufferCollectionImageConstraintsFUCHSIASignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkBufferCollectionFUCHSIA collection{}; // Kind: HANDLE
-    VkImageConstraintsInfoFUCHSIA* pImageConstraintsInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkSetBufferCollectionBufferConstraintsFUCHSIASignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkBufferCollectionFUCHSIA collection{}; // Kind: HANDLE
-    VkBufferConstraintsInfoFUCHSIA* pBufferConstraintsInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkDestroyBufferCollectionFUCHSIASignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkBufferCollectionFUCHSIA collection{}; // Kind: HANDLE
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetBufferCollectionPropertiesFUCHSIASignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkBufferCollectionFUCHSIA collection{}; // Kind: HANDLE
-    VkBufferCollectionPropertiesFUCHSIA* pProperties{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEISignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkRenderPass renderpass{}; // Kind: HANDLE
-    VkExtent2D* pMaxWorkgroupSize{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkCmdSubpassShadingHUAWEISignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-};
-
-struct vkCmdBindInvocationMaskHUAWEISignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkImageView imageView{}; // Kind: HANDLE
-    VkImageLayout imageLayout{}; // Kind: PRIMITIVE
-};
-
-struct vkGetMemoryRemoteAddressNVSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkMemoryGetRemoteAddressInfoNV* pMemoryGetRemoteAddressInfo{}; // Kind: STRUCT_PTR
-    VkRemoteAddressNV* pAddress{}; // Kind: EXTERNAL_PTR_PTR
-};
-
-struct vkGetPipelinePropertiesEXTSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkPipelineInfoEXT* pPipelineInfo{}; // Kind: STRUCT_PTR
-    VkBaseOutStructure* pPipelineProperties{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdSetPatchControlPointsEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    uint32_t patchControlPoints{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdSetRasterizerDiscardEnableEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkBool32 rasterizerDiscardEnable{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdSetDepthBiasEnableEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkBool32 depthBiasEnable{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdSetLogicOpEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkLogicOp logicOp{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdSetPrimitiveRestartEnableEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkBool32 primitiveRestartEnable{}; // Kind: PRIMITIVE
-};
-
-struct vkCreateScreenSurfaceQNXSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkInstance instance{}; // Kind: HANDLE
-    VkScreenSurfaceCreateInfoQNX* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkSurfaceKHR* pSurface{}; // Kind: HANDLE_PTR
-};
-
-struct vkGetPhysicalDeviceScreenPresentationSupportQNXSignature {
-    SignatureHeader header{};
-
-    VkBool32 ret{}; // Kind: PRIMITIVE
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    uint32_t queueFamilyIndex{}; // Kind: PRIMITIVE
-    _screen_window* window{}; // Kind: EXTERNAL_PTR
-};
-
-struct vkCmdSetColorWriteEnableEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    uint32_t attachmentCount{}; // Kind: PRIMITIVE
-    VkBool32* pColorWriteEnables{}; // Kind: PRIMITIVE_DYNAMIC_ARRAY_1D
-};
-
-struct vkCmdDrawMultiEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    uint32_t drawCount{}; // Kind: PRIMITIVE
-    VkMultiDrawInfoEXT* pVertexInfo{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-    uint32_t instanceCount{}; // Kind: PRIMITIVE
-    uint32_t firstInstance{}; // Kind: PRIMITIVE
-    uint32_t stride{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdDrawMultiIndexedEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    uint32_t drawCount{}; // Kind: PRIMITIVE
-    VkMultiDrawIndexedInfoEXT* pIndexInfo{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-    uint32_t instanceCount{}; // Kind: PRIMITIVE
-    uint32_t firstInstance{}; // Kind: PRIMITIVE
-    uint32_t stride{}; // Kind: PRIMITIVE
-    int32_t* pVertexOffset{}; // Kind: PRIMITIVE_PTR
-};
-
-struct vkCreateMicromapEXTSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkMicromapCreateInfoEXT* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkMicromapEXT* pMicromap{}; // Kind: HANDLE_PTR
-};
-
-struct vkDestroyMicromapEXTSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkMicromapEXT micromap{}; // Kind: HANDLE
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdBuildMicromapsEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    uint32_t infoCount{}; // Kind: PRIMITIVE
-    VkMicromapBuildInfoEXT* pInfos{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkBuildMicromapsEXTSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkDeferredOperationKHR deferredOperation{}; // Kind: HANDLE
-    uint32_t infoCount{}; // Kind: PRIMITIVE
-    VkMicromapBuildInfoEXT* pInfos{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkCopyMicromapEXTSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkDeferredOperationKHR deferredOperation{}; // Kind: HANDLE
-    VkCopyMicromapInfoEXT* pInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCopyMicromapToMemoryEXTSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkDeferredOperationKHR deferredOperation{}; // Kind: HANDLE
-    VkCopyMicromapToMemoryInfoEXT* pInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCopyMemoryToMicromapEXTSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkDeferredOperationKHR deferredOperation{}; // Kind: HANDLE
-    VkCopyMemoryToMicromapInfoEXT* pInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkWriteMicromapsPropertiesEXTSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    uint32_t micromapCount{}; // Kind: PRIMITIVE
-    VkMicromapEXT* pMicromaps{}; // Kind: HANDLE_DYNAMIC_ARRAY_1D
-    VkQueryType queryType{}; // Kind: PRIMITIVE
-    size_t dataSize{}; // Kind: PRIMITIVE
-    void* pData{}; // Kind: PRIMITIVE_DYNAMIC_ARRAY_1D
-    size_t stride{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdCopyMicromapEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkCopyMicromapInfoEXT* pInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdCopyMicromapToMemoryEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkCopyMicromapToMemoryInfoEXT* pInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdCopyMemoryToMicromapEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkCopyMemoryToMicromapInfoEXT* pInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdWriteMicromapsPropertiesEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    uint32_t micromapCount{}; // Kind: PRIMITIVE
-    VkMicromapEXT* pMicromaps{}; // Kind: HANDLE_DYNAMIC_ARRAY_1D
-    VkQueryType queryType{}; // Kind: PRIMITIVE
-    VkQueryPool queryPool{}; // Kind: HANDLE
-    uint32_t firstQuery{}; // Kind: PRIMITIVE
-};
-
-struct vkGetDeviceMicromapCompatibilityEXTSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkMicromapVersionInfoEXT* pVersionInfo{}; // Kind: STRUCT_PTR
-    VkAccelerationStructureCompatibilityKHR* pCompatibility{}; // Kind: PRIMITIVE_PTR
-};
-
-struct vkGetMicromapBuildSizesEXTSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkAccelerationStructureBuildTypeKHR buildType{}; // Kind: PRIMITIVE
-    VkMicromapBuildInfoEXT* pBuildInfo{}; // Kind: STRUCT_PTR
-    VkMicromapBuildSizesInfoEXT* pSizeInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdDrawClusterHUAWEISignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    uint32_t groupCountX{}; // Kind: PRIMITIVE
-    uint32_t groupCountY{}; // Kind: PRIMITIVE
-    uint32_t groupCountZ{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdDrawClusterIndirectHUAWEISignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkBuffer buffer{}; // Kind: HANDLE
-    VkDeviceSize offset{}; // Kind: PRIMITIVE
-};
-
-struct vkSetDeviceMemoryPriorityEXTSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkDeviceMemory memory{}; // Kind: HANDLE
-    float priority{}; // Kind: PRIMITIVE
-};
-
-struct vkGetDescriptorSetLayoutHostMappingInfoVALVESignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkDescriptorSetBindingReferenceVALVE* pBindingReference{}; // Kind: STRUCT_PTR
-    VkDescriptorSetLayoutHostMappingInfoVALVE* pHostMapping{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetDescriptorSetHostMappingVALVESignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkDescriptorSet descriptorSet{}; // Kind: HANDLE
-    void** ppData{}; // Kind: VOID_PTR_PTR
-};
-
-struct vkCmdCopyMemoryIndirectNVSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkDeviceAddress copyBufferAddress{}; // Kind: PRIMITIVE
-    uint32_t copyCount{}; // Kind: PRIMITIVE
-    uint32_t stride{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdCopyMemoryToImageIndirectNVSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkDeviceAddress copyBufferAddress{}; // Kind: PRIMITIVE
-    uint32_t copyCount{}; // Kind: PRIMITIVE
-    uint32_t stride{}; // Kind: PRIMITIVE
-    VkImage dstImage{}; // Kind: HANDLE
-    VkImageLayout dstImageLayout{}; // Kind: PRIMITIVE
-    VkImageSubresourceLayers* pImageSubresources{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkCmdDecompressMemoryNVSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    uint32_t decompressRegionCount{}; // Kind: PRIMITIVE
-    VkDecompressMemoryRegionNV* pDecompressMemoryRegions{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkCmdDecompressMemoryIndirectCountNVSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkDeviceAddress indirectCommandsAddress{}; // Kind: PRIMITIVE
-    VkDeviceAddress indirectCommandsCountAddress{}; // Kind: PRIMITIVE
-    uint32_t stride{}; // Kind: PRIMITIVE
-};
-
-struct vkGetPipelineIndirectMemoryRequirementsNVSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkComputePipelineCreateInfo* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkMemoryRequirements2* pMemoryRequirements{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdUpdatePipelineIndirectBufferNVSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkPipelineBindPoint pipelineBindPoint{}; // Kind: PRIMITIVE
-    VkPipeline pipeline{}; // Kind: HANDLE
-};
-
-struct vkGetPipelineIndirectDeviceAddressNVSignature {
-    SignatureHeader header{};
-
-    VkDeviceAddress ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkPipelineIndirectDeviceAddressInfoNV* pInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetNativeBufferPropertiesOHOSSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    OH_NativeBuffer* buffer{}; // Kind: EXTERNAL_PTR
-    VkNativeBufferPropertiesOHOS* pProperties{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetMemoryNativeBufferOHOSSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkMemoryGetNativeBufferInfoOHOS* pInfo{}; // Kind: STRUCT_PTR
-    OH_NativeBuffer** pBuffer{}; // Kind: EXTERNAL_PTR_PTR
-};
-
-struct vkCmdSetDepthClampEnableEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkBool32 depthClampEnable{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdSetPolygonModeEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkPolygonMode polygonMode{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdSetRasterizationSamplesEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkSampleCountFlagBits rasterizationSamples{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdSetSampleMaskEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkSampleCountFlagBits samples{}; // Kind: PRIMITIVE
-    VkSampleMask* pSampleMask{}; // Kind: PRIMITIVE_DYNAMIC_ARRAY_1D
-};
-
-struct vkCmdSetAlphaToCoverageEnableEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkBool32 alphaToCoverageEnable{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdSetAlphaToOneEnableEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkBool32 alphaToOneEnable{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdSetLogicOpEnableEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkBool32 logicOpEnable{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdSetColorBlendEnableEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    uint32_t firstAttachment{}; // Kind: PRIMITIVE
-    uint32_t attachmentCount{}; // Kind: PRIMITIVE
-    VkBool32* pColorBlendEnables{}; // Kind: PRIMITIVE_DYNAMIC_ARRAY_1D
-};
-
-struct vkCmdSetColorBlendEquationEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    uint32_t firstAttachment{}; // Kind: PRIMITIVE
-    uint32_t attachmentCount{}; // Kind: PRIMITIVE
-    VkColorBlendEquationEXT* pColorBlendEquations{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkCmdSetColorWriteMaskEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    uint32_t firstAttachment{}; // Kind: PRIMITIVE
-    uint32_t attachmentCount{}; // Kind: PRIMITIVE
-    VkColorComponentFlags* pColorWriteMasks{}; // Kind: PRIMITIVE_DYNAMIC_ARRAY_1D
-};
-
-struct vkCmdSetTessellationDomainOriginEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkTessellationDomainOrigin domainOrigin{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdSetRasterizationStreamEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    uint32_t rasterizationStream{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdSetConservativeRasterizationModeEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkConservativeRasterizationModeEXT conservativeRasterizationMode{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdSetExtraPrimitiveOverestimationSizeEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    float extraPrimitiveOverestimationSize{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdSetDepthClipEnableEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkBool32 depthClipEnable{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdSetSampleLocationsEnableEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkBool32 sampleLocationsEnable{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdSetColorBlendAdvancedEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    uint32_t firstAttachment{}; // Kind: PRIMITIVE
-    uint32_t attachmentCount{}; // Kind: PRIMITIVE
-    VkColorBlendAdvancedEXT* pColorBlendAdvanced{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkCmdSetProvokingVertexModeEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkProvokingVertexModeEXT provokingVertexMode{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdSetLineRasterizationModeEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkLineRasterizationModeEXT lineRasterizationMode{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdSetLineStippleEnableEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkBool32 stippledLineEnable{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdSetDepthClipNegativeOneToOneEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkBool32 negativeOneToOne{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdSetViewportWScalingEnableNVSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkBool32 viewportWScalingEnable{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdSetViewportSwizzleNVSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    uint32_t firstViewport{}; // Kind: PRIMITIVE
-    uint32_t viewportCount{}; // Kind: PRIMITIVE
-    VkViewportSwizzleNV* pViewportSwizzles{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkCmdSetCoverageToColorEnableNVSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkBool32 coverageToColorEnable{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdSetCoverageToColorLocationNVSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    uint32_t coverageToColorLocation{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdSetCoverageModulationModeNVSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkCoverageModulationModeNV coverageModulationMode{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdSetCoverageModulationTableEnableNVSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkBool32 coverageModulationTableEnable{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdSetCoverageModulationTableNVSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    uint32_t coverageModulationTableCount{}; // Kind: PRIMITIVE
-    float* pCoverageModulationTable{}; // Kind: PRIMITIVE_DYNAMIC_ARRAY_1D
-};
-
-struct vkCmdSetShadingRateImageEnableNVSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkBool32 shadingRateImageEnable{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdSetRepresentativeFragmentTestEnableNVSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkBool32 representativeFragmentTestEnable{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdSetCoverageReductionModeNVSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkCoverageReductionModeNV coverageReductionMode{}; // Kind: PRIMITIVE
-};
-
-struct vkCreateTensorARMSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkTensorCreateInfoARM* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkTensorARM* pTensor{}; // Kind: HANDLE_PTR
-};
-
-struct vkDestroyTensorARMSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkTensorARM tensor{}; // Kind: HANDLE
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-};
-
-struct vkCreateTensorViewARMSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkTensorViewCreateInfoARM* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkTensorViewARM* pView{}; // Kind: HANDLE_PTR
-};
-
-struct vkDestroyTensorViewARMSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkTensorViewARM tensorView{}; // Kind: HANDLE
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetTensorMemoryRequirementsARMSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkTensorMemoryRequirementsInfoARM* pInfo{}; // Kind: STRUCT_PTR
-    VkMemoryRequirements2* pMemoryRequirements{}; // Kind: STRUCT_PTR
-};
-
-struct vkBindTensorMemoryARMSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    uint32_t bindInfoCount{}; // Kind: PRIMITIVE
-    VkBindTensorMemoryInfoARM* pBindInfos{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkGetDeviceTensorMemoryRequirementsARMSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkDeviceTensorMemoryRequirementsARM* pInfo{}; // Kind: STRUCT_PTR
-    VkMemoryRequirements2* pMemoryRequirements{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdCopyTensorARMSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkCopyTensorInfoARM* pCopyTensorInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetPhysicalDeviceExternalTensorPropertiesARMSignature {
-    SignatureHeader header{};
-
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    VkPhysicalDeviceExternalTensorInfoARM* pExternalTensorInfo{}; // Kind: STRUCT_PTR
-    VkExternalTensorPropertiesARM* pExternalTensorProperties{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetTensorOpaqueCaptureDescriptorDataARMSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkTensorCaptureDescriptorDataInfoARM* pInfo{}; // Kind: STRUCT_PTR
-    void* pData{}; // Kind: VOID_PTR
-};
-
-struct vkGetTensorViewOpaqueCaptureDescriptorDataARMSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkTensorViewCaptureDescriptorDataInfoARM* pInfo{}; // Kind: STRUCT_PTR
-    void* pData{}; // Kind: VOID_PTR
-};
-
-struct vkGetShaderModuleIdentifierEXTSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkShaderModule shaderModule{}; // Kind: HANDLE
-    VkShaderModuleIdentifierEXT* pIdentifier{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetShaderModuleCreateInfoIdentifierEXTSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkShaderModuleCreateInfo* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkShaderModuleIdentifierEXT* pIdentifier{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetPhysicalDeviceOpticalFlowImageFormatsNVSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    VkOpticalFlowImageFormatInfoNV* pOpticalFlowImageFormatInfo{}; // Kind: STRUCT_PTR
-    uint32_t* pFormatCount{}; // Kind: PRIMITIVE_PTR
-    VkOpticalFlowImageFormatPropertiesNV* pImageFormatProperties{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkCreateOpticalFlowSessionNVSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkOpticalFlowSessionCreateInfoNV* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkOpticalFlowSessionNV* pSession{}; // Kind: HANDLE_PTR
-};
-
-struct vkDestroyOpticalFlowSessionNVSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkOpticalFlowSessionNV session{}; // Kind: HANDLE
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-};
-
-struct vkBindOpticalFlowSessionImageNVSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkOpticalFlowSessionNV session{}; // Kind: HANDLE
-    VkOpticalFlowSessionBindingPointNV bindingPoint{}; // Kind: PRIMITIVE
-    VkImageView view{}; // Kind: HANDLE
-    VkImageLayout layout{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdOpticalFlowExecuteNVSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkOpticalFlowSessionNV session{}; // Kind: HANDLE
-    VkOpticalFlowExecuteInfoNV* pExecuteInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkAntiLagUpdateAMDSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkAntiLagDataAMD* pData{}; // Kind: STRUCT_PTR
-};
-
-struct vkCreateShadersEXTSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    uint32_t createInfoCount{}; // Kind: PRIMITIVE
-    VkShaderCreateInfoEXT* pCreateInfos{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkShaderEXT* pShaders{}; // Kind: HANDLE_DYNAMIC_ARRAY_1D
-};
-
-struct vkDestroyShaderEXTSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkShaderEXT shader{}; // Kind: HANDLE
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetShaderBinaryDataEXTSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkShaderEXT shader{}; // Kind: HANDLE
-    size_t* pDataSize{}; // Kind: PRIMITIVE_PTR
-    void* pData{}; // Kind: PRIMITIVE_DYNAMIC_ARRAY_1D
-};
-
-struct vkCmdBindShadersEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    uint32_t stageCount{}; // Kind: PRIMITIVE
-    VkShaderStageFlagBits* pStages{}; // Kind: PRIMITIVE_DYNAMIC_ARRAY_1D
-    VkShaderEXT* pShaders{}; // Kind: HANDLE_DYNAMIC_ARRAY_1D
-};
-
-struct vkCmdSetDepthClampRangeEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkDepthClampModeEXT depthClampMode{}; // Kind: PRIMITIVE
-    VkDepthClampRangeEXT* pDepthClampRange{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetFramebufferTilePropertiesQCOMSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkFramebuffer framebuffer{}; // Kind: HANDLE
-    uint32_t* pPropertiesCount{}; // Kind: PRIMITIVE_PTR
-    VkTilePropertiesQCOM* pProperties{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkGetDynamicRenderingTilePropertiesQCOMSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkRenderingInfo* pRenderingInfo{}; // Kind: STRUCT_PTR
-    VkTilePropertiesQCOM* pProperties{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetPhysicalDeviceCooperativeVectorPropertiesNVSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    uint32_t* pPropertyCount{}; // Kind: PRIMITIVE_PTR
-    VkCooperativeVectorPropertiesNV* pProperties{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkConvertCooperativeVectorMatrixNVSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkConvertCooperativeVectorMatrixInfoNV* pInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdConvertCooperativeVectorMatrixNVSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    uint32_t infoCount{}; // Kind: PRIMITIVE
-    VkConvertCooperativeVectorMatrixInfoNV* pInfos{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkSetLatencySleepModeNVSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkSwapchainKHR swapchain{}; // Kind: HANDLE
-    VkLatencySleepModeInfoNV* pSleepModeInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkLatencySleepNVSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkSwapchainKHR swapchain{}; // Kind: HANDLE
-    VkLatencySleepInfoNV* pSleepInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkSetLatencyMarkerNVSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkSwapchainKHR swapchain{}; // Kind: HANDLE
-    VkSetLatencyMarkerInfoNV* pLatencyMarkerInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetLatencyTimingsNVSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkSwapchainKHR swapchain{}; // Kind: HANDLE
-    VkGetLatencyMarkerInfoNV* pLatencyMarkerInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkQueueNotifyOutOfBandNVSignature {
-    SignatureHeader header{};
-
-    VkQueue queue{}; // Kind: HANDLE
-    VkOutOfBandQueueTypeInfoNV* pQueueTypeInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCreateDataGraphPipelinesARMSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkDeferredOperationKHR deferredOperation{}; // Kind: HANDLE
-    VkPipelineCache pipelineCache{}; // Kind: HANDLE
-    uint32_t createInfoCount{}; // Kind: PRIMITIVE
-    VkDataGraphPipelineCreateInfoARM* pCreateInfos{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkPipeline* pPipelines{}; // Kind: HANDLE_DYNAMIC_ARRAY_1D
-};
-
-struct vkCreateDataGraphPipelineSessionARMSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkDataGraphPipelineSessionCreateInfoARM* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkDataGraphPipelineSessionARM* pSession{}; // Kind: HANDLE_PTR
-};
-
-struct vkGetDataGraphPipelineSessionBindPointRequirementsARMSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkDataGraphPipelineSessionBindPointRequirementsInfoARM* pInfo{}; // Kind: STRUCT_PTR
-    uint32_t* pBindPointRequirementCount{}; // Kind: PRIMITIVE_PTR
-    VkDataGraphPipelineSessionBindPointRequirementARM* pBindPointRequirements{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkGetDataGraphPipelineSessionMemoryRequirementsARMSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkDataGraphPipelineSessionMemoryRequirementsInfoARM* pInfo{}; // Kind: STRUCT_PTR
-    VkMemoryRequirements2* pMemoryRequirements{}; // Kind: STRUCT_PTR
-};
-
-struct vkBindDataGraphPipelineSessionMemoryARMSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    uint32_t bindInfoCount{}; // Kind: PRIMITIVE
-    VkBindDataGraphPipelineSessionMemoryInfoARM* pBindInfos{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkDestroyDataGraphPipelineSessionARMSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkDataGraphPipelineSessionARM session{}; // Kind: HANDLE
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdDispatchDataGraphARMSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkDataGraphPipelineSessionARM session{}; // Kind: HANDLE
-    VkDataGraphPipelineDispatchInfoARM* pInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetDataGraphPipelineAvailablePropertiesARMSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkDataGraphPipelineInfoARM* pPipelineInfo{}; // Kind: STRUCT_PTR
-    uint32_t* pPropertiesCount{}; // Kind: PRIMITIVE_PTR
-    VkDataGraphPipelinePropertyARM* pProperties{}; // Kind: PRIMITIVE_DYNAMIC_ARRAY_1D
-};
-
-struct vkGetDataGraphPipelinePropertiesARMSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkDataGraphPipelineInfoARM* pPipelineInfo{}; // Kind: STRUCT_PTR
-    uint32_t propertiesCount{}; // Kind: PRIMITIVE
-    VkDataGraphPipelinePropertyQueryResultARM* pProperties{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARMSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    uint32_t queueFamilyIndex{}; // Kind: PRIMITIVE
-    uint32_t* pQueueFamilyDataGraphPropertyCount{}; // Kind: PRIMITIVE_PTR
-    VkQueueFamilyDataGraphPropertiesARM* pQueueFamilyDataGraphProperties{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARMSignature {
-    SignatureHeader header{};
-
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    VkPhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM* pQueueFamilyDataGraphProcessingEngineInfo{}; // Kind: STRUCT_PTR
-    VkQueueFamilyDataGraphProcessingEnginePropertiesARM* pQueueFamilyDataGraphProcessingEngineProperties{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdSetAttachmentFeedbackLoopEnableEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkImageAspectFlags aspectMask{}; // Kind: PRIMITIVE
-};
-
-struct vkGetScreenBufferPropertiesQNXSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    _screen_buffer* buffer{}; // Kind: EXTERNAL_PTR
-    VkScreenBufferPropertiesQNX* pProperties{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdBindTileMemoryQCOMSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkTileMemoryBindInfoQCOM* pTileMemoryBindInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdDecompressMemoryEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkDecompressMemoryInfoEXT* pDecompressMemoryInfoEXT{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdDecompressMemoryIndirectCountEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkMemoryDecompressionMethodFlagsEXT decompressionMethod{}; // Kind: PRIMITIVE
-    VkDeviceAddress indirectCommandsAddress{}; // Kind: PRIMITIVE
-    VkDeviceAddress indirectCommandsCountAddress{}; // Kind: PRIMITIVE
-    uint32_t maxDecompressionCount{}; // Kind: PRIMITIVE
-    uint32_t stride{}; // Kind: PRIMITIVE
-};
-
-struct vkCreateExternalComputeQueueNVSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkExternalComputeQueueCreateInfoNV* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkExternalComputeQueueNV* pExternalQueue{}; // Kind: HANDLE_PTR
-};
-
-struct vkDestroyExternalComputeQueueNVSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkExternalComputeQueueNV externalQueue{}; // Kind: HANDLE
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetExternalComputeQueueDataNVSignature {
-    SignatureHeader header{};
-
-    VkExternalComputeQueueNV externalQueue{}; // Kind: HANDLE
-    VkExternalComputeQueueDataParamsNV* params{}; // Kind: STRUCT_PTR
-    void* pData{}; // Kind: VOID_PTR
-};
-
-struct vkGetClusterAccelerationStructureBuildSizesNVSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkClusterAccelerationStructureInputInfoNV* pInfo{}; // Kind: STRUCT_PTR
-    VkAccelerationStructureBuildSizesInfoKHR* pSizeInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdBuildClusterAccelerationStructureIndirectNVSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkClusterAccelerationStructureCommandsInfoNV* pCommandInfos{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetPartitionedAccelerationStructuresBuildSizesNVSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkPartitionedAccelerationStructureInstancesInputNV* pInfo{}; // Kind: STRUCT_PTR
-    VkAccelerationStructureBuildSizesInfoKHR* pSizeInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdBuildPartitionedAccelerationStructuresNVSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkBuildPartitionedAccelerationStructureInfoNV* pBuildInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetGeneratedCommandsMemoryRequirementsEXTSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkGeneratedCommandsMemoryRequirementsInfoEXT* pInfo{}; // Kind: STRUCT_PTR
-    VkMemoryRequirements2* pMemoryRequirements{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdPreprocessGeneratedCommandsEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkGeneratedCommandsInfoEXT* pGeneratedCommandsInfo{}; // Kind: STRUCT_PTR
-    VkCommandBuffer stateCommandBuffer{}; // Kind: HANDLE
-};
-
-struct vkCmdExecuteGeneratedCommandsEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkBool32 isPreprocessed{}; // Kind: PRIMITIVE
-    VkGeneratedCommandsInfoEXT* pGeneratedCommandsInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCreateIndirectCommandsLayoutEXTSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkIndirectCommandsLayoutCreateInfoEXT* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkIndirectCommandsLayoutEXT* pIndirectCommandsLayout{}; // Kind: HANDLE_PTR
-};
-
-struct vkDestroyIndirectCommandsLayoutEXTSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkIndirectCommandsLayoutEXT indirectCommandsLayout{}; // Kind: HANDLE
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-};
-
-struct vkCreateIndirectExecutionSetEXTSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkIndirectExecutionSetCreateInfoEXT* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkIndirectExecutionSetEXT* pIndirectExecutionSet{}; // Kind: HANDLE_PTR
-};
-
-struct vkDestroyIndirectExecutionSetEXTSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkIndirectExecutionSetEXT indirectExecutionSet{}; // Kind: HANDLE
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-};
-
-struct vkUpdateIndirectExecutionSetPipelineEXTSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkIndirectExecutionSetEXT indirectExecutionSet{}; // Kind: HANDLE
-    uint32_t executionSetWriteCount{}; // Kind: PRIMITIVE
-    VkWriteIndirectExecutionSetPipelineEXT* pExecutionSetWrites{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkUpdateIndirectExecutionSetShaderEXTSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkIndirectExecutionSetEXT indirectExecutionSet{}; // Kind: HANDLE
-    uint32_t executionSetWriteCount{}; // Kind: PRIMITIVE
-    VkWriteIndirectExecutionSetShaderEXT* pExecutionSetWrites{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkCreateSurfaceOHOSSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkInstance instance{}; // Kind: HANDLE
-    VkSurfaceCreateInfoOHOS* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkSurfaceKHR* pSurface{}; // Kind: HANDLE_PTR
-};
-
-struct vkGetSwapchainGrallocUsageOHOSSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkFormat format{}; // Kind: PRIMITIVE
-    VkImageUsageFlags imageUsage{}; // Kind: PRIMITIVE
-    uint64_t* grallocUsage{}; // Kind: PRIMITIVE_PTR
-};
-
-struct vkAcquireImageOHOSSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkImage image{}; // Kind: HANDLE
-    int32_t nativeFenceFd{}; // Kind: PRIMITIVE
-    VkSemaphore semaphore{}; // Kind: HANDLE
-    VkFence fence{}; // Kind: HANDLE
-};
-
-struct vkQueueSignalReleaseImageOHOSSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkQueue queue{}; // Kind: HANDLE
-    uint32_t waitSemaphoreCount{}; // Kind: PRIMITIVE
-    VkSemaphore* pWaitSemaphores{}; // Kind: HANDLE_DYNAMIC_ARRAY_1D
-    VkImage image{}; // Kind: HANDLE
-    int32_t* pNativeFenceFd{}; // Kind: PRIMITIVE_PTR
-};
-
-struct vkGetPhysicalDeviceCooperativeMatrixFlexibleDimensionsPropertiesNVSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    uint32_t* pPropertyCount{}; // Kind: PRIMITIVE_PTR
-    VkCooperativeMatrixFlexibleDimensionsPropertiesNV* pProperties{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkGetMemoryMetalHandleEXTSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkMemoryGetMetalHandleInfoEXT* pGetMetalHandleInfo{}; // Kind: STRUCT_PTR
-    void** pHandle{}; // Kind: VOID_PTR_PTR
-};
-
-struct vkGetMemoryMetalHandlePropertiesEXTSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkExternalMemoryHandleTypeFlagBits handleType{}; // Kind: PRIMITIVE
-    void* pHandle{}; // Kind: VOID_PTR
-    VkMemoryMetalHandlePropertiesEXT* pMemoryMetalHandleProperties{}; // Kind: STRUCT_PTR
-};
-
-struct vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARMSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkPhysicalDevice physicalDevice{}; // Kind: HANDLE
-    uint32_t queueFamilyIndex{}; // Kind: PRIMITIVE
-    uint32_t* pCounterCount{}; // Kind: PRIMITIVE_PTR
-    VkPerformanceCounterARM* pCounters{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-    VkPerformanceCounterDescriptionARM* pCounterDescriptions{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-};
-
-struct vkCmdEndRendering2EXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkRenderingEndInfoKHR* pRenderingEndInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdBeginCustomResolveEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkBeginCustomResolveInfoEXT* pBeginCustomResolveInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCreateAccelerationStructureKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkAccelerationStructureCreateInfoKHR* pCreateInfo{}; // Kind: STRUCT_PTR
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkAccelerationStructureKHR* pAccelerationStructure{}; // Kind: HANDLE_PTR
-};
-
-struct vkDestroyAccelerationStructureKHRSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkAccelerationStructureKHR accelerationStructure{}; // Kind: HANDLE
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdBuildAccelerationStructuresKHRSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    uint32_t infoCount{}; // Kind: PRIMITIVE
-    VkAccelerationStructureBuildGeometryInfoKHR* pInfos{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-    VkAccelerationStructureBuildRangeInfoKHR* const* ppBuildRangeInfos{}; // Kind: STRUCT_DYNAMIC_ARRAY_2D
-};
-
-struct vkCmdBuildAccelerationStructuresIndirectKHRSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    uint32_t infoCount{}; // Kind: PRIMITIVE
-    VkAccelerationStructureBuildGeometryInfoKHR* pInfos{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-    VkDeviceAddress* pIndirectDeviceAddresses{}; // Kind: PRIMITIVE_DYNAMIC_ARRAY_1D
-    uint32_t* pIndirectStrides{}; // Kind: PRIMITIVE_DYNAMIC_ARRAY_1D
-    uint32_t* const* ppMaxPrimitiveCounts{}; // Kind: PRIMITIVE_DYNAMIC_ARRAY_2D
-};
-
-struct vkBuildAccelerationStructuresKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkDeferredOperationKHR deferredOperation{}; // Kind: HANDLE
-    uint32_t infoCount{}; // Kind: PRIMITIVE
-    VkAccelerationStructureBuildGeometryInfoKHR* pInfos{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-    VkAccelerationStructureBuildRangeInfoKHR* const* ppBuildRangeInfos{}; // Kind: STRUCT_DYNAMIC_ARRAY_2D
-};
-
-struct vkCopyAccelerationStructureKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkDeferredOperationKHR deferredOperation{}; // Kind: HANDLE
-    VkCopyAccelerationStructureInfoKHR* pInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCopyAccelerationStructureToMemoryKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkDeferredOperationKHR deferredOperation{}; // Kind: HANDLE
-    VkCopyAccelerationStructureToMemoryInfoKHR* pInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCopyMemoryToAccelerationStructureKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkDeferredOperationKHR deferredOperation{}; // Kind: HANDLE
-    VkCopyMemoryToAccelerationStructureInfoKHR* pInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkWriteAccelerationStructuresPropertiesKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    uint32_t accelerationStructureCount{}; // Kind: PRIMITIVE
-    VkAccelerationStructureKHR* pAccelerationStructures{}; // Kind: HANDLE_DYNAMIC_ARRAY_1D
-    VkQueryType queryType{}; // Kind: PRIMITIVE
-    size_t dataSize{}; // Kind: PRIMITIVE
-    void* pData{}; // Kind: PRIMITIVE_DYNAMIC_ARRAY_1D
-    size_t stride{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdCopyAccelerationStructureKHRSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkCopyAccelerationStructureInfoKHR* pInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdCopyAccelerationStructureToMemoryKHRSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkCopyAccelerationStructureToMemoryInfoKHR* pInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdCopyMemoryToAccelerationStructureKHRSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkCopyMemoryToAccelerationStructureInfoKHR* pInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkGetAccelerationStructureDeviceAddressKHRSignature {
-    SignatureHeader header{};
-
-    VkDeviceAddress ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkAccelerationStructureDeviceAddressInfoKHR* pInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdWriteAccelerationStructuresPropertiesKHRSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    uint32_t accelerationStructureCount{}; // Kind: PRIMITIVE
-    VkAccelerationStructureKHR* pAccelerationStructures{}; // Kind: HANDLE_DYNAMIC_ARRAY_1D
-    VkQueryType queryType{}; // Kind: PRIMITIVE
-    VkQueryPool queryPool{}; // Kind: HANDLE
-    uint32_t firstQuery{}; // Kind: PRIMITIVE
-};
-
-struct vkGetDeviceAccelerationStructureCompatibilityKHRSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkAccelerationStructureVersionInfoKHR* pVersionInfo{}; // Kind: STRUCT_PTR
-    VkAccelerationStructureCompatibilityKHR* pCompatibility{}; // Kind: PRIMITIVE_PTR
-};
-
-struct vkGetAccelerationStructureBuildSizesKHRSignature {
-    SignatureHeader header{};
-
-    VkDevice device{}; // Kind: HANDLE
-    VkAccelerationStructureBuildTypeKHR buildType{}; // Kind: PRIMITIVE
-    VkAccelerationStructureBuildGeometryInfoKHR* pBuildInfo{}; // Kind: STRUCT_PTR
-    uint32_t* pMaxPrimitiveCounts{}; // Kind: PRIMITIVE_DYNAMIC_ARRAY_1D
-    VkAccelerationStructureBuildSizesInfoKHR* pSizeInfo{}; // Kind: STRUCT_PTR
-};
-
-struct vkCmdTraceRaysKHRSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkStridedDeviceAddressRegionKHR* pRaygenShaderBindingTable{}; // Kind: STRUCT_PTR
-    VkStridedDeviceAddressRegionKHR* pMissShaderBindingTable{}; // Kind: STRUCT_PTR
-    VkStridedDeviceAddressRegionKHR* pHitShaderBindingTable{}; // Kind: STRUCT_PTR
-    VkStridedDeviceAddressRegionKHR* pCallableShaderBindingTable{}; // Kind: STRUCT_PTR
-    uint32_t width{}; // Kind: PRIMITIVE
-    uint32_t height{}; // Kind: PRIMITIVE
-    uint32_t depth{}; // Kind: PRIMITIVE
-};
-
-struct vkCreateRayTracingPipelinesKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkDeferredOperationKHR deferredOperation{}; // Kind: HANDLE
-    VkPipelineCache pipelineCache{}; // Kind: HANDLE
-    uint32_t createInfoCount{}; // Kind: PRIMITIVE
-    VkRayTracingPipelineCreateInfoKHR* pCreateInfos{}; // Kind: STRUCT_DYNAMIC_ARRAY_1D
-    VkAllocationCallbacks* pAllocator{}; // Kind: STRUCT_PTR
-    VkPipeline* pPipelines{}; // Kind: HANDLE_DYNAMIC_ARRAY_1D
-};
-
-struct vkGetRayTracingCaptureReplayShaderGroupHandlesKHRSignature {
-    SignatureHeader header{};
-
-    VkResult ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkPipeline pipeline{}; // Kind: HANDLE
-    uint32_t firstGroup{}; // Kind: PRIMITIVE
-    uint32_t groupCount{}; // Kind: PRIMITIVE
-    size_t dataSize{}; // Kind: PRIMITIVE
-    void* pData{}; // Kind: PRIMITIVE_DYNAMIC_ARRAY_1D
-};
-
-struct vkCmdTraceRaysIndirectKHRSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkStridedDeviceAddressRegionKHR* pRaygenShaderBindingTable{}; // Kind: STRUCT_PTR
-    VkStridedDeviceAddressRegionKHR* pMissShaderBindingTable{}; // Kind: STRUCT_PTR
-    VkStridedDeviceAddressRegionKHR* pHitShaderBindingTable{}; // Kind: STRUCT_PTR
-    VkStridedDeviceAddressRegionKHR* pCallableShaderBindingTable{}; // Kind: STRUCT_PTR
-    VkDeviceAddress indirectDeviceAddress{}; // Kind: PRIMITIVE
-};
-
-struct vkGetRayTracingShaderGroupStackSizeKHRSignature {
-    SignatureHeader header{};
-
-    VkDeviceSize ret{}; // Kind: PRIMITIVE
-    VkDevice device{}; // Kind: HANDLE
-    VkPipeline pipeline{}; // Kind: HANDLE
-    uint32_t group{}; // Kind: PRIMITIVE
-    VkShaderGroupShaderKHR groupShader{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdSetRayTracingPipelineStackSizeKHRSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    uint32_t pipelineStackSize{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdDrawMeshTasksEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    uint32_t groupCountX{}; // Kind: PRIMITIVE
-    uint32_t groupCountY{}; // Kind: PRIMITIVE
-    uint32_t groupCountZ{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdDrawMeshTasksIndirectEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkBuffer buffer{}; // Kind: HANDLE
-    VkDeviceSize offset{}; // Kind: PRIMITIVE
-    uint32_t drawCount{}; // Kind: PRIMITIVE
-    uint32_t stride{}; // Kind: PRIMITIVE
-};
-
-struct vkCmdDrawMeshTasksIndirectCountEXTSignature {
-    SignatureHeader header{};
-
-    VkCommandBuffer commandBuffer{}; // Kind: HANDLE
-    VkBuffer buffer{}; // Kind: HANDLE
-    VkDeviceSize offset{}; // Kind: PRIMITIVE
-    VkBuffer countBuffer{}; // Kind: HANDLE
-    VkDeviceSize countBufferOffset{}; // Kind: PRIMITIVE
-    uint32_t maxDrawCount{}; // Kind: PRIMITIVE
-    uint32_t stride{}; // Kind: PRIMITIVE
-};
-
+struct vkCreateInstanceSignature;
+struct vkDestroyInstanceSignature;
+struct vkEnumeratePhysicalDevicesSignature;
+struct vkGetPhysicalDeviceFeaturesSignature;
+struct vkGetPhysicalDeviceFormatPropertiesSignature;
+struct vkGetPhysicalDeviceImageFormatPropertiesSignature;
+struct vkGetPhysicalDevicePropertiesSignature;
+struct vkGetPhysicalDeviceQueueFamilyPropertiesSignature;
+struct vkGetPhysicalDeviceMemoryPropertiesSignature;
+struct vkGetInstanceProcAddrSignature;
+struct vkGetDeviceProcAddrSignature;
+struct vkCreateDeviceSignature;
+struct vkDestroyDeviceSignature;
+struct vkEnumerateInstanceExtensionPropertiesSignature;
+struct vkEnumerateDeviceExtensionPropertiesSignature;
+struct vkEnumerateInstanceLayerPropertiesSignature;
+struct vkEnumerateDeviceLayerPropertiesSignature;
+struct vkGetDeviceQueueSignature;
+struct vkQueueSubmitSignature;
+struct vkQueueWaitIdleSignature;
+struct vkDeviceWaitIdleSignature;
+struct vkAllocateMemorySignature;
+struct vkFreeMemorySignature;
+struct vkMapMemorySignature;
+struct vkUnmapMemorySignature;
+struct vkFlushMappedMemoryRangesSignature;
+struct vkInvalidateMappedMemoryRangesSignature;
+struct vkGetDeviceMemoryCommitmentSignature;
+struct vkBindBufferMemorySignature;
+struct vkBindImageMemorySignature;
+struct vkGetBufferMemoryRequirementsSignature;
+struct vkGetImageMemoryRequirementsSignature;
+struct vkGetImageSparseMemoryRequirementsSignature;
+struct vkGetPhysicalDeviceSparseImageFormatPropertiesSignature;
+struct vkQueueBindSparseSignature;
+struct vkCreateFenceSignature;
+struct vkDestroyFenceSignature;
+struct vkResetFencesSignature;
+struct vkGetFenceStatusSignature;
+struct vkWaitForFencesSignature;
+struct vkCreateSemaphoreSignature;
+struct vkDestroySemaphoreSignature;
+struct vkCreateQueryPoolSignature;
+struct vkDestroyQueryPoolSignature;
+struct vkGetQueryPoolResultsSignature;
+struct vkCreateBufferSignature;
+struct vkDestroyBufferSignature;
+struct vkCreateImageSignature;
+struct vkDestroyImageSignature;
+struct vkGetImageSubresourceLayoutSignature;
+struct vkCreateImageViewSignature;
+struct vkDestroyImageViewSignature;
+struct vkCreateCommandPoolSignature;
+struct vkDestroyCommandPoolSignature;
+struct vkResetCommandPoolSignature;
+struct vkAllocateCommandBuffersSignature;
+struct vkFreeCommandBuffersSignature;
+struct vkBeginCommandBufferSignature;
+struct vkEndCommandBufferSignature;
+struct vkResetCommandBufferSignature;
+struct vkCmdCopyBufferSignature;
+struct vkCmdCopyImageSignature;
+struct vkCmdCopyBufferToImageSignature;
+struct vkCmdCopyImageToBufferSignature;
+struct vkCmdUpdateBufferSignature;
+struct vkCmdFillBufferSignature;
+struct vkCmdPipelineBarrierSignature;
+struct vkCmdBeginQuerySignature;
+struct vkCmdEndQuerySignature;
+struct vkCmdResetQueryPoolSignature;
+struct vkCmdWriteTimestampSignature;
+struct vkCmdCopyQueryPoolResultsSignature;
+struct vkCmdExecuteCommandsSignature;
+struct vkCreateEventSignature;
+struct vkDestroyEventSignature;
+struct vkGetEventStatusSignature;
+struct vkSetEventSignature;
+struct vkResetEventSignature;
+struct vkCreateBufferViewSignature;
+struct vkDestroyBufferViewSignature;
+struct vkCreateShaderModuleSignature;
+struct vkDestroyShaderModuleSignature;
+struct vkCreatePipelineCacheSignature;
+struct vkDestroyPipelineCacheSignature;
+struct vkGetPipelineCacheDataSignature;
+struct vkMergePipelineCachesSignature;
+struct vkCreateComputePipelinesSignature;
+struct vkDestroyPipelineSignature;
+struct vkCreatePipelineLayoutSignature;
+struct vkDestroyPipelineLayoutSignature;
+struct vkCreateSamplerSignature;
+struct vkDestroySamplerSignature;
+struct vkCreateDescriptorSetLayoutSignature;
+struct vkDestroyDescriptorSetLayoutSignature;
+struct vkCreateDescriptorPoolSignature;
+struct vkDestroyDescriptorPoolSignature;
+struct vkResetDescriptorPoolSignature;
+struct vkAllocateDescriptorSetsSignature;
+struct vkFreeDescriptorSetsSignature;
+struct vkUpdateDescriptorSetsSignature;
+struct vkCmdBindPipelineSignature;
+struct vkCmdBindDescriptorSetsSignature;
+struct vkCmdClearColorImageSignature;
+struct vkCmdDispatchSignature;
+struct vkCmdDispatchIndirectSignature;
+struct vkCmdSetEventSignature;
+struct vkCmdResetEventSignature;
+struct vkCmdWaitEventsSignature;
+struct vkCmdPushConstantsSignature;
+struct vkCreateGraphicsPipelinesSignature;
+struct vkCreateFramebufferSignature;
+struct vkDestroyFramebufferSignature;
+struct vkCreateRenderPassSignature;
+struct vkDestroyRenderPassSignature;
+struct vkGetRenderAreaGranularitySignature;
+struct vkCmdSetViewportSignature;
+struct vkCmdSetScissorSignature;
+struct vkCmdSetLineWidthSignature;
+struct vkCmdSetDepthBiasSignature;
+struct vkCmdSetBlendConstantsSignature;
+struct vkCmdSetDepthBoundsSignature;
+struct vkCmdSetStencilCompareMaskSignature;
+struct vkCmdSetStencilWriteMaskSignature;
+struct vkCmdSetStencilReferenceSignature;
+struct vkCmdBindIndexBufferSignature;
+struct vkCmdBindVertexBuffersSignature;
+struct vkCmdDrawSignature;
+struct vkCmdDrawIndexedSignature;
+struct vkCmdDrawIndirectSignature;
+struct vkCmdDrawIndexedIndirectSignature;
+struct vkCmdBlitImageSignature;
+struct vkCmdClearDepthStencilImageSignature;
+struct vkCmdClearAttachmentsSignature;
+struct vkCmdResolveImageSignature;
+struct vkCmdBeginRenderPassSignature;
+struct vkCmdNextSubpassSignature;
+struct vkCmdEndRenderPassSignature;
+struct vkEnumerateInstanceVersionSignature;
+struct vkBindBufferMemory2Signature;
+struct vkBindImageMemory2Signature;
+struct vkGetDeviceGroupPeerMemoryFeaturesSignature;
+struct vkCmdSetDeviceMaskSignature;
+struct vkEnumeratePhysicalDeviceGroupsSignature;
+struct vkGetImageMemoryRequirements2Signature;
+struct vkGetBufferMemoryRequirements2Signature;
+struct vkGetImageSparseMemoryRequirements2Signature;
+struct vkGetPhysicalDeviceFeatures2Signature;
+struct vkGetPhysicalDeviceProperties2Signature;
+struct vkGetPhysicalDeviceFormatProperties2Signature;
+struct vkGetPhysicalDeviceImageFormatProperties2Signature;
+struct vkGetPhysicalDeviceQueueFamilyProperties2Signature;
+struct vkGetPhysicalDeviceMemoryProperties2Signature;
+struct vkGetPhysicalDeviceSparseImageFormatProperties2Signature;
+struct vkTrimCommandPoolSignature;
+struct vkGetDeviceQueue2Signature;
+struct vkGetPhysicalDeviceExternalBufferPropertiesSignature;
+struct vkGetPhysicalDeviceExternalFencePropertiesSignature;
+struct vkGetPhysicalDeviceExternalSemaphorePropertiesSignature;
+struct vkCmdDispatchBaseSignature;
+struct vkCreateDescriptorUpdateTemplateSignature;
+struct vkDestroyDescriptorUpdateTemplateSignature;
+struct vkUpdateDescriptorSetWithTemplateSignature;
+struct vkGetDescriptorSetLayoutSupportSignature;
+struct vkCreateSamplerYcbcrConversionSignature;
+struct vkDestroySamplerYcbcrConversionSignature;
+struct vkResetQueryPoolSignature;
+struct vkGetSemaphoreCounterValueSignature;
+struct vkWaitSemaphoresSignature;
+struct vkSignalSemaphoreSignature;
+struct vkGetBufferDeviceAddressSignature;
+struct vkGetBufferOpaqueCaptureAddressSignature;
+struct vkGetDeviceMemoryOpaqueCaptureAddressSignature;
+struct vkCmdDrawIndirectCountSignature;
+struct vkCmdDrawIndexedIndirectCountSignature;
+struct vkCreateRenderPass2Signature;
+struct vkCmdBeginRenderPass2Signature;
+struct vkCmdNextSubpass2Signature;
+struct vkCmdEndRenderPass2Signature;
+struct vkGetPhysicalDeviceToolPropertiesSignature;
+struct vkCreatePrivateDataSlotSignature;
+struct vkDestroyPrivateDataSlotSignature;
+struct vkSetPrivateDataSignature;
+struct vkGetPrivateDataSignature;
+struct vkCmdPipelineBarrier2Signature;
+struct vkCmdWriteTimestamp2Signature;
+struct vkQueueSubmit2Signature;
+struct vkCmdCopyBuffer2Signature;
+struct vkCmdCopyImage2Signature;
+struct vkCmdCopyBufferToImage2Signature;
+struct vkCmdCopyImageToBuffer2Signature;
+struct vkGetDeviceBufferMemoryRequirementsSignature;
+struct vkGetDeviceImageMemoryRequirementsSignature;
+struct vkGetDeviceImageSparseMemoryRequirementsSignature;
+struct vkCmdSetEvent2Signature;
+struct vkCmdResetEvent2Signature;
+struct vkCmdWaitEvents2Signature;
+struct vkCmdBlitImage2Signature;
+struct vkCmdResolveImage2Signature;
+struct vkCmdBeginRenderingSignature;
+struct vkCmdEndRenderingSignature;
+struct vkCmdSetCullModeSignature;
+struct vkCmdSetFrontFaceSignature;
+struct vkCmdSetPrimitiveTopologySignature;
+struct vkCmdSetViewportWithCountSignature;
+struct vkCmdSetScissorWithCountSignature;
+struct vkCmdBindVertexBuffers2Signature;
+struct vkCmdSetDepthTestEnableSignature;
+struct vkCmdSetDepthWriteEnableSignature;
+struct vkCmdSetDepthCompareOpSignature;
+struct vkCmdSetDepthBoundsTestEnableSignature;
+struct vkCmdSetStencilTestEnableSignature;
+struct vkCmdSetStencilOpSignature;
+struct vkCmdSetRasterizerDiscardEnableSignature;
+struct vkCmdSetDepthBiasEnableSignature;
+struct vkCmdSetPrimitiveRestartEnableSignature;
+struct vkMapMemory2Signature;
+struct vkUnmapMemory2Signature;
+struct vkGetDeviceImageSubresourceLayoutSignature;
+struct vkGetImageSubresourceLayout2Signature;
+struct vkCopyMemoryToImageSignature;
+struct vkCopyImageToMemorySignature;
+struct vkCopyImageToImageSignature;
+struct vkTransitionImageLayoutSignature;
+struct vkCmdPushDescriptorSetSignature;
+struct vkCmdPushDescriptorSetWithTemplateSignature;
+struct vkCmdBindDescriptorSets2Signature;
+struct vkCmdPushConstants2Signature;
+struct vkCmdPushDescriptorSet2Signature;
+struct vkCmdPushDescriptorSetWithTemplate2Signature;
+struct vkCmdSetLineStippleSignature;
+struct vkCmdBindIndexBuffer2Signature;
+struct vkGetRenderingAreaGranularitySignature;
+struct vkCmdSetRenderingAttachmentLocationsSignature;
+struct vkCmdSetRenderingInputAttachmentIndicesSignature;
+struct vkDestroySurfaceKHRSignature;
+struct vkGetPhysicalDeviceSurfaceSupportKHRSignature;
+struct vkGetPhysicalDeviceSurfaceCapabilitiesKHRSignature;
+struct vkGetPhysicalDeviceSurfaceFormatsKHRSignature;
+struct vkGetPhysicalDeviceSurfacePresentModesKHRSignature;
+struct vkCreateSwapchainKHRSignature;
+struct vkDestroySwapchainKHRSignature;
+struct vkGetSwapchainImagesKHRSignature;
+struct vkAcquireNextImageKHRSignature;
+struct vkQueuePresentKHRSignature;
+struct vkGetDeviceGroupPresentCapabilitiesKHRSignature;
+struct vkGetDeviceGroupSurfacePresentModesKHRSignature;
+struct vkGetPhysicalDevicePresentRectanglesKHRSignature;
+struct vkAcquireNextImage2KHRSignature;
+struct vkGetPhysicalDeviceDisplayPropertiesKHRSignature;
+struct vkGetPhysicalDeviceDisplayPlanePropertiesKHRSignature;
+struct vkGetDisplayPlaneSupportedDisplaysKHRSignature;
+struct vkGetDisplayModePropertiesKHRSignature;
+struct vkCreateDisplayModeKHRSignature;
+struct vkGetDisplayPlaneCapabilitiesKHRSignature;
+struct vkCreateDisplayPlaneSurfaceKHRSignature;
+struct vkCreateSharedSwapchainsKHRSignature;
+struct vkCreateXlibSurfaceKHRSignature;
+struct vkGetPhysicalDeviceXlibPresentationSupportKHRSignature;
+struct vkCreateXcbSurfaceKHRSignature;
+struct vkGetPhysicalDeviceXcbPresentationSupportKHRSignature;
+struct vkCreateWaylandSurfaceKHRSignature;
+struct vkGetPhysicalDeviceWaylandPresentationSupportKHRSignature;
+struct vkCreateAndroidSurfaceKHRSignature;
+struct vkCreateWin32SurfaceKHRSignature;
+struct vkGetPhysicalDeviceWin32PresentationSupportKHRSignature;
+struct vkGetPhysicalDeviceVideoCapabilitiesKHRSignature;
+struct vkGetPhysicalDeviceVideoFormatPropertiesKHRSignature;
+struct vkCreateVideoSessionKHRSignature;
+struct vkDestroyVideoSessionKHRSignature;
+struct vkGetVideoSessionMemoryRequirementsKHRSignature;
+struct vkBindVideoSessionMemoryKHRSignature;
+struct vkCreateVideoSessionParametersKHRSignature;
+struct vkUpdateVideoSessionParametersKHRSignature;
+struct vkDestroyVideoSessionParametersKHRSignature;
+struct vkCmdBeginVideoCodingKHRSignature;
+struct vkCmdEndVideoCodingKHRSignature;
+struct vkCmdControlVideoCodingKHRSignature;
+struct vkCmdDecodeVideoKHRSignature;
+struct vkCmdBeginRenderingKHRSignature;
+struct vkCmdEndRenderingKHRSignature;
+struct vkGetPhysicalDeviceFeatures2KHRSignature;
+struct vkGetPhysicalDeviceProperties2KHRSignature;
+struct vkGetPhysicalDeviceFormatProperties2KHRSignature;
+struct vkGetPhysicalDeviceImageFormatProperties2KHRSignature;
+struct vkGetPhysicalDeviceQueueFamilyProperties2KHRSignature;
+struct vkGetPhysicalDeviceMemoryProperties2KHRSignature;
+struct vkGetPhysicalDeviceSparseImageFormatProperties2KHRSignature;
+struct vkGetDeviceGroupPeerMemoryFeaturesKHRSignature;
+struct vkCmdSetDeviceMaskKHRSignature;
+struct vkCmdDispatchBaseKHRSignature;
+struct vkTrimCommandPoolKHRSignature;
+struct vkEnumeratePhysicalDeviceGroupsKHRSignature;
+struct vkGetPhysicalDeviceExternalBufferPropertiesKHRSignature;
+struct vkGetMemoryWin32HandleKHRSignature;
+struct vkGetMemoryWin32HandlePropertiesKHRSignature;
+struct vkGetMemoryFdKHRSignature;
+struct vkGetMemoryFdPropertiesKHRSignature;
+struct vkGetPhysicalDeviceExternalSemaphorePropertiesKHRSignature;
+struct vkImportSemaphoreWin32HandleKHRSignature;
+struct vkGetSemaphoreWin32HandleKHRSignature;
+struct vkImportSemaphoreFdKHRSignature;
+struct vkGetSemaphoreFdKHRSignature;
+struct vkCmdPushDescriptorSetKHRSignature;
+struct vkCmdPushDescriptorSetWithTemplateKHRSignature;
+struct vkCreateDescriptorUpdateTemplateKHRSignature;
+struct vkDestroyDescriptorUpdateTemplateKHRSignature;
+struct vkUpdateDescriptorSetWithTemplateKHRSignature;
+struct vkCreateRenderPass2KHRSignature;
+struct vkCmdBeginRenderPass2KHRSignature;
+struct vkCmdNextSubpass2KHRSignature;
+struct vkCmdEndRenderPass2KHRSignature;
+struct vkGetSwapchainStatusKHRSignature;
+struct vkGetPhysicalDeviceExternalFencePropertiesKHRSignature;
+struct vkImportFenceWin32HandleKHRSignature;
+struct vkGetFenceWin32HandleKHRSignature;
+struct vkImportFenceFdKHRSignature;
+struct vkGetFenceFdKHRSignature;
+struct vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHRSignature;
+struct vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHRSignature;
+struct vkAcquireProfilingLockKHRSignature;
+struct vkReleaseProfilingLockKHRSignature;
+struct vkGetPhysicalDeviceSurfaceCapabilities2KHRSignature;
+struct vkGetPhysicalDeviceSurfaceFormats2KHRSignature;
+struct vkGetPhysicalDeviceDisplayProperties2KHRSignature;
+struct vkGetPhysicalDeviceDisplayPlaneProperties2KHRSignature;
+struct vkGetDisplayModeProperties2KHRSignature;
+struct vkGetDisplayPlaneCapabilities2KHRSignature;
+struct vkGetImageMemoryRequirements2KHRSignature;
+struct vkGetBufferMemoryRequirements2KHRSignature;
+struct vkGetImageSparseMemoryRequirements2KHRSignature;
+struct vkCreateSamplerYcbcrConversionKHRSignature;
+struct vkDestroySamplerYcbcrConversionKHRSignature;
+struct vkBindBufferMemory2KHRSignature;
+struct vkBindImageMemory2KHRSignature;
+struct vkGetDescriptorSetLayoutSupportKHRSignature;
+struct vkCmdDrawIndirectCountKHRSignature;
+struct vkCmdDrawIndexedIndirectCountKHRSignature;
+struct vkGetSemaphoreCounterValueKHRSignature;
+struct vkWaitSemaphoresKHRSignature;
+struct vkSignalSemaphoreKHRSignature;
+struct vkGetPhysicalDeviceFragmentShadingRatesKHRSignature;
+struct vkCmdSetFragmentShadingRateKHRSignature;
+struct vkCmdSetRenderingAttachmentLocationsKHRSignature;
+struct vkCmdSetRenderingInputAttachmentIndicesKHRSignature;
+struct vkWaitForPresentKHRSignature;
+struct vkGetBufferDeviceAddressKHRSignature;
+struct vkGetBufferOpaqueCaptureAddressKHRSignature;
+struct vkGetDeviceMemoryOpaqueCaptureAddressKHRSignature;
+struct vkCreateDeferredOperationKHRSignature;
+struct vkDestroyDeferredOperationKHRSignature;
+struct vkGetDeferredOperationMaxConcurrencyKHRSignature;
+struct vkGetDeferredOperationResultKHRSignature;
+struct vkDeferredOperationJoinKHRSignature;
+struct vkGetPipelineExecutablePropertiesKHRSignature;
+struct vkGetPipelineExecutableStatisticsKHRSignature;
+struct vkGetPipelineExecutableInternalRepresentationsKHRSignature;
+struct vkMapMemory2KHRSignature;
+struct vkUnmapMemory2KHRSignature;
+struct vkGetPhysicalDeviceVideoEncodeQualityLevelPropertiesKHRSignature;
+struct vkGetEncodedVideoSessionParametersKHRSignature;
+struct vkCmdEncodeVideoKHRSignature;
+struct vkCmdSetEvent2KHRSignature;
+struct vkCmdResetEvent2KHRSignature;
+struct vkCmdWaitEvents2KHRSignature;
+struct vkCmdPipelineBarrier2KHRSignature;
+struct vkCmdWriteTimestamp2KHRSignature;
+struct vkQueueSubmit2KHRSignature;
+struct vkCmdCopyBuffer2KHRSignature;
+struct vkCmdCopyImage2KHRSignature;
+struct vkCmdCopyBufferToImage2KHRSignature;
+struct vkCmdCopyImageToBuffer2KHRSignature;
+struct vkCmdBlitImage2KHRSignature;
+struct vkCmdResolveImage2KHRSignature;
+struct vkCmdTraceRaysIndirect2KHRSignature;
+struct vkGetDeviceBufferMemoryRequirementsKHRSignature;
+struct vkGetDeviceImageMemoryRequirementsKHRSignature;
+struct vkGetDeviceImageSparseMemoryRequirementsKHRSignature;
+struct vkCmdBindIndexBuffer2KHRSignature;
+struct vkGetRenderingAreaGranularityKHRSignature;
+struct vkGetDeviceImageSubresourceLayoutKHRSignature;
+struct vkGetImageSubresourceLayout2KHRSignature;
+struct vkWaitForPresent2KHRSignature;
+struct vkCreatePipelineBinariesKHRSignature;
+struct vkDestroyPipelineBinaryKHRSignature;
+struct vkGetPipelineKeyKHRSignature;
+struct vkGetPipelineBinaryDataKHRSignature;
+struct vkReleaseCapturedPipelineDataKHRSignature;
+struct vkReleaseSwapchainImagesKHRSignature;
+struct vkGetPhysicalDeviceCooperativeMatrixPropertiesKHRSignature;
+struct vkCmdSetLineStippleKHRSignature;
+struct vkGetPhysicalDeviceCalibrateableTimeDomainsKHRSignature;
+struct vkGetCalibratedTimestampsKHRSignature;
+struct vkCmdBindDescriptorSets2KHRSignature;
+struct vkCmdPushConstants2KHRSignature;
+struct vkCmdPushDescriptorSet2KHRSignature;
+struct vkCmdPushDescriptorSetWithTemplate2KHRSignature;
+struct vkCmdSetDescriptorBufferOffsets2EXTSignature;
+struct vkCmdBindDescriptorBufferEmbeddedSamplers2EXTSignature;
+struct vkCmdCopyMemoryIndirectKHRSignature;
+struct vkCmdCopyMemoryToImageIndirectKHRSignature;
+struct vkCmdEndRendering2KHRSignature;
+struct vkCreateDebugReportCallbackEXTSignature;
+struct vkDestroyDebugReportCallbackEXTSignature;
+struct vkDebugReportMessageEXTSignature;
+struct vkDebugMarkerSetObjectTagEXTSignature;
+struct vkDebugMarkerSetObjectNameEXTSignature;
+struct vkCmdDebugMarkerBeginEXTSignature;
+struct vkCmdDebugMarkerEndEXTSignature;
+struct vkCmdDebugMarkerInsertEXTSignature;
+struct vkCmdBindTransformFeedbackBuffersEXTSignature;
+struct vkCmdBeginTransformFeedbackEXTSignature;
+struct vkCmdEndTransformFeedbackEXTSignature;
+struct vkCmdBeginQueryIndexedEXTSignature;
+struct vkCmdEndQueryIndexedEXTSignature;
+struct vkCmdDrawIndirectByteCountEXTSignature;
+struct vkCreateCuModuleNVXSignature;
+struct vkCreateCuFunctionNVXSignature;
+struct vkDestroyCuModuleNVXSignature;
+struct vkDestroyCuFunctionNVXSignature;
+struct vkCmdCuLaunchKernelNVXSignature;
+struct vkGetImageViewHandleNVXSignature;
+struct vkGetImageViewHandle64NVXSignature;
+struct vkGetImageViewAddressNVXSignature;
+struct vkCmdDrawIndirectCountAMDSignature;
+struct vkCmdDrawIndexedIndirectCountAMDSignature;
+struct vkGetShaderInfoAMDSignature;
+struct vkCreateStreamDescriptorSurfaceGGPSignature;
+struct vkGetPhysicalDeviceExternalImageFormatPropertiesNVSignature;
+struct vkGetMemoryWin32HandleNVSignature;
+struct vkCreateViSurfaceNNSignature;
+struct vkCmdBeginConditionalRenderingEXTSignature;
+struct vkCmdEndConditionalRenderingEXTSignature;
+struct vkCmdSetViewportWScalingNVSignature;
+struct vkReleaseDisplayEXTSignature;
+struct vkAcquireXlibDisplayEXTSignature;
+struct vkGetRandROutputDisplayEXTSignature;
+struct vkGetPhysicalDeviceSurfaceCapabilities2EXTSignature;
+struct vkDisplayPowerControlEXTSignature;
+struct vkRegisterDeviceEventEXTSignature;
+struct vkRegisterDisplayEventEXTSignature;
+struct vkGetSwapchainCounterEXTSignature;
+struct vkGetRefreshCycleDurationGOOGLESignature;
+struct vkGetPastPresentationTimingGOOGLESignature;
+struct vkCmdSetDiscardRectangleEXTSignature;
+struct vkCmdSetDiscardRectangleEnableEXTSignature;
+struct vkCmdSetDiscardRectangleModeEXTSignature;
+struct vkSetHdrMetadataEXTSignature;
+struct vkCreateIOSSurfaceMVKSignature;
+struct vkCreateMacOSSurfaceMVKSignature;
+struct vkSetDebugUtilsObjectNameEXTSignature;
+struct vkSetDebugUtilsObjectTagEXTSignature;
+struct vkQueueBeginDebugUtilsLabelEXTSignature;
+struct vkQueueEndDebugUtilsLabelEXTSignature;
+struct vkQueueInsertDebugUtilsLabelEXTSignature;
+struct vkCmdBeginDebugUtilsLabelEXTSignature;
+struct vkCmdEndDebugUtilsLabelEXTSignature;
+struct vkCmdInsertDebugUtilsLabelEXTSignature;
+struct vkCreateDebugUtilsMessengerEXTSignature;
+struct vkDestroyDebugUtilsMessengerEXTSignature;
+struct vkSubmitDebugUtilsMessageEXTSignature;
+struct vkGetAndroidHardwareBufferPropertiesANDROIDSignature;
+struct vkGetMemoryAndroidHardwareBufferANDROIDSignature;
+struct vkCreateExecutionGraphPipelinesAMDXSignature;
+struct vkGetExecutionGraphPipelineScratchSizeAMDXSignature;
+struct vkGetExecutionGraphPipelineNodeIndexAMDXSignature;
+struct vkCmdInitializeGraphScratchMemoryAMDXSignature;
+struct vkCmdDispatchGraphAMDXSignature;
+struct vkCmdDispatchGraphIndirectAMDXSignature;
+struct vkCmdDispatchGraphIndirectCountAMDXSignature;
+struct vkCmdSetSampleLocationsEXTSignature;
+struct vkGetPhysicalDeviceMultisamplePropertiesEXTSignature;
+struct vkGetImageDrmFormatModifierPropertiesEXTSignature;
+struct vkCreateValidationCacheEXTSignature;
+struct vkDestroyValidationCacheEXTSignature;
+struct vkMergeValidationCachesEXTSignature;
+struct vkGetValidationCacheDataEXTSignature;
+struct vkCmdBindShadingRateImageNVSignature;
+struct vkCmdSetViewportShadingRatePaletteNVSignature;
+struct vkCmdSetCoarseSampleOrderNVSignature;
+struct vkCreateAccelerationStructureNVSignature;
+struct vkDestroyAccelerationStructureNVSignature;
+struct vkGetAccelerationStructureMemoryRequirementsNVSignature;
+struct vkBindAccelerationStructureMemoryNVSignature;
+struct vkCmdBuildAccelerationStructureNVSignature;
+struct vkCmdCopyAccelerationStructureNVSignature;
+struct vkCmdTraceRaysNVSignature;
+struct vkCreateRayTracingPipelinesNVSignature;
+struct vkGetRayTracingShaderGroupHandlesKHRSignature;
+struct vkGetRayTracingShaderGroupHandlesNVSignature;
+struct vkGetAccelerationStructureHandleNVSignature;
+struct vkCmdWriteAccelerationStructuresPropertiesNVSignature;
+struct vkCompileDeferredNVSignature;
+struct vkGetMemoryHostPointerPropertiesEXTSignature;
+struct vkCmdWriteBufferMarkerAMDSignature;
+struct vkCmdWriteBufferMarker2AMDSignature;
+struct vkGetPhysicalDeviceCalibrateableTimeDomainsEXTSignature;
+struct vkGetCalibratedTimestampsEXTSignature;
+struct vkCmdDrawMeshTasksNVSignature;
+struct vkCmdDrawMeshTasksIndirectNVSignature;
+struct vkCmdDrawMeshTasksIndirectCountNVSignature;
+struct vkCmdSetExclusiveScissorEnableNVSignature;
+struct vkCmdSetExclusiveScissorNVSignature;
+struct vkCmdSetCheckpointNVSignature;
+struct vkGetQueueCheckpointDataNVSignature;
+struct vkGetQueueCheckpointData2NVSignature;
+struct vkSetSwapchainPresentTimingQueueSizeEXTSignature;
+struct vkGetSwapchainTimingPropertiesEXTSignature;
+struct vkGetSwapchainTimeDomainPropertiesEXTSignature;
+struct vkGetPastPresentationTimingEXTSignature;
+struct vkInitializePerformanceApiINTELSignature;
+struct vkUninitializePerformanceApiINTELSignature;
+struct vkCmdSetPerformanceMarkerINTELSignature;
+struct vkCmdSetPerformanceStreamMarkerINTELSignature;
+struct vkCmdSetPerformanceOverrideINTELSignature;
+struct vkAcquirePerformanceConfigurationINTELSignature;
+struct vkReleasePerformanceConfigurationINTELSignature;
+struct vkQueueSetPerformanceConfigurationINTELSignature;
+struct vkGetPerformanceParameterINTELSignature;
+struct vkSetLocalDimmingAMDSignature;
+struct vkCreateImagePipeSurfaceFUCHSIASignature;
+struct vkCreateMetalSurfaceEXTSignature;
+struct vkGetBufferDeviceAddressEXTSignature;
+struct vkGetPhysicalDeviceToolPropertiesEXTSignature;
+struct vkGetPhysicalDeviceCooperativeMatrixPropertiesNVSignature;
+struct vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNVSignature;
+struct vkGetPhysicalDeviceSurfacePresentModes2EXTSignature;
+struct vkAcquireFullScreenExclusiveModeEXTSignature;
+struct vkReleaseFullScreenExclusiveModeEXTSignature;
+struct vkGetDeviceGroupSurfacePresentModes2EXTSignature;
+struct vkCreateHeadlessSurfaceEXTSignature;
+struct vkCmdSetLineStippleEXTSignature;
+struct vkResetQueryPoolEXTSignature;
+struct vkCmdSetCullModeEXTSignature;
+struct vkCmdSetFrontFaceEXTSignature;
+struct vkCmdSetPrimitiveTopologyEXTSignature;
+struct vkCmdSetViewportWithCountEXTSignature;
+struct vkCmdSetScissorWithCountEXTSignature;
+struct vkCmdBindVertexBuffers2EXTSignature;
+struct vkCmdSetDepthTestEnableEXTSignature;
+struct vkCmdSetDepthWriteEnableEXTSignature;
+struct vkCmdSetDepthCompareOpEXTSignature;
+struct vkCmdSetDepthBoundsTestEnableEXTSignature;
+struct vkCmdSetStencilTestEnableEXTSignature;
+struct vkCmdSetStencilOpEXTSignature;
+struct vkCopyMemoryToImageEXTSignature;
+struct vkCopyImageToMemoryEXTSignature;
+struct vkCopyImageToImageEXTSignature;
+struct vkTransitionImageLayoutEXTSignature;
+struct vkGetImageSubresourceLayout2EXTSignature;
+struct vkReleaseSwapchainImagesEXTSignature;
+struct vkGetGeneratedCommandsMemoryRequirementsNVSignature;
+struct vkCmdPreprocessGeneratedCommandsNVSignature;
+struct vkCmdExecuteGeneratedCommandsNVSignature;
+struct vkCmdBindPipelineShaderGroupNVSignature;
+struct vkCreateIndirectCommandsLayoutNVSignature;
+struct vkDestroyIndirectCommandsLayoutNVSignature;
+struct vkCmdSetDepthBias2EXTSignature;
+struct vkAcquireDrmDisplayEXTSignature;
+struct vkGetDrmDisplayEXTSignature;
+struct vkCreatePrivateDataSlotEXTSignature;
+struct vkDestroyPrivateDataSlotEXTSignature;
+struct vkSetPrivateDataEXTSignature;
+struct vkGetPrivateDataEXTSignature;
+struct vkCreateCudaModuleNVSignature;
+struct vkGetCudaModuleCacheNVSignature;
+struct vkCreateCudaFunctionNVSignature;
+struct vkDestroyCudaModuleNVSignature;
+struct vkDestroyCudaFunctionNVSignature;
+struct vkCmdCudaLaunchKernelNVSignature;
+struct vkCmdDispatchTileQCOMSignature;
+struct vkCmdBeginPerTileExecutionQCOMSignature;
+struct vkCmdEndPerTileExecutionQCOMSignature;
+struct vkExportMetalObjectsEXTSignature;
+struct vkGetDescriptorSetLayoutSizeEXTSignature;
+struct vkGetDescriptorSetLayoutBindingOffsetEXTSignature;
+struct vkGetDescriptorEXTSignature;
+struct vkCmdBindDescriptorBuffersEXTSignature;
+struct vkCmdSetDescriptorBufferOffsetsEXTSignature;
+struct vkCmdBindDescriptorBufferEmbeddedSamplersEXTSignature;
+struct vkGetBufferOpaqueCaptureDescriptorDataEXTSignature;
+struct vkGetImageOpaqueCaptureDescriptorDataEXTSignature;
+struct vkGetImageViewOpaqueCaptureDescriptorDataEXTSignature;
+struct vkGetSamplerOpaqueCaptureDescriptorDataEXTSignature;
+struct vkGetAccelerationStructureOpaqueCaptureDescriptorDataEXTSignature;
+struct vkCmdSetFragmentShadingRateEnumNVSignature;
+struct vkGetDeviceFaultInfoEXTSignature;
+struct vkAcquireWinrtDisplayNVSignature;
+struct vkGetWinrtDisplayNVSignature;
+struct vkCreateDirectFBSurfaceEXTSignature;
+struct vkGetPhysicalDeviceDirectFBPresentationSupportEXTSignature;
+struct vkCmdSetVertexInputEXTSignature;
+struct vkGetMemoryZirconHandleFUCHSIASignature;
+struct vkGetMemoryZirconHandlePropertiesFUCHSIASignature;
+struct vkImportSemaphoreZirconHandleFUCHSIASignature;
+struct vkGetSemaphoreZirconHandleFUCHSIASignature;
+struct vkCreateBufferCollectionFUCHSIASignature;
+struct vkSetBufferCollectionImageConstraintsFUCHSIASignature;
+struct vkSetBufferCollectionBufferConstraintsFUCHSIASignature;
+struct vkDestroyBufferCollectionFUCHSIASignature;
+struct vkGetBufferCollectionPropertiesFUCHSIASignature;
+struct vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEISignature;
+struct vkCmdSubpassShadingHUAWEISignature;
+struct vkCmdBindInvocationMaskHUAWEISignature;
+struct vkGetMemoryRemoteAddressNVSignature;
+struct vkGetPipelinePropertiesEXTSignature;
+struct vkCmdSetPatchControlPointsEXTSignature;
+struct vkCmdSetRasterizerDiscardEnableEXTSignature;
+struct vkCmdSetDepthBiasEnableEXTSignature;
+struct vkCmdSetLogicOpEXTSignature;
+struct vkCmdSetPrimitiveRestartEnableEXTSignature;
+struct vkCreateScreenSurfaceQNXSignature;
+struct vkGetPhysicalDeviceScreenPresentationSupportQNXSignature;
+struct vkCmdSetColorWriteEnableEXTSignature;
+struct vkCmdDrawMultiEXTSignature;
+struct vkCmdDrawMultiIndexedEXTSignature;
+struct vkCreateMicromapEXTSignature;
+struct vkDestroyMicromapEXTSignature;
+struct vkCmdBuildMicromapsEXTSignature;
+struct vkBuildMicromapsEXTSignature;
+struct vkCopyMicromapEXTSignature;
+struct vkCopyMicromapToMemoryEXTSignature;
+struct vkCopyMemoryToMicromapEXTSignature;
+struct vkWriteMicromapsPropertiesEXTSignature;
+struct vkCmdCopyMicromapEXTSignature;
+struct vkCmdCopyMicromapToMemoryEXTSignature;
+struct vkCmdCopyMemoryToMicromapEXTSignature;
+struct vkCmdWriteMicromapsPropertiesEXTSignature;
+struct vkGetDeviceMicromapCompatibilityEXTSignature;
+struct vkGetMicromapBuildSizesEXTSignature;
+struct vkCmdDrawClusterHUAWEISignature;
+struct vkCmdDrawClusterIndirectHUAWEISignature;
+struct vkSetDeviceMemoryPriorityEXTSignature;
+struct vkGetDescriptorSetLayoutHostMappingInfoVALVESignature;
+struct vkGetDescriptorSetHostMappingVALVESignature;
+struct vkCmdCopyMemoryIndirectNVSignature;
+struct vkCmdCopyMemoryToImageIndirectNVSignature;
+struct vkCmdDecompressMemoryNVSignature;
+struct vkCmdDecompressMemoryIndirectCountNVSignature;
+struct vkGetPipelineIndirectMemoryRequirementsNVSignature;
+struct vkCmdUpdatePipelineIndirectBufferNVSignature;
+struct vkGetPipelineIndirectDeviceAddressNVSignature;
+struct vkGetNativeBufferPropertiesOHOSSignature;
+struct vkGetMemoryNativeBufferOHOSSignature;
+struct vkCmdSetDepthClampEnableEXTSignature;
+struct vkCmdSetPolygonModeEXTSignature;
+struct vkCmdSetRasterizationSamplesEXTSignature;
+struct vkCmdSetSampleMaskEXTSignature;
+struct vkCmdSetAlphaToCoverageEnableEXTSignature;
+struct vkCmdSetAlphaToOneEnableEXTSignature;
+struct vkCmdSetLogicOpEnableEXTSignature;
+struct vkCmdSetColorBlendEnableEXTSignature;
+struct vkCmdSetColorBlendEquationEXTSignature;
+struct vkCmdSetColorWriteMaskEXTSignature;
+struct vkCmdSetTessellationDomainOriginEXTSignature;
+struct vkCmdSetRasterizationStreamEXTSignature;
+struct vkCmdSetConservativeRasterizationModeEXTSignature;
+struct vkCmdSetExtraPrimitiveOverestimationSizeEXTSignature;
+struct vkCmdSetDepthClipEnableEXTSignature;
+struct vkCmdSetSampleLocationsEnableEXTSignature;
+struct vkCmdSetColorBlendAdvancedEXTSignature;
+struct vkCmdSetProvokingVertexModeEXTSignature;
+struct vkCmdSetLineRasterizationModeEXTSignature;
+struct vkCmdSetLineStippleEnableEXTSignature;
+struct vkCmdSetDepthClipNegativeOneToOneEXTSignature;
+struct vkCmdSetViewportWScalingEnableNVSignature;
+struct vkCmdSetViewportSwizzleNVSignature;
+struct vkCmdSetCoverageToColorEnableNVSignature;
+struct vkCmdSetCoverageToColorLocationNVSignature;
+struct vkCmdSetCoverageModulationModeNVSignature;
+struct vkCmdSetCoverageModulationTableEnableNVSignature;
+struct vkCmdSetCoverageModulationTableNVSignature;
+struct vkCmdSetShadingRateImageEnableNVSignature;
+struct vkCmdSetRepresentativeFragmentTestEnableNVSignature;
+struct vkCmdSetCoverageReductionModeNVSignature;
+struct vkCreateTensorARMSignature;
+struct vkDestroyTensorARMSignature;
+struct vkCreateTensorViewARMSignature;
+struct vkDestroyTensorViewARMSignature;
+struct vkGetTensorMemoryRequirementsARMSignature;
+struct vkBindTensorMemoryARMSignature;
+struct vkGetDeviceTensorMemoryRequirementsARMSignature;
+struct vkCmdCopyTensorARMSignature;
+struct vkGetPhysicalDeviceExternalTensorPropertiesARMSignature;
+struct vkGetTensorOpaqueCaptureDescriptorDataARMSignature;
+struct vkGetTensorViewOpaqueCaptureDescriptorDataARMSignature;
+struct vkGetShaderModuleIdentifierEXTSignature;
+struct vkGetShaderModuleCreateInfoIdentifierEXTSignature;
+struct vkGetPhysicalDeviceOpticalFlowImageFormatsNVSignature;
+struct vkCreateOpticalFlowSessionNVSignature;
+struct vkDestroyOpticalFlowSessionNVSignature;
+struct vkBindOpticalFlowSessionImageNVSignature;
+struct vkCmdOpticalFlowExecuteNVSignature;
+struct vkAntiLagUpdateAMDSignature;
+struct vkCreateShadersEXTSignature;
+struct vkDestroyShaderEXTSignature;
+struct vkGetShaderBinaryDataEXTSignature;
+struct vkCmdBindShadersEXTSignature;
+struct vkCmdSetDepthClampRangeEXTSignature;
+struct vkGetFramebufferTilePropertiesQCOMSignature;
+struct vkGetDynamicRenderingTilePropertiesQCOMSignature;
+struct vkGetPhysicalDeviceCooperativeVectorPropertiesNVSignature;
+struct vkConvertCooperativeVectorMatrixNVSignature;
+struct vkCmdConvertCooperativeVectorMatrixNVSignature;
+struct vkSetLatencySleepModeNVSignature;
+struct vkLatencySleepNVSignature;
+struct vkSetLatencyMarkerNVSignature;
+struct vkGetLatencyTimingsNVSignature;
+struct vkQueueNotifyOutOfBandNVSignature;
+struct vkCreateDataGraphPipelinesARMSignature;
+struct vkCreateDataGraphPipelineSessionARMSignature;
+struct vkGetDataGraphPipelineSessionBindPointRequirementsARMSignature;
+struct vkGetDataGraphPipelineSessionMemoryRequirementsARMSignature;
+struct vkBindDataGraphPipelineSessionMemoryARMSignature;
+struct vkDestroyDataGraphPipelineSessionARMSignature;
+struct vkCmdDispatchDataGraphARMSignature;
+struct vkGetDataGraphPipelineAvailablePropertiesARMSignature;
+struct vkGetDataGraphPipelinePropertiesARMSignature;
+struct vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARMSignature;
+struct vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARMSignature;
+struct vkCmdSetAttachmentFeedbackLoopEnableEXTSignature;
+struct vkGetScreenBufferPropertiesQNXSignature;
+struct vkCmdBindTileMemoryQCOMSignature;
+struct vkCmdDecompressMemoryEXTSignature;
+struct vkCmdDecompressMemoryIndirectCountEXTSignature;
+struct vkCreateExternalComputeQueueNVSignature;
+struct vkDestroyExternalComputeQueueNVSignature;
+struct vkGetExternalComputeQueueDataNVSignature;
+struct vkGetClusterAccelerationStructureBuildSizesNVSignature;
+struct vkCmdBuildClusterAccelerationStructureIndirectNVSignature;
+struct vkGetPartitionedAccelerationStructuresBuildSizesNVSignature;
+struct vkCmdBuildPartitionedAccelerationStructuresNVSignature;
+struct vkGetGeneratedCommandsMemoryRequirementsEXTSignature;
+struct vkCmdPreprocessGeneratedCommandsEXTSignature;
+struct vkCmdExecuteGeneratedCommandsEXTSignature;
+struct vkCreateIndirectCommandsLayoutEXTSignature;
+struct vkDestroyIndirectCommandsLayoutEXTSignature;
+struct vkCreateIndirectExecutionSetEXTSignature;
+struct vkDestroyIndirectExecutionSetEXTSignature;
+struct vkUpdateIndirectExecutionSetPipelineEXTSignature;
+struct vkUpdateIndirectExecutionSetShaderEXTSignature;
+struct vkCreateSurfaceOHOSSignature;
+struct vkGetSwapchainGrallocUsageOHOSSignature;
+struct vkAcquireImageOHOSSignature;
+struct vkQueueSignalReleaseImageOHOSSignature;
+struct vkGetPhysicalDeviceCooperativeMatrixFlexibleDimensionsPropertiesNVSignature;
+struct vkGetMemoryMetalHandleEXTSignature;
+struct vkGetMemoryMetalHandlePropertiesEXTSignature;
+struct vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARMSignature;
+struct vkCmdEndRendering2EXTSignature;
+struct vkCmdBeginCustomResolveEXTSignature;
+struct vkCreateAccelerationStructureKHRSignature;
+struct vkDestroyAccelerationStructureKHRSignature;
+struct vkCmdBuildAccelerationStructuresKHRSignature;
+struct vkCmdBuildAccelerationStructuresIndirectKHRSignature;
+struct vkBuildAccelerationStructuresKHRSignature;
+struct vkCopyAccelerationStructureKHRSignature;
+struct vkCopyAccelerationStructureToMemoryKHRSignature;
+struct vkCopyMemoryToAccelerationStructureKHRSignature;
+struct vkWriteAccelerationStructuresPropertiesKHRSignature;
+struct vkCmdCopyAccelerationStructureKHRSignature;
+struct vkCmdCopyAccelerationStructureToMemoryKHRSignature;
+struct vkCmdCopyMemoryToAccelerationStructureKHRSignature;
+struct vkGetAccelerationStructureDeviceAddressKHRSignature;
+struct vkCmdWriteAccelerationStructuresPropertiesKHRSignature;
+struct vkGetDeviceAccelerationStructureCompatibilityKHRSignature;
+struct vkGetAccelerationStructureBuildSizesKHRSignature;
+struct vkCmdTraceRaysKHRSignature;
+struct vkCreateRayTracingPipelinesKHRSignature;
+struct vkGetRayTracingCaptureReplayShaderGroupHandlesKHRSignature;
+struct vkCmdTraceRaysIndirectKHRSignature;
+struct vkGetRayTracingShaderGroupStackSizeKHRSignature;
+struct vkCmdSetRayTracingPipelineStackSizeKHRSignature;
+struct vkCmdDrawMeshTasksEXTSignature;
+struct vkCmdDrawMeshTasksIndirectEXTSignature;
+struct vkCmdDrawMeshTasksIndirectCountEXTSignature;
 
 void SerializeToString(const vkCreateInstanceSignature& sig, std::stringstream& stream);
 void SerializeToString(const vkDestroyInstanceSignature& sig, std::stringstream& stream);
@@ -10717,6 +4669,11486 @@ void DeserializeFromJSON(vkCmdSetRayTracingPipelineStackSizeKHRSignature& sig, c
 void DeserializeFromJSON(vkCmdDrawMeshTasksEXTSignature& sig, const std::string& json);
 void DeserializeFromJSON(vkCmdDrawMeshTasksIndirectEXTSignature& sig, const std::string& json);
 void DeserializeFromJSON(vkCmdDrawMeshTasksIndirectCountEXTSignature& sig, const std::string& json);
+
+struct vkCreateInstanceSignature : public BaseSignature {
+    VkResult ret{};
+    VkInstanceCreateInfo* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkInstance* pInstance{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateInstanceSignature() {}
+};
+
+struct vkDestroyInstanceSignature : public BaseSignature {
+    VkInstance instance{};
+    VkAllocationCallbacks* pAllocator{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkDestroyInstanceSignature() {}
+};
+
+struct vkEnumeratePhysicalDevicesSignature : public BaseSignature {
+    VkResult ret{};
+    VkInstance instance{};
+    uint32_t* pPhysicalDeviceCount{};
+    VkPhysicalDevice* pPhysicalDevices{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkEnumeratePhysicalDevicesSignature() {}
+};
+
+struct vkGetPhysicalDeviceFeaturesSignature : public BaseSignature {
+    VkPhysicalDevice physicalDevice{};
+    VkPhysicalDeviceFeatures* pFeatures{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDeviceFeaturesSignature() {}
+};
+
+struct vkGetPhysicalDeviceFormatPropertiesSignature : public BaseSignature {
+    VkPhysicalDevice physicalDevice{};
+    VkFormat format{};
+    VkFormatProperties* pFormatProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDeviceFormatPropertiesSignature() {}
+};
+
+struct vkGetPhysicalDeviceImageFormatPropertiesSignature : public BaseSignature {
+    VkResult ret{};
+    VkPhysicalDevice physicalDevice{};
+    VkFormat format{};
+    VkImageType type{};
+    VkImageTiling tiling{};
+    VkImageUsageFlags usage{};
+    VkImageCreateFlags flags{};
+    VkImageFormatProperties* pImageFormatProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDeviceImageFormatPropertiesSignature() {}
+};
+
+struct vkGetPhysicalDevicePropertiesSignature : public BaseSignature {
+    VkPhysicalDevice physicalDevice{};
+    VkPhysicalDeviceProperties* pProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDevicePropertiesSignature() {}
+};
+
+struct vkGetPhysicalDeviceQueueFamilyPropertiesSignature : public BaseSignature {
+    VkPhysicalDevice physicalDevice{};
+    uint32_t* pQueueFamilyPropertyCount{};
+    VkQueueFamilyProperties* pQueueFamilyProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDeviceQueueFamilyPropertiesSignature() {}
+};
+
+struct vkGetPhysicalDeviceMemoryPropertiesSignature : public BaseSignature {
+    VkPhysicalDevice physicalDevice{};
+    VkPhysicalDeviceMemoryProperties* pMemoryProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDeviceMemoryPropertiesSignature() {}
+};
+
+struct vkGetInstanceProcAddrSignature : public BaseSignature {
+    PFN_vkVoidFunction ret{};
+    VkInstance instance{};
+    char* pName{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetInstanceProcAddrSignature() {}
+};
+
+struct vkGetDeviceProcAddrSignature : public BaseSignature {
+    PFN_vkVoidFunction ret{};
+    VkDevice device{};
+    char* pName{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetDeviceProcAddrSignature() {}
+};
+
+struct vkCreateDeviceSignature : public BaseSignature {
+    VkResult ret{};
+    VkPhysicalDevice physicalDevice{};
+    VkDeviceCreateInfo* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkDevice* pDevice{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateDeviceSignature() {}
+};
+
+struct vkDestroyDeviceSignature : public BaseSignature {
+    VkDevice device{};
+    VkAllocationCallbacks* pAllocator{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkDestroyDeviceSignature() {}
+};
+
+struct vkEnumerateInstanceExtensionPropertiesSignature : public BaseSignature {
+    VkResult ret{};
+    char* pLayerName{};
+    uint32_t* pPropertyCount{};
+    VkExtensionProperties* pProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkEnumerateInstanceExtensionPropertiesSignature() {}
+};
+
+struct vkEnumerateDeviceExtensionPropertiesSignature : public BaseSignature {
+    VkResult ret{};
+    VkPhysicalDevice physicalDevice{};
+    char* pLayerName{};
+    uint32_t* pPropertyCount{};
+    VkExtensionProperties* pProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkEnumerateDeviceExtensionPropertiesSignature() {}
+};
+
+struct vkEnumerateInstanceLayerPropertiesSignature : public BaseSignature {
+    VkResult ret{};
+    uint32_t* pPropertyCount{};
+    VkLayerProperties* pProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkEnumerateInstanceLayerPropertiesSignature() {}
+};
+
+struct vkEnumerateDeviceLayerPropertiesSignature : public BaseSignature {
+    VkResult ret{};
+    VkPhysicalDevice physicalDevice{};
+    uint32_t* pPropertyCount{};
+    VkLayerProperties* pProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkEnumerateDeviceLayerPropertiesSignature() {}
+};
+
+struct vkGetDeviceQueueSignature : public BaseSignature {
+    VkDevice device{};
+    uint32_t queueFamilyIndex{};
+    uint32_t queueIndex{};
+    VkQueue* pQueue{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetDeviceQueueSignature() {}
+};
+
+struct vkQueueSubmitSignature : public BaseSignature {
+    VkResult ret{};
+    VkQueue queue{};
+    uint32_t submitCount{};
+    VkSubmitInfo* pSubmits{};
+    VkFence fence{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkQueueSubmitSignature() {}
+};
+
+struct vkQueueWaitIdleSignature : public BaseSignature {
+    VkResult ret{};
+    VkQueue queue{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkQueueWaitIdleSignature() {}
+};
+
+struct vkDeviceWaitIdleSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkDeviceWaitIdleSignature() {}
+};
+
+struct vkAllocateMemorySignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkMemoryAllocateInfo* pAllocateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkDeviceMemory* pMemory{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkAllocateMemorySignature() {}
+};
+
+struct vkFreeMemorySignature : public BaseSignature {
+    VkDevice device{};
+    VkDeviceMemory memory{};
+    VkAllocationCallbacks* pAllocator{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkFreeMemorySignature() {}
+};
+
+struct vkMapMemorySignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkDeviceMemory memory{};
+    VkDeviceSize offset{};
+    VkDeviceSize size{};
+    VkMemoryMapFlags flags{};
+    void** ppData{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkMapMemorySignature() {}
+};
+
+struct vkUnmapMemorySignature : public BaseSignature {
+    VkDevice device{};
+    VkDeviceMemory memory{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkUnmapMemorySignature() {}
+};
+
+struct vkFlushMappedMemoryRangesSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    uint32_t memoryRangeCount{};
+    VkMappedMemoryRange* pMemoryRanges{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkFlushMappedMemoryRangesSignature() {}
+};
+
+struct vkInvalidateMappedMemoryRangesSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    uint32_t memoryRangeCount{};
+    VkMappedMemoryRange* pMemoryRanges{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkInvalidateMappedMemoryRangesSignature() {}
+};
+
+struct vkGetDeviceMemoryCommitmentSignature : public BaseSignature {
+    VkDevice device{};
+    VkDeviceMemory memory{};
+    VkDeviceSize* pCommittedMemoryInBytes{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetDeviceMemoryCommitmentSignature() {}
+};
+
+struct vkBindBufferMemorySignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkBuffer buffer{};
+    VkDeviceMemory memory{};
+    VkDeviceSize memoryOffset{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkBindBufferMemorySignature() {}
+};
+
+struct vkBindImageMemorySignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkImage image{};
+    VkDeviceMemory memory{};
+    VkDeviceSize memoryOffset{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkBindImageMemorySignature() {}
+};
+
+struct vkGetBufferMemoryRequirementsSignature : public BaseSignature {
+    VkDevice device{};
+    VkBuffer buffer{};
+    VkMemoryRequirements* pMemoryRequirements{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetBufferMemoryRequirementsSignature() {}
+};
+
+struct vkGetImageMemoryRequirementsSignature : public BaseSignature {
+    VkDevice device{};
+    VkImage image{};
+    VkMemoryRequirements* pMemoryRequirements{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetImageMemoryRequirementsSignature() {}
+};
+
+struct vkGetImageSparseMemoryRequirementsSignature : public BaseSignature {
+    VkDevice device{};
+    VkImage image{};
+    uint32_t* pSparseMemoryRequirementCount{};
+    VkSparseImageMemoryRequirements* pSparseMemoryRequirements{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetImageSparseMemoryRequirementsSignature() {}
+};
+
+struct vkGetPhysicalDeviceSparseImageFormatPropertiesSignature : public BaseSignature {
+    VkPhysicalDevice physicalDevice{};
+    VkFormat format{};
+    VkImageType type{};
+    VkSampleCountFlagBits samples{};
+    VkImageUsageFlags usage{};
+    VkImageTiling tiling{};
+    uint32_t* pPropertyCount{};
+    VkSparseImageFormatProperties* pProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDeviceSparseImageFormatPropertiesSignature() {}
+};
+
+struct vkQueueBindSparseSignature : public BaseSignature {
+    VkResult ret{};
+    VkQueue queue{};
+    uint32_t bindInfoCount{};
+    VkBindSparseInfo* pBindInfo{};
+    VkFence fence{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkQueueBindSparseSignature() {}
+};
+
+struct vkCreateFenceSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkFenceCreateInfo* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkFence* pFence{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateFenceSignature() {}
+};
+
+struct vkDestroyFenceSignature : public BaseSignature {
+    VkDevice device{};
+    VkFence fence{};
+    VkAllocationCallbacks* pAllocator{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkDestroyFenceSignature() {}
+};
+
+struct vkResetFencesSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    uint32_t fenceCount{};
+    VkFence* pFences{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkResetFencesSignature() {}
+};
+
+struct vkGetFenceStatusSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkFence fence{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetFenceStatusSignature() {}
+};
+
+struct vkWaitForFencesSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    uint32_t fenceCount{};
+    VkFence* pFences{};
+    VkBool32 waitAll{};
+    uint64_t timeout{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkWaitForFencesSignature() {}
+};
+
+struct vkCreateSemaphoreSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkSemaphoreCreateInfo* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkSemaphore* pSemaphore{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateSemaphoreSignature() {}
+};
+
+struct vkDestroySemaphoreSignature : public BaseSignature {
+    VkDevice device{};
+    VkSemaphore semaphore{};
+    VkAllocationCallbacks* pAllocator{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkDestroySemaphoreSignature() {}
+};
+
+struct vkCreateQueryPoolSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkQueryPoolCreateInfo* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkQueryPool* pQueryPool{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateQueryPoolSignature() {}
+};
+
+struct vkDestroyQueryPoolSignature : public BaseSignature {
+    VkDevice device{};
+    VkQueryPool queryPool{};
+    VkAllocationCallbacks* pAllocator{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkDestroyQueryPoolSignature() {}
+};
+
+struct vkGetQueryPoolResultsSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkQueryPool queryPool{};
+    uint32_t firstQuery{};
+    uint32_t queryCount{};
+    size_t dataSize{};
+    void* pData{};
+    VkDeviceSize stride{};
+    VkQueryResultFlags flags{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetQueryPoolResultsSignature() {}
+};
+
+struct vkCreateBufferSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkBufferCreateInfo* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkBuffer* pBuffer{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateBufferSignature() {}
+};
+
+struct vkDestroyBufferSignature : public BaseSignature {
+    VkDevice device{};
+    VkBuffer buffer{};
+    VkAllocationCallbacks* pAllocator{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkDestroyBufferSignature() {}
+};
+
+struct vkCreateImageSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkImageCreateInfo* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkImage* pImage{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateImageSignature() {}
+};
+
+struct vkDestroyImageSignature : public BaseSignature {
+    VkDevice device{};
+    VkImage image{};
+    VkAllocationCallbacks* pAllocator{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkDestroyImageSignature() {}
+};
+
+struct vkGetImageSubresourceLayoutSignature : public BaseSignature {
+    VkDevice device{};
+    VkImage image{};
+    VkImageSubresource* pSubresource{};
+    VkSubresourceLayout* pLayout{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetImageSubresourceLayoutSignature() {}
+};
+
+struct vkCreateImageViewSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkImageViewCreateInfo* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkImageView* pView{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateImageViewSignature() {}
+};
+
+struct vkDestroyImageViewSignature : public BaseSignature {
+    VkDevice device{};
+    VkImageView imageView{};
+    VkAllocationCallbacks* pAllocator{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkDestroyImageViewSignature() {}
+};
+
+struct vkCreateCommandPoolSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkCommandPoolCreateInfo* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkCommandPool* pCommandPool{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateCommandPoolSignature() {}
+};
+
+struct vkDestroyCommandPoolSignature : public BaseSignature {
+    VkDevice device{};
+    VkCommandPool commandPool{};
+    VkAllocationCallbacks* pAllocator{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkDestroyCommandPoolSignature() {}
+};
+
+struct vkResetCommandPoolSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkCommandPool commandPool{};
+    VkCommandPoolResetFlags flags{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkResetCommandPoolSignature() {}
+};
+
+struct vkAllocateCommandBuffersSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkCommandBufferAllocateInfo* pAllocateInfo{};
+    VkCommandBuffer* pCommandBuffers{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkAllocateCommandBuffersSignature() {}
+};
+
+struct vkFreeCommandBuffersSignature : public BaseSignature {
+    VkDevice device{};
+    VkCommandPool commandPool{};
+    uint32_t commandBufferCount{};
+    VkCommandBuffer* pCommandBuffers{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkFreeCommandBuffersSignature() {}
+};
+
+struct vkBeginCommandBufferSignature : public BaseSignature {
+    VkResult ret{};
+    VkCommandBuffer commandBuffer{};
+    VkCommandBufferBeginInfo* pBeginInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkBeginCommandBufferSignature() {}
+};
+
+struct vkEndCommandBufferSignature : public BaseSignature {
+    VkResult ret{};
+    VkCommandBuffer commandBuffer{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkEndCommandBufferSignature() {}
+};
+
+struct vkResetCommandBufferSignature : public BaseSignature {
+    VkResult ret{};
+    VkCommandBuffer commandBuffer{};
+    VkCommandBufferResetFlags flags{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkResetCommandBufferSignature() {}
+};
+
+struct vkCmdCopyBufferSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkBuffer srcBuffer{};
+    VkBuffer dstBuffer{};
+    uint32_t regionCount{};
+    VkBufferCopy* pRegions{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdCopyBufferSignature() {}
+};
+
+struct vkCmdCopyImageSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkImage srcImage{};
+    VkImageLayout srcImageLayout{};
+    VkImage dstImage{};
+    VkImageLayout dstImageLayout{};
+    uint32_t regionCount{};
+    VkImageCopy* pRegions{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdCopyImageSignature() {}
+};
+
+struct vkCmdCopyBufferToImageSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkBuffer srcBuffer{};
+    VkImage dstImage{};
+    VkImageLayout dstImageLayout{};
+    uint32_t regionCount{};
+    VkBufferImageCopy* pRegions{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdCopyBufferToImageSignature() {}
+};
+
+struct vkCmdCopyImageToBufferSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkImage srcImage{};
+    VkImageLayout srcImageLayout{};
+    VkBuffer dstBuffer{};
+    uint32_t regionCount{};
+    VkBufferImageCopy* pRegions{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdCopyImageToBufferSignature() {}
+};
+
+struct vkCmdUpdateBufferSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkBuffer dstBuffer{};
+    VkDeviceSize dstOffset{};
+    VkDeviceSize dataSize{};
+    void* pData{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdUpdateBufferSignature() {}
+};
+
+struct vkCmdFillBufferSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkBuffer dstBuffer{};
+    VkDeviceSize dstOffset{};
+    VkDeviceSize size{};
+    uint32_t data{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdFillBufferSignature() {}
+};
+
+struct vkCmdPipelineBarrierSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkPipelineStageFlags srcStageMask{};
+    VkPipelineStageFlags dstStageMask{};
+    VkDependencyFlags dependencyFlags{};
+    uint32_t memoryBarrierCount{};
+    VkMemoryBarrier* pMemoryBarriers{};
+    uint32_t bufferMemoryBarrierCount{};
+    VkBufferMemoryBarrier* pBufferMemoryBarriers{};
+    uint32_t imageMemoryBarrierCount{};
+    VkImageMemoryBarrier* pImageMemoryBarriers{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdPipelineBarrierSignature() {}
+};
+
+struct vkCmdBeginQuerySignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkQueryPool queryPool{};
+    uint32_t query{};
+    VkQueryControlFlags flags{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdBeginQuerySignature() {}
+};
+
+struct vkCmdEndQuerySignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkQueryPool queryPool{};
+    uint32_t query{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdEndQuerySignature() {}
+};
+
+struct vkCmdResetQueryPoolSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkQueryPool queryPool{};
+    uint32_t firstQuery{};
+    uint32_t queryCount{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdResetQueryPoolSignature() {}
+};
+
+struct vkCmdWriteTimestampSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkPipelineStageFlagBits pipelineStage{};
+    VkQueryPool queryPool{};
+    uint32_t query{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdWriteTimestampSignature() {}
+};
+
+struct vkCmdCopyQueryPoolResultsSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkQueryPool queryPool{};
+    uint32_t firstQuery{};
+    uint32_t queryCount{};
+    VkBuffer dstBuffer{};
+    VkDeviceSize dstOffset{};
+    VkDeviceSize stride{};
+    VkQueryResultFlags flags{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdCopyQueryPoolResultsSignature() {}
+};
+
+struct vkCmdExecuteCommandsSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    uint32_t commandBufferCount{};
+    VkCommandBuffer* pCommandBuffers{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdExecuteCommandsSignature() {}
+};
+
+struct vkCreateEventSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkEventCreateInfo* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkEvent* pEvent{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateEventSignature() {}
+};
+
+struct vkDestroyEventSignature : public BaseSignature {
+    VkDevice device{};
+    VkEvent event{};
+    VkAllocationCallbacks* pAllocator{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkDestroyEventSignature() {}
+};
+
+struct vkGetEventStatusSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkEvent event{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetEventStatusSignature() {}
+};
+
+struct vkSetEventSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkEvent event{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkSetEventSignature() {}
+};
+
+struct vkResetEventSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkEvent event{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkResetEventSignature() {}
+};
+
+struct vkCreateBufferViewSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkBufferViewCreateInfo* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkBufferView* pView{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateBufferViewSignature() {}
+};
+
+struct vkDestroyBufferViewSignature : public BaseSignature {
+    VkDevice device{};
+    VkBufferView bufferView{};
+    VkAllocationCallbacks* pAllocator{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkDestroyBufferViewSignature() {}
+};
+
+struct vkCreateShaderModuleSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkShaderModuleCreateInfo* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkShaderModule* pShaderModule{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateShaderModuleSignature() {}
+};
+
+struct vkDestroyShaderModuleSignature : public BaseSignature {
+    VkDevice device{};
+    VkShaderModule shaderModule{};
+    VkAllocationCallbacks* pAllocator{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkDestroyShaderModuleSignature() {}
+};
+
+struct vkCreatePipelineCacheSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkPipelineCacheCreateInfo* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkPipelineCache* pPipelineCache{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreatePipelineCacheSignature() {}
+};
+
+struct vkDestroyPipelineCacheSignature : public BaseSignature {
+    VkDevice device{};
+    VkPipelineCache pipelineCache{};
+    VkAllocationCallbacks* pAllocator{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkDestroyPipelineCacheSignature() {}
+};
+
+struct vkGetPipelineCacheDataSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkPipelineCache pipelineCache{};
+    size_t* pDataSize{};
+    void* pData{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPipelineCacheDataSignature() {}
+};
+
+struct vkMergePipelineCachesSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkPipelineCache dstCache{};
+    uint32_t srcCacheCount{};
+    VkPipelineCache* pSrcCaches{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkMergePipelineCachesSignature() {}
+};
+
+struct vkCreateComputePipelinesSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkPipelineCache pipelineCache{};
+    uint32_t createInfoCount{};
+    VkComputePipelineCreateInfo* pCreateInfos{};
+    VkAllocationCallbacks* pAllocator{};
+    VkPipeline* pPipelines{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateComputePipelinesSignature() {}
+};
+
+struct vkDestroyPipelineSignature : public BaseSignature {
+    VkDevice device{};
+    VkPipeline pipeline{};
+    VkAllocationCallbacks* pAllocator{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkDestroyPipelineSignature() {}
+};
+
+struct vkCreatePipelineLayoutSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkPipelineLayoutCreateInfo* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkPipelineLayout* pPipelineLayout{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreatePipelineLayoutSignature() {}
+};
+
+struct vkDestroyPipelineLayoutSignature : public BaseSignature {
+    VkDevice device{};
+    VkPipelineLayout pipelineLayout{};
+    VkAllocationCallbacks* pAllocator{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkDestroyPipelineLayoutSignature() {}
+};
+
+struct vkCreateSamplerSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkSamplerCreateInfo* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkSampler* pSampler{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateSamplerSignature() {}
+};
+
+struct vkDestroySamplerSignature : public BaseSignature {
+    VkDevice device{};
+    VkSampler sampler{};
+    VkAllocationCallbacks* pAllocator{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkDestroySamplerSignature() {}
+};
+
+struct vkCreateDescriptorSetLayoutSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkDescriptorSetLayoutCreateInfo* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkDescriptorSetLayout* pSetLayout{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateDescriptorSetLayoutSignature() {}
+};
+
+struct vkDestroyDescriptorSetLayoutSignature : public BaseSignature {
+    VkDevice device{};
+    VkDescriptorSetLayout descriptorSetLayout{};
+    VkAllocationCallbacks* pAllocator{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkDestroyDescriptorSetLayoutSignature() {}
+};
+
+struct vkCreateDescriptorPoolSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkDescriptorPoolCreateInfo* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkDescriptorPool* pDescriptorPool{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateDescriptorPoolSignature() {}
+};
+
+struct vkDestroyDescriptorPoolSignature : public BaseSignature {
+    VkDevice device{};
+    VkDescriptorPool descriptorPool{};
+    VkAllocationCallbacks* pAllocator{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkDestroyDescriptorPoolSignature() {}
+};
+
+struct vkResetDescriptorPoolSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkDescriptorPool descriptorPool{};
+    VkDescriptorPoolResetFlags flags{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkResetDescriptorPoolSignature() {}
+};
+
+struct vkAllocateDescriptorSetsSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkDescriptorSetAllocateInfo* pAllocateInfo{};
+    VkDescriptorSet* pDescriptorSets{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkAllocateDescriptorSetsSignature() {}
+};
+
+struct vkFreeDescriptorSetsSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkDescriptorPool descriptorPool{};
+    uint32_t descriptorSetCount{};
+    VkDescriptorSet* pDescriptorSets{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkFreeDescriptorSetsSignature() {}
+};
+
+struct vkUpdateDescriptorSetsSignature : public BaseSignature {
+    VkDevice device{};
+    uint32_t descriptorWriteCount{};
+    VkWriteDescriptorSet* pDescriptorWrites{};
+    uint32_t descriptorCopyCount{};
+    VkCopyDescriptorSet* pDescriptorCopies{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkUpdateDescriptorSetsSignature() {}
+};
+
+struct vkCmdBindPipelineSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkPipelineBindPoint pipelineBindPoint{};
+    VkPipeline pipeline{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdBindPipelineSignature() {}
+};
+
+struct vkCmdBindDescriptorSetsSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkPipelineBindPoint pipelineBindPoint{};
+    VkPipelineLayout layout{};
+    uint32_t firstSet{};
+    uint32_t descriptorSetCount{};
+    VkDescriptorSet* pDescriptorSets{};
+    uint32_t dynamicOffsetCount{};
+    uint32_t* pDynamicOffsets{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdBindDescriptorSetsSignature() {}
+};
+
+struct vkCmdClearColorImageSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkImage image{};
+    VkImageLayout imageLayout{};
+    VkClearColorValue* pColor{};
+    uint32_t rangeCount{};
+    VkImageSubresourceRange* pRanges{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdClearColorImageSignature() {}
+};
+
+struct vkCmdDispatchSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    uint32_t groupCountX{};
+    uint32_t groupCountY{};
+    uint32_t groupCountZ{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdDispatchSignature() {}
+};
+
+struct vkCmdDispatchIndirectSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkBuffer buffer{};
+    VkDeviceSize offset{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdDispatchIndirectSignature() {}
+};
+
+struct vkCmdSetEventSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkEvent event{};
+    VkPipelineStageFlags stageMask{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetEventSignature() {}
+};
+
+struct vkCmdResetEventSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkEvent event{};
+    VkPipelineStageFlags stageMask{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdResetEventSignature() {}
+};
+
+struct vkCmdWaitEventsSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    uint32_t eventCount{};
+    VkEvent* pEvents{};
+    VkPipelineStageFlags srcStageMask{};
+    VkPipelineStageFlags dstStageMask{};
+    uint32_t memoryBarrierCount{};
+    VkMemoryBarrier* pMemoryBarriers{};
+    uint32_t bufferMemoryBarrierCount{};
+    VkBufferMemoryBarrier* pBufferMemoryBarriers{};
+    uint32_t imageMemoryBarrierCount{};
+    VkImageMemoryBarrier* pImageMemoryBarriers{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdWaitEventsSignature() {}
+};
+
+struct vkCmdPushConstantsSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkPipelineLayout layout{};
+    VkShaderStageFlags stageFlags{};
+    uint32_t offset{};
+    uint32_t size{};
+    void* pValues{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdPushConstantsSignature() {}
+};
+
+struct vkCreateGraphicsPipelinesSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkPipelineCache pipelineCache{};
+    uint32_t createInfoCount{};
+    VkGraphicsPipelineCreateInfo* pCreateInfos{};
+    VkAllocationCallbacks* pAllocator{};
+    VkPipeline* pPipelines{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateGraphicsPipelinesSignature() {}
+};
+
+struct vkCreateFramebufferSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkFramebufferCreateInfo* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkFramebuffer* pFramebuffer{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateFramebufferSignature() {}
+};
+
+struct vkDestroyFramebufferSignature : public BaseSignature {
+    VkDevice device{};
+    VkFramebuffer framebuffer{};
+    VkAllocationCallbacks* pAllocator{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkDestroyFramebufferSignature() {}
+};
+
+struct vkCreateRenderPassSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkRenderPassCreateInfo* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkRenderPass* pRenderPass{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateRenderPassSignature() {}
+};
+
+struct vkDestroyRenderPassSignature : public BaseSignature {
+    VkDevice device{};
+    VkRenderPass renderPass{};
+    VkAllocationCallbacks* pAllocator{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkDestroyRenderPassSignature() {}
+};
+
+struct vkGetRenderAreaGranularitySignature : public BaseSignature {
+    VkDevice device{};
+    VkRenderPass renderPass{};
+    VkExtent2D* pGranularity{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetRenderAreaGranularitySignature() {}
+};
+
+struct vkCmdSetViewportSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    uint32_t firstViewport{};
+    uint32_t viewportCount{};
+    VkViewport* pViewports{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetViewportSignature() {}
+};
+
+struct vkCmdSetScissorSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    uint32_t firstScissor{};
+    uint32_t scissorCount{};
+    VkRect2D* pScissors{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetScissorSignature() {}
+};
+
+struct vkCmdSetLineWidthSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    float lineWidth{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetLineWidthSignature() {}
+};
+
+struct vkCmdSetDepthBiasSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    float depthBiasConstantFactor{};
+    float depthBiasClamp{};
+    float depthBiasSlopeFactor{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetDepthBiasSignature() {}
+};
+
+struct vkCmdSetBlendConstantsSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    float blendConstants[4]{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetBlendConstantsSignature() {}
+};
+
+struct vkCmdSetDepthBoundsSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    float minDepthBounds{};
+    float maxDepthBounds{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetDepthBoundsSignature() {}
+};
+
+struct vkCmdSetStencilCompareMaskSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkStencilFaceFlags faceMask{};
+    uint32_t compareMask{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetStencilCompareMaskSignature() {}
+};
+
+struct vkCmdSetStencilWriteMaskSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkStencilFaceFlags faceMask{};
+    uint32_t writeMask{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetStencilWriteMaskSignature() {}
+};
+
+struct vkCmdSetStencilReferenceSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkStencilFaceFlags faceMask{};
+    uint32_t reference{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetStencilReferenceSignature() {}
+};
+
+struct vkCmdBindIndexBufferSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkBuffer buffer{};
+    VkDeviceSize offset{};
+    VkIndexType indexType{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdBindIndexBufferSignature() {}
+};
+
+struct vkCmdBindVertexBuffersSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    uint32_t firstBinding{};
+    uint32_t bindingCount{};
+    VkBuffer* pBuffers{};
+    VkDeviceSize* pOffsets{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdBindVertexBuffersSignature() {}
+};
+
+struct vkCmdDrawSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    uint32_t vertexCount{};
+    uint32_t instanceCount{};
+    uint32_t firstVertex{};
+    uint32_t firstInstance{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdDrawSignature() {}
+};
+
+struct vkCmdDrawIndexedSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    uint32_t indexCount{};
+    uint32_t instanceCount{};
+    uint32_t firstIndex{};
+    int32_t vertexOffset{};
+    uint32_t firstInstance{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdDrawIndexedSignature() {}
+};
+
+struct vkCmdDrawIndirectSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkBuffer buffer{};
+    VkDeviceSize offset{};
+    uint32_t drawCount{};
+    uint32_t stride{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdDrawIndirectSignature() {}
+};
+
+struct vkCmdDrawIndexedIndirectSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkBuffer buffer{};
+    VkDeviceSize offset{};
+    uint32_t drawCount{};
+    uint32_t stride{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdDrawIndexedIndirectSignature() {}
+};
+
+struct vkCmdBlitImageSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkImage srcImage{};
+    VkImageLayout srcImageLayout{};
+    VkImage dstImage{};
+    VkImageLayout dstImageLayout{};
+    uint32_t regionCount{};
+    VkImageBlit* pRegions{};
+    VkFilter filter{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdBlitImageSignature() {}
+};
+
+struct vkCmdClearDepthStencilImageSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkImage image{};
+    VkImageLayout imageLayout{};
+    VkClearDepthStencilValue* pDepthStencil{};
+    uint32_t rangeCount{};
+    VkImageSubresourceRange* pRanges{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdClearDepthStencilImageSignature() {}
+};
+
+struct vkCmdClearAttachmentsSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    uint32_t attachmentCount{};
+    VkClearAttachment* pAttachments{};
+    uint32_t rectCount{};
+    VkClearRect* pRects{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdClearAttachmentsSignature() {}
+};
+
+struct vkCmdResolveImageSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkImage srcImage{};
+    VkImageLayout srcImageLayout{};
+    VkImage dstImage{};
+    VkImageLayout dstImageLayout{};
+    uint32_t regionCount{};
+    VkImageResolve* pRegions{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdResolveImageSignature() {}
+};
+
+struct vkCmdBeginRenderPassSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkRenderPassBeginInfo* pRenderPassBegin{};
+    VkSubpassContents contents{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdBeginRenderPassSignature() {}
+};
+
+struct vkCmdNextSubpassSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkSubpassContents contents{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdNextSubpassSignature() {}
+};
+
+struct vkCmdEndRenderPassSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdEndRenderPassSignature() {}
+};
+
+struct vkEnumerateInstanceVersionSignature : public BaseSignature {
+    VkResult ret{};
+    uint32_t* pApiVersion{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkEnumerateInstanceVersionSignature() {}
+};
+
+struct vkBindBufferMemory2Signature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    uint32_t bindInfoCount{};
+    VkBindBufferMemoryInfo* pBindInfos{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkBindBufferMemory2Signature() {}
+};
+
+struct vkBindImageMemory2Signature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    uint32_t bindInfoCount{};
+    VkBindImageMemoryInfo* pBindInfos{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkBindImageMemory2Signature() {}
+};
+
+struct vkGetDeviceGroupPeerMemoryFeaturesSignature : public BaseSignature {
+    VkDevice device{};
+    uint32_t heapIndex{};
+    uint32_t localDeviceIndex{};
+    uint32_t remoteDeviceIndex{};
+    VkPeerMemoryFeatureFlags* pPeerMemoryFeatures{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetDeviceGroupPeerMemoryFeaturesSignature() {}
+};
+
+struct vkCmdSetDeviceMaskSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    uint32_t deviceMask{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetDeviceMaskSignature() {}
+};
+
+struct vkEnumeratePhysicalDeviceGroupsSignature : public BaseSignature {
+    VkResult ret{};
+    VkInstance instance{};
+    uint32_t* pPhysicalDeviceGroupCount{};
+    VkPhysicalDeviceGroupProperties* pPhysicalDeviceGroupProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkEnumeratePhysicalDeviceGroupsSignature() {}
+};
+
+struct vkGetImageMemoryRequirements2Signature : public BaseSignature {
+    VkDevice device{};
+    VkImageMemoryRequirementsInfo2* pInfo{};
+    VkMemoryRequirements2* pMemoryRequirements{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetImageMemoryRequirements2Signature() {}
+};
+
+struct vkGetBufferMemoryRequirements2Signature : public BaseSignature {
+    VkDevice device{};
+    VkBufferMemoryRequirementsInfo2* pInfo{};
+    VkMemoryRequirements2* pMemoryRequirements{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetBufferMemoryRequirements2Signature() {}
+};
+
+struct vkGetImageSparseMemoryRequirements2Signature : public BaseSignature {
+    VkDevice device{};
+    VkImageSparseMemoryRequirementsInfo2* pInfo{};
+    uint32_t* pSparseMemoryRequirementCount{};
+    VkSparseImageMemoryRequirements2* pSparseMemoryRequirements{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetImageSparseMemoryRequirements2Signature() {}
+};
+
+struct vkGetPhysicalDeviceFeatures2Signature : public BaseSignature {
+    VkPhysicalDevice physicalDevice{};
+    VkPhysicalDeviceFeatures2* pFeatures{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDeviceFeatures2Signature() {}
+};
+
+struct vkGetPhysicalDeviceProperties2Signature : public BaseSignature {
+    VkPhysicalDevice physicalDevice{};
+    VkPhysicalDeviceProperties2* pProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDeviceProperties2Signature() {}
+};
+
+struct vkGetPhysicalDeviceFormatProperties2Signature : public BaseSignature {
+    VkPhysicalDevice physicalDevice{};
+    VkFormat format{};
+    VkFormatProperties2* pFormatProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDeviceFormatProperties2Signature() {}
+};
+
+struct vkGetPhysicalDeviceImageFormatProperties2Signature : public BaseSignature {
+    VkResult ret{};
+    VkPhysicalDevice physicalDevice{};
+    VkPhysicalDeviceImageFormatInfo2* pImageFormatInfo{};
+    VkImageFormatProperties2* pImageFormatProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDeviceImageFormatProperties2Signature() {}
+};
+
+struct vkGetPhysicalDeviceQueueFamilyProperties2Signature : public BaseSignature {
+    VkPhysicalDevice physicalDevice{};
+    uint32_t* pQueueFamilyPropertyCount{};
+    VkQueueFamilyProperties2* pQueueFamilyProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDeviceQueueFamilyProperties2Signature() {}
+};
+
+struct vkGetPhysicalDeviceMemoryProperties2Signature : public BaseSignature {
+    VkPhysicalDevice physicalDevice{};
+    VkPhysicalDeviceMemoryProperties2* pMemoryProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDeviceMemoryProperties2Signature() {}
+};
+
+struct vkGetPhysicalDeviceSparseImageFormatProperties2Signature : public BaseSignature {
+    VkPhysicalDevice physicalDevice{};
+    VkPhysicalDeviceSparseImageFormatInfo2* pFormatInfo{};
+    uint32_t* pPropertyCount{};
+    VkSparseImageFormatProperties2* pProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDeviceSparseImageFormatProperties2Signature() {}
+};
+
+struct vkTrimCommandPoolSignature : public BaseSignature {
+    VkDevice device{};
+    VkCommandPool commandPool{};
+    VkCommandPoolTrimFlags flags{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkTrimCommandPoolSignature() {}
+};
+
+struct vkGetDeviceQueue2Signature : public BaseSignature {
+    VkDevice device{};
+    VkDeviceQueueInfo2* pQueueInfo{};
+    VkQueue* pQueue{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetDeviceQueue2Signature() {}
+};
+
+struct vkGetPhysicalDeviceExternalBufferPropertiesSignature : public BaseSignature {
+    VkPhysicalDevice physicalDevice{};
+    VkPhysicalDeviceExternalBufferInfo* pExternalBufferInfo{};
+    VkExternalBufferProperties* pExternalBufferProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDeviceExternalBufferPropertiesSignature() {}
+};
+
+struct vkGetPhysicalDeviceExternalFencePropertiesSignature : public BaseSignature {
+    VkPhysicalDevice physicalDevice{};
+    VkPhysicalDeviceExternalFenceInfo* pExternalFenceInfo{};
+    VkExternalFenceProperties* pExternalFenceProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDeviceExternalFencePropertiesSignature() {}
+};
+
+struct vkGetPhysicalDeviceExternalSemaphorePropertiesSignature : public BaseSignature {
+    VkPhysicalDevice physicalDevice{};
+    VkPhysicalDeviceExternalSemaphoreInfo* pExternalSemaphoreInfo{};
+    VkExternalSemaphoreProperties* pExternalSemaphoreProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDeviceExternalSemaphorePropertiesSignature() {}
+};
+
+struct vkCmdDispatchBaseSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    uint32_t baseGroupX{};
+    uint32_t baseGroupY{};
+    uint32_t baseGroupZ{};
+    uint32_t groupCountX{};
+    uint32_t groupCountY{};
+    uint32_t groupCountZ{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdDispatchBaseSignature() {}
+};
+
+struct vkCreateDescriptorUpdateTemplateSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkDescriptorUpdateTemplateCreateInfo* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkDescriptorUpdateTemplate* pDescriptorUpdateTemplate{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateDescriptorUpdateTemplateSignature() {}
+};
+
+struct vkDestroyDescriptorUpdateTemplateSignature : public BaseSignature {
+    VkDevice device{};
+    VkDescriptorUpdateTemplate descriptorUpdateTemplate{};
+    VkAllocationCallbacks* pAllocator{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkDestroyDescriptorUpdateTemplateSignature() {}
+};
+
+struct vkUpdateDescriptorSetWithTemplateSignature : public BaseSignature {
+    VkDevice device{};
+    VkDescriptorSet descriptorSet{};
+    VkDescriptorUpdateTemplate descriptorUpdateTemplate{};
+    void* pData{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkUpdateDescriptorSetWithTemplateSignature() {}
+};
+
+struct vkGetDescriptorSetLayoutSupportSignature : public BaseSignature {
+    VkDevice device{};
+    VkDescriptorSetLayoutCreateInfo* pCreateInfo{};
+    VkDescriptorSetLayoutSupport* pSupport{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetDescriptorSetLayoutSupportSignature() {}
+};
+
+struct vkCreateSamplerYcbcrConversionSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkSamplerYcbcrConversionCreateInfo* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkSamplerYcbcrConversion* pYcbcrConversion{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateSamplerYcbcrConversionSignature() {}
+};
+
+struct vkDestroySamplerYcbcrConversionSignature : public BaseSignature {
+    VkDevice device{};
+    VkSamplerYcbcrConversion ycbcrConversion{};
+    VkAllocationCallbacks* pAllocator{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkDestroySamplerYcbcrConversionSignature() {}
+};
+
+struct vkResetQueryPoolSignature : public BaseSignature {
+    VkDevice device{};
+    VkQueryPool queryPool{};
+    uint32_t firstQuery{};
+    uint32_t queryCount{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkResetQueryPoolSignature() {}
+};
+
+struct vkGetSemaphoreCounterValueSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkSemaphore semaphore{};
+    uint64_t* pValue{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetSemaphoreCounterValueSignature() {}
+};
+
+struct vkWaitSemaphoresSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkSemaphoreWaitInfo* pWaitInfo{};
+    uint64_t timeout{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkWaitSemaphoresSignature() {}
+};
+
+struct vkSignalSemaphoreSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkSemaphoreSignalInfo* pSignalInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkSignalSemaphoreSignature() {}
+};
+
+struct vkGetBufferDeviceAddressSignature : public BaseSignature {
+    VkDeviceAddress ret{};
+    VkDevice device{};
+    VkBufferDeviceAddressInfo* pInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetBufferDeviceAddressSignature() {}
+};
+
+struct vkGetBufferOpaqueCaptureAddressSignature : public BaseSignature {
+    uint64_t ret{};
+    VkDevice device{};
+    VkBufferDeviceAddressInfo* pInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetBufferOpaqueCaptureAddressSignature() {}
+};
+
+struct vkGetDeviceMemoryOpaqueCaptureAddressSignature : public BaseSignature {
+    uint64_t ret{};
+    VkDevice device{};
+    VkDeviceMemoryOpaqueCaptureAddressInfo* pInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetDeviceMemoryOpaqueCaptureAddressSignature() {}
+};
+
+struct vkCmdDrawIndirectCountSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkBuffer buffer{};
+    VkDeviceSize offset{};
+    VkBuffer countBuffer{};
+    VkDeviceSize countBufferOffset{};
+    uint32_t maxDrawCount{};
+    uint32_t stride{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdDrawIndirectCountSignature() {}
+};
+
+struct vkCmdDrawIndexedIndirectCountSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkBuffer buffer{};
+    VkDeviceSize offset{};
+    VkBuffer countBuffer{};
+    VkDeviceSize countBufferOffset{};
+    uint32_t maxDrawCount{};
+    uint32_t stride{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdDrawIndexedIndirectCountSignature() {}
+};
+
+struct vkCreateRenderPass2Signature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkRenderPassCreateInfo2* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkRenderPass* pRenderPass{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateRenderPass2Signature() {}
+};
+
+struct vkCmdBeginRenderPass2Signature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkRenderPassBeginInfo* pRenderPassBegin{};
+    VkSubpassBeginInfo* pSubpassBeginInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdBeginRenderPass2Signature() {}
+};
+
+struct vkCmdNextSubpass2Signature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkSubpassBeginInfo* pSubpassBeginInfo{};
+    VkSubpassEndInfo* pSubpassEndInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdNextSubpass2Signature() {}
+};
+
+struct vkCmdEndRenderPass2Signature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkSubpassEndInfo* pSubpassEndInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdEndRenderPass2Signature() {}
+};
+
+struct vkGetPhysicalDeviceToolPropertiesSignature : public BaseSignature {
+    VkResult ret{};
+    VkPhysicalDevice physicalDevice{};
+    uint32_t* pToolCount{};
+    VkPhysicalDeviceToolProperties* pToolProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDeviceToolPropertiesSignature() {}
+};
+
+struct vkCreatePrivateDataSlotSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkPrivateDataSlotCreateInfo* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkPrivateDataSlot* pPrivateDataSlot{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreatePrivateDataSlotSignature() {}
+};
+
+struct vkDestroyPrivateDataSlotSignature : public BaseSignature {
+    VkDevice device{};
+    VkPrivateDataSlot privateDataSlot{};
+    VkAllocationCallbacks* pAllocator{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkDestroyPrivateDataSlotSignature() {}
+};
+
+struct vkSetPrivateDataSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkObjectType objectType{};
+    uint64_t objectHandle{};
+    VkPrivateDataSlot privateDataSlot{};
+    uint64_t data{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkSetPrivateDataSignature() {}
+};
+
+struct vkGetPrivateDataSignature : public BaseSignature {
+    VkDevice device{};
+    VkObjectType objectType{};
+    uint64_t objectHandle{};
+    VkPrivateDataSlot privateDataSlot{};
+    uint64_t* pData{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPrivateDataSignature() {}
+};
+
+struct vkCmdPipelineBarrier2Signature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkDependencyInfo* pDependencyInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdPipelineBarrier2Signature() {}
+};
+
+struct vkCmdWriteTimestamp2Signature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkPipelineStageFlags2 stage{};
+    VkQueryPool queryPool{};
+    uint32_t query{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdWriteTimestamp2Signature() {}
+};
+
+struct vkQueueSubmit2Signature : public BaseSignature {
+    VkResult ret{};
+    VkQueue queue{};
+    uint32_t submitCount{};
+    VkSubmitInfo2* pSubmits{};
+    VkFence fence{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkQueueSubmit2Signature() {}
+};
+
+struct vkCmdCopyBuffer2Signature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkCopyBufferInfo2* pCopyBufferInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdCopyBuffer2Signature() {}
+};
+
+struct vkCmdCopyImage2Signature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkCopyImageInfo2* pCopyImageInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdCopyImage2Signature() {}
+};
+
+struct vkCmdCopyBufferToImage2Signature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkCopyBufferToImageInfo2* pCopyBufferToImageInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdCopyBufferToImage2Signature() {}
+};
+
+struct vkCmdCopyImageToBuffer2Signature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkCopyImageToBufferInfo2* pCopyImageToBufferInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdCopyImageToBuffer2Signature() {}
+};
+
+struct vkGetDeviceBufferMemoryRequirementsSignature : public BaseSignature {
+    VkDevice device{};
+    VkDeviceBufferMemoryRequirements* pInfo{};
+    VkMemoryRequirements2* pMemoryRequirements{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetDeviceBufferMemoryRequirementsSignature() {}
+};
+
+struct vkGetDeviceImageMemoryRequirementsSignature : public BaseSignature {
+    VkDevice device{};
+    VkDeviceImageMemoryRequirements* pInfo{};
+    VkMemoryRequirements2* pMemoryRequirements{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetDeviceImageMemoryRequirementsSignature() {}
+};
+
+struct vkGetDeviceImageSparseMemoryRequirementsSignature : public BaseSignature {
+    VkDevice device{};
+    VkDeviceImageMemoryRequirements* pInfo{};
+    uint32_t* pSparseMemoryRequirementCount{};
+    VkSparseImageMemoryRequirements2* pSparseMemoryRequirements{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetDeviceImageSparseMemoryRequirementsSignature() {}
+};
+
+struct vkCmdSetEvent2Signature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkEvent event{};
+    VkDependencyInfo* pDependencyInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetEvent2Signature() {}
+};
+
+struct vkCmdResetEvent2Signature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkEvent event{};
+    VkPipelineStageFlags2 stageMask{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdResetEvent2Signature() {}
+};
+
+struct vkCmdWaitEvents2Signature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    uint32_t eventCount{};
+    VkEvent* pEvents{};
+    VkDependencyInfo* pDependencyInfos{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdWaitEvents2Signature() {}
+};
+
+struct vkCmdBlitImage2Signature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkBlitImageInfo2* pBlitImageInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdBlitImage2Signature() {}
+};
+
+struct vkCmdResolveImage2Signature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkResolveImageInfo2* pResolveImageInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdResolveImage2Signature() {}
+};
+
+struct vkCmdBeginRenderingSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkRenderingInfo* pRenderingInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdBeginRenderingSignature() {}
+};
+
+struct vkCmdEndRenderingSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdEndRenderingSignature() {}
+};
+
+struct vkCmdSetCullModeSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkCullModeFlags cullMode{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetCullModeSignature() {}
+};
+
+struct vkCmdSetFrontFaceSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkFrontFace frontFace{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetFrontFaceSignature() {}
+};
+
+struct vkCmdSetPrimitiveTopologySignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkPrimitiveTopology primitiveTopology{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetPrimitiveTopologySignature() {}
+};
+
+struct vkCmdSetViewportWithCountSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    uint32_t viewportCount{};
+    VkViewport* pViewports{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetViewportWithCountSignature() {}
+};
+
+struct vkCmdSetScissorWithCountSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    uint32_t scissorCount{};
+    VkRect2D* pScissors{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetScissorWithCountSignature() {}
+};
+
+struct vkCmdBindVertexBuffers2Signature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    uint32_t firstBinding{};
+    uint32_t bindingCount{};
+    VkBuffer* pBuffers{};
+    VkDeviceSize* pOffsets{};
+    VkDeviceSize* pSizes{};
+    VkDeviceSize* pStrides{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdBindVertexBuffers2Signature() {}
+};
+
+struct vkCmdSetDepthTestEnableSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkBool32 depthTestEnable{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetDepthTestEnableSignature() {}
+};
+
+struct vkCmdSetDepthWriteEnableSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkBool32 depthWriteEnable{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetDepthWriteEnableSignature() {}
+};
+
+struct vkCmdSetDepthCompareOpSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkCompareOp depthCompareOp{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetDepthCompareOpSignature() {}
+};
+
+struct vkCmdSetDepthBoundsTestEnableSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkBool32 depthBoundsTestEnable{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetDepthBoundsTestEnableSignature() {}
+};
+
+struct vkCmdSetStencilTestEnableSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkBool32 stencilTestEnable{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetStencilTestEnableSignature() {}
+};
+
+struct vkCmdSetStencilOpSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkStencilFaceFlags faceMask{};
+    VkStencilOp failOp{};
+    VkStencilOp passOp{};
+    VkStencilOp depthFailOp{};
+    VkCompareOp compareOp{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetStencilOpSignature() {}
+};
+
+struct vkCmdSetRasterizerDiscardEnableSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkBool32 rasterizerDiscardEnable{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetRasterizerDiscardEnableSignature() {}
+};
+
+struct vkCmdSetDepthBiasEnableSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkBool32 depthBiasEnable{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetDepthBiasEnableSignature() {}
+};
+
+struct vkCmdSetPrimitiveRestartEnableSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkBool32 primitiveRestartEnable{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetPrimitiveRestartEnableSignature() {}
+};
+
+struct vkMapMemory2Signature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkMemoryMapInfo* pMemoryMapInfo{};
+    void** ppData{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkMapMemory2Signature() {}
+};
+
+struct vkUnmapMemory2Signature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkMemoryUnmapInfo* pMemoryUnmapInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkUnmapMemory2Signature() {}
+};
+
+struct vkGetDeviceImageSubresourceLayoutSignature : public BaseSignature {
+    VkDevice device{};
+    VkDeviceImageSubresourceInfo* pInfo{};
+    VkSubresourceLayout2* pLayout{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetDeviceImageSubresourceLayoutSignature() {}
+};
+
+struct vkGetImageSubresourceLayout2Signature : public BaseSignature {
+    VkDevice device{};
+    VkImage image{};
+    VkImageSubresource2* pSubresource{};
+    VkSubresourceLayout2* pLayout{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetImageSubresourceLayout2Signature() {}
+};
+
+struct vkCopyMemoryToImageSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkCopyMemoryToImageInfo* pCopyMemoryToImageInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCopyMemoryToImageSignature() {}
+};
+
+struct vkCopyImageToMemorySignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkCopyImageToMemoryInfo* pCopyImageToMemoryInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCopyImageToMemorySignature() {}
+};
+
+struct vkCopyImageToImageSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkCopyImageToImageInfo* pCopyImageToImageInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCopyImageToImageSignature() {}
+};
+
+struct vkTransitionImageLayoutSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    uint32_t transitionCount{};
+    VkHostImageLayoutTransitionInfo* pTransitions{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkTransitionImageLayoutSignature() {}
+};
+
+struct vkCmdPushDescriptorSetSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkPipelineBindPoint pipelineBindPoint{};
+    VkPipelineLayout layout{};
+    uint32_t set{};
+    uint32_t descriptorWriteCount{};
+    VkWriteDescriptorSet* pDescriptorWrites{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdPushDescriptorSetSignature() {}
+};
+
+struct vkCmdPushDescriptorSetWithTemplateSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkDescriptorUpdateTemplate descriptorUpdateTemplate{};
+    VkPipelineLayout layout{};
+    uint32_t set{};
+    void* pData{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdPushDescriptorSetWithTemplateSignature() {}
+};
+
+struct vkCmdBindDescriptorSets2Signature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkBindDescriptorSetsInfo* pBindDescriptorSetsInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdBindDescriptorSets2Signature() {}
+};
+
+struct vkCmdPushConstants2Signature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkPushConstantsInfo* pPushConstantsInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdPushConstants2Signature() {}
+};
+
+struct vkCmdPushDescriptorSet2Signature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkPushDescriptorSetInfo* pPushDescriptorSetInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdPushDescriptorSet2Signature() {}
+};
+
+struct vkCmdPushDescriptorSetWithTemplate2Signature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkPushDescriptorSetWithTemplateInfo* pPushDescriptorSetWithTemplateInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdPushDescriptorSetWithTemplate2Signature() {}
+};
+
+struct vkCmdSetLineStippleSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    uint32_t lineStippleFactor{};
+    uint16_t lineStipplePattern{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetLineStippleSignature() {}
+};
+
+struct vkCmdBindIndexBuffer2Signature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkBuffer buffer{};
+    VkDeviceSize offset{};
+    VkDeviceSize size{};
+    VkIndexType indexType{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdBindIndexBuffer2Signature() {}
+};
+
+struct vkGetRenderingAreaGranularitySignature : public BaseSignature {
+    VkDevice device{};
+    VkRenderingAreaInfo* pRenderingAreaInfo{};
+    VkExtent2D* pGranularity{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetRenderingAreaGranularitySignature() {}
+};
+
+struct vkCmdSetRenderingAttachmentLocationsSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkRenderingAttachmentLocationInfo* pLocationInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetRenderingAttachmentLocationsSignature() {}
+};
+
+struct vkCmdSetRenderingInputAttachmentIndicesSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkRenderingInputAttachmentIndexInfo* pInputAttachmentIndexInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetRenderingInputAttachmentIndicesSignature() {}
+};
+
+struct vkDestroySurfaceKHRSignature : public BaseSignature {
+    VkInstance instance{};
+    VkSurfaceKHR surface{};
+    VkAllocationCallbacks* pAllocator{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkDestroySurfaceKHRSignature() {}
+};
+
+struct vkGetPhysicalDeviceSurfaceSupportKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkPhysicalDevice physicalDevice{};
+    uint32_t queueFamilyIndex{};
+    VkSurfaceKHR surface{};
+    VkBool32* pSupported{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDeviceSurfaceSupportKHRSignature() {}
+};
+
+struct vkGetPhysicalDeviceSurfaceCapabilitiesKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkPhysicalDevice physicalDevice{};
+    VkSurfaceKHR surface{};
+    VkSurfaceCapabilitiesKHR* pSurfaceCapabilities{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDeviceSurfaceCapabilitiesKHRSignature() {}
+};
+
+struct vkGetPhysicalDeviceSurfaceFormatsKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkPhysicalDevice physicalDevice{};
+    VkSurfaceKHR surface{};
+    uint32_t* pSurfaceFormatCount{};
+    VkSurfaceFormatKHR* pSurfaceFormats{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDeviceSurfaceFormatsKHRSignature() {}
+};
+
+struct vkGetPhysicalDeviceSurfacePresentModesKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkPhysicalDevice physicalDevice{};
+    VkSurfaceKHR surface{};
+    uint32_t* pPresentModeCount{};
+    VkPresentModeKHR* pPresentModes{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDeviceSurfacePresentModesKHRSignature() {}
+};
+
+struct vkCreateSwapchainKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkSwapchainCreateInfoKHR* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkSwapchainKHR* pSwapchain{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateSwapchainKHRSignature() {}
+};
+
+struct vkDestroySwapchainKHRSignature : public BaseSignature {
+    VkDevice device{};
+    VkSwapchainKHR swapchain{};
+    VkAllocationCallbacks* pAllocator{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkDestroySwapchainKHRSignature() {}
+};
+
+struct vkGetSwapchainImagesKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkSwapchainKHR swapchain{};
+    uint32_t* pSwapchainImageCount{};
+    VkImage* pSwapchainImages{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetSwapchainImagesKHRSignature() {}
+};
+
+struct vkAcquireNextImageKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkSwapchainKHR swapchain{};
+    uint64_t timeout{};
+    VkSemaphore semaphore{};
+    VkFence fence{};
+    uint32_t* pImageIndex{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkAcquireNextImageKHRSignature() {}
+};
+
+struct vkQueuePresentKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkQueue queue{};
+    VkPresentInfoKHR* pPresentInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkQueuePresentKHRSignature() {}
+};
+
+struct vkGetDeviceGroupPresentCapabilitiesKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkDeviceGroupPresentCapabilitiesKHR* pDeviceGroupPresentCapabilities{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetDeviceGroupPresentCapabilitiesKHRSignature() {}
+};
+
+struct vkGetDeviceGroupSurfacePresentModesKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkSurfaceKHR surface{};
+    VkDeviceGroupPresentModeFlagsKHR* pModes{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetDeviceGroupSurfacePresentModesKHRSignature() {}
+};
+
+struct vkGetPhysicalDevicePresentRectanglesKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkPhysicalDevice physicalDevice{};
+    VkSurfaceKHR surface{};
+    uint32_t* pRectCount{};
+    VkRect2D* pRects{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDevicePresentRectanglesKHRSignature() {}
+};
+
+struct vkAcquireNextImage2KHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkAcquireNextImageInfoKHR* pAcquireInfo{};
+    uint32_t* pImageIndex{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkAcquireNextImage2KHRSignature() {}
+};
+
+struct vkGetPhysicalDeviceDisplayPropertiesKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkPhysicalDevice physicalDevice{};
+    uint32_t* pPropertyCount{};
+    VkDisplayPropertiesKHR* pProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDeviceDisplayPropertiesKHRSignature() {}
+};
+
+struct vkGetPhysicalDeviceDisplayPlanePropertiesKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkPhysicalDevice physicalDevice{};
+    uint32_t* pPropertyCount{};
+    VkDisplayPlanePropertiesKHR* pProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDeviceDisplayPlanePropertiesKHRSignature() {}
+};
+
+struct vkGetDisplayPlaneSupportedDisplaysKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkPhysicalDevice physicalDevice{};
+    uint32_t planeIndex{};
+    uint32_t* pDisplayCount{};
+    VkDisplayKHR* pDisplays{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetDisplayPlaneSupportedDisplaysKHRSignature() {}
+};
+
+struct vkGetDisplayModePropertiesKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkPhysicalDevice physicalDevice{};
+    VkDisplayKHR display{};
+    uint32_t* pPropertyCount{};
+    VkDisplayModePropertiesKHR* pProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetDisplayModePropertiesKHRSignature() {}
+};
+
+struct vkCreateDisplayModeKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkPhysicalDevice physicalDevice{};
+    VkDisplayKHR display{};
+    VkDisplayModeCreateInfoKHR* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkDisplayModeKHR* pMode{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateDisplayModeKHRSignature() {}
+};
+
+struct vkGetDisplayPlaneCapabilitiesKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkPhysicalDevice physicalDevice{};
+    VkDisplayModeKHR mode{};
+    uint32_t planeIndex{};
+    VkDisplayPlaneCapabilitiesKHR* pCapabilities{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetDisplayPlaneCapabilitiesKHRSignature() {}
+};
+
+struct vkCreateDisplayPlaneSurfaceKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkInstance instance{};
+    VkDisplaySurfaceCreateInfoKHR* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkSurfaceKHR* pSurface{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateDisplayPlaneSurfaceKHRSignature() {}
+};
+
+struct vkCreateSharedSwapchainsKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    uint32_t swapchainCount{};
+    VkSwapchainCreateInfoKHR* pCreateInfos{};
+    VkAllocationCallbacks* pAllocator{};
+    VkSwapchainKHR* pSwapchains{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateSharedSwapchainsKHRSignature() {}
+};
+
+struct vkCreateXlibSurfaceKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkInstance instance{};
+    VkXlibSurfaceCreateInfoKHR* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkSurfaceKHR* pSurface{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateXlibSurfaceKHRSignature() {}
+};
+
+struct vkGetPhysicalDeviceXlibPresentationSupportKHRSignature : public BaseSignature {
+    VkBool32 ret{};
+    VkPhysicalDevice physicalDevice{};
+    uint32_t queueFamilyIndex{};
+    Display* dpy{};
+    VisualID visualID{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDeviceXlibPresentationSupportKHRSignature() {}
+};
+
+struct vkCreateXcbSurfaceKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkInstance instance{};
+    VkXcbSurfaceCreateInfoKHR* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkSurfaceKHR* pSurface{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateXcbSurfaceKHRSignature() {}
+};
+
+struct vkGetPhysicalDeviceXcbPresentationSupportKHRSignature : public BaseSignature {
+    VkBool32 ret{};
+    VkPhysicalDevice physicalDevice{};
+    uint32_t queueFamilyIndex{};
+    xcb_connection_t* connection{};
+    xcb_visualid_t visual_id{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDeviceXcbPresentationSupportKHRSignature() {}
+};
+
+struct vkCreateWaylandSurfaceKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkInstance instance{};
+    VkWaylandSurfaceCreateInfoKHR* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkSurfaceKHR* pSurface{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateWaylandSurfaceKHRSignature() {}
+};
+
+struct vkGetPhysicalDeviceWaylandPresentationSupportKHRSignature : public BaseSignature {
+    VkBool32 ret{};
+    VkPhysicalDevice physicalDevice{};
+    uint32_t queueFamilyIndex{};
+    wl_display* display{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDeviceWaylandPresentationSupportKHRSignature() {}
+};
+
+struct vkCreateAndroidSurfaceKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkInstance instance{};
+    VkAndroidSurfaceCreateInfoKHR* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkSurfaceKHR* pSurface{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateAndroidSurfaceKHRSignature() {}
+};
+
+struct vkCreateWin32SurfaceKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkInstance instance{};
+    VkWin32SurfaceCreateInfoKHR* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkSurfaceKHR* pSurface{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateWin32SurfaceKHRSignature() {}
+};
+
+struct vkGetPhysicalDeviceWin32PresentationSupportKHRSignature : public BaseSignature {
+    VkBool32 ret{};
+    VkPhysicalDevice physicalDevice{};
+    uint32_t queueFamilyIndex{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDeviceWin32PresentationSupportKHRSignature() {}
+};
+
+struct vkGetPhysicalDeviceVideoCapabilitiesKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkPhysicalDevice physicalDevice{};
+    VkVideoProfileInfoKHR* pVideoProfile{};
+    VkVideoCapabilitiesKHR* pCapabilities{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDeviceVideoCapabilitiesKHRSignature() {}
+};
+
+struct vkGetPhysicalDeviceVideoFormatPropertiesKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkPhysicalDevice physicalDevice{};
+    VkPhysicalDeviceVideoFormatInfoKHR* pVideoFormatInfo{};
+    uint32_t* pVideoFormatPropertyCount{};
+    VkVideoFormatPropertiesKHR* pVideoFormatProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDeviceVideoFormatPropertiesKHRSignature() {}
+};
+
+struct vkCreateVideoSessionKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkVideoSessionCreateInfoKHR* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkVideoSessionKHR* pVideoSession{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateVideoSessionKHRSignature() {}
+};
+
+struct vkDestroyVideoSessionKHRSignature : public BaseSignature {
+    VkDevice device{};
+    VkVideoSessionKHR videoSession{};
+    VkAllocationCallbacks* pAllocator{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkDestroyVideoSessionKHRSignature() {}
+};
+
+struct vkGetVideoSessionMemoryRequirementsKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkVideoSessionKHR videoSession{};
+    uint32_t* pMemoryRequirementsCount{};
+    VkVideoSessionMemoryRequirementsKHR* pMemoryRequirements{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetVideoSessionMemoryRequirementsKHRSignature() {}
+};
+
+struct vkBindVideoSessionMemoryKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkVideoSessionKHR videoSession{};
+    uint32_t bindSessionMemoryInfoCount{};
+    VkBindVideoSessionMemoryInfoKHR* pBindSessionMemoryInfos{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkBindVideoSessionMemoryKHRSignature() {}
+};
+
+struct vkCreateVideoSessionParametersKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkVideoSessionParametersCreateInfoKHR* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkVideoSessionParametersKHR* pVideoSessionParameters{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateVideoSessionParametersKHRSignature() {}
+};
+
+struct vkUpdateVideoSessionParametersKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkVideoSessionParametersKHR videoSessionParameters{};
+    VkVideoSessionParametersUpdateInfoKHR* pUpdateInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkUpdateVideoSessionParametersKHRSignature() {}
+};
+
+struct vkDestroyVideoSessionParametersKHRSignature : public BaseSignature {
+    VkDevice device{};
+    VkVideoSessionParametersKHR videoSessionParameters{};
+    VkAllocationCallbacks* pAllocator{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkDestroyVideoSessionParametersKHRSignature() {}
+};
+
+struct vkCmdBeginVideoCodingKHRSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkVideoBeginCodingInfoKHR* pBeginInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdBeginVideoCodingKHRSignature() {}
+};
+
+struct vkCmdEndVideoCodingKHRSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkVideoEndCodingInfoKHR* pEndCodingInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdEndVideoCodingKHRSignature() {}
+};
+
+struct vkCmdControlVideoCodingKHRSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkVideoCodingControlInfoKHR* pCodingControlInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdControlVideoCodingKHRSignature() {}
+};
+
+struct vkCmdDecodeVideoKHRSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkVideoDecodeInfoKHR* pDecodeInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdDecodeVideoKHRSignature() {}
+};
+
+struct vkCmdBeginRenderingKHRSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkRenderingInfo* pRenderingInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdBeginRenderingKHRSignature() {}
+};
+
+struct vkCmdEndRenderingKHRSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdEndRenderingKHRSignature() {}
+};
+
+struct vkGetPhysicalDeviceFeatures2KHRSignature : public BaseSignature {
+    VkPhysicalDevice physicalDevice{};
+    VkPhysicalDeviceFeatures2* pFeatures{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDeviceFeatures2KHRSignature() {}
+};
+
+struct vkGetPhysicalDeviceProperties2KHRSignature : public BaseSignature {
+    VkPhysicalDevice physicalDevice{};
+    VkPhysicalDeviceProperties2* pProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDeviceProperties2KHRSignature() {}
+};
+
+struct vkGetPhysicalDeviceFormatProperties2KHRSignature : public BaseSignature {
+    VkPhysicalDevice physicalDevice{};
+    VkFormat format{};
+    VkFormatProperties2* pFormatProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDeviceFormatProperties2KHRSignature() {}
+};
+
+struct vkGetPhysicalDeviceImageFormatProperties2KHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkPhysicalDevice physicalDevice{};
+    VkPhysicalDeviceImageFormatInfo2* pImageFormatInfo{};
+    VkImageFormatProperties2* pImageFormatProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDeviceImageFormatProperties2KHRSignature() {}
+};
+
+struct vkGetPhysicalDeviceQueueFamilyProperties2KHRSignature : public BaseSignature {
+    VkPhysicalDevice physicalDevice{};
+    uint32_t* pQueueFamilyPropertyCount{};
+    VkQueueFamilyProperties2* pQueueFamilyProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDeviceQueueFamilyProperties2KHRSignature() {}
+};
+
+struct vkGetPhysicalDeviceMemoryProperties2KHRSignature : public BaseSignature {
+    VkPhysicalDevice physicalDevice{};
+    VkPhysicalDeviceMemoryProperties2* pMemoryProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDeviceMemoryProperties2KHRSignature() {}
+};
+
+struct vkGetPhysicalDeviceSparseImageFormatProperties2KHRSignature : public BaseSignature {
+    VkPhysicalDevice physicalDevice{};
+    VkPhysicalDeviceSparseImageFormatInfo2* pFormatInfo{};
+    uint32_t* pPropertyCount{};
+    VkSparseImageFormatProperties2* pProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDeviceSparseImageFormatProperties2KHRSignature() {}
+};
+
+struct vkGetDeviceGroupPeerMemoryFeaturesKHRSignature : public BaseSignature {
+    VkDevice device{};
+    uint32_t heapIndex{};
+    uint32_t localDeviceIndex{};
+    uint32_t remoteDeviceIndex{};
+    VkPeerMemoryFeatureFlags* pPeerMemoryFeatures{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetDeviceGroupPeerMemoryFeaturesKHRSignature() {}
+};
+
+struct vkCmdSetDeviceMaskKHRSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    uint32_t deviceMask{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetDeviceMaskKHRSignature() {}
+};
+
+struct vkCmdDispatchBaseKHRSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    uint32_t baseGroupX{};
+    uint32_t baseGroupY{};
+    uint32_t baseGroupZ{};
+    uint32_t groupCountX{};
+    uint32_t groupCountY{};
+    uint32_t groupCountZ{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdDispatchBaseKHRSignature() {}
+};
+
+struct vkTrimCommandPoolKHRSignature : public BaseSignature {
+    VkDevice device{};
+    VkCommandPool commandPool{};
+    VkCommandPoolTrimFlags flags{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkTrimCommandPoolKHRSignature() {}
+};
+
+struct vkEnumeratePhysicalDeviceGroupsKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkInstance instance{};
+    uint32_t* pPhysicalDeviceGroupCount{};
+    VkPhysicalDeviceGroupProperties* pPhysicalDeviceGroupProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkEnumeratePhysicalDeviceGroupsKHRSignature() {}
+};
+
+struct vkGetPhysicalDeviceExternalBufferPropertiesKHRSignature : public BaseSignature {
+    VkPhysicalDevice physicalDevice{};
+    VkPhysicalDeviceExternalBufferInfo* pExternalBufferInfo{};
+    VkExternalBufferProperties* pExternalBufferProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDeviceExternalBufferPropertiesKHRSignature() {}
+};
+
+struct vkGetMemoryWin32HandleKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkMemoryGetWin32HandleInfoKHR* pGetWin32HandleInfo{};
+    HANDLE* pHandle{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetMemoryWin32HandleKHRSignature() {}
+};
+
+struct vkGetMemoryWin32HandlePropertiesKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkExternalMemoryHandleTypeFlagBits handleType{};
+    HANDLE handle{};
+    VkMemoryWin32HandlePropertiesKHR* pMemoryWin32HandleProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetMemoryWin32HandlePropertiesKHRSignature() {}
+};
+
+struct vkGetMemoryFdKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkMemoryGetFdInfoKHR* pGetFdInfo{};
+    int* pFd{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetMemoryFdKHRSignature() {}
+};
+
+struct vkGetMemoryFdPropertiesKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkExternalMemoryHandleTypeFlagBits handleType{};
+    int fd{};
+    VkMemoryFdPropertiesKHR* pMemoryFdProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetMemoryFdPropertiesKHRSignature() {}
+};
+
+struct vkGetPhysicalDeviceExternalSemaphorePropertiesKHRSignature : public BaseSignature {
+    VkPhysicalDevice physicalDevice{};
+    VkPhysicalDeviceExternalSemaphoreInfo* pExternalSemaphoreInfo{};
+    VkExternalSemaphoreProperties* pExternalSemaphoreProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDeviceExternalSemaphorePropertiesKHRSignature() {}
+};
+
+struct vkImportSemaphoreWin32HandleKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkImportSemaphoreWin32HandleInfoKHR* pImportSemaphoreWin32HandleInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkImportSemaphoreWin32HandleKHRSignature() {}
+};
+
+struct vkGetSemaphoreWin32HandleKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkSemaphoreGetWin32HandleInfoKHR* pGetWin32HandleInfo{};
+    HANDLE* pHandle{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetSemaphoreWin32HandleKHRSignature() {}
+};
+
+struct vkImportSemaphoreFdKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkImportSemaphoreFdInfoKHR* pImportSemaphoreFdInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkImportSemaphoreFdKHRSignature() {}
+};
+
+struct vkGetSemaphoreFdKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkSemaphoreGetFdInfoKHR* pGetFdInfo{};
+    int* pFd{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetSemaphoreFdKHRSignature() {}
+};
+
+struct vkCmdPushDescriptorSetKHRSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkPipelineBindPoint pipelineBindPoint{};
+    VkPipelineLayout layout{};
+    uint32_t set{};
+    uint32_t descriptorWriteCount{};
+    VkWriteDescriptorSet* pDescriptorWrites{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdPushDescriptorSetKHRSignature() {}
+};
+
+struct vkCmdPushDescriptorSetWithTemplateKHRSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkDescriptorUpdateTemplate descriptorUpdateTemplate{};
+    VkPipelineLayout layout{};
+    uint32_t set{};
+    void* pData{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdPushDescriptorSetWithTemplateKHRSignature() {}
+};
+
+struct vkCreateDescriptorUpdateTemplateKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkDescriptorUpdateTemplateCreateInfo* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkDescriptorUpdateTemplate* pDescriptorUpdateTemplate{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateDescriptorUpdateTemplateKHRSignature() {}
+};
+
+struct vkDestroyDescriptorUpdateTemplateKHRSignature : public BaseSignature {
+    VkDevice device{};
+    VkDescriptorUpdateTemplate descriptorUpdateTemplate{};
+    VkAllocationCallbacks* pAllocator{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkDestroyDescriptorUpdateTemplateKHRSignature() {}
+};
+
+struct vkUpdateDescriptorSetWithTemplateKHRSignature : public BaseSignature {
+    VkDevice device{};
+    VkDescriptorSet descriptorSet{};
+    VkDescriptorUpdateTemplate descriptorUpdateTemplate{};
+    void* pData{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkUpdateDescriptorSetWithTemplateKHRSignature() {}
+};
+
+struct vkCreateRenderPass2KHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkRenderPassCreateInfo2* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkRenderPass* pRenderPass{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateRenderPass2KHRSignature() {}
+};
+
+struct vkCmdBeginRenderPass2KHRSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkRenderPassBeginInfo* pRenderPassBegin{};
+    VkSubpassBeginInfo* pSubpassBeginInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdBeginRenderPass2KHRSignature() {}
+};
+
+struct vkCmdNextSubpass2KHRSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkSubpassBeginInfo* pSubpassBeginInfo{};
+    VkSubpassEndInfo* pSubpassEndInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdNextSubpass2KHRSignature() {}
+};
+
+struct vkCmdEndRenderPass2KHRSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkSubpassEndInfo* pSubpassEndInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdEndRenderPass2KHRSignature() {}
+};
+
+struct vkGetSwapchainStatusKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkSwapchainKHR swapchain{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetSwapchainStatusKHRSignature() {}
+};
+
+struct vkGetPhysicalDeviceExternalFencePropertiesKHRSignature : public BaseSignature {
+    VkPhysicalDevice physicalDevice{};
+    VkPhysicalDeviceExternalFenceInfo* pExternalFenceInfo{};
+    VkExternalFenceProperties* pExternalFenceProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDeviceExternalFencePropertiesKHRSignature() {}
+};
+
+struct vkImportFenceWin32HandleKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkImportFenceWin32HandleInfoKHR* pImportFenceWin32HandleInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkImportFenceWin32HandleKHRSignature() {}
+};
+
+struct vkGetFenceWin32HandleKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkFenceGetWin32HandleInfoKHR* pGetWin32HandleInfo{};
+    HANDLE* pHandle{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetFenceWin32HandleKHRSignature() {}
+};
+
+struct vkImportFenceFdKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkImportFenceFdInfoKHR* pImportFenceFdInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkImportFenceFdKHRSignature() {}
+};
+
+struct vkGetFenceFdKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkFenceGetFdInfoKHR* pGetFdInfo{};
+    int* pFd{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetFenceFdKHRSignature() {}
+};
+
+struct vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkPhysicalDevice physicalDevice{};
+    uint32_t queueFamilyIndex{};
+    uint32_t* pCounterCount{};
+    VkPerformanceCounterKHR* pCounters{};
+    VkPerformanceCounterDescriptionKHR* pCounterDescriptions{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHRSignature() {}
+};
+
+struct vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHRSignature : public BaseSignature {
+    VkPhysicalDevice physicalDevice{};
+    VkQueryPoolPerformanceCreateInfoKHR* pPerformanceQueryCreateInfo{};
+    uint32_t* pNumPasses{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHRSignature() {}
+};
+
+struct vkAcquireProfilingLockKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkAcquireProfilingLockInfoKHR* pInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkAcquireProfilingLockKHRSignature() {}
+};
+
+struct vkReleaseProfilingLockKHRSignature : public BaseSignature {
+    VkDevice device{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkReleaseProfilingLockKHRSignature() {}
+};
+
+struct vkGetPhysicalDeviceSurfaceCapabilities2KHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkPhysicalDevice physicalDevice{};
+    VkPhysicalDeviceSurfaceInfo2KHR* pSurfaceInfo{};
+    VkSurfaceCapabilities2KHR* pSurfaceCapabilities{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDeviceSurfaceCapabilities2KHRSignature() {}
+};
+
+struct vkGetPhysicalDeviceSurfaceFormats2KHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkPhysicalDevice physicalDevice{};
+    VkPhysicalDeviceSurfaceInfo2KHR* pSurfaceInfo{};
+    uint32_t* pSurfaceFormatCount{};
+    VkSurfaceFormat2KHR* pSurfaceFormats{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDeviceSurfaceFormats2KHRSignature() {}
+};
+
+struct vkGetPhysicalDeviceDisplayProperties2KHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkPhysicalDevice physicalDevice{};
+    uint32_t* pPropertyCount{};
+    VkDisplayProperties2KHR* pProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDeviceDisplayProperties2KHRSignature() {}
+};
+
+struct vkGetPhysicalDeviceDisplayPlaneProperties2KHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkPhysicalDevice physicalDevice{};
+    uint32_t* pPropertyCount{};
+    VkDisplayPlaneProperties2KHR* pProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDeviceDisplayPlaneProperties2KHRSignature() {}
+};
+
+struct vkGetDisplayModeProperties2KHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkPhysicalDevice physicalDevice{};
+    VkDisplayKHR display{};
+    uint32_t* pPropertyCount{};
+    VkDisplayModeProperties2KHR* pProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetDisplayModeProperties2KHRSignature() {}
+};
+
+struct vkGetDisplayPlaneCapabilities2KHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkPhysicalDevice physicalDevice{};
+    VkDisplayPlaneInfo2KHR* pDisplayPlaneInfo{};
+    VkDisplayPlaneCapabilities2KHR* pCapabilities{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetDisplayPlaneCapabilities2KHRSignature() {}
+};
+
+struct vkGetImageMemoryRequirements2KHRSignature : public BaseSignature {
+    VkDevice device{};
+    VkImageMemoryRequirementsInfo2* pInfo{};
+    VkMemoryRequirements2* pMemoryRequirements{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetImageMemoryRequirements2KHRSignature() {}
+};
+
+struct vkGetBufferMemoryRequirements2KHRSignature : public BaseSignature {
+    VkDevice device{};
+    VkBufferMemoryRequirementsInfo2* pInfo{};
+    VkMemoryRequirements2* pMemoryRequirements{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetBufferMemoryRequirements2KHRSignature() {}
+};
+
+struct vkGetImageSparseMemoryRequirements2KHRSignature : public BaseSignature {
+    VkDevice device{};
+    VkImageSparseMemoryRequirementsInfo2* pInfo{};
+    uint32_t* pSparseMemoryRequirementCount{};
+    VkSparseImageMemoryRequirements2* pSparseMemoryRequirements{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetImageSparseMemoryRequirements2KHRSignature() {}
+};
+
+struct vkCreateSamplerYcbcrConversionKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkSamplerYcbcrConversionCreateInfo* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkSamplerYcbcrConversion* pYcbcrConversion{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateSamplerYcbcrConversionKHRSignature() {}
+};
+
+struct vkDestroySamplerYcbcrConversionKHRSignature : public BaseSignature {
+    VkDevice device{};
+    VkSamplerYcbcrConversion ycbcrConversion{};
+    VkAllocationCallbacks* pAllocator{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkDestroySamplerYcbcrConversionKHRSignature() {}
+};
+
+struct vkBindBufferMemory2KHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    uint32_t bindInfoCount{};
+    VkBindBufferMemoryInfo* pBindInfos{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkBindBufferMemory2KHRSignature() {}
+};
+
+struct vkBindImageMemory2KHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    uint32_t bindInfoCount{};
+    VkBindImageMemoryInfo* pBindInfos{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkBindImageMemory2KHRSignature() {}
+};
+
+struct vkGetDescriptorSetLayoutSupportKHRSignature : public BaseSignature {
+    VkDevice device{};
+    VkDescriptorSetLayoutCreateInfo* pCreateInfo{};
+    VkDescriptorSetLayoutSupport* pSupport{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetDescriptorSetLayoutSupportKHRSignature() {}
+};
+
+struct vkCmdDrawIndirectCountKHRSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkBuffer buffer{};
+    VkDeviceSize offset{};
+    VkBuffer countBuffer{};
+    VkDeviceSize countBufferOffset{};
+    uint32_t maxDrawCount{};
+    uint32_t stride{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdDrawIndirectCountKHRSignature() {}
+};
+
+struct vkCmdDrawIndexedIndirectCountKHRSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkBuffer buffer{};
+    VkDeviceSize offset{};
+    VkBuffer countBuffer{};
+    VkDeviceSize countBufferOffset{};
+    uint32_t maxDrawCount{};
+    uint32_t stride{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdDrawIndexedIndirectCountKHRSignature() {}
+};
+
+struct vkGetSemaphoreCounterValueKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkSemaphore semaphore{};
+    uint64_t* pValue{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetSemaphoreCounterValueKHRSignature() {}
+};
+
+struct vkWaitSemaphoresKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkSemaphoreWaitInfo* pWaitInfo{};
+    uint64_t timeout{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkWaitSemaphoresKHRSignature() {}
+};
+
+struct vkSignalSemaphoreKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkSemaphoreSignalInfo* pSignalInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkSignalSemaphoreKHRSignature() {}
+};
+
+struct vkGetPhysicalDeviceFragmentShadingRatesKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkPhysicalDevice physicalDevice{};
+    uint32_t* pFragmentShadingRateCount{};
+    VkPhysicalDeviceFragmentShadingRateKHR* pFragmentShadingRates{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDeviceFragmentShadingRatesKHRSignature() {}
+};
+
+struct vkCmdSetFragmentShadingRateKHRSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkExtent2D* pFragmentSize{};
+    VkFragmentShadingRateCombinerOpKHR combinerOps[2]{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetFragmentShadingRateKHRSignature() {}
+};
+
+struct vkCmdSetRenderingAttachmentLocationsKHRSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkRenderingAttachmentLocationInfo* pLocationInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetRenderingAttachmentLocationsKHRSignature() {}
+};
+
+struct vkCmdSetRenderingInputAttachmentIndicesKHRSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkRenderingInputAttachmentIndexInfo* pInputAttachmentIndexInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetRenderingInputAttachmentIndicesKHRSignature() {}
+};
+
+struct vkWaitForPresentKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkSwapchainKHR swapchain{};
+    uint64_t presentId{};
+    uint64_t timeout{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkWaitForPresentKHRSignature() {}
+};
+
+struct vkGetBufferDeviceAddressKHRSignature : public BaseSignature {
+    VkDeviceAddress ret{};
+    VkDevice device{};
+    VkBufferDeviceAddressInfo* pInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetBufferDeviceAddressKHRSignature() {}
+};
+
+struct vkGetBufferOpaqueCaptureAddressKHRSignature : public BaseSignature {
+    uint64_t ret{};
+    VkDevice device{};
+    VkBufferDeviceAddressInfo* pInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetBufferOpaqueCaptureAddressKHRSignature() {}
+};
+
+struct vkGetDeviceMemoryOpaqueCaptureAddressKHRSignature : public BaseSignature {
+    uint64_t ret{};
+    VkDevice device{};
+    VkDeviceMemoryOpaqueCaptureAddressInfo* pInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetDeviceMemoryOpaqueCaptureAddressKHRSignature() {}
+};
+
+struct vkCreateDeferredOperationKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkAllocationCallbacks* pAllocator{};
+    VkDeferredOperationKHR* pDeferredOperation{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateDeferredOperationKHRSignature() {}
+};
+
+struct vkDestroyDeferredOperationKHRSignature : public BaseSignature {
+    VkDevice device{};
+    VkDeferredOperationKHR operation{};
+    VkAllocationCallbacks* pAllocator{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkDestroyDeferredOperationKHRSignature() {}
+};
+
+struct vkGetDeferredOperationMaxConcurrencyKHRSignature : public BaseSignature {
+    uint32_t ret{};
+    VkDevice device{};
+    VkDeferredOperationKHR operation{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetDeferredOperationMaxConcurrencyKHRSignature() {}
+};
+
+struct vkGetDeferredOperationResultKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkDeferredOperationKHR operation{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetDeferredOperationResultKHRSignature() {}
+};
+
+struct vkDeferredOperationJoinKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkDeferredOperationKHR operation{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkDeferredOperationJoinKHRSignature() {}
+};
+
+struct vkGetPipelineExecutablePropertiesKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkPipelineInfoKHR* pPipelineInfo{};
+    uint32_t* pExecutableCount{};
+    VkPipelineExecutablePropertiesKHR* pProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPipelineExecutablePropertiesKHRSignature() {}
+};
+
+struct vkGetPipelineExecutableStatisticsKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkPipelineExecutableInfoKHR* pExecutableInfo{};
+    uint32_t* pStatisticCount{};
+    VkPipelineExecutableStatisticKHR* pStatistics{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPipelineExecutableStatisticsKHRSignature() {}
+};
+
+struct vkGetPipelineExecutableInternalRepresentationsKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkPipelineExecutableInfoKHR* pExecutableInfo{};
+    uint32_t* pInternalRepresentationCount{};
+    VkPipelineExecutableInternalRepresentationKHR* pInternalRepresentations{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPipelineExecutableInternalRepresentationsKHRSignature() {}
+};
+
+struct vkMapMemory2KHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkMemoryMapInfo* pMemoryMapInfo{};
+    void** ppData{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkMapMemory2KHRSignature() {}
+};
+
+struct vkUnmapMemory2KHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkMemoryUnmapInfo* pMemoryUnmapInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkUnmapMemory2KHRSignature() {}
+};
+
+struct vkGetPhysicalDeviceVideoEncodeQualityLevelPropertiesKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkPhysicalDevice physicalDevice{};
+    VkPhysicalDeviceVideoEncodeQualityLevelInfoKHR* pQualityLevelInfo{};
+    VkVideoEncodeQualityLevelPropertiesKHR* pQualityLevelProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDeviceVideoEncodeQualityLevelPropertiesKHRSignature() {}
+};
+
+struct vkGetEncodedVideoSessionParametersKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkVideoEncodeSessionParametersGetInfoKHR* pVideoSessionParametersInfo{};
+    VkVideoEncodeSessionParametersFeedbackInfoKHR* pFeedbackInfo{};
+    size_t* pDataSize{};
+    void* pData{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetEncodedVideoSessionParametersKHRSignature() {}
+};
+
+struct vkCmdEncodeVideoKHRSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkVideoEncodeInfoKHR* pEncodeInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdEncodeVideoKHRSignature() {}
+};
+
+struct vkCmdSetEvent2KHRSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkEvent event{};
+    VkDependencyInfo* pDependencyInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetEvent2KHRSignature() {}
+};
+
+struct vkCmdResetEvent2KHRSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkEvent event{};
+    VkPipelineStageFlags2 stageMask{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdResetEvent2KHRSignature() {}
+};
+
+struct vkCmdWaitEvents2KHRSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    uint32_t eventCount{};
+    VkEvent* pEvents{};
+    VkDependencyInfo* pDependencyInfos{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdWaitEvents2KHRSignature() {}
+};
+
+struct vkCmdPipelineBarrier2KHRSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkDependencyInfo* pDependencyInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdPipelineBarrier2KHRSignature() {}
+};
+
+struct vkCmdWriteTimestamp2KHRSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkPipelineStageFlags2 stage{};
+    VkQueryPool queryPool{};
+    uint32_t query{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdWriteTimestamp2KHRSignature() {}
+};
+
+struct vkQueueSubmit2KHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkQueue queue{};
+    uint32_t submitCount{};
+    VkSubmitInfo2* pSubmits{};
+    VkFence fence{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkQueueSubmit2KHRSignature() {}
+};
+
+struct vkCmdCopyBuffer2KHRSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkCopyBufferInfo2* pCopyBufferInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdCopyBuffer2KHRSignature() {}
+};
+
+struct vkCmdCopyImage2KHRSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkCopyImageInfo2* pCopyImageInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdCopyImage2KHRSignature() {}
+};
+
+struct vkCmdCopyBufferToImage2KHRSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkCopyBufferToImageInfo2* pCopyBufferToImageInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdCopyBufferToImage2KHRSignature() {}
+};
+
+struct vkCmdCopyImageToBuffer2KHRSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkCopyImageToBufferInfo2* pCopyImageToBufferInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdCopyImageToBuffer2KHRSignature() {}
+};
+
+struct vkCmdBlitImage2KHRSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkBlitImageInfo2* pBlitImageInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdBlitImage2KHRSignature() {}
+};
+
+struct vkCmdResolveImage2KHRSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkResolveImageInfo2* pResolveImageInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdResolveImage2KHRSignature() {}
+};
+
+struct vkCmdTraceRaysIndirect2KHRSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkDeviceAddress indirectDeviceAddress{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdTraceRaysIndirect2KHRSignature() {}
+};
+
+struct vkGetDeviceBufferMemoryRequirementsKHRSignature : public BaseSignature {
+    VkDevice device{};
+    VkDeviceBufferMemoryRequirements* pInfo{};
+    VkMemoryRequirements2* pMemoryRequirements{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetDeviceBufferMemoryRequirementsKHRSignature() {}
+};
+
+struct vkGetDeviceImageMemoryRequirementsKHRSignature : public BaseSignature {
+    VkDevice device{};
+    VkDeviceImageMemoryRequirements* pInfo{};
+    VkMemoryRequirements2* pMemoryRequirements{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetDeviceImageMemoryRequirementsKHRSignature() {}
+};
+
+struct vkGetDeviceImageSparseMemoryRequirementsKHRSignature : public BaseSignature {
+    VkDevice device{};
+    VkDeviceImageMemoryRequirements* pInfo{};
+    uint32_t* pSparseMemoryRequirementCount{};
+    VkSparseImageMemoryRequirements2* pSparseMemoryRequirements{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetDeviceImageSparseMemoryRequirementsKHRSignature() {}
+};
+
+struct vkCmdBindIndexBuffer2KHRSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkBuffer buffer{};
+    VkDeviceSize offset{};
+    VkDeviceSize size{};
+    VkIndexType indexType{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdBindIndexBuffer2KHRSignature() {}
+};
+
+struct vkGetRenderingAreaGranularityKHRSignature : public BaseSignature {
+    VkDevice device{};
+    VkRenderingAreaInfo* pRenderingAreaInfo{};
+    VkExtent2D* pGranularity{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetRenderingAreaGranularityKHRSignature() {}
+};
+
+struct vkGetDeviceImageSubresourceLayoutKHRSignature : public BaseSignature {
+    VkDevice device{};
+    VkDeviceImageSubresourceInfo* pInfo{};
+    VkSubresourceLayout2* pLayout{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetDeviceImageSubresourceLayoutKHRSignature() {}
+};
+
+struct vkGetImageSubresourceLayout2KHRSignature : public BaseSignature {
+    VkDevice device{};
+    VkImage image{};
+    VkImageSubresource2* pSubresource{};
+    VkSubresourceLayout2* pLayout{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetImageSubresourceLayout2KHRSignature() {}
+};
+
+struct vkWaitForPresent2KHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkSwapchainKHR swapchain{};
+    VkPresentWait2InfoKHR* pPresentWait2Info{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkWaitForPresent2KHRSignature() {}
+};
+
+struct vkCreatePipelineBinariesKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkPipelineBinaryCreateInfoKHR* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkPipelineBinaryHandlesInfoKHR* pBinaries{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreatePipelineBinariesKHRSignature() {}
+};
+
+struct vkDestroyPipelineBinaryKHRSignature : public BaseSignature {
+    VkDevice device{};
+    VkPipelineBinaryKHR pipelineBinary{};
+    VkAllocationCallbacks* pAllocator{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkDestroyPipelineBinaryKHRSignature() {}
+};
+
+struct vkGetPipelineKeyKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkPipelineCreateInfoKHR* pPipelineCreateInfo{};
+    VkPipelineBinaryKeyKHR* pPipelineKey{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPipelineKeyKHRSignature() {}
+};
+
+struct vkGetPipelineBinaryDataKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkPipelineBinaryDataInfoKHR* pInfo{};
+    VkPipelineBinaryKeyKHR* pPipelineBinaryKey{};
+    size_t* pPipelineBinaryDataSize{};
+    void* pPipelineBinaryData{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPipelineBinaryDataKHRSignature() {}
+};
+
+struct vkReleaseCapturedPipelineDataKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkReleaseCapturedPipelineDataInfoKHR* pInfo{};
+    VkAllocationCallbacks* pAllocator{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkReleaseCapturedPipelineDataKHRSignature() {}
+};
+
+struct vkReleaseSwapchainImagesKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkReleaseSwapchainImagesInfoKHR* pReleaseInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkReleaseSwapchainImagesKHRSignature() {}
+};
+
+struct vkGetPhysicalDeviceCooperativeMatrixPropertiesKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkPhysicalDevice physicalDevice{};
+    uint32_t* pPropertyCount{};
+    VkCooperativeMatrixPropertiesKHR* pProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDeviceCooperativeMatrixPropertiesKHRSignature() {}
+};
+
+struct vkCmdSetLineStippleKHRSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    uint32_t lineStippleFactor{};
+    uint16_t lineStipplePattern{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetLineStippleKHRSignature() {}
+};
+
+struct vkGetPhysicalDeviceCalibrateableTimeDomainsKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkPhysicalDevice physicalDevice{};
+    uint32_t* pTimeDomainCount{};
+    VkTimeDomainKHR* pTimeDomains{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDeviceCalibrateableTimeDomainsKHRSignature() {}
+};
+
+struct vkGetCalibratedTimestampsKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    uint32_t timestampCount{};
+    VkCalibratedTimestampInfoKHR* pTimestampInfos{};
+    uint64_t* pTimestamps{};
+    uint64_t* pMaxDeviation{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetCalibratedTimestampsKHRSignature() {}
+};
+
+struct vkCmdBindDescriptorSets2KHRSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkBindDescriptorSetsInfo* pBindDescriptorSetsInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdBindDescriptorSets2KHRSignature() {}
+};
+
+struct vkCmdPushConstants2KHRSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkPushConstantsInfo* pPushConstantsInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdPushConstants2KHRSignature() {}
+};
+
+struct vkCmdPushDescriptorSet2KHRSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkPushDescriptorSetInfo* pPushDescriptorSetInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdPushDescriptorSet2KHRSignature() {}
+};
+
+struct vkCmdPushDescriptorSetWithTemplate2KHRSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkPushDescriptorSetWithTemplateInfo* pPushDescriptorSetWithTemplateInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdPushDescriptorSetWithTemplate2KHRSignature() {}
+};
+
+struct vkCmdSetDescriptorBufferOffsets2EXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkSetDescriptorBufferOffsetsInfoEXT* pSetDescriptorBufferOffsetsInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetDescriptorBufferOffsets2EXTSignature() {}
+};
+
+struct vkCmdBindDescriptorBufferEmbeddedSamplers2EXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkBindDescriptorBufferEmbeddedSamplersInfoEXT* pBindDescriptorBufferEmbeddedSamplersInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdBindDescriptorBufferEmbeddedSamplers2EXTSignature() {}
+};
+
+struct vkCmdCopyMemoryIndirectKHRSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkCopyMemoryIndirectInfoKHR* pCopyMemoryIndirectInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdCopyMemoryIndirectKHRSignature() {}
+};
+
+struct vkCmdCopyMemoryToImageIndirectKHRSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkCopyMemoryToImageIndirectInfoKHR* pCopyMemoryToImageIndirectInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdCopyMemoryToImageIndirectKHRSignature() {}
+};
+
+struct vkCmdEndRendering2KHRSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkRenderingEndInfoKHR* pRenderingEndInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdEndRendering2KHRSignature() {}
+};
+
+struct vkCreateDebugReportCallbackEXTSignature : public BaseSignature {
+    VkResult ret{};
+    VkInstance instance{};
+    VkDebugReportCallbackCreateInfoEXT* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkDebugReportCallbackEXT* pCallback{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateDebugReportCallbackEXTSignature() {}
+};
+
+struct vkDestroyDebugReportCallbackEXTSignature : public BaseSignature {
+    VkInstance instance{};
+    VkDebugReportCallbackEXT callback{};
+    VkAllocationCallbacks* pAllocator{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkDestroyDebugReportCallbackEXTSignature() {}
+};
+
+struct vkDebugReportMessageEXTSignature : public BaseSignature {
+    VkInstance instance{};
+    VkDebugReportFlagsEXT flags{};
+    VkDebugReportObjectTypeEXT objectType{};
+    uint64_t object{};
+    size_t location{};
+    int32_t messageCode{};
+    char* pLayerPrefix{};
+    char* pMessage{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkDebugReportMessageEXTSignature() {}
+};
+
+struct vkDebugMarkerSetObjectTagEXTSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkDebugMarkerObjectTagInfoEXT* pTagInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkDebugMarkerSetObjectTagEXTSignature() {}
+};
+
+struct vkDebugMarkerSetObjectNameEXTSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkDebugMarkerObjectNameInfoEXT* pNameInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkDebugMarkerSetObjectNameEXTSignature() {}
+};
+
+struct vkCmdDebugMarkerBeginEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkDebugMarkerMarkerInfoEXT* pMarkerInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdDebugMarkerBeginEXTSignature() {}
+};
+
+struct vkCmdDebugMarkerEndEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdDebugMarkerEndEXTSignature() {}
+};
+
+struct vkCmdDebugMarkerInsertEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkDebugMarkerMarkerInfoEXT* pMarkerInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdDebugMarkerInsertEXTSignature() {}
+};
+
+struct vkCmdBindTransformFeedbackBuffersEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    uint32_t firstBinding{};
+    uint32_t bindingCount{};
+    VkBuffer* pBuffers{};
+    VkDeviceSize* pOffsets{};
+    VkDeviceSize* pSizes{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdBindTransformFeedbackBuffersEXTSignature() {}
+};
+
+struct vkCmdBeginTransformFeedbackEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    uint32_t firstCounterBuffer{};
+    uint32_t counterBufferCount{};
+    VkBuffer* pCounterBuffers{};
+    VkDeviceSize* pCounterBufferOffsets{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdBeginTransformFeedbackEXTSignature() {}
+};
+
+struct vkCmdEndTransformFeedbackEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    uint32_t firstCounterBuffer{};
+    uint32_t counterBufferCount{};
+    VkBuffer* pCounterBuffers{};
+    VkDeviceSize* pCounterBufferOffsets{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdEndTransformFeedbackEXTSignature() {}
+};
+
+struct vkCmdBeginQueryIndexedEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkQueryPool queryPool{};
+    uint32_t query{};
+    VkQueryControlFlags flags{};
+    uint32_t index{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdBeginQueryIndexedEXTSignature() {}
+};
+
+struct vkCmdEndQueryIndexedEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkQueryPool queryPool{};
+    uint32_t query{};
+    uint32_t index{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdEndQueryIndexedEXTSignature() {}
+};
+
+struct vkCmdDrawIndirectByteCountEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    uint32_t instanceCount{};
+    uint32_t firstInstance{};
+    VkBuffer counterBuffer{};
+    VkDeviceSize counterBufferOffset{};
+    uint32_t counterOffset{};
+    uint32_t vertexStride{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdDrawIndirectByteCountEXTSignature() {}
+};
+
+struct vkCreateCuModuleNVXSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkCuModuleCreateInfoNVX* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkCuModuleNVX* pModule{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateCuModuleNVXSignature() {}
+};
+
+struct vkCreateCuFunctionNVXSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkCuFunctionCreateInfoNVX* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkCuFunctionNVX* pFunction{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateCuFunctionNVXSignature() {}
+};
+
+struct vkDestroyCuModuleNVXSignature : public BaseSignature {
+    VkDevice device{};
+    VkCuModuleNVX module{};
+    VkAllocationCallbacks* pAllocator{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkDestroyCuModuleNVXSignature() {}
+};
+
+struct vkDestroyCuFunctionNVXSignature : public BaseSignature {
+    VkDevice device{};
+    VkCuFunctionNVX function{};
+    VkAllocationCallbacks* pAllocator{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkDestroyCuFunctionNVXSignature() {}
+};
+
+struct vkCmdCuLaunchKernelNVXSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkCuLaunchInfoNVX* pLaunchInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdCuLaunchKernelNVXSignature() {}
+};
+
+struct vkGetImageViewHandleNVXSignature : public BaseSignature {
+    uint32_t ret{};
+    VkDevice device{};
+    VkImageViewHandleInfoNVX* pInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetImageViewHandleNVXSignature() {}
+};
+
+struct vkGetImageViewHandle64NVXSignature : public BaseSignature {
+    uint64_t ret{};
+    VkDevice device{};
+    VkImageViewHandleInfoNVX* pInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetImageViewHandle64NVXSignature() {}
+};
+
+struct vkGetImageViewAddressNVXSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkImageView imageView{};
+    VkImageViewAddressPropertiesNVX* pProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetImageViewAddressNVXSignature() {}
+};
+
+struct vkCmdDrawIndirectCountAMDSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkBuffer buffer{};
+    VkDeviceSize offset{};
+    VkBuffer countBuffer{};
+    VkDeviceSize countBufferOffset{};
+    uint32_t maxDrawCount{};
+    uint32_t stride{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdDrawIndirectCountAMDSignature() {}
+};
+
+struct vkCmdDrawIndexedIndirectCountAMDSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkBuffer buffer{};
+    VkDeviceSize offset{};
+    VkBuffer countBuffer{};
+    VkDeviceSize countBufferOffset{};
+    uint32_t maxDrawCount{};
+    uint32_t stride{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdDrawIndexedIndirectCountAMDSignature() {}
+};
+
+struct vkGetShaderInfoAMDSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkPipeline pipeline{};
+    VkShaderStageFlagBits shaderStage{};
+    VkShaderInfoTypeAMD infoType{};
+    size_t* pInfoSize{};
+    void* pInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetShaderInfoAMDSignature() {}
+};
+
+struct vkCreateStreamDescriptorSurfaceGGPSignature : public BaseSignature {
+    VkResult ret{};
+    VkInstance instance{};
+    VkStreamDescriptorSurfaceCreateInfoGGP* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkSurfaceKHR* pSurface{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateStreamDescriptorSurfaceGGPSignature() {}
+};
+
+struct vkGetPhysicalDeviceExternalImageFormatPropertiesNVSignature : public BaseSignature {
+    VkResult ret{};
+    VkPhysicalDevice physicalDevice{};
+    VkFormat format{};
+    VkImageType type{};
+    VkImageTiling tiling{};
+    VkImageUsageFlags usage{};
+    VkImageCreateFlags flags{};
+    VkExternalMemoryHandleTypeFlagsNV externalHandleType{};
+    VkExternalImageFormatPropertiesNV* pExternalImageFormatProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDeviceExternalImageFormatPropertiesNVSignature() {}
+};
+
+struct vkGetMemoryWin32HandleNVSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkDeviceMemory memory{};
+    VkExternalMemoryHandleTypeFlagsNV handleType{};
+    HANDLE* pHandle{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetMemoryWin32HandleNVSignature() {}
+};
+
+struct vkCreateViSurfaceNNSignature : public BaseSignature {
+    VkResult ret{};
+    VkInstance instance{};
+    VkViSurfaceCreateInfoNN* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkSurfaceKHR* pSurface{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateViSurfaceNNSignature() {}
+};
+
+struct vkCmdBeginConditionalRenderingEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkConditionalRenderingBeginInfoEXT* pConditionalRenderingBegin{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdBeginConditionalRenderingEXTSignature() {}
+};
+
+struct vkCmdEndConditionalRenderingEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdEndConditionalRenderingEXTSignature() {}
+};
+
+struct vkCmdSetViewportWScalingNVSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    uint32_t firstViewport{};
+    uint32_t viewportCount{};
+    VkViewportWScalingNV* pViewportWScalings{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetViewportWScalingNVSignature() {}
+};
+
+struct vkReleaseDisplayEXTSignature : public BaseSignature {
+    VkResult ret{};
+    VkPhysicalDevice physicalDevice{};
+    VkDisplayKHR display{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkReleaseDisplayEXTSignature() {}
+};
+
+struct vkAcquireXlibDisplayEXTSignature : public BaseSignature {
+    VkResult ret{};
+    VkPhysicalDevice physicalDevice{};
+    Display* dpy{};
+    VkDisplayKHR display{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkAcquireXlibDisplayEXTSignature() {}
+};
+
+struct vkGetRandROutputDisplayEXTSignature : public BaseSignature {
+    VkResult ret{};
+    VkPhysicalDevice physicalDevice{};
+    Display* dpy{};
+    RROutput rrOutput{};
+    VkDisplayKHR* pDisplay{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetRandROutputDisplayEXTSignature() {}
+};
+
+struct vkGetPhysicalDeviceSurfaceCapabilities2EXTSignature : public BaseSignature {
+    VkResult ret{};
+    VkPhysicalDevice physicalDevice{};
+    VkSurfaceKHR surface{};
+    VkSurfaceCapabilities2EXT* pSurfaceCapabilities{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDeviceSurfaceCapabilities2EXTSignature() {}
+};
+
+struct vkDisplayPowerControlEXTSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkDisplayKHR display{};
+    VkDisplayPowerInfoEXT* pDisplayPowerInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkDisplayPowerControlEXTSignature() {}
+};
+
+struct vkRegisterDeviceEventEXTSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkDeviceEventInfoEXT* pDeviceEventInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkFence* pFence{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkRegisterDeviceEventEXTSignature() {}
+};
+
+struct vkRegisterDisplayEventEXTSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkDisplayKHR display{};
+    VkDisplayEventInfoEXT* pDisplayEventInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkFence* pFence{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkRegisterDisplayEventEXTSignature() {}
+};
+
+struct vkGetSwapchainCounterEXTSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkSwapchainKHR swapchain{};
+    VkSurfaceCounterFlagBitsEXT counter{};
+    uint64_t* pCounterValue{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetSwapchainCounterEXTSignature() {}
+};
+
+struct vkGetRefreshCycleDurationGOOGLESignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkSwapchainKHR swapchain{};
+    VkRefreshCycleDurationGOOGLE* pDisplayTimingProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetRefreshCycleDurationGOOGLESignature() {}
+};
+
+struct vkGetPastPresentationTimingGOOGLESignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkSwapchainKHR swapchain{};
+    uint32_t* pPresentationTimingCount{};
+    VkPastPresentationTimingGOOGLE* pPresentationTimings{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPastPresentationTimingGOOGLESignature() {}
+};
+
+struct vkCmdSetDiscardRectangleEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    uint32_t firstDiscardRectangle{};
+    uint32_t discardRectangleCount{};
+    VkRect2D* pDiscardRectangles{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetDiscardRectangleEXTSignature() {}
+};
+
+struct vkCmdSetDiscardRectangleEnableEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkBool32 discardRectangleEnable{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetDiscardRectangleEnableEXTSignature() {}
+};
+
+struct vkCmdSetDiscardRectangleModeEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkDiscardRectangleModeEXT discardRectangleMode{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetDiscardRectangleModeEXTSignature() {}
+};
+
+struct vkSetHdrMetadataEXTSignature : public BaseSignature {
+    VkDevice device{};
+    uint32_t swapchainCount{};
+    VkSwapchainKHR* pSwapchains{};
+    VkHdrMetadataEXT* pMetadata{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkSetHdrMetadataEXTSignature() {}
+};
+
+struct vkCreateIOSSurfaceMVKSignature : public BaseSignature {
+    VkResult ret{};
+    VkInstance instance{};
+    VkIOSSurfaceCreateInfoMVK* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkSurfaceKHR* pSurface{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateIOSSurfaceMVKSignature() {}
+};
+
+struct vkCreateMacOSSurfaceMVKSignature : public BaseSignature {
+    VkResult ret{};
+    VkInstance instance{};
+    VkMacOSSurfaceCreateInfoMVK* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkSurfaceKHR* pSurface{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateMacOSSurfaceMVKSignature() {}
+};
+
+struct vkSetDebugUtilsObjectNameEXTSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkDebugUtilsObjectNameInfoEXT* pNameInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkSetDebugUtilsObjectNameEXTSignature() {}
+};
+
+struct vkSetDebugUtilsObjectTagEXTSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkDebugUtilsObjectTagInfoEXT* pTagInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkSetDebugUtilsObjectTagEXTSignature() {}
+};
+
+struct vkQueueBeginDebugUtilsLabelEXTSignature : public BaseSignature {
+    VkQueue queue{};
+    VkDebugUtilsLabelEXT* pLabelInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkQueueBeginDebugUtilsLabelEXTSignature() {}
+};
+
+struct vkQueueEndDebugUtilsLabelEXTSignature : public BaseSignature {
+    VkQueue queue{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkQueueEndDebugUtilsLabelEXTSignature() {}
+};
+
+struct vkQueueInsertDebugUtilsLabelEXTSignature : public BaseSignature {
+    VkQueue queue{};
+    VkDebugUtilsLabelEXT* pLabelInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkQueueInsertDebugUtilsLabelEXTSignature() {}
+};
+
+struct vkCmdBeginDebugUtilsLabelEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkDebugUtilsLabelEXT* pLabelInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdBeginDebugUtilsLabelEXTSignature() {}
+};
+
+struct vkCmdEndDebugUtilsLabelEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdEndDebugUtilsLabelEXTSignature() {}
+};
+
+struct vkCmdInsertDebugUtilsLabelEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkDebugUtilsLabelEXT* pLabelInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdInsertDebugUtilsLabelEXTSignature() {}
+};
+
+struct vkCreateDebugUtilsMessengerEXTSignature : public BaseSignature {
+    VkResult ret{};
+    VkInstance instance{};
+    VkDebugUtilsMessengerCreateInfoEXT* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkDebugUtilsMessengerEXT* pMessenger{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateDebugUtilsMessengerEXTSignature() {}
+};
+
+struct vkDestroyDebugUtilsMessengerEXTSignature : public BaseSignature {
+    VkInstance instance{};
+    VkDebugUtilsMessengerEXT messenger{};
+    VkAllocationCallbacks* pAllocator{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkDestroyDebugUtilsMessengerEXTSignature() {}
+};
+
+struct vkSubmitDebugUtilsMessageEXTSignature : public BaseSignature {
+    VkInstance instance{};
+    VkDebugUtilsMessageSeverityFlagBitsEXT messageSeverity{};
+    VkDebugUtilsMessageTypeFlagsEXT messageTypes{};
+    VkDebugUtilsMessengerCallbackDataEXT* pCallbackData{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkSubmitDebugUtilsMessageEXTSignature() {}
+};
+
+struct vkGetAndroidHardwareBufferPropertiesANDROIDSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    AHardwareBuffer* buffer{};
+    VkAndroidHardwareBufferPropertiesANDROID* pProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetAndroidHardwareBufferPropertiesANDROIDSignature() {}
+};
+
+struct vkGetMemoryAndroidHardwareBufferANDROIDSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkMemoryGetAndroidHardwareBufferInfoANDROID* pInfo{};
+    AHardwareBuffer** pBuffer{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetMemoryAndroidHardwareBufferANDROIDSignature() {}
+};
+
+struct vkCreateExecutionGraphPipelinesAMDXSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkPipelineCache pipelineCache{};
+    uint32_t createInfoCount{};
+    VkExecutionGraphPipelineCreateInfoAMDX* pCreateInfos{};
+    VkAllocationCallbacks* pAllocator{};
+    VkPipeline* pPipelines{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateExecutionGraphPipelinesAMDXSignature() {}
+};
+
+struct vkGetExecutionGraphPipelineScratchSizeAMDXSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkPipeline executionGraph{};
+    VkExecutionGraphPipelineScratchSizeAMDX* pSizeInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetExecutionGraphPipelineScratchSizeAMDXSignature() {}
+};
+
+struct vkGetExecutionGraphPipelineNodeIndexAMDXSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkPipeline executionGraph{};
+    VkPipelineShaderStageNodeCreateInfoAMDX* pNodeInfo{};
+    uint32_t* pNodeIndex{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetExecutionGraphPipelineNodeIndexAMDXSignature() {}
+};
+
+struct vkCmdInitializeGraphScratchMemoryAMDXSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkPipeline executionGraph{};
+    VkDeviceAddress scratch{};
+    VkDeviceSize scratchSize{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdInitializeGraphScratchMemoryAMDXSignature() {}
+};
+
+struct vkCmdDispatchGraphAMDXSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkDeviceAddress scratch{};
+    VkDeviceSize scratchSize{};
+    VkDispatchGraphCountInfoAMDX* pCountInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdDispatchGraphAMDXSignature() {}
+};
+
+struct vkCmdDispatchGraphIndirectAMDXSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkDeviceAddress scratch{};
+    VkDeviceSize scratchSize{};
+    VkDispatchGraphCountInfoAMDX* pCountInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdDispatchGraphIndirectAMDXSignature() {}
+};
+
+struct vkCmdDispatchGraphIndirectCountAMDXSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkDeviceAddress scratch{};
+    VkDeviceSize scratchSize{};
+    VkDeviceAddress countInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdDispatchGraphIndirectCountAMDXSignature() {}
+};
+
+struct vkCmdSetSampleLocationsEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkSampleLocationsInfoEXT* pSampleLocationsInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetSampleLocationsEXTSignature() {}
+};
+
+struct vkGetPhysicalDeviceMultisamplePropertiesEXTSignature : public BaseSignature {
+    VkPhysicalDevice physicalDevice{};
+    VkSampleCountFlagBits samples{};
+    VkMultisamplePropertiesEXT* pMultisampleProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDeviceMultisamplePropertiesEXTSignature() {}
+};
+
+struct vkGetImageDrmFormatModifierPropertiesEXTSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkImage image{};
+    VkImageDrmFormatModifierPropertiesEXT* pProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetImageDrmFormatModifierPropertiesEXTSignature() {}
+};
+
+struct vkCreateValidationCacheEXTSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkValidationCacheCreateInfoEXT* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkValidationCacheEXT* pValidationCache{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateValidationCacheEXTSignature() {}
+};
+
+struct vkDestroyValidationCacheEXTSignature : public BaseSignature {
+    VkDevice device{};
+    VkValidationCacheEXT validationCache{};
+    VkAllocationCallbacks* pAllocator{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkDestroyValidationCacheEXTSignature() {}
+};
+
+struct vkMergeValidationCachesEXTSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkValidationCacheEXT dstCache{};
+    uint32_t srcCacheCount{};
+    VkValidationCacheEXT* pSrcCaches{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkMergeValidationCachesEXTSignature() {}
+};
+
+struct vkGetValidationCacheDataEXTSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkValidationCacheEXT validationCache{};
+    size_t* pDataSize{};
+    void* pData{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetValidationCacheDataEXTSignature() {}
+};
+
+struct vkCmdBindShadingRateImageNVSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkImageView imageView{};
+    VkImageLayout imageLayout{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdBindShadingRateImageNVSignature() {}
+};
+
+struct vkCmdSetViewportShadingRatePaletteNVSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    uint32_t firstViewport{};
+    uint32_t viewportCount{};
+    VkShadingRatePaletteNV* pShadingRatePalettes{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetViewportShadingRatePaletteNVSignature() {}
+};
+
+struct vkCmdSetCoarseSampleOrderNVSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkCoarseSampleOrderTypeNV sampleOrderType{};
+    uint32_t customSampleOrderCount{};
+    VkCoarseSampleOrderCustomNV* pCustomSampleOrders{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetCoarseSampleOrderNVSignature() {}
+};
+
+struct vkCreateAccelerationStructureNVSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkAccelerationStructureCreateInfoNV* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkAccelerationStructureNV* pAccelerationStructure{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateAccelerationStructureNVSignature() {}
+};
+
+struct vkDestroyAccelerationStructureNVSignature : public BaseSignature {
+    VkDevice device{};
+    VkAccelerationStructureNV accelerationStructure{};
+    VkAllocationCallbacks* pAllocator{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkDestroyAccelerationStructureNVSignature() {}
+};
+
+struct vkGetAccelerationStructureMemoryRequirementsNVSignature : public BaseSignature {
+    VkDevice device{};
+    VkAccelerationStructureMemoryRequirementsInfoNV* pInfo{};
+    VkMemoryRequirements2KHR* pMemoryRequirements{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetAccelerationStructureMemoryRequirementsNVSignature() {}
+};
+
+struct vkBindAccelerationStructureMemoryNVSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    uint32_t bindInfoCount{};
+    VkBindAccelerationStructureMemoryInfoNV* pBindInfos{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkBindAccelerationStructureMemoryNVSignature() {}
+};
+
+struct vkCmdBuildAccelerationStructureNVSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkAccelerationStructureInfoNV* pInfo{};
+    VkBuffer instanceData{};
+    VkDeviceSize instanceOffset{};
+    VkBool32 update{};
+    VkAccelerationStructureNV dst{};
+    VkAccelerationStructureNV src{};
+    VkBuffer scratch{};
+    VkDeviceSize scratchOffset{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdBuildAccelerationStructureNVSignature() {}
+};
+
+struct vkCmdCopyAccelerationStructureNVSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkAccelerationStructureNV dst{};
+    VkAccelerationStructureNV src{};
+    VkCopyAccelerationStructureModeKHR mode{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdCopyAccelerationStructureNVSignature() {}
+};
+
+struct vkCmdTraceRaysNVSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkBuffer raygenShaderBindingTableBuffer{};
+    VkDeviceSize raygenShaderBindingOffset{};
+    VkBuffer missShaderBindingTableBuffer{};
+    VkDeviceSize missShaderBindingOffset{};
+    VkDeviceSize missShaderBindingStride{};
+    VkBuffer hitShaderBindingTableBuffer{};
+    VkDeviceSize hitShaderBindingOffset{};
+    VkDeviceSize hitShaderBindingStride{};
+    VkBuffer callableShaderBindingTableBuffer{};
+    VkDeviceSize callableShaderBindingOffset{};
+    VkDeviceSize callableShaderBindingStride{};
+    uint32_t width{};
+    uint32_t height{};
+    uint32_t depth{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdTraceRaysNVSignature() {}
+};
+
+struct vkCreateRayTracingPipelinesNVSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkPipelineCache pipelineCache{};
+    uint32_t createInfoCount{};
+    VkRayTracingPipelineCreateInfoNV* pCreateInfos{};
+    VkAllocationCallbacks* pAllocator{};
+    VkPipeline* pPipelines{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateRayTracingPipelinesNVSignature() {}
+};
+
+struct vkGetRayTracingShaderGroupHandlesKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkPipeline pipeline{};
+    uint32_t firstGroup{};
+    uint32_t groupCount{};
+    size_t dataSize{};
+    void* pData{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetRayTracingShaderGroupHandlesKHRSignature() {}
+};
+
+struct vkGetRayTracingShaderGroupHandlesNVSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkPipeline pipeline{};
+    uint32_t firstGroup{};
+    uint32_t groupCount{};
+    size_t dataSize{};
+    void* pData{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetRayTracingShaderGroupHandlesNVSignature() {}
+};
+
+struct vkGetAccelerationStructureHandleNVSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkAccelerationStructureNV accelerationStructure{};
+    size_t dataSize{};
+    void* pData{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetAccelerationStructureHandleNVSignature() {}
+};
+
+struct vkCmdWriteAccelerationStructuresPropertiesNVSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    uint32_t accelerationStructureCount{};
+    VkAccelerationStructureNV* pAccelerationStructures{};
+    VkQueryType queryType{};
+    VkQueryPool queryPool{};
+    uint32_t firstQuery{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdWriteAccelerationStructuresPropertiesNVSignature() {}
+};
+
+struct vkCompileDeferredNVSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkPipeline pipeline{};
+    uint32_t shader{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCompileDeferredNVSignature() {}
+};
+
+struct vkGetMemoryHostPointerPropertiesEXTSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkExternalMemoryHandleTypeFlagBits handleType{};
+    void* pHostPointer{};
+    VkMemoryHostPointerPropertiesEXT* pMemoryHostPointerProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetMemoryHostPointerPropertiesEXTSignature() {}
+};
+
+struct vkCmdWriteBufferMarkerAMDSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkPipelineStageFlagBits pipelineStage{};
+    VkBuffer dstBuffer{};
+    VkDeviceSize dstOffset{};
+    uint32_t marker{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdWriteBufferMarkerAMDSignature() {}
+};
+
+struct vkCmdWriteBufferMarker2AMDSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkPipelineStageFlags2 stage{};
+    VkBuffer dstBuffer{};
+    VkDeviceSize dstOffset{};
+    uint32_t marker{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdWriteBufferMarker2AMDSignature() {}
+};
+
+struct vkGetPhysicalDeviceCalibrateableTimeDomainsEXTSignature : public BaseSignature {
+    VkResult ret{};
+    VkPhysicalDevice physicalDevice{};
+    uint32_t* pTimeDomainCount{};
+    VkTimeDomainKHR* pTimeDomains{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDeviceCalibrateableTimeDomainsEXTSignature() {}
+};
+
+struct vkGetCalibratedTimestampsEXTSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    uint32_t timestampCount{};
+    VkCalibratedTimestampInfoKHR* pTimestampInfos{};
+    uint64_t* pTimestamps{};
+    uint64_t* pMaxDeviation{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetCalibratedTimestampsEXTSignature() {}
+};
+
+struct vkCmdDrawMeshTasksNVSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    uint32_t taskCount{};
+    uint32_t firstTask{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdDrawMeshTasksNVSignature() {}
+};
+
+struct vkCmdDrawMeshTasksIndirectNVSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkBuffer buffer{};
+    VkDeviceSize offset{};
+    uint32_t drawCount{};
+    uint32_t stride{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdDrawMeshTasksIndirectNVSignature() {}
+};
+
+struct vkCmdDrawMeshTasksIndirectCountNVSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkBuffer buffer{};
+    VkDeviceSize offset{};
+    VkBuffer countBuffer{};
+    VkDeviceSize countBufferOffset{};
+    uint32_t maxDrawCount{};
+    uint32_t stride{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdDrawMeshTasksIndirectCountNVSignature() {}
+};
+
+struct vkCmdSetExclusiveScissorEnableNVSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    uint32_t firstExclusiveScissor{};
+    uint32_t exclusiveScissorCount{};
+    VkBool32* pExclusiveScissorEnables{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetExclusiveScissorEnableNVSignature() {}
+};
+
+struct vkCmdSetExclusiveScissorNVSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    uint32_t firstExclusiveScissor{};
+    uint32_t exclusiveScissorCount{};
+    VkRect2D* pExclusiveScissors{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetExclusiveScissorNVSignature() {}
+};
+
+struct vkCmdSetCheckpointNVSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    void* pCheckpointMarker{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetCheckpointNVSignature() {}
+};
+
+struct vkGetQueueCheckpointDataNVSignature : public BaseSignature {
+    VkQueue queue{};
+    uint32_t* pCheckpointDataCount{};
+    VkCheckpointDataNV* pCheckpointData{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetQueueCheckpointDataNVSignature() {}
+};
+
+struct vkGetQueueCheckpointData2NVSignature : public BaseSignature {
+    VkQueue queue{};
+    uint32_t* pCheckpointDataCount{};
+    VkCheckpointData2NV* pCheckpointData{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetQueueCheckpointData2NVSignature() {}
+};
+
+struct vkSetSwapchainPresentTimingQueueSizeEXTSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkSwapchainKHR swapchain{};
+    uint32_t size{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkSetSwapchainPresentTimingQueueSizeEXTSignature() {}
+};
+
+struct vkGetSwapchainTimingPropertiesEXTSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkSwapchainKHR swapchain{};
+    VkSwapchainTimingPropertiesEXT* pSwapchainTimingProperties{};
+    uint64_t* pSwapchainTimingPropertiesCounter{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetSwapchainTimingPropertiesEXTSignature() {}
+};
+
+struct vkGetSwapchainTimeDomainPropertiesEXTSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkSwapchainKHR swapchain{};
+    VkSwapchainTimeDomainPropertiesEXT* pSwapchainTimeDomainProperties{};
+    uint64_t* pTimeDomainsCounter{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetSwapchainTimeDomainPropertiesEXTSignature() {}
+};
+
+struct vkGetPastPresentationTimingEXTSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkPastPresentationTimingInfoEXT* pPastPresentationTimingInfo{};
+    VkPastPresentationTimingPropertiesEXT* pPastPresentationTimingProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPastPresentationTimingEXTSignature() {}
+};
+
+struct vkInitializePerformanceApiINTELSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkInitializePerformanceApiInfoINTEL* pInitializeInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkInitializePerformanceApiINTELSignature() {}
+};
+
+struct vkUninitializePerformanceApiINTELSignature : public BaseSignature {
+    VkDevice device{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkUninitializePerformanceApiINTELSignature() {}
+};
+
+struct vkCmdSetPerformanceMarkerINTELSignature : public BaseSignature {
+    VkResult ret{};
+    VkCommandBuffer commandBuffer{};
+    VkPerformanceMarkerInfoINTEL* pMarkerInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetPerformanceMarkerINTELSignature() {}
+};
+
+struct vkCmdSetPerformanceStreamMarkerINTELSignature : public BaseSignature {
+    VkResult ret{};
+    VkCommandBuffer commandBuffer{};
+    VkPerformanceStreamMarkerInfoINTEL* pMarkerInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetPerformanceStreamMarkerINTELSignature() {}
+};
+
+struct vkCmdSetPerformanceOverrideINTELSignature : public BaseSignature {
+    VkResult ret{};
+    VkCommandBuffer commandBuffer{};
+    VkPerformanceOverrideInfoINTEL* pOverrideInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetPerformanceOverrideINTELSignature() {}
+};
+
+struct vkAcquirePerformanceConfigurationINTELSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkPerformanceConfigurationAcquireInfoINTEL* pAcquireInfo{};
+    VkPerformanceConfigurationINTEL* pConfiguration{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkAcquirePerformanceConfigurationINTELSignature() {}
+};
+
+struct vkReleasePerformanceConfigurationINTELSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkPerformanceConfigurationINTEL configuration{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkReleasePerformanceConfigurationINTELSignature() {}
+};
+
+struct vkQueueSetPerformanceConfigurationINTELSignature : public BaseSignature {
+    VkResult ret{};
+    VkQueue queue{};
+    VkPerformanceConfigurationINTEL configuration{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkQueueSetPerformanceConfigurationINTELSignature() {}
+};
+
+struct vkGetPerformanceParameterINTELSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkPerformanceParameterTypeINTEL parameter{};
+    VkPerformanceValueINTEL* pValue{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPerformanceParameterINTELSignature() {}
+};
+
+struct vkSetLocalDimmingAMDSignature : public BaseSignature {
+    VkDevice device{};
+    VkSwapchainKHR swapChain{};
+    VkBool32 localDimmingEnable{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkSetLocalDimmingAMDSignature() {}
+};
+
+struct vkCreateImagePipeSurfaceFUCHSIASignature : public BaseSignature {
+    VkResult ret{};
+    VkInstance instance{};
+    VkImagePipeSurfaceCreateInfoFUCHSIA* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkSurfaceKHR* pSurface{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateImagePipeSurfaceFUCHSIASignature() {}
+};
+
+struct vkCreateMetalSurfaceEXTSignature : public BaseSignature {
+    VkResult ret{};
+    VkInstance instance{};
+    VkMetalSurfaceCreateInfoEXT* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkSurfaceKHR* pSurface{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateMetalSurfaceEXTSignature() {}
+};
+
+struct vkGetBufferDeviceAddressEXTSignature : public BaseSignature {
+    VkDeviceAddress ret{};
+    VkDevice device{};
+    VkBufferDeviceAddressInfo* pInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetBufferDeviceAddressEXTSignature() {}
+};
+
+struct vkGetPhysicalDeviceToolPropertiesEXTSignature : public BaseSignature {
+    VkResult ret{};
+    VkPhysicalDevice physicalDevice{};
+    uint32_t* pToolCount{};
+    VkPhysicalDeviceToolProperties* pToolProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDeviceToolPropertiesEXTSignature() {}
+};
+
+struct vkGetPhysicalDeviceCooperativeMatrixPropertiesNVSignature : public BaseSignature {
+    VkResult ret{};
+    VkPhysicalDevice physicalDevice{};
+    uint32_t* pPropertyCount{};
+    VkCooperativeMatrixPropertiesNV* pProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDeviceCooperativeMatrixPropertiesNVSignature() {}
+};
+
+struct vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNVSignature : public BaseSignature {
+    VkResult ret{};
+    VkPhysicalDevice physicalDevice{};
+    uint32_t* pCombinationCount{};
+    VkFramebufferMixedSamplesCombinationNV* pCombinations{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNVSignature() {}
+};
+
+struct vkGetPhysicalDeviceSurfacePresentModes2EXTSignature : public BaseSignature {
+    VkResult ret{};
+    VkPhysicalDevice physicalDevice{};
+    VkPhysicalDeviceSurfaceInfo2KHR* pSurfaceInfo{};
+    uint32_t* pPresentModeCount{};
+    VkPresentModeKHR* pPresentModes{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDeviceSurfacePresentModes2EXTSignature() {}
+};
+
+struct vkAcquireFullScreenExclusiveModeEXTSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkSwapchainKHR swapchain{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkAcquireFullScreenExclusiveModeEXTSignature() {}
+};
+
+struct vkReleaseFullScreenExclusiveModeEXTSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkSwapchainKHR swapchain{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkReleaseFullScreenExclusiveModeEXTSignature() {}
+};
+
+struct vkGetDeviceGroupSurfacePresentModes2EXTSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkPhysicalDeviceSurfaceInfo2KHR* pSurfaceInfo{};
+    VkDeviceGroupPresentModeFlagsKHR* pModes{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetDeviceGroupSurfacePresentModes2EXTSignature() {}
+};
+
+struct vkCreateHeadlessSurfaceEXTSignature : public BaseSignature {
+    VkResult ret{};
+    VkInstance instance{};
+    VkHeadlessSurfaceCreateInfoEXT* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkSurfaceKHR* pSurface{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateHeadlessSurfaceEXTSignature() {}
+};
+
+struct vkCmdSetLineStippleEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    uint32_t lineStippleFactor{};
+    uint16_t lineStipplePattern{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetLineStippleEXTSignature() {}
+};
+
+struct vkResetQueryPoolEXTSignature : public BaseSignature {
+    VkDevice device{};
+    VkQueryPool queryPool{};
+    uint32_t firstQuery{};
+    uint32_t queryCount{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkResetQueryPoolEXTSignature() {}
+};
+
+struct vkCmdSetCullModeEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkCullModeFlags cullMode{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetCullModeEXTSignature() {}
+};
+
+struct vkCmdSetFrontFaceEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkFrontFace frontFace{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetFrontFaceEXTSignature() {}
+};
+
+struct vkCmdSetPrimitiveTopologyEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkPrimitiveTopology primitiveTopology{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetPrimitiveTopologyEXTSignature() {}
+};
+
+struct vkCmdSetViewportWithCountEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    uint32_t viewportCount{};
+    VkViewport* pViewports{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetViewportWithCountEXTSignature() {}
+};
+
+struct vkCmdSetScissorWithCountEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    uint32_t scissorCount{};
+    VkRect2D* pScissors{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetScissorWithCountEXTSignature() {}
+};
+
+struct vkCmdBindVertexBuffers2EXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    uint32_t firstBinding{};
+    uint32_t bindingCount{};
+    VkBuffer* pBuffers{};
+    VkDeviceSize* pOffsets{};
+    VkDeviceSize* pSizes{};
+    VkDeviceSize* pStrides{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdBindVertexBuffers2EXTSignature() {}
+};
+
+struct vkCmdSetDepthTestEnableEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkBool32 depthTestEnable{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetDepthTestEnableEXTSignature() {}
+};
+
+struct vkCmdSetDepthWriteEnableEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkBool32 depthWriteEnable{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetDepthWriteEnableEXTSignature() {}
+};
+
+struct vkCmdSetDepthCompareOpEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkCompareOp depthCompareOp{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetDepthCompareOpEXTSignature() {}
+};
+
+struct vkCmdSetDepthBoundsTestEnableEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkBool32 depthBoundsTestEnable{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetDepthBoundsTestEnableEXTSignature() {}
+};
+
+struct vkCmdSetStencilTestEnableEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkBool32 stencilTestEnable{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetStencilTestEnableEXTSignature() {}
+};
+
+struct vkCmdSetStencilOpEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkStencilFaceFlags faceMask{};
+    VkStencilOp failOp{};
+    VkStencilOp passOp{};
+    VkStencilOp depthFailOp{};
+    VkCompareOp compareOp{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetStencilOpEXTSignature() {}
+};
+
+struct vkCopyMemoryToImageEXTSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkCopyMemoryToImageInfo* pCopyMemoryToImageInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCopyMemoryToImageEXTSignature() {}
+};
+
+struct vkCopyImageToMemoryEXTSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkCopyImageToMemoryInfo* pCopyImageToMemoryInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCopyImageToMemoryEXTSignature() {}
+};
+
+struct vkCopyImageToImageEXTSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkCopyImageToImageInfo* pCopyImageToImageInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCopyImageToImageEXTSignature() {}
+};
+
+struct vkTransitionImageLayoutEXTSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    uint32_t transitionCount{};
+    VkHostImageLayoutTransitionInfo* pTransitions{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkTransitionImageLayoutEXTSignature() {}
+};
+
+struct vkGetImageSubresourceLayout2EXTSignature : public BaseSignature {
+    VkDevice device{};
+    VkImage image{};
+    VkImageSubresource2* pSubresource{};
+    VkSubresourceLayout2* pLayout{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetImageSubresourceLayout2EXTSignature() {}
+};
+
+struct vkReleaseSwapchainImagesEXTSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkReleaseSwapchainImagesInfoKHR* pReleaseInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkReleaseSwapchainImagesEXTSignature() {}
+};
+
+struct vkGetGeneratedCommandsMemoryRequirementsNVSignature : public BaseSignature {
+    VkDevice device{};
+    VkGeneratedCommandsMemoryRequirementsInfoNV* pInfo{};
+    VkMemoryRequirements2* pMemoryRequirements{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetGeneratedCommandsMemoryRequirementsNVSignature() {}
+};
+
+struct vkCmdPreprocessGeneratedCommandsNVSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkGeneratedCommandsInfoNV* pGeneratedCommandsInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdPreprocessGeneratedCommandsNVSignature() {}
+};
+
+struct vkCmdExecuteGeneratedCommandsNVSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkBool32 isPreprocessed{};
+    VkGeneratedCommandsInfoNV* pGeneratedCommandsInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdExecuteGeneratedCommandsNVSignature() {}
+};
+
+struct vkCmdBindPipelineShaderGroupNVSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkPipelineBindPoint pipelineBindPoint{};
+    VkPipeline pipeline{};
+    uint32_t groupIndex{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdBindPipelineShaderGroupNVSignature() {}
+};
+
+struct vkCreateIndirectCommandsLayoutNVSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkIndirectCommandsLayoutCreateInfoNV* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkIndirectCommandsLayoutNV* pIndirectCommandsLayout{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateIndirectCommandsLayoutNVSignature() {}
+};
+
+struct vkDestroyIndirectCommandsLayoutNVSignature : public BaseSignature {
+    VkDevice device{};
+    VkIndirectCommandsLayoutNV indirectCommandsLayout{};
+    VkAllocationCallbacks* pAllocator{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkDestroyIndirectCommandsLayoutNVSignature() {}
+};
+
+struct vkCmdSetDepthBias2EXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkDepthBiasInfoEXT* pDepthBiasInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetDepthBias2EXTSignature() {}
+};
+
+struct vkAcquireDrmDisplayEXTSignature : public BaseSignature {
+    VkResult ret{};
+    VkPhysicalDevice physicalDevice{};
+    int32_t drmFd{};
+    VkDisplayKHR display{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkAcquireDrmDisplayEXTSignature() {}
+};
+
+struct vkGetDrmDisplayEXTSignature : public BaseSignature {
+    VkResult ret{};
+    VkPhysicalDevice physicalDevice{};
+    int32_t drmFd{};
+    uint32_t connectorId{};
+    VkDisplayKHR* display{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetDrmDisplayEXTSignature() {}
+};
+
+struct vkCreatePrivateDataSlotEXTSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkPrivateDataSlotCreateInfo* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkPrivateDataSlot* pPrivateDataSlot{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreatePrivateDataSlotEXTSignature() {}
+};
+
+struct vkDestroyPrivateDataSlotEXTSignature : public BaseSignature {
+    VkDevice device{};
+    VkPrivateDataSlot privateDataSlot{};
+    VkAllocationCallbacks* pAllocator{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkDestroyPrivateDataSlotEXTSignature() {}
+};
+
+struct vkSetPrivateDataEXTSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkObjectType objectType{};
+    uint64_t objectHandle{};
+    VkPrivateDataSlot privateDataSlot{};
+    uint64_t data{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkSetPrivateDataEXTSignature() {}
+};
+
+struct vkGetPrivateDataEXTSignature : public BaseSignature {
+    VkDevice device{};
+    VkObjectType objectType{};
+    uint64_t objectHandle{};
+    VkPrivateDataSlot privateDataSlot{};
+    uint64_t* pData{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPrivateDataEXTSignature() {}
+};
+
+struct vkCreateCudaModuleNVSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkCudaModuleCreateInfoNV* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkCudaModuleNV* pModule{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateCudaModuleNVSignature() {}
+};
+
+struct vkGetCudaModuleCacheNVSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkCudaModuleNV module{};
+    size_t* pCacheSize{};
+    void* pCacheData{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetCudaModuleCacheNVSignature() {}
+};
+
+struct vkCreateCudaFunctionNVSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkCudaFunctionCreateInfoNV* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkCudaFunctionNV* pFunction{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateCudaFunctionNVSignature() {}
+};
+
+struct vkDestroyCudaModuleNVSignature : public BaseSignature {
+    VkDevice device{};
+    VkCudaModuleNV module{};
+    VkAllocationCallbacks* pAllocator{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkDestroyCudaModuleNVSignature() {}
+};
+
+struct vkDestroyCudaFunctionNVSignature : public BaseSignature {
+    VkDevice device{};
+    VkCudaFunctionNV function{};
+    VkAllocationCallbacks* pAllocator{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkDestroyCudaFunctionNVSignature() {}
+};
+
+struct vkCmdCudaLaunchKernelNVSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkCudaLaunchInfoNV* pLaunchInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdCudaLaunchKernelNVSignature() {}
+};
+
+struct vkCmdDispatchTileQCOMSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkDispatchTileInfoQCOM* pDispatchTileInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdDispatchTileQCOMSignature() {}
+};
+
+struct vkCmdBeginPerTileExecutionQCOMSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkPerTileBeginInfoQCOM* pPerTileBeginInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdBeginPerTileExecutionQCOMSignature() {}
+};
+
+struct vkCmdEndPerTileExecutionQCOMSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkPerTileEndInfoQCOM* pPerTileEndInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdEndPerTileExecutionQCOMSignature() {}
+};
+
+struct vkExportMetalObjectsEXTSignature : public BaseSignature {
+    VkDevice device{};
+    VkExportMetalObjectsInfoEXT* pMetalObjectsInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkExportMetalObjectsEXTSignature() {}
+};
+
+struct vkGetDescriptorSetLayoutSizeEXTSignature : public BaseSignature {
+    VkDevice device{};
+    VkDescriptorSetLayout layout{};
+    VkDeviceSize* pLayoutSizeInBytes{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetDescriptorSetLayoutSizeEXTSignature() {}
+};
+
+struct vkGetDescriptorSetLayoutBindingOffsetEXTSignature : public BaseSignature {
+    VkDevice device{};
+    VkDescriptorSetLayout layout{};
+    uint32_t binding{};
+    VkDeviceSize* pOffset{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetDescriptorSetLayoutBindingOffsetEXTSignature() {}
+};
+
+struct vkGetDescriptorEXTSignature : public BaseSignature {
+    VkDevice device{};
+    VkDescriptorGetInfoEXT* pDescriptorInfo{};
+    size_t dataSize{};
+    void* pDescriptor{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetDescriptorEXTSignature() {}
+};
+
+struct vkCmdBindDescriptorBuffersEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    uint32_t bufferCount{};
+    VkDescriptorBufferBindingInfoEXT* pBindingInfos{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdBindDescriptorBuffersEXTSignature() {}
+};
+
+struct vkCmdSetDescriptorBufferOffsetsEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkPipelineBindPoint pipelineBindPoint{};
+    VkPipelineLayout layout{};
+    uint32_t firstSet{};
+    uint32_t setCount{};
+    uint32_t* pBufferIndices{};
+    VkDeviceSize* pOffsets{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetDescriptorBufferOffsetsEXTSignature() {}
+};
+
+struct vkCmdBindDescriptorBufferEmbeddedSamplersEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkPipelineBindPoint pipelineBindPoint{};
+    VkPipelineLayout layout{};
+    uint32_t set{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdBindDescriptorBufferEmbeddedSamplersEXTSignature() {}
+};
+
+struct vkGetBufferOpaqueCaptureDescriptorDataEXTSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkBufferCaptureDescriptorDataInfoEXT* pInfo{};
+    void* pData{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetBufferOpaqueCaptureDescriptorDataEXTSignature() {}
+};
+
+struct vkGetImageOpaqueCaptureDescriptorDataEXTSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkImageCaptureDescriptorDataInfoEXT* pInfo{};
+    void* pData{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetImageOpaqueCaptureDescriptorDataEXTSignature() {}
+};
+
+struct vkGetImageViewOpaqueCaptureDescriptorDataEXTSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkImageViewCaptureDescriptorDataInfoEXT* pInfo{};
+    void* pData{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetImageViewOpaqueCaptureDescriptorDataEXTSignature() {}
+};
+
+struct vkGetSamplerOpaqueCaptureDescriptorDataEXTSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkSamplerCaptureDescriptorDataInfoEXT* pInfo{};
+    void* pData{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetSamplerOpaqueCaptureDescriptorDataEXTSignature() {}
+};
+
+struct vkGetAccelerationStructureOpaqueCaptureDescriptorDataEXTSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkAccelerationStructureCaptureDescriptorDataInfoEXT* pInfo{};
+    void* pData{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetAccelerationStructureOpaqueCaptureDescriptorDataEXTSignature() {}
+};
+
+struct vkCmdSetFragmentShadingRateEnumNVSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkFragmentShadingRateNV shadingRate{};
+    VkFragmentShadingRateCombinerOpKHR combinerOps[2]{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetFragmentShadingRateEnumNVSignature() {}
+};
+
+struct vkGetDeviceFaultInfoEXTSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkDeviceFaultCountsEXT* pFaultCounts{};
+    VkDeviceFaultInfoEXT* pFaultInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetDeviceFaultInfoEXTSignature() {}
+};
+
+struct vkAcquireWinrtDisplayNVSignature : public BaseSignature {
+    VkResult ret{};
+    VkPhysicalDevice physicalDevice{};
+    VkDisplayKHR display{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkAcquireWinrtDisplayNVSignature() {}
+};
+
+struct vkGetWinrtDisplayNVSignature : public BaseSignature {
+    VkResult ret{};
+    VkPhysicalDevice physicalDevice{};
+    uint32_t deviceRelativeId{};
+    VkDisplayKHR* pDisplay{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetWinrtDisplayNVSignature() {}
+};
+
+struct vkCreateDirectFBSurfaceEXTSignature : public BaseSignature {
+    VkResult ret{};
+    VkInstance instance{};
+    VkDirectFBSurfaceCreateInfoEXT* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkSurfaceKHR* pSurface{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateDirectFBSurfaceEXTSignature() {}
+};
+
+struct vkGetPhysicalDeviceDirectFBPresentationSupportEXTSignature : public BaseSignature {
+    VkBool32 ret{};
+    VkPhysicalDevice physicalDevice{};
+    uint32_t queueFamilyIndex{};
+    IDirectFB* dfb{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDeviceDirectFBPresentationSupportEXTSignature() {}
+};
+
+struct vkCmdSetVertexInputEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    uint32_t vertexBindingDescriptionCount{};
+    VkVertexInputBindingDescription2EXT* pVertexBindingDescriptions{};
+    uint32_t vertexAttributeDescriptionCount{};
+    VkVertexInputAttributeDescription2EXT* pVertexAttributeDescriptions{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetVertexInputEXTSignature() {}
+};
+
+struct vkGetMemoryZirconHandleFUCHSIASignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkMemoryGetZirconHandleInfoFUCHSIA* pGetZirconHandleInfo{};
+    zx_handle_t* pZirconHandle{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetMemoryZirconHandleFUCHSIASignature() {}
+};
+
+struct vkGetMemoryZirconHandlePropertiesFUCHSIASignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkExternalMemoryHandleTypeFlagBits handleType{};
+    zx_handle_t zirconHandle{};
+    VkMemoryZirconHandlePropertiesFUCHSIA* pMemoryZirconHandleProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetMemoryZirconHandlePropertiesFUCHSIASignature() {}
+};
+
+struct vkImportSemaphoreZirconHandleFUCHSIASignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkImportSemaphoreZirconHandleInfoFUCHSIA* pImportSemaphoreZirconHandleInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkImportSemaphoreZirconHandleFUCHSIASignature() {}
+};
+
+struct vkGetSemaphoreZirconHandleFUCHSIASignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkSemaphoreGetZirconHandleInfoFUCHSIA* pGetZirconHandleInfo{};
+    zx_handle_t* pZirconHandle{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetSemaphoreZirconHandleFUCHSIASignature() {}
+};
+
+struct vkCreateBufferCollectionFUCHSIASignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkBufferCollectionCreateInfoFUCHSIA* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkBufferCollectionFUCHSIA* pCollection{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateBufferCollectionFUCHSIASignature() {}
+};
+
+struct vkSetBufferCollectionImageConstraintsFUCHSIASignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkBufferCollectionFUCHSIA collection{};
+    VkImageConstraintsInfoFUCHSIA* pImageConstraintsInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkSetBufferCollectionImageConstraintsFUCHSIASignature() {}
+};
+
+struct vkSetBufferCollectionBufferConstraintsFUCHSIASignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkBufferCollectionFUCHSIA collection{};
+    VkBufferConstraintsInfoFUCHSIA* pBufferConstraintsInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkSetBufferCollectionBufferConstraintsFUCHSIASignature() {}
+};
+
+struct vkDestroyBufferCollectionFUCHSIASignature : public BaseSignature {
+    VkDevice device{};
+    VkBufferCollectionFUCHSIA collection{};
+    VkAllocationCallbacks* pAllocator{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkDestroyBufferCollectionFUCHSIASignature() {}
+};
+
+struct vkGetBufferCollectionPropertiesFUCHSIASignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkBufferCollectionFUCHSIA collection{};
+    VkBufferCollectionPropertiesFUCHSIA* pProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetBufferCollectionPropertiesFUCHSIASignature() {}
+};
+
+struct vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEISignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkRenderPass renderpass{};
+    VkExtent2D* pMaxWorkgroupSize{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEISignature() {}
+};
+
+struct vkCmdSubpassShadingHUAWEISignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSubpassShadingHUAWEISignature() {}
+};
+
+struct vkCmdBindInvocationMaskHUAWEISignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkImageView imageView{};
+    VkImageLayout imageLayout{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdBindInvocationMaskHUAWEISignature() {}
+};
+
+struct vkGetMemoryRemoteAddressNVSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkMemoryGetRemoteAddressInfoNV* pMemoryGetRemoteAddressInfo{};
+    VkRemoteAddressNV* pAddress{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetMemoryRemoteAddressNVSignature() {}
+};
+
+struct vkGetPipelinePropertiesEXTSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkPipelineInfoEXT* pPipelineInfo{};
+    VkBaseOutStructure* pPipelineProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPipelinePropertiesEXTSignature() {}
+};
+
+struct vkCmdSetPatchControlPointsEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    uint32_t patchControlPoints{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetPatchControlPointsEXTSignature() {}
+};
+
+struct vkCmdSetRasterizerDiscardEnableEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkBool32 rasterizerDiscardEnable{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetRasterizerDiscardEnableEXTSignature() {}
+};
+
+struct vkCmdSetDepthBiasEnableEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkBool32 depthBiasEnable{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetDepthBiasEnableEXTSignature() {}
+};
+
+struct vkCmdSetLogicOpEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkLogicOp logicOp{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetLogicOpEXTSignature() {}
+};
+
+struct vkCmdSetPrimitiveRestartEnableEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkBool32 primitiveRestartEnable{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetPrimitiveRestartEnableEXTSignature() {}
+};
+
+struct vkCreateScreenSurfaceQNXSignature : public BaseSignature {
+    VkResult ret{};
+    VkInstance instance{};
+    VkScreenSurfaceCreateInfoQNX* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkSurfaceKHR* pSurface{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateScreenSurfaceQNXSignature() {}
+};
+
+struct vkGetPhysicalDeviceScreenPresentationSupportQNXSignature : public BaseSignature {
+    VkBool32 ret{};
+    VkPhysicalDevice physicalDevice{};
+    uint32_t queueFamilyIndex{};
+    _screen_window* window{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDeviceScreenPresentationSupportQNXSignature() {}
+};
+
+struct vkCmdSetColorWriteEnableEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    uint32_t attachmentCount{};
+    VkBool32* pColorWriteEnables{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetColorWriteEnableEXTSignature() {}
+};
+
+struct vkCmdDrawMultiEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    uint32_t drawCount{};
+    VkMultiDrawInfoEXT* pVertexInfo{};
+    uint32_t instanceCount{};
+    uint32_t firstInstance{};
+    uint32_t stride{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdDrawMultiEXTSignature() {}
+};
+
+struct vkCmdDrawMultiIndexedEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    uint32_t drawCount{};
+    VkMultiDrawIndexedInfoEXT* pIndexInfo{};
+    uint32_t instanceCount{};
+    uint32_t firstInstance{};
+    uint32_t stride{};
+    int32_t* pVertexOffset{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdDrawMultiIndexedEXTSignature() {}
+};
+
+struct vkCreateMicromapEXTSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkMicromapCreateInfoEXT* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkMicromapEXT* pMicromap{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateMicromapEXTSignature() {}
+};
+
+struct vkDestroyMicromapEXTSignature : public BaseSignature {
+    VkDevice device{};
+    VkMicromapEXT micromap{};
+    VkAllocationCallbacks* pAllocator{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkDestroyMicromapEXTSignature() {}
+};
+
+struct vkCmdBuildMicromapsEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    uint32_t infoCount{};
+    VkMicromapBuildInfoEXT* pInfos{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdBuildMicromapsEXTSignature() {}
+};
+
+struct vkBuildMicromapsEXTSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkDeferredOperationKHR deferredOperation{};
+    uint32_t infoCount{};
+    VkMicromapBuildInfoEXT* pInfos{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkBuildMicromapsEXTSignature() {}
+};
+
+struct vkCopyMicromapEXTSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkDeferredOperationKHR deferredOperation{};
+    VkCopyMicromapInfoEXT* pInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCopyMicromapEXTSignature() {}
+};
+
+struct vkCopyMicromapToMemoryEXTSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkDeferredOperationKHR deferredOperation{};
+    VkCopyMicromapToMemoryInfoEXT* pInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCopyMicromapToMemoryEXTSignature() {}
+};
+
+struct vkCopyMemoryToMicromapEXTSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkDeferredOperationKHR deferredOperation{};
+    VkCopyMemoryToMicromapInfoEXT* pInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCopyMemoryToMicromapEXTSignature() {}
+};
+
+struct vkWriteMicromapsPropertiesEXTSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    uint32_t micromapCount{};
+    VkMicromapEXT* pMicromaps{};
+    VkQueryType queryType{};
+    size_t dataSize{};
+    void* pData{};
+    size_t stride{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkWriteMicromapsPropertiesEXTSignature() {}
+};
+
+struct vkCmdCopyMicromapEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkCopyMicromapInfoEXT* pInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdCopyMicromapEXTSignature() {}
+};
+
+struct vkCmdCopyMicromapToMemoryEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkCopyMicromapToMemoryInfoEXT* pInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdCopyMicromapToMemoryEXTSignature() {}
+};
+
+struct vkCmdCopyMemoryToMicromapEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkCopyMemoryToMicromapInfoEXT* pInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdCopyMemoryToMicromapEXTSignature() {}
+};
+
+struct vkCmdWriteMicromapsPropertiesEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    uint32_t micromapCount{};
+    VkMicromapEXT* pMicromaps{};
+    VkQueryType queryType{};
+    VkQueryPool queryPool{};
+    uint32_t firstQuery{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdWriteMicromapsPropertiesEXTSignature() {}
+};
+
+struct vkGetDeviceMicromapCompatibilityEXTSignature : public BaseSignature {
+    VkDevice device{};
+    VkMicromapVersionInfoEXT* pVersionInfo{};
+    VkAccelerationStructureCompatibilityKHR* pCompatibility{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetDeviceMicromapCompatibilityEXTSignature() {}
+};
+
+struct vkGetMicromapBuildSizesEXTSignature : public BaseSignature {
+    VkDevice device{};
+    VkAccelerationStructureBuildTypeKHR buildType{};
+    VkMicromapBuildInfoEXT* pBuildInfo{};
+    VkMicromapBuildSizesInfoEXT* pSizeInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetMicromapBuildSizesEXTSignature() {}
+};
+
+struct vkCmdDrawClusterHUAWEISignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    uint32_t groupCountX{};
+    uint32_t groupCountY{};
+    uint32_t groupCountZ{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdDrawClusterHUAWEISignature() {}
+};
+
+struct vkCmdDrawClusterIndirectHUAWEISignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkBuffer buffer{};
+    VkDeviceSize offset{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdDrawClusterIndirectHUAWEISignature() {}
+};
+
+struct vkSetDeviceMemoryPriorityEXTSignature : public BaseSignature {
+    VkDevice device{};
+    VkDeviceMemory memory{};
+    float priority{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkSetDeviceMemoryPriorityEXTSignature() {}
+};
+
+struct vkGetDescriptorSetLayoutHostMappingInfoVALVESignature : public BaseSignature {
+    VkDevice device{};
+    VkDescriptorSetBindingReferenceVALVE* pBindingReference{};
+    VkDescriptorSetLayoutHostMappingInfoVALVE* pHostMapping{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetDescriptorSetLayoutHostMappingInfoVALVESignature() {}
+};
+
+struct vkGetDescriptorSetHostMappingVALVESignature : public BaseSignature {
+    VkDevice device{};
+    VkDescriptorSet descriptorSet{};
+    void** ppData{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetDescriptorSetHostMappingVALVESignature() {}
+};
+
+struct vkCmdCopyMemoryIndirectNVSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkDeviceAddress copyBufferAddress{};
+    uint32_t copyCount{};
+    uint32_t stride{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdCopyMemoryIndirectNVSignature() {}
+};
+
+struct vkCmdCopyMemoryToImageIndirectNVSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkDeviceAddress copyBufferAddress{};
+    uint32_t copyCount{};
+    uint32_t stride{};
+    VkImage dstImage{};
+    VkImageLayout dstImageLayout{};
+    VkImageSubresourceLayers* pImageSubresources{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdCopyMemoryToImageIndirectNVSignature() {}
+};
+
+struct vkCmdDecompressMemoryNVSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    uint32_t decompressRegionCount{};
+    VkDecompressMemoryRegionNV* pDecompressMemoryRegions{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdDecompressMemoryNVSignature() {}
+};
+
+struct vkCmdDecompressMemoryIndirectCountNVSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkDeviceAddress indirectCommandsAddress{};
+    VkDeviceAddress indirectCommandsCountAddress{};
+    uint32_t stride{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdDecompressMemoryIndirectCountNVSignature() {}
+};
+
+struct vkGetPipelineIndirectMemoryRequirementsNVSignature : public BaseSignature {
+    VkDevice device{};
+    VkComputePipelineCreateInfo* pCreateInfo{};
+    VkMemoryRequirements2* pMemoryRequirements{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPipelineIndirectMemoryRequirementsNVSignature() {}
+};
+
+struct vkCmdUpdatePipelineIndirectBufferNVSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkPipelineBindPoint pipelineBindPoint{};
+    VkPipeline pipeline{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdUpdatePipelineIndirectBufferNVSignature() {}
+};
+
+struct vkGetPipelineIndirectDeviceAddressNVSignature : public BaseSignature {
+    VkDeviceAddress ret{};
+    VkDevice device{};
+    VkPipelineIndirectDeviceAddressInfoNV* pInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPipelineIndirectDeviceAddressNVSignature() {}
+};
+
+struct vkGetNativeBufferPropertiesOHOSSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    OH_NativeBuffer* buffer{};
+    VkNativeBufferPropertiesOHOS* pProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetNativeBufferPropertiesOHOSSignature() {}
+};
+
+struct vkGetMemoryNativeBufferOHOSSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkMemoryGetNativeBufferInfoOHOS* pInfo{};
+    OH_NativeBuffer** pBuffer{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetMemoryNativeBufferOHOSSignature() {}
+};
+
+struct vkCmdSetDepthClampEnableEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkBool32 depthClampEnable{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetDepthClampEnableEXTSignature() {}
+};
+
+struct vkCmdSetPolygonModeEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkPolygonMode polygonMode{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetPolygonModeEXTSignature() {}
+};
+
+struct vkCmdSetRasterizationSamplesEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkSampleCountFlagBits rasterizationSamples{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetRasterizationSamplesEXTSignature() {}
+};
+
+struct vkCmdSetSampleMaskEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkSampleCountFlagBits samples{};
+    VkSampleMask* pSampleMask{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetSampleMaskEXTSignature() {}
+};
+
+struct vkCmdSetAlphaToCoverageEnableEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkBool32 alphaToCoverageEnable{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetAlphaToCoverageEnableEXTSignature() {}
+};
+
+struct vkCmdSetAlphaToOneEnableEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkBool32 alphaToOneEnable{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetAlphaToOneEnableEXTSignature() {}
+};
+
+struct vkCmdSetLogicOpEnableEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkBool32 logicOpEnable{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetLogicOpEnableEXTSignature() {}
+};
+
+struct vkCmdSetColorBlendEnableEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    uint32_t firstAttachment{};
+    uint32_t attachmentCount{};
+    VkBool32* pColorBlendEnables{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetColorBlendEnableEXTSignature() {}
+};
+
+struct vkCmdSetColorBlendEquationEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    uint32_t firstAttachment{};
+    uint32_t attachmentCount{};
+    VkColorBlendEquationEXT* pColorBlendEquations{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetColorBlendEquationEXTSignature() {}
+};
+
+struct vkCmdSetColorWriteMaskEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    uint32_t firstAttachment{};
+    uint32_t attachmentCount{};
+    VkColorComponentFlags* pColorWriteMasks{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetColorWriteMaskEXTSignature() {}
+};
+
+struct vkCmdSetTessellationDomainOriginEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkTessellationDomainOrigin domainOrigin{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetTessellationDomainOriginEXTSignature() {}
+};
+
+struct vkCmdSetRasterizationStreamEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    uint32_t rasterizationStream{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetRasterizationStreamEXTSignature() {}
+};
+
+struct vkCmdSetConservativeRasterizationModeEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkConservativeRasterizationModeEXT conservativeRasterizationMode{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetConservativeRasterizationModeEXTSignature() {}
+};
+
+struct vkCmdSetExtraPrimitiveOverestimationSizeEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    float extraPrimitiveOverestimationSize{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetExtraPrimitiveOverestimationSizeEXTSignature() {}
+};
+
+struct vkCmdSetDepthClipEnableEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkBool32 depthClipEnable{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetDepthClipEnableEXTSignature() {}
+};
+
+struct vkCmdSetSampleLocationsEnableEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkBool32 sampleLocationsEnable{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetSampleLocationsEnableEXTSignature() {}
+};
+
+struct vkCmdSetColorBlendAdvancedEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    uint32_t firstAttachment{};
+    uint32_t attachmentCount{};
+    VkColorBlendAdvancedEXT* pColorBlendAdvanced{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetColorBlendAdvancedEXTSignature() {}
+};
+
+struct vkCmdSetProvokingVertexModeEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkProvokingVertexModeEXT provokingVertexMode{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetProvokingVertexModeEXTSignature() {}
+};
+
+struct vkCmdSetLineRasterizationModeEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkLineRasterizationModeEXT lineRasterizationMode{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetLineRasterizationModeEXTSignature() {}
+};
+
+struct vkCmdSetLineStippleEnableEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkBool32 stippledLineEnable{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetLineStippleEnableEXTSignature() {}
+};
+
+struct vkCmdSetDepthClipNegativeOneToOneEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkBool32 negativeOneToOne{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetDepthClipNegativeOneToOneEXTSignature() {}
+};
+
+struct vkCmdSetViewportWScalingEnableNVSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkBool32 viewportWScalingEnable{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetViewportWScalingEnableNVSignature() {}
+};
+
+struct vkCmdSetViewportSwizzleNVSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    uint32_t firstViewport{};
+    uint32_t viewportCount{};
+    VkViewportSwizzleNV* pViewportSwizzles{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetViewportSwizzleNVSignature() {}
+};
+
+struct vkCmdSetCoverageToColorEnableNVSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkBool32 coverageToColorEnable{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetCoverageToColorEnableNVSignature() {}
+};
+
+struct vkCmdSetCoverageToColorLocationNVSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    uint32_t coverageToColorLocation{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetCoverageToColorLocationNVSignature() {}
+};
+
+struct vkCmdSetCoverageModulationModeNVSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkCoverageModulationModeNV coverageModulationMode{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetCoverageModulationModeNVSignature() {}
+};
+
+struct vkCmdSetCoverageModulationTableEnableNVSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkBool32 coverageModulationTableEnable{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetCoverageModulationTableEnableNVSignature() {}
+};
+
+struct vkCmdSetCoverageModulationTableNVSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    uint32_t coverageModulationTableCount{};
+    float* pCoverageModulationTable{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetCoverageModulationTableNVSignature() {}
+};
+
+struct vkCmdSetShadingRateImageEnableNVSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkBool32 shadingRateImageEnable{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetShadingRateImageEnableNVSignature() {}
+};
+
+struct vkCmdSetRepresentativeFragmentTestEnableNVSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkBool32 representativeFragmentTestEnable{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetRepresentativeFragmentTestEnableNVSignature() {}
+};
+
+struct vkCmdSetCoverageReductionModeNVSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkCoverageReductionModeNV coverageReductionMode{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetCoverageReductionModeNVSignature() {}
+};
+
+struct vkCreateTensorARMSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkTensorCreateInfoARM* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkTensorARM* pTensor{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateTensorARMSignature() {}
+};
+
+struct vkDestroyTensorARMSignature : public BaseSignature {
+    VkDevice device{};
+    VkTensorARM tensor{};
+    VkAllocationCallbacks* pAllocator{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkDestroyTensorARMSignature() {}
+};
+
+struct vkCreateTensorViewARMSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkTensorViewCreateInfoARM* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkTensorViewARM* pView{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateTensorViewARMSignature() {}
+};
+
+struct vkDestroyTensorViewARMSignature : public BaseSignature {
+    VkDevice device{};
+    VkTensorViewARM tensorView{};
+    VkAllocationCallbacks* pAllocator{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkDestroyTensorViewARMSignature() {}
+};
+
+struct vkGetTensorMemoryRequirementsARMSignature : public BaseSignature {
+    VkDevice device{};
+    VkTensorMemoryRequirementsInfoARM* pInfo{};
+    VkMemoryRequirements2* pMemoryRequirements{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetTensorMemoryRequirementsARMSignature() {}
+};
+
+struct vkBindTensorMemoryARMSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    uint32_t bindInfoCount{};
+    VkBindTensorMemoryInfoARM* pBindInfos{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkBindTensorMemoryARMSignature() {}
+};
+
+struct vkGetDeviceTensorMemoryRequirementsARMSignature : public BaseSignature {
+    VkDevice device{};
+    VkDeviceTensorMemoryRequirementsARM* pInfo{};
+    VkMemoryRequirements2* pMemoryRequirements{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetDeviceTensorMemoryRequirementsARMSignature() {}
+};
+
+struct vkCmdCopyTensorARMSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkCopyTensorInfoARM* pCopyTensorInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdCopyTensorARMSignature() {}
+};
+
+struct vkGetPhysicalDeviceExternalTensorPropertiesARMSignature : public BaseSignature {
+    VkPhysicalDevice physicalDevice{};
+    VkPhysicalDeviceExternalTensorInfoARM* pExternalTensorInfo{};
+    VkExternalTensorPropertiesARM* pExternalTensorProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDeviceExternalTensorPropertiesARMSignature() {}
+};
+
+struct vkGetTensorOpaqueCaptureDescriptorDataARMSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkTensorCaptureDescriptorDataInfoARM* pInfo{};
+    void* pData{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetTensorOpaqueCaptureDescriptorDataARMSignature() {}
+};
+
+struct vkGetTensorViewOpaqueCaptureDescriptorDataARMSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkTensorViewCaptureDescriptorDataInfoARM* pInfo{};
+    void* pData{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetTensorViewOpaqueCaptureDescriptorDataARMSignature() {}
+};
+
+struct vkGetShaderModuleIdentifierEXTSignature : public BaseSignature {
+    VkDevice device{};
+    VkShaderModule shaderModule{};
+    VkShaderModuleIdentifierEXT* pIdentifier{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetShaderModuleIdentifierEXTSignature() {}
+};
+
+struct vkGetShaderModuleCreateInfoIdentifierEXTSignature : public BaseSignature {
+    VkDevice device{};
+    VkShaderModuleCreateInfo* pCreateInfo{};
+    VkShaderModuleIdentifierEXT* pIdentifier{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetShaderModuleCreateInfoIdentifierEXTSignature() {}
+};
+
+struct vkGetPhysicalDeviceOpticalFlowImageFormatsNVSignature : public BaseSignature {
+    VkResult ret{};
+    VkPhysicalDevice physicalDevice{};
+    VkOpticalFlowImageFormatInfoNV* pOpticalFlowImageFormatInfo{};
+    uint32_t* pFormatCount{};
+    VkOpticalFlowImageFormatPropertiesNV* pImageFormatProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDeviceOpticalFlowImageFormatsNVSignature() {}
+};
+
+struct vkCreateOpticalFlowSessionNVSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkOpticalFlowSessionCreateInfoNV* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkOpticalFlowSessionNV* pSession{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateOpticalFlowSessionNVSignature() {}
+};
+
+struct vkDestroyOpticalFlowSessionNVSignature : public BaseSignature {
+    VkDevice device{};
+    VkOpticalFlowSessionNV session{};
+    VkAllocationCallbacks* pAllocator{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkDestroyOpticalFlowSessionNVSignature() {}
+};
+
+struct vkBindOpticalFlowSessionImageNVSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkOpticalFlowSessionNV session{};
+    VkOpticalFlowSessionBindingPointNV bindingPoint{};
+    VkImageView view{};
+    VkImageLayout layout{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkBindOpticalFlowSessionImageNVSignature() {}
+};
+
+struct vkCmdOpticalFlowExecuteNVSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkOpticalFlowSessionNV session{};
+    VkOpticalFlowExecuteInfoNV* pExecuteInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdOpticalFlowExecuteNVSignature() {}
+};
+
+struct vkAntiLagUpdateAMDSignature : public BaseSignature {
+    VkDevice device{};
+    VkAntiLagDataAMD* pData{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkAntiLagUpdateAMDSignature() {}
+};
+
+struct vkCreateShadersEXTSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    uint32_t createInfoCount{};
+    VkShaderCreateInfoEXT* pCreateInfos{};
+    VkAllocationCallbacks* pAllocator{};
+    VkShaderEXT* pShaders{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateShadersEXTSignature() {}
+};
+
+struct vkDestroyShaderEXTSignature : public BaseSignature {
+    VkDevice device{};
+    VkShaderEXT shader{};
+    VkAllocationCallbacks* pAllocator{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkDestroyShaderEXTSignature() {}
+};
+
+struct vkGetShaderBinaryDataEXTSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkShaderEXT shader{};
+    size_t* pDataSize{};
+    void* pData{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetShaderBinaryDataEXTSignature() {}
+};
+
+struct vkCmdBindShadersEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    uint32_t stageCount{};
+    VkShaderStageFlagBits* pStages{};
+    VkShaderEXT* pShaders{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdBindShadersEXTSignature() {}
+};
+
+struct vkCmdSetDepthClampRangeEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkDepthClampModeEXT depthClampMode{};
+    VkDepthClampRangeEXT* pDepthClampRange{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetDepthClampRangeEXTSignature() {}
+};
+
+struct vkGetFramebufferTilePropertiesQCOMSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkFramebuffer framebuffer{};
+    uint32_t* pPropertiesCount{};
+    VkTilePropertiesQCOM* pProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetFramebufferTilePropertiesQCOMSignature() {}
+};
+
+struct vkGetDynamicRenderingTilePropertiesQCOMSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkRenderingInfo* pRenderingInfo{};
+    VkTilePropertiesQCOM* pProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetDynamicRenderingTilePropertiesQCOMSignature() {}
+};
+
+struct vkGetPhysicalDeviceCooperativeVectorPropertiesNVSignature : public BaseSignature {
+    VkResult ret{};
+    VkPhysicalDevice physicalDevice{};
+    uint32_t* pPropertyCount{};
+    VkCooperativeVectorPropertiesNV* pProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDeviceCooperativeVectorPropertiesNVSignature() {}
+};
+
+struct vkConvertCooperativeVectorMatrixNVSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkConvertCooperativeVectorMatrixInfoNV* pInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkConvertCooperativeVectorMatrixNVSignature() {}
+};
+
+struct vkCmdConvertCooperativeVectorMatrixNVSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    uint32_t infoCount{};
+    VkConvertCooperativeVectorMatrixInfoNV* pInfos{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdConvertCooperativeVectorMatrixNVSignature() {}
+};
+
+struct vkSetLatencySleepModeNVSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkSwapchainKHR swapchain{};
+    VkLatencySleepModeInfoNV* pSleepModeInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkSetLatencySleepModeNVSignature() {}
+};
+
+struct vkLatencySleepNVSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkSwapchainKHR swapchain{};
+    VkLatencySleepInfoNV* pSleepInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkLatencySleepNVSignature() {}
+};
+
+struct vkSetLatencyMarkerNVSignature : public BaseSignature {
+    VkDevice device{};
+    VkSwapchainKHR swapchain{};
+    VkSetLatencyMarkerInfoNV* pLatencyMarkerInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkSetLatencyMarkerNVSignature() {}
+};
+
+struct vkGetLatencyTimingsNVSignature : public BaseSignature {
+    VkDevice device{};
+    VkSwapchainKHR swapchain{};
+    VkGetLatencyMarkerInfoNV* pLatencyMarkerInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetLatencyTimingsNVSignature() {}
+};
+
+struct vkQueueNotifyOutOfBandNVSignature : public BaseSignature {
+    VkQueue queue{};
+    VkOutOfBandQueueTypeInfoNV* pQueueTypeInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkQueueNotifyOutOfBandNVSignature() {}
+};
+
+struct vkCreateDataGraphPipelinesARMSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkDeferredOperationKHR deferredOperation{};
+    VkPipelineCache pipelineCache{};
+    uint32_t createInfoCount{};
+    VkDataGraphPipelineCreateInfoARM* pCreateInfos{};
+    VkAllocationCallbacks* pAllocator{};
+    VkPipeline* pPipelines{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateDataGraphPipelinesARMSignature() {}
+};
+
+struct vkCreateDataGraphPipelineSessionARMSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkDataGraphPipelineSessionCreateInfoARM* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkDataGraphPipelineSessionARM* pSession{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateDataGraphPipelineSessionARMSignature() {}
+};
+
+struct vkGetDataGraphPipelineSessionBindPointRequirementsARMSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkDataGraphPipelineSessionBindPointRequirementsInfoARM* pInfo{};
+    uint32_t* pBindPointRequirementCount{};
+    VkDataGraphPipelineSessionBindPointRequirementARM* pBindPointRequirements{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetDataGraphPipelineSessionBindPointRequirementsARMSignature() {}
+};
+
+struct vkGetDataGraphPipelineSessionMemoryRequirementsARMSignature : public BaseSignature {
+    VkDevice device{};
+    VkDataGraphPipelineSessionMemoryRequirementsInfoARM* pInfo{};
+    VkMemoryRequirements2* pMemoryRequirements{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetDataGraphPipelineSessionMemoryRequirementsARMSignature() {}
+};
+
+struct vkBindDataGraphPipelineSessionMemoryARMSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    uint32_t bindInfoCount{};
+    VkBindDataGraphPipelineSessionMemoryInfoARM* pBindInfos{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkBindDataGraphPipelineSessionMemoryARMSignature() {}
+};
+
+struct vkDestroyDataGraphPipelineSessionARMSignature : public BaseSignature {
+    VkDevice device{};
+    VkDataGraphPipelineSessionARM session{};
+    VkAllocationCallbacks* pAllocator{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkDestroyDataGraphPipelineSessionARMSignature() {}
+};
+
+struct vkCmdDispatchDataGraphARMSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkDataGraphPipelineSessionARM session{};
+    VkDataGraphPipelineDispatchInfoARM* pInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdDispatchDataGraphARMSignature() {}
+};
+
+struct vkGetDataGraphPipelineAvailablePropertiesARMSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkDataGraphPipelineInfoARM* pPipelineInfo{};
+    uint32_t* pPropertiesCount{};
+    VkDataGraphPipelinePropertyARM* pProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetDataGraphPipelineAvailablePropertiesARMSignature() {}
+};
+
+struct vkGetDataGraphPipelinePropertiesARMSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkDataGraphPipelineInfoARM* pPipelineInfo{};
+    uint32_t propertiesCount{};
+    VkDataGraphPipelinePropertyQueryResultARM* pProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetDataGraphPipelinePropertiesARMSignature() {}
+};
+
+struct vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARMSignature : public BaseSignature {
+    VkResult ret{};
+    VkPhysicalDevice physicalDevice{};
+    uint32_t queueFamilyIndex{};
+    uint32_t* pQueueFamilyDataGraphPropertyCount{};
+    VkQueueFamilyDataGraphPropertiesARM* pQueueFamilyDataGraphProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARMSignature() {}
+};
+
+struct vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARMSignature : public BaseSignature {
+    VkPhysicalDevice physicalDevice{};
+    VkPhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM* pQueueFamilyDataGraphProcessingEngineInfo{};
+    VkQueueFamilyDataGraphProcessingEnginePropertiesARM* pQueueFamilyDataGraphProcessingEngineProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARMSignature() {}
+};
+
+struct vkCmdSetAttachmentFeedbackLoopEnableEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkImageAspectFlags aspectMask{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetAttachmentFeedbackLoopEnableEXTSignature() {}
+};
+
+struct vkGetScreenBufferPropertiesQNXSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    _screen_buffer* buffer{};
+    VkScreenBufferPropertiesQNX* pProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetScreenBufferPropertiesQNXSignature() {}
+};
+
+struct vkCmdBindTileMemoryQCOMSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkTileMemoryBindInfoQCOM* pTileMemoryBindInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdBindTileMemoryQCOMSignature() {}
+};
+
+struct vkCmdDecompressMemoryEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkDecompressMemoryInfoEXT* pDecompressMemoryInfoEXT{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdDecompressMemoryEXTSignature() {}
+};
+
+struct vkCmdDecompressMemoryIndirectCountEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkMemoryDecompressionMethodFlagsEXT decompressionMethod{};
+    VkDeviceAddress indirectCommandsAddress{};
+    VkDeviceAddress indirectCommandsCountAddress{};
+    uint32_t maxDecompressionCount{};
+    uint32_t stride{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdDecompressMemoryIndirectCountEXTSignature() {}
+};
+
+struct vkCreateExternalComputeQueueNVSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkExternalComputeQueueCreateInfoNV* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkExternalComputeQueueNV* pExternalQueue{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateExternalComputeQueueNVSignature() {}
+};
+
+struct vkDestroyExternalComputeQueueNVSignature : public BaseSignature {
+    VkDevice device{};
+    VkExternalComputeQueueNV externalQueue{};
+    VkAllocationCallbacks* pAllocator{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkDestroyExternalComputeQueueNVSignature() {}
+};
+
+struct vkGetExternalComputeQueueDataNVSignature : public BaseSignature {
+    VkExternalComputeQueueNV externalQueue{};
+    VkExternalComputeQueueDataParamsNV* params{};
+    void* pData{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetExternalComputeQueueDataNVSignature() {}
+};
+
+struct vkGetClusterAccelerationStructureBuildSizesNVSignature : public BaseSignature {
+    VkDevice device{};
+    VkClusterAccelerationStructureInputInfoNV* pInfo{};
+    VkAccelerationStructureBuildSizesInfoKHR* pSizeInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetClusterAccelerationStructureBuildSizesNVSignature() {}
+};
+
+struct vkCmdBuildClusterAccelerationStructureIndirectNVSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkClusterAccelerationStructureCommandsInfoNV* pCommandInfos{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdBuildClusterAccelerationStructureIndirectNVSignature() {}
+};
+
+struct vkGetPartitionedAccelerationStructuresBuildSizesNVSignature : public BaseSignature {
+    VkDevice device{};
+    VkPartitionedAccelerationStructureInstancesInputNV* pInfo{};
+    VkAccelerationStructureBuildSizesInfoKHR* pSizeInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPartitionedAccelerationStructuresBuildSizesNVSignature() {}
+};
+
+struct vkCmdBuildPartitionedAccelerationStructuresNVSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkBuildPartitionedAccelerationStructureInfoNV* pBuildInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdBuildPartitionedAccelerationStructuresNVSignature() {}
+};
+
+struct vkGetGeneratedCommandsMemoryRequirementsEXTSignature : public BaseSignature {
+    VkDevice device{};
+    VkGeneratedCommandsMemoryRequirementsInfoEXT* pInfo{};
+    VkMemoryRequirements2* pMemoryRequirements{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetGeneratedCommandsMemoryRequirementsEXTSignature() {}
+};
+
+struct vkCmdPreprocessGeneratedCommandsEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkGeneratedCommandsInfoEXT* pGeneratedCommandsInfo{};
+    VkCommandBuffer stateCommandBuffer{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdPreprocessGeneratedCommandsEXTSignature() {}
+};
+
+struct vkCmdExecuteGeneratedCommandsEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkBool32 isPreprocessed{};
+    VkGeneratedCommandsInfoEXT* pGeneratedCommandsInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdExecuteGeneratedCommandsEXTSignature() {}
+};
+
+struct vkCreateIndirectCommandsLayoutEXTSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkIndirectCommandsLayoutCreateInfoEXT* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkIndirectCommandsLayoutEXT* pIndirectCommandsLayout{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateIndirectCommandsLayoutEXTSignature() {}
+};
+
+struct vkDestroyIndirectCommandsLayoutEXTSignature : public BaseSignature {
+    VkDevice device{};
+    VkIndirectCommandsLayoutEXT indirectCommandsLayout{};
+    VkAllocationCallbacks* pAllocator{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkDestroyIndirectCommandsLayoutEXTSignature() {}
+};
+
+struct vkCreateIndirectExecutionSetEXTSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkIndirectExecutionSetCreateInfoEXT* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkIndirectExecutionSetEXT* pIndirectExecutionSet{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateIndirectExecutionSetEXTSignature() {}
+};
+
+struct vkDestroyIndirectExecutionSetEXTSignature : public BaseSignature {
+    VkDevice device{};
+    VkIndirectExecutionSetEXT indirectExecutionSet{};
+    VkAllocationCallbacks* pAllocator{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkDestroyIndirectExecutionSetEXTSignature() {}
+};
+
+struct vkUpdateIndirectExecutionSetPipelineEXTSignature : public BaseSignature {
+    VkDevice device{};
+    VkIndirectExecutionSetEXT indirectExecutionSet{};
+    uint32_t executionSetWriteCount{};
+    VkWriteIndirectExecutionSetPipelineEXT* pExecutionSetWrites{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkUpdateIndirectExecutionSetPipelineEXTSignature() {}
+};
+
+struct vkUpdateIndirectExecutionSetShaderEXTSignature : public BaseSignature {
+    VkDevice device{};
+    VkIndirectExecutionSetEXT indirectExecutionSet{};
+    uint32_t executionSetWriteCount{};
+    VkWriteIndirectExecutionSetShaderEXT* pExecutionSetWrites{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkUpdateIndirectExecutionSetShaderEXTSignature() {}
+};
+
+struct vkCreateSurfaceOHOSSignature : public BaseSignature {
+    VkResult ret{};
+    VkInstance instance{};
+    VkSurfaceCreateInfoOHOS* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkSurfaceKHR* pSurface{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateSurfaceOHOSSignature() {}
+};
+
+struct vkGetSwapchainGrallocUsageOHOSSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkFormat format{};
+    VkImageUsageFlags imageUsage{};
+    uint64_t* grallocUsage{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetSwapchainGrallocUsageOHOSSignature() {}
+};
+
+struct vkAcquireImageOHOSSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkImage image{};
+    int32_t nativeFenceFd{};
+    VkSemaphore semaphore{};
+    VkFence fence{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkAcquireImageOHOSSignature() {}
+};
+
+struct vkQueueSignalReleaseImageOHOSSignature : public BaseSignature {
+    VkResult ret{};
+    VkQueue queue{};
+    uint32_t waitSemaphoreCount{};
+    VkSemaphore* pWaitSemaphores{};
+    VkImage image{};
+    int32_t* pNativeFenceFd{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkQueueSignalReleaseImageOHOSSignature() {}
+};
+
+struct vkGetPhysicalDeviceCooperativeMatrixFlexibleDimensionsPropertiesNVSignature : public BaseSignature {
+    VkResult ret{};
+    VkPhysicalDevice physicalDevice{};
+    uint32_t* pPropertyCount{};
+    VkCooperativeMatrixFlexibleDimensionsPropertiesNV* pProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetPhysicalDeviceCooperativeMatrixFlexibleDimensionsPropertiesNVSignature() {}
+};
+
+struct vkGetMemoryMetalHandleEXTSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkMemoryGetMetalHandleInfoEXT* pGetMetalHandleInfo{};
+    void** pHandle{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetMemoryMetalHandleEXTSignature() {}
+};
+
+struct vkGetMemoryMetalHandlePropertiesEXTSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkExternalMemoryHandleTypeFlagBits handleType{};
+    void* pHandle{};
+    VkMemoryMetalHandlePropertiesEXT* pMemoryMetalHandleProperties{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetMemoryMetalHandlePropertiesEXTSignature() {}
+};
+
+struct vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARMSignature : public BaseSignature {
+    VkResult ret{};
+    VkPhysicalDevice physicalDevice{};
+    uint32_t queueFamilyIndex{};
+    uint32_t* pCounterCount{};
+    VkPerformanceCounterARM* pCounters{};
+    VkPerformanceCounterDescriptionARM* pCounterDescriptions{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARMSignature() {}
+};
+
+struct vkCmdEndRendering2EXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkRenderingEndInfoKHR* pRenderingEndInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdEndRendering2EXTSignature() {}
+};
+
+struct vkCmdBeginCustomResolveEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkBeginCustomResolveInfoEXT* pBeginCustomResolveInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdBeginCustomResolveEXTSignature() {}
+};
+
+struct vkCreateAccelerationStructureKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkAccelerationStructureCreateInfoKHR* pCreateInfo{};
+    VkAllocationCallbacks* pAllocator{};
+    VkAccelerationStructureKHR* pAccelerationStructure{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateAccelerationStructureKHRSignature() {}
+};
+
+struct vkDestroyAccelerationStructureKHRSignature : public BaseSignature {
+    VkDevice device{};
+    VkAccelerationStructureKHR accelerationStructure{};
+    VkAllocationCallbacks* pAllocator{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkDestroyAccelerationStructureKHRSignature() {}
+};
+
+struct vkCmdBuildAccelerationStructuresKHRSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    uint32_t infoCount{};
+    VkAccelerationStructureBuildGeometryInfoKHR* pInfos{};
+    VkAccelerationStructureBuildRangeInfoKHR* const* ppBuildRangeInfos{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdBuildAccelerationStructuresKHRSignature() {}
+};
+
+struct vkCmdBuildAccelerationStructuresIndirectKHRSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    uint32_t infoCount{};
+    VkAccelerationStructureBuildGeometryInfoKHR* pInfos{};
+    VkDeviceAddress* pIndirectDeviceAddresses{};
+    uint32_t* pIndirectStrides{};
+    uint32_t* const* ppMaxPrimitiveCounts{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdBuildAccelerationStructuresIndirectKHRSignature() {}
+};
+
+struct vkBuildAccelerationStructuresKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkDeferredOperationKHR deferredOperation{};
+    uint32_t infoCount{};
+    VkAccelerationStructureBuildGeometryInfoKHR* pInfos{};
+    VkAccelerationStructureBuildRangeInfoKHR* const* ppBuildRangeInfos{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkBuildAccelerationStructuresKHRSignature() {}
+};
+
+struct vkCopyAccelerationStructureKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkDeferredOperationKHR deferredOperation{};
+    VkCopyAccelerationStructureInfoKHR* pInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCopyAccelerationStructureKHRSignature() {}
+};
+
+struct vkCopyAccelerationStructureToMemoryKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkDeferredOperationKHR deferredOperation{};
+    VkCopyAccelerationStructureToMemoryInfoKHR* pInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCopyAccelerationStructureToMemoryKHRSignature() {}
+};
+
+struct vkCopyMemoryToAccelerationStructureKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkDeferredOperationKHR deferredOperation{};
+    VkCopyMemoryToAccelerationStructureInfoKHR* pInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCopyMemoryToAccelerationStructureKHRSignature() {}
+};
+
+struct vkWriteAccelerationStructuresPropertiesKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    uint32_t accelerationStructureCount{};
+    VkAccelerationStructureKHR* pAccelerationStructures{};
+    VkQueryType queryType{};
+    size_t dataSize{};
+    void* pData{};
+    size_t stride{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkWriteAccelerationStructuresPropertiesKHRSignature() {}
+};
+
+struct vkCmdCopyAccelerationStructureKHRSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkCopyAccelerationStructureInfoKHR* pInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdCopyAccelerationStructureKHRSignature() {}
+};
+
+struct vkCmdCopyAccelerationStructureToMemoryKHRSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkCopyAccelerationStructureToMemoryInfoKHR* pInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdCopyAccelerationStructureToMemoryKHRSignature() {}
+};
+
+struct vkCmdCopyMemoryToAccelerationStructureKHRSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkCopyMemoryToAccelerationStructureInfoKHR* pInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdCopyMemoryToAccelerationStructureKHRSignature() {}
+};
+
+struct vkGetAccelerationStructureDeviceAddressKHRSignature : public BaseSignature {
+    VkDeviceAddress ret{};
+    VkDevice device{};
+    VkAccelerationStructureDeviceAddressInfoKHR* pInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetAccelerationStructureDeviceAddressKHRSignature() {}
+};
+
+struct vkCmdWriteAccelerationStructuresPropertiesKHRSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    uint32_t accelerationStructureCount{};
+    VkAccelerationStructureKHR* pAccelerationStructures{};
+    VkQueryType queryType{};
+    VkQueryPool queryPool{};
+    uint32_t firstQuery{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdWriteAccelerationStructuresPropertiesKHRSignature() {}
+};
+
+struct vkGetDeviceAccelerationStructureCompatibilityKHRSignature : public BaseSignature {
+    VkDevice device{};
+    VkAccelerationStructureVersionInfoKHR* pVersionInfo{};
+    VkAccelerationStructureCompatibilityKHR* pCompatibility{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetDeviceAccelerationStructureCompatibilityKHRSignature() {}
+};
+
+struct vkGetAccelerationStructureBuildSizesKHRSignature : public BaseSignature {
+    VkDevice device{};
+    VkAccelerationStructureBuildTypeKHR buildType{};
+    VkAccelerationStructureBuildGeometryInfoKHR* pBuildInfo{};
+    uint32_t* pMaxPrimitiveCounts{};
+    VkAccelerationStructureBuildSizesInfoKHR* pSizeInfo{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetAccelerationStructureBuildSizesKHRSignature() {}
+};
+
+struct vkCmdTraceRaysKHRSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkStridedDeviceAddressRegionKHR* pRaygenShaderBindingTable{};
+    VkStridedDeviceAddressRegionKHR* pMissShaderBindingTable{};
+    VkStridedDeviceAddressRegionKHR* pHitShaderBindingTable{};
+    VkStridedDeviceAddressRegionKHR* pCallableShaderBindingTable{};
+    uint32_t width{};
+    uint32_t height{};
+    uint32_t depth{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdTraceRaysKHRSignature() {}
+};
+
+struct vkCreateRayTracingPipelinesKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkDeferredOperationKHR deferredOperation{};
+    VkPipelineCache pipelineCache{};
+    uint32_t createInfoCount{};
+    VkRayTracingPipelineCreateInfoKHR* pCreateInfos{};
+    VkAllocationCallbacks* pAllocator{};
+    VkPipeline* pPipelines{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCreateRayTracingPipelinesKHRSignature() {}
+};
+
+struct vkGetRayTracingCaptureReplayShaderGroupHandlesKHRSignature : public BaseSignature {
+    VkResult ret{};
+    VkDevice device{};
+    VkPipeline pipeline{};
+    uint32_t firstGroup{};
+    uint32_t groupCount{};
+    size_t dataSize{};
+    void* pData{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetRayTracingCaptureReplayShaderGroupHandlesKHRSignature() {}
+};
+
+struct vkCmdTraceRaysIndirectKHRSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkStridedDeviceAddressRegionKHR* pRaygenShaderBindingTable{};
+    VkStridedDeviceAddressRegionKHR* pMissShaderBindingTable{};
+    VkStridedDeviceAddressRegionKHR* pHitShaderBindingTable{};
+    VkStridedDeviceAddressRegionKHR* pCallableShaderBindingTable{};
+    VkDeviceAddress indirectDeviceAddress{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdTraceRaysIndirectKHRSignature() {}
+};
+
+struct vkGetRayTracingShaderGroupStackSizeKHRSignature : public BaseSignature {
+    VkDeviceSize ret{};
+    VkDevice device{};
+    VkPipeline pipeline{};
+    uint32_t group{};
+    VkShaderGroupShaderKHR groupShader{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkGetRayTracingShaderGroupStackSizeKHRSignature() {}
+};
+
+struct vkCmdSetRayTracingPipelineStackSizeKHRSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    uint32_t pipelineStackSize{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdSetRayTracingPipelineStackSizeKHRSignature() {}
+};
+
+struct vkCmdDrawMeshTasksEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    uint32_t groupCountX{};
+    uint32_t groupCountY{};
+    uint32_t groupCountZ{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdDrawMeshTasksEXTSignature() {}
+};
+
+struct vkCmdDrawMeshTasksIndirectEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkBuffer buffer{};
+    VkDeviceSize offset{};
+    uint32_t drawCount{};
+    uint32_t stride{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdDrawMeshTasksIndirectEXTSignature() {}
+};
+
+struct vkCmdDrawMeshTasksIndirectCountEXTSignature : public BaseSignature {
+    VkCommandBuffer commandBuffer{};
+    VkBuffer buffer{};
+    VkDeviceSize offset{};
+    VkBuffer countBuffer{};
+    VkDeviceSize countBufferOffset{};
+    uint32_t maxDrawCount{};
+    uint32_t stride{};
+
+    virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
+    virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
+    virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
+    virtual void DeserializeFromJSON(const std::string& json) { /*TODO*/ }
+    virtual ~vkCmdDrawMeshTasksIndirectCountEXTSignature() {}
+};
+
+
+static SignaturePtr CreateSignature(APICallID callID) {
+    switch (callID) {
+        case APICallID::vkCreateInstance: return std::make_unique<vkCreateInstanceSignature>();
+        case APICallID::vkDestroyInstance: return std::make_unique<vkDestroyInstanceSignature>();
+        case APICallID::vkEnumeratePhysicalDevices: return std::make_unique<vkEnumeratePhysicalDevicesSignature>();
+        case APICallID::vkGetPhysicalDeviceFeatures: return std::make_unique<vkGetPhysicalDeviceFeaturesSignature>();
+        case APICallID::vkGetPhysicalDeviceFormatProperties: return std::make_unique<vkGetPhysicalDeviceFormatPropertiesSignature>();
+        case APICallID::vkGetPhysicalDeviceImageFormatProperties: return std::make_unique<vkGetPhysicalDeviceImageFormatPropertiesSignature>();
+        case APICallID::vkGetPhysicalDeviceProperties: return std::make_unique<vkGetPhysicalDevicePropertiesSignature>();
+        case APICallID::vkGetPhysicalDeviceQueueFamilyProperties: return std::make_unique<vkGetPhysicalDeviceQueueFamilyPropertiesSignature>();
+        case APICallID::vkGetPhysicalDeviceMemoryProperties: return std::make_unique<vkGetPhysicalDeviceMemoryPropertiesSignature>();
+        case APICallID::vkGetInstanceProcAddr: return std::make_unique<vkGetInstanceProcAddrSignature>();
+        case APICallID::vkGetDeviceProcAddr: return std::make_unique<vkGetDeviceProcAddrSignature>();
+        case APICallID::vkCreateDevice: return std::make_unique<vkCreateDeviceSignature>();
+        case APICallID::vkDestroyDevice: return std::make_unique<vkDestroyDeviceSignature>();
+        case APICallID::vkEnumerateInstanceExtensionProperties: return std::make_unique<vkEnumerateInstanceExtensionPropertiesSignature>();
+        case APICallID::vkEnumerateDeviceExtensionProperties: return std::make_unique<vkEnumerateDeviceExtensionPropertiesSignature>();
+        case APICallID::vkEnumerateInstanceLayerProperties: return std::make_unique<vkEnumerateInstanceLayerPropertiesSignature>();
+        case APICallID::vkEnumerateDeviceLayerProperties: return std::make_unique<vkEnumerateDeviceLayerPropertiesSignature>();
+        case APICallID::vkGetDeviceQueue: return std::make_unique<vkGetDeviceQueueSignature>();
+        case APICallID::vkQueueSubmit: return std::make_unique<vkQueueSubmitSignature>();
+        case APICallID::vkQueueWaitIdle: return std::make_unique<vkQueueWaitIdleSignature>();
+        case APICallID::vkDeviceWaitIdle: return std::make_unique<vkDeviceWaitIdleSignature>();
+        case APICallID::vkAllocateMemory: return std::make_unique<vkAllocateMemorySignature>();
+        case APICallID::vkFreeMemory: return std::make_unique<vkFreeMemorySignature>();
+        case APICallID::vkMapMemory: return std::make_unique<vkMapMemorySignature>();
+        case APICallID::vkUnmapMemory: return std::make_unique<vkUnmapMemorySignature>();
+        case APICallID::vkFlushMappedMemoryRanges: return std::make_unique<vkFlushMappedMemoryRangesSignature>();
+        case APICallID::vkInvalidateMappedMemoryRanges: return std::make_unique<vkInvalidateMappedMemoryRangesSignature>();
+        case APICallID::vkGetDeviceMemoryCommitment: return std::make_unique<vkGetDeviceMemoryCommitmentSignature>();
+        case APICallID::vkBindBufferMemory: return std::make_unique<vkBindBufferMemorySignature>();
+        case APICallID::vkBindImageMemory: return std::make_unique<vkBindImageMemorySignature>();
+        case APICallID::vkGetBufferMemoryRequirements: return std::make_unique<vkGetBufferMemoryRequirementsSignature>();
+        case APICallID::vkGetImageMemoryRequirements: return std::make_unique<vkGetImageMemoryRequirementsSignature>();
+        case APICallID::vkGetImageSparseMemoryRequirements: return std::make_unique<vkGetImageSparseMemoryRequirementsSignature>();
+        case APICallID::vkGetPhysicalDeviceSparseImageFormatProperties: return std::make_unique<vkGetPhysicalDeviceSparseImageFormatPropertiesSignature>();
+        case APICallID::vkQueueBindSparse: return std::make_unique<vkQueueBindSparseSignature>();
+        case APICallID::vkCreateFence: return std::make_unique<vkCreateFenceSignature>();
+        case APICallID::vkDestroyFence: return std::make_unique<vkDestroyFenceSignature>();
+        case APICallID::vkResetFences: return std::make_unique<vkResetFencesSignature>();
+        case APICallID::vkGetFenceStatus: return std::make_unique<vkGetFenceStatusSignature>();
+        case APICallID::vkWaitForFences: return std::make_unique<vkWaitForFencesSignature>();
+        case APICallID::vkCreateSemaphore: return std::make_unique<vkCreateSemaphoreSignature>();
+        case APICallID::vkDestroySemaphore: return std::make_unique<vkDestroySemaphoreSignature>();
+        case APICallID::vkCreateQueryPool: return std::make_unique<vkCreateQueryPoolSignature>();
+        case APICallID::vkDestroyQueryPool: return std::make_unique<vkDestroyQueryPoolSignature>();
+        case APICallID::vkGetQueryPoolResults: return std::make_unique<vkGetQueryPoolResultsSignature>();
+        case APICallID::vkCreateBuffer: return std::make_unique<vkCreateBufferSignature>();
+        case APICallID::vkDestroyBuffer: return std::make_unique<vkDestroyBufferSignature>();
+        case APICallID::vkCreateImage: return std::make_unique<vkCreateImageSignature>();
+        case APICallID::vkDestroyImage: return std::make_unique<vkDestroyImageSignature>();
+        case APICallID::vkGetImageSubresourceLayout: return std::make_unique<vkGetImageSubresourceLayoutSignature>();
+        case APICallID::vkCreateImageView: return std::make_unique<vkCreateImageViewSignature>();
+        case APICallID::vkDestroyImageView: return std::make_unique<vkDestroyImageViewSignature>();
+        case APICallID::vkCreateCommandPool: return std::make_unique<vkCreateCommandPoolSignature>();
+        case APICallID::vkDestroyCommandPool: return std::make_unique<vkDestroyCommandPoolSignature>();
+        case APICallID::vkResetCommandPool: return std::make_unique<vkResetCommandPoolSignature>();
+        case APICallID::vkAllocateCommandBuffers: return std::make_unique<vkAllocateCommandBuffersSignature>();
+        case APICallID::vkFreeCommandBuffers: return std::make_unique<vkFreeCommandBuffersSignature>();
+        case APICallID::vkBeginCommandBuffer: return std::make_unique<vkBeginCommandBufferSignature>();
+        case APICallID::vkEndCommandBuffer: return std::make_unique<vkEndCommandBufferSignature>();
+        case APICallID::vkResetCommandBuffer: return std::make_unique<vkResetCommandBufferSignature>();
+        case APICallID::vkCmdCopyBuffer: return std::make_unique<vkCmdCopyBufferSignature>();
+        case APICallID::vkCmdCopyImage: return std::make_unique<vkCmdCopyImageSignature>();
+        case APICallID::vkCmdCopyBufferToImage: return std::make_unique<vkCmdCopyBufferToImageSignature>();
+        case APICallID::vkCmdCopyImageToBuffer: return std::make_unique<vkCmdCopyImageToBufferSignature>();
+        case APICallID::vkCmdUpdateBuffer: return std::make_unique<vkCmdUpdateBufferSignature>();
+        case APICallID::vkCmdFillBuffer: return std::make_unique<vkCmdFillBufferSignature>();
+        case APICallID::vkCmdPipelineBarrier: return std::make_unique<vkCmdPipelineBarrierSignature>();
+        case APICallID::vkCmdBeginQuery: return std::make_unique<vkCmdBeginQuerySignature>();
+        case APICallID::vkCmdEndQuery: return std::make_unique<vkCmdEndQuerySignature>();
+        case APICallID::vkCmdResetQueryPool: return std::make_unique<vkCmdResetQueryPoolSignature>();
+        case APICallID::vkCmdWriteTimestamp: return std::make_unique<vkCmdWriteTimestampSignature>();
+        case APICallID::vkCmdCopyQueryPoolResults: return std::make_unique<vkCmdCopyQueryPoolResultsSignature>();
+        case APICallID::vkCmdExecuteCommands: return std::make_unique<vkCmdExecuteCommandsSignature>();
+        case APICallID::vkCreateEvent: return std::make_unique<vkCreateEventSignature>();
+        case APICallID::vkDestroyEvent: return std::make_unique<vkDestroyEventSignature>();
+        case APICallID::vkGetEventStatus: return std::make_unique<vkGetEventStatusSignature>();
+        case APICallID::vkSetEvent: return std::make_unique<vkSetEventSignature>();
+        case APICallID::vkResetEvent: return std::make_unique<vkResetEventSignature>();
+        case APICallID::vkCreateBufferView: return std::make_unique<vkCreateBufferViewSignature>();
+        case APICallID::vkDestroyBufferView: return std::make_unique<vkDestroyBufferViewSignature>();
+        case APICallID::vkCreateShaderModule: return std::make_unique<vkCreateShaderModuleSignature>();
+        case APICallID::vkDestroyShaderModule: return std::make_unique<vkDestroyShaderModuleSignature>();
+        case APICallID::vkCreatePipelineCache: return std::make_unique<vkCreatePipelineCacheSignature>();
+        case APICallID::vkDestroyPipelineCache: return std::make_unique<vkDestroyPipelineCacheSignature>();
+        case APICallID::vkGetPipelineCacheData: return std::make_unique<vkGetPipelineCacheDataSignature>();
+        case APICallID::vkMergePipelineCaches: return std::make_unique<vkMergePipelineCachesSignature>();
+        case APICallID::vkCreateComputePipelines: return std::make_unique<vkCreateComputePipelinesSignature>();
+        case APICallID::vkDestroyPipeline: return std::make_unique<vkDestroyPipelineSignature>();
+        case APICallID::vkCreatePipelineLayout: return std::make_unique<vkCreatePipelineLayoutSignature>();
+        case APICallID::vkDestroyPipelineLayout: return std::make_unique<vkDestroyPipelineLayoutSignature>();
+        case APICallID::vkCreateSampler: return std::make_unique<vkCreateSamplerSignature>();
+        case APICallID::vkDestroySampler: return std::make_unique<vkDestroySamplerSignature>();
+        case APICallID::vkCreateDescriptorSetLayout: return std::make_unique<vkCreateDescriptorSetLayoutSignature>();
+        case APICallID::vkDestroyDescriptorSetLayout: return std::make_unique<vkDestroyDescriptorSetLayoutSignature>();
+        case APICallID::vkCreateDescriptorPool: return std::make_unique<vkCreateDescriptorPoolSignature>();
+        case APICallID::vkDestroyDescriptorPool: return std::make_unique<vkDestroyDescriptorPoolSignature>();
+        case APICallID::vkResetDescriptorPool: return std::make_unique<vkResetDescriptorPoolSignature>();
+        case APICallID::vkAllocateDescriptorSets: return std::make_unique<vkAllocateDescriptorSetsSignature>();
+        case APICallID::vkFreeDescriptorSets: return std::make_unique<vkFreeDescriptorSetsSignature>();
+        case APICallID::vkUpdateDescriptorSets: return std::make_unique<vkUpdateDescriptorSetsSignature>();
+        case APICallID::vkCmdBindPipeline: return std::make_unique<vkCmdBindPipelineSignature>();
+        case APICallID::vkCmdBindDescriptorSets: return std::make_unique<vkCmdBindDescriptorSetsSignature>();
+        case APICallID::vkCmdClearColorImage: return std::make_unique<vkCmdClearColorImageSignature>();
+        case APICallID::vkCmdDispatch: return std::make_unique<vkCmdDispatchSignature>();
+        case APICallID::vkCmdDispatchIndirect: return std::make_unique<vkCmdDispatchIndirectSignature>();
+        case APICallID::vkCmdSetEvent: return std::make_unique<vkCmdSetEventSignature>();
+        case APICallID::vkCmdResetEvent: return std::make_unique<vkCmdResetEventSignature>();
+        case APICallID::vkCmdWaitEvents: return std::make_unique<vkCmdWaitEventsSignature>();
+        case APICallID::vkCmdPushConstants: return std::make_unique<vkCmdPushConstantsSignature>();
+        case APICallID::vkCreateGraphicsPipelines: return std::make_unique<vkCreateGraphicsPipelinesSignature>();
+        case APICallID::vkCreateFramebuffer: return std::make_unique<vkCreateFramebufferSignature>();
+        case APICallID::vkDestroyFramebuffer: return std::make_unique<vkDestroyFramebufferSignature>();
+        case APICallID::vkCreateRenderPass: return std::make_unique<vkCreateRenderPassSignature>();
+        case APICallID::vkDestroyRenderPass: return std::make_unique<vkDestroyRenderPassSignature>();
+        case APICallID::vkGetRenderAreaGranularity: return std::make_unique<vkGetRenderAreaGranularitySignature>();
+        case APICallID::vkCmdSetViewport: return std::make_unique<vkCmdSetViewportSignature>();
+        case APICallID::vkCmdSetScissor: return std::make_unique<vkCmdSetScissorSignature>();
+        case APICallID::vkCmdSetLineWidth: return std::make_unique<vkCmdSetLineWidthSignature>();
+        case APICallID::vkCmdSetDepthBias: return std::make_unique<vkCmdSetDepthBiasSignature>();
+        case APICallID::vkCmdSetBlendConstants: return std::make_unique<vkCmdSetBlendConstantsSignature>();
+        case APICallID::vkCmdSetDepthBounds: return std::make_unique<vkCmdSetDepthBoundsSignature>();
+        case APICallID::vkCmdSetStencilCompareMask: return std::make_unique<vkCmdSetStencilCompareMaskSignature>();
+        case APICallID::vkCmdSetStencilWriteMask: return std::make_unique<vkCmdSetStencilWriteMaskSignature>();
+        case APICallID::vkCmdSetStencilReference: return std::make_unique<vkCmdSetStencilReferenceSignature>();
+        case APICallID::vkCmdBindIndexBuffer: return std::make_unique<vkCmdBindIndexBufferSignature>();
+        case APICallID::vkCmdBindVertexBuffers: return std::make_unique<vkCmdBindVertexBuffersSignature>();
+        case APICallID::vkCmdDraw: return std::make_unique<vkCmdDrawSignature>();
+        case APICallID::vkCmdDrawIndexed: return std::make_unique<vkCmdDrawIndexedSignature>();
+        case APICallID::vkCmdDrawIndirect: return std::make_unique<vkCmdDrawIndirectSignature>();
+        case APICallID::vkCmdDrawIndexedIndirect: return std::make_unique<vkCmdDrawIndexedIndirectSignature>();
+        case APICallID::vkCmdBlitImage: return std::make_unique<vkCmdBlitImageSignature>();
+        case APICallID::vkCmdClearDepthStencilImage: return std::make_unique<vkCmdClearDepthStencilImageSignature>();
+        case APICallID::vkCmdClearAttachments: return std::make_unique<vkCmdClearAttachmentsSignature>();
+        case APICallID::vkCmdResolveImage: return std::make_unique<vkCmdResolveImageSignature>();
+        case APICallID::vkCmdBeginRenderPass: return std::make_unique<vkCmdBeginRenderPassSignature>();
+        case APICallID::vkCmdNextSubpass: return std::make_unique<vkCmdNextSubpassSignature>();
+        case APICallID::vkCmdEndRenderPass: return std::make_unique<vkCmdEndRenderPassSignature>();
+        case APICallID::vkEnumerateInstanceVersion: return std::make_unique<vkEnumerateInstanceVersionSignature>();
+        case APICallID::vkBindBufferMemory2: return std::make_unique<vkBindBufferMemory2Signature>();
+        case APICallID::vkBindImageMemory2: return std::make_unique<vkBindImageMemory2Signature>();
+        case APICallID::vkGetDeviceGroupPeerMemoryFeatures: return std::make_unique<vkGetDeviceGroupPeerMemoryFeaturesSignature>();
+        case APICallID::vkCmdSetDeviceMask: return std::make_unique<vkCmdSetDeviceMaskSignature>();
+        case APICallID::vkEnumeratePhysicalDeviceGroups: return std::make_unique<vkEnumeratePhysicalDeviceGroupsSignature>();
+        case APICallID::vkGetImageMemoryRequirements2: return std::make_unique<vkGetImageMemoryRequirements2Signature>();
+        case APICallID::vkGetBufferMemoryRequirements2: return std::make_unique<vkGetBufferMemoryRequirements2Signature>();
+        case APICallID::vkGetImageSparseMemoryRequirements2: return std::make_unique<vkGetImageSparseMemoryRequirements2Signature>();
+        case APICallID::vkGetPhysicalDeviceFeatures2: return std::make_unique<vkGetPhysicalDeviceFeatures2Signature>();
+        case APICallID::vkGetPhysicalDeviceProperties2: return std::make_unique<vkGetPhysicalDeviceProperties2Signature>();
+        case APICallID::vkGetPhysicalDeviceFormatProperties2: return std::make_unique<vkGetPhysicalDeviceFormatProperties2Signature>();
+        case APICallID::vkGetPhysicalDeviceImageFormatProperties2: return std::make_unique<vkGetPhysicalDeviceImageFormatProperties2Signature>();
+        case APICallID::vkGetPhysicalDeviceQueueFamilyProperties2: return std::make_unique<vkGetPhysicalDeviceQueueFamilyProperties2Signature>();
+        case APICallID::vkGetPhysicalDeviceMemoryProperties2: return std::make_unique<vkGetPhysicalDeviceMemoryProperties2Signature>();
+        case APICallID::vkGetPhysicalDeviceSparseImageFormatProperties2: return std::make_unique<vkGetPhysicalDeviceSparseImageFormatProperties2Signature>();
+        case APICallID::vkTrimCommandPool: return std::make_unique<vkTrimCommandPoolSignature>();
+        case APICallID::vkGetDeviceQueue2: return std::make_unique<vkGetDeviceQueue2Signature>();
+        case APICallID::vkGetPhysicalDeviceExternalBufferProperties: return std::make_unique<vkGetPhysicalDeviceExternalBufferPropertiesSignature>();
+        case APICallID::vkGetPhysicalDeviceExternalFenceProperties: return std::make_unique<vkGetPhysicalDeviceExternalFencePropertiesSignature>();
+        case APICallID::vkGetPhysicalDeviceExternalSemaphoreProperties: return std::make_unique<vkGetPhysicalDeviceExternalSemaphorePropertiesSignature>();
+        case APICallID::vkCmdDispatchBase: return std::make_unique<vkCmdDispatchBaseSignature>();
+        case APICallID::vkCreateDescriptorUpdateTemplate: return std::make_unique<vkCreateDescriptorUpdateTemplateSignature>();
+        case APICallID::vkDestroyDescriptorUpdateTemplate: return std::make_unique<vkDestroyDescriptorUpdateTemplateSignature>();
+        case APICallID::vkUpdateDescriptorSetWithTemplate: return std::make_unique<vkUpdateDescriptorSetWithTemplateSignature>();
+        case APICallID::vkGetDescriptorSetLayoutSupport: return std::make_unique<vkGetDescriptorSetLayoutSupportSignature>();
+        case APICallID::vkCreateSamplerYcbcrConversion: return std::make_unique<vkCreateSamplerYcbcrConversionSignature>();
+        case APICallID::vkDestroySamplerYcbcrConversion: return std::make_unique<vkDestroySamplerYcbcrConversionSignature>();
+        case APICallID::vkResetQueryPool: return std::make_unique<vkResetQueryPoolSignature>();
+        case APICallID::vkGetSemaphoreCounterValue: return std::make_unique<vkGetSemaphoreCounterValueSignature>();
+        case APICallID::vkWaitSemaphores: return std::make_unique<vkWaitSemaphoresSignature>();
+        case APICallID::vkSignalSemaphore: return std::make_unique<vkSignalSemaphoreSignature>();
+        case APICallID::vkGetBufferDeviceAddress: return std::make_unique<vkGetBufferDeviceAddressSignature>();
+        case APICallID::vkGetBufferOpaqueCaptureAddress: return std::make_unique<vkGetBufferOpaqueCaptureAddressSignature>();
+        case APICallID::vkGetDeviceMemoryOpaqueCaptureAddress: return std::make_unique<vkGetDeviceMemoryOpaqueCaptureAddressSignature>();
+        case APICallID::vkCmdDrawIndirectCount: return std::make_unique<vkCmdDrawIndirectCountSignature>();
+        case APICallID::vkCmdDrawIndexedIndirectCount: return std::make_unique<vkCmdDrawIndexedIndirectCountSignature>();
+        case APICallID::vkCreateRenderPass2: return std::make_unique<vkCreateRenderPass2Signature>();
+        case APICallID::vkCmdBeginRenderPass2: return std::make_unique<vkCmdBeginRenderPass2Signature>();
+        case APICallID::vkCmdNextSubpass2: return std::make_unique<vkCmdNextSubpass2Signature>();
+        case APICallID::vkCmdEndRenderPass2: return std::make_unique<vkCmdEndRenderPass2Signature>();
+        case APICallID::vkGetPhysicalDeviceToolProperties: return std::make_unique<vkGetPhysicalDeviceToolPropertiesSignature>();
+        case APICallID::vkCreatePrivateDataSlot: return std::make_unique<vkCreatePrivateDataSlotSignature>();
+        case APICallID::vkDestroyPrivateDataSlot: return std::make_unique<vkDestroyPrivateDataSlotSignature>();
+        case APICallID::vkSetPrivateData: return std::make_unique<vkSetPrivateDataSignature>();
+        case APICallID::vkGetPrivateData: return std::make_unique<vkGetPrivateDataSignature>();
+        case APICallID::vkCmdPipelineBarrier2: return std::make_unique<vkCmdPipelineBarrier2Signature>();
+        case APICallID::vkCmdWriteTimestamp2: return std::make_unique<vkCmdWriteTimestamp2Signature>();
+        case APICallID::vkQueueSubmit2: return std::make_unique<vkQueueSubmit2Signature>();
+        case APICallID::vkCmdCopyBuffer2: return std::make_unique<vkCmdCopyBuffer2Signature>();
+        case APICallID::vkCmdCopyImage2: return std::make_unique<vkCmdCopyImage2Signature>();
+        case APICallID::vkCmdCopyBufferToImage2: return std::make_unique<vkCmdCopyBufferToImage2Signature>();
+        case APICallID::vkCmdCopyImageToBuffer2: return std::make_unique<vkCmdCopyImageToBuffer2Signature>();
+        case APICallID::vkGetDeviceBufferMemoryRequirements: return std::make_unique<vkGetDeviceBufferMemoryRequirementsSignature>();
+        case APICallID::vkGetDeviceImageMemoryRequirements: return std::make_unique<vkGetDeviceImageMemoryRequirementsSignature>();
+        case APICallID::vkGetDeviceImageSparseMemoryRequirements: return std::make_unique<vkGetDeviceImageSparseMemoryRequirementsSignature>();
+        case APICallID::vkCmdSetEvent2: return std::make_unique<vkCmdSetEvent2Signature>();
+        case APICallID::vkCmdResetEvent2: return std::make_unique<vkCmdResetEvent2Signature>();
+        case APICallID::vkCmdWaitEvents2: return std::make_unique<vkCmdWaitEvents2Signature>();
+        case APICallID::vkCmdBlitImage2: return std::make_unique<vkCmdBlitImage2Signature>();
+        case APICallID::vkCmdResolveImage2: return std::make_unique<vkCmdResolveImage2Signature>();
+        case APICallID::vkCmdBeginRendering: return std::make_unique<vkCmdBeginRenderingSignature>();
+        case APICallID::vkCmdEndRendering: return std::make_unique<vkCmdEndRenderingSignature>();
+        case APICallID::vkCmdSetCullMode: return std::make_unique<vkCmdSetCullModeSignature>();
+        case APICallID::vkCmdSetFrontFace: return std::make_unique<vkCmdSetFrontFaceSignature>();
+        case APICallID::vkCmdSetPrimitiveTopology: return std::make_unique<vkCmdSetPrimitiveTopologySignature>();
+        case APICallID::vkCmdSetViewportWithCount: return std::make_unique<vkCmdSetViewportWithCountSignature>();
+        case APICallID::vkCmdSetScissorWithCount: return std::make_unique<vkCmdSetScissorWithCountSignature>();
+        case APICallID::vkCmdBindVertexBuffers2: return std::make_unique<vkCmdBindVertexBuffers2Signature>();
+        case APICallID::vkCmdSetDepthTestEnable: return std::make_unique<vkCmdSetDepthTestEnableSignature>();
+        case APICallID::vkCmdSetDepthWriteEnable: return std::make_unique<vkCmdSetDepthWriteEnableSignature>();
+        case APICallID::vkCmdSetDepthCompareOp: return std::make_unique<vkCmdSetDepthCompareOpSignature>();
+        case APICallID::vkCmdSetDepthBoundsTestEnable: return std::make_unique<vkCmdSetDepthBoundsTestEnableSignature>();
+        case APICallID::vkCmdSetStencilTestEnable: return std::make_unique<vkCmdSetStencilTestEnableSignature>();
+        case APICallID::vkCmdSetStencilOp: return std::make_unique<vkCmdSetStencilOpSignature>();
+        case APICallID::vkCmdSetRasterizerDiscardEnable: return std::make_unique<vkCmdSetRasterizerDiscardEnableSignature>();
+        case APICallID::vkCmdSetDepthBiasEnable: return std::make_unique<vkCmdSetDepthBiasEnableSignature>();
+        case APICallID::vkCmdSetPrimitiveRestartEnable: return std::make_unique<vkCmdSetPrimitiveRestartEnableSignature>();
+        case APICallID::vkMapMemory2: return std::make_unique<vkMapMemory2Signature>();
+        case APICallID::vkUnmapMemory2: return std::make_unique<vkUnmapMemory2Signature>();
+        case APICallID::vkGetDeviceImageSubresourceLayout: return std::make_unique<vkGetDeviceImageSubresourceLayoutSignature>();
+        case APICallID::vkGetImageSubresourceLayout2: return std::make_unique<vkGetImageSubresourceLayout2Signature>();
+        case APICallID::vkCopyMemoryToImage: return std::make_unique<vkCopyMemoryToImageSignature>();
+        case APICallID::vkCopyImageToMemory: return std::make_unique<vkCopyImageToMemorySignature>();
+        case APICallID::vkCopyImageToImage: return std::make_unique<vkCopyImageToImageSignature>();
+        case APICallID::vkTransitionImageLayout: return std::make_unique<vkTransitionImageLayoutSignature>();
+        case APICallID::vkCmdPushDescriptorSet: return std::make_unique<vkCmdPushDescriptorSetSignature>();
+        case APICallID::vkCmdPushDescriptorSetWithTemplate: return std::make_unique<vkCmdPushDescriptorSetWithTemplateSignature>();
+        case APICallID::vkCmdBindDescriptorSets2: return std::make_unique<vkCmdBindDescriptorSets2Signature>();
+        case APICallID::vkCmdPushConstants2: return std::make_unique<vkCmdPushConstants2Signature>();
+        case APICallID::vkCmdPushDescriptorSet2: return std::make_unique<vkCmdPushDescriptorSet2Signature>();
+        case APICallID::vkCmdPushDescriptorSetWithTemplate2: return std::make_unique<vkCmdPushDescriptorSetWithTemplate2Signature>();
+        case APICallID::vkCmdSetLineStipple: return std::make_unique<vkCmdSetLineStippleSignature>();
+        case APICallID::vkCmdBindIndexBuffer2: return std::make_unique<vkCmdBindIndexBuffer2Signature>();
+        case APICallID::vkGetRenderingAreaGranularity: return std::make_unique<vkGetRenderingAreaGranularitySignature>();
+        case APICallID::vkCmdSetRenderingAttachmentLocations: return std::make_unique<vkCmdSetRenderingAttachmentLocationsSignature>();
+        case APICallID::vkCmdSetRenderingInputAttachmentIndices: return std::make_unique<vkCmdSetRenderingInputAttachmentIndicesSignature>();
+        case APICallID::vkDestroySurfaceKHR: return std::make_unique<vkDestroySurfaceKHRSignature>();
+        case APICallID::vkGetPhysicalDeviceSurfaceSupportKHR: return std::make_unique<vkGetPhysicalDeviceSurfaceSupportKHRSignature>();
+        case APICallID::vkGetPhysicalDeviceSurfaceCapabilitiesKHR: return std::make_unique<vkGetPhysicalDeviceSurfaceCapabilitiesKHRSignature>();
+        case APICallID::vkGetPhysicalDeviceSurfaceFormatsKHR: return std::make_unique<vkGetPhysicalDeviceSurfaceFormatsKHRSignature>();
+        case APICallID::vkGetPhysicalDeviceSurfacePresentModesKHR: return std::make_unique<vkGetPhysicalDeviceSurfacePresentModesKHRSignature>();
+        case APICallID::vkCreateSwapchainKHR: return std::make_unique<vkCreateSwapchainKHRSignature>();
+        case APICallID::vkDestroySwapchainKHR: return std::make_unique<vkDestroySwapchainKHRSignature>();
+        case APICallID::vkGetSwapchainImagesKHR: return std::make_unique<vkGetSwapchainImagesKHRSignature>();
+        case APICallID::vkAcquireNextImageKHR: return std::make_unique<vkAcquireNextImageKHRSignature>();
+        case APICallID::vkQueuePresentKHR: return std::make_unique<vkQueuePresentKHRSignature>();
+        case APICallID::vkGetDeviceGroupPresentCapabilitiesKHR: return std::make_unique<vkGetDeviceGroupPresentCapabilitiesKHRSignature>();
+        case APICallID::vkGetDeviceGroupSurfacePresentModesKHR: return std::make_unique<vkGetDeviceGroupSurfacePresentModesKHRSignature>();
+        case APICallID::vkGetPhysicalDevicePresentRectanglesKHR: return std::make_unique<vkGetPhysicalDevicePresentRectanglesKHRSignature>();
+        case APICallID::vkAcquireNextImage2KHR: return std::make_unique<vkAcquireNextImage2KHRSignature>();
+        case APICallID::vkGetPhysicalDeviceDisplayPropertiesKHR: return std::make_unique<vkGetPhysicalDeviceDisplayPropertiesKHRSignature>();
+        case APICallID::vkGetPhysicalDeviceDisplayPlanePropertiesKHR: return std::make_unique<vkGetPhysicalDeviceDisplayPlanePropertiesKHRSignature>();
+        case APICallID::vkGetDisplayPlaneSupportedDisplaysKHR: return std::make_unique<vkGetDisplayPlaneSupportedDisplaysKHRSignature>();
+        case APICallID::vkGetDisplayModePropertiesKHR: return std::make_unique<vkGetDisplayModePropertiesKHRSignature>();
+        case APICallID::vkCreateDisplayModeKHR: return std::make_unique<vkCreateDisplayModeKHRSignature>();
+        case APICallID::vkGetDisplayPlaneCapabilitiesKHR: return std::make_unique<vkGetDisplayPlaneCapabilitiesKHRSignature>();
+        case APICallID::vkCreateDisplayPlaneSurfaceKHR: return std::make_unique<vkCreateDisplayPlaneSurfaceKHRSignature>();
+        case APICallID::vkCreateSharedSwapchainsKHR: return std::make_unique<vkCreateSharedSwapchainsKHRSignature>();
+        case APICallID::vkCreateXlibSurfaceKHR: return std::make_unique<vkCreateXlibSurfaceKHRSignature>();
+        case APICallID::vkGetPhysicalDeviceXlibPresentationSupportKHR: return std::make_unique<vkGetPhysicalDeviceXlibPresentationSupportKHRSignature>();
+        case APICallID::vkCreateXcbSurfaceKHR: return std::make_unique<vkCreateXcbSurfaceKHRSignature>();
+        case APICallID::vkGetPhysicalDeviceXcbPresentationSupportKHR: return std::make_unique<vkGetPhysicalDeviceXcbPresentationSupportKHRSignature>();
+        case APICallID::vkCreateWaylandSurfaceKHR: return std::make_unique<vkCreateWaylandSurfaceKHRSignature>();
+        case APICallID::vkGetPhysicalDeviceWaylandPresentationSupportKHR: return std::make_unique<vkGetPhysicalDeviceWaylandPresentationSupportKHRSignature>();
+        case APICallID::vkCreateAndroidSurfaceKHR: return std::make_unique<vkCreateAndroidSurfaceKHRSignature>();
+        case APICallID::vkCreateWin32SurfaceKHR: return std::make_unique<vkCreateWin32SurfaceKHRSignature>();
+        case APICallID::vkGetPhysicalDeviceWin32PresentationSupportKHR: return std::make_unique<vkGetPhysicalDeviceWin32PresentationSupportKHRSignature>();
+        case APICallID::vkGetPhysicalDeviceVideoCapabilitiesKHR: return std::make_unique<vkGetPhysicalDeviceVideoCapabilitiesKHRSignature>();
+        case APICallID::vkGetPhysicalDeviceVideoFormatPropertiesKHR: return std::make_unique<vkGetPhysicalDeviceVideoFormatPropertiesKHRSignature>();
+        case APICallID::vkCreateVideoSessionKHR: return std::make_unique<vkCreateVideoSessionKHRSignature>();
+        case APICallID::vkDestroyVideoSessionKHR: return std::make_unique<vkDestroyVideoSessionKHRSignature>();
+        case APICallID::vkGetVideoSessionMemoryRequirementsKHR: return std::make_unique<vkGetVideoSessionMemoryRequirementsKHRSignature>();
+        case APICallID::vkBindVideoSessionMemoryKHR: return std::make_unique<vkBindVideoSessionMemoryKHRSignature>();
+        case APICallID::vkCreateVideoSessionParametersKHR: return std::make_unique<vkCreateVideoSessionParametersKHRSignature>();
+        case APICallID::vkUpdateVideoSessionParametersKHR: return std::make_unique<vkUpdateVideoSessionParametersKHRSignature>();
+        case APICallID::vkDestroyVideoSessionParametersKHR: return std::make_unique<vkDestroyVideoSessionParametersKHRSignature>();
+        case APICallID::vkCmdBeginVideoCodingKHR: return std::make_unique<vkCmdBeginVideoCodingKHRSignature>();
+        case APICallID::vkCmdEndVideoCodingKHR: return std::make_unique<vkCmdEndVideoCodingKHRSignature>();
+        case APICallID::vkCmdControlVideoCodingKHR: return std::make_unique<vkCmdControlVideoCodingKHRSignature>();
+        case APICallID::vkCmdDecodeVideoKHR: return std::make_unique<vkCmdDecodeVideoKHRSignature>();
+        case APICallID::vkCmdBeginRenderingKHR: return std::make_unique<vkCmdBeginRenderingKHRSignature>();
+        case APICallID::vkCmdEndRenderingKHR: return std::make_unique<vkCmdEndRenderingKHRSignature>();
+        case APICallID::vkGetPhysicalDeviceFeatures2KHR: return std::make_unique<vkGetPhysicalDeviceFeatures2KHRSignature>();
+        case APICallID::vkGetPhysicalDeviceProperties2KHR: return std::make_unique<vkGetPhysicalDeviceProperties2KHRSignature>();
+        case APICallID::vkGetPhysicalDeviceFormatProperties2KHR: return std::make_unique<vkGetPhysicalDeviceFormatProperties2KHRSignature>();
+        case APICallID::vkGetPhysicalDeviceImageFormatProperties2KHR: return std::make_unique<vkGetPhysicalDeviceImageFormatProperties2KHRSignature>();
+        case APICallID::vkGetPhysicalDeviceQueueFamilyProperties2KHR: return std::make_unique<vkGetPhysicalDeviceQueueFamilyProperties2KHRSignature>();
+        case APICallID::vkGetPhysicalDeviceMemoryProperties2KHR: return std::make_unique<vkGetPhysicalDeviceMemoryProperties2KHRSignature>();
+        case APICallID::vkGetPhysicalDeviceSparseImageFormatProperties2KHR: return std::make_unique<vkGetPhysicalDeviceSparseImageFormatProperties2KHRSignature>();
+        case APICallID::vkGetDeviceGroupPeerMemoryFeaturesKHR: return std::make_unique<vkGetDeviceGroupPeerMemoryFeaturesKHRSignature>();
+        case APICallID::vkCmdSetDeviceMaskKHR: return std::make_unique<vkCmdSetDeviceMaskKHRSignature>();
+        case APICallID::vkCmdDispatchBaseKHR: return std::make_unique<vkCmdDispatchBaseKHRSignature>();
+        case APICallID::vkTrimCommandPoolKHR: return std::make_unique<vkTrimCommandPoolKHRSignature>();
+        case APICallID::vkEnumeratePhysicalDeviceGroupsKHR: return std::make_unique<vkEnumeratePhysicalDeviceGroupsKHRSignature>();
+        case APICallID::vkGetPhysicalDeviceExternalBufferPropertiesKHR: return std::make_unique<vkGetPhysicalDeviceExternalBufferPropertiesKHRSignature>();
+        case APICallID::vkGetMemoryWin32HandleKHR: return std::make_unique<vkGetMemoryWin32HandleKHRSignature>();
+        case APICallID::vkGetMemoryWin32HandlePropertiesKHR: return std::make_unique<vkGetMemoryWin32HandlePropertiesKHRSignature>();
+        case APICallID::vkGetMemoryFdKHR: return std::make_unique<vkGetMemoryFdKHRSignature>();
+        case APICallID::vkGetMemoryFdPropertiesKHR: return std::make_unique<vkGetMemoryFdPropertiesKHRSignature>();
+        case APICallID::vkGetPhysicalDeviceExternalSemaphorePropertiesKHR: return std::make_unique<vkGetPhysicalDeviceExternalSemaphorePropertiesKHRSignature>();
+        case APICallID::vkImportSemaphoreWin32HandleKHR: return std::make_unique<vkImportSemaphoreWin32HandleKHRSignature>();
+        case APICallID::vkGetSemaphoreWin32HandleKHR: return std::make_unique<vkGetSemaphoreWin32HandleKHRSignature>();
+        case APICallID::vkImportSemaphoreFdKHR: return std::make_unique<vkImportSemaphoreFdKHRSignature>();
+        case APICallID::vkGetSemaphoreFdKHR: return std::make_unique<vkGetSemaphoreFdKHRSignature>();
+        case APICallID::vkCmdPushDescriptorSetKHR: return std::make_unique<vkCmdPushDescriptorSetKHRSignature>();
+        case APICallID::vkCmdPushDescriptorSetWithTemplateKHR: return std::make_unique<vkCmdPushDescriptorSetWithTemplateKHRSignature>();
+        case APICallID::vkCreateDescriptorUpdateTemplateKHR: return std::make_unique<vkCreateDescriptorUpdateTemplateKHRSignature>();
+        case APICallID::vkDestroyDescriptorUpdateTemplateKHR: return std::make_unique<vkDestroyDescriptorUpdateTemplateKHRSignature>();
+        case APICallID::vkUpdateDescriptorSetWithTemplateKHR: return std::make_unique<vkUpdateDescriptorSetWithTemplateKHRSignature>();
+        case APICallID::vkCreateRenderPass2KHR: return std::make_unique<vkCreateRenderPass2KHRSignature>();
+        case APICallID::vkCmdBeginRenderPass2KHR: return std::make_unique<vkCmdBeginRenderPass2KHRSignature>();
+        case APICallID::vkCmdNextSubpass2KHR: return std::make_unique<vkCmdNextSubpass2KHRSignature>();
+        case APICallID::vkCmdEndRenderPass2KHR: return std::make_unique<vkCmdEndRenderPass2KHRSignature>();
+        case APICallID::vkGetSwapchainStatusKHR: return std::make_unique<vkGetSwapchainStatusKHRSignature>();
+        case APICallID::vkGetPhysicalDeviceExternalFencePropertiesKHR: return std::make_unique<vkGetPhysicalDeviceExternalFencePropertiesKHRSignature>();
+        case APICallID::vkImportFenceWin32HandleKHR: return std::make_unique<vkImportFenceWin32HandleKHRSignature>();
+        case APICallID::vkGetFenceWin32HandleKHR: return std::make_unique<vkGetFenceWin32HandleKHRSignature>();
+        case APICallID::vkImportFenceFdKHR: return std::make_unique<vkImportFenceFdKHRSignature>();
+        case APICallID::vkGetFenceFdKHR: return std::make_unique<vkGetFenceFdKHRSignature>();
+        case APICallID::vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR: return std::make_unique<vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHRSignature>();
+        case APICallID::vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR: return std::make_unique<vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHRSignature>();
+        case APICallID::vkAcquireProfilingLockKHR: return std::make_unique<vkAcquireProfilingLockKHRSignature>();
+        case APICallID::vkReleaseProfilingLockKHR: return std::make_unique<vkReleaseProfilingLockKHRSignature>();
+        case APICallID::vkGetPhysicalDeviceSurfaceCapabilities2KHR: return std::make_unique<vkGetPhysicalDeviceSurfaceCapabilities2KHRSignature>();
+        case APICallID::vkGetPhysicalDeviceSurfaceFormats2KHR: return std::make_unique<vkGetPhysicalDeviceSurfaceFormats2KHRSignature>();
+        case APICallID::vkGetPhysicalDeviceDisplayProperties2KHR: return std::make_unique<vkGetPhysicalDeviceDisplayProperties2KHRSignature>();
+        case APICallID::vkGetPhysicalDeviceDisplayPlaneProperties2KHR: return std::make_unique<vkGetPhysicalDeviceDisplayPlaneProperties2KHRSignature>();
+        case APICallID::vkGetDisplayModeProperties2KHR: return std::make_unique<vkGetDisplayModeProperties2KHRSignature>();
+        case APICallID::vkGetDisplayPlaneCapabilities2KHR: return std::make_unique<vkGetDisplayPlaneCapabilities2KHRSignature>();
+        case APICallID::vkGetImageMemoryRequirements2KHR: return std::make_unique<vkGetImageMemoryRequirements2KHRSignature>();
+        case APICallID::vkGetBufferMemoryRequirements2KHR: return std::make_unique<vkGetBufferMemoryRequirements2KHRSignature>();
+        case APICallID::vkGetImageSparseMemoryRequirements2KHR: return std::make_unique<vkGetImageSparseMemoryRequirements2KHRSignature>();
+        case APICallID::vkCreateSamplerYcbcrConversionKHR: return std::make_unique<vkCreateSamplerYcbcrConversionKHRSignature>();
+        case APICallID::vkDestroySamplerYcbcrConversionKHR: return std::make_unique<vkDestroySamplerYcbcrConversionKHRSignature>();
+        case APICallID::vkBindBufferMemory2KHR: return std::make_unique<vkBindBufferMemory2KHRSignature>();
+        case APICallID::vkBindImageMemory2KHR: return std::make_unique<vkBindImageMemory2KHRSignature>();
+        case APICallID::vkGetDescriptorSetLayoutSupportKHR: return std::make_unique<vkGetDescriptorSetLayoutSupportKHRSignature>();
+        case APICallID::vkCmdDrawIndirectCountKHR: return std::make_unique<vkCmdDrawIndirectCountKHRSignature>();
+        case APICallID::vkCmdDrawIndexedIndirectCountKHR: return std::make_unique<vkCmdDrawIndexedIndirectCountKHRSignature>();
+        case APICallID::vkGetSemaphoreCounterValueKHR: return std::make_unique<vkGetSemaphoreCounterValueKHRSignature>();
+        case APICallID::vkWaitSemaphoresKHR: return std::make_unique<vkWaitSemaphoresKHRSignature>();
+        case APICallID::vkSignalSemaphoreKHR: return std::make_unique<vkSignalSemaphoreKHRSignature>();
+        case APICallID::vkGetPhysicalDeviceFragmentShadingRatesKHR: return std::make_unique<vkGetPhysicalDeviceFragmentShadingRatesKHRSignature>();
+        case APICallID::vkCmdSetFragmentShadingRateKHR: return std::make_unique<vkCmdSetFragmentShadingRateKHRSignature>();
+        case APICallID::vkCmdSetRenderingAttachmentLocationsKHR: return std::make_unique<vkCmdSetRenderingAttachmentLocationsKHRSignature>();
+        case APICallID::vkCmdSetRenderingInputAttachmentIndicesKHR: return std::make_unique<vkCmdSetRenderingInputAttachmentIndicesKHRSignature>();
+        case APICallID::vkWaitForPresentKHR: return std::make_unique<vkWaitForPresentKHRSignature>();
+        case APICallID::vkGetBufferDeviceAddressKHR: return std::make_unique<vkGetBufferDeviceAddressKHRSignature>();
+        case APICallID::vkGetBufferOpaqueCaptureAddressKHR: return std::make_unique<vkGetBufferOpaqueCaptureAddressKHRSignature>();
+        case APICallID::vkGetDeviceMemoryOpaqueCaptureAddressKHR: return std::make_unique<vkGetDeviceMemoryOpaqueCaptureAddressKHRSignature>();
+        case APICallID::vkCreateDeferredOperationKHR: return std::make_unique<vkCreateDeferredOperationKHRSignature>();
+        case APICallID::vkDestroyDeferredOperationKHR: return std::make_unique<vkDestroyDeferredOperationKHRSignature>();
+        case APICallID::vkGetDeferredOperationMaxConcurrencyKHR: return std::make_unique<vkGetDeferredOperationMaxConcurrencyKHRSignature>();
+        case APICallID::vkGetDeferredOperationResultKHR: return std::make_unique<vkGetDeferredOperationResultKHRSignature>();
+        case APICallID::vkDeferredOperationJoinKHR: return std::make_unique<vkDeferredOperationJoinKHRSignature>();
+        case APICallID::vkGetPipelineExecutablePropertiesKHR: return std::make_unique<vkGetPipelineExecutablePropertiesKHRSignature>();
+        case APICallID::vkGetPipelineExecutableStatisticsKHR: return std::make_unique<vkGetPipelineExecutableStatisticsKHRSignature>();
+        case APICallID::vkGetPipelineExecutableInternalRepresentationsKHR: return std::make_unique<vkGetPipelineExecutableInternalRepresentationsKHRSignature>();
+        case APICallID::vkMapMemory2KHR: return std::make_unique<vkMapMemory2KHRSignature>();
+        case APICallID::vkUnmapMemory2KHR: return std::make_unique<vkUnmapMemory2KHRSignature>();
+        case APICallID::vkGetPhysicalDeviceVideoEncodeQualityLevelPropertiesKHR: return std::make_unique<vkGetPhysicalDeviceVideoEncodeQualityLevelPropertiesKHRSignature>();
+        case APICallID::vkGetEncodedVideoSessionParametersKHR: return std::make_unique<vkGetEncodedVideoSessionParametersKHRSignature>();
+        case APICallID::vkCmdEncodeVideoKHR: return std::make_unique<vkCmdEncodeVideoKHRSignature>();
+        case APICallID::vkCmdSetEvent2KHR: return std::make_unique<vkCmdSetEvent2KHRSignature>();
+        case APICallID::vkCmdResetEvent2KHR: return std::make_unique<vkCmdResetEvent2KHRSignature>();
+        case APICallID::vkCmdWaitEvents2KHR: return std::make_unique<vkCmdWaitEvents2KHRSignature>();
+        case APICallID::vkCmdPipelineBarrier2KHR: return std::make_unique<vkCmdPipelineBarrier2KHRSignature>();
+        case APICallID::vkCmdWriteTimestamp2KHR: return std::make_unique<vkCmdWriteTimestamp2KHRSignature>();
+        case APICallID::vkQueueSubmit2KHR: return std::make_unique<vkQueueSubmit2KHRSignature>();
+        case APICallID::vkCmdCopyBuffer2KHR: return std::make_unique<vkCmdCopyBuffer2KHRSignature>();
+        case APICallID::vkCmdCopyImage2KHR: return std::make_unique<vkCmdCopyImage2KHRSignature>();
+        case APICallID::vkCmdCopyBufferToImage2KHR: return std::make_unique<vkCmdCopyBufferToImage2KHRSignature>();
+        case APICallID::vkCmdCopyImageToBuffer2KHR: return std::make_unique<vkCmdCopyImageToBuffer2KHRSignature>();
+        case APICallID::vkCmdBlitImage2KHR: return std::make_unique<vkCmdBlitImage2KHRSignature>();
+        case APICallID::vkCmdResolveImage2KHR: return std::make_unique<vkCmdResolveImage2KHRSignature>();
+        case APICallID::vkCmdTraceRaysIndirect2KHR: return std::make_unique<vkCmdTraceRaysIndirect2KHRSignature>();
+        case APICallID::vkGetDeviceBufferMemoryRequirementsKHR: return std::make_unique<vkGetDeviceBufferMemoryRequirementsKHRSignature>();
+        case APICallID::vkGetDeviceImageMemoryRequirementsKHR: return std::make_unique<vkGetDeviceImageMemoryRequirementsKHRSignature>();
+        case APICallID::vkGetDeviceImageSparseMemoryRequirementsKHR: return std::make_unique<vkGetDeviceImageSparseMemoryRequirementsKHRSignature>();
+        case APICallID::vkCmdBindIndexBuffer2KHR: return std::make_unique<vkCmdBindIndexBuffer2KHRSignature>();
+        case APICallID::vkGetRenderingAreaGranularityKHR: return std::make_unique<vkGetRenderingAreaGranularityKHRSignature>();
+        case APICallID::vkGetDeviceImageSubresourceLayoutKHR: return std::make_unique<vkGetDeviceImageSubresourceLayoutKHRSignature>();
+        case APICallID::vkGetImageSubresourceLayout2KHR: return std::make_unique<vkGetImageSubresourceLayout2KHRSignature>();
+        case APICallID::vkWaitForPresent2KHR: return std::make_unique<vkWaitForPresent2KHRSignature>();
+        case APICallID::vkCreatePipelineBinariesKHR: return std::make_unique<vkCreatePipelineBinariesKHRSignature>();
+        case APICallID::vkDestroyPipelineBinaryKHR: return std::make_unique<vkDestroyPipelineBinaryKHRSignature>();
+        case APICallID::vkGetPipelineKeyKHR: return std::make_unique<vkGetPipelineKeyKHRSignature>();
+        case APICallID::vkGetPipelineBinaryDataKHR: return std::make_unique<vkGetPipelineBinaryDataKHRSignature>();
+        case APICallID::vkReleaseCapturedPipelineDataKHR: return std::make_unique<vkReleaseCapturedPipelineDataKHRSignature>();
+        case APICallID::vkReleaseSwapchainImagesKHR: return std::make_unique<vkReleaseSwapchainImagesKHRSignature>();
+        case APICallID::vkGetPhysicalDeviceCooperativeMatrixPropertiesKHR: return std::make_unique<vkGetPhysicalDeviceCooperativeMatrixPropertiesKHRSignature>();
+        case APICallID::vkCmdSetLineStippleKHR: return std::make_unique<vkCmdSetLineStippleKHRSignature>();
+        case APICallID::vkGetPhysicalDeviceCalibrateableTimeDomainsKHR: return std::make_unique<vkGetPhysicalDeviceCalibrateableTimeDomainsKHRSignature>();
+        case APICallID::vkGetCalibratedTimestampsKHR: return std::make_unique<vkGetCalibratedTimestampsKHRSignature>();
+        case APICallID::vkCmdBindDescriptorSets2KHR: return std::make_unique<vkCmdBindDescriptorSets2KHRSignature>();
+        case APICallID::vkCmdPushConstants2KHR: return std::make_unique<vkCmdPushConstants2KHRSignature>();
+        case APICallID::vkCmdPushDescriptorSet2KHR: return std::make_unique<vkCmdPushDescriptorSet2KHRSignature>();
+        case APICallID::vkCmdPushDescriptorSetWithTemplate2KHR: return std::make_unique<vkCmdPushDescriptorSetWithTemplate2KHRSignature>();
+        case APICallID::vkCmdSetDescriptorBufferOffsets2EXT: return std::make_unique<vkCmdSetDescriptorBufferOffsets2EXTSignature>();
+        case APICallID::vkCmdBindDescriptorBufferEmbeddedSamplers2EXT: return std::make_unique<vkCmdBindDescriptorBufferEmbeddedSamplers2EXTSignature>();
+        case APICallID::vkCmdCopyMemoryIndirectKHR: return std::make_unique<vkCmdCopyMemoryIndirectKHRSignature>();
+        case APICallID::vkCmdCopyMemoryToImageIndirectKHR: return std::make_unique<vkCmdCopyMemoryToImageIndirectKHRSignature>();
+        case APICallID::vkCmdEndRendering2KHR: return std::make_unique<vkCmdEndRendering2KHRSignature>();
+        case APICallID::vkCreateDebugReportCallbackEXT: return std::make_unique<vkCreateDebugReportCallbackEXTSignature>();
+        case APICallID::vkDestroyDebugReportCallbackEXT: return std::make_unique<vkDestroyDebugReportCallbackEXTSignature>();
+        case APICallID::vkDebugReportMessageEXT: return std::make_unique<vkDebugReportMessageEXTSignature>();
+        case APICallID::vkDebugMarkerSetObjectTagEXT: return std::make_unique<vkDebugMarkerSetObjectTagEXTSignature>();
+        case APICallID::vkDebugMarkerSetObjectNameEXT: return std::make_unique<vkDebugMarkerSetObjectNameEXTSignature>();
+        case APICallID::vkCmdDebugMarkerBeginEXT: return std::make_unique<vkCmdDebugMarkerBeginEXTSignature>();
+        case APICallID::vkCmdDebugMarkerEndEXT: return std::make_unique<vkCmdDebugMarkerEndEXTSignature>();
+        case APICallID::vkCmdDebugMarkerInsertEXT: return std::make_unique<vkCmdDebugMarkerInsertEXTSignature>();
+        case APICallID::vkCmdBindTransformFeedbackBuffersEXT: return std::make_unique<vkCmdBindTransformFeedbackBuffersEXTSignature>();
+        case APICallID::vkCmdBeginTransformFeedbackEXT: return std::make_unique<vkCmdBeginTransformFeedbackEXTSignature>();
+        case APICallID::vkCmdEndTransformFeedbackEXT: return std::make_unique<vkCmdEndTransformFeedbackEXTSignature>();
+        case APICallID::vkCmdBeginQueryIndexedEXT: return std::make_unique<vkCmdBeginQueryIndexedEXTSignature>();
+        case APICallID::vkCmdEndQueryIndexedEXT: return std::make_unique<vkCmdEndQueryIndexedEXTSignature>();
+        case APICallID::vkCmdDrawIndirectByteCountEXT: return std::make_unique<vkCmdDrawIndirectByteCountEXTSignature>();
+        case APICallID::vkCreateCuModuleNVX: return std::make_unique<vkCreateCuModuleNVXSignature>();
+        case APICallID::vkCreateCuFunctionNVX: return std::make_unique<vkCreateCuFunctionNVXSignature>();
+        case APICallID::vkDestroyCuModuleNVX: return std::make_unique<vkDestroyCuModuleNVXSignature>();
+        case APICallID::vkDestroyCuFunctionNVX: return std::make_unique<vkDestroyCuFunctionNVXSignature>();
+        case APICallID::vkCmdCuLaunchKernelNVX: return std::make_unique<vkCmdCuLaunchKernelNVXSignature>();
+        case APICallID::vkGetImageViewHandleNVX: return std::make_unique<vkGetImageViewHandleNVXSignature>();
+        case APICallID::vkGetImageViewHandle64NVX: return std::make_unique<vkGetImageViewHandle64NVXSignature>();
+        case APICallID::vkGetImageViewAddressNVX: return std::make_unique<vkGetImageViewAddressNVXSignature>();
+        case APICallID::vkCmdDrawIndirectCountAMD: return std::make_unique<vkCmdDrawIndirectCountAMDSignature>();
+        case APICallID::vkCmdDrawIndexedIndirectCountAMD: return std::make_unique<vkCmdDrawIndexedIndirectCountAMDSignature>();
+        case APICallID::vkGetShaderInfoAMD: return std::make_unique<vkGetShaderInfoAMDSignature>();
+        case APICallID::vkCreateStreamDescriptorSurfaceGGP: return std::make_unique<vkCreateStreamDescriptorSurfaceGGPSignature>();
+        case APICallID::vkGetPhysicalDeviceExternalImageFormatPropertiesNV: return std::make_unique<vkGetPhysicalDeviceExternalImageFormatPropertiesNVSignature>();
+        case APICallID::vkGetMemoryWin32HandleNV: return std::make_unique<vkGetMemoryWin32HandleNVSignature>();
+        case APICallID::vkCreateViSurfaceNN: return std::make_unique<vkCreateViSurfaceNNSignature>();
+        case APICallID::vkCmdBeginConditionalRenderingEXT: return std::make_unique<vkCmdBeginConditionalRenderingEXTSignature>();
+        case APICallID::vkCmdEndConditionalRenderingEXT: return std::make_unique<vkCmdEndConditionalRenderingEXTSignature>();
+        case APICallID::vkCmdSetViewportWScalingNV: return std::make_unique<vkCmdSetViewportWScalingNVSignature>();
+        case APICallID::vkReleaseDisplayEXT: return std::make_unique<vkReleaseDisplayEXTSignature>();
+        case APICallID::vkAcquireXlibDisplayEXT: return std::make_unique<vkAcquireXlibDisplayEXTSignature>();
+        case APICallID::vkGetRandROutputDisplayEXT: return std::make_unique<vkGetRandROutputDisplayEXTSignature>();
+        case APICallID::vkGetPhysicalDeviceSurfaceCapabilities2EXT: return std::make_unique<vkGetPhysicalDeviceSurfaceCapabilities2EXTSignature>();
+        case APICallID::vkDisplayPowerControlEXT: return std::make_unique<vkDisplayPowerControlEXTSignature>();
+        case APICallID::vkRegisterDeviceEventEXT: return std::make_unique<vkRegisterDeviceEventEXTSignature>();
+        case APICallID::vkRegisterDisplayEventEXT: return std::make_unique<vkRegisterDisplayEventEXTSignature>();
+        case APICallID::vkGetSwapchainCounterEXT: return std::make_unique<vkGetSwapchainCounterEXTSignature>();
+        case APICallID::vkGetRefreshCycleDurationGOOGLE: return std::make_unique<vkGetRefreshCycleDurationGOOGLESignature>();
+        case APICallID::vkGetPastPresentationTimingGOOGLE: return std::make_unique<vkGetPastPresentationTimingGOOGLESignature>();
+        case APICallID::vkCmdSetDiscardRectangleEXT: return std::make_unique<vkCmdSetDiscardRectangleEXTSignature>();
+        case APICallID::vkCmdSetDiscardRectangleEnableEXT: return std::make_unique<vkCmdSetDiscardRectangleEnableEXTSignature>();
+        case APICallID::vkCmdSetDiscardRectangleModeEXT: return std::make_unique<vkCmdSetDiscardRectangleModeEXTSignature>();
+        case APICallID::vkSetHdrMetadataEXT: return std::make_unique<vkSetHdrMetadataEXTSignature>();
+        case APICallID::vkCreateIOSSurfaceMVK: return std::make_unique<vkCreateIOSSurfaceMVKSignature>();
+        case APICallID::vkCreateMacOSSurfaceMVK: return std::make_unique<vkCreateMacOSSurfaceMVKSignature>();
+        case APICallID::vkSetDebugUtilsObjectNameEXT: return std::make_unique<vkSetDebugUtilsObjectNameEXTSignature>();
+        case APICallID::vkSetDebugUtilsObjectTagEXT: return std::make_unique<vkSetDebugUtilsObjectTagEXTSignature>();
+        case APICallID::vkQueueBeginDebugUtilsLabelEXT: return std::make_unique<vkQueueBeginDebugUtilsLabelEXTSignature>();
+        case APICallID::vkQueueEndDebugUtilsLabelEXT: return std::make_unique<vkQueueEndDebugUtilsLabelEXTSignature>();
+        case APICallID::vkQueueInsertDebugUtilsLabelEXT: return std::make_unique<vkQueueInsertDebugUtilsLabelEXTSignature>();
+        case APICallID::vkCmdBeginDebugUtilsLabelEXT: return std::make_unique<vkCmdBeginDebugUtilsLabelEXTSignature>();
+        case APICallID::vkCmdEndDebugUtilsLabelEXT: return std::make_unique<vkCmdEndDebugUtilsLabelEXTSignature>();
+        case APICallID::vkCmdInsertDebugUtilsLabelEXT: return std::make_unique<vkCmdInsertDebugUtilsLabelEXTSignature>();
+        case APICallID::vkCreateDebugUtilsMessengerEXT: return std::make_unique<vkCreateDebugUtilsMessengerEXTSignature>();
+        case APICallID::vkDestroyDebugUtilsMessengerEXT: return std::make_unique<vkDestroyDebugUtilsMessengerEXTSignature>();
+        case APICallID::vkSubmitDebugUtilsMessageEXT: return std::make_unique<vkSubmitDebugUtilsMessageEXTSignature>();
+        case APICallID::vkGetAndroidHardwareBufferPropertiesANDROID: return std::make_unique<vkGetAndroidHardwareBufferPropertiesANDROIDSignature>();
+        case APICallID::vkGetMemoryAndroidHardwareBufferANDROID: return std::make_unique<vkGetMemoryAndroidHardwareBufferANDROIDSignature>();
+        case APICallID::vkCreateExecutionGraphPipelinesAMDX: return std::make_unique<vkCreateExecutionGraphPipelinesAMDXSignature>();
+        case APICallID::vkGetExecutionGraphPipelineScratchSizeAMDX: return std::make_unique<vkGetExecutionGraphPipelineScratchSizeAMDXSignature>();
+        case APICallID::vkGetExecutionGraphPipelineNodeIndexAMDX: return std::make_unique<vkGetExecutionGraphPipelineNodeIndexAMDXSignature>();
+        case APICallID::vkCmdInitializeGraphScratchMemoryAMDX: return std::make_unique<vkCmdInitializeGraphScratchMemoryAMDXSignature>();
+        case APICallID::vkCmdDispatchGraphAMDX: return std::make_unique<vkCmdDispatchGraphAMDXSignature>();
+        case APICallID::vkCmdDispatchGraphIndirectAMDX: return std::make_unique<vkCmdDispatchGraphIndirectAMDXSignature>();
+        case APICallID::vkCmdDispatchGraphIndirectCountAMDX: return std::make_unique<vkCmdDispatchGraphIndirectCountAMDXSignature>();
+        case APICallID::vkCmdSetSampleLocationsEXT: return std::make_unique<vkCmdSetSampleLocationsEXTSignature>();
+        case APICallID::vkGetPhysicalDeviceMultisamplePropertiesEXT: return std::make_unique<vkGetPhysicalDeviceMultisamplePropertiesEXTSignature>();
+        case APICallID::vkGetImageDrmFormatModifierPropertiesEXT: return std::make_unique<vkGetImageDrmFormatModifierPropertiesEXTSignature>();
+        case APICallID::vkCreateValidationCacheEXT: return std::make_unique<vkCreateValidationCacheEXTSignature>();
+        case APICallID::vkDestroyValidationCacheEXT: return std::make_unique<vkDestroyValidationCacheEXTSignature>();
+        case APICallID::vkMergeValidationCachesEXT: return std::make_unique<vkMergeValidationCachesEXTSignature>();
+        case APICallID::vkGetValidationCacheDataEXT: return std::make_unique<vkGetValidationCacheDataEXTSignature>();
+        case APICallID::vkCmdBindShadingRateImageNV: return std::make_unique<vkCmdBindShadingRateImageNVSignature>();
+        case APICallID::vkCmdSetViewportShadingRatePaletteNV: return std::make_unique<vkCmdSetViewportShadingRatePaletteNVSignature>();
+        case APICallID::vkCmdSetCoarseSampleOrderNV: return std::make_unique<vkCmdSetCoarseSampleOrderNVSignature>();
+        case APICallID::vkCreateAccelerationStructureNV: return std::make_unique<vkCreateAccelerationStructureNVSignature>();
+        case APICallID::vkDestroyAccelerationStructureNV: return std::make_unique<vkDestroyAccelerationStructureNVSignature>();
+        case APICallID::vkGetAccelerationStructureMemoryRequirementsNV: return std::make_unique<vkGetAccelerationStructureMemoryRequirementsNVSignature>();
+        case APICallID::vkBindAccelerationStructureMemoryNV: return std::make_unique<vkBindAccelerationStructureMemoryNVSignature>();
+        case APICallID::vkCmdBuildAccelerationStructureNV: return std::make_unique<vkCmdBuildAccelerationStructureNVSignature>();
+        case APICallID::vkCmdCopyAccelerationStructureNV: return std::make_unique<vkCmdCopyAccelerationStructureNVSignature>();
+        case APICallID::vkCmdTraceRaysNV: return std::make_unique<vkCmdTraceRaysNVSignature>();
+        case APICallID::vkCreateRayTracingPipelinesNV: return std::make_unique<vkCreateRayTracingPipelinesNVSignature>();
+        case APICallID::vkGetRayTracingShaderGroupHandlesKHR: return std::make_unique<vkGetRayTracingShaderGroupHandlesKHRSignature>();
+        case APICallID::vkGetRayTracingShaderGroupHandlesNV: return std::make_unique<vkGetRayTracingShaderGroupHandlesNVSignature>();
+        case APICallID::vkGetAccelerationStructureHandleNV: return std::make_unique<vkGetAccelerationStructureHandleNVSignature>();
+        case APICallID::vkCmdWriteAccelerationStructuresPropertiesNV: return std::make_unique<vkCmdWriteAccelerationStructuresPropertiesNVSignature>();
+        case APICallID::vkCompileDeferredNV: return std::make_unique<vkCompileDeferredNVSignature>();
+        case APICallID::vkGetMemoryHostPointerPropertiesEXT: return std::make_unique<vkGetMemoryHostPointerPropertiesEXTSignature>();
+        case APICallID::vkCmdWriteBufferMarkerAMD: return std::make_unique<vkCmdWriteBufferMarkerAMDSignature>();
+        case APICallID::vkCmdWriteBufferMarker2AMD: return std::make_unique<vkCmdWriteBufferMarker2AMDSignature>();
+        case APICallID::vkGetPhysicalDeviceCalibrateableTimeDomainsEXT: return std::make_unique<vkGetPhysicalDeviceCalibrateableTimeDomainsEXTSignature>();
+        case APICallID::vkGetCalibratedTimestampsEXT: return std::make_unique<vkGetCalibratedTimestampsEXTSignature>();
+        case APICallID::vkCmdDrawMeshTasksNV: return std::make_unique<vkCmdDrawMeshTasksNVSignature>();
+        case APICallID::vkCmdDrawMeshTasksIndirectNV: return std::make_unique<vkCmdDrawMeshTasksIndirectNVSignature>();
+        case APICallID::vkCmdDrawMeshTasksIndirectCountNV: return std::make_unique<vkCmdDrawMeshTasksIndirectCountNVSignature>();
+        case APICallID::vkCmdSetExclusiveScissorEnableNV: return std::make_unique<vkCmdSetExclusiveScissorEnableNVSignature>();
+        case APICallID::vkCmdSetExclusiveScissorNV: return std::make_unique<vkCmdSetExclusiveScissorNVSignature>();
+        case APICallID::vkCmdSetCheckpointNV: return std::make_unique<vkCmdSetCheckpointNVSignature>();
+        case APICallID::vkGetQueueCheckpointDataNV: return std::make_unique<vkGetQueueCheckpointDataNVSignature>();
+        case APICallID::vkGetQueueCheckpointData2NV: return std::make_unique<vkGetQueueCheckpointData2NVSignature>();
+        case APICallID::vkSetSwapchainPresentTimingQueueSizeEXT: return std::make_unique<vkSetSwapchainPresentTimingQueueSizeEXTSignature>();
+        case APICallID::vkGetSwapchainTimingPropertiesEXT: return std::make_unique<vkGetSwapchainTimingPropertiesEXTSignature>();
+        case APICallID::vkGetSwapchainTimeDomainPropertiesEXT: return std::make_unique<vkGetSwapchainTimeDomainPropertiesEXTSignature>();
+        case APICallID::vkGetPastPresentationTimingEXT: return std::make_unique<vkGetPastPresentationTimingEXTSignature>();
+        case APICallID::vkInitializePerformanceApiINTEL: return std::make_unique<vkInitializePerformanceApiINTELSignature>();
+        case APICallID::vkUninitializePerformanceApiINTEL: return std::make_unique<vkUninitializePerformanceApiINTELSignature>();
+        case APICallID::vkCmdSetPerformanceMarkerINTEL: return std::make_unique<vkCmdSetPerformanceMarkerINTELSignature>();
+        case APICallID::vkCmdSetPerformanceStreamMarkerINTEL: return std::make_unique<vkCmdSetPerformanceStreamMarkerINTELSignature>();
+        case APICallID::vkCmdSetPerformanceOverrideINTEL: return std::make_unique<vkCmdSetPerformanceOverrideINTELSignature>();
+        case APICallID::vkAcquirePerformanceConfigurationINTEL: return std::make_unique<vkAcquirePerformanceConfigurationINTELSignature>();
+        case APICallID::vkReleasePerformanceConfigurationINTEL: return std::make_unique<vkReleasePerformanceConfigurationINTELSignature>();
+        case APICallID::vkQueueSetPerformanceConfigurationINTEL: return std::make_unique<vkQueueSetPerformanceConfigurationINTELSignature>();
+        case APICallID::vkGetPerformanceParameterINTEL: return std::make_unique<vkGetPerformanceParameterINTELSignature>();
+        case APICallID::vkSetLocalDimmingAMD: return std::make_unique<vkSetLocalDimmingAMDSignature>();
+        case APICallID::vkCreateImagePipeSurfaceFUCHSIA: return std::make_unique<vkCreateImagePipeSurfaceFUCHSIASignature>();
+        case APICallID::vkCreateMetalSurfaceEXT: return std::make_unique<vkCreateMetalSurfaceEXTSignature>();
+        case APICallID::vkGetBufferDeviceAddressEXT: return std::make_unique<vkGetBufferDeviceAddressEXTSignature>();
+        case APICallID::vkGetPhysicalDeviceToolPropertiesEXT: return std::make_unique<vkGetPhysicalDeviceToolPropertiesEXTSignature>();
+        case APICallID::vkGetPhysicalDeviceCooperativeMatrixPropertiesNV: return std::make_unique<vkGetPhysicalDeviceCooperativeMatrixPropertiesNVSignature>();
+        case APICallID::vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV: return std::make_unique<vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNVSignature>();
+        case APICallID::vkGetPhysicalDeviceSurfacePresentModes2EXT: return std::make_unique<vkGetPhysicalDeviceSurfacePresentModes2EXTSignature>();
+        case APICallID::vkAcquireFullScreenExclusiveModeEXT: return std::make_unique<vkAcquireFullScreenExclusiveModeEXTSignature>();
+        case APICallID::vkReleaseFullScreenExclusiveModeEXT: return std::make_unique<vkReleaseFullScreenExclusiveModeEXTSignature>();
+        case APICallID::vkGetDeviceGroupSurfacePresentModes2EXT: return std::make_unique<vkGetDeviceGroupSurfacePresentModes2EXTSignature>();
+        case APICallID::vkCreateHeadlessSurfaceEXT: return std::make_unique<vkCreateHeadlessSurfaceEXTSignature>();
+        case APICallID::vkCmdSetLineStippleEXT: return std::make_unique<vkCmdSetLineStippleEXTSignature>();
+        case APICallID::vkResetQueryPoolEXT: return std::make_unique<vkResetQueryPoolEXTSignature>();
+        case APICallID::vkCmdSetCullModeEXT: return std::make_unique<vkCmdSetCullModeEXTSignature>();
+        case APICallID::vkCmdSetFrontFaceEXT: return std::make_unique<vkCmdSetFrontFaceEXTSignature>();
+        case APICallID::vkCmdSetPrimitiveTopologyEXT: return std::make_unique<vkCmdSetPrimitiveTopologyEXTSignature>();
+        case APICallID::vkCmdSetViewportWithCountEXT: return std::make_unique<vkCmdSetViewportWithCountEXTSignature>();
+        case APICallID::vkCmdSetScissorWithCountEXT: return std::make_unique<vkCmdSetScissorWithCountEXTSignature>();
+        case APICallID::vkCmdBindVertexBuffers2EXT: return std::make_unique<vkCmdBindVertexBuffers2EXTSignature>();
+        case APICallID::vkCmdSetDepthTestEnableEXT: return std::make_unique<vkCmdSetDepthTestEnableEXTSignature>();
+        case APICallID::vkCmdSetDepthWriteEnableEXT: return std::make_unique<vkCmdSetDepthWriteEnableEXTSignature>();
+        case APICallID::vkCmdSetDepthCompareOpEXT: return std::make_unique<vkCmdSetDepthCompareOpEXTSignature>();
+        case APICallID::vkCmdSetDepthBoundsTestEnableEXT: return std::make_unique<vkCmdSetDepthBoundsTestEnableEXTSignature>();
+        case APICallID::vkCmdSetStencilTestEnableEXT: return std::make_unique<vkCmdSetStencilTestEnableEXTSignature>();
+        case APICallID::vkCmdSetStencilOpEXT: return std::make_unique<vkCmdSetStencilOpEXTSignature>();
+        case APICallID::vkCopyMemoryToImageEXT: return std::make_unique<vkCopyMemoryToImageEXTSignature>();
+        case APICallID::vkCopyImageToMemoryEXT: return std::make_unique<vkCopyImageToMemoryEXTSignature>();
+        case APICallID::vkCopyImageToImageEXT: return std::make_unique<vkCopyImageToImageEXTSignature>();
+        case APICallID::vkTransitionImageLayoutEXT: return std::make_unique<vkTransitionImageLayoutEXTSignature>();
+        case APICallID::vkGetImageSubresourceLayout2EXT: return std::make_unique<vkGetImageSubresourceLayout2EXTSignature>();
+        case APICallID::vkReleaseSwapchainImagesEXT: return std::make_unique<vkReleaseSwapchainImagesEXTSignature>();
+        case APICallID::vkGetGeneratedCommandsMemoryRequirementsNV: return std::make_unique<vkGetGeneratedCommandsMemoryRequirementsNVSignature>();
+        case APICallID::vkCmdPreprocessGeneratedCommandsNV: return std::make_unique<vkCmdPreprocessGeneratedCommandsNVSignature>();
+        case APICallID::vkCmdExecuteGeneratedCommandsNV: return std::make_unique<vkCmdExecuteGeneratedCommandsNVSignature>();
+        case APICallID::vkCmdBindPipelineShaderGroupNV: return std::make_unique<vkCmdBindPipelineShaderGroupNVSignature>();
+        case APICallID::vkCreateIndirectCommandsLayoutNV: return std::make_unique<vkCreateIndirectCommandsLayoutNVSignature>();
+        case APICallID::vkDestroyIndirectCommandsLayoutNV: return std::make_unique<vkDestroyIndirectCommandsLayoutNVSignature>();
+        case APICallID::vkCmdSetDepthBias2EXT: return std::make_unique<vkCmdSetDepthBias2EXTSignature>();
+        case APICallID::vkAcquireDrmDisplayEXT: return std::make_unique<vkAcquireDrmDisplayEXTSignature>();
+        case APICallID::vkGetDrmDisplayEXT: return std::make_unique<vkGetDrmDisplayEXTSignature>();
+        case APICallID::vkCreatePrivateDataSlotEXT: return std::make_unique<vkCreatePrivateDataSlotEXTSignature>();
+        case APICallID::vkDestroyPrivateDataSlotEXT: return std::make_unique<vkDestroyPrivateDataSlotEXTSignature>();
+        case APICallID::vkSetPrivateDataEXT: return std::make_unique<vkSetPrivateDataEXTSignature>();
+        case APICallID::vkGetPrivateDataEXT: return std::make_unique<vkGetPrivateDataEXTSignature>();
+        case APICallID::vkCreateCudaModuleNV: return std::make_unique<vkCreateCudaModuleNVSignature>();
+        case APICallID::vkGetCudaModuleCacheNV: return std::make_unique<vkGetCudaModuleCacheNVSignature>();
+        case APICallID::vkCreateCudaFunctionNV: return std::make_unique<vkCreateCudaFunctionNVSignature>();
+        case APICallID::vkDestroyCudaModuleNV: return std::make_unique<vkDestroyCudaModuleNVSignature>();
+        case APICallID::vkDestroyCudaFunctionNV: return std::make_unique<vkDestroyCudaFunctionNVSignature>();
+        case APICallID::vkCmdCudaLaunchKernelNV: return std::make_unique<vkCmdCudaLaunchKernelNVSignature>();
+        case APICallID::vkCmdDispatchTileQCOM: return std::make_unique<vkCmdDispatchTileQCOMSignature>();
+        case APICallID::vkCmdBeginPerTileExecutionQCOM: return std::make_unique<vkCmdBeginPerTileExecutionQCOMSignature>();
+        case APICallID::vkCmdEndPerTileExecutionQCOM: return std::make_unique<vkCmdEndPerTileExecutionQCOMSignature>();
+        case APICallID::vkExportMetalObjectsEXT: return std::make_unique<vkExportMetalObjectsEXTSignature>();
+        case APICallID::vkGetDescriptorSetLayoutSizeEXT: return std::make_unique<vkGetDescriptorSetLayoutSizeEXTSignature>();
+        case APICallID::vkGetDescriptorSetLayoutBindingOffsetEXT: return std::make_unique<vkGetDescriptorSetLayoutBindingOffsetEXTSignature>();
+        case APICallID::vkGetDescriptorEXT: return std::make_unique<vkGetDescriptorEXTSignature>();
+        case APICallID::vkCmdBindDescriptorBuffersEXT: return std::make_unique<vkCmdBindDescriptorBuffersEXTSignature>();
+        case APICallID::vkCmdSetDescriptorBufferOffsetsEXT: return std::make_unique<vkCmdSetDescriptorBufferOffsetsEXTSignature>();
+        case APICallID::vkCmdBindDescriptorBufferEmbeddedSamplersEXT: return std::make_unique<vkCmdBindDescriptorBufferEmbeddedSamplersEXTSignature>();
+        case APICallID::vkGetBufferOpaqueCaptureDescriptorDataEXT: return std::make_unique<vkGetBufferOpaqueCaptureDescriptorDataEXTSignature>();
+        case APICallID::vkGetImageOpaqueCaptureDescriptorDataEXT: return std::make_unique<vkGetImageOpaqueCaptureDescriptorDataEXTSignature>();
+        case APICallID::vkGetImageViewOpaqueCaptureDescriptorDataEXT: return std::make_unique<vkGetImageViewOpaqueCaptureDescriptorDataEXTSignature>();
+        case APICallID::vkGetSamplerOpaqueCaptureDescriptorDataEXT: return std::make_unique<vkGetSamplerOpaqueCaptureDescriptorDataEXTSignature>();
+        case APICallID::vkGetAccelerationStructureOpaqueCaptureDescriptorDataEXT: return std::make_unique<vkGetAccelerationStructureOpaqueCaptureDescriptorDataEXTSignature>();
+        case APICallID::vkCmdSetFragmentShadingRateEnumNV: return std::make_unique<vkCmdSetFragmentShadingRateEnumNVSignature>();
+        case APICallID::vkGetDeviceFaultInfoEXT: return std::make_unique<vkGetDeviceFaultInfoEXTSignature>();
+        case APICallID::vkAcquireWinrtDisplayNV: return std::make_unique<vkAcquireWinrtDisplayNVSignature>();
+        case APICallID::vkGetWinrtDisplayNV: return std::make_unique<vkGetWinrtDisplayNVSignature>();
+        case APICallID::vkCreateDirectFBSurfaceEXT: return std::make_unique<vkCreateDirectFBSurfaceEXTSignature>();
+        case APICallID::vkGetPhysicalDeviceDirectFBPresentationSupportEXT: return std::make_unique<vkGetPhysicalDeviceDirectFBPresentationSupportEXTSignature>();
+        case APICallID::vkCmdSetVertexInputEXT: return std::make_unique<vkCmdSetVertexInputEXTSignature>();
+        case APICallID::vkGetMemoryZirconHandleFUCHSIA: return std::make_unique<vkGetMemoryZirconHandleFUCHSIASignature>();
+        case APICallID::vkGetMemoryZirconHandlePropertiesFUCHSIA: return std::make_unique<vkGetMemoryZirconHandlePropertiesFUCHSIASignature>();
+        case APICallID::vkImportSemaphoreZirconHandleFUCHSIA: return std::make_unique<vkImportSemaphoreZirconHandleFUCHSIASignature>();
+        case APICallID::vkGetSemaphoreZirconHandleFUCHSIA: return std::make_unique<vkGetSemaphoreZirconHandleFUCHSIASignature>();
+        case APICallID::vkCreateBufferCollectionFUCHSIA: return std::make_unique<vkCreateBufferCollectionFUCHSIASignature>();
+        case APICallID::vkSetBufferCollectionImageConstraintsFUCHSIA: return std::make_unique<vkSetBufferCollectionImageConstraintsFUCHSIASignature>();
+        case APICallID::vkSetBufferCollectionBufferConstraintsFUCHSIA: return std::make_unique<vkSetBufferCollectionBufferConstraintsFUCHSIASignature>();
+        case APICallID::vkDestroyBufferCollectionFUCHSIA: return std::make_unique<vkDestroyBufferCollectionFUCHSIASignature>();
+        case APICallID::vkGetBufferCollectionPropertiesFUCHSIA: return std::make_unique<vkGetBufferCollectionPropertiesFUCHSIASignature>();
+        case APICallID::vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI: return std::make_unique<vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEISignature>();
+        case APICallID::vkCmdSubpassShadingHUAWEI: return std::make_unique<vkCmdSubpassShadingHUAWEISignature>();
+        case APICallID::vkCmdBindInvocationMaskHUAWEI: return std::make_unique<vkCmdBindInvocationMaskHUAWEISignature>();
+        case APICallID::vkGetMemoryRemoteAddressNV: return std::make_unique<vkGetMemoryRemoteAddressNVSignature>();
+        case APICallID::vkGetPipelinePropertiesEXT: return std::make_unique<vkGetPipelinePropertiesEXTSignature>();
+        case APICallID::vkCmdSetPatchControlPointsEXT: return std::make_unique<vkCmdSetPatchControlPointsEXTSignature>();
+        case APICallID::vkCmdSetRasterizerDiscardEnableEXT: return std::make_unique<vkCmdSetRasterizerDiscardEnableEXTSignature>();
+        case APICallID::vkCmdSetDepthBiasEnableEXT: return std::make_unique<vkCmdSetDepthBiasEnableEXTSignature>();
+        case APICallID::vkCmdSetLogicOpEXT: return std::make_unique<vkCmdSetLogicOpEXTSignature>();
+        case APICallID::vkCmdSetPrimitiveRestartEnableEXT: return std::make_unique<vkCmdSetPrimitiveRestartEnableEXTSignature>();
+        case APICallID::vkCreateScreenSurfaceQNX: return std::make_unique<vkCreateScreenSurfaceQNXSignature>();
+        case APICallID::vkGetPhysicalDeviceScreenPresentationSupportQNX: return std::make_unique<vkGetPhysicalDeviceScreenPresentationSupportQNXSignature>();
+        case APICallID::vkCmdSetColorWriteEnableEXT: return std::make_unique<vkCmdSetColorWriteEnableEXTSignature>();
+        case APICallID::vkCmdDrawMultiEXT: return std::make_unique<vkCmdDrawMultiEXTSignature>();
+        case APICallID::vkCmdDrawMultiIndexedEXT: return std::make_unique<vkCmdDrawMultiIndexedEXTSignature>();
+        case APICallID::vkCreateMicromapEXT: return std::make_unique<vkCreateMicromapEXTSignature>();
+        case APICallID::vkDestroyMicromapEXT: return std::make_unique<vkDestroyMicromapEXTSignature>();
+        case APICallID::vkCmdBuildMicromapsEXT: return std::make_unique<vkCmdBuildMicromapsEXTSignature>();
+        case APICallID::vkBuildMicromapsEXT: return std::make_unique<vkBuildMicromapsEXTSignature>();
+        case APICallID::vkCopyMicromapEXT: return std::make_unique<vkCopyMicromapEXTSignature>();
+        case APICallID::vkCopyMicromapToMemoryEXT: return std::make_unique<vkCopyMicromapToMemoryEXTSignature>();
+        case APICallID::vkCopyMemoryToMicromapEXT: return std::make_unique<vkCopyMemoryToMicromapEXTSignature>();
+        case APICallID::vkWriteMicromapsPropertiesEXT: return std::make_unique<vkWriteMicromapsPropertiesEXTSignature>();
+        case APICallID::vkCmdCopyMicromapEXT: return std::make_unique<vkCmdCopyMicromapEXTSignature>();
+        case APICallID::vkCmdCopyMicromapToMemoryEXT: return std::make_unique<vkCmdCopyMicromapToMemoryEXTSignature>();
+        case APICallID::vkCmdCopyMemoryToMicromapEXT: return std::make_unique<vkCmdCopyMemoryToMicromapEXTSignature>();
+        case APICallID::vkCmdWriteMicromapsPropertiesEXT: return std::make_unique<vkCmdWriteMicromapsPropertiesEXTSignature>();
+        case APICallID::vkGetDeviceMicromapCompatibilityEXT: return std::make_unique<vkGetDeviceMicromapCompatibilityEXTSignature>();
+        case APICallID::vkGetMicromapBuildSizesEXT: return std::make_unique<vkGetMicromapBuildSizesEXTSignature>();
+        case APICallID::vkCmdDrawClusterHUAWEI: return std::make_unique<vkCmdDrawClusterHUAWEISignature>();
+        case APICallID::vkCmdDrawClusterIndirectHUAWEI: return std::make_unique<vkCmdDrawClusterIndirectHUAWEISignature>();
+        case APICallID::vkSetDeviceMemoryPriorityEXT: return std::make_unique<vkSetDeviceMemoryPriorityEXTSignature>();
+        case APICallID::vkGetDescriptorSetLayoutHostMappingInfoVALVE: return std::make_unique<vkGetDescriptorSetLayoutHostMappingInfoVALVESignature>();
+        case APICallID::vkGetDescriptorSetHostMappingVALVE: return std::make_unique<vkGetDescriptorSetHostMappingVALVESignature>();
+        case APICallID::vkCmdCopyMemoryIndirectNV: return std::make_unique<vkCmdCopyMemoryIndirectNVSignature>();
+        case APICallID::vkCmdCopyMemoryToImageIndirectNV: return std::make_unique<vkCmdCopyMemoryToImageIndirectNVSignature>();
+        case APICallID::vkCmdDecompressMemoryNV: return std::make_unique<vkCmdDecompressMemoryNVSignature>();
+        case APICallID::vkCmdDecompressMemoryIndirectCountNV: return std::make_unique<vkCmdDecompressMemoryIndirectCountNVSignature>();
+        case APICallID::vkGetPipelineIndirectMemoryRequirementsNV: return std::make_unique<vkGetPipelineIndirectMemoryRequirementsNVSignature>();
+        case APICallID::vkCmdUpdatePipelineIndirectBufferNV: return std::make_unique<vkCmdUpdatePipelineIndirectBufferNVSignature>();
+        case APICallID::vkGetPipelineIndirectDeviceAddressNV: return std::make_unique<vkGetPipelineIndirectDeviceAddressNVSignature>();
+        case APICallID::vkGetNativeBufferPropertiesOHOS: return std::make_unique<vkGetNativeBufferPropertiesOHOSSignature>();
+        case APICallID::vkGetMemoryNativeBufferOHOS: return std::make_unique<vkGetMemoryNativeBufferOHOSSignature>();
+        case APICallID::vkCmdSetDepthClampEnableEXT: return std::make_unique<vkCmdSetDepthClampEnableEXTSignature>();
+        case APICallID::vkCmdSetPolygonModeEXT: return std::make_unique<vkCmdSetPolygonModeEXTSignature>();
+        case APICallID::vkCmdSetRasterizationSamplesEXT: return std::make_unique<vkCmdSetRasterizationSamplesEXTSignature>();
+        case APICallID::vkCmdSetSampleMaskEXT: return std::make_unique<vkCmdSetSampleMaskEXTSignature>();
+        case APICallID::vkCmdSetAlphaToCoverageEnableEXT: return std::make_unique<vkCmdSetAlphaToCoverageEnableEXTSignature>();
+        case APICallID::vkCmdSetAlphaToOneEnableEXT: return std::make_unique<vkCmdSetAlphaToOneEnableEXTSignature>();
+        case APICallID::vkCmdSetLogicOpEnableEXT: return std::make_unique<vkCmdSetLogicOpEnableEXTSignature>();
+        case APICallID::vkCmdSetColorBlendEnableEXT: return std::make_unique<vkCmdSetColorBlendEnableEXTSignature>();
+        case APICallID::vkCmdSetColorBlendEquationEXT: return std::make_unique<vkCmdSetColorBlendEquationEXTSignature>();
+        case APICallID::vkCmdSetColorWriteMaskEXT: return std::make_unique<vkCmdSetColorWriteMaskEXTSignature>();
+        case APICallID::vkCmdSetTessellationDomainOriginEXT: return std::make_unique<vkCmdSetTessellationDomainOriginEXTSignature>();
+        case APICallID::vkCmdSetRasterizationStreamEXT: return std::make_unique<vkCmdSetRasterizationStreamEXTSignature>();
+        case APICallID::vkCmdSetConservativeRasterizationModeEXT: return std::make_unique<vkCmdSetConservativeRasterizationModeEXTSignature>();
+        case APICallID::vkCmdSetExtraPrimitiveOverestimationSizeEXT: return std::make_unique<vkCmdSetExtraPrimitiveOverestimationSizeEXTSignature>();
+        case APICallID::vkCmdSetDepthClipEnableEXT: return std::make_unique<vkCmdSetDepthClipEnableEXTSignature>();
+        case APICallID::vkCmdSetSampleLocationsEnableEXT: return std::make_unique<vkCmdSetSampleLocationsEnableEXTSignature>();
+        case APICallID::vkCmdSetColorBlendAdvancedEXT: return std::make_unique<vkCmdSetColorBlendAdvancedEXTSignature>();
+        case APICallID::vkCmdSetProvokingVertexModeEXT: return std::make_unique<vkCmdSetProvokingVertexModeEXTSignature>();
+        case APICallID::vkCmdSetLineRasterizationModeEXT: return std::make_unique<vkCmdSetLineRasterizationModeEXTSignature>();
+        case APICallID::vkCmdSetLineStippleEnableEXT: return std::make_unique<vkCmdSetLineStippleEnableEXTSignature>();
+        case APICallID::vkCmdSetDepthClipNegativeOneToOneEXT: return std::make_unique<vkCmdSetDepthClipNegativeOneToOneEXTSignature>();
+        case APICallID::vkCmdSetViewportWScalingEnableNV: return std::make_unique<vkCmdSetViewportWScalingEnableNVSignature>();
+        case APICallID::vkCmdSetViewportSwizzleNV: return std::make_unique<vkCmdSetViewportSwizzleNVSignature>();
+        case APICallID::vkCmdSetCoverageToColorEnableNV: return std::make_unique<vkCmdSetCoverageToColorEnableNVSignature>();
+        case APICallID::vkCmdSetCoverageToColorLocationNV: return std::make_unique<vkCmdSetCoverageToColorLocationNVSignature>();
+        case APICallID::vkCmdSetCoverageModulationModeNV: return std::make_unique<vkCmdSetCoverageModulationModeNVSignature>();
+        case APICallID::vkCmdSetCoverageModulationTableEnableNV: return std::make_unique<vkCmdSetCoverageModulationTableEnableNVSignature>();
+        case APICallID::vkCmdSetCoverageModulationTableNV: return std::make_unique<vkCmdSetCoverageModulationTableNVSignature>();
+        case APICallID::vkCmdSetShadingRateImageEnableNV: return std::make_unique<vkCmdSetShadingRateImageEnableNVSignature>();
+        case APICallID::vkCmdSetRepresentativeFragmentTestEnableNV: return std::make_unique<vkCmdSetRepresentativeFragmentTestEnableNVSignature>();
+        case APICallID::vkCmdSetCoverageReductionModeNV: return std::make_unique<vkCmdSetCoverageReductionModeNVSignature>();
+        case APICallID::vkCreateTensorARM: return std::make_unique<vkCreateTensorARMSignature>();
+        case APICallID::vkDestroyTensorARM: return std::make_unique<vkDestroyTensorARMSignature>();
+        case APICallID::vkCreateTensorViewARM: return std::make_unique<vkCreateTensorViewARMSignature>();
+        case APICallID::vkDestroyTensorViewARM: return std::make_unique<vkDestroyTensorViewARMSignature>();
+        case APICallID::vkGetTensorMemoryRequirementsARM: return std::make_unique<vkGetTensorMemoryRequirementsARMSignature>();
+        case APICallID::vkBindTensorMemoryARM: return std::make_unique<vkBindTensorMemoryARMSignature>();
+        case APICallID::vkGetDeviceTensorMemoryRequirementsARM: return std::make_unique<vkGetDeviceTensorMemoryRequirementsARMSignature>();
+        case APICallID::vkCmdCopyTensorARM: return std::make_unique<vkCmdCopyTensorARMSignature>();
+        case APICallID::vkGetPhysicalDeviceExternalTensorPropertiesARM: return std::make_unique<vkGetPhysicalDeviceExternalTensorPropertiesARMSignature>();
+        case APICallID::vkGetTensorOpaqueCaptureDescriptorDataARM: return std::make_unique<vkGetTensorOpaqueCaptureDescriptorDataARMSignature>();
+        case APICallID::vkGetTensorViewOpaqueCaptureDescriptorDataARM: return std::make_unique<vkGetTensorViewOpaqueCaptureDescriptorDataARMSignature>();
+        case APICallID::vkGetShaderModuleIdentifierEXT: return std::make_unique<vkGetShaderModuleIdentifierEXTSignature>();
+        case APICallID::vkGetShaderModuleCreateInfoIdentifierEXT: return std::make_unique<vkGetShaderModuleCreateInfoIdentifierEXTSignature>();
+        case APICallID::vkGetPhysicalDeviceOpticalFlowImageFormatsNV: return std::make_unique<vkGetPhysicalDeviceOpticalFlowImageFormatsNVSignature>();
+        case APICallID::vkCreateOpticalFlowSessionNV: return std::make_unique<vkCreateOpticalFlowSessionNVSignature>();
+        case APICallID::vkDestroyOpticalFlowSessionNV: return std::make_unique<vkDestroyOpticalFlowSessionNVSignature>();
+        case APICallID::vkBindOpticalFlowSessionImageNV: return std::make_unique<vkBindOpticalFlowSessionImageNVSignature>();
+        case APICallID::vkCmdOpticalFlowExecuteNV: return std::make_unique<vkCmdOpticalFlowExecuteNVSignature>();
+        case APICallID::vkAntiLagUpdateAMD: return std::make_unique<vkAntiLagUpdateAMDSignature>();
+        case APICallID::vkCreateShadersEXT: return std::make_unique<vkCreateShadersEXTSignature>();
+        case APICallID::vkDestroyShaderEXT: return std::make_unique<vkDestroyShaderEXTSignature>();
+        case APICallID::vkGetShaderBinaryDataEXT: return std::make_unique<vkGetShaderBinaryDataEXTSignature>();
+        case APICallID::vkCmdBindShadersEXT: return std::make_unique<vkCmdBindShadersEXTSignature>();
+        case APICallID::vkCmdSetDepthClampRangeEXT: return std::make_unique<vkCmdSetDepthClampRangeEXTSignature>();
+        case APICallID::vkGetFramebufferTilePropertiesQCOM: return std::make_unique<vkGetFramebufferTilePropertiesQCOMSignature>();
+        case APICallID::vkGetDynamicRenderingTilePropertiesQCOM: return std::make_unique<vkGetDynamicRenderingTilePropertiesQCOMSignature>();
+        case APICallID::vkGetPhysicalDeviceCooperativeVectorPropertiesNV: return std::make_unique<vkGetPhysicalDeviceCooperativeVectorPropertiesNVSignature>();
+        case APICallID::vkConvertCooperativeVectorMatrixNV: return std::make_unique<vkConvertCooperativeVectorMatrixNVSignature>();
+        case APICallID::vkCmdConvertCooperativeVectorMatrixNV: return std::make_unique<vkCmdConvertCooperativeVectorMatrixNVSignature>();
+        case APICallID::vkSetLatencySleepModeNV: return std::make_unique<vkSetLatencySleepModeNVSignature>();
+        case APICallID::vkLatencySleepNV: return std::make_unique<vkLatencySleepNVSignature>();
+        case APICallID::vkSetLatencyMarkerNV: return std::make_unique<vkSetLatencyMarkerNVSignature>();
+        case APICallID::vkGetLatencyTimingsNV: return std::make_unique<vkGetLatencyTimingsNVSignature>();
+        case APICallID::vkQueueNotifyOutOfBandNV: return std::make_unique<vkQueueNotifyOutOfBandNVSignature>();
+        case APICallID::vkCreateDataGraphPipelinesARM: return std::make_unique<vkCreateDataGraphPipelinesARMSignature>();
+        case APICallID::vkCreateDataGraphPipelineSessionARM: return std::make_unique<vkCreateDataGraphPipelineSessionARMSignature>();
+        case APICallID::vkGetDataGraphPipelineSessionBindPointRequirementsARM: return std::make_unique<vkGetDataGraphPipelineSessionBindPointRequirementsARMSignature>();
+        case APICallID::vkGetDataGraphPipelineSessionMemoryRequirementsARM: return std::make_unique<vkGetDataGraphPipelineSessionMemoryRequirementsARMSignature>();
+        case APICallID::vkBindDataGraphPipelineSessionMemoryARM: return std::make_unique<vkBindDataGraphPipelineSessionMemoryARMSignature>();
+        case APICallID::vkDestroyDataGraphPipelineSessionARM: return std::make_unique<vkDestroyDataGraphPipelineSessionARMSignature>();
+        case APICallID::vkCmdDispatchDataGraphARM: return std::make_unique<vkCmdDispatchDataGraphARMSignature>();
+        case APICallID::vkGetDataGraphPipelineAvailablePropertiesARM: return std::make_unique<vkGetDataGraphPipelineAvailablePropertiesARMSignature>();
+        case APICallID::vkGetDataGraphPipelinePropertiesARM: return std::make_unique<vkGetDataGraphPipelinePropertiesARMSignature>();
+        case APICallID::vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM: return std::make_unique<vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARMSignature>();
+        case APICallID::vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM: return std::make_unique<vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARMSignature>();
+        case APICallID::vkCmdSetAttachmentFeedbackLoopEnableEXT: return std::make_unique<vkCmdSetAttachmentFeedbackLoopEnableEXTSignature>();
+        case APICallID::vkGetScreenBufferPropertiesQNX: return std::make_unique<vkGetScreenBufferPropertiesQNXSignature>();
+        case APICallID::vkCmdBindTileMemoryQCOM: return std::make_unique<vkCmdBindTileMemoryQCOMSignature>();
+        case APICallID::vkCmdDecompressMemoryEXT: return std::make_unique<vkCmdDecompressMemoryEXTSignature>();
+        case APICallID::vkCmdDecompressMemoryIndirectCountEXT: return std::make_unique<vkCmdDecompressMemoryIndirectCountEXTSignature>();
+        case APICallID::vkCreateExternalComputeQueueNV: return std::make_unique<vkCreateExternalComputeQueueNVSignature>();
+        case APICallID::vkDestroyExternalComputeQueueNV: return std::make_unique<vkDestroyExternalComputeQueueNVSignature>();
+        case APICallID::vkGetExternalComputeQueueDataNV: return std::make_unique<vkGetExternalComputeQueueDataNVSignature>();
+        case APICallID::vkGetClusterAccelerationStructureBuildSizesNV: return std::make_unique<vkGetClusterAccelerationStructureBuildSizesNVSignature>();
+        case APICallID::vkCmdBuildClusterAccelerationStructureIndirectNV: return std::make_unique<vkCmdBuildClusterAccelerationStructureIndirectNVSignature>();
+        case APICallID::vkGetPartitionedAccelerationStructuresBuildSizesNV: return std::make_unique<vkGetPartitionedAccelerationStructuresBuildSizesNVSignature>();
+        case APICallID::vkCmdBuildPartitionedAccelerationStructuresNV: return std::make_unique<vkCmdBuildPartitionedAccelerationStructuresNVSignature>();
+        case APICallID::vkGetGeneratedCommandsMemoryRequirementsEXT: return std::make_unique<vkGetGeneratedCommandsMemoryRequirementsEXTSignature>();
+        case APICallID::vkCmdPreprocessGeneratedCommandsEXT: return std::make_unique<vkCmdPreprocessGeneratedCommandsEXTSignature>();
+        case APICallID::vkCmdExecuteGeneratedCommandsEXT: return std::make_unique<vkCmdExecuteGeneratedCommandsEXTSignature>();
+        case APICallID::vkCreateIndirectCommandsLayoutEXT: return std::make_unique<vkCreateIndirectCommandsLayoutEXTSignature>();
+        case APICallID::vkDestroyIndirectCommandsLayoutEXT: return std::make_unique<vkDestroyIndirectCommandsLayoutEXTSignature>();
+        case APICallID::vkCreateIndirectExecutionSetEXT: return std::make_unique<vkCreateIndirectExecutionSetEXTSignature>();
+        case APICallID::vkDestroyIndirectExecutionSetEXT: return std::make_unique<vkDestroyIndirectExecutionSetEXTSignature>();
+        case APICallID::vkUpdateIndirectExecutionSetPipelineEXT: return std::make_unique<vkUpdateIndirectExecutionSetPipelineEXTSignature>();
+        case APICallID::vkUpdateIndirectExecutionSetShaderEXT: return std::make_unique<vkUpdateIndirectExecutionSetShaderEXTSignature>();
+        case APICallID::vkCreateSurfaceOHOS: return std::make_unique<vkCreateSurfaceOHOSSignature>();
+        case APICallID::vkGetSwapchainGrallocUsageOHOS: return std::make_unique<vkGetSwapchainGrallocUsageOHOSSignature>();
+        case APICallID::vkAcquireImageOHOS: return std::make_unique<vkAcquireImageOHOSSignature>();
+        case APICallID::vkQueueSignalReleaseImageOHOS: return std::make_unique<vkQueueSignalReleaseImageOHOSSignature>();
+        case APICallID::vkGetPhysicalDeviceCooperativeMatrixFlexibleDimensionsPropertiesNV: return std::make_unique<vkGetPhysicalDeviceCooperativeMatrixFlexibleDimensionsPropertiesNVSignature>();
+        case APICallID::vkGetMemoryMetalHandleEXT: return std::make_unique<vkGetMemoryMetalHandleEXTSignature>();
+        case APICallID::vkGetMemoryMetalHandlePropertiesEXT: return std::make_unique<vkGetMemoryMetalHandlePropertiesEXTSignature>();
+        case APICallID::vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARM: return std::make_unique<vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARMSignature>();
+        case APICallID::vkCmdEndRendering2EXT: return std::make_unique<vkCmdEndRendering2EXTSignature>();
+        case APICallID::vkCmdBeginCustomResolveEXT: return std::make_unique<vkCmdBeginCustomResolveEXTSignature>();
+        case APICallID::vkCreateAccelerationStructureKHR: return std::make_unique<vkCreateAccelerationStructureKHRSignature>();
+        case APICallID::vkDestroyAccelerationStructureKHR: return std::make_unique<vkDestroyAccelerationStructureKHRSignature>();
+        case APICallID::vkCmdBuildAccelerationStructuresKHR: return std::make_unique<vkCmdBuildAccelerationStructuresKHRSignature>();
+        case APICallID::vkCmdBuildAccelerationStructuresIndirectKHR: return std::make_unique<vkCmdBuildAccelerationStructuresIndirectKHRSignature>();
+        case APICallID::vkBuildAccelerationStructuresKHR: return std::make_unique<vkBuildAccelerationStructuresKHRSignature>();
+        case APICallID::vkCopyAccelerationStructureKHR: return std::make_unique<vkCopyAccelerationStructureKHRSignature>();
+        case APICallID::vkCopyAccelerationStructureToMemoryKHR: return std::make_unique<vkCopyAccelerationStructureToMemoryKHRSignature>();
+        case APICallID::vkCopyMemoryToAccelerationStructureKHR: return std::make_unique<vkCopyMemoryToAccelerationStructureKHRSignature>();
+        case APICallID::vkWriteAccelerationStructuresPropertiesKHR: return std::make_unique<vkWriteAccelerationStructuresPropertiesKHRSignature>();
+        case APICallID::vkCmdCopyAccelerationStructureKHR: return std::make_unique<vkCmdCopyAccelerationStructureKHRSignature>();
+        case APICallID::vkCmdCopyAccelerationStructureToMemoryKHR: return std::make_unique<vkCmdCopyAccelerationStructureToMemoryKHRSignature>();
+        case APICallID::vkCmdCopyMemoryToAccelerationStructureKHR: return std::make_unique<vkCmdCopyMemoryToAccelerationStructureKHRSignature>();
+        case APICallID::vkGetAccelerationStructureDeviceAddressKHR: return std::make_unique<vkGetAccelerationStructureDeviceAddressKHRSignature>();
+        case APICallID::vkCmdWriteAccelerationStructuresPropertiesKHR: return std::make_unique<vkCmdWriteAccelerationStructuresPropertiesKHRSignature>();
+        case APICallID::vkGetDeviceAccelerationStructureCompatibilityKHR: return std::make_unique<vkGetDeviceAccelerationStructureCompatibilityKHRSignature>();
+        case APICallID::vkGetAccelerationStructureBuildSizesKHR: return std::make_unique<vkGetAccelerationStructureBuildSizesKHRSignature>();
+        case APICallID::vkCmdTraceRaysKHR: return std::make_unique<vkCmdTraceRaysKHRSignature>();
+        case APICallID::vkCreateRayTracingPipelinesKHR: return std::make_unique<vkCreateRayTracingPipelinesKHRSignature>();
+        case APICallID::vkGetRayTracingCaptureReplayShaderGroupHandlesKHR: return std::make_unique<vkGetRayTracingCaptureReplayShaderGroupHandlesKHRSignature>();
+        case APICallID::vkCmdTraceRaysIndirectKHR: return std::make_unique<vkCmdTraceRaysIndirectKHRSignature>();
+        case APICallID::vkGetRayTracingShaderGroupStackSizeKHR: return std::make_unique<vkGetRayTracingShaderGroupStackSizeKHRSignature>();
+        case APICallID::vkCmdSetRayTracingPipelineStackSizeKHR: return std::make_unique<vkCmdSetRayTracingPipelineStackSizeKHRSignature>();
+        case APICallID::vkCmdDrawMeshTasksEXT: return std::make_unique<vkCmdDrawMeshTasksEXTSignature>();
+        case APICallID::vkCmdDrawMeshTasksIndirectEXT: return std::make_unique<vkCmdDrawMeshTasksIndirectEXTSignature>();
+        case APICallID::vkCmdDrawMeshTasksIndirectCountEXT: return std::make_unique<vkCmdDrawMeshTasksIndirectCountEXTSignature>();
+        default: return nullptr;
+    }
+}
 
 } // namespace SignatureSerializer
 } // namespace OVS

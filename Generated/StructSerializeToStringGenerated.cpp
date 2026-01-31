@@ -221,7 +221,7 @@ void SerializeToString(const VkInstanceCreateInfo& value, std::stringstream& str
     stream << ", ";
     SerializeToString(value.enabledLayerCount, stream);
     stream << ", ";
-    if (value.ppEnabledLayerNames) {
+    if (value.ppEnabledLayerNames && value.enabledLayerCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.enabledLayerCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -235,7 +235,7 @@ void SerializeToString(const VkInstanceCreateInfo& value, std::stringstream& str
     stream << ", ";
     SerializeToString(value.enabledExtensionCount, stream);
     stream << ", ";
-    if (value.ppEnabledExtensionNames) {
+    if (value.ppEnabledExtensionNames && value.enabledExtensionCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.enabledExtensionCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -712,7 +712,7 @@ void SerializeToString(const VkDeviceQueueCreateInfo& value, std::stringstream& 
     stream << ", ";
     SerializeToString(value.queueCount, stream);
     stream << ", ";
-    if (value.pQueuePriorities) {
+    if (value.pQueuePriorities && value.queueCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.queueCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -736,7 +736,7 @@ void SerializeToString(const VkDeviceCreateInfo& value, std::stringstream& strea
     stream << ", ";
     SerializeToString(value.queueCreateInfoCount, stream);
     stream << ", ";
-    if (value.pQueueCreateInfos) {
+    if (value.pQueueCreateInfos && value.queueCreateInfoCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.queueCreateInfoCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -750,7 +750,7 @@ void SerializeToString(const VkDeviceCreateInfo& value, std::stringstream& strea
     stream << ", ";
     SerializeToString(value.enabledLayerCount, stream);
     stream << ", ";
-    if (value.ppEnabledLayerNames) {
+    if (value.ppEnabledLayerNames && value.enabledLayerCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.enabledLayerCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -764,7 +764,7 @@ void SerializeToString(const VkDeviceCreateInfo& value, std::stringstream& strea
     stream << ", ";
     SerializeToString(value.enabledExtensionCount, stream);
     stream << ", ";
-    if (value.ppEnabledExtensionNames) {
+    if (value.ppEnabledExtensionNames && value.enabledExtensionCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.enabledExtensionCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -815,7 +815,7 @@ void SerializeToString(const VkSubmitInfo& value, std::stringstream& stream) {
     stream << ", ";
     SerializeToString(value.waitSemaphoreCount, stream);
     stream << ", ";
-    if (value.pWaitSemaphores) {
+    if (value.pWaitSemaphores && value.waitSemaphoreCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.waitSemaphoreCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -827,7 +827,7 @@ void SerializeToString(const VkSubmitInfo& value, std::stringstream& stream) {
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (value.pWaitDstStageMask) {
+    if (value.pWaitDstStageMask && value.waitSemaphoreCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.waitSemaphoreCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -841,7 +841,7 @@ void SerializeToString(const VkSubmitInfo& value, std::stringstream& stream) {
     stream << ", ";
     SerializeToString(value.commandBufferCount, stream);
     stream << ", ";
-    if (value.pCommandBuffers) {
+    if (value.pCommandBuffers && value.commandBufferCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.commandBufferCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -855,7 +855,7 @@ void SerializeToString(const VkSubmitInfo& value, std::stringstream& stream) {
     stream << ", ";
     SerializeToString(value.signalSemaphoreCount, stream);
     stream << ", ";
-    if (value.pSignalSemaphores) {
+    if (value.pSignalSemaphores && value.signalSemaphoreCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.signalSemaphoreCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -925,7 +925,7 @@ void SerializeToString(const VkSparseBufferMemoryBindInfo& value, std::stringstr
     stream << ", ";
     SerializeToString(value.bindCount, stream);
     stream << ", ";
-    if (value.pBinds) {
+    if (value.pBinds && value.bindCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.bindCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -945,7 +945,7 @@ void SerializeToString(const VkSparseImageOpaqueMemoryBindInfo& value, std::stri
     stream << ", ";
     SerializeToString(value.bindCount, stream);
     stream << ", ";
-    if (value.pBinds) {
+    if (value.pBinds && value.bindCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.bindCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -991,7 +991,7 @@ void SerializeToString(const VkSparseImageMemoryBindInfo& value, std::stringstre
     stream << ", ";
     SerializeToString(value.bindCount, stream);
     stream << ", ";
-    if (value.pBinds) {
+    if (value.pBinds && value.bindCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.bindCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -1013,7 +1013,7 @@ void SerializeToString(const VkBindSparseInfo& value, std::stringstream& stream)
     stream << ", ";
     SerializeToString(value.waitSemaphoreCount, stream);
     stream << ", ";
-    if (value.pWaitSemaphores) {
+    if (value.pWaitSemaphores && value.waitSemaphoreCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.waitSemaphoreCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -1027,7 +1027,7 @@ void SerializeToString(const VkBindSparseInfo& value, std::stringstream& stream)
     stream << ", ";
     SerializeToString(value.bufferBindCount, stream);
     stream << ", ";
-    if (value.pBufferBinds) {
+    if (value.pBufferBinds && value.bufferBindCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.bufferBindCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -1041,7 +1041,7 @@ void SerializeToString(const VkBindSparseInfo& value, std::stringstream& stream)
     stream << ", ";
     SerializeToString(value.imageOpaqueBindCount, stream);
     stream << ", ";
-    if (value.pImageOpaqueBinds) {
+    if (value.pImageOpaqueBinds && value.imageOpaqueBindCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.imageOpaqueBindCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -1055,7 +1055,7 @@ void SerializeToString(const VkBindSparseInfo& value, std::stringstream& stream)
     stream << ", ";
     SerializeToString(value.imageBindCount, stream);
     stream << ", ";
-    if (value.pImageBinds) {
+    if (value.pImageBinds && value.imageBindCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.imageBindCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -1069,7 +1069,7 @@ void SerializeToString(const VkBindSparseInfo& value, std::stringstream& stream)
     stream << ", ";
     SerializeToString(value.signalSemaphoreCount, stream);
     stream << ", ";
-    if (value.pSignalSemaphores) {
+    if (value.pSignalSemaphores && value.signalSemaphoreCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.signalSemaphoreCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -1159,7 +1159,7 @@ void SerializeToString(const VkBufferCreateInfo& value, std::stringstream& strea
     stream << ", ";
     SerializeToString(value.queueFamilyIndexCount, stream);
     stream << ", ";
-    if (value.pQueueFamilyIndices) {
+    if (value.pQueueFamilyIndices && value.queueFamilyIndexCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.queueFamilyIndexCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -1191,7 +1191,7 @@ void SerializeToString(const VkImageCreateInfo& value, std::stringstream& stream
     stream << ", ";
     SerializeToString(value.arrayLayers, stream);
     stream << ", ";
-    SerializeToString(value.samples, stream);
+    SerializeToStringVkSampleCountFlags(value.samples, stream);
     stream << ", ";
     SerializeToString(value.tiling, stream);
     stream << ", ";
@@ -1201,7 +1201,7 @@ void SerializeToString(const VkImageCreateInfo& value, std::stringstream& stream
     stream << ", ";
     SerializeToString(value.queueFamilyIndexCount, stream);
     stream << ", ";
-    if (value.pQueueFamilyIndices) {
+    if (value.pQueueFamilyIndices && value.queueFamilyIndexCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.queueFamilyIndexCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -1447,7 +1447,7 @@ void SerializeToString(const VkShaderModuleCreateInfo& value, std::stringstream&
     stream << ", ";
     SerializeToString(value.codeSize, stream);
     stream << ", ";
-    if (value.pCode) {
+    if (value.pCode && value.codeSize / 4 > 0) {
         stream << "{[";
         for (int i = 0; i < value.codeSize / 4; ++i) {
             if (i > 0) { stream << ", "; }
@@ -1471,7 +1471,7 @@ void SerializeToString(const VkPipelineCacheCreateInfo& value, std::stringstream
     stream << ", ";
     SerializeToString(value.initialDataSize, stream);
     stream << ", ";
-    if (value.pInitialData) {
+    if (value.pInitialData && value.initialDataSize > 0) {
         stream << "{[";
         const uint8_t* ptr = reinterpret_cast<const uint8_t*>(value.pInitialData);
         for (int i = 0; i < value.initialDataSize; ++i) {
@@ -1500,7 +1500,7 @@ void SerializeToString(const VkSpecializationInfo& value, std::stringstream& str
     stream << "VkSpecializationInfo{";
     SerializeToString(value.mapEntryCount, stream);
     stream << ", ";
-    if (value.pMapEntries) {
+    if (value.pMapEntries && value.mapEntryCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.mapEntryCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -1514,7 +1514,7 @@ void SerializeToString(const VkSpecializationInfo& value, std::stringstream& str
     stream << ", ";
     SerializeToString(value.dataSize, stream);
     stream << ", ";
-    if (value.pData) {
+    if (value.pData && value.dataSize > 0) {
         stream << "{[";
         const uint8_t* ptr = reinterpret_cast<const uint8_t*>(value.pData);
         for (int i = 0; i < value.dataSize; ++i) {
@@ -1537,7 +1537,7 @@ void SerializeToString(const VkPipelineShaderStageCreateInfo& value, std::string
     stream << ", ";
     SerializeToStringVkPipelineShaderStageCreateFlags(value.flags, stream);
     stream << ", ";
-    SerializeToString(value.stage, stream);
+    SerializeToStringVkShaderStageFlags(value.stage, stream);
     stream << ", ";
     SerializeToString(value.module, stream);
     stream << ", ";
@@ -1592,7 +1592,7 @@ void SerializeToString(const VkPipelineLayoutCreateInfo& value, std::stringstrea
     stream << ", ";
     SerializeToString(value.setLayoutCount, stream);
     stream << ", ";
-    if (value.pSetLayouts) {
+    if (value.pSetLayouts && value.setLayoutCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.setLayoutCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -1606,7 +1606,7 @@ void SerializeToString(const VkPipelineLayoutCreateInfo& value, std::stringstrea
     stream << ", ";
     SerializeToString(value.pushConstantRangeCount, stream);
     stream << ", ";
-    if (value.pPushConstantRanges) {
+    if (value.pPushConstantRanges && value.pushConstantRangeCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.pushConstantRangeCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -1722,7 +1722,7 @@ void SerializeToString(const VkDescriptorPoolCreateInfo& value, std::stringstrea
     stream << ", ";
     SerializeToString(value.poolSizeCount, stream);
     stream << ", ";
-    if (value.pPoolSizes) {
+    if (value.pPoolSizes && value.poolSizeCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.poolSizeCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -1746,7 +1746,7 @@ void SerializeToString(const VkDescriptorSetAllocateInfo& value, std::stringstre
     stream << ", ";
     SerializeToString(value.descriptorSetCount, stream);
     stream << ", ";
-    if (value.pSetLayouts) {
+    if (value.pSetLayouts && value.descriptorSetCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.descriptorSetCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -1770,7 +1770,7 @@ void SerializeToString(const VkDescriptorSetLayoutBinding& value, std::stringstr
     stream << ", ";
     SerializeToStringVkShaderStageFlags(value.stageFlags, stream);
     stream << ", ";
-    if (value.pImmutableSamplers) {
+    if (value.pImmutableSamplers && value.descriptorCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.descriptorCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -1794,7 +1794,7 @@ void SerializeToString(const VkDescriptorSetLayoutCreateInfo& value, std::string
     stream << ", ";
     SerializeToString(value.bindingCount, stream);
     stream << ", ";
-    if (value.pBindings) {
+    if (value.pBindings && value.bindingCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.bindingCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -1824,7 +1824,7 @@ void SerializeToString(const VkWriteDescriptorSet& value, std::stringstream& str
     stream << ", ";
     SerializeToString(value.descriptorType, stream);
     stream << ", ";
-    if (value.pImageInfo) {
+    if (value.pImageInfo && value.descriptorCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.descriptorCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -1836,7 +1836,7 @@ void SerializeToString(const VkWriteDescriptorSet& value, std::stringstream& str
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (value.pBufferInfo) {
+    if (value.pBufferInfo && value.descriptorCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.descriptorCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -1848,7 +1848,7 @@ void SerializeToString(const VkWriteDescriptorSet& value, std::stringstream& str
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (value.pTexelBufferView) {
+    if (value.pTexelBufferView && value.descriptorCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.descriptorCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -1945,7 +1945,7 @@ void SerializeToString(const VkPipelineVertexInputStateCreateInfo& value, std::s
     stream << ", ";
     SerializeToString(value.vertexBindingDescriptionCount, stream);
     stream << ", ";
-    if (value.pVertexBindingDescriptions) {
+    if (value.pVertexBindingDescriptions && value.vertexBindingDescriptionCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.vertexBindingDescriptionCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -1959,7 +1959,7 @@ void SerializeToString(const VkPipelineVertexInputStateCreateInfo& value, std::s
     stream << ", ";
     SerializeToString(value.vertexAttributeDescriptionCount, stream);
     stream << ", ";
-    if (value.pVertexAttributeDescriptions) {
+    if (value.pVertexAttributeDescriptions && value.vertexAttributeDescriptionCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.vertexAttributeDescriptionCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -2025,7 +2025,7 @@ void SerializeToString(const VkPipelineViewportStateCreateInfo& value, std::stri
     stream << ", ";
     SerializeToString(value.viewportCount, stream);
     stream << ", ";
-    if (value.pViewports) {
+    if (value.pViewports && value.viewportCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.viewportCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -2039,7 +2039,7 @@ void SerializeToString(const VkPipelineViewportStateCreateInfo& value, std::stri
     stream << ", ";
     SerializeToString(value.scissorCount, stream);
     stream << ", ";
-    if (value.pScissors) {
+    if (value.pScissors && value.scissorCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.scissorCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -2091,13 +2091,13 @@ void SerializeToString(const VkPipelineMultisampleStateCreateInfo& value, std::s
     stream << ", ";
     SerializeToString(value.flags, stream);
     stream << ", ";
-    SerializeToString(value.rasterizationSamples, stream);
+    SerializeToStringVkSampleCountFlags(value.rasterizationSamples, stream);
     stream << ", ";
     SerializeToString(value.sampleShadingEnable, stream);
     stream << ", ";
     SerializeToString(value.minSampleShading, stream);
     stream << ", ";
-    if (value.pSampleMask) {
+    if (value.pSampleMask && (value.rasterizationSamples + 31) / 32 > 0) {
         stream << "{[";
         for (int i = 0; i < (value.rasterizationSamples + 31) / 32; ++i) {
             if (i > 0) { stream << ", "; }
@@ -2195,7 +2195,7 @@ void SerializeToString(const VkPipelineColorBlendStateCreateInfo& value, std::st
     stream << ", ";
     SerializeToString(value.attachmentCount, stream);
     stream << ", ";
-    if (value.pAttachments) {
+    if (value.pAttachments && value.attachmentCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.attachmentCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -2226,7 +2226,7 @@ void SerializeToString(const VkPipelineDynamicStateCreateInfo& value, std::strin
     stream << ", ";
     SerializeToString(value.dynamicStateCount, stream);
     stream << ", ";
-    if (value.pDynamicStates) {
+    if (value.pDynamicStates && value.dynamicStateCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.dynamicStateCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -2250,7 +2250,7 @@ void SerializeToString(const VkGraphicsPipelineCreateInfo& value, std::stringstr
     stream << ", ";
     SerializeToString(value.stageCount, stream);
     stream << ", ";
-    if (value.pStages) {
+    if (value.pStages && value.stageCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.stageCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -2361,7 +2361,7 @@ void SerializeToString(const VkAttachmentDescription& value, std::stringstream& 
     stream << ", ";
     SerializeToString(value.format, stream);
     stream << ", ";
-    SerializeToString(value.samples, stream);
+    SerializeToStringVkSampleCountFlags(value.samples, stream);
     stream << ", ";
     SerializeToString(value.loadOp, stream);
     stream << ", ";
@@ -2397,7 +2397,7 @@ void SerializeToString(const VkFramebufferCreateInfo& value, std::stringstream& 
     stream << ", ";
     SerializeToString(value.attachmentCount, stream);
     stream << ", ";
-    if (value.pAttachments) {
+    if (value.pAttachments && value.attachmentCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.attachmentCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -2425,7 +2425,7 @@ void SerializeToString(const VkSubpassDescription& value, std::stringstream& str
     stream << ", ";
     SerializeToString(value.inputAttachmentCount, stream);
     stream << ", ";
-    if (value.pInputAttachments) {
+    if (value.pInputAttachments && value.inputAttachmentCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.inputAttachmentCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -2439,7 +2439,7 @@ void SerializeToString(const VkSubpassDescription& value, std::stringstream& str
     stream << ", ";
     SerializeToString(value.colorAttachmentCount, stream);
     stream << ", ";
-    if (value.pColorAttachments) {
+    if (value.pColorAttachments && value.colorAttachmentCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.colorAttachmentCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -2451,7 +2451,7 @@ void SerializeToString(const VkSubpassDescription& value, std::stringstream& str
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (value.pResolveAttachments) {
+    if (value.pResolveAttachments && value.colorAttachmentCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.colorAttachmentCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -2474,7 +2474,7 @@ void SerializeToString(const VkSubpassDescription& value, std::stringstream& str
     stream << ", ";
     SerializeToString(value.preserveAttachmentCount, stream);
     stream << ", ";
-    if (value.pPreserveAttachments) {
+    if (value.pPreserveAttachments && value.preserveAttachmentCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.preserveAttachmentCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -2516,7 +2516,7 @@ void SerializeToString(const VkRenderPassCreateInfo& value, std::stringstream& s
     stream << ", ";
     SerializeToString(value.attachmentCount, stream);
     stream << ", ";
-    if (value.pAttachments) {
+    if (value.pAttachments && value.attachmentCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.attachmentCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -2530,7 +2530,7 @@ void SerializeToString(const VkRenderPassCreateInfo& value, std::stringstream& s
     stream << ", ";
     SerializeToString(value.subpassCount, stream);
     stream << ", ";
-    if (value.pSubpasses) {
+    if (value.pSubpasses && value.subpassCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.subpassCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -2544,7 +2544,7 @@ void SerializeToString(const VkRenderPassCreateInfo& value, std::stringstream& s
     stream << ", ";
     SerializeToString(value.dependencyCount, stream);
     stream << ", ";
-    if (value.pDependencies) {
+    if (value.pDependencies && value.dependencyCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.dependencyCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -2644,7 +2644,7 @@ void SerializeToString(const VkRenderPassBeginInfo& value, std::stringstream& st
     stream << ", ";
     SerializeToString(value.clearValueCount, stream);
     stream << ", ";
-    if (value.pClearValues) {
+    if (value.pClearValues && value.clearValueCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.clearValueCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -2740,7 +2740,7 @@ void SerializeToString(const VkDeviceGroupSubmitInfo& value, std::stringstream& 
     stream << ", ";
     SerializeToString(value.waitSemaphoreCount, stream);
     stream << ", ";
-    if (value.pWaitSemaphoreDeviceIndices) {
+    if (value.pWaitSemaphoreDeviceIndices && value.waitSemaphoreCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.waitSemaphoreCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -2754,7 +2754,7 @@ void SerializeToString(const VkDeviceGroupSubmitInfo& value, std::stringstream& 
     stream << ", ";
     SerializeToString(value.commandBufferCount, stream);
     stream << ", ";
-    if (value.pCommandBufferDeviceMasks) {
+    if (value.pCommandBufferDeviceMasks && value.commandBufferCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.commandBufferCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -2768,7 +2768,7 @@ void SerializeToString(const VkDeviceGroupSubmitInfo& value, std::stringstream& 
     stream << ", ";
     SerializeToString(value.signalSemaphoreCount, stream);
     stream << ", ";
-    if (value.pSignalSemaphoreDeviceIndices) {
+    if (value.pSignalSemaphoreDeviceIndices && value.signalSemaphoreCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.signalSemaphoreCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -2802,7 +2802,7 @@ void SerializeToString(const VkBindBufferMemoryDeviceGroupInfo& value, std::stri
     stream << ", ";
     SerializeToString(value.deviceIndexCount, stream);
     stream << ", ";
-    if (value.pDeviceIndices) {
+    if (value.pDeviceIndices && value.deviceIndexCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.deviceIndexCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -2824,7 +2824,7 @@ void SerializeToString(const VkBindImageMemoryDeviceGroupInfo& value, std::strin
     stream << ", ";
     SerializeToString(value.deviceIndexCount, stream);
     stream << ", ";
-    if (value.pDeviceIndices) {
+    if (value.pDeviceIndices && value.deviceIndexCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.deviceIndexCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -2838,7 +2838,7 @@ void SerializeToString(const VkBindImageMemoryDeviceGroupInfo& value, std::strin
     stream << ", ";
     SerializeToString(value.splitInstanceBindRegionCount, stream);
     stream << ", ";
-    if (value.pSplitInstanceBindRegions) {
+    if (value.pSplitInstanceBindRegions && value.splitInstanceBindRegionCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.splitInstanceBindRegionCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -2879,7 +2879,7 @@ void SerializeToString(const VkDeviceGroupDeviceCreateInfo& value, std::stringst
     stream << ", ";
     SerializeToString(value.physicalDeviceCount, stream);
     stream << ", ";
-    if (value.pPhysicalDevices) {
+    if (value.pPhysicalDevices && value.physicalDeviceCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.physicalDeviceCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -3041,7 +3041,7 @@ void SerializeToString(const VkPhysicalDeviceSparseImageFormatInfo2& value, std:
     stream << ", ";
     SerializeToString(value.type, stream);
     stream << ", ";
-    SerializeToString(value.samples, stream);
+    SerializeToStringVkSampleCountFlags(value.samples, stream);
     stream << ", ";
     SerializeToStringVkImageUsageFlags(value.usage, stream);
     stream << ", ";
@@ -3109,7 +3109,7 @@ void SerializeToString(const VkBindImagePlaneMemoryInfo& value, std::stringstrea
     stream << ", ";
     SerializeToStringPNext(value.pNext, stream);
     stream << ", ";
-    SerializeToString(value.planeAspect, stream);
+    SerializeToStringVkImageAspectFlags(value.planeAspect, stream);
     stream << "}";
 }
 
@@ -3119,7 +3119,7 @@ void SerializeToString(const VkImagePlaneMemoryRequirementsInfo& value, std::str
     stream << ", ";
     SerializeToStringPNext(value.pNext, stream);
     stream << ", ";
-    SerializeToString(value.planeAspect, stream);
+    SerializeToStringVkImageAspectFlags(value.planeAspect, stream);
     stream << "}";
 }
 
@@ -3139,7 +3139,7 @@ void SerializeToString(const VkPhysicalDeviceExternalImageFormatInfo& value, std
     stream << ", ";
     SerializeToStringPNext(value.pNext, stream);
     stream << ", ";
-    SerializeToString(value.handleType, stream);
+    SerializeToStringVkExternalMemoryHandleTypeFlags(value.handleType, stream);
     stream << "}";
 }
 
@@ -3163,7 +3163,7 @@ void SerializeToString(const VkPhysicalDeviceExternalBufferInfo& value, std::str
     stream << ", ";
     SerializeToStringVkBufferUsageFlags(value.usage, stream);
     stream << ", ";
-    SerializeToString(value.handleType, stream);
+    SerializeToStringVkExternalMemoryHandleTypeFlags(value.handleType, stream);
     stream << "}";
 }
 
@@ -3246,7 +3246,7 @@ void SerializeToString(const VkPhysicalDeviceExternalFenceInfo& value, std::stri
     stream << ", ";
     SerializeToStringPNext(value.pNext, stream);
     stream << ", ";
-    SerializeToString(value.handleType, stream);
+    SerializeToStringVkExternalFenceHandleTypeFlags(value.handleType, stream);
     stream << "}";
 }
 
@@ -3290,7 +3290,7 @@ void SerializeToString(const VkPhysicalDeviceExternalSemaphoreInfo& value, std::
     stream << ", ";
     SerializeToStringPNext(value.pNext, stream);
     stream << ", ";
-    SerializeToString(value.handleType, stream);
+    SerializeToStringVkExternalSemaphoreHandleTypeFlags(value.handleType, stream);
     stream << "}";
 }
 
@@ -3378,7 +3378,7 @@ void SerializeToString(const VkDescriptorUpdateTemplateCreateInfo& value, std::s
     stream << ", ";
     SerializeToString(value.descriptorUpdateEntryCount, stream);
     stream << ", ";
-    if (value.pDescriptorUpdateEntries) {
+    if (value.pDescriptorUpdateEntries && value.descriptorUpdateEntryCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.descriptorUpdateEntryCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -3488,7 +3488,7 @@ void SerializeToString(const VkDeviceGroupRenderPassBeginInfo& value, std::strin
     stream << ", ";
     SerializeToString(value.deviceRenderAreaCount, stream);
     stream << ", ";
-    if (value.pDeviceRenderAreas) {
+    if (value.pDeviceRenderAreas && value.deviceRenderAreaCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.deviceRenderAreaCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -3530,7 +3530,7 @@ void SerializeToString(const VkRenderPassInputAttachmentAspectCreateInfo& value,
     stream << ", ";
     SerializeToString(value.aspectReferenceCount, stream);
     stream << ", ";
-    if (value.pAspectReferences) {
+    if (value.pAspectReferences && value.aspectReferenceCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.aspectReferenceCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -3562,7 +3562,7 @@ void SerializeToString(const VkRenderPassMultiviewCreateInfo& value, std::string
     stream << ", ";
     SerializeToString(value.subpassCount, stream);
     stream << ", ";
-    if (value.pViewMasks) {
+    if (value.pViewMasks && value.subpassCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.subpassCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -3576,7 +3576,7 @@ void SerializeToString(const VkRenderPassMultiviewCreateInfo& value, std::string
     stream << ", ";
     SerializeToString(value.dependencyCount, stream);
     stream << ", ";
-    if (value.pViewOffsets) {
+    if (value.pViewOffsets && value.dependencyCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.dependencyCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -3590,7 +3590,7 @@ void SerializeToString(const VkRenderPassMultiviewCreateInfo& value, std::string
     stream << ", ";
     SerializeToString(value.correlationMaskCount, stream);
     stream << ", ";
-    if (value.pCorrelationMasks) {
+    if (value.pCorrelationMasks && value.correlationMaskCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.correlationMaskCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -3959,7 +3959,7 @@ void SerializeToString(const VkImageFormatListCreateInfo& value, std::stringstre
     stream << ", ";
     SerializeToString(value.viewFormatCount, stream);
     stream << ", ";
-    if (value.pViewFormats) {
+    if (value.pViewFormats && value.viewFormatCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.viewFormatCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -4053,7 +4053,7 @@ void SerializeToString(const VkTimelineSemaphoreSubmitInfo& value, std::stringst
     stream << ", ";
     SerializeToString(value.waitSemaphoreValueCount, stream);
     stream << ", ";
-    if (value.pWaitSemaphoreValues) {
+    if (value.pWaitSemaphoreValues && value.waitSemaphoreValueCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.waitSemaphoreValueCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -4067,7 +4067,7 @@ void SerializeToString(const VkTimelineSemaphoreSubmitInfo& value, std::stringst
     stream << ", ";
     SerializeToString(value.signalSemaphoreValueCount, stream);
     stream << ", ";
-    if (value.pSignalSemaphoreValues) {
+    if (value.pSignalSemaphoreValues && value.signalSemaphoreValueCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.signalSemaphoreValueCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -4091,7 +4091,7 @@ void SerializeToString(const VkSemaphoreWaitInfo& value, std::stringstream& stre
     stream << ", ";
     SerializeToString(value.semaphoreCount, stream);
     stream << ", ";
-    if (value.pSemaphores) {
+    if (value.pSemaphores && value.semaphoreCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.semaphoreCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -4103,7 +4103,7 @@ void SerializeToString(const VkSemaphoreWaitInfo& value, std::stringstream& stre
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (value.pValues) {
+    if (value.pValues && value.semaphoreCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.semaphoreCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -4271,7 +4271,7 @@ void SerializeToString(const VkDescriptorSetLayoutBindingFlagsCreateInfo& value,
     stream << ", ";
     SerializeToString(value.bindingCount, stream);
     stream << ", ";
-    if (value.pBindingFlags) {
+    if (value.pBindingFlags && value.bindingCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.bindingCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -4395,7 +4395,7 @@ void SerializeToString(const VkDescriptorSetVariableDescriptorCountAllocateInfo&
     stream << ", ";
     SerializeToString(value.descriptorSetCount, stream);
     stream << ", ";
-    if (value.pDescriptorCounts) {
+    if (value.pDescriptorCounts && value.descriptorSetCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.descriptorSetCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -4481,7 +4481,7 @@ void SerializeToString(const VkAttachmentDescription2& value, std::stringstream&
     stream << ", ";
     SerializeToString(value.format, stream);
     stream << ", ";
-    SerializeToString(value.samples, stream);
+    SerializeToStringVkSampleCountFlags(value.samples, stream);
     stream << ", ";
     SerializeToString(value.loadOp, stream);
     stream << ", ";
@@ -4525,7 +4525,7 @@ void SerializeToString(const VkSubpassDescription2& value, std::stringstream& st
     stream << ", ";
     SerializeToString(value.inputAttachmentCount, stream);
     stream << ", ";
-    if (value.pInputAttachments) {
+    if (value.pInputAttachments && value.inputAttachmentCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.inputAttachmentCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -4539,7 +4539,7 @@ void SerializeToString(const VkSubpassDescription2& value, std::stringstream& st
     stream << ", ";
     SerializeToString(value.colorAttachmentCount, stream);
     stream << ", ";
-    if (value.pColorAttachments) {
+    if (value.pColorAttachments && value.colorAttachmentCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.colorAttachmentCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -4551,7 +4551,7 @@ void SerializeToString(const VkSubpassDescription2& value, std::stringstream& st
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (value.pResolveAttachments) {
+    if (value.pResolveAttachments && value.colorAttachmentCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.colorAttachmentCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -4574,7 +4574,7 @@ void SerializeToString(const VkSubpassDescription2& value, std::stringstream& st
     stream << ", ";
     SerializeToString(value.preserveAttachmentCount, stream);
     stream << ", ";
-    if (value.pPreserveAttachments) {
+    if (value.pPreserveAttachments && value.preserveAttachmentCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.preserveAttachmentCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -4622,7 +4622,7 @@ void SerializeToString(const VkRenderPassCreateInfo2& value, std::stringstream& 
     stream << ", ";
     SerializeToString(value.attachmentCount, stream);
     stream << ", ";
-    if (value.pAttachments) {
+    if (value.pAttachments && value.attachmentCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.attachmentCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -4636,7 +4636,7 @@ void SerializeToString(const VkRenderPassCreateInfo2& value, std::stringstream& 
     stream << ", ";
     SerializeToString(value.subpassCount, stream);
     stream << ", ";
-    if (value.pSubpasses) {
+    if (value.pSubpasses && value.subpassCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.subpassCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -4650,7 +4650,7 @@ void SerializeToString(const VkRenderPassCreateInfo2& value, std::stringstream& 
     stream << ", ";
     SerializeToString(value.dependencyCount, stream);
     stream << ", ";
-    if (value.pDependencies) {
+    if (value.pDependencies && value.dependencyCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.dependencyCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -4664,7 +4664,7 @@ void SerializeToString(const VkRenderPassCreateInfo2& value, std::stringstream& 
     stream << ", ";
     SerializeToString(value.correlatedViewMaskCount, stream);
     stream << ", ";
-    if (value.pCorrelatedViewMasks) {
+    if (value.pCorrelatedViewMasks && value.correlatedViewMaskCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.correlatedViewMaskCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -4702,9 +4702,9 @@ void SerializeToString(const VkSubpassDescriptionDepthStencilResolve& value, std
     stream << ", ";
     SerializeToStringPNext(value.pNext, stream);
     stream << ", ";
-    SerializeToString(value.depthResolveMode, stream);
+    SerializeToStringVkResolveModeFlags(value.depthResolveMode, stream);
     stream << ", ";
-    SerializeToString(value.stencilResolveMode, stream);
+    SerializeToStringVkResolveModeFlags(value.stencilResolveMode, stream);
     stream << ", ";
     if (value.pDepthStencilResolveAttachment) {
         stream << "{[";
@@ -4771,7 +4771,7 @@ void SerializeToString(const VkFramebufferAttachmentImageInfo& value, std::strin
     stream << ", ";
     SerializeToString(value.viewFormatCount, stream);
     stream << ", ";
-    if (value.pViewFormats) {
+    if (value.pViewFormats && value.viewFormatCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.viewFormatCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -4793,7 +4793,7 @@ void SerializeToString(const VkFramebufferAttachmentsCreateInfo& value, std::str
     stream << ", ";
     SerializeToString(value.attachmentImageInfoCount, stream);
     stream << ", ";
-    if (value.pAttachmentImageInfos) {
+    if (value.pAttachmentImageInfos && value.attachmentImageInfoCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.attachmentImageInfoCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -4815,7 +4815,7 @@ void SerializeToString(const VkRenderPassAttachmentBeginInfo& value, std::string
     stream << ", ";
     SerializeToString(value.attachmentCount, stream);
     stream << ", ";
-    if (value.pAttachments) {
+    if (value.pAttachments && value.attachmentCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.attachmentCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -5125,7 +5125,7 @@ void SerializeToString(const VkDependencyInfo& value, std::stringstream& stream)
     stream << ", ";
     SerializeToString(value.memoryBarrierCount, stream);
     stream << ", ";
-    if (value.pMemoryBarriers) {
+    if (value.pMemoryBarriers && value.memoryBarrierCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.memoryBarrierCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -5139,7 +5139,7 @@ void SerializeToString(const VkDependencyInfo& value, std::stringstream& stream)
     stream << ", ";
     SerializeToString(value.bufferMemoryBarrierCount, stream);
     stream << ", ";
-    if (value.pBufferMemoryBarriers) {
+    if (value.pBufferMemoryBarriers && value.bufferMemoryBarrierCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.bufferMemoryBarrierCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -5153,7 +5153,7 @@ void SerializeToString(const VkDependencyInfo& value, std::stringstream& stream)
     stream << ", ";
     SerializeToString(value.imageMemoryBarrierCount, stream);
     stream << ", ";
-    if (value.pImageMemoryBarriers) {
+    if (value.pImageMemoryBarriers && value.imageMemoryBarrierCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.imageMemoryBarrierCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -5205,7 +5205,7 @@ void SerializeToString(const VkSubmitInfo2& value, std::stringstream& stream) {
     stream << ", ";
     SerializeToString(value.waitSemaphoreInfoCount, stream);
     stream << ", ";
-    if (value.pWaitSemaphoreInfos) {
+    if (value.pWaitSemaphoreInfos && value.waitSemaphoreInfoCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.waitSemaphoreInfoCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -5219,7 +5219,7 @@ void SerializeToString(const VkSubmitInfo2& value, std::stringstream& stream) {
     stream << ", ";
     SerializeToString(value.commandBufferInfoCount, stream);
     stream << ", ";
-    if (value.pCommandBufferInfos) {
+    if (value.pCommandBufferInfos && value.commandBufferInfoCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.commandBufferInfoCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -5233,7 +5233,7 @@ void SerializeToString(const VkSubmitInfo2& value, std::stringstream& stream) {
     stream << ", ";
     SerializeToString(value.signalSemaphoreInfoCount, stream);
     stream << ", ";
-    if (value.pSignalSemaphoreInfos) {
+    if (value.pSignalSemaphoreInfos && value.signalSemaphoreInfoCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.signalSemaphoreInfoCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -5283,7 +5283,7 @@ void SerializeToString(const VkCopyBufferInfo2& value, std::stringstream& stream
     stream << ", ";
     SerializeToString(value.regionCount, stream);
     stream << ", ";
-    if (value.pRegions) {
+    if (value.pRegions && value.regionCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.regionCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -5331,7 +5331,7 @@ void SerializeToString(const VkCopyImageInfo2& value, std::stringstream& stream)
     stream << ", ";
     SerializeToString(value.regionCount, stream);
     stream << ", ";
-    if (value.pRegions) {
+    if (value.pRegions && value.regionCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.regionCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -5379,7 +5379,7 @@ void SerializeToString(const VkCopyBufferToImageInfo2& value, std::stringstream&
     stream << ", ";
     SerializeToString(value.regionCount, stream);
     stream << ", ";
-    if (value.pRegions) {
+    if (value.pRegions && value.regionCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.regionCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -5407,7 +5407,7 @@ void SerializeToString(const VkCopyImageToBufferInfo2& value, std::stringstream&
     stream << ", ";
     SerializeToString(value.regionCount, stream);
     stream << ", ";
-    if (value.pRegions) {
+    if (value.pRegions && value.regionCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.regionCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -5497,7 +5497,7 @@ void SerializeToString(const VkDeviceImageMemoryRequirements& value, std::string
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    SerializeToString(value.planeAspect, stream);
+    SerializeToStringVkImageAspectFlags(value.planeAspect, stream);
     stream << "}";
 }
 
@@ -5526,7 +5526,7 @@ void SerializeToString(const VkPipelineCreationFeedbackCreateInfo& value, std::s
     stream << ", ";
     SerializeToString(value.pipelineStageCreationFeedbackCount, stream);
     stream << ", ";
-    if (value.pPipelineStageCreationFeedbacks) {
+    if (value.pPipelineStageCreationFeedbacks && value.pipelineStageCreationFeedbackCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.pipelineStageCreationFeedbackCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -5666,7 +5666,7 @@ void SerializeToString(const VkWriteDescriptorSetInlineUniformBlock& value, std:
     stream << ", ";
     SerializeToString(value.dataSize, stream);
     stream << ", ";
-    if (value.pData) {
+    if (value.pData && value.dataSize > 0) {
         stream << "{[";
         const uint8_t* ptr = reinterpret_cast<const uint8_t*>(value.pData);
         for (int i = 0; i < value.dataSize; ++i) {
@@ -5827,7 +5827,7 @@ void SerializeToString(const VkBlitImageInfo2& value, std::stringstream& stream)
     stream << ", ";
     SerializeToString(value.regionCount, stream);
     stream << ", ";
-    if (value.pRegions) {
+    if (value.pRegions && value.regionCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.regionCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -5877,7 +5877,7 @@ void SerializeToString(const VkResolveImageInfo2& value, std::stringstream& stre
     stream << ", ";
     SerializeToString(value.regionCount, stream);
     stream << ", ";
-    if (value.pRegions) {
+    if (value.pRegions && value.regionCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.regionCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -5901,7 +5901,7 @@ void SerializeToString(const VkRenderingAttachmentInfo& value, std::stringstream
     stream << ", ";
     SerializeToString(value.imageLayout, stream);
     stream << ", ";
-    SerializeToString(value.resolveMode, stream);
+    SerializeToStringVkResolveModeFlags(value.resolveMode, stream);
     stream << ", ";
     SerializeToString(value.resolveImageView, stream);
     stream << ", ";
@@ -5931,7 +5931,7 @@ void SerializeToString(const VkRenderingInfo& value, std::stringstream& stream) 
     stream << ", ";
     SerializeToString(value.colorAttachmentCount, stream);
     stream << ", ";
-    if (value.pColorAttachments) {
+    if (value.pColorAttachments && value.colorAttachmentCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.colorAttachmentCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -5973,7 +5973,7 @@ void SerializeToString(const VkPipelineRenderingCreateInfo& value, std::stringst
     stream << ", ";
     SerializeToString(value.colorAttachmentCount, stream);
     stream << ", ";
-    if (value.pColorAttachmentFormats) {
+    if (value.pColorAttachmentFormats && value.colorAttachmentCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.colorAttachmentCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -6013,7 +6013,7 @@ void SerializeToString(const VkCommandBufferInheritanceRenderingInfo& value, std
     stream << ", ";
     SerializeToString(value.colorAttachmentCount, stream);
     stream << ", ";
-    if (value.pColorAttachmentFormats) {
+    if (value.pColorAttachmentFormats && value.colorAttachmentCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.colorAttachmentCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -6029,7 +6029,7 @@ void SerializeToString(const VkCommandBufferInheritanceRenderingInfo& value, std
     stream << ", ";
     SerializeToString(value.stencilAttachmentFormat, stream);
     stream << ", ";
-    SerializeToString(value.rasterizationSamples, stream);
+    SerializeToStringVkSampleCountFlags(value.rasterizationSamples, stream);
     stream << "}";
 }
 
@@ -6129,7 +6129,7 @@ void SerializeToString(const VkPhysicalDeviceVulkan14Properties& value, std::str
     stream << ", ";
     SerializeToString(value.copySrcLayoutCount, stream);
     stream << ", ";
-    if (value.pCopySrcLayouts) {
+    if (value.pCopySrcLayouts && value.copySrcLayoutCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.copySrcLayoutCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -6143,7 +6143,7 @@ void SerializeToString(const VkPhysicalDeviceVulkan14Properties& value, std::str
     stream << ", ";
     SerializeToString(value.copyDstLayoutCount, stream);
     stream << ", ";
-    if (value.pCopyDstLayouts) {
+    if (value.pCopyDstLayouts && value.copyDstLayoutCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.copyDstLayoutCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -6386,7 +6386,7 @@ void SerializeToString(const VkPhysicalDeviceHostImageCopyProperties& value, std
     stream << ", ";
     SerializeToString(value.copySrcLayoutCount, stream);
     stream << ", ";
-    if (value.pCopySrcLayouts) {
+    if (value.pCopySrcLayouts && value.copySrcLayoutCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.copySrcLayoutCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -6400,7 +6400,7 @@ void SerializeToString(const VkPhysicalDeviceHostImageCopyProperties& value, std
     stream << ", ";
     SerializeToString(value.copyDstLayoutCount, stream);
     stream << ", ";
-    if (value.pCopyDstLayouts) {
+    if (value.pCopyDstLayouts && value.copyDstLayoutCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.copyDstLayoutCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -6477,7 +6477,7 @@ void SerializeToString(const VkCopyMemoryToImageInfo& value, std::stringstream& 
     stream << ", ";
     SerializeToString(value.regionCount, stream);
     stream << ", ";
-    if (value.pRegions) {
+    if (value.pRegions && value.regionCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.regionCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -6505,7 +6505,7 @@ void SerializeToString(const VkCopyImageToMemoryInfo& value, std::stringstream& 
     stream << ", ";
     SerializeToString(value.regionCount, stream);
     stream << ", ";
-    if (value.pRegions) {
+    if (value.pRegions && value.regionCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.regionCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -6537,7 +6537,7 @@ void SerializeToString(const VkCopyImageToImageInfo& value, std::stringstream& s
     stream << ", ";
     SerializeToString(value.regionCount, stream);
     stream << ", ";
-    if (value.pRegions) {
+    if (value.pRegions && value.regionCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.regionCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -6655,7 +6655,7 @@ void SerializeToString(const VkBindDescriptorSetsInfo& value, std::stringstream&
     stream << ", ";
     SerializeToString(value.descriptorSetCount, stream);
     stream << ", ";
-    if (value.pDescriptorSets) {
+    if (value.pDescriptorSets && value.descriptorSetCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.descriptorSetCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -6669,7 +6669,7 @@ void SerializeToString(const VkBindDescriptorSetsInfo& value, std::stringstream&
     stream << ", ";
     SerializeToString(value.dynamicOffsetCount, stream);
     stream << ", ";
-    if (value.pDynamicOffsets) {
+    if (value.pDynamicOffsets && value.dynamicOffsetCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.dynamicOffsetCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -6697,7 +6697,7 @@ void SerializeToString(const VkPushConstantsInfo& value, std::stringstream& stre
     stream << ", ";
     SerializeToString(value.size, stream);
     stream << ", ";
-    if (value.pValues) {
+    if (value.pValues && value.size > 0) {
         stream << "{[";
         const uint8_t* ptr = reinterpret_cast<const uint8_t*>(value.pValues);
         for (int i = 0; i < value.size; ++i) {
@@ -6726,7 +6726,7 @@ void SerializeToString(const VkPushDescriptorSetInfo& value, std::stringstream& 
     stream << ", ";
     SerializeToString(value.descriptorWriteCount, stream);
     stream << ", ";
-    if (value.pDescriptorWrites) {
+    if (value.pDescriptorWrites && value.descriptorWriteCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.descriptorWriteCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -6882,7 +6882,7 @@ void SerializeToString(const VkPipelineVertexInputDivisorStateCreateInfo& value,
     stream << ", ";
     SerializeToString(value.vertexBindingDivisorCount, stream);
     stream << ", ";
-    if (value.pVertexBindingDivisors) {
+    if (value.pVertexBindingDivisors && value.vertexBindingDivisorCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.vertexBindingDivisorCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -6918,7 +6918,7 @@ void SerializeToString(const VkRenderingAreaInfo& value, std::stringstream& stre
     stream << ", ";
     SerializeToString(value.colorAttachmentCount, stream);
     stream << ", ";
-    if (value.pColorAttachmentFormats) {
+    if (value.pColorAttachmentFormats && value.colorAttachmentCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.colorAttachmentCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -6954,7 +6954,7 @@ void SerializeToString(const VkRenderingAttachmentLocationInfo& value, std::stri
     stream << ", ";
     SerializeToString(value.colorAttachmentCount, stream);
     stream << ", ";
-    if (value.pColorAttachmentLocations) {
+    if (value.pColorAttachmentLocations && value.colorAttachmentCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.colorAttachmentCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -6976,7 +6976,7 @@ void SerializeToString(const VkRenderingInputAttachmentIndexInfo& value, std::st
     stream << ", ";
     SerializeToString(value.colorAttachmentCount, stream);
     stream << ", ";
-    if (value.pColorAttachmentInputIndices) {
+    if (value.pColorAttachmentInputIndices && value.colorAttachmentCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.colorAttachmentCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -7024,7 +7024,7 @@ void SerializeToString(const VkSurfaceCapabilitiesKHR& value, std::stringstream&
     stream << ", ";
     SerializeToStringVkSurfaceTransformFlagsKHR(value.supportedTransforms, stream);
     stream << ", ";
-    SerializeToString(value.currentTransform, stream);
+    SerializeToStringVkSurfaceTransformFlagsKHR(value.currentTransform, stream);
     stream << ", ";
     SerializeToStringVkCompositeAlphaFlagsKHR(value.supportedCompositeAlpha, stream);
     stream << ", ";
@@ -7066,7 +7066,7 @@ void SerializeToString(const VkSwapchainCreateInfoKHR& value, std::stringstream&
     stream << ", ";
     SerializeToString(value.queueFamilyIndexCount, stream);
     stream << ", ";
-    if (value.pQueueFamilyIndices) {
+    if (value.pQueueFamilyIndices && value.queueFamilyIndexCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.queueFamilyIndexCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -7078,9 +7078,9 @@ void SerializeToString(const VkSwapchainCreateInfoKHR& value, std::stringstream&
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    SerializeToString(value.preTransform, stream);
+    SerializeToStringVkSurfaceTransformFlagsKHR(value.preTransform, stream);
     stream << ", ";
-    SerializeToString(value.compositeAlpha, stream);
+    SerializeToStringVkCompositeAlphaFlagsKHR(value.compositeAlpha, stream);
     stream << ", ";
     SerializeToString(value.presentMode, stream);
     stream << ", ";
@@ -7098,7 +7098,7 @@ void SerializeToString(const VkPresentInfoKHR& value, std::stringstream& stream)
     stream << ", ";
     SerializeToString(value.waitSemaphoreCount, stream);
     stream << ", ";
-    if (value.pWaitSemaphores) {
+    if (value.pWaitSemaphores && value.waitSemaphoreCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.waitSemaphoreCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -7112,7 +7112,7 @@ void SerializeToString(const VkPresentInfoKHR& value, std::stringstream& stream)
     stream << ", ";
     SerializeToString(value.swapchainCount, stream);
     stream << ", ";
-    if (value.pSwapchains) {
+    if (value.pSwapchains && value.swapchainCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.swapchainCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -7124,7 +7124,7 @@ void SerializeToString(const VkPresentInfoKHR& value, std::stringstream& stream)
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (value.pImageIndices) {
+    if (value.pImageIndices && value.swapchainCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.swapchainCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -7136,7 +7136,7 @@ void SerializeToString(const VkPresentInfoKHR& value, std::stringstream& stream)
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (value.pResults) {
+    if (value.pResults && value.swapchainCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.swapchainCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -7215,7 +7215,7 @@ void SerializeToString(const VkDeviceGroupPresentInfoKHR& value, std::stringstre
     stream << ", ";
     SerializeToString(value.swapchainCount, stream);
     stream << ", ";
-    if (value.pDeviceMasks) {
+    if (value.pDeviceMasks && value.swapchainCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.swapchainCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -7227,7 +7227,7 @@ void SerializeToString(const VkDeviceGroupPresentInfoKHR& value, std::stringstre
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    SerializeToString(value.mode, stream);
+    SerializeToStringVkDeviceGroupPresentModeFlagsKHR(value.mode, stream);
     stream << "}";
 }
 
@@ -7331,11 +7331,11 @@ void SerializeToString(const VkDisplaySurfaceCreateInfoKHR& value, std::stringst
     stream << ", ";
     SerializeToString(value.planeStackIndex, stream);
     stream << ", ";
-    SerializeToString(value.transform, stream);
+    SerializeToStringVkSurfaceTransformFlagsKHR(value.transform, stream);
     stream << ", ";
     SerializeToString(value.globalAlpha, stream);
     stream << ", ";
-    SerializeToString(value.alphaMode, stream);
+    SerializeToStringVkDisplayPlaneAlphaFlagsKHR(value.alphaMode, stream);
     stream << ", ";
     SerializeToString(value.imageExtent, stream);
     stream << "}";
@@ -7463,7 +7463,7 @@ void SerializeToString(const VkVideoProfileInfoKHR& value, std::stringstream& st
     stream << ", ";
     SerializeToStringPNext(value.pNext, stream);
     stream << ", ";
-    SerializeToString(value.videoCodecOperation, stream);
+    SerializeToStringVkVideoCodecOperationFlagsKHR(value.videoCodecOperation, stream);
     stream << ", ";
     SerializeToStringVkVideoChromaSubsamplingFlagsKHR(value.chromaSubsampling, stream);
     stream << ", ";
@@ -7481,7 +7481,7 @@ void SerializeToString(const VkVideoProfileListInfoKHR& value, std::stringstream
     stream << ", ";
     SerializeToString(value.profileCount, stream);
     stream << ", ";
-    if (value.pProfiles) {
+    if (value.pProfiles && value.profileCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.profileCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -7692,7 +7692,7 @@ void SerializeToString(const VkVideoBeginCodingInfoKHR& value, std::stringstream
     stream << ", ";
     SerializeToString(value.referenceSlotCount, stream);
     stream << ", ";
-    if (value.pReferenceSlots) {
+    if (value.pReferenceSlots && value.referenceSlotCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.referenceSlotCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -7773,7 +7773,7 @@ void SerializeToString(const VkVideoDecodeInfoKHR& value, std::stringstream& str
     stream << ", ";
     SerializeToString(value.referenceSlotCount, stream);
     stream << ", ";
-    if (value.pReferenceSlots) {
+    if (value.pReferenceSlots && value.referenceSlotCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.referenceSlotCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -8095,7 +8095,7 @@ void SerializeToString(const StdVideoH264SequenceParameterSet& value, std::strin
     stream << ", ";
     SerializeToString(value.reserved2, stream);
     stream << ", ";
-    if (value.pOffsetForRefFrame) {
+    if (value.pOffsetForRefFrame && value.num_ref_frames_in_pic_order_cnt_cycle > 0) {
         stream << "{[";
         for (int i = 0; i < value.num_ref_frames_in_pic_order_cnt_cycle; ++i) {
             if (i > 0) { stream << ", "; }
@@ -8188,7 +8188,7 @@ void SerializeToString(const VkVideoEncodeH264SessionParametersAddInfoKHR& value
     stream << ", ";
     SerializeToString(value.stdSPSCount, stream);
     stream << ", ";
-    if (value.pStdSPSs) {
+    if (value.pStdSPSs && value.stdSPSCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.stdSPSCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -8202,7 +8202,7 @@ void SerializeToString(const VkVideoEncodeH264SessionParametersAddInfoKHR& value
     stream << ", ";
     SerializeToString(value.stdPPSCount, stream);
     stream << ", ";
-    if (value.pStdPPSs) {
+    if (value.pStdPPSs && value.stdPPSCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.stdPPSCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -8508,7 +8508,7 @@ void SerializeToString(const StdVideoEncodeH264ReferenceListsInfo& value, std::s
     }
     stream << "], " << 7 << "}";
     stream << ", ";
-    if (value.pRefList0ModOperations) {
+    if (value.pRefList0ModOperations && value.refList0ModOpCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.refList0ModOpCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -8520,7 +8520,7 @@ void SerializeToString(const StdVideoEncodeH264ReferenceListsInfo& value, std::s
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (value.pRefList1ModOperations) {
+    if (value.pRefList1ModOperations && value.refList1ModOpCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.refList1ModOpCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -8532,7 +8532,7 @@ void SerializeToString(const StdVideoEncodeH264ReferenceListsInfo& value, std::s
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (value.pRefPicMarkingOperations) {
+    if (value.pRefPicMarkingOperations && value.refPicMarkingOpCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.refPicMarkingOpCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -8590,7 +8590,7 @@ void SerializeToString(const VkVideoEncodeH264PictureInfoKHR& value, std::string
     stream << ", ";
     SerializeToString(value.naluSliceEntryCount, stream);
     stream << ", ";
-    if (value.pNaluSliceEntries) {
+    if (value.pNaluSliceEntries && value.naluSliceEntryCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.naluSliceEntryCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -8950,7 +8950,7 @@ void SerializeToString(const StdVideoH265HrdParameters& value, std::stringstream
     }
     stream << "], " << 3 << "}";
     stream << ", ";
-    if (value.pSubLayerHrdParametersNal) {
+    if (value.pSubLayerHrdParametersNal && 1 > 0) {
         stream << "{[";
         for (int i = 0; i < 1; ++i) {
             if (i > 0) { stream << ", "; }
@@ -8962,7 +8962,7 @@ void SerializeToString(const StdVideoH265HrdParameters& value, std::stringstream
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (value.pSubLayerHrdParametersVcl) {
+    if (value.pSubLayerHrdParametersVcl && 1 > 0) {
         stream << "{[";
         for (int i = 0; i < 1; ++i) {
             if (i > 0) { stream << ", "; }
@@ -9454,7 +9454,7 @@ void SerializeToString(const StdVideoH265SequenceParameterSet& value, std::strin
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (value.pShortTermRefPicSet) {
+    if (value.pShortTermRefPicSet && value.num_short_term_ref_pic_sets > 0) {
         stream << "{[";
         for (int i = 0; i < value.num_short_term_ref_pic_sets; ++i) {
             if (i > 0) { stream << ", "; }
@@ -9679,7 +9679,7 @@ void SerializeToString(const VkVideoEncodeH265SessionParametersAddInfoKHR& value
     stream << ", ";
     SerializeToString(value.stdVPSCount, stream);
     stream << ", ";
-    if (value.pStdVPSs) {
+    if (value.pStdVPSs && value.stdVPSCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.stdVPSCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -9693,7 +9693,7 @@ void SerializeToString(const VkVideoEncodeH265SessionParametersAddInfoKHR& value
     stream << ", ";
     SerializeToString(value.stdSPSCount, stream);
     stream << ", ";
-    if (value.pStdSPSs) {
+    if (value.pStdSPSs && value.stdSPSCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.stdSPSCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -9707,7 +9707,7 @@ void SerializeToString(const VkVideoEncodeH265SessionParametersAddInfoKHR& value
     stream << ", ";
     SerializeToString(value.stdPPSCount, stream);
     stream << ", ";
-    if (value.pStdPPSs) {
+    if (value.pStdPPSs && value.stdPPSCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.stdPPSCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -10138,7 +10138,7 @@ void SerializeToString(const VkVideoEncodeH265PictureInfoKHR& value, std::string
     stream << ", ";
     SerializeToString(value.naluSliceSegmentEntryCount, stream);
     stream << ", ";
-    if (value.pNaluSliceSegmentEntries) {
+    if (value.pNaluSliceSegmentEntries && value.naluSliceSegmentEntryCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.naluSliceSegmentEntryCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -10282,7 +10282,7 @@ void SerializeToString(const VkVideoDecodeH264ProfileInfoKHR& value, std::string
     stream << ", ";
     SerializeToString(value.stdProfileIdc, stream);
     stream << ", ";
-    SerializeToString(value.pictureLayout, stream);
+    SerializeToStringVkVideoDecodeH264PictureLayoutFlagsKHR(value.pictureLayout, stream);
     stream << "}";
 }
 
@@ -10306,7 +10306,7 @@ void SerializeToString(const VkVideoDecodeH264SessionParametersAddInfoKHR& value
     stream << ", ";
     SerializeToString(value.stdSPSCount, stream);
     stream << ", ";
-    if (value.pStdSPSs) {
+    if (value.pStdSPSs && value.stdSPSCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.stdSPSCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -10320,7 +10320,7 @@ void SerializeToString(const VkVideoDecodeH264SessionParametersAddInfoKHR& value
     stream << ", ";
     SerializeToString(value.stdPPSCount, stream);
     stream << ", ";
-    if (value.pStdPPSs) {
+    if (value.pStdPPSs && value.stdPPSCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.stdPPSCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -10413,7 +10413,7 @@ void SerializeToString(const VkVideoDecodeH264PictureInfoKHR& value, std::string
     stream << ", ";
     SerializeToString(value.sliceCount, stream);
     stream << ", ";
-    if (value.pSliceOffsets) {
+    if (value.pSliceOffsets && value.sliceCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.sliceCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -10479,7 +10479,7 @@ void SerializeToString(const VkImportMemoryWin32HandleInfoKHR& value, std::strin
     stream << ", ";
     SerializeToStringPNext(value.pNext, stream);
     stream << ", ";
-    SerializeToString(value.handleType, stream);
+    SerializeToStringVkExternalMemoryHandleTypeFlags(value.handleType, stream);
     stream << ", ";
     SerializeToString(value.handle, stream);
     stream << ", ";
@@ -10519,7 +10519,7 @@ void SerializeToString(const VkMemoryGetWin32HandleInfoKHR& value, std::stringst
     stream << ", ";
     SerializeToString(value.memory, stream);
     stream << ", ";
-    SerializeToString(value.handleType, stream);
+    SerializeToStringVkExternalMemoryHandleTypeFlags(value.handleType, stream);
     stream << "}";
 }
 
@@ -10529,7 +10529,7 @@ void SerializeToString(const VkImportMemoryFdInfoKHR& value, std::stringstream& 
     stream << ", ";
     SerializeToStringPNext(value.pNext, stream);
     stream << ", ";
-    SerializeToString(value.handleType, stream);
+    SerializeToStringVkExternalMemoryHandleTypeFlags(value.handleType, stream);
     stream << ", ";
     SerializeToString(value.fd, stream);
     stream << "}";
@@ -10553,7 +10553,7 @@ void SerializeToString(const VkMemoryGetFdInfoKHR& value, std::stringstream& str
     stream << ", ";
     SerializeToString(value.memory, stream);
     stream << ", ";
-    SerializeToString(value.handleType, stream);
+    SerializeToStringVkExternalMemoryHandleTypeFlags(value.handleType, stream);
     stream << "}";
 }
 
@@ -10565,7 +10565,7 @@ void SerializeToString(const VkWin32KeyedMutexAcquireReleaseInfoKHR& value, std:
     stream << ", ";
     SerializeToString(value.acquireCount, stream);
     stream << ", ";
-    if (value.pAcquireSyncs) {
+    if (value.pAcquireSyncs && value.acquireCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.acquireCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -10577,7 +10577,7 @@ void SerializeToString(const VkWin32KeyedMutexAcquireReleaseInfoKHR& value, std:
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (value.pAcquireKeys) {
+    if (value.pAcquireKeys && value.acquireCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.acquireCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -10589,7 +10589,7 @@ void SerializeToString(const VkWin32KeyedMutexAcquireReleaseInfoKHR& value, std:
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (value.pAcquireTimeouts) {
+    if (value.pAcquireTimeouts && value.acquireCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.acquireCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -10603,7 +10603,7 @@ void SerializeToString(const VkWin32KeyedMutexAcquireReleaseInfoKHR& value, std:
     stream << ", ";
     SerializeToString(value.releaseCount, stream);
     stream << ", ";
-    if (value.pReleaseSyncs) {
+    if (value.pReleaseSyncs && value.releaseCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.releaseCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -10615,7 +10615,7 @@ void SerializeToString(const VkWin32KeyedMutexAcquireReleaseInfoKHR& value, std:
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (value.pReleaseKeys) {
+    if (value.pReleaseKeys && value.releaseCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.releaseCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -10639,7 +10639,7 @@ void SerializeToString(const VkImportSemaphoreWin32HandleInfoKHR& value, std::st
     stream << ", ";
     SerializeToStringVkSemaphoreImportFlags(value.flags, stream);
     stream << ", ";
-    SerializeToString(value.handleType, stream);
+    SerializeToStringVkExternalSemaphoreHandleTypeFlags(value.handleType, stream);
     stream << ", ";
     SerializeToString(value.handle, stream);
     stream << ", ";
@@ -10669,7 +10669,7 @@ void SerializeToString(const VkD3D12FenceSubmitInfoKHR& value, std::stringstream
     stream << ", ";
     SerializeToString(value.waitSemaphoreValuesCount, stream);
     stream << ", ";
-    if (value.pWaitSemaphoreValues) {
+    if (value.pWaitSemaphoreValues && value.waitSemaphoreValuesCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.waitSemaphoreValuesCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -10683,7 +10683,7 @@ void SerializeToString(const VkD3D12FenceSubmitInfoKHR& value, std::stringstream
     stream << ", ";
     SerializeToString(value.signalSemaphoreValuesCount, stream);
     stream << ", ";
-    if (value.pSignalSemaphoreValues) {
+    if (value.pSignalSemaphoreValues && value.signalSemaphoreValuesCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.signalSemaphoreValuesCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -10705,7 +10705,7 @@ void SerializeToString(const VkSemaphoreGetWin32HandleInfoKHR& value, std::strin
     stream << ", ";
     SerializeToString(value.semaphore, stream);
     stream << ", ";
-    SerializeToString(value.handleType, stream);
+    SerializeToStringVkExternalSemaphoreHandleTypeFlags(value.handleType, stream);
     stream << "}";
 }
 
@@ -10719,7 +10719,7 @@ void SerializeToString(const VkImportSemaphoreFdInfoKHR& value, std::stringstrea
     stream << ", ";
     SerializeToStringVkSemaphoreImportFlags(value.flags, stream);
     stream << ", ";
-    SerializeToString(value.handleType, stream);
+    SerializeToStringVkExternalSemaphoreHandleTypeFlags(value.handleType, stream);
     stream << ", ";
     SerializeToString(value.fd, stream);
     stream << "}";
@@ -10733,7 +10733,7 @@ void SerializeToString(const VkSemaphoreGetFdInfoKHR& value, std::stringstream& 
     stream << ", ";
     SerializeToString(value.semaphore, stream);
     stream << ", ";
-    SerializeToString(value.handleType, stream);
+    SerializeToStringVkExternalSemaphoreHandleTypeFlags(value.handleType, stream);
     stream << "}";
 }
 
@@ -10751,7 +10751,7 @@ void SerializeToString(const VkPresentRegionKHR& value, std::stringstream& strea
     stream << "VkPresentRegionKHR{";
     SerializeToString(value.rectangleCount, stream);
     stream << ", ";
-    if (value.pRectangles) {
+    if (value.pRectangles && value.rectangleCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.rectangleCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -10773,7 +10773,7 @@ void SerializeToString(const VkPresentRegionsKHR& value, std::stringstream& stre
     stream << ", ";
     SerializeToString(value.swapchainCount, stream);
     stream << ", ";
-    if (value.pRegions) {
+    if (value.pRegions && value.swapchainCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.swapchainCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -10807,7 +10807,7 @@ void SerializeToString(const VkImportFenceWin32HandleInfoKHR& value, std::string
     stream << ", ";
     SerializeToStringVkFenceImportFlags(value.flags, stream);
     stream << ", ";
-    SerializeToString(value.handleType, stream);
+    SerializeToStringVkExternalFenceHandleTypeFlags(value.handleType, stream);
     stream << ", ";
     SerializeToString(value.handle, stream);
     stream << ", ";
@@ -10837,7 +10837,7 @@ void SerializeToString(const VkFenceGetWin32HandleInfoKHR& value, std::stringstr
     stream << ", ";
     SerializeToString(value.fence, stream);
     stream << ", ";
-    SerializeToString(value.handleType, stream);
+    SerializeToStringVkExternalFenceHandleTypeFlags(value.handleType, stream);
     stream << "}";
 }
 
@@ -10851,7 +10851,7 @@ void SerializeToString(const VkImportFenceFdInfoKHR& value, std::stringstream& s
     stream << ", ";
     SerializeToStringVkFenceImportFlags(value.flags, stream);
     stream << ", ";
-    SerializeToString(value.handleType, stream);
+    SerializeToStringVkExternalFenceHandleTypeFlags(value.handleType, stream);
     stream << ", ";
     SerializeToString(value.fd, stream);
     stream << "}";
@@ -10865,7 +10865,7 @@ void SerializeToString(const VkFenceGetFdInfoKHR& value, std::stringstream& stre
     stream << ", ";
     SerializeToString(value.fence, stream);
     stream << ", ";
-    SerializeToString(value.handleType, stream);
+    SerializeToStringVkExternalFenceHandleTypeFlags(value.handleType, stream);
     stream << "}";
 }
 
@@ -10938,7 +10938,7 @@ void SerializeToString(const VkQueryPoolPerformanceCreateInfoKHR& value, std::st
     stream << ", ";
     SerializeToString(value.counterIndexCount, stream);
     stream << ", ";
-    if (value.pCounterIndices) {
+    if (value.pCounterIndices && value.counterIndexCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.counterIndexCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -11174,7 +11174,7 @@ void SerializeToString(const VkVideoDecodeH265SessionParametersAddInfoKHR& value
     stream << ", ";
     SerializeToString(value.stdVPSCount, stream);
     stream << ", ";
-    if (value.pStdVPSs) {
+    if (value.pStdVPSs && value.stdVPSCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.stdVPSCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -11188,7 +11188,7 @@ void SerializeToString(const VkVideoDecodeH265SessionParametersAddInfoKHR& value
     stream << ", ";
     SerializeToString(value.stdSPSCount, stream);
     stream << ", ";
-    if (value.pStdSPSs) {
+    if (value.pStdSPSs && value.stdSPSCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.stdSPSCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -11202,7 +11202,7 @@ void SerializeToString(const VkVideoDecodeH265SessionParametersAddInfoKHR& value
     stream << ", ";
     SerializeToString(value.stdPPSCount, stream);
     stream << ", ";
-    if (value.pStdPPSs) {
+    if (value.pStdPPSs && value.stdPPSCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.stdPPSCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -11309,7 +11309,7 @@ void SerializeToString(const VkVideoDecodeH265PictureInfoKHR& value, std::string
     stream << ", ";
     SerializeToString(value.sliceSegmentCount, stream);
     stream << ", ";
-    if (value.pSliceSegmentOffsets) {
+    if (value.pSliceSegmentOffsets && value.sliceSegmentCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.sliceSegmentCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -11430,7 +11430,7 @@ void SerializeToString(const VkPhysicalDeviceFragmentShadingRatePropertiesKHR& v
     stream << ", ";
     SerializeToString(value.maxFragmentShadingRateCoverageSamples, stream);
     stream << ", ";
-    SerializeToString(value.maxFragmentShadingRateRasterizationSamples, stream);
+    SerializeToStringVkSampleCountFlags(value.maxFragmentShadingRateRasterizationSamples, stream);
     stream << ", ";
     SerializeToString(value.fragmentShadingRateWithShaderDepthStencilWrites, stream);
     stream << ", ";
@@ -11594,7 +11594,7 @@ void SerializeToString(const VkPipelineExecutableInternalRepresentationKHR& valu
     stream << ", ";
     SerializeToString(value.dataSize, stream);
     stream << ", ";
-    if (value.pData) {
+    if (value.pData && value.dataSize > 0) {
         stream << "{[";
         const uint8_t* ptr = reinterpret_cast<const uint8_t*>(value.pData);
         for (int i = 0; i < value.dataSize; ++i) {
@@ -11617,7 +11617,7 @@ void SerializeToString(const VkPipelineLibraryCreateInfoKHR& value, std::strings
     stream << ", ";
     SerializeToString(value.libraryCount, stream);
     stream << ", ";
-    if (value.pLibraries) {
+    if (value.pLibraries && value.libraryCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.libraryCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -11639,7 +11639,7 @@ void SerializeToString(const VkPresentIdKHR& value, std::stringstream& stream) {
     stream << ", ";
     SerializeToString(value.swapchainCount, stream);
     stream << ", ";
-    if (value.pPresentIds) {
+    if (value.pPresentIds && value.swapchainCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.swapchainCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -11690,7 +11690,7 @@ void SerializeToString(const VkVideoEncodeInfoKHR& value, std::stringstream& str
     stream << ", ";
     SerializeToString(value.referenceSlotCount, stream);
     stream << ", ";
-    if (value.pReferenceSlots) {
+    if (value.pReferenceSlots && value.referenceSlotCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.referenceSlotCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -11776,11 +11776,11 @@ void SerializeToString(const VkVideoEncodeRateControlInfoKHR& value, std::string
     stream << ", ";
     SerializeToString(value.flags, stream);
     stream << ", ";
-    SerializeToString(value.rateControlMode, stream);
+    SerializeToStringVkVideoEncodeRateControlModeFlagsKHR(value.rateControlMode, stream);
     stream << ", ";
     SerializeToString(value.layerCount, stream);
     stream << ", ";
-    if (value.pLayers) {
+    if (value.pLayers && value.layerCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.layerCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -11823,7 +11823,7 @@ void SerializeToString(const VkVideoEncodeQualityLevelPropertiesKHR& value, std:
     stream << ", ";
     SerializeToStringPNext(value.pNext, stream);
     stream << ", ";
-    SerializeToString(value.preferredRateControlMode, stream);
+    SerializeToStringVkVideoEncodeRateControlModeFlagsKHR(value.preferredRateControlMode, stream);
     stream << ", ";
     SerializeToString(value.preferredRateControlLayerCount, stream);
     stream << "}";
@@ -11987,7 +11987,7 @@ void SerializeToString(const VkPresentId2KHR& value, std::stringstream& stream) 
     stream << ", ";
     SerializeToString(value.swapchainCount, stream);
     stream << ", ";
-    if (value.pPresentIds) {
+    if (value.pPresentIds && value.swapchainCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.swapchainCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -12112,7 +12112,7 @@ void SerializeToString(const VkPipelineBinaryDataKHR& value, std::stringstream& 
     stream << "VkPipelineBinaryDataKHR{";
     SerializeToString(value.dataSize, stream);
     stream << ", ";
-    if (value.pData) {
+    if (value.pData && value.dataSize > 0) {
         stream << "{[";
         const uint8_t* ptr = reinterpret_cast<const uint8_t*>(value.pData);
         for (int i = 0; i < value.dataSize; ++i) {
@@ -12131,7 +12131,7 @@ void SerializeToString(const VkPipelineBinaryKeysAndDataKHR& value, std::strings
     stream << "VkPipelineBinaryKeysAndDataKHR{";
     SerializeToString(value.binaryCount, stream);
     stream << ", ";
-    if (value.pPipelineBinaryKeys) {
+    if (value.pPipelineBinaryKeys && value.binaryCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.binaryCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -12143,7 +12143,7 @@ void SerializeToString(const VkPipelineBinaryKeysAndDataKHR& value, std::strings
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (value.pPipelineBinaryData) {
+    if (value.pPipelineBinaryData && value.binaryCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.binaryCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -12201,7 +12201,7 @@ void SerializeToString(const VkPipelineBinaryInfoKHR& value, std::stringstream& 
     stream << ", ";
     SerializeToString(value.binaryCount, stream);
     stream << ", ";
-    if (value.pPipelineBinaries) {
+    if (value.pPipelineBinaries && value.binaryCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.binaryCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -12243,7 +12243,7 @@ void SerializeToString(const VkPipelineBinaryHandlesInfoKHR& value, std::strings
     stream << ", ";
     SerializeToString(value.pipelineBinaryCount, stream);
     stream << ", ";
-    if (value.pPipelineBinaries) {
+    if (value.pPipelineBinaries && value.pipelineBinaryCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.pipelineBinaryCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -12293,7 +12293,7 @@ void SerializeToString(const VkSurfacePresentModeCompatibilityKHR& value, std::s
     stream << ", ";
     SerializeToString(value.presentModeCount, stream);
     stream << ", ";
-    if (value.pPresentModes) {
+    if (value.pPresentModes && value.presentModeCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.presentModeCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -12325,7 +12325,7 @@ void SerializeToString(const VkSwapchainPresentFenceInfoKHR& value, std::strings
     stream << ", ";
     SerializeToString(value.swapchainCount, stream);
     stream << ", ";
-    if (value.pFences) {
+    if (value.pFences && value.swapchainCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.swapchainCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -12347,7 +12347,7 @@ void SerializeToString(const VkSwapchainPresentModesCreateInfoKHR& value, std::s
     stream << ", ";
     SerializeToString(value.presentModeCount, stream);
     stream << ", ";
-    if (value.pPresentModes) {
+    if (value.pPresentModes && value.presentModeCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.presentModeCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -12369,7 +12369,7 @@ void SerializeToString(const VkSwapchainPresentModeInfoKHR& value, std::stringst
     stream << ", ";
     SerializeToString(value.swapchainCount, stream);
     stream << ", ";
-    if (value.pPresentModes) {
+    if (value.pPresentModes && value.swapchainCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.swapchainCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -12407,7 +12407,7 @@ void SerializeToString(const VkReleaseSwapchainImagesInfoKHR& value, std::string
     stream << ", ";
     SerializeToString(value.imageIndexCount, stream);
     stream << ", ";
-    if (value.pImageIndices) {
+    if (value.pImageIndices && value.imageIndexCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.imageIndexCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -12772,7 +12772,7 @@ void SerializeToString(const StdVideoAV1TileInfo& value, std::stringstream& stre
     }
     stream << "], " << 7 << "}";
     stream << ", ";
-    if (value.pMiColStarts) {
+    if (value.pMiColStarts && value.TileCols > 0) {
         stream << "{[";
         for (int i = 0; i < value.TileCols; ++i) {
             if (i > 0) { stream << ", "; }
@@ -12784,7 +12784,7 @@ void SerializeToString(const StdVideoAV1TileInfo& value, std::stringstream& stre
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (value.pMiRowStarts) {
+    if (value.pMiRowStarts && value.TileRows > 0) {
         stream << "{[";
         for (int i = 0; i < value.TileRows; ++i) {
             if (i > 0) { stream << ", "; }
@@ -12796,7 +12796,7 @@ void SerializeToString(const StdVideoAV1TileInfo& value, std::stringstream& stre
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (value.pWidthInSbsMinus1) {
+    if (value.pWidthInSbsMinus1 && value.TileCols > 0) {
         stream << "{[";
         for (int i = 0; i < value.TileCols; ++i) {
             if (i > 0) { stream << ", "; }
@@ -12808,7 +12808,7 @@ void SerializeToString(const StdVideoAV1TileInfo& value, std::stringstream& stre
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (value.pHeightInSbsMinus1) {
+    if (value.pHeightInSbsMinus1 && value.TileRows > 0) {
         stream << "{[";
         for (int i = 0; i < value.TileRows; ++i) {
             if (i > 0) { stream << ", "; }
@@ -13266,7 +13266,7 @@ void SerializeToString(const VkVideoDecodeAV1PictureInfoKHR& value, std::strings
     stream << ", ";
     SerializeToString(value.tileCount, stream);
     stream << ", ";
-    if (value.pTileOffsets) {
+    if (value.pTileOffsets && value.tileCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.tileCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -13278,7 +13278,7 @@ void SerializeToString(const VkVideoDecodeAV1PictureInfoKHR& value, std::strings
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (value.pTileSizes) {
+    if (value.pTileSizes && value.tileCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.tileCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -13534,7 +13534,7 @@ void SerializeToString(const VkVideoEncodeAV1SessionParametersCreateInfoKHR& val
     stream << ", ";
     SerializeToString(value.stdOperatingPointCount, stream);
     stream << ", ";
-    if (value.pStdOperatingPoints) {
+    if (value.pStdOperatingPoints && value.stdOperatingPointCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.stdOperatingPointCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -14257,7 +14257,7 @@ void SerializeToString(const VkSetDescriptorBufferOffsetsInfoEXT& value, std::st
     stream << ", ";
     SerializeToString(value.setCount, stream);
     stream << ", ";
-    if (value.pBufferIndices) {
+    if (value.pBufferIndices && value.setCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.setCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -14269,7 +14269,7 @@ void SerializeToString(const VkSetDescriptorBufferOffsetsInfoEXT& value, std::st
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (value.pOffsets) {
+    if (value.pOffsets && value.setCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.setCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -14365,7 +14365,7 @@ void SerializeToString(const VkCopyMemoryToImageIndirectInfoKHR& value, std::str
     stream << ", ";
     SerializeToString(value.dstImageLayout, stream);
     stream << ", ";
-    if (value.pImageSubresources) {
+    if (value.pImageSubresources && value.copyCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.copyCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -14425,7 +14425,7 @@ void SerializeToString(const VkVideoEncodeSessionIntraRefreshCreateInfoKHR& valu
     stream << ", ";
     SerializeToStringPNext(value.pNext, stream);
     stream << ", ";
-    SerializeToString(value.intraRefreshMode, stream);
+    SerializeToStringVkVideoEncodeIntraRefreshModeFlagsKHR(value.intraRefreshMode, stream);
     stream << "}";
 }
 
@@ -14637,7 +14637,7 @@ void SerializeToString(const VkPhysicalDeviceLayeredApiPropertiesListKHR& value,
     stream << ", ";
     SerializeToString(value.layeredApiCount, stream);
     stream << ", ";
-    if (value.pLayeredApis) {
+    if (value.pLayeredApis && value.layeredApiCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.layeredApiCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -14913,9 +14913,9 @@ void SerializeToString(const VkResolveImageModeInfoKHR& value, std::stringstream
     stream << ", ";
     SerializeToStringVkResolveImageFlagsKHR(value.flags, stream);
     stream << ", ";
-    SerializeToString(value.resolveMode, stream);
+    SerializeToStringVkResolveModeFlags(value.resolveMode, stream);
     stream << ", ";
-    SerializeToString(value.stencilResolveMode, stream);
+    SerializeToStringVkResolveModeFlags(value.stencilResolveMode, stream);
     stream << "}";
 }
 
@@ -14971,7 +14971,7 @@ void SerializeToString(const VkDebugMarkerObjectTagInfoEXT& value, std::stringst
     stream << ", ";
     SerializeToString(value.tagSize, stream);
     stream << ", ";
-    if (value.pTag) {
+    if (value.pTag && value.tagSize > 0) {
         stream << "{[";
         const uint8_t* ptr = reinterpret_cast<const uint8_t*>(value.pTag);
         for (int i = 0; i < value.tagSize; ++i) {
@@ -15095,7 +15095,7 @@ void SerializeToString(const VkCuModuleCreateInfoNVX& value, std::stringstream& 
     stream << ", ";
     SerializeToString(value.dataSize, stream);
     stream << ", ";
-    if (value.pData) {
+    if (value.pData && value.dataSize > 0) {
         stream << "{[";
         const uint8_t* ptr = reinterpret_cast<const uint8_t*>(value.pData);
         for (int i = 0; i < value.dataSize; ++i) {
@@ -15156,7 +15156,7 @@ void SerializeToString(const VkCuLaunchInfoNVX& value, std::stringstream& stream
     stream << ", ";
     SerializeToString(value.paramCount, stream);
     stream << ", ";
-    if (value.pParams) {
+    if (value.pParams && value.paramCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.paramCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -15170,7 +15170,7 @@ void SerializeToString(const VkCuLaunchInfoNVX& value, std::stringstream& stream
     stream << ", ";
     SerializeToString(value.extraCount, stream);
     stream << ", ";
-    if (value.pExtras) {
+    if (value.pExtras && value.extraCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.extraCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -15343,7 +15343,7 @@ void SerializeToString(const VkWin32KeyedMutexAcquireReleaseInfoNV& value, std::
     stream << ", ";
     SerializeToString(value.acquireCount, stream);
     stream << ", ";
-    if (value.pAcquireSyncs) {
+    if (value.pAcquireSyncs && value.acquireCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.acquireCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -15355,7 +15355,7 @@ void SerializeToString(const VkWin32KeyedMutexAcquireReleaseInfoNV& value, std::
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (value.pAcquireKeys) {
+    if (value.pAcquireKeys && value.acquireCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.acquireCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -15367,7 +15367,7 @@ void SerializeToString(const VkWin32KeyedMutexAcquireReleaseInfoNV& value, std::
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (value.pAcquireTimeoutMilliseconds) {
+    if (value.pAcquireTimeoutMilliseconds && value.acquireCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.acquireCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -15381,7 +15381,7 @@ void SerializeToString(const VkWin32KeyedMutexAcquireReleaseInfoNV& value, std::
     stream << ", ";
     SerializeToString(value.releaseCount, stream);
     stream << ", ";
-    if (value.pReleaseSyncs) {
+    if (value.pReleaseSyncs && value.releaseCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.releaseCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -15393,7 +15393,7 @@ void SerializeToString(const VkWin32KeyedMutexAcquireReleaseInfoNV& value, std::
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (value.pReleaseKeys) {
+    if (value.pReleaseKeys && value.releaseCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.releaseCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -15415,7 +15415,7 @@ void SerializeToString(const VkValidationFlagsEXT& value, std::stringstream& str
     stream << ", ";
     SerializeToString(value.disabledValidationCheckCount, stream);
     stream << ", ";
-    if (value.pDisabledValidationChecks) {
+    if (value.pDisabledValidationChecks && value.disabledValidationCheckCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.disabledValidationCheckCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -15515,7 +15515,7 @@ void SerializeToString(const VkPipelineViewportWScalingStateCreateInfoNV& value,
     stream << ", ";
     SerializeToString(value.viewportCount, stream);
     stream << ", ";
-    if (value.pViewportWScalings) {
+    if (value.pViewportWScalings && value.viewportCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.viewportCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -15549,7 +15549,7 @@ void SerializeToString(const VkSurfaceCapabilities2EXT& value, std::stringstream
     stream << ", ";
     SerializeToStringVkSurfaceTransformFlagsKHR(value.supportedTransforms, stream);
     stream << ", ";
-    SerializeToString(value.currentTransform, stream);
+    SerializeToStringVkSurfaceTransformFlagsKHR(value.currentTransform, stream);
     stream << ", ";
     SerializeToStringVkCompositeAlphaFlagsKHR(value.supportedCompositeAlpha, stream);
     stream << ", ";
@@ -15635,7 +15635,7 @@ void SerializeToString(const VkPresentTimesInfoGOOGLE& value, std::stringstream&
     stream << ", ";
     SerializeToString(value.swapchainCount, stream);
     stream << ", ";
-    if (value.pTimes) {
+    if (value.pTimes && value.swapchainCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.swapchainCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -15693,7 +15693,7 @@ void SerializeToString(const VkPipelineViewportSwizzleStateCreateInfoNV& value, 
     stream << ", ";
     SerializeToString(value.viewportCount, stream);
     stream << ", ";
-    if (value.pViewportSwizzles) {
+    if (value.pViewportSwizzles && value.viewportCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.viewportCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -15729,7 +15729,7 @@ void SerializeToString(const VkPipelineDiscardRectangleStateCreateInfoEXT& value
     stream << ", ";
     SerializeToString(value.discardRectangleCount, stream);
     stream << ", ";
-    if (value.pDiscardRectangles) {
+    if (value.pDiscardRectangles && value.discardRectangleCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.discardRectangleCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -15918,7 +15918,7 @@ void SerializeToString(const VkDebugUtilsMessengerCallbackDataEXT& value, std::s
     stream << ", ";
     SerializeToString(value.queueLabelCount, stream);
     stream << ", ";
-    if (value.pQueueLabels) {
+    if (value.pQueueLabels && value.queueLabelCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.queueLabelCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -15932,7 +15932,7 @@ void SerializeToString(const VkDebugUtilsMessengerCallbackDataEXT& value, std::s
     stream << ", ";
     SerializeToString(value.cmdBufLabelCount, stream);
     stream << ", ";
-    if (value.pCmdBufLabels) {
+    if (value.pCmdBufLabels && value.cmdBufLabelCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.cmdBufLabelCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -15946,7 +15946,7 @@ void SerializeToString(const VkDebugUtilsMessengerCallbackDataEXT& value, std::s
     stream << ", ";
     SerializeToString(value.objectCount, stream);
     stream << ", ";
-    if (value.pObjects) {
+    if (value.pObjects && value.objectCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.objectCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -15992,7 +15992,7 @@ void SerializeToString(const VkDebugUtilsObjectTagInfoEXT& value, std::stringstr
     stream << ", ";
     SerializeToString(value.tagSize, stream);
     stream << ", ";
-    if (value.pTag) {
+    if (value.pTag && value.tagSize > 0) {
         stream << "{[";
         const uint8_t* ptr = reinterpret_cast<const uint8_t*>(value.pTag);
         for (int i = 0; i < value.tagSize; ++i) {
@@ -16170,7 +16170,7 @@ void SerializeToString(const VkExecutionGraphPipelineCreateInfoAMDX& value, std:
     stream << ", ";
     SerializeToString(value.stageCount, stream);
     stream << ", ";
-    if (value.pStages) {
+    if (value.pStages && value.stageCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.stageCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -16249,11 +16249,11 @@ void SerializeToString(const VkAttachmentSampleCountInfoAMD& value, std::strings
     stream << ", ";
     SerializeToString(value.colorAttachmentCount, stream);
     stream << ", ";
-    if (value.pColorAttachmentSamples) {
+    if (value.pColorAttachmentSamples && value.colorAttachmentCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.colorAttachmentCount; ++i) {
             if (i > 0) { stream << ", "; }
-            SerializeToString(value.pColorAttachmentSamples[i], stream);
+            SerializeToStringVkSampleCountFlags(value.pColorAttachmentSamples[i], stream);
         }
         stream << "], " << value.colorAttachmentCount << "}";
     }
@@ -16261,7 +16261,7 @@ void SerializeToString(const VkAttachmentSampleCountInfoAMD& value, std::strings
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    SerializeToString(value.depthStencilAttachmentSamples, stream);
+    SerializeToStringVkSampleCountFlags(value.depthStencilAttachmentSamples, stream);
     stream << "}";
 }
 
@@ -16279,13 +16279,13 @@ void SerializeToString(const VkSampleLocationsInfoEXT& value, std::stringstream&
     stream << ", ";
     SerializeToStringPNext(value.pNext, stream);
     stream << ", ";
-    SerializeToString(value.sampleLocationsPerPixel, stream);
+    SerializeToStringVkSampleCountFlags(value.sampleLocationsPerPixel, stream);
     stream << ", ";
     SerializeToString(value.sampleLocationGridSize, stream);
     stream << ", ";
     SerializeToString(value.sampleLocationsCount, stream);
     stream << ", ";
-    if (value.pSampleLocations) {
+    if (value.pSampleLocations && value.sampleLocationsCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.sampleLocationsCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -16323,7 +16323,7 @@ void SerializeToString(const VkRenderPassSampleLocationsBeginInfoEXT& value, std
     stream << ", ";
     SerializeToString(value.attachmentInitialSampleLocationsCount, stream);
     stream << ", ";
-    if (value.pAttachmentInitialSampleLocations) {
+    if (value.pAttachmentInitialSampleLocations && value.attachmentInitialSampleLocationsCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.attachmentInitialSampleLocationsCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -16337,7 +16337,7 @@ void SerializeToString(const VkRenderPassSampleLocationsBeginInfoEXT& value, std
     stream << ", ";
     SerializeToString(value.postSubpassSampleLocationsCount, stream);
     stream << ", ";
-    if (value.pPostSubpassSampleLocations) {
+    if (value.pPostSubpassSampleLocations && value.postSubpassSampleLocationsCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.postSubpassSampleLocationsCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -16468,7 +16468,7 @@ void SerializeToString(const VkPipelineCoverageModulationStateCreateInfoNV& valu
     stream << ", ";
     SerializeToString(value.coverageModulationTableCount, stream);
     stream << ", ";
-    if (value.pCoverageModulationTable) {
+    if (value.pCoverageModulationTable && value.coverageModulationTableCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.coverageModulationTableCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -16522,7 +16522,7 @@ void SerializeToString(const VkDrmFormatModifierPropertiesListEXT& value, std::s
     stream << ", ";
     SerializeToString(value.drmFormatModifierCount, stream);
     stream << ", ";
-    if (value.pDrmFormatModifierProperties) {
+    if (value.pDrmFormatModifierProperties && value.drmFormatModifierCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.drmFormatModifierCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -16548,7 +16548,7 @@ void SerializeToString(const VkPhysicalDeviceImageDrmFormatModifierInfoEXT& valu
     stream << ", ";
     SerializeToString(value.queueFamilyIndexCount, stream);
     stream << ", ";
-    if (value.pQueueFamilyIndices) {
+    if (value.pQueueFamilyIndices && value.queueFamilyIndexCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.queueFamilyIndexCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -16570,7 +16570,7 @@ void SerializeToString(const VkImageDrmFormatModifierListCreateInfoEXT& value, s
     stream << ", ";
     SerializeToString(value.drmFormatModifierCount, stream);
     stream << ", ";
-    if (value.pDrmFormatModifiers) {
+    if (value.pDrmFormatModifiers && value.drmFormatModifierCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.drmFormatModifierCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -16594,7 +16594,7 @@ void SerializeToString(const VkImageDrmFormatModifierExplicitCreateInfoEXT& valu
     stream << ", ";
     SerializeToString(value.drmFormatModifierPlaneCount, stream);
     stream << ", ";
-    if (value.pPlaneLayouts) {
+    if (value.pPlaneLayouts && value.drmFormatModifierPlaneCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.drmFormatModifierPlaneCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -16636,7 +16636,7 @@ void SerializeToString(const VkDrmFormatModifierPropertiesList2EXT& value, std::
     stream << ", ";
     SerializeToString(value.drmFormatModifierCount, stream);
     stream << ", ";
-    if (value.pDrmFormatModifierProperties) {
+    if (value.pDrmFormatModifierProperties && value.drmFormatModifierCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.drmFormatModifierCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -16660,7 +16660,7 @@ void SerializeToString(const VkValidationCacheCreateInfoEXT& value, std::strings
     stream << ", ";
     SerializeToString(value.initialDataSize, stream);
     stream << ", ";
-    if (value.pInitialData) {
+    if (value.pInitialData && value.initialDataSize > 0) {
         stream << "{[";
         const uint8_t* ptr = reinterpret_cast<const uint8_t*>(value.pInitialData);
         for (int i = 0; i < value.initialDataSize; ++i) {
@@ -16689,7 +16689,7 @@ void SerializeToString(const VkShadingRatePaletteNV& value, std::stringstream& s
     stream << "VkShadingRatePaletteNV{";
     SerializeToString(value.shadingRatePaletteEntryCount, stream);
     stream << ", ";
-    if (value.pShadingRatePaletteEntries) {
+    if (value.pShadingRatePaletteEntries && value.shadingRatePaletteEntryCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.shadingRatePaletteEntryCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -16713,7 +16713,7 @@ void SerializeToString(const VkPipelineViewportShadingRateImageStateCreateInfoNV
     stream << ", ";
     SerializeToString(value.viewportCount, stream);
     stream << ", ";
-    if (value.pShadingRatePalettes) {
+    if (value.pShadingRatePalettes && value.viewportCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.viewportCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -16771,7 +16771,7 @@ void SerializeToString(const VkCoarseSampleOrderCustomNV& value, std::stringstre
     stream << ", ";
     SerializeToString(value.sampleLocationCount, stream);
     stream << ", ";
-    if (value.pSampleLocations) {
+    if (value.pSampleLocations && value.sampleLocationCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.sampleLocationCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -16795,7 +16795,7 @@ void SerializeToString(const VkPipelineViewportCoarseSampleOrderStateCreateInfoN
     stream << ", ";
     SerializeToString(value.customSampleOrderCount, stream);
     stream << ", ";
-    if (value.pCustomSampleOrders) {
+    if (value.pCustomSampleOrders && value.customSampleOrderCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.customSampleOrderCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -16837,7 +16837,7 @@ void SerializeToString(const VkRayTracingPipelineCreateInfoNV& value, std::strin
     stream << ", ";
     SerializeToString(value.stageCount, stream);
     stream << ", ";
-    if (value.pStages) {
+    if (value.pStages && value.stageCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.stageCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -16851,7 +16851,7 @@ void SerializeToString(const VkRayTracingPipelineCreateInfoNV& value, std::strin
     stream << ", ";
     SerializeToString(value.groupCount, stream);
     stream << ", ";
-    if (value.pGroups) {
+    if (value.pGroups && value.groupCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.groupCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -16955,7 +16955,7 @@ void SerializeToString(const VkAccelerationStructureInfoNV& value, std::stringst
     stream << ", ";
     SerializeToString(value.geometryCount, stream);
     stream << ", ";
-    if (value.pGeometries) {
+    if (value.pGeometries && value.geometryCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.geometryCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -16995,7 +16995,7 @@ void SerializeToString(const VkBindAccelerationStructureMemoryInfoNV& value, std
     stream << ", ";
     SerializeToString(value.deviceIndexCount, stream);
     stream << ", ";
-    if (value.pDeviceIndices) {
+    if (value.pDeviceIndices && value.deviceIndexCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.deviceIndexCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -17017,7 +17017,7 @@ void SerializeToString(const VkWriteDescriptorSetAccelerationStructureNV& value,
     stream << ", ";
     SerializeToString(value.accelerationStructureCount, stream);
     stream << ", ";
-    if (value.pAccelerationStructures) {
+    if (value.pAccelerationStructures && value.accelerationStructureCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.accelerationStructureCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -17163,7 +17163,7 @@ void SerializeToString(const VkImportMemoryHostPointerInfoEXT& value, std::strin
     stream << ", ";
     SerializeToStringPNext(value.pNext, stream);
     stream << ", ";
-    SerializeToString(value.handleType, stream);
+    SerializeToStringVkExternalMemoryHandleTypeFlags(value.handleType, stream);
     stream << ", ";
     SerializeToString(value.pHostPointer, stream);
     stream << "}";
@@ -17347,7 +17347,7 @@ void SerializeToString(const VkPipelineViewportExclusiveScissorStateCreateInfoNV
     stream << ", ";
     SerializeToString(value.exclusiveScissorCount, stream);
     stream << ", ";
-    if (value.pExclusiveScissors) {
+    if (value.pExclusiveScissors && value.exclusiveScissorCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.exclusiveScissorCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -17387,7 +17387,7 @@ void SerializeToString(const VkCheckpointDataNV& value, std::stringstream& strea
     stream << ", ";
     SerializeToStringPNext(value.pNext, stream);
     stream << ", ";
-    SerializeToString(value.stage, stream);
+    SerializeToStringVkPipelineStageFlags(value.stage, stream);
     stream << ", ";
     SerializeToString(value.pCheckpointMarker, stream);
     stream << "}";
@@ -17479,7 +17479,7 @@ void SerializeToString(const VkSwapchainTimeDomainPropertiesEXT& value, std::str
     stream << ", ";
     SerializeToString(value.timeDomainCount, stream);
     stream << ", ";
-    if (value.pTimeDomains) {
+    if (value.pTimeDomains && value.timeDomainCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.timeDomainCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -17491,7 +17491,7 @@ void SerializeToString(const VkSwapchainTimeDomainPropertiesEXT& value, std::str
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (value.pTimeDomainIds) {
+    if (value.pTimeDomainIds && value.timeDomainCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.timeDomainCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -17537,7 +17537,7 @@ void SerializeToString(const VkPastPresentationTimingEXT& value, std::stringstre
     stream << ", ";
     SerializeToString(value.presentStageCount, stream);
     stream << ", ";
-    if (value.pPresentStages) {
+    if (value.pPresentStages && value.presentStageCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.presentStageCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -17569,7 +17569,7 @@ void SerializeToString(const VkPastPresentationTimingPropertiesEXT& value, std::
     stream << ", ";
     SerializeToString(value.presentationTimingCount, stream);
     stream << ", ";
-    if (value.pPresentationTimings) {
+    if (value.pPresentationTimings && value.presentationTimingCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.presentationTimingCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -17609,7 +17609,7 @@ void SerializeToString(const VkPresentTimingsInfoEXT& value, std::stringstream& 
     stream << ", ";
     SerializeToString(value.swapchainCount, stream);
     stream << ", ";
-    if (value.pTimingInfos) {
+    if (value.pTimingInfos && value.swapchainCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.swapchainCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -17947,7 +17947,7 @@ void SerializeToString(const VkValidationFeaturesEXT& value, std::stringstream& 
     stream << ", ";
     SerializeToString(value.enabledValidationFeatureCount, stream);
     stream << ", ";
-    if (value.pEnabledValidationFeatures) {
+    if (value.pEnabledValidationFeatures && value.enabledValidationFeatureCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.enabledValidationFeatureCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -17961,7 +17961,7 @@ void SerializeToString(const VkValidationFeaturesEXT& value, std::stringstream& 
     stream << ", ";
     SerializeToString(value.disabledValidationFeatureCount, stream);
     stream << ", ";
-    if (value.pDisabledValidationFeatures) {
+    if (value.pDisabledValidationFeatures && value.disabledValidationFeatureCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.disabledValidationFeatureCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -18051,7 +18051,7 @@ void SerializeToString(const VkFramebufferMixedSamplesCombinationNV& value, std:
     stream << ", ";
     SerializeToString(value.coverageReductionMode, stream);
     stream << ", ";
-    SerializeToString(value.rasterizationSamples, stream);
+    SerializeToStringVkSampleCountFlags(value.rasterizationSamples, stream);
     stream << ", ";
     SerializeToStringVkSampleCountFlags(value.depthStencilSamples, stream);
     stream << ", ";
@@ -18309,7 +18309,7 @@ void SerializeToString(const VkGraphicsShaderGroupCreateInfoNV& value, std::stri
     stream << ", ";
     SerializeToString(value.stageCount, stream);
     stream << ", ";
-    if (value.pStages) {
+    if (value.pStages && value.stageCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.stageCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -18349,7 +18349,7 @@ void SerializeToString(const VkGraphicsPipelineShaderGroupsCreateInfoNV& value, 
     stream << ", ";
     SerializeToString(value.groupCount, stream);
     stream << ", ";
-    if (value.pGroups) {
+    if (value.pGroups && value.groupCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.groupCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -18363,7 +18363,7 @@ void SerializeToString(const VkGraphicsPipelineShaderGroupsCreateInfoNV& value, 
     stream << ", ";
     SerializeToString(value.pipelineCount, stream);
     stream << ", ";
-    if (value.pPipelines) {
+    if (value.pPipelines && value.pipelineCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.pipelineCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -18445,7 +18445,7 @@ void SerializeToString(const VkIndirectCommandsLayoutTokenNV& value, std::string
     stream << ", ";
     SerializeToString(value.indexTypeCount, stream);
     stream << ", ";
-    if (value.pIndexTypes) {
+    if (value.pIndexTypes && value.indexTypeCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.indexTypeCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -18457,7 +18457,7 @@ void SerializeToString(const VkIndirectCommandsLayoutTokenNV& value, std::string
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (value.pIndexTypeValues) {
+    if (value.pIndexTypeValues && value.indexTypeCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.indexTypeCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -18483,7 +18483,7 @@ void SerializeToString(const VkIndirectCommandsLayoutCreateInfoNV& value, std::s
     stream << ", ";
     SerializeToString(value.tokenCount, stream);
     stream << ", ";
-    if (value.pTokens) {
+    if (value.pTokens && value.tokenCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.tokenCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -18497,7 +18497,7 @@ void SerializeToString(const VkIndirectCommandsLayoutCreateInfoNV& value, std::s
     stream << ", ";
     SerializeToString(value.streamCount, stream);
     stream << ", ";
-    if (value.pStreamStrides) {
+    if (value.pStreamStrides && value.streamCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.streamCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -18525,7 +18525,7 @@ void SerializeToString(const VkGeneratedCommandsInfoNV& value, std::stringstream
     stream << ", ";
     SerializeToString(value.streamCount, stream);
     stream << ", ";
-    if (value.pStreams) {
+    if (value.pStreams && value.streamCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.streamCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -18618,7 +18618,7 @@ void SerializeToString(const VkRenderPassTransformBeginInfoQCOM& value, std::str
     stream << ", ";
     SerializeToStringPNext(value.pNext, stream);
     stream << ", ";
-    SerializeToString(value.transform, stream);
+    SerializeToStringVkSurfaceTransformFlagsKHR(value.transform, stream);
     stream << "}";
 }
 
@@ -18628,7 +18628,7 @@ void SerializeToString(const VkCommandBufferInheritanceRenderPassTransformInfoQC
     stream << ", ";
     SerializeToStringPNext(value.pNext, stream);
     stream << ", ";
-    SerializeToString(value.transform, stream);
+    SerializeToStringVkSurfaceTransformFlagsKHR(value.transform, stream);
     stream << ", ";
     SerializeToString(value.renderArea, stream);
     stream << "}";
@@ -18814,7 +18814,7 @@ void SerializeToString(const VkCudaModuleCreateInfoNV& value, std::stringstream&
     stream << ", ";
     SerializeToString(value.dataSize, stream);
     stream << ", ";
-    if (value.pData) {
+    if (value.pData && value.dataSize > 0) {
         stream << "{[";
         const uint8_t* ptr = reinterpret_cast<const uint8_t*>(value.pData);
         for (int i = 0; i < value.dataSize; ++i) {
@@ -18865,7 +18865,7 @@ void SerializeToString(const VkCudaLaunchInfoNV& value, std::stringstream& strea
     stream << ", ";
     SerializeToString(value.paramCount, stream);
     stream << ", ";
-    if (value.pParams) {
+    if (value.pParams && value.paramCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.paramCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -18879,7 +18879,7 @@ void SerializeToString(const VkCudaLaunchInfoNV& value, std::stringstream& strea
     stream << ", ";
     SerializeToString(value.extraCount, stream);
     stream << ", ";
-    if (value.pExtras) {
+    if (value.pExtras && value.extraCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.extraCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -19019,7 +19019,7 @@ void SerializeToString(const VkExportMetalObjectCreateInfoEXT& value, std::strin
     stream << ", ";
     SerializeToStringPNext(value.pNext, stream);
     stream << ", ";
-    SerializeToString(value.exportObjectType, stream);
+    SerializeToStringVkExportMetalObjectTypeFlagsEXT(value.exportObjectType, stream);
     stream << "}";
 }
 
@@ -19087,7 +19087,7 @@ void SerializeToString(const VkExportMetalTextureInfoEXT& value, std::stringstre
     stream << ", ";
     SerializeToString(value.bufferView, stream);
     stream << ", ";
-    SerializeToString(value.plane, stream);
+    SerializeToStringVkImageAspectFlags(value.plane, stream);
     stream << ", ";
     SerializeToString(value.mtlTexture, stream);
     stream << "}";
@@ -19099,7 +19099,7 @@ void SerializeToString(const VkImportMetalTextureInfoEXT& value, std::stringstre
     stream << ", ";
     SerializeToStringPNext(value.pNext, stream);
     stream << ", ";
-    SerializeToString(value.plane, stream);
+    SerializeToStringVkImageAspectFlags(value.plane, stream);
     stream << ", ";
     SerializeToString(value.mtlTexture, stream);
     stream << "}";
@@ -19510,7 +19510,7 @@ void SerializeToString(const VkPhysicalDeviceFragmentShadingRateEnumsPropertiesN
     stream << ", ";
     SerializeToStringPNext(value.pNext, stream);
     stream << ", ";
-    SerializeToString(value.maxFragmentShadingRateInvocationCount, stream);
+    SerializeToStringVkSampleCountFlags(value.maxFragmentShadingRateInvocationCount, stream);
     stream << "}";
 }
 
@@ -19709,7 +19709,7 @@ void SerializeToString(const VkCopyCommandTransformInfoQCOM& value, std::strings
     stream << ", ";
     SerializeToStringPNext(value.pNext, stream);
     stream << ", ";
-    SerializeToString(value.transform, stream);
+    SerializeToStringVkSurfaceTransformFlagsKHR(value.transform, stream);
     stream << "}";
 }
 
@@ -19733,7 +19733,7 @@ void SerializeToString(const VkImageCompressionControlEXT& value, std::stringstr
     stream << ", ";
     SerializeToString(value.compressionControlPlaneCount, stream);
     stream << ", ";
-    if (value.pFixedRateFlags) {
+    if (value.pFixedRateFlags && value.compressionControlPlaneCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.compressionControlPlaneCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -19954,7 +19954,7 @@ void SerializeToString(const VkMutableDescriptorTypeListEXT& value, std::strings
     stream << "VkMutableDescriptorTypeListEXT{";
     SerializeToString(value.descriptorTypeCount, stream);
     stream << ", ";
-    if (value.pDescriptorTypes) {
+    if (value.pDescriptorTypes && value.descriptorTypeCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.descriptorTypeCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -19976,7 +19976,7 @@ void SerializeToString(const VkMutableDescriptorTypeCreateInfoEXT& value, std::s
     stream << ", ";
     SerializeToString(value.mutableDescriptorTypeListCount, stream);
     stream << ", ";
-    if (value.pMutableDescriptorTypeLists) {
+    if (value.pMutableDescriptorTypeLists && value.mutableDescriptorTypeListCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.mutableDescriptorTypeListCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -20116,7 +20116,7 @@ void SerializeToString(const VkImportMemoryZirconHandleInfoFUCHSIA& value, std::
     stream << ", ";
     SerializeToStringPNext(value.pNext, stream);
     stream << ", ";
-    SerializeToString(value.handleType, stream);
+    SerializeToStringVkExternalMemoryHandleTypeFlags(value.handleType, stream);
     stream << ", ";
     SerializeToString(value.handle, stream);
     stream << "}";
@@ -20140,7 +20140,7 @@ void SerializeToString(const VkMemoryGetZirconHandleInfoFUCHSIA& value, std::str
     stream << ", ";
     SerializeToString(value.memory, stream);
     stream << ", ";
-    SerializeToString(value.handleType, stream);
+    SerializeToStringVkExternalMemoryHandleTypeFlags(value.handleType, stream);
     stream << "}";
 }
 
@@ -20154,7 +20154,7 @@ void SerializeToString(const VkImportSemaphoreZirconHandleInfoFUCHSIA& value, st
     stream << ", ";
     SerializeToStringVkSemaphoreImportFlags(value.flags, stream);
     stream << ", ";
-    SerializeToString(value.handleType, stream);
+    SerializeToStringVkExternalSemaphoreHandleTypeFlags(value.handleType, stream);
     stream << ", ";
     SerializeToString(value.zirconHandle, stream);
     stream << "}";
@@ -20168,7 +20168,7 @@ void SerializeToString(const VkSemaphoreGetZirconHandleInfoFUCHSIA& value, std::
     stream << ", ";
     SerializeToString(value.semaphore, stream);
     stream << ", ";
-    SerializeToString(value.handleType, stream);
+    SerializeToStringVkExternalSemaphoreHandleTypeFlags(value.handleType, stream);
     stream << "}";
 }
 
@@ -20306,7 +20306,7 @@ void SerializeToString(const VkImageFormatConstraintsInfoFUCHSIA& value, std::st
     stream << ", ";
     SerializeToString(value.colorSpaceCount, stream);
     stream << ", ";
-    if (value.pColorSpaces) {
+    if (value.pColorSpaces && value.colorSpaceCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.colorSpaceCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -20328,7 +20328,7 @@ void SerializeToString(const VkImageConstraintsInfoFUCHSIA& value, std::stringst
     stream << ", ";
     SerializeToString(value.formatConstraintsCount, stream);
     stream << ", ";
-    if (value.pFormatConstraints) {
+    if (value.pFormatConstraints && value.formatConstraintsCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.formatConstraintsCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -20396,7 +20396,7 @@ void SerializeToString(const VkMemoryGetRemoteAddressInfoNV& value, std::strings
     stream << ", ";
     SerializeToString(value.memory, stream);
     stream << ", ";
-    SerializeToString(value.handleType, stream);
+    SerializeToStringVkExternalMemoryHandleTypeFlags(value.handleType, stream);
     stream << "}";
 }
 
@@ -20457,7 +20457,7 @@ void SerializeToString(const VkFrameBoundaryEXT& value, std::stringstream& strea
     stream << ", ";
     SerializeToString(value.imageCount, stream);
     stream << ", ";
-    if (value.pImages) {
+    if (value.pImages && value.imageCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.imageCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -20471,7 +20471,7 @@ void SerializeToString(const VkFrameBoundaryEXT& value, std::stringstream& strea
     stream << ", ";
     SerializeToString(value.bufferCount, stream);
     stream << ", ";
-    if (value.pBuffers) {
+    if (value.pBuffers && value.bufferCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.bufferCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -20487,7 +20487,7 @@ void SerializeToString(const VkFrameBoundaryEXT& value, std::stringstream& strea
     stream << ", ";
     SerializeToString(value.tagSize, stream);
     stream << ", ";
-    if (value.pTag) {
+    if (value.pTag && value.tagSize > 0) {
         stream << "{[";
         const uint8_t* ptr = reinterpret_cast<const uint8_t*>(value.pTag);
         for (int i = 0; i < value.tagSize; ++i) {
@@ -20530,7 +20530,7 @@ void SerializeToString(const VkMultisampledRenderToSingleSampledInfoEXT& value, 
     stream << ", ";
     SerializeToString(value.multisampledRenderToSingleSampledEnable, stream);
     stream << ", ";
-    SerializeToString(value.rasterizationSamples, stream);
+    SerializeToStringVkSampleCountFlags(value.rasterizationSamples, stream);
     stream << "}";
 }
 
@@ -20580,7 +20580,7 @@ void SerializeToString(const VkPipelineColorWriteCreateInfoEXT& value, std::stri
     stream << ", ";
     SerializeToString(value.attachmentCount, stream);
     stream << ", ";
-    if (value.pColorWriteEnables) {
+    if (value.pColorWriteEnables && value.attachmentCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.attachmentCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -20650,13 +20650,13 @@ void SerializeToString(const VkVideoEncodeSessionRgbConversionCreateInfoVALVE& v
     stream << ", ";
     SerializeToStringPNext(value.pNext, stream);
     stream << ", ";
-    SerializeToString(value.rgbModel, stream);
+    SerializeToStringVkVideoEncodeRgbModelConversionFlagsVALVE(value.rgbModel, stream);
     stream << ", ";
-    SerializeToString(value.rgbRange, stream);
+    SerializeToStringVkVideoEncodeRgbRangeCompressionFlagsVALVE(value.rgbRange, stream);
     stream << ", ";
-    SerializeToString(value.xChromaOffset, stream);
+    SerializeToStringVkVideoEncodeRgbChromaOffsetFlagsVALVE(value.xChromaOffset, stream);
     stream << ", ";
-    SerializeToString(value.yChromaOffset, stream);
+    SerializeToStringVkVideoEncodeRgbChromaOffsetFlagsVALVE(value.yChromaOffset, stream);
     stream << "}";
 }
 
@@ -20792,7 +20792,7 @@ void SerializeToString(const VkMicromapBuildInfoEXT& value, std::stringstream& s
     stream << ", ";
     SerializeToString(value.usageCountsCount, stream);
     stream << ", ";
-    if (value.pUsageCounts) {
+    if (value.pUsageCounts && value.usageCountsCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.usageCountsCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -20804,11 +20804,11 @@ void SerializeToString(const VkMicromapBuildInfoEXT& value, std::stringstream& s
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (value.ppUsageCounts) {
+    if (value.ppUsageCounts && value.usageCountsCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.usageCountsCount; ++i) {
             if (i > 0) { stream << ", "; }
-            if (value.ppUsageCounts[i]) {
+            if (value.ppUsageCounts[i] && 1 > 0) {
                 for (int j = 0; j < 1; ++j) {
                     if (j > 0) { stream << ", "; }
                     SerializeToString(value.ppUsageCounts[i][j], stream);
@@ -20887,7 +20887,7 @@ void SerializeToString(const VkMicromapVersionInfoEXT& value, std::stringstream&
     stream << ", ";
     SerializeToStringPNext(value.pNext, stream);
     stream << ", ";
-    if (value.pVersionData) {
+    if (value.pVersionData && 2*VK_UUID_SIZE > 0) {
         stream << "{[";
         for (int i = 0; i < 2*VK_UUID_SIZE; ++i) {
             if (i > 0) { stream << ", "; }
@@ -20973,7 +20973,7 @@ void SerializeToString(const VkAccelerationStructureTrianglesOpacityMicromapEXT&
     stream << ", ";
     SerializeToString(value.usageCountsCount, stream);
     stream << ", ";
-    if (value.pUsageCounts) {
+    if (value.pUsageCounts && value.usageCountsCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.usageCountsCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -20985,11 +20985,11 @@ void SerializeToString(const VkAccelerationStructureTrianglesOpacityMicromapEXT&
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (value.ppUsageCounts) {
+    if (value.ppUsageCounts && value.usageCountsCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.usageCountsCount; ++i) {
             if (i > 0) { stream << ", "; }
-            if (value.ppUsageCounts[i]) {
+            if (value.ppUsageCounts[i] && 1 > 0) {
                 for (int j = 0; j < 1; ++j) {
                     if (j > 0) { stream << ", "; }
                     SerializeToString(value.ppUsageCounts[i][j], stream);
@@ -21072,7 +21072,7 @@ void SerializeToString(const VkAccelerationStructureTrianglesDisplacementMicroma
     stream << ", ";
     SerializeToString(value.usageCountsCount, stream);
     stream << ", ";
-    if (value.pUsageCounts) {
+    if (value.pUsageCounts && value.usageCountsCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.usageCountsCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -21084,11 +21084,11 @@ void SerializeToString(const VkAccelerationStructureTrianglesDisplacementMicroma
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (value.ppUsageCounts) {
+    if (value.ppUsageCounts && value.usageCountsCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.usageCountsCount; ++i) {
             if (i > 0) { stream << ", "; }
-            if (value.ppUsageCounts[i]) {
+            if (value.ppUsageCounts[i] && 1 > 0) {
                 for (int j = 0; j < 1; ++j) {
                     if (j > 0) { stream << ", "; }
                     SerializeToString(value.ppUsageCounts[i][j], stream);
@@ -21341,7 +21341,7 @@ void SerializeToString(const VkRenderPassStripeBeginInfoARM& value, std::strings
     stream << ", ";
     SerializeToString(value.stripeInfoCount, stream);
     stream << ", ";
-    if (value.pStripeInfos) {
+    if (value.pStripeInfos && value.stripeInfoCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.stripeInfoCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -21363,7 +21363,7 @@ void SerializeToString(const VkRenderPassStripeSubmitInfoARM& value, std::string
     stream << ", ";
     SerializeToString(value.stripeSemaphoreInfoCount, stream);
     stream << ", ";
-    if (value.pStripeSemaphoreInfos) {
+    if (value.pStripeSemaphoreInfos && value.stripeSemaphoreInfoCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.stripeSemaphoreInfoCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -21405,7 +21405,7 @@ void SerializeToString(const VkRenderPassFragmentDensityMapOffsetEndInfoEXT& val
     stream << ", ";
     SerializeToString(value.fragmentDensityOffsetCount, stream);
     stream << ", ";
-    if (value.pFragmentDensityOffsets) {
+    if (value.pFragmentDensityOffsets && value.fragmentDensityOffsetCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.fragmentDensityOffsetCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -21955,7 +21955,7 @@ void SerializeToString(const VkDirectDriverLoadingListLUNARG& value, std::string
     stream << ", ";
     SerializeToString(value.driverCount, stream);
     stream << ", ";
-    if (value.pDrivers) {
+    if (value.pDrivers && value.driverCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.driverCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -21981,7 +21981,7 @@ void SerializeToString(const VkTensorDescriptionARM& value, std::stringstream& s
     stream << ", ";
     SerializeToString(value.dimensionCount, stream);
     stream << ", ";
-    if (value.pDimensions) {
+    if (value.pDimensions && value.dimensionCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.dimensionCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -21993,7 +21993,7 @@ void SerializeToString(const VkTensorDescriptionARM& value, std::stringstream& s
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (value.pStrides) {
+    if (value.pStrides && value.dimensionCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.dimensionCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -22030,7 +22030,7 @@ void SerializeToString(const VkTensorCreateInfoARM& value, std::stringstream& st
     stream << ", ";
     SerializeToString(value.queueFamilyIndexCount, stream);
     stream << ", ";
-    if (value.pQueueFamilyIndices) {
+    if (value.pQueueFamilyIndices && value.queueFamilyIndexCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.queueFamilyIndexCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -22090,7 +22090,7 @@ void SerializeToString(const VkWriteDescriptorSetTensorARM& value, std::stringst
     stream << ", ";
     SerializeToString(value.tensorViewCount, stream);
     stream << ", ";
-    if (value.pTensorViews) {
+    if (value.pTensorViews && value.tensorViewCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.tensorViewCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -22236,7 +22236,7 @@ void SerializeToString(const VkTensorCopyARM& value, std::stringstream& stream) 
     stream << ", ";
     SerializeToString(value.dimensionCount, stream);
     stream << ", ";
-    if (value.pSrcOffset) {
+    if (value.pSrcOffset && value.dimensionCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.dimensionCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -22248,7 +22248,7 @@ void SerializeToString(const VkTensorCopyARM& value, std::stringstream& stream) 
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (value.pDstOffset) {
+    if (value.pDstOffset && value.dimensionCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.dimensionCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -22260,7 +22260,7 @@ void SerializeToString(const VkTensorCopyARM& value, std::stringstream& stream) 
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (value.pExtent) {
+    if (value.pExtent && value.dimensionCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.dimensionCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -22286,7 +22286,7 @@ void SerializeToString(const VkCopyTensorInfoARM& value, std::stringstream& stre
     stream << ", ";
     SerializeToString(value.regionCount, stream);
     stream << ", ";
-    if (value.pRegions) {
+    if (value.pRegions && value.regionCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.regionCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -22327,7 +22327,7 @@ void SerializeToString(const VkPhysicalDeviceExternalTensorInfoARM& value, std::
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    SerializeToString(value.handleType, stream);
+    SerializeToStringVkExternalMemoryHandleTypeFlags(value.handleType, stream);
     stream << "}";
 }
 
@@ -22413,7 +22413,7 @@ void SerializeToString(const VkFrameBoundaryTensorsARM& value, std::stringstream
     stream << ", ";
     SerializeToString(value.tensorCount, stream);
     stream << ", ";
-    if (value.pTensors) {
+    if (value.pTensors && value.tensorCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.tensorCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -22460,7 +22460,7 @@ void SerializeToString(const VkPipelineShaderStageModuleIdentifierCreateInfoEXT&
     stream << ", ";
     SerializeToString(value.identifierSize, stream);
     stream << ", ";
-    if (value.pIdentifier) {
+    if (value.pIdentifier && value.identifierSize > 0) {
         stream << "{[";
         for (int i = 0; i < value.identifierSize; ++i) {
             if (i > 0) { stream << ", "; }
@@ -22601,7 +22601,7 @@ void SerializeToString(const VkOpticalFlowExecuteInfoNV& value, std::stringstrea
     stream << ", ";
     SerializeToString(value.regionCount, stream);
     stream << ", ";
-    if (value.pRegions) {
+    if (value.pRegions && value.regionCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.regionCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -22769,7 +22769,7 @@ void SerializeToString(const VkShaderCreateInfoEXT& value, std::stringstream& st
     stream << ", ";
     SerializeToStringVkShaderCreateFlagsEXT(value.flags, stream);
     stream << ", ";
-    SerializeToString(value.stage, stream);
+    SerializeToStringVkShaderStageFlags(value.stage, stream);
     stream << ", ";
     SerializeToStringVkShaderStageFlags(value.nextStage, stream);
     stream << ", ";
@@ -22777,7 +22777,7 @@ void SerializeToString(const VkShaderCreateInfoEXT& value, std::stringstream& st
     stream << ", ";
     SerializeToString(value.codeSize, stream);
     stream << ", ";
-    if (value.pCode) {
+    if (value.pCode && value.codeSize > 0) {
         stream << "{[";
         const uint8_t* ptr = reinterpret_cast<const uint8_t*>(value.pCode);
         for (int i = 0; i < value.codeSize; ++i) {
@@ -22794,7 +22794,7 @@ void SerializeToString(const VkShaderCreateInfoEXT& value, std::stringstream& st
     stream << ", ";
     SerializeToString(value.setLayoutCount, stream);
     stream << ", ";
-    if (value.pSetLayouts) {
+    if (value.pSetLayouts && value.setLayoutCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.setLayoutCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -22808,7 +22808,7 @@ void SerializeToString(const VkShaderCreateInfoEXT& value, std::stringstream& st
     stream << ", ";
     SerializeToString(value.pushConstantRangeCount, stream);
     stream << ", ";
-    if (value.pPushConstantRanges) {
+    if (value.pPushConstantRanges && value.pushConstantRangeCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.pushConstantRangeCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -23056,7 +23056,7 @@ void SerializeToString(const VkLayerSettingEXT& value, std::stringstream& stream
     stream << ", ";
     SerializeToString(value.valueCount, stream);
     stream << ", ";
-    if (value.pValues) {
+    if (value.pValues && value.valueCount > 0) {
         stream << "{[";
         const uint8_t* ptr = reinterpret_cast<const uint8_t*>(value.pValues);
         for (int i = 0; i < value.valueCount; ++i) {
@@ -23079,7 +23079,7 @@ void SerializeToString(const VkLayerSettingsCreateInfoEXT& value, std::stringstr
     stream << ", ";
     SerializeToString(value.settingCount, stream);
     stream << ", ";
-    if (value.pSettings) {
+    if (value.pSettings && value.settingCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.settingCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -23219,7 +23219,7 @@ void SerializeToString(const VkGetLatencyMarkerInfoNV& value, std::stringstream&
     stream << ", ";
     SerializeToString(value.timingCount, stream);
     stream << ", ";
-    if (value.pTimings) {
+    if (value.pTimings && value.timingCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.timingCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -23271,7 +23271,7 @@ void SerializeToString(const VkLatencySurfaceCapabilitiesNV& value, std::strings
     stream << ", ";
     SerializeToString(value.presentModeCount, stream);
     stream << ", ";
-    if (value.pPresentModes) {
+    if (value.pPresentModes && value.presentModeCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.presentModeCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -23351,7 +23351,7 @@ void SerializeToString(const VkDataGraphPipelineCreateInfoARM& value, std::strin
     stream << ", ";
     SerializeToString(value.resourceInfoCount, stream);
     stream << ", ";
-    if (value.pResourceInfos) {
+    if (value.pResourceInfos && value.resourceInfoCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.resourceInfoCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -23386,7 +23386,7 @@ void SerializeToString(const VkDataGraphPipelineShaderModuleCreateInfoARM& value
     stream << ", ";
     SerializeToString(value.constantCount, stream);
     stream << ", ";
-    if (value.pConstants) {
+    if (value.pConstants && value.constantCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.constantCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -23490,7 +23490,7 @@ void SerializeToString(const VkDataGraphPipelinePropertyQueryResultARM& value, s
     stream << ", ";
     SerializeToString(value.dataSize, stream);
     stream << ", ";
-    if (value.pData) {
+    if (value.pData && value.dataSize > 0) {
         stream << "{[";
         const uint8_t* ptr = reinterpret_cast<const uint8_t*>(value.pData);
         for (int i = 0; i < value.dataSize; ++i) {
@@ -23513,7 +23513,7 @@ void SerializeToString(const VkDataGraphPipelineIdentifierCreateInfoARM& value, 
     stream << ", ";
     SerializeToString(value.identifierSize, stream);
     stream << ", ";
-    if (value.pIdentifier) {
+    if (value.pIdentifier && value.identifierSize > 0) {
         stream << "{[";
         for (int i = 0; i < value.identifierSize; ++i) {
             if (i > 0) { stream << ", "; }
@@ -23575,7 +23575,7 @@ void SerializeToString(const VkDataGraphProcessingEngineCreateInfoARM& value, st
     stream << ", ";
     SerializeToString(value.processingEngineCount, stream);
     stream << ", ";
-    if (value.pProcessingEngines) {
+    if (value.pProcessingEngines && value.processingEngineCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.processingEngineCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -23645,7 +23645,7 @@ void SerializeToString(const VkMultiviewPerViewRenderAreasRenderPassBeginInfoQCO
     stream << ", ";
     SerializeToString(value.perViewRenderAreaCount, stream);
     stream << ", ";
-    if (value.pPerViewRenderAreas) {
+    if (value.pPerViewRenderAreas && value.perViewRenderAreaCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.perViewRenderAreaCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -23939,7 +23939,7 @@ void SerializeToString(const VkDecompressMemoryInfoEXT& value, std::stringstream
     stream << ", ";
     SerializeToString(value.regionCount, stream);
     stream << ", ";
-    if (value.pRegions) {
+    if (value.pRegions && value.regionCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.regionCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -24498,7 +24498,7 @@ void SerializeToString(const VkWriteDescriptorSetPartitionedAccelerationStructur
     stream << ", ";
     SerializeToString(value.accelerationStructureCount, stream);
     stream << ", ";
-    if (value.pAccelerationStructures) {
+    if (value.pAccelerationStructures && value.accelerationStructureCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.accelerationStructureCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -24630,7 +24630,7 @@ void SerializeToString(const VkIndirectExecutionSetShaderLayoutInfoEXT& value, s
     stream << ", ";
     SerializeToString(value.setLayoutCount, stream);
     stream << ", ";
-    if (value.pSetLayouts) {
+    if (value.pSetLayouts && value.setLayoutCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.setLayoutCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -24652,7 +24652,7 @@ void SerializeToString(const VkIndirectExecutionSetShaderInfoEXT& value, std::st
     stream << ", ";
     SerializeToString(value.shaderCount, stream);
     stream << ", ";
-    if (value.pInitialShaders) {
+    if (value.pInitialShaders && value.shaderCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.shaderCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -24664,7 +24664,7 @@ void SerializeToString(const VkIndirectExecutionSetShaderInfoEXT& value, std::st
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (value.pSetLayoutInfos) {
+    if (value.pSetLayoutInfos && value.shaderCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.shaderCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -24680,7 +24680,7 @@ void SerializeToString(const VkIndirectExecutionSetShaderInfoEXT& value, std::st
     stream << ", ";
     SerializeToString(value.pushConstantRangeCount, stream);
     stream << ", ";
-    if (value.pPushConstantRanges) {
+    if (value.pPushConstantRanges && value.pushConstantRangeCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.pushConstantRangeCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -24782,7 +24782,7 @@ void SerializeToString(const VkIndirectCommandsVertexBufferTokenEXT& value, std:
 
 void SerializeToString(const VkIndirectCommandsIndexBufferTokenEXT& value, std::stringstream& stream) {
     stream << "VkIndirectCommandsIndexBufferTokenEXT{";
-    SerializeToString(value.mode, stream);
+    SerializeToStringVkIndirectCommandsInputModeFlagsEXT(value.mode, stream);
     stream << "}";
 }
 
@@ -24864,7 +24864,7 @@ void SerializeToString(const VkIndirectCommandsLayoutCreateInfoEXT& value, std::
     stream << ", ";
     SerializeToString(value.tokenCount, stream);
     stream << ", ";
-    if (value.pTokens) {
+    if (value.pTokens && value.tokenCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.tokenCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -24926,7 +24926,7 @@ void SerializeToString(const VkGeneratedCommandsShaderInfoEXT& value, std::strin
     stream << ", ";
     SerializeToString(value.shaderCount, stream);
     stream << ", ";
-    if (value.pShaders) {
+    if (value.pShaders && value.shaderCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.shaderCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -25093,7 +25093,7 @@ void SerializeToString(const VkHdrVividDynamicMetadataHUAWEI& value, std::string
     stream << ", ";
     SerializeToString(value.dynamicMetadataSize, stream);
     stream << ", ";
-    if (value.pDynamicMetadata) {
+    if (value.pDynamicMetadata && value.dynamicMetadataSize > 0) {
         stream << "{[";
         const uint8_t* ptr = reinterpret_cast<const uint8_t*>(value.pDynamicMetadata);
         for (int i = 0; i < value.dynamicMetadataSize; ++i) {
@@ -25188,7 +25188,7 @@ void SerializeToString(const VkImportMemoryMetalHandleInfoEXT& value, std::strin
     stream << ", ";
     SerializeToStringPNext(value.pNext, stream);
     stream << ", ";
-    SerializeToString(value.handleType, stream);
+    SerializeToStringVkExternalMemoryHandleTypeFlags(value.handleType, stream);
     stream << ", ";
     SerializeToString(value.handle, stream);
     stream << "}";
@@ -25212,7 +25212,7 @@ void SerializeToString(const VkMemoryGetMetalHandleInfoEXT& value, std::stringst
     stream << ", ";
     SerializeToString(value.memory, stream);
     stream << ", ";
-    SerializeToString(value.handleType, stream);
+    SerializeToStringVkExternalMemoryHandleTypeFlags(value.handleType, stream);
     stream << "}";
 }
 
@@ -25418,7 +25418,7 @@ void SerializeToString(const VkCustomResolveCreateInfoEXT& value, std::stringstr
     stream << ", ";
     SerializeToString(value.colorAttachmentCount, stream);
     stream << ", ";
-    if (value.pColorAttachmentFormats) {
+    if (value.pColorAttachmentFormats && value.colorAttachmentCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.colorAttachmentCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -25602,7 +25602,7 @@ void SerializeToString(const VkAccelerationStructureBuildGeometryInfoKHR& value,
     stream << ", ";
     SerializeToString(value.geometryCount, stream);
     stream << ", ";
-    if (value.pGeometries) {
+    if (value.pGeometries && value.geometryCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.geometryCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -25614,11 +25614,11 @@ void SerializeToString(const VkAccelerationStructureBuildGeometryInfoKHR& value,
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (value.ppGeometries) {
+    if (value.ppGeometries && value.geometryCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.geometryCount; ++i) {
             if (i > 0) { stream << ", "; }
-            if (value.ppGeometries[i]) {
+            if (value.ppGeometries[i] && 1 > 0) {
                 for (int j = 0; j < 1; ++j) {
                     if (j > 0) { stream << ", "; }
                     SerializeToString(value.ppGeometries[i][j], stream);
@@ -25667,7 +25667,7 @@ void SerializeToString(const VkWriteDescriptorSetAccelerationStructureKHR& value
     stream << ", ";
     SerializeToString(value.accelerationStructureCount, stream);
     stream << ", ";
-    if (value.pAccelerationStructures) {
+    if (value.pAccelerationStructures && value.accelerationStructureCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.accelerationStructureCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -25739,7 +25739,7 @@ void SerializeToString(const VkAccelerationStructureVersionInfoKHR& value, std::
     stream << ", ";
     SerializeToStringPNext(value.pNext, stream);
     stream << ", ";
-    if (value.pVersionData) {
+    if (value.pVersionData && 2*VK_UUID_SIZE > 0) {
         stream << "{[";
         for (int i = 0; i < 2*VK_UUID_SIZE; ++i) {
             if (i > 0) { stream << ", "; }
@@ -25837,7 +25837,7 @@ void SerializeToString(const VkRayTracingPipelineCreateInfoKHR& value, std::stri
     stream << ", ";
     SerializeToString(value.stageCount, stream);
     stream << ", ";
-    if (value.pStages) {
+    if (value.pStages && value.stageCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.stageCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -25851,7 +25851,7 @@ void SerializeToString(const VkRayTracingPipelineCreateInfoKHR& value, std::stri
     stream << ", ";
     SerializeToString(value.groupCount, stream);
     stream << ", ";
-    if (value.pGroups) {
+    if (value.pGroups && value.groupCount > 0) {
         stream << "{[";
         for (int i = 0; i < value.groupCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -26086,4599 +26086,5739 @@ void SerializeToStringPNext(const void* pNext, std::stringstream& stream) {
         case VK_STRUCTURE_TYPE_BUFFER_MEMORY_BARRIER: {
             const VkBufferMemoryBarrier* pValue = reinterpret_cast<const VkBufferMemoryBarrier*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER: {
             const VkImageMemoryBarrier* pValue = reinterpret_cast<const VkImageMemoryBarrier*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_MEMORY_BARRIER: {
             const VkMemoryBarrier* pValue = reinterpret_cast<const VkMemoryBarrier*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_APPLICATION_INFO: {
             const VkApplicationInfo* pValue = reinterpret_cast<const VkApplicationInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO: {
             const VkInstanceCreateInfo* pValue = reinterpret_cast<const VkInstanceCreateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO: {
             const VkDeviceQueueCreateInfo* pValue = reinterpret_cast<const VkDeviceQueueCreateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO: {
             const VkDeviceCreateInfo* pValue = reinterpret_cast<const VkDeviceCreateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SUBMIT_INFO: {
             const VkSubmitInfo* pValue = reinterpret_cast<const VkSubmitInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_MAPPED_MEMORY_RANGE: {
             const VkMappedMemoryRange* pValue = reinterpret_cast<const VkMappedMemoryRange*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO: {
             const VkMemoryAllocateInfo* pValue = reinterpret_cast<const VkMemoryAllocateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_BIND_SPARSE_INFO: {
             const VkBindSparseInfo* pValue = reinterpret_cast<const VkBindSparseInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_FENCE_CREATE_INFO: {
             const VkFenceCreateInfo* pValue = reinterpret_cast<const VkFenceCreateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SEMAPHORE_CREATE_INFO: {
             const VkSemaphoreCreateInfo* pValue = reinterpret_cast<const VkSemaphoreCreateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_QUERY_POOL_CREATE_INFO: {
             const VkQueryPoolCreateInfo* pValue = reinterpret_cast<const VkQueryPoolCreateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO: {
             const VkBufferCreateInfo* pValue = reinterpret_cast<const VkBufferCreateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_IMAGE_CREATE_INFO: {
             const VkImageCreateInfo* pValue = reinterpret_cast<const VkImageCreateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_IMAGE_VIEW_CREATE_INFO: {
             const VkImageViewCreateInfo* pValue = reinterpret_cast<const VkImageViewCreateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO: {
             const VkCommandPoolCreateInfo* pValue = reinterpret_cast<const VkCommandPoolCreateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO: {
             const VkCommandBufferAllocateInfo* pValue = reinterpret_cast<const VkCommandBufferAllocateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_INFO: {
             const VkCommandBufferInheritanceInfo* pValue = reinterpret_cast<const VkCommandBufferInheritanceInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO: {
             const VkCommandBufferBeginInfo* pValue = reinterpret_cast<const VkCommandBufferBeginInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_EVENT_CREATE_INFO: {
             const VkEventCreateInfo* pValue = reinterpret_cast<const VkEventCreateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_BUFFER_VIEW_CREATE_INFO: {
             const VkBufferViewCreateInfo* pValue = reinterpret_cast<const VkBufferViewCreateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO: {
             const VkShaderModuleCreateInfo* pValue = reinterpret_cast<const VkShaderModuleCreateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PIPELINE_CACHE_CREATE_INFO: {
             const VkPipelineCacheCreateInfo* pValue = reinterpret_cast<const VkPipelineCacheCreateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO: {
             const VkPipelineShaderStageCreateInfo* pValue = reinterpret_cast<const VkPipelineShaderStageCreateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_COMPUTE_PIPELINE_CREATE_INFO: {
             const VkComputePipelineCreateInfo* pValue = reinterpret_cast<const VkComputePipelineCreateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO: {
             const VkPipelineLayoutCreateInfo* pValue = reinterpret_cast<const VkPipelineLayoutCreateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SAMPLER_CREATE_INFO: {
             const VkSamplerCreateInfo* pValue = reinterpret_cast<const VkSamplerCreateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_COPY_DESCRIPTOR_SET: {
             const VkCopyDescriptorSet* pValue = reinterpret_cast<const VkCopyDescriptorSet*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DESCRIPTOR_POOL_CREATE_INFO: {
             const VkDescriptorPoolCreateInfo* pValue = reinterpret_cast<const VkDescriptorPoolCreateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DESCRIPTOR_SET_ALLOCATE_INFO: {
             const VkDescriptorSetAllocateInfo* pValue = reinterpret_cast<const VkDescriptorSetAllocateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_CREATE_INFO: {
             const VkDescriptorSetLayoutCreateInfo* pValue = reinterpret_cast<const VkDescriptorSetLayoutCreateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET: {
             const VkWriteDescriptorSet* pValue = reinterpret_cast<const VkWriteDescriptorSet*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO: {
             const VkPipelineVertexInputStateCreateInfo* pValue = reinterpret_cast<const VkPipelineVertexInputStateCreateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PIPELINE_INPUT_ASSEMBLY_STATE_CREATE_INFO: {
             const VkPipelineInputAssemblyStateCreateInfo* pValue = reinterpret_cast<const VkPipelineInputAssemblyStateCreateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PIPELINE_TESSELLATION_STATE_CREATE_INFO: {
             const VkPipelineTessellationStateCreateInfo* pValue = reinterpret_cast<const VkPipelineTessellationStateCreateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO: {
             const VkPipelineViewportStateCreateInfo* pValue = reinterpret_cast<const VkPipelineViewportStateCreateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_CREATE_INFO: {
             const VkPipelineRasterizationStateCreateInfo* pValue = reinterpret_cast<const VkPipelineRasterizationStateCreateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PIPELINE_MULTISAMPLE_STATE_CREATE_INFO: {
             const VkPipelineMultisampleStateCreateInfo* pValue = reinterpret_cast<const VkPipelineMultisampleStateCreateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PIPELINE_DEPTH_STENCIL_STATE_CREATE_INFO: {
             const VkPipelineDepthStencilStateCreateInfo* pValue = reinterpret_cast<const VkPipelineDepthStencilStateCreateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PIPELINE_COLOR_BLEND_STATE_CREATE_INFO: {
             const VkPipelineColorBlendStateCreateInfo* pValue = reinterpret_cast<const VkPipelineColorBlendStateCreateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PIPELINE_DYNAMIC_STATE_CREATE_INFO: {
             const VkPipelineDynamicStateCreateInfo* pValue = reinterpret_cast<const VkPipelineDynamicStateCreateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO: {
             const VkGraphicsPipelineCreateInfo* pValue = reinterpret_cast<const VkGraphicsPipelineCreateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_FRAMEBUFFER_CREATE_INFO: {
             const VkFramebufferCreateInfo* pValue = reinterpret_cast<const VkFramebufferCreateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO: {
             const VkRenderPassCreateInfo* pValue = reinterpret_cast<const VkRenderPassCreateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO: {
             const VkRenderPassBeginInfo* pValue = reinterpret_cast<const VkRenderPassBeginInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_BIND_BUFFER_MEMORY_INFO: {
             const VkBindBufferMemoryInfo* pValue = reinterpret_cast<const VkBindBufferMemoryInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_BIND_IMAGE_MEMORY_INFO: {
             const VkBindImageMemoryInfo* pValue = reinterpret_cast<const VkBindImageMemoryInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_MEMORY_DEDICATED_REQUIREMENTS: {
             const VkMemoryDedicatedRequirements* pValue = reinterpret_cast<const VkMemoryDedicatedRequirements*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_MEMORY_DEDICATED_ALLOCATE_INFO: {
             const VkMemoryDedicatedAllocateInfo* pValue = reinterpret_cast<const VkMemoryDedicatedAllocateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_FLAGS_INFO: {
             const VkMemoryAllocateFlagsInfo* pValue = reinterpret_cast<const VkMemoryAllocateFlagsInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DEVICE_GROUP_COMMAND_BUFFER_BEGIN_INFO: {
             const VkDeviceGroupCommandBufferBeginInfo* pValue = reinterpret_cast<const VkDeviceGroupCommandBufferBeginInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DEVICE_GROUP_SUBMIT_INFO: {
             const VkDeviceGroupSubmitInfo* pValue = reinterpret_cast<const VkDeviceGroupSubmitInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DEVICE_GROUP_BIND_SPARSE_INFO: {
             const VkDeviceGroupBindSparseInfo* pValue = reinterpret_cast<const VkDeviceGroupBindSparseInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_BIND_BUFFER_MEMORY_DEVICE_GROUP_INFO: {
             const VkBindBufferMemoryDeviceGroupInfo* pValue = reinterpret_cast<const VkBindBufferMemoryDeviceGroupInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_BIND_IMAGE_MEMORY_DEVICE_GROUP_INFO: {
             const VkBindImageMemoryDeviceGroupInfo* pValue = reinterpret_cast<const VkBindImageMemoryDeviceGroupInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_GROUP_PROPERTIES: {
             const VkPhysicalDeviceGroupProperties* pValue = reinterpret_cast<const VkPhysicalDeviceGroupProperties*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DEVICE_GROUP_DEVICE_CREATE_INFO: {
             const VkDeviceGroupDeviceCreateInfo* pValue = reinterpret_cast<const VkDeviceGroupDeviceCreateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_BUFFER_MEMORY_REQUIREMENTS_INFO_2: {
             const VkBufferMemoryRequirementsInfo2* pValue = reinterpret_cast<const VkBufferMemoryRequirementsInfo2*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_IMAGE_MEMORY_REQUIREMENTS_INFO_2: {
             const VkImageMemoryRequirementsInfo2* pValue = reinterpret_cast<const VkImageMemoryRequirementsInfo2*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_IMAGE_SPARSE_MEMORY_REQUIREMENTS_INFO_2: {
             const VkImageSparseMemoryRequirementsInfo2* pValue = reinterpret_cast<const VkImageSparseMemoryRequirementsInfo2*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_MEMORY_REQUIREMENTS_2: {
             const VkMemoryRequirements2* pValue = reinterpret_cast<const VkMemoryRequirements2*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SPARSE_IMAGE_MEMORY_REQUIREMENTS_2: {
             const VkSparseImageMemoryRequirements2* pValue = reinterpret_cast<const VkSparseImageMemoryRequirements2*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FEATURES_2: {
             const VkPhysicalDeviceFeatures2* pValue = reinterpret_cast<const VkPhysicalDeviceFeatures2*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PROPERTIES_2: {
             const VkPhysicalDeviceProperties2* pValue = reinterpret_cast<const VkPhysicalDeviceProperties2*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_FORMAT_PROPERTIES_2: {
             const VkFormatProperties2* pValue = reinterpret_cast<const VkFormatProperties2*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_IMAGE_FORMAT_PROPERTIES_2: {
             const VkImageFormatProperties2* pValue = reinterpret_cast<const VkImageFormatProperties2*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_FORMAT_INFO_2: {
             const VkPhysicalDeviceImageFormatInfo2* pValue = reinterpret_cast<const VkPhysicalDeviceImageFormatInfo2*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_QUEUE_FAMILY_PROPERTIES_2: {
             const VkQueueFamilyProperties2* pValue = reinterpret_cast<const VkQueueFamilyProperties2*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MEMORY_PROPERTIES_2: {
             const VkPhysicalDeviceMemoryProperties2* pValue = reinterpret_cast<const VkPhysicalDeviceMemoryProperties2*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SPARSE_IMAGE_FORMAT_PROPERTIES_2: {
             const VkSparseImageFormatProperties2* pValue = reinterpret_cast<const VkSparseImageFormatProperties2*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SPARSE_IMAGE_FORMAT_INFO_2: {
             const VkPhysicalDeviceSparseImageFormatInfo2* pValue = reinterpret_cast<const VkPhysicalDeviceSparseImageFormatInfo2*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_IMAGE_VIEW_USAGE_CREATE_INFO: {
             const VkImageViewUsageCreateInfo* pValue = reinterpret_cast<const VkImageViewUsageCreateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PROTECTED_MEMORY_FEATURES: {
             const VkPhysicalDeviceProtectedMemoryFeatures* pValue = reinterpret_cast<const VkPhysicalDeviceProtectedMemoryFeatures*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PROTECTED_MEMORY_PROPERTIES: {
             const VkPhysicalDeviceProtectedMemoryProperties* pValue = reinterpret_cast<const VkPhysicalDeviceProtectedMemoryProperties*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DEVICE_QUEUE_INFO_2: {
             const VkDeviceQueueInfo2* pValue = reinterpret_cast<const VkDeviceQueueInfo2*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PROTECTED_SUBMIT_INFO: {
             const VkProtectedSubmitInfo* pValue = reinterpret_cast<const VkProtectedSubmitInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_BIND_IMAGE_PLANE_MEMORY_INFO: {
             const VkBindImagePlaneMemoryInfo* pValue = reinterpret_cast<const VkBindImagePlaneMemoryInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_IMAGE_PLANE_MEMORY_REQUIREMENTS_INFO: {
             const VkImagePlaneMemoryRequirementsInfo* pValue = reinterpret_cast<const VkImagePlaneMemoryRequirementsInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_IMAGE_FORMAT_INFO: {
             const VkPhysicalDeviceExternalImageFormatInfo* pValue = reinterpret_cast<const VkPhysicalDeviceExternalImageFormatInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_EXTERNAL_IMAGE_FORMAT_PROPERTIES: {
             const VkExternalImageFormatProperties* pValue = reinterpret_cast<const VkExternalImageFormatProperties*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_BUFFER_INFO: {
             const VkPhysicalDeviceExternalBufferInfo* pValue = reinterpret_cast<const VkPhysicalDeviceExternalBufferInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_EXTERNAL_BUFFER_PROPERTIES: {
             const VkExternalBufferProperties* pValue = reinterpret_cast<const VkExternalBufferProperties*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ID_PROPERTIES: {
             const VkPhysicalDeviceIDProperties* pValue = reinterpret_cast<const VkPhysicalDeviceIDProperties*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_EXTERNAL_MEMORY_IMAGE_CREATE_INFO: {
             const VkExternalMemoryImageCreateInfo* pValue = reinterpret_cast<const VkExternalMemoryImageCreateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_EXTERNAL_MEMORY_BUFFER_CREATE_INFO: {
             const VkExternalMemoryBufferCreateInfo* pValue = reinterpret_cast<const VkExternalMemoryBufferCreateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_EXPORT_MEMORY_ALLOCATE_INFO: {
             const VkExportMemoryAllocateInfo* pValue = reinterpret_cast<const VkExportMemoryAllocateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_FENCE_INFO: {
             const VkPhysicalDeviceExternalFenceInfo* pValue = reinterpret_cast<const VkPhysicalDeviceExternalFenceInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_EXTERNAL_FENCE_PROPERTIES: {
             const VkExternalFenceProperties* pValue = reinterpret_cast<const VkExternalFenceProperties*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_EXPORT_FENCE_CREATE_INFO: {
             const VkExportFenceCreateInfo* pValue = reinterpret_cast<const VkExportFenceCreateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_EXPORT_SEMAPHORE_CREATE_INFO: {
             const VkExportSemaphoreCreateInfo* pValue = reinterpret_cast<const VkExportSemaphoreCreateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_SEMAPHORE_INFO: {
             const VkPhysicalDeviceExternalSemaphoreInfo* pValue = reinterpret_cast<const VkPhysicalDeviceExternalSemaphoreInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_EXTERNAL_SEMAPHORE_PROPERTIES: {
             const VkExternalSemaphoreProperties* pValue = reinterpret_cast<const VkExternalSemaphoreProperties*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SUBGROUP_PROPERTIES: {
             const VkPhysicalDeviceSubgroupProperties* pValue = reinterpret_cast<const VkPhysicalDeviceSubgroupProperties*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_16BIT_STORAGE_FEATURES: {
             const VkPhysicalDevice16BitStorageFeatures* pValue = reinterpret_cast<const VkPhysicalDevice16BitStorageFeatures*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VARIABLE_POINTERS_FEATURES: {
             const VkPhysicalDeviceVariablePointersFeatures* pValue = reinterpret_cast<const VkPhysicalDeviceVariablePointersFeatures*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DESCRIPTOR_UPDATE_TEMPLATE_CREATE_INFO: {
             const VkDescriptorUpdateTemplateCreateInfo* pValue = reinterpret_cast<const VkDescriptorUpdateTemplateCreateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_3_PROPERTIES: {
             const VkPhysicalDeviceMaintenance3Properties* pValue = reinterpret_cast<const VkPhysicalDeviceMaintenance3Properties*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_SUPPORT: {
             const VkDescriptorSetLayoutSupport* pValue = reinterpret_cast<const VkDescriptorSetLayoutSupport*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SAMPLER_YCBCR_CONVERSION_CREATE_INFO: {
             const VkSamplerYcbcrConversionCreateInfo* pValue = reinterpret_cast<const VkSamplerYcbcrConversionCreateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SAMPLER_YCBCR_CONVERSION_INFO: {
             const VkSamplerYcbcrConversionInfo* pValue = reinterpret_cast<const VkSamplerYcbcrConversionInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SAMPLER_YCBCR_CONVERSION_FEATURES: {
             const VkPhysicalDeviceSamplerYcbcrConversionFeatures* pValue = reinterpret_cast<const VkPhysicalDeviceSamplerYcbcrConversionFeatures*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SAMPLER_YCBCR_CONVERSION_IMAGE_FORMAT_PROPERTIES: {
             const VkSamplerYcbcrConversionImageFormatProperties* pValue = reinterpret_cast<const VkSamplerYcbcrConversionImageFormatProperties*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DEVICE_GROUP_RENDER_PASS_BEGIN_INFO: {
             const VkDeviceGroupRenderPassBeginInfo* pValue = reinterpret_cast<const VkDeviceGroupRenderPassBeginInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_POINT_CLIPPING_PROPERTIES: {
             const VkPhysicalDevicePointClippingProperties* pValue = reinterpret_cast<const VkPhysicalDevicePointClippingProperties*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_RENDER_PASS_INPUT_ATTACHMENT_ASPECT_CREATE_INFO: {
             const VkRenderPassInputAttachmentAspectCreateInfo* pValue = reinterpret_cast<const VkRenderPassInputAttachmentAspectCreateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PIPELINE_TESSELLATION_DOMAIN_ORIGIN_STATE_CREATE_INFO: {
             const VkPipelineTessellationDomainOriginStateCreateInfo* pValue = reinterpret_cast<const VkPipelineTessellationDomainOriginStateCreateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_RENDER_PASS_MULTIVIEW_CREATE_INFO: {
             const VkRenderPassMultiviewCreateInfo* pValue = reinterpret_cast<const VkRenderPassMultiviewCreateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTIVIEW_FEATURES: {
             const VkPhysicalDeviceMultiviewFeatures* pValue = reinterpret_cast<const VkPhysicalDeviceMultiviewFeatures*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTIVIEW_PROPERTIES: {
             const VkPhysicalDeviceMultiviewProperties* pValue = reinterpret_cast<const VkPhysicalDeviceMultiviewProperties*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_DRAW_PARAMETERS_FEATURES: {
             const VkPhysicalDeviceShaderDrawParametersFeatures* pValue = reinterpret_cast<const VkPhysicalDeviceShaderDrawParametersFeatures*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_1_1_FEATURES: {
             const VkPhysicalDeviceVulkan11Features* pValue = reinterpret_cast<const VkPhysicalDeviceVulkan11Features*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_1_1_PROPERTIES: {
             const VkPhysicalDeviceVulkan11Properties* pValue = reinterpret_cast<const VkPhysicalDeviceVulkan11Properties*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_1_2_FEATURES: {
             const VkPhysicalDeviceVulkan12Features* pValue = reinterpret_cast<const VkPhysicalDeviceVulkan12Features*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_1_2_PROPERTIES: {
             const VkPhysicalDeviceVulkan12Properties* pValue = reinterpret_cast<const VkPhysicalDeviceVulkan12Properties*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_IMAGE_FORMAT_LIST_CREATE_INFO: {
             const VkImageFormatListCreateInfo* pValue = reinterpret_cast<const VkImageFormatListCreateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DRIVER_PROPERTIES: {
             const VkPhysicalDeviceDriverProperties* pValue = reinterpret_cast<const VkPhysicalDeviceDriverProperties*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_MEMORY_MODEL_FEATURES: {
             const VkPhysicalDeviceVulkanMemoryModelFeatures* pValue = reinterpret_cast<const VkPhysicalDeviceVulkanMemoryModelFeatures*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_HOST_QUERY_RESET_FEATURES: {
             const VkPhysicalDeviceHostQueryResetFeatures* pValue = reinterpret_cast<const VkPhysicalDeviceHostQueryResetFeatures*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_FEATURES: {
             const VkPhysicalDeviceTimelineSemaphoreFeatures* pValue = reinterpret_cast<const VkPhysicalDeviceTimelineSemaphoreFeatures*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_PROPERTIES: {
             const VkPhysicalDeviceTimelineSemaphoreProperties* pValue = reinterpret_cast<const VkPhysicalDeviceTimelineSemaphoreProperties*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SEMAPHORE_TYPE_CREATE_INFO: {
             const VkSemaphoreTypeCreateInfo* pValue = reinterpret_cast<const VkSemaphoreTypeCreateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_TIMELINE_SEMAPHORE_SUBMIT_INFO: {
             const VkTimelineSemaphoreSubmitInfo* pValue = reinterpret_cast<const VkTimelineSemaphoreSubmitInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SEMAPHORE_WAIT_INFO: {
             const VkSemaphoreWaitInfo* pValue = reinterpret_cast<const VkSemaphoreWaitInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SEMAPHORE_SIGNAL_INFO: {
             const VkSemaphoreSignalInfo* pValue = reinterpret_cast<const VkSemaphoreSignalInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_FEATURES: {
             const VkPhysicalDeviceBufferDeviceAddressFeatures* pValue = reinterpret_cast<const VkPhysicalDeviceBufferDeviceAddressFeatures*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_BUFFER_DEVICE_ADDRESS_INFO: {
             const VkBufferDeviceAddressInfo* pValue = reinterpret_cast<const VkBufferDeviceAddressInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_BUFFER_OPAQUE_CAPTURE_ADDRESS_CREATE_INFO: {
             const VkBufferOpaqueCaptureAddressCreateInfo* pValue = reinterpret_cast<const VkBufferOpaqueCaptureAddressCreateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_MEMORY_OPAQUE_CAPTURE_ADDRESS_ALLOCATE_INFO: {
             const VkMemoryOpaqueCaptureAddressAllocateInfo* pValue = reinterpret_cast<const VkMemoryOpaqueCaptureAddressAllocateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DEVICE_MEMORY_OPAQUE_CAPTURE_ADDRESS_INFO: {
             const VkDeviceMemoryOpaqueCaptureAddressInfo* pValue = reinterpret_cast<const VkDeviceMemoryOpaqueCaptureAddressInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_8BIT_STORAGE_FEATURES: {
             const VkPhysicalDevice8BitStorageFeatures* pValue = reinterpret_cast<const VkPhysicalDevice8BitStorageFeatures*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_ATOMIC_INT64_FEATURES: {
             const VkPhysicalDeviceShaderAtomicInt64Features* pValue = reinterpret_cast<const VkPhysicalDeviceShaderAtomicInt64Features*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_FLOAT16_INT8_FEATURES: {
             const VkPhysicalDeviceShaderFloat16Int8Features* pValue = reinterpret_cast<const VkPhysicalDeviceShaderFloat16Int8Features*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FLOAT_CONTROLS_PROPERTIES: {
             const VkPhysicalDeviceFloatControlsProperties* pValue = reinterpret_cast<const VkPhysicalDeviceFloatControlsProperties*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_BINDING_FLAGS_CREATE_INFO: {
             const VkDescriptorSetLayoutBindingFlagsCreateInfo* pValue = reinterpret_cast<const VkDescriptorSetLayoutBindingFlagsCreateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DESCRIPTOR_INDEXING_FEATURES: {
             const VkPhysicalDeviceDescriptorIndexingFeatures* pValue = reinterpret_cast<const VkPhysicalDeviceDescriptorIndexingFeatures*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DESCRIPTOR_INDEXING_PROPERTIES: {
             const VkPhysicalDeviceDescriptorIndexingProperties* pValue = reinterpret_cast<const VkPhysicalDeviceDescriptorIndexingProperties*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DESCRIPTOR_SET_VARIABLE_DESCRIPTOR_COUNT_ALLOCATE_INFO: {
             const VkDescriptorSetVariableDescriptorCountAllocateInfo* pValue = reinterpret_cast<const VkDescriptorSetVariableDescriptorCountAllocateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DESCRIPTOR_SET_VARIABLE_DESCRIPTOR_COUNT_LAYOUT_SUPPORT: {
             const VkDescriptorSetVariableDescriptorCountLayoutSupport* pValue = reinterpret_cast<const VkDescriptorSetVariableDescriptorCountLayoutSupport*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SCALAR_BLOCK_LAYOUT_FEATURES: {
             const VkPhysicalDeviceScalarBlockLayoutFeatures* pValue = reinterpret_cast<const VkPhysicalDeviceScalarBlockLayoutFeatures*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SAMPLER_REDUCTION_MODE_CREATE_INFO: {
             const VkSamplerReductionModeCreateInfo* pValue = reinterpret_cast<const VkSamplerReductionModeCreateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SAMPLER_FILTER_MINMAX_PROPERTIES: {
             const VkPhysicalDeviceSamplerFilterMinmaxProperties* pValue = reinterpret_cast<const VkPhysicalDeviceSamplerFilterMinmaxProperties*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_UNIFORM_BUFFER_STANDARD_LAYOUT_FEATURES: {
             const VkPhysicalDeviceUniformBufferStandardLayoutFeatures* pValue = reinterpret_cast<const VkPhysicalDeviceUniformBufferStandardLayoutFeatures*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_SUBGROUP_EXTENDED_TYPES_FEATURES: {
             const VkPhysicalDeviceShaderSubgroupExtendedTypesFeatures* pValue = reinterpret_cast<const VkPhysicalDeviceShaderSubgroupExtendedTypesFeatures*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_ATTACHMENT_DESCRIPTION_2: {
             const VkAttachmentDescription2* pValue = reinterpret_cast<const VkAttachmentDescription2*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_ATTACHMENT_REFERENCE_2: {
             const VkAttachmentReference2* pValue = reinterpret_cast<const VkAttachmentReference2*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SUBPASS_DESCRIPTION_2: {
             const VkSubpassDescription2* pValue = reinterpret_cast<const VkSubpassDescription2*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SUBPASS_DEPENDENCY_2: {
             const VkSubpassDependency2* pValue = reinterpret_cast<const VkSubpassDependency2*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO_2: {
             const VkRenderPassCreateInfo2* pValue = reinterpret_cast<const VkRenderPassCreateInfo2*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SUBPASS_BEGIN_INFO: {
             const VkSubpassBeginInfo* pValue = reinterpret_cast<const VkSubpassBeginInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SUBPASS_END_INFO: {
             const VkSubpassEndInfo* pValue = reinterpret_cast<const VkSubpassEndInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SUBPASS_DESCRIPTION_DEPTH_STENCIL_RESOLVE: {
             const VkSubpassDescriptionDepthStencilResolve* pValue = reinterpret_cast<const VkSubpassDescriptionDepthStencilResolve*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEPTH_STENCIL_RESOLVE_PROPERTIES: {
             const VkPhysicalDeviceDepthStencilResolveProperties* pValue = reinterpret_cast<const VkPhysicalDeviceDepthStencilResolveProperties*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_IMAGE_STENCIL_USAGE_CREATE_INFO: {
             const VkImageStencilUsageCreateInfo* pValue = reinterpret_cast<const VkImageStencilUsageCreateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGELESS_FRAMEBUFFER_FEATURES: {
             const VkPhysicalDeviceImagelessFramebufferFeatures* pValue = reinterpret_cast<const VkPhysicalDeviceImagelessFramebufferFeatures*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_FRAMEBUFFER_ATTACHMENT_IMAGE_INFO: {
             const VkFramebufferAttachmentImageInfo* pValue = reinterpret_cast<const VkFramebufferAttachmentImageInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_FRAMEBUFFER_ATTACHMENTS_CREATE_INFO: {
             const VkFramebufferAttachmentsCreateInfo* pValue = reinterpret_cast<const VkFramebufferAttachmentsCreateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_RENDER_PASS_ATTACHMENT_BEGIN_INFO: {
             const VkRenderPassAttachmentBeginInfo* pValue = reinterpret_cast<const VkRenderPassAttachmentBeginInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SEPARATE_DEPTH_STENCIL_LAYOUTS_FEATURES: {
             const VkPhysicalDeviceSeparateDepthStencilLayoutsFeatures* pValue = reinterpret_cast<const VkPhysicalDeviceSeparateDepthStencilLayoutsFeatures*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_ATTACHMENT_REFERENCE_STENCIL_LAYOUT: {
             const VkAttachmentReferenceStencilLayout* pValue = reinterpret_cast<const VkAttachmentReferenceStencilLayout*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_ATTACHMENT_DESCRIPTION_STENCIL_LAYOUT: {
             const VkAttachmentDescriptionStencilLayout* pValue = reinterpret_cast<const VkAttachmentDescriptionStencilLayout*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_1_3_FEATURES: {
             const VkPhysicalDeviceVulkan13Features* pValue = reinterpret_cast<const VkPhysicalDeviceVulkan13Features*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_1_3_PROPERTIES: {
             const VkPhysicalDeviceVulkan13Properties* pValue = reinterpret_cast<const VkPhysicalDeviceVulkan13Properties*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TOOL_PROPERTIES: {
             const VkPhysicalDeviceToolProperties* pValue = reinterpret_cast<const VkPhysicalDeviceToolProperties*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PRIVATE_DATA_FEATURES: {
             const VkPhysicalDevicePrivateDataFeatures* pValue = reinterpret_cast<const VkPhysicalDevicePrivateDataFeatures*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DEVICE_PRIVATE_DATA_CREATE_INFO: {
             const VkDevicePrivateDataCreateInfo* pValue = reinterpret_cast<const VkDevicePrivateDataCreateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PRIVATE_DATA_SLOT_CREATE_INFO: {
             const VkPrivateDataSlotCreateInfo* pValue = reinterpret_cast<const VkPrivateDataSlotCreateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_MEMORY_BARRIER_2: {
             const VkMemoryBarrier2* pValue = reinterpret_cast<const VkMemoryBarrier2*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_BUFFER_MEMORY_BARRIER_2: {
             const VkBufferMemoryBarrier2* pValue = reinterpret_cast<const VkBufferMemoryBarrier2*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER_2: {
             const VkImageMemoryBarrier2* pValue = reinterpret_cast<const VkImageMemoryBarrier2*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DEPENDENCY_INFO: {
             const VkDependencyInfo* pValue = reinterpret_cast<const VkDependencyInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SEMAPHORE_SUBMIT_INFO: {
             const VkSemaphoreSubmitInfo* pValue = reinterpret_cast<const VkSemaphoreSubmitInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_COMMAND_BUFFER_SUBMIT_INFO: {
             const VkCommandBufferSubmitInfo* pValue = reinterpret_cast<const VkCommandBufferSubmitInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SUBMIT_INFO_2: {
             const VkSubmitInfo2* pValue = reinterpret_cast<const VkSubmitInfo2*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SYNCHRONIZATION_2_FEATURES: {
             const VkPhysicalDeviceSynchronization2Features* pValue = reinterpret_cast<const VkPhysicalDeviceSynchronization2Features*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_BUFFER_COPY_2: {
             const VkBufferCopy2* pValue = reinterpret_cast<const VkBufferCopy2*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_COPY_BUFFER_INFO_2: {
             const VkCopyBufferInfo2* pValue = reinterpret_cast<const VkCopyBufferInfo2*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_IMAGE_COPY_2: {
             const VkImageCopy2* pValue = reinterpret_cast<const VkImageCopy2*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_COPY_IMAGE_INFO_2: {
             const VkCopyImageInfo2* pValue = reinterpret_cast<const VkCopyImageInfo2*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_BUFFER_IMAGE_COPY_2: {
             const VkBufferImageCopy2* pValue = reinterpret_cast<const VkBufferImageCopy2*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_COPY_BUFFER_TO_IMAGE_INFO_2: {
             const VkCopyBufferToImageInfo2* pValue = reinterpret_cast<const VkCopyBufferToImageInfo2*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_COPY_IMAGE_TO_BUFFER_INFO_2: {
             const VkCopyImageToBufferInfo2* pValue = reinterpret_cast<const VkCopyImageToBufferInfo2*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TEXTURE_COMPRESSION_ASTC_HDR_FEATURES: {
             const VkPhysicalDeviceTextureCompressionASTCHDRFeatures* pValue = reinterpret_cast<const VkPhysicalDeviceTextureCompressionASTCHDRFeatures*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_FORMAT_PROPERTIES_3: {
             const VkFormatProperties3* pValue = reinterpret_cast<const VkFormatProperties3*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_4_FEATURES: {
             const VkPhysicalDeviceMaintenance4Features* pValue = reinterpret_cast<const VkPhysicalDeviceMaintenance4Features*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_4_PROPERTIES: {
             const VkPhysicalDeviceMaintenance4Properties* pValue = reinterpret_cast<const VkPhysicalDeviceMaintenance4Properties*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DEVICE_BUFFER_MEMORY_REQUIREMENTS: {
             const VkDeviceBufferMemoryRequirements* pValue = reinterpret_cast<const VkDeviceBufferMemoryRequirements*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DEVICE_IMAGE_MEMORY_REQUIREMENTS: {
             const VkDeviceImageMemoryRequirements* pValue = reinterpret_cast<const VkDeviceImageMemoryRequirements*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PIPELINE_CREATION_FEEDBACK_CREATE_INFO: {
             const VkPipelineCreationFeedbackCreateInfo* pValue = reinterpret_cast<const VkPipelineCreationFeedbackCreateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_TERMINATE_INVOCATION_FEATURES: {
             const VkPhysicalDeviceShaderTerminateInvocationFeatures* pValue = reinterpret_cast<const VkPhysicalDeviceShaderTerminateInvocationFeatures*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_DEMOTE_TO_HELPER_INVOCATION_FEATURES: {
             const VkPhysicalDeviceShaderDemoteToHelperInvocationFeatures* pValue = reinterpret_cast<const VkPhysicalDeviceShaderDemoteToHelperInvocationFeatures*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PIPELINE_CREATION_CACHE_CONTROL_FEATURES: {
             const VkPhysicalDevicePipelineCreationCacheControlFeatures* pValue = reinterpret_cast<const VkPhysicalDevicePipelineCreationCacheControlFeatures*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ZERO_INITIALIZE_WORKGROUP_MEMORY_FEATURES: {
             const VkPhysicalDeviceZeroInitializeWorkgroupMemoryFeatures* pValue = reinterpret_cast<const VkPhysicalDeviceZeroInitializeWorkgroupMemoryFeatures*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_ROBUSTNESS_FEATURES: {
             const VkPhysicalDeviceImageRobustnessFeatures* pValue = reinterpret_cast<const VkPhysicalDeviceImageRobustnessFeatures*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_FEATURES: {
             const VkPhysicalDeviceSubgroupSizeControlFeatures* pValue = reinterpret_cast<const VkPhysicalDeviceSubgroupSizeControlFeatures*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_PROPERTIES: {
             const VkPhysicalDeviceSubgroupSizeControlProperties* pValue = reinterpret_cast<const VkPhysicalDeviceSubgroupSizeControlProperties*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_REQUIRED_SUBGROUP_SIZE_CREATE_INFO: {
             const VkPipelineShaderStageRequiredSubgroupSizeCreateInfo* pValue = reinterpret_cast<const VkPipelineShaderStageRequiredSubgroupSizeCreateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_FEATURES: {
             const VkPhysicalDeviceInlineUniformBlockFeatures* pValue = reinterpret_cast<const VkPhysicalDeviceInlineUniformBlockFeatures*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_PROPERTIES: {
             const VkPhysicalDeviceInlineUniformBlockProperties* pValue = reinterpret_cast<const VkPhysicalDeviceInlineUniformBlockProperties*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET_INLINE_UNIFORM_BLOCK: {
             const VkWriteDescriptorSetInlineUniformBlock* pValue = reinterpret_cast<const VkWriteDescriptorSetInlineUniformBlock*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DESCRIPTOR_POOL_INLINE_UNIFORM_BLOCK_CREATE_INFO: {
             const VkDescriptorPoolInlineUniformBlockCreateInfo* pValue = reinterpret_cast<const VkDescriptorPoolInlineUniformBlockCreateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_INTEGER_DOT_PRODUCT_FEATURES: {
             const VkPhysicalDeviceShaderIntegerDotProductFeatures* pValue = reinterpret_cast<const VkPhysicalDeviceShaderIntegerDotProductFeatures*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_INTEGER_DOT_PRODUCT_PROPERTIES: {
             const VkPhysicalDeviceShaderIntegerDotProductProperties* pValue = reinterpret_cast<const VkPhysicalDeviceShaderIntegerDotProductProperties*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TEXEL_BUFFER_ALIGNMENT_PROPERTIES: {
             const VkPhysicalDeviceTexelBufferAlignmentProperties* pValue = reinterpret_cast<const VkPhysicalDeviceTexelBufferAlignmentProperties*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_IMAGE_BLIT_2: {
             const VkImageBlit2* pValue = reinterpret_cast<const VkImageBlit2*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_BLIT_IMAGE_INFO_2: {
             const VkBlitImageInfo2* pValue = reinterpret_cast<const VkBlitImageInfo2*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_IMAGE_RESOLVE_2: {
             const VkImageResolve2* pValue = reinterpret_cast<const VkImageResolve2*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_RESOLVE_IMAGE_INFO_2: {
             const VkResolveImageInfo2* pValue = reinterpret_cast<const VkResolveImageInfo2*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_RENDERING_ATTACHMENT_INFO: {
             const VkRenderingAttachmentInfo* pValue = reinterpret_cast<const VkRenderingAttachmentInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_RENDERING_INFO: {
             const VkRenderingInfo* pValue = reinterpret_cast<const VkRenderingInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PIPELINE_RENDERING_CREATE_INFO: {
             const VkPipelineRenderingCreateInfo* pValue = reinterpret_cast<const VkPipelineRenderingCreateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DYNAMIC_RENDERING_FEATURES: {
             const VkPhysicalDeviceDynamicRenderingFeatures* pValue = reinterpret_cast<const VkPhysicalDeviceDynamicRenderingFeatures*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_RENDERING_INFO: {
             const VkCommandBufferInheritanceRenderingInfo* pValue = reinterpret_cast<const VkCommandBufferInheritanceRenderingInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_1_4_FEATURES: {
             const VkPhysicalDeviceVulkan14Features* pValue = reinterpret_cast<const VkPhysicalDeviceVulkan14Features*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_1_4_PROPERTIES: {
             const VkPhysicalDeviceVulkan14Properties* pValue = reinterpret_cast<const VkPhysicalDeviceVulkan14Properties*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DEVICE_QUEUE_GLOBAL_PRIORITY_CREATE_INFO: {
             const VkDeviceQueueGlobalPriorityCreateInfo* pValue = reinterpret_cast<const VkDeviceQueueGlobalPriorityCreateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_GLOBAL_PRIORITY_QUERY_FEATURES: {
             const VkPhysicalDeviceGlobalPriorityQueryFeatures* pValue = reinterpret_cast<const VkPhysicalDeviceGlobalPriorityQueryFeatures*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_QUEUE_FAMILY_GLOBAL_PRIORITY_PROPERTIES: {
             const VkQueueFamilyGlobalPriorityProperties* pValue = reinterpret_cast<const VkQueueFamilyGlobalPriorityProperties*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_INDEX_TYPE_UINT8_FEATURES: {
             const VkPhysicalDeviceIndexTypeUint8Features* pValue = reinterpret_cast<const VkPhysicalDeviceIndexTypeUint8Features*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_MEMORY_MAP_INFO: {
             const VkMemoryMapInfo* pValue = reinterpret_cast<const VkMemoryMapInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_MEMORY_UNMAP_INFO: {
             const VkMemoryUnmapInfo* pValue = reinterpret_cast<const VkMemoryUnmapInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_5_FEATURES: {
             const VkPhysicalDeviceMaintenance5Features* pValue = reinterpret_cast<const VkPhysicalDeviceMaintenance5Features*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_5_PROPERTIES: {
             const VkPhysicalDeviceMaintenance5Properties* pValue = reinterpret_cast<const VkPhysicalDeviceMaintenance5Properties*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_IMAGE_SUBRESOURCE_2: {
             const VkImageSubresource2* pValue = reinterpret_cast<const VkImageSubresource2*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DEVICE_IMAGE_SUBRESOURCE_INFO: {
             const VkDeviceImageSubresourceInfo* pValue = reinterpret_cast<const VkDeviceImageSubresourceInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SUBRESOURCE_LAYOUT_2: {
             const VkSubresourceLayout2* pValue = reinterpret_cast<const VkSubresourceLayout2*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_BUFFER_USAGE_FLAGS_2_CREATE_INFO: {
             const VkBufferUsageFlags2CreateInfo* pValue = reinterpret_cast<const VkBufferUsageFlags2CreateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_6_FEATURES: {
             const VkPhysicalDeviceMaintenance6Features* pValue = reinterpret_cast<const VkPhysicalDeviceMaintenance6Features*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_6_PROPERTIES: {
             const VkPhysicalDeviceMaintenance6Properties* pValue = reinterpret_cast<const VkPhysicalDeviceMaintenance6Properties*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_BIND_MEMORY_STATUS: {
             const VkBindMemoryStatus* pValue = reinterpret_cast<const VkBindMemoryStatus*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_HOST_IMAGE_COPY_FEATURES: {
             const VkPhysicalDeviceHostImageCopyFeatures* pValue = reinterpret_cast<const VkPhysicalDeviceHostImageCopyFeatures*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_HOST_IMAGE_COPY_PROPERTIES: {
             const VkPhysicalDeviceHostImageCopyProperties* pValue = reinterpret_cast<const VkPhysicalDeviceHostImageCopyProperties*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_MEMORY_TO_IMAGE_COPY: {
             const VkMemoryToImageCopy* pValue = reinterpret_cast<const VkMemoryToImageCopy*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_IMAGE_TO_MEMORY_COPY: {
             const VkImageToMemoryCopy* pValue = reinterpret_cast<const VkImageToMemoryCopy*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_COPY_MEMORY_TO_IMAGE_INFO: {
             const VkCopyMemoryToImageInfo* pValue = reinterpret_cast<const VkCopyMemoryToImageInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_COPY_IMAGE_TO_MEMORY_INFO: {
             const VkCopyImageToMemoryInfo* pValue = reinterpret_cast<const VkCopyImageToMemoryInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_COPY_IMAGE_TO_IMAGE_INFO: {
             const VkCopyImageToImageInfo* pValue = reinterpret_cast<const VkCopyImageToImageInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_HOST_IMAGE_LAYOUT_TRANSITION_INFO: {
             const VkHostImageLayoutTransitionInfo* pValue = reinterpret_cast<const VkHostImageLayoutTransitionInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SUBRESOURCE_HOST_MEMCPY_SIZE: {
             const VkSubresourceHostMemcpySize* pValue = reinterpret_cast<const VkSubresourceHostMemcpySize*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_HOST_IMAGE_COPY_DEVICE_PERFORMANCE_QUERY: {
             const VkHostImageCopyDevicePerformanceQuery* pValue = reinterpret_cast<const VkHostImageCopyDevicePerformanceQuery*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_SUBGROUP_ROTATE_FEATURES: {
             const VkPhysicalDeviceShaderSubgroupRotateFeatures* pValue = reinterpret_cast<const VkPhysicalDeviceShaderSubgroupRotateFeatures*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_FLOAT_CONTROLS_2_FEATURES: {
             const VkPhysicalDeviceShaderFloatControls2Features* pValue = reinterpret_cast<const VkPhysicalDeviceShaderFloatControls2Features*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_EXPECT_ASSUME_FEATURES: {
             const VkPhysicalDeviceShaderExpectAssumeFeatures* pValue = reinterpret_cast<const VkPhysicalDeviceShaderExpectAssumeFeatures*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PIPELINE_CREATE_FLAGS_2_CREATE_INFO: {
             const VkPipelineCreateFlags2CreateInfo* pValue = reinterpret_cast<const VkPipelineCreateFlags2CreateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PUSH_DESCRIPTOR_PROPERTIES: {
             const VkPhysicalDevicePushDescriptorProperties* pValue = reinterpret_cast<const VkPhysicalDevicePushDescriptorProperties*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_BIND_DESCRIPTOR_SETS_INFO: {
             const VkBindDescriptorSetsInfo* pValue = reinterpret_cast<const VkBindDescriptorSetsInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PUSH_CONSTANTS_INFO: {
             const VkPushConstantsInfo* pValue = reinterpret_cast<const VkPushConstantsInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PUSH_DESCRIPTOR_SET_INFO: {
             const VkPushDescriptorSetInfo* pValue = reinterpret_cast<const VkPushDescriptorSetInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PUSH_DESCRIPTOR_SET_WITH_TEMPLATE_INFO: {
             const VkPushDescriptorSetWithTemplateInfo* pValue = reinterpret_cast<const VkPushDescriptorSetWithTemplateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PIPELINE_PROTECTED_ACCESS_FEATURES: {
             const VkPhysicalDevicePipelineProtectedAccessFeatures* pValue = reinterpret_cast<const VkPhysicalDevicePipelineProtectedAccessFeatures*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PIPELINE_ROBUSTNESS_FEATURES: {
             const VkPhysicalDevicePipelineRobustnessFeatures* pValue = reinterpret_cast<const VkPhysicalDevicePipelineRobustnessFeatures*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PIPELINE_ROBUSTNESS_PROPERTIES: {
             const VkPhysicalDevicePipelineRobustnessProperties* pValue = reinterpret_cast<const VkPhysicalDevicePipelineRobustnessProperties*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PIPELINE_ROBUSTNESS_CREATE_INFO: {
             const VkPipelineRobustnessCreateInfo* pValue = reinterpret_cast<const VkPipelineRobustnessCreateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_LINE_RASTERIZATION_FEATURES: {
             const VkPhysicalDeviceLineRasterizationFeatures* pValue = reinterpret_cast<const VkPhysicalDeviceLineRasterizationFeatures*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_LINE_RASTERIZATION_PROPERTIES: {
             const VkPhysicalDeviceLineRasterizationProperties* pValue = reinterpret_cast<const VkPhysicalDeviceLineRasterizationProperties*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_LINE_STATE_CREATE_INFO: {
             const VkPipelineRasterizationLineStateCreateInfo* pValue = reinterpret_cast<const VkPipelineRasterizationLineStateCreateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_DIVISOR_PROPERTIES: {
             const VkPhysicalDeviceVertexAttributeDivisorProperties* pValue = reinterpret_cast<const VkPhysicalDeviceVertexAttributeDivisorProperties*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_DIVISOR_STATE_CREATE_INFO: {
             const VkPipelineVertexInputDivisorStateCreateInfo* pValue = reinterpret_cast<const VkPipelineVertexInputDivisorStateCreateInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_DIVISOR_FEATURES: {
             const VkPhysicalDeviceVertexAttributeDivisorFeatures* pValue = reinterpret_cast<const VkPhysicalDeviceVertexAttributeDivisorFeatures*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_RENDERING_AREA_INFO: {
             const VkRenderingAreaInfo* pValue = reinterpret_cast<const VkRenderingAreaInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DYNAMIC_RENDERING_LOCAL_READ_FEATURES: {
             const VkPhysicalDeviceDynamicRenderingLocalReadFeatures* pValue = reinterpret_cast<const VkPhysicalDeviceDynamicRenderingLocalReadFeatures*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_RENDERING_ATTACHMENT_LOCATION_INFO: {
             const VkRenderingAttachmentLocationInfo* pValue = reinterpret_cast<const VkRenderingAttachmentLocationInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_RENDERING_INPUT_ATTACHMENT_INDEX_INFO: {
             const VkRenderingInputAttachmentIndexInfo* pValue = reinterpret_cast<const VkRenderingInputAttachmentIndexInfo*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SWAPCHAIN_CREATE_INFO_KHR: {
             const VkSwapchainCreateInfoKHR* pValue = reinterpret_cast<const VkSwapchainCreateInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PRESENT_INFO_KHR: {
             const VkPresentInfoKHR* pValue = reinterpret_cast<const VkPresentInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_IMAGE_SWAPCHAIN_CREATE_INFO_KHR: {
             const VkImageSwapchainCreateInfoKHR* pValue = reinterpret_cast<const VkImageSwapchainCreateInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_BIND_IMAGE_MEMORY_SWAPCHAIN_INFO_KHR: {
             const VkBindImageMemorySwapchainInfoKHR* pValue = reinterpret_cast<const VkBindImageMemorySwapchainInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_ACQUIRE_NEXT_IMAGE_INFO_KHR: {
             const VkAcquireNextImageInfoKHR* pValue = reinterpret_cast<const VkAcquireNextImageInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DEVICE_GROUP_PRESENT_CAPABILITIES_KHR: {
             const VkDeviceGroupPresentCapabilitiesKHR* pValue = reinterpret_cast<const VkDeviceGroupPresentCapabilitiesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DEVICE_GROUP_PRESENT_INFO_KHR: {
             const VkDeviceGroupPresentInfoKHR* pValue = reinterpret_cast<const VkDeviceGroupPresentInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DEVICE_GROUP_SWAPCHAIN_CREATE_INFO_KHR: {
             const VkDeviceGroupSwapchainCreateInfoKHR* pValue = reinterpret_cast<const VkDeviceGroupSwapchainCreateInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DISPLAY_MODE_CREATE_INFO_KHR: {
             const VkDisplayModeCreateInfoKHR* pValue = reinterpret_cast<const VkDisplayModeCreateInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DISPLAY_SURFACE_CREATE_INFO_KHR: {
             const VkDisplaySurfaceCreateInfoKHR* pValue = reinterpret_cast<const VkDisplaySurfaceCreateInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DISPLAY_PRESENT_INFO_KHR: {
             const VkDisplayPresentInfoKHR* pValue = reinterpret_cast<const VkDisplayPresentInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_XLIB_SURFACE_CREATE_INFO_KHR: {
             const VkXlibSurfaceCreateInfoKHR* pValue = reinterpret_cast<const VkXlibSurfaceCreateInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_XCB_SURFACE_CREATE_INFO_KHR: {
             const VkXcbSurfaceCreateInfoKHR* pValue = reinterpret_cast<const VkXcbSurfaceCreateInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_WAYLAND_SURFACE_CREATE_INFO_KHR: {
             const VkWaylandSurfaceCreateInfoKHR* pValue = reinterpret_cast<const VkWaylandSurfaceCreateInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_ANDROID_SURFACE_CREATE_INFO_KHR: {
             const VkAndroidSurfaceCreateInfoKHR* pValue = reinterpret_cast<const VkAndroidSurfaceCreateInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_WIN32_SURFACE_CREATE_INFO_KHR: {
             const VkWin32SurfaceCreateInfoKHR* pValue = reinterpret_cast<const VkWin32SurfaceCreateInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_QUEUE_FAMILY_QUERY_RESULT_STATUS_PROPERTIES_KHR: {
             const VkQueueFamilyQueryResultStatusPropertiesKHR* pValue = reinterpret_cast<const VkQueueFamilyQueryResultStatusPropertiesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_QUEUE_FAMILY_VIDEO_PROPERTIES_KHR: {
             const VkQueueFamilyVideoPropertiesKHR* pValue = reinterpret_cast<const VkQueueFamilyVideoPropertiesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_PROFILE_INFO_KHR: {
             const VkVideoProfileInfoKHR* pValue = reinterpret_cast<const VkVideoProfileInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_PROFILE_LIST_INFO_KHR: {
             const VkVideoProfileListInfoKHR* pValue = reinterpret_cast<const VkVideoProfileListInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_CAPABILITIES_KHR: {
             const VkVideoCapabilitiesKHR* pValue = reinterpret_cast<const VkVideoCapabilitiesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VIDEO_FORMAT_INFO_KHR: {
             const VkPhysicalDeviceVideoFormatInfoKHR* pValue = reinterpret_cast<const VkPhysicalDeviceVideoFormatInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_FORMAT_PROPERTIES_KHR: {
             const VkVideoFormatPropertiesKHR* pValue = reinterpret_cast<const VkVideoFormatPropertiesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_PICTURE_RESOURCE_INFO_KHR: {
             const VkVideoPictureResourceInfoKHR* pValue = reinterpret_cast<const VkVideoPictureResourceInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_REFERENCE_SLOT_INFO_KHR: {
             const VkVideoReferenceSlotInfoKHR* pValue = reinterpret_cast<const VkVideoReferenceSlotInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_SESSION_MEMORY_REQUIREMENTS_KHR: {
             const VkVideoSessionMemoryRequirementsKHR* pValue = reinterpret_cast<const VkVideoSessionMemoryRequirementsKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_BIND_VIDEO_SESSION_MEMORY_INFO_KHR: {
             const VkBindVideoSessionMemoryInfoKHR* pValue = reinterpret_cast<const VkBindVideoSessionMemoryInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_SESSION_CREATE_INFO_KHR: {
             const VkVideoSessionCreateInfoKHR* pValue = reinterpret_cast<const VkVideoSessionCreateInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_SESSION_PARAMETERS_CREATE_INFO_KHR: {
             const VkVideoSessionParametersCreateInfoKHR* pValue = reinterpret_cast<const VkVideoSessionParametersCreateInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_SESSION_PARAMETERS_UPDATE_INFO_KHR: {
             const VkVideoSessionParametersUpdateInfoKHR* pValue = reinterpret_cast<const VkVideoSessionParametersUpdateInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_BEGIN_CODING_INFO_KHR: {
             const VkVideoBeginCodingInfoKHR* pValue = reinterpret_cast<const VkVideoBeginCodingInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_END_CODING_INFO_KHR: {
             const VkVideoEndCodingInfoKHR* pValue = reinterpret_cast<const VkVideoEndCodingInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_CODING_CONTROL_INFO_KHR: {
             const VkVideoCodingControlInfoKHR* pValue = reinterpret_cast<const VkVideoCodingControlInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_DECODE_CAPABILITIES_KHR: {
             const VkVideoDecodeCapabilitiesKHR* pValue = reinterpret_cast<const VkVideoDecodeCapabilitiesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_DECODE_USAGE_INFO_KHR: {
             const VkVideoDecodeUsageInfoKHR* pValue = reinterpret_cast<const VkVideoDecodeUsageInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_DECODE_INFO_KHR: {
             const VkVideoDecodeInfoKHR* pValue = reinterpret_cast<const VkVideoDecodeInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_ENCODE_H264_CAPABILITIES_KHR: {
             const VkVideoEncodeH264CapabilitiesKHR* pValue = reinterpret_cast<const VkVideoEncodeH264CapabilitiesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_ENCODE_H264_QUALITY_LEVEL_PROPERTIES_KHR: {
             const VkVideoEncodeH264QualityLevelPropertiesKHR* pValue = reinterpret_cast<const VkVideoEncodeH264QualityLevelPropertiesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_ENCODE_H264_SESSION_CREATE_INFO_KHR: {
             const VkVideoEncodeH264SessionCreateInfoKHR* pValue = reinterpret_cast<const VkVideoEncodeH264SessionCreateInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_ENCODE_H264_SESSION_PARAMETERS_ADD_INFO_KHR: {
             const VkVideoEncodeH264SessionParametersAddInfoKHR* pValue = reinterpret_cast<const VkVideoEncodeH264SessionParametersAddInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_ENCODE_H264_SESSION_PARAMETERS_CREATE_INFO_KHR: {
             const VkVideoEncodeH264SessionParametersCreateInfoKHR* pValue = reinterpret_cast<const VkVideoEncodeH264SessionParametersCreateInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_ENCODE_H264_SESSION_PARAMETERS_GET_INFO_KHR: {
             const VkVideoEncodeH264SessionParametersGetInfoKHR* pValue = reinterpret_cast<const VkVideoEncodeH264SessionParametersGetInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_ENCODE_H264_SESSION_PARAMETERS_FEEDBACK_INFO_KHR: {
             const VkVideoEncodeH264SessionParametersFeedbackInfoKHR* pValue = reinterpret_cast<const VkVideoEncodeH264SessionParametersFeedbackInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_ENCODE_H264_NALU_SLICE_INFO_KHR: {
             const VkVideoEncodeH264NaluSliceInfoKHR* pValue = reinterpret_cast<const VkVideoEncodeH264NaluSliceInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_ENCODE_H264_PICTURE_INFO_KHR: {
             const VkVideoEncodeH264PictureInfoKHR* pValue = reinterpret_cast<const VkVideoEncodeH264PictureInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_ENCODE_H264_DPB_SLOT_INFO_KHR: {
             const VkVideoEncodeH264DpbSlotInfoKHR* pValue = reinterpret_cast<const VkVideoEncodeH264DpbSlotInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_ENCODE_H264_PROFILE_INFO_KHR: {
             const VkVideoEncodeH264ProfileInfoKHR* pValue = reinterpret_cast<const VkVideoEncodeH264ProfileInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_ENCODE_H264_RATE_CONTROL_INFO_KHR: {
             const VkVideoEncodeH264RateControlInfoKHR* pValue = reinterpret_cast<const VkVideoEncodeH264RateControlInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_ENCODE_H264_RATE_CONTROL_LAYER_INFO_KHR: {
             const VkVideoEncodeH264RateControlLayerInfoKHR* pValue = reinterpret_cast<const VkVideoEncodeH264RateControlLayerInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_ENCODE_H264_GOP_REMAINING_FRAME_INFO_KHR: {
             const VkVideoEncodeH264GopRemainingFrameInfoKHR* pValue = reinterpret_cast<const VkVideoEncodeH264GopRemainingFrameInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_ENCODE_H265_CAPABILITIES_KHR: {
             const VkVideoEncodeH265CapabilitiesKHR* pValue = reinterpret_cast<const VkVideoEncodeH265CapabilitiesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_ENCODE_H265_SESSION_CREATE_INFO_KHR: {
             const VkVideoEncodeH265SessionCreateInfoKHR* pValue = reinterpret_cast<const VkVideoEncodeH265SessionCreateInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_ENCODE_H265_QUALITY_LEVEL_PROPERTIES_KHR: {
             const VkVideoEncodeH265QualityLevelPropertiesKHR* pValue = reinterpret_cast<const VkVideoEncodeH265QualityLevelPropertiesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_ENCODE_H265_SESSION_PARAMETERS_ADD_INFO_KHR: {
             const VkVideoEncodeH265SessionParametersAddInfoKHR* pValue = reinterpret_cast<const VkVideoEncodeH265SessionParametersAddInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_ENCODE_H265_SESSION_PARAMETERS_CREATE_INFO_KHR: {
             const VkVideoEncodeH265SessionParametersCreateInfoKHR* pValue = reinterpret_cast<const VkVideoEncodeH265SessionParametersCreateInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_ENCODE_H265_SESSION_PARAMETERS_GET_INFO_KHR: {
             const VkVideoEncodeH265SessionParametersGetInfoKHR* pValue = reinterpret_cast<const VkVideoEncodeH265SessionParametersGetInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_ENCODE_H265_SESSION_PARAMETERS_FEEDBACK_INFO_KHR: {
             const VkVideoEncodeH265SessionParametersFeedbackInfoKHR* pValue = reinterpret_cast<const VkVideoEncodeH265SessionParametersFeedbackInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_ENCODE_H265_NALU_SLICE_SEGMENT_INFO_KHR: {
             const VkVideoEncodeH265NaluSliceSegmentInfoKHR* pValue = reinterpret_cast<const VkVideoEncodeH265NaluSliceSegmentInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_ENCODE_H265_PICTURE_INFO_KHR: {
             const VkVideoEncodeH265PictureInfoKHR* pValue = reinterpret_cast<const VkVideoEncodeH265PictureInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_ENCODE_H265_DPB_SLOT_INFO_KHR: {
             const VkVideoEncodeH265DpbSlotInfoKHR* pValue = reinterpret_cast<const VkVideoEncodeH265DpbSlotInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_ENCODE_H265_PROFILE_INFO_KHR: {
             const VkVideoEncodeH265ProfileInfoKHR* pValue = reinterpret_cast<const VkVideoEncodeH265ProfileInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_ENCODE_H265_RATE_CONTROL_INFO_KHR: {
             const VkVideoEncodeH265RateControlInfoKHR* pValue = reinterpret_cast<const VkVideoEncodeH265RateControlInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_ENCODE_H265_RATE_CONTROL_LAYER_INFO_KHR: {
             const VkVideoEncodeH265RateControlLayerInfoKHR* pValue = reinterpret_cast<const VkVideoEncodeH265RateControlLayerInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_ENCODE_H265_GOP_REMAINING_FRAME_INFO_KHR: {
             const VkVideoEncodeH265GopRemainingFrameInfoKHR* pValue = reinterpret_cast<const VkVideoEncodeH265GopRemainingFrameInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_DECODE_H264_PROFILE_INFO_KHR: {
             const VkVideoDecodeH264ProfileInfoKHR* pValue = reinterpret_cast<const VkVideoDecodeH264ProfileInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_DECODE_H264_CAPABILITIES_KHR: {
             const VkVideoDecodeH264CapabilitiesKHR* pValue = reinterpret_cast<const VkVideoDecodeH264CapabilitiesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_DECODE_H264_SESSION_PARAMETERS_ADD_INFO_KHR: {
             const VkVideoDecodeH264SessionParametersAddInfoKHR* pValue = reinterpret_cast<const VkVideoDecodeH264SessionParametersAddInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_DECODE_H264_SESSION_PARAMETERS_CREATE_INFO_KHR: {
             const VkVideoDecodeH264SessionParametersCreateInfoKHR* pValue = reinterpret_cast<const VkVideoDecodeH264SessionParametersCreateInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_DECODE_H264_PICTURE_INFO_KHR: {
             const VkVideoDecodeH264PictureInfoKHR* pValue = reinterpret_cast<const VkVideoDecodeH264PictureInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_DECODE_H264_DPB_SLOT_INFO_KHR: {
             const VkVideoDecodeH264DpbSlotInfoKHR* pValue = reinterpret_cast<const VkVideoDecodeH264DpbSlotInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_IMPORT_MEMORY_WIN32_HANDLE_INFO_KHR: {
             const VkImportMemoryWin32HandleInfoKHR* pValue = reinterpret_cast<const VkImportMemoryWin32HandleInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_EXPORT_MEMORY_WIN32_HANDLE_INFO_KHR: {
             const VkExportMemoryWin32HandleInfoKHR* pValue = reinterpret_cast<const VkExportMemoryWin32HandleInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_MEMORY_WIN32_HANDLE_PROPERTIES_KHR: {
             const VkMemoryWin32HandlePropertiesKHR* pValue = reinterpret_cast<const VkMemoryWin32HandlePropertiesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_MEMORY_GET_WIN32_HANDLE_INFO_KHR: {
             const VkMemoryGetWin32HandleInfoKHR* pValue = reinterpret_cast<const VkMemoryGetWin32HandleInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_IMPORT_MEMORY_FD_INFO_KHR: {
             const VkImportMemoryFdInfoKHR* pValue = reinterpret_cast<const VkImportMemoryFdInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_MEMORY_FD_PROPERTIES_KHR: {
             const VkMemoryFdPropertiesKHR* pValue = reinterpret_cast<const VkMemoryFdPropertiesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_MEMORY_GET_FD_INFO_KHR: {
             const VkMemoryGetFdInfoKHR* pValue = reinterpret_cast<const VkMemoryGetFdInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_WIN32_KEYED_MUTEX_ACQUIRE_RELEASE_INFO_KHR: {
             const VkWin32KeyedMutexAcquireReleaseInfoKHR* pValue = reinterpret_cast<const VkWin32KeyedMutexAcquireReleaseInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_IMPORT_SEMAPHORE_WIN32_HANDLE_INFO_KHR: {
             const VkImportSemaphoreWin32HandleInfoKHR* pValue = reinterpret_cast<const VkImportSemaphoreWin32HandleInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_EXPORT_SEMAPHORE_WIN32_HANDLE_INFO_KHR: {
             const VkExportSemaphoreWin32HandleInfoKHR* pValue = reinterpret_cast<const VkExportSemaphoreWin32HandleInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_D3D12_FENCE_SUBMIT_INFO_KHR: {
             const VkD3D12FenceSubmitInfoKHR* pValue = reinterpret_cast<const VkD3D12FenceSubmitInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SEMAPHORE_GET_WIN32_HANDLE_INFO_KHR: {
             const VkSemaphoreGetWin32HandleInfoKHR* pValue = reinterpret_cast<const VkSemaphoreGetWin32HandleInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_IMPORT_SEMAPHORE_FD_INFO_KHR: {
             const VkImportSemaphoreFdInfoKHR* pValue = reinterpret_cast<const VkImportSemaphoreFdInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SEMAPHORE_GET_FD_INFO_KHR: {
             const VkSemaphoreGetFdInfoKHR* pValue = reinterpret_cast<const VkSemaphoreGetFdInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PRESENT_REGIONS_KHR: {
             const VkPresentRegionsKHR* pValue = reinterpret_cast<const VkPresentRegionsKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SHARED_PRESENT_SURFACE_CAPABILITIES_KHR: {
             const VkSharedPresentSurfaceCapabilitiesKHR* pValue = reinterpret_cast<const VkSharedPresentSurfaceCapabilitiesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_IMPORT_FENCE_WIN32_HANDLE_INFO_KHR: {
             const VkImportFenceWin32HandleInfoKHR* pValue = reinterpret_cast<const VkImportFenceWin32HandleInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_EXPORT_FENCE_WIN32_HANDLE_INFO_KHR: {
             const VkExportFenceWin32HandleInfoKHR* pValue = reinterpret_cast<const VkExportFenceWin32HandleInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_FENCE_GET_WIN32_HANDLE_INFO_KHR: {
             const VkFenceGetWin32HandleInfoKHR* pValue = reinterpret_cast<const VkFenceGetWin32HandleInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_IMPORT_FENCE_FD_INFO_KHR: {
             const VkImportFenceFdInfoKHR* pValue = reinterpret_cast<const VkImportFenceFdInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_FENCE_GET_FD_INFO_KHR: {
             const VkFenceGetFdInfoKHR* pValue = reinterpret_cast<const VkFenceGetFdInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PERFORMANCE_QUERY_FEATURES_KHR: {
             const VkPhysicalDevicePerformanceQueryFeaturesKHR* pValue = reinterpret_cast<const VkPhysicalDevicePerformanceQueryFeaturesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PERFORMANCE_QUERY_PROPERTIES_KHR: {
             const VkPhysicalDevicePerformanceQueryPropertiesKHR* pValue = reinterpret_cast<const VkPhysicalDevicePerformanceQueryPropertiesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PERFORMANCE_COUNTER_KHR: {
             const VkPerformanceCounterKHR* pValue = reinterpret_cast<const VkPerformanceCounterKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PERFORMANCE_COUNTER_DESCRIPTION_KHR: {
             const VkPerformanceCounterDescriptionKHR* pValue = reinterpret_cast<const VkPerformanceCounterDescriptionKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_QUERY_POOL_PERFORMANCE_CREATE_INFO_KHR: {
             const VkQueryPoolPerformanceCreateInfoKHR* pValue = reinterpret_cast<const VkQueryPoolPerformanceCreateInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_ACQUIRE_PROFILING_LOCK_INFO_KHR: {
             const VkAcquireProfilingLockInfoKHR* pValue = reinterpret_cast<const VkAcquireProfilingLockInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PERFORMANCE_QUERY_SUBMIT_INFO_KHR: {
             const VkPerformanceQuerySubmitInfoKHR* pValue = reinterpret_cast<const VkPerformanceQuerySubmitInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SURFACE_INFO_2_KHR: {
             const VkPhysicalDeviceSurfaceInfo2KHR* pValue = reinterpret_cast<const VkPhysicalDeviceSurfaceInfo2KHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SURFACE_CAPABILITIES_2_KHR: {
             const VkSurfaceCapabilities2KHR* pValue = reinterpret_cast<const VkSurfaceCapabilities2KHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SURFACE_FORMAT_2_KHR: {
             const VkSurfaceFormat2KHR* pValue = reinterpret_cast<const VkSurfaceFormat2KHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DISPLAY_PROPERTIES_2_KHR: {
             const VkDisplayProperties2KHR* pValue = reinterpret_cast<const VkDisplayProperties2KHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DISPLAY_PLANE_PROPERTIES_2_KHR: {
             const VkDisplayPlaneProperties2KHR* pValue = reinterpret_cast<const VkDisplayPlaneProperties2KHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DISPLAY_MODE_PROPERTIES_2_KHR: {
             const VkDisplayModeProperties2KHR* pValue = reinterpret_cast<const VkDisplayModeProperties2KHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DISPLAY_PLANE_INFO_2_KHR: {
             const VkDisplayPlaneInfo2KHR* pValue = reinterpret_cast<const VkDisplayPlaneInfo2KHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DISPLAY_PLANE_CAPABILITIES_2_KHR: {
             const VkDisplayPlaneCapabilities2KHR* pValue = reinterpret_cast<const VkDisplayPlaneCapabilities2KHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_BFLOAT16_FEATURES_KHR: {
             const VkPhysicalDeviceShaderBfloat16FeaturesKHR* pValue = reinterpret_cast<const VkPhysicalDeviceShaderBfloat16FeaturesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
 #ifdef VK_ENABLE_BETA_EXTENSIONS
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PORTABILITY_SUBSET_FEATURES_KHR: {
             const VkPhysicalDevicePortabilitySubsetFeaturesKHR* pValue = reinterpret_cast<const VkPhysicalDevicePortabilitySubsetFeaturesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
 #endif
 #ifdef VK_ENABLE_BETA_EXTENSIONS
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PORTABILITY_SUBSET_PROPERTIES_KHR: {
             const VkPhysicalDevicePortabilitySubsetPropertiesKHR* pValue = reinterpret_cast<const VkPhysicalDevicePortabilitySubsetPropertiesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
 #endif
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_CLOCK_FEATURES_KHR: {
             const VkPhysicalDeviceShaderClockFeaturesKHR* pValue = reinterpret_cast<const VkPhysicalDeviceShaderClockFeaturesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_DECODE_H265_PROFILE_INFO_KHR: {
             const VkVideoDecodeH265ProfileInfoKHR* pValue = reinterpret_cast<const VkVideoDecodeH265ProfileInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_DECODE_H265_CAPABILITIES_KHR: {
             const VkVideoDecodeH265CapabilitiesKHR* pValue = reinterpret_cast<const VkVideoDecodeH265CapabilitiesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_DECODE_H265_SESSION_PARAMETERS_ADD_INFO_KHR: {
             const VkVideoDecodeH265SessionParametersAddInfoKHR* pValue = reinterpret_cast<const VkVideoDecodeH265SessionParametersAddInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_DECODE_H265_SESSION_PARAMETERS_CREATE_INFO_KHR: {
             const VkVideoDecodeH265SessionParametersCreateInfoKHR* pValue = reinterpret_cast<const VkVideoDecodeH265SessionParametersCreateInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_DECODE_H265_PICTURE_INFO_KHR: {
             const VkVideoDecodeH265PictureInfoKHR* pValue = reinterpret_cast<const VkVideoDecodeH265PictureInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_DECODE_H265_DPB_SLOT_INFO_KHR: {
             const VkVideoDecodeH265DpbSlotInfoKHR* pValue = reinterpret_cast<const VkVideoDecodeH265DpbSlotInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_FRAGMENT_SHADING_RATE_ATTACHMENT_INFO_KHR: {
             const VkFragmentShadingRateAttachmentInfoKHR* pValue = reinterpret_cast<const VkFragmentShadingRateAttachmentInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PIPELINE_FRAGMENT_SHADING_RATE_STATE_CREATE_INFO_KHR: {
             const VkPipelineFragmentShadingRateStateCreateInfoKHR* pValue = reinterpret_cast<const VkPipelineFragmentShadingRateStateCreateInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_FEATURES_KHR: {
             const VkPhysicalDeviceFragmentShadingRateFeaturesKHR* pValue = reinterpret_cast<const VkPhysicalDeviceFragmentShadingRateFeaturesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_PROPERTIES_KHR: {
             const VkPhysicalDeviceFragmentShadingRatePropertiesKHR* pValue = reinterpret_cast<const VkPhysicalDeviceFragmentShadingRatePropertiesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_KHR: {
             const VkPhysicalDeviceFragmentShadingRateKHR* pValue = reinterpret_cast<const VkPhysicalDeviceFragmentShadingRateKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_RENDERING_FRAGMENT_SHADING_RATE_ATTACHMENT_INFO_KHR: {
             const VkRenderingFragmentShadingRateAttachmentInfoKHR* pValue = reinterpret_cast<const VkRenderingFragmentShadingRateAttachmentInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_QUAD_CONTROL_FEATURES_KHR: {
             const VkPhysicalDeviceShaderQuadControlFeaturesKHR* pValue = reinterpret_cast<const VkPhysicalDeviceShaderQuadControlFeaturesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SURFACE_PROTECTED_CAPABILITIES_KHR: {
             const VkSurfaceProtectedCapabilitiesKHR* pValue = reinterpret_cast<const VkSurfaceProtectedCapabilitiesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PRESENT_WAIT_FEATURES_KHR: {
             const VkPhysicalDevicePresentWaitFeaturesKHR* pValue = reinterpret_cast<const VkPhysicalDevicePresentWaitFeaturesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PIPELINE_EXECUTABLE_PROPERTIES_FEATURES_KHR: {
             const VkPhysicalDevicePipelineExecutablePropertiesFeaturesKHR* pValue = reinterpret_cast<const VkPhysicalDevicePipelineExecutablePropertiesFeaturesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PIPELINE_INFO_KHR: {
             const VkPipelineInfoKHR* pValue = reinterpret_cast<const VkPipelineInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PIPELINE_EXECUTABLE_PROPERTIES_KHR: {
             const VkPipelineExecutablePropertiesKHR* pValue = reinterpret_cast<const VkPipelineExecutablePropertiesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PIPELINE_EXECUTABLE_INFO_KHR: {
             const VkPipelineExecutableInfoKHR* pValue = reinterpret_cast<const VkPipelineExecutableInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PIPELINE_EXECUTABLE_STATISTIC_KHR: {
             const VkPipelineExecutableStatisticKHR* pValue = reinterpret_cast<const VkPipelineExecutableStatisticKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PIPELINE_EXECUTABLE_INTERNAL_REPRESENTATION_KHR: {
             const VkPipelineExecutableInternalRepresentationKHR* pValue = reinterpret_cast<const VkPipelineExecutableInternalRepresentationKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PIPELINE_LIBRARY_CREATE_INFO_KHR: {
             const VkPipelineLibraryCreateInfoKHR* pValue = reinterpret_cast<const VkPipelineLibraryCreateInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PRESENT_ID_KHR: {
             const VkPresentIdKHR* pValue = reinterpret_cast<const VkPresentIdKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PRESENT_ID_FEATURES_KHR: {
             const VkPhysicalDevicePresentIdFeaturesKHR* pValue = reinterpret_cast<const VkPhysicalDevicePresentIdFeaturesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_ENCODE_INFO_KHR: {
             const VkVideoEncodeInfoKHR* pValue = reinterpret_cast<const VkVideoEncodeInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_ENCODE_CAPABILITIES_KHR: {
             const VkVideoEncodeCapabilitiesKHR* pValue = reinterpret_cast<const VkVideoEncodeCapabilitiesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_QUERY_POOL_VIDEO_ENCODE_FEEDBACK_CREATE_INFO_KHR: {
             const VkQueryPoolVideoEncodeFeedbackCreateInfoKHR* pValue = reinterpret_cast<const VkQueryPoolVideoEncodeFeedbackCreateInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_ENCODE_USAGE_INFO_KHR: {
             const VkVideoEncodeUsageInfoKHR* pValue = reinterpret_cast<const VkVideoEncodeUsageInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_ENCODE_RATE_CONTROL_LAYER_INFO_KHR: {
             const VkVideoEncodeRateControlLayerInfoKHR* pValue = reinterpret_cast<const VkVideoEncodeRateControlLayerInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_ENCODE_RATE_CONTROL_INFO_KHR: {
             const VkVideoEncodeRateControlInfoKHR* pValue = reinterpret_cast<const VkVideoEncodeRateControlInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VIDEO_ENCODE_QUALITY_LEVEL_INFO_KHR: {
             const VkPhysicalDeviceVideoEncodeQualityLevelInfoKHR* pValue = reinterpret_cast<const VkPhysicalDeviceVideoEncodeQualityLevelInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_ENCODE_QUALITY_LEVEL_PROPERTIES_KHR: {
             const VkVideoEncodeQualityLevelPropertiesKHR* pValue = reinterpret_cast<const VkVideoEncodeQualityLevelPropertiesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_ENCODE_QUALITY_LEVEL_INFO_KHR: {
             const VkVideoEncodeQualityLevelInfoKHR* pValue = reinterpret_cast<const VkVideoEncodeQualityLevelInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_ENCODE_SESSION_PARAMETERS_GET_INFO_KHR: {
             const VkVideoEncodeSessionParametersGetInfoKHR* pValue = reinterpret_cast<const VkVideoEncodeSessionParametersGetInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_ENCODE_SESSION_PARAMETERS_FEEDBACK_INFO_KHR: {
             const VkVideoEncodeSessionParametersFeedbackInfoKHR* pValue = reinterpret_cast<const VkVideoEncodeSessionParametersFeedbackInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_SHADER_BARYCENTRIC_FEATURES_KHR: {
             const VkPhysicalDeviceFragmentShaderBarycentricFeaturesKHR* pValue = reinterpret_cast<const VkPhysicalDeviceFragmentShaderBarycentricFeaturesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_SHADER_BARYCENTRIC_PROPERTIES_KHR: {
             const VkPhysicalDeviceFragmentShaderBarycentricPropertiesKHR* pValue = reinterpret_cast<const VkPhysicalDeviceFragmentShaderBarycentricPropertiesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_SUBGROUP_UNIFORM_CONTROL_FLOW_FEATURES_KHR: {
             const VkPhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR* pValue = reinterpret_cast<const VkPhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_WORKGROUP_MEMORY_EXPLICIT_LAYOUT_FEATURES_KHR: {
             const VkPhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR* pValue = reinterpret_cast<const VkPhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RAY_TRACING_MAINTENANCE_1_FEATURES_KHR: {
             const VkPhysicalDeviceRayTracingMaintenance1FeaturesKHR* pValue = reinterpret_cast<const VkPhysicalDeviceRayTracingMaintenance1FeaturesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_UNTYPED_POINTERS_FEATURES_KHR: {
             const VkPhysicalDeviceShaderUntypedPointersFeaturesKHR* pValue = reinterpret_cast<const VkPhysicalDeviceShaderUntypedPointersFeaturesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_MAXIMAL_RECONVERGENCE_FEATURES_KHR: {
             const VkPhysicalDeviceShaderMaximalReconvergenceFeaturesKHR* pValue = reinterpret_cast<const VkPhysicalDeviceShaderMaximalReconvergenceFeaturesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SURFACE_CAPABILITIES_PRESENT_ID_2_KHR: {
             const VkSurfaceCapabilitiesPresentId2KHR* pValue = reinterpret_cast<const VkSurfaceCapabilitiesPresentId2KHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PRESENT_ID_2_KHR: {
             const VkPresentId2KHR* pValue = reinterpret_cast<const VkPresentId2KHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PRESENT_ID_2_FEATURES_KHR: {
             const VkPhysicalDevicePresentId2FeaturesKHR* pValue = reinterpret_cast<const VkPhysicalDevicePresentId2FeaturesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SURFACE_CAPABILITIES_PRESENT_WAIT_2_KHR: {
             const VkSurfaceCapabilitiesPresentWait2KHR* pValue = reinterpret_cast<const VkSurfaceCapabilitiesPresentWait2KHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PRESENT_WAIT_2_FEATURES_KHR: {
             const VkPhysicalDevicePresentWait2FeaturesKHR* pValue = reinterpret_cast<const VkPhysicalDevicePresentWait2FeaturesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PRESENT_WAIT_2_INFO_KHR: {
             const VkPresentWait2InfoKHR* pValue = reinterpret_cast<const VkPresentWait2InfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RAY_TRACING_POSITION_FETCH_FEATURES_KHR: {
             const VkPhysicalDeviceRayTracingPositionFetchFeaturesKHR* pValue = reinterpret_cast<const VkPhysicalDeviceRayTracingPositionFetchFeaturesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PIPELINE_BINARY_FEATURES_KHR: {
             const VkPhysicalDevicePipelineBinaryFeaturesKHR* pValue = reinterpret_cast<const VkPhysicalDevicePipelineBinaryFeaturesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PIPELINE_BINARY_PROPERTIES_KHR: {
             const VkPhysicalDevicePipelineBinaryPropertiesKHR* pValue = reinterpret_cast<const VkPhysicalDevicePipelineBinaryPropertiesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DEVICE_PIPELINE_BINARY_INTERNAL_CACHE_CONTROL_KHR: {
             const VkDevicePipelineBinaryInternalCacheControlKHR* pValue = reinterpret_cast<const VkDevicePipelineBinaryInternalCacheControlKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PIPELINE_BINARY_KEY_KHR: {
             const VkPipelineBinaryKeyKHR* pValue = reinterpret_cast<const VkPipelineBinaryKeyKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PIPELINE_CREATE_INFO_KHR: {
             const VkPipelineCreateInfoKHR* pValue = reinterpret_cast<const VkPipelineCreateInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PIPELINE_BINARY_CREATE_INFO_KHR: {
             const VkPipelineBinaryCreateInfoKHR* pValue = reinterpret_cast<const VkPipelineBinaryCreateInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PIPELINE_BINARY_INFO_KHR: {
             const VkPipelineBinaryInfoKHR* pValue = reinterpret_cast<const VkPipelineBinaryInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_RELEASE_CAPTURED_PIPELINE_DATA_INFO_KHR: {
             const VkReleaseCapturedPipelineDataInfoKHR* pValue = reinterpret_cast<const VkReleaseCapturedPipelineDataInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PIPELINE_BINARY_DATA_INFO_KHR: {
             const VkPipelineBinaryDataInfoKHR* pValue = reinterpret_cast<const VkPipelineBinaryDataInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PIPELINE_BINARY_HANDLES_INFO_KHR: {
             const VkPipelineBinaryHandlesInfoKHR* pValue = reinterpret_cast<const VkPipelineBinaryHandlesInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SURFACE_PRESENT_MODE_KHR: {
             const VkSurfacePresentModeKHR* pValue = reinterpret_cast<const VkSurfacePresentModeKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SURFACE_PRESENT_SCALING_CAPABILITIES_KHR: {
             const VkSurfacePresentScalingCapabilitiesKHR* pValue = reinterpret_cast<const VkSurfacePresentScalingCapabilitiesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SURFACE_PRESENT_MODE_COMPATIBILITY_KHR: {
             const VkSurfacePresentModeCompatibilityKHR* pValue = reinterpret_cast<const VkSurfacePresentModeCompatibilityKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SWAPCHAIN_MAINTENANCE_1_FEATURES_KHR: {
             const VkPhysicalDeviceSwapchainMaintenance1FeaturesKHR* pValue = reinterpret_cast<const VkPhysicalDeviceSwapchainMaintenance1FeaturesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SWAPCHAIN_PRESENT_FENCE_INFO_KHR: {
             const VkSwapchainPresentFenceInfoKHR* pValue = reinterpret_cast<const VkSwapchainPresentFenceInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SWAPCHAIN_PRESENT_MODES_CREATE_INFO_KHR: {
             const VkSwapchainPresentModesCreateInfoKHR* pValue = reinterpret_cast<const VkSwapchainPresentModesCreateInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SWAPCHAIN_PRESENT_MODE_INFO_KHR: {
             const VkSwapchainPresentModeInfoKHR* pValue = reinterpret_cast<const VkSwapchainPresentModeInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SWAPCHAIN_PRESENT_SCALING_CREATE_INFO_KHR: {
             const VkSwapchainPresentScalingCreateInfoKHR* pValue = reinterpret_cast<const VkSwapchainPresentScalingCreateInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_RELEASE_SWAPCHAIN_IMAGES_INFO_KHR: {
             const VkReleaseSwapchainImagesInfoKHR* pValue = reinterpret_cast<const VkReleaseSwapchainImagesInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_COOPERATIVE_MATRIX_PROPERTIES_KHR: {
             const VkCooperativeMatrixPropertiesKHR* pValue = reinterpret_cast<const VkCooperativeMatrixPropertiesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COOPERATIVE_MATRIX_FEATURES_KHR: {
             const VkPhysicalDeviceCooperativeMatrixFeaturesKHR* pValue = reinterpret_cast<const VkPhysicalDeviceCooperativeMatrixFeaturesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COOPERATIVE_MATRIX_PROPERTIES_KHR: {
             const VkPhysicalDeviceCooperativeMatrixPropertiesKHR* pValue = reinterpret_cast<const VkPhysicalDeviceCooperativeMatrixPropertiesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COMPUTE_SHADER_DERIVATIVES_FEATURES_KHR: {
             const VkPhysicalDeviceComputeShaderDerivativesFeaturesKHR* pValue = reinterpret_cast<const VkPhysicalDeviceComputeShaderDerivativesFeaturesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COMPUTE_SHADER_DERIVATIVES_PROPERTIES_KHR: {
             const VkPhysicalDeviceComputeShaderDerivativesPropertiesKHR* pValue = reinterpret_cast<const VkPhysicalDeviceComputeShaderDerivativesPropertiesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_DECODE_AV1_PROFILE_INFO_KHR: {
             const VkVideoDecodeAV1ProfileInfoKHR* pValue = reinterpret_cast<const VkVideoDecodeAV1ProfileInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_DECODE_AV1_CAPABILITIES_KHR: {
             const VkVideoDecodeAV1CapabilitiesKHR* pValue = reinterpret_cast<const VkVideoDecodeAV1CapabilitiesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_DECODE_AV1_SESSION_PARAMETERS_CREATE_INFO_KHR: {
             const VkVideoDecodeAV1SessionParametersCreateInfoKHR* pValue = reinterpret_cast<const VkVideoDecodeAV1SessionParametersCreateInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_DECODE_AV1_PICTURE_INFO_KHR: {
             const VkVideoDecodeAV1PictureInfoKHR* pValue = reinterpret_cast<const VkVideoDecodeAV1PictureInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_DECODE_AV1_DPB_SLOT_INFO_KHR: {
             const VkVideoDecodeAV1DpbSlotInfoKHR* pValue = reinterpret_cast<const VkVideoDecodeAV1DpbSlotInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VIDEO_ENCODE_AV1_FEATURES_KHR: {
             const VkPhysicalDeviceVideoEncodeAV1FeaturesKHR* pValue = reinterpret_cast<const VkPhysicalDeviceVideoEncodeAV1FeaturesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_ENCODE_AV1_CAPABILITIES_KHR: {
             const VkVideoEncodeAV1CapabilitiesKHR* pValue = reinterpret_cast<const VkVideoEncodeAV1CapabilitiesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_ENCODE_AV1_QUALITY_LEVEL_PROPERTIES_KHR: {
             const VkVideoEncodeAV1QualityLevelPropertiesKHR* pValue = reinterpret_cast<const VkVideoEncodeAV1QualityLevelPropertiesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_ENCODE_AV1_SESSION_CREATE_INFO_KHR: {
             const VkVideoEncodeAV1SessionCreateInfoKHR* pValue = reinterpret_cast<const VkVideoEncodeAV1SessionCreateInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_ENCODE_AV1_SESSION_PARAMETERS_CREATE_INFO_KHR: {
             const VkVideoEncodeAV1SessionParametersCreateInfoKHR* pValue = reinterpret_cast<const VkVideoEncodeAV1SessionParametersCreateInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_ENCODE_AV1_PICTURE_INFO_KHR: {
             const VkVideoEncodeAV1PictureInfoKHR* pValue = reinterpret_cast<const VkVideoEncodeAV1PictureInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_ENCODE_AV1_DPB_SLOT_INFO_KHR: {
             const VkVideoEncodeAV1DpbSlotInfoKHR* pValue = reinterpret_cast<const VkVideoEncodeAV1DpbSlotInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_ENCODE_AV1_PROFILE_INFO_KHR: {
             const VkVideoEncodeAV1ProfileInfoKHR* pValue = reinterpret_cast<const VkVideoEncodeAV1ProfileInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_ENCODE_AV1_GOP_REMAINING_FRAME_INFO_KHR: {
             const VkVideoEncodeAV1GopRemainingFrameInfoKHR* pValue = reinterpret_cast<const VkVideoEncodeAV1GopRemainingFrameInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_ENCODE_AV1_RATE_CONTROL_INFO_KHR: {
             const VkVideoEncodeAV1RateControlInfoKHR* pValue = reinterpret_cast<const VkVideoEncodeAV1RateControlInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_ENCODE_AV1_RATE_CONTROL_LAYER_INFO_KHR: {
             const VkVideoEncodeAV1RateControlLayerInfoKHR* pValue = reinterpret_cast<const VkVideoEncodeAV1RateControlLayerInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VIDEO_DECODE_VP9_FEATURES_KHR: {
             const VkPhysicalDeviceVideoDecodeVP9FeaturesKHR* pValue = reinterpret_cast<const VkPhysicalDeviceVideoDecodeVP9FeaturesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_DECODE_VP9_PROFILE_INFO_KHR: {
             const VkVideoDecodeVP9ProfileInfoKHR* pValue = reinterpret_cast<const VkVideoDecodeVP9ProfileInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_DECODE_VP9_CAPABILITIES_KHR: {
             const VkVideoDecodeVP9CapabilitiesKHR* pValue = reinterpret_cast<const VkVideoDecodeVP9CapabilitiesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_DECODE_VP9_PICTURE_INFO_KHR: {
             const VkVideoDecodeVP9PictureInfoKHR* pValue = reinterpret_cast<const VkVideoDecodeVP9PictureInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VIDEO_MAINTENANCE_1_FEATURES_KHR: {
             const VkPhysicalDeviceVideoMaintenance1FeaturesKHR* pValue = reinterpret_cast<const VkPhysicalDeviceVideoMaintenance1FeaturesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_INLINE_QUERY_INFO_KHR: {
             const VkVideoInlineQueryInfoKHR* pValue = reinterpret_cast<const VkVideoInlineQueryInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_UNIFIED_IMAGE_LAYOUTS_FEATURES_KHR: {
             const VkPhysicalDeviceUnifiedImageLayoutsFeaturesKHR* pValue = reinterpret_cast<const VkPhysicalDeviceUnifiedImageLayoutsFeaturesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_ATTACHMENT_FEEDBACK_LOOP_INFO_EXT: {
             const VkAttachmentFeedbackLoopInfoEXT* pValue = reinterpret_cast<const VkAttachmentFeedbackLoopInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_CALIBRATED_TIMESTAMP_INFO_KHR: {
             const VkCalibratedTimestampInfoKHR* pValue = reinterpret_cast<const VkCalibratedTimestampInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SET_DESCRIPTOR_BUFFER_OFFSETS_INFO_EXT: {
             const VkSetDescriptorBufferOffsetsInfoEXT* pValue = reinterpret_cast<const VkSetDescriptorBufferOffsetsInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_BIND_DESCRIPTOR_BUFFER_EMBEDDED_SAMPLERS_INFO_EXT: {
             const VkBindDescriptorBufferEmbeddedSamplersInfoEXT* pValue = reinterpret_cast<const VkBindDescriptorBufferEmbeddedSamplersInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_COPY_MEMORY_INDIRECT_INFO_KHR: {
             const VkCopyMemoryIndirectInfoKHR* pValue = reinterpret_cast<const VkCopyMemoryIndirectInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_COPY_MEMORY_TO_IMAGE_INDIRECT_INFO_KHR: {
             const VkCopyMemoryToImageIndirectInfoKHR* pValue = reinterpret_cast<const VkCopyMemoryToImageIndirectInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COPY_MEMORY_INDIRECT_FEATURES_KHR: {
             const VkPhysicalDeviceCopyMemoryIndirectFeaturesKHR* pValue = reinterpret_cast<const VkPhysicalDeviceCopyMemoryIndirectFeaturesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COPY_MEMORY_INDIRECT_PROPERTIES_KHR: {
             const VkPhysicalDeviceCopyMemoryIndirectPropertiesKHR* pValue = reinterpret_cast<const VkPhysicalDeviceCopyMemoryIndirectPropertiesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_ENCODE_INTRA_REFRESH_CAPABILITIES_KHR: {
             const VkVideoEncodeIntraRefreshCapabilitiesKHR* pValue = reinterpret_cast<const VkVideoEncodeIntraRefreshCapabilitiesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_ENCODE_SESSION_INTRA_REFRESH_CREATE_INFO_KHR: {
             const VkVideoEncodeSessionIntraRefreshCreateInfoKHR* pValue = reinterpret_cast<const VkVideoEncodeSessionIntraRefreshCreateInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_ENCODE_INTRA_REFRESH_INFO_KHR: {
             const VkVideoEncodeIntraRefreshInfoKHR* pValue = reinterpret_cast<const VkVideoEncodeIntraRefreshInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_REFERENCE_INTRA_REFRESH_INFO_KHR: {
             const VkVideoReferenceIntraRefreshInfoKHR* pValue = reinterpret_cast<const VkVideoReferenceIntraRefreshInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VIDEO_ENCODE_INTRA_REFRESH_FEATURES_KHR: {
             const VkPhysicalDeviceVideoEncodeIntraRefreshFeaturesKHR* pValue = reinterpret_cast<const VkPhysicalDeviceVideoEncodeIntraRefreshFeaturesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_ENCODE_QUANTIZATION_MAP_CAPABILITIES_KHR: {
             const VkVideoEncodeQuantizationMapCapabilitiesKHR* pValue = reinterpret_cast<const VkVideoEncodeQuantizationMapCapabilitiesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_FORMAT_QUANTIZATION_MAP_PROPERTIES_KHR: {
             const VkVideoFormatQuantizationMapPropertiesKHR* pValue = reinterpret_cast<const VkVideoFormatQuantizationMapPropertiesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_ENCODE_QUANTIZATION_MAP_INFO_KHR: {
             const VkVideoEncodeQuantizationMapInfoKHR* pValue = reinterpret_cast<const VkVideoEncodeQuantizationMapInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_ENCODE_QUANTIZATION_MAP_SESSION_PARAMETERS_CREATE_INFO_KHR: {
             const VkVideoEncodeQuantizationMapSessionParametersCreateInfoKHR* pValue = reinterpret_cast<const VkVideoEncodeQuantizationMapSessionParametersCreateInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VIDEO_ENCODE_QUANTIZATION_MAP_FEATURES_KHR: {
             const VkPhysicalDeviceVideoEncodeQuantizationMapFeaturesKHR* pValue = reinterpret_cast<const VkPhysicalDeviceVideoEncodeQuantizationMapFeaturesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_ENCODE_H264_QUANTIZATION_MAP_CAPABILITIES_KHR: {
             const VkVideoEncodeH264QuantizationMapCapabilitiesKHR* pValue = reinterpret_cast<const VkVideoEncodeH264QuantizationMapCapabilitiesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_ENCODE_H265_QUANTIZATION_MAP_CAPABILITIES_KHR: {
             const VkVideoEncodeH265QuantizationMapCapabilitiesKHR* pValue = reinterpret_cast<const VkVideoEncodeH265QuantizationMapCapabilitiesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_FORMAT_H265_QUANTIZATION_MAP_PROPERTIES_KHR: {
             const VkVideoFormatH265QuantizationMapPropertiesKHR* pValue = reinterpret_cast<const VkVideoFormatH265QuantizationMapPropertiesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_ENCODE_AV1_QUANTIZATION_MAP_CAPABILITIES_KHR: {
             const VkVideoEncodeAV1QuantizationMapCapabilitiesKHR* pValue = reinterpret_cast<const VkVideoEncodeAV1QuantizationMapCapabilitiesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_FORMAT_AV1_QUANTIZATION_MAP_PROPERTIES_KHR: {
             const VkVideoFormatAV1QuantizationMapPropertiesKHR* pValue = reinterpret_cast<const VkVideoFormatAV1QuantizationMapPropertiesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_RELAXED_EXTENDED_INSTRUCTION_FEATURES_KHR: {
             const VkPhysicalDeviceShaderRelaxedExtendedInstructionFeaturesKHR* pValue = reinterpret_cast<const VkPhysicalDeviceShaderRelaxedExtendedInstructionFeaturesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_7_FEATURES_KHR: {
             const VkPhysicalDeviceMaintenance7FeaturesKHR* pValue = reinterpret_cast<const VkPhysicalDeviceMaintenance7FeaturesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_7_PROPERTIES_KHR: {
             const VkPhysicalDeviceMaintenance7PropertiesKHR* pValue = reinterpret_cast<const VkPhysicalDeviceMaintenance7PropertiesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_LAYERED_API_PROPERTIES_KHR: {
             const VkPhysicalDeviceLayeredApiPropertiesKHR* pValue = reinterpret_cast<const VkPhysicalDeviceLayeredApiPropertiesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_LAYERED_API_PROPERTIES_LIST_KHR: {
             const VkPhysicalDeviceLayeredApiPropertiesListKHR* pValue = reinterpret_cast<const VkPhysicalDeviceLayeredApiPropertiesListKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_LAYERED_API_VULKAN_PROPERTIES_KHR: {
             const VkPhysicalDeviceLayeredApiVulkanPropertiesKHR* pValue = reinterpret_cast<const VkPhysicalDeviceLayeredApiVulkanPropertiesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_MEMORY_BARRIER_ACCESS_FLAGS_3_KHR: {
             const VkMemoryBarrierAccessFlags3KHR* pValue = reinterpret_cast<const VkMemoryBarrierAccessFlags3KHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_8_FEATURES_KHR: {
             const VkPhysicalDeviceMaintenance8FeaturesKHR* pValue = reinterpret_cast<const VkPhysicalDeviceMaintenance8FeaturesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_FMA_FEATURES_KHR: {
             const VkPhysicalDeviceShaderFmaFeaturesKHR* pValue = reinterpret_cast<const VkPhysicalDeviceShaderFmaFeaturesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_9_FEATURES_KHR: {
             const VkPhysicalDeviceMaintenance9FeaturesKHR* pValue = reinterpret_cast<const VkPhysicalDeviceMaintenance9FeaturesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_9_PROPERTIES_KHR: {
             const VkPhysicalDeviceMaintenance9PropertiesKHR* pValue = reinterpret_cast<const VkPhysicalDeviceMaintenance9PropertiesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_QUEUE_FAMILY_OWNERSHIP_TRANSFER_PROPERTIES_KHR: {
             const VkQueueFamilyOwnershipTransferPropertiesKHR* pValue = reinterpret_cast<const VkQueueFamilyOwnershipTransferPropertiesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VIDEO_MAINTENANCE_2_FEATURES_KHR: {
             const VkPhysicalDeviceVideoMaintenance2FeaturesKHR* pValue = reinterpret_cast<const VkPhysicalDeviceVideoMaintenance2FeaturesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_DECODE_H264_INLINE_SESSION_PARAMETERS_INFO_KHR: {
             const VkVideoDecodeH264InlineSessionParametersInfoKHR* pValue = reinterpret_cast<const VkVideoDecodeH264InlineSessionParametersInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_DECODE_H265_INLINE_SESSION_PARAMETERS_INFO_KHR: {
             const VkVideoDecodeH265InlineSessionParametersInfoKHR* pValue = reinterpret_cast<const VkVideoDecodeH265InlineSessionParametersInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_DECODE_AV1_INLINE_SESSION_PARAMETERS_INFO_KHR: {
             const VkVideoDecodeAV1InlineSessionParametersInfoKHR* pValue = reinterpret_cast<const VkVideoDecodeAV1InlineSessionParametersInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEPTH_CLAMP_ZERO_ONE_FEATURES_KHR: {
             const VkPhysicalDeviceDepthClampZeroOneFeaturesKHR* pValue = reinterpret_cast<const VkPhysicalDeviceDepthClampZeroOneFeaturesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ROBUSTNESS_2_FEATURES_KHR: {
             const VkPhysicalDeviceRobustness2FeaturesKHR* pValue = reinterpret_cast<const VkPhysicalDeviceRobustness2FeaturesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ROBUSTNESS_2_PROPERTIES_KHR: {
             const VkPhysicalDeviceRobustness2PropertiesKHR* pValue = reinterpret_cast<const VkPhysicalDeviceRobustness2PropertiesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PRESENT_MODE_FIFO_LATEST_READY_FEATURES_KHR: {
             const VkPhysicalDevicePresentModeFifoLatestReadyFeaturesKHR* pValue = reinterpret_cast<const VkPhysicalDevicePresentModeFifoLatestReadyFeaturesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_10_FEATURES_KHR: {
             const VkPhysicalDeviceMaintenance10FeaturesKHR* pValue = reinterpret_cast<const VkPhysicalDeviceMaintenance10FeaturesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_10_PROPERTIES_KHR: {
             const VkPhysicalDeviceMaintenance10PropertiesKHR* pValue = reinterpret_cast<const VkPhysicalDeviceMaintenance10PropertiesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_RENDERING_END_INFO_KHR: {
             const VkRenderingEndInfoKHR* pValue = reinterpret_cast<const VkRenderingEndInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_RENDERING_ATTACHMENT_FLAGS_INFO_KHR: {
             const VkRenderingAttachmentFlagsInfoKHR* pValue = reinterpret_cast<const VkRenderingAttachmentFlagsInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_RESOLVE_IMAGE_MODE_INFO_KHR: {
             const VkResolveImageModeInfoKHR* pValue = reinterpret_cast<const VkResolveImageModeInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DEBUG_REPORT_CALLBACK_CREATE_INFO_EXT: {
             const VkDebugReportCallbackCreateInfoEXT* pValue = reinterpret_cast<const VkDebugReportCallbackCreateInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_RASTERIZATION_ORDER_AMD: {
             const VkPipelineRasterizationStateRasterizationOrderAMD* pValue = reinterpret_cast<const VkPipelineRasterizationStateRasterizationOrderAMD*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DEBUG_MARKER_OBJECT_NAME_INFO_EXT: {
             const VkDebugMarkerObjectNameInfoEXT* pValue = reinterpret_cast<const VkDebugMarkerObjectNameInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DEBUG_MARKER_OBJECT_TAG_INFO_EXT: {
             const VkDebugMarkerObjectTagInfoEXT* pValue = reinterpret_cast<const VkDebugMarkerObjectTagInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DEBUG_MARKER_MARKER_INFO_EXT: {
             const VkDebugMarkerMarkerInfoEXT* pValue = reinterpret_cast<const VkDebugMarkerMarkerInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DEDICATED_ALLOCATION_IMAGE_CREATE_INFO_NV: {
             const VkDedicatedAllocationImageCreateInfoNV* pValue = reinterpret_cast<const VkDedicatedAllocationImageCreateInfoNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DEDICATED_ALLOCATION_BUFFER_CREATE_INFO_NV: {
             const VkDedicatedAllocationBufferCreateInfoNV* pValue = reinterpret_cast<const VkDedicatedAllocationBufferCreateInfoNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DEDICATED_ALLOCATION_MEMORY_ALLOCATE_INFO_NV: {
             const VkDedicatedAllocationMemoryAllocateInfoNV* pValue = reinterpret_cast<const VkDedicatedAllocationMemoryAllocateInfoNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TRANSFORM_FEEDBACK_FEATURES_EXT: {
             const VkPhysicalDeviceTransformFeedbackFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceTransformFeedbackFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TRANSFORM_FEEDBACK_PROPERTIES_EXT: {
             const VkPhysicalDeviceTransformFeedbackPropertiesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceTransformFeedbackPropertiesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_STREAM_CREATE_INFO_EXT: {
             const VkPipelineRasterizationStateStreamCreateInfoEXT* pValue = reinterpret_cast<const VkPipelineRasterizationStateStreamCreateInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_CU_MODULE_CREATE_INFO_NVX: {
             const VkCuModuleCreateInfoNVX* pValue = reinterpret_cast<const VkCuModuleCreateInfoNVX*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_CU_MODULE_TEXTURING_MODE_CREATE_INFO_NVX: {
             const VkCuModuleTexturingModeCreateInfoNVX* pValue = reinterpret_cast<const VkCuModuleTexturingModeCreateInfoNVX*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_CU_FUNCTION_CREATE_INFO_NVX: {
             const VkCuFunctionCreateInfoNVX* pValue = reinterpret_cast<const VkCuFunctionCreateInfoNVX*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_CU_LAUNCH_INFO_NVX: {
             const VkCuLaunchInfoNVX* pValue = reinterpret_cast<const VkCuLaunchInfoNVX*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_IMAGE_VIEW_HANDLE_INFO_NVX: {
             const VkImageViewHandleInfoNVX* pValue = reinterpret_cast<const VkImageViewHandleInfoNVX*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_IMAGE_VIEW_ADDRESS_PROPERTIES_NVX: {
             const VkImageViewAddressPropertiesNVX* pValue = reinterpret_cast<const VkImageViewAddressPropertiesNVX*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_TEXTURE_LOD_GATHER_FORMAT_PROPERTIES_AMD: {
             const VkTextureLODGatherFormatPropertiesAMD* pValue = reinterpret_cast<const VkTextureLODGatherFormatPropertiesAMD*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_STREAM_DESCRIPTOR_SURFACE_CREATE_INFO_GGP: {
             const VkStreamDescriptorSurfaceCreateInfoGGP* pValue = reinterpret_cast<const VkStreamDescriptorSurfaceCreateInfoGGP*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_CORNER_SAMPLED_IMAGE_FEATURES_NV: {
             const VkPhysicalDeviceCornerSampledImageFeaturesNV* pValue = reinterpret_cast<const VkPhysicalDeviceCornerSampledImageFeaturesNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_EXTERNAL_MEMORY_IMAGE_CREATE_INFO_NV: {
             const VkExternalMemoryImageCreateInfoNV* pValue = reinterpret_cast<const VkExternalMemoryImageCreateInfoNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_EXPORT_MEMORY_ALLOCATE_INFO_NV: {
             const VkExportMemoryAllocateInfoNV* pValue = reinterpret_cast<const VkExportMemoryAllocateInfoNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_IMPORT_MEMORY_WIN32_HANDLE_INFO_NV: {
             const VkImportMemoryWin32HandleInfoNV* pValue = reinterpret_cast<const VkImportMemoryWin32HandleInfoNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_EXPORT_MEMORY_WIN32_HANDLE_INFO_NV: {
             const VkExportMemoryWin32HandleInfoNV* pValue = reinterpret_cast<const VkExportMemoryWin32HandleInfoNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_WIN32_KEYED_MUTEX_ACQUIRE_RELEASE_INFO_NV: {
             const VkWin32KeyedMutexAcquireReleaseInfoNV* pValue = reinterpret_cast<const VkWin32KeyedMutexAcquireReleaseInfoNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VALIDATION_FLAGS_EXT: {
             const VkValidationFlagsEXT* pValue = reinterpret_cast<const VkValidationFlagsEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VI_SURFACE_CREATE_INFO_NN: {
             const VkViSurfaceCreateInfoNN* pValue = reinterpret_cast<const VkViSurfaceCreateInfoNN*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_IMAGE_VIEW_ASTC_DECODE_MODE_EXT: {
             const VkImageViewASTCDecodeModeEXT* pValue = reinterpret_cast<const VkImageViewASTCDecodeModeEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ASTC_DECODE_FEATURES_EXT: {
             const VkPhysicalDeviceASTCDecodeFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceASTCDecodeFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_CONDITIONAL_RENDERING_BEGIN_INFO_EXT: {
             const VkConditionalRenderingBeginInfoEXT* pValue = reinterpret_cast<const VkConditionalRenderingBeginInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_CONDITIONAL_RENDERING_FEATURES_EXT: {
             const VkPhysicalDeviceConditionalRenderingFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceConditionalRenderingFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_CONDITIONAL_RENDERING_INFO_EXT: {
             const VkCommandBufferInheritanceConditionalRenderingInfoEXT* pValue = reinterpret_cast<const VkCommandBufferInheritanceConditionalRenderingInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_W_SCALING_STATE_CREATE_INFO_NV: {
             const VkPipelineViewportWScalingStateCreateInfoNV* pValue = reinterpret_cast<const VkPipelineViewportWScalingStateCreateInfoNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SURFACE_CAPABILITIES_2_EXT: {
             const VkSurfaceCapabilities2EXT* pValue = reinterpret_cast<const VkSurfaceCapabilities2EXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DISPLAY_POWER_INFO_EXT: {
             const VkDisplayPowerInfoEXT* pValue = reinterpret_cast<const VkDisplayPowerInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DEVICE_EVENT_INFO_EXT: {
             const VkDeviceEventInfoEXT* pValue = reinterpret_cast<const VkDeviceEventInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DISPLAY_EVENT_INFO_EXT: {
             const VkDisplayEventInfoEXT* pValue = reinterpret_cast<const VkDisplayEventInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SWAPCHAIN_COUNTER_CREATE_INFO_EXT: {
             const VkSwapchainCounterCreateInfoEXT* pValue = reinterpret_cast<const VkSwapchainCounterCreateInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PRESENT_TIMES_INFO_GOOGLE: {
             const VkPresentTimesInfoGOOGLE* pValue = reinterpret_cast<const VkPresentTimesInfoGOOGLE*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTIVIEW_PER_VIEW_ATTRIBUTES_PROPERTIES_NVX: {
             const VkPhysicalDeviceMultiviewPerViewAttributesPropertiesNVX* pValue = reinterpret_cast<const VkPhysicalDeviceMultiviewPerViewAttributesPropertiesNVX*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_MULTIVIEW_PER_VIEW_ATTRIBUTES_INFO_NVX: {
             const VkMultiviewPerViewAttributesInfoNVX* pValue = reinterpret_cast<const VkMultiviewPerViewAttributesInfoNVX*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_SWIZZLE_STATE_CREATE_INFO_NV: {
             const VkPipelineViewportSwizzleStateCreateInfoNV* pValue = reinterpret_cast<const VkPipelineViewportSwizzleStateCreateInfoNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DISCARD_RECTANGLE_PROPERTIES_EXT: {
             const VkPhysicalDeviceDiscardRectanglePropertiesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceDiscardRectanglePropertiesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PIPELINE_DISCARD_RECTANGLE_STATE_CREATE_INFO_EXT: {
             const VkPipelineDiscardRectangleStateCreateInfoEXT* pValue = reinterpret_cast<const VkPipelineDiscardRectangleStateCreateInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_CONSERVATIVE_RASTERIZATION_PROPERTIES_EXT: {
             const VkPhysicalDeviceConservativeRasterizationPropertiesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceConservativeRasterizationPropertiesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_CONSERVATIVE_STATE_CREATE_INFO_EXT: {
             const VkPipelineRasterizationConservativeStateCreateInfoEXT* pValue = reinterpret_cast<const VkPipelineRasterizationConservativeStateCreateInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEPTH_CLIP_ENABLE_FEATURES_EXT: {
             const VkPhysicalDeviceDepthClipEnableFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceDepthClipEnableFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_DEPTH_CLIP_STATE_CREATE_INFO_EXT: {
             const VkPipelineRasterizationDepthClipStateCreateInfoEXT* pValue = reinterpret_cast<const VkPipelineRasterizationDepthClipStateCreateInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_HDR_METADATA_EXT: {
             const VkHdrMetadataEXT* pValue = reinterpret_cast<const VkHdrMetadataEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RELAXED_LINE_RASTERIZATION_FEATURES_IMG: {
             const VkPhysicalDeviceRelaxedLineRasterizationFeaturesIMG* pValue = reinterpret_cast<const VkPhysicalDeviceRelaxedLineRasterizationFeaturesIMG*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_IOS_SURFACE_CREATE_INFO_MVK: {
             const VkIOSSurfaceCreateInfoMVK* pValue = reinterpret_cast<const VkIOSSurfaceCreateInfoMVK*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_MACOS_SURFACE_CREATE_INFO_MVK: {
             const VkMacOSSurfaceCreateInfoMVK* pValue = reinterpret_cast<const VkMacOSSurfaceCreateInfoMVK*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DEBUG_UTILS_LABEL_EXT: {
             const VkDebugUtilsLabelEXT* pValue = reinterpret_cast<const VkDebugUtilsLabelEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DEBUG_UTILS_OBJECT_NAME_INFO_EXT: {
             const VkDebugUtilsObjectNameInfoEXT* pValue = reinterpret_cast<const VkDebugUtilsObjectNameInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CALLBACK_DATA_EXT: {
             const VkDebugUtilsMessengerCallbackDataEXT* pValue = reinterpret_cast<const VkDebugUtilsMessengerCallbackDataEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT: {
             const VkDebugUtilsMessengerCreateInfoEXT* pValue = reinterpret_cast<const VkDebugUtilsMessengerCreateInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DEBUG_UTILS_OBJECT_TAG_INFO_EXT: {
             const VkDebugUtilsObjectTagInfoEXT* pValue = reinterpret_cast<const VkDebugUtilsObjectTagInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_ANDROID_HARDWARE_BUFFER_USAGE_ANDROID: {
             const VkAndroidHardwareBufferUsageANDROID* pValue = reinterpret_cast<const VkAndroidHardwareBufferUsageANDROID*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_ANDROID_HARDWARE_BUFFER_PROPERTIES_ANDROID: {
             const VkAndroidHardwareBufferPropertiesANDROID* pValue = reinterpret_cast<const VkAndroidHardwareBufferPropertiesANDROID*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_ANDROID_HARDWARE_BUFFER_FORMAT_PROPERTIES_ANDROID: {
             const VkAndroidHardwareBufferFormatPropertiesANDROID* pValue = reinterpret_cast<const VkAndroidHardwareBufferFormatPropertiesANDROID*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_IMPORT_ANDROID_HARDWARE_BUFFER_INFO_ANDROID: {
             const VkImportAndroidHardwareBufferInfoANDROID* pValue = reinterpret_cast<const VkImportAndroidHardwareBufferInfoANDROID*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_MEMORY_GET_ANDROID_HARDWARE_BUFFER_INFO_ANDROID: {
             const VkMemoryGetAndroidHardwareBufferInfoANDROID* pValue = reinterpret_cast<const VkMemoryGetAndroidHardwareBufferInfoANDROID*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_EXTERNAL_FORMAT_ANDROID: {
             const VkExternalFormatANDROID* pValue = reinterpret_cast<const VkExternalFormatANDROID*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_ANDROID_HARDWARE_BUFFER_FORMAT_PROPERTIES_2_ANDROID: {
             const VkAndroidHardwareBufferFormatProperties2ANDROID* pValue = reinterpret_cast<const VkAndroidHardwareBufferFormatProperties2ANDROID*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
 #ifdef VK_ENABLE_BETA_EXTENSIONS
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_ENQUEUE_FEATURES_AMDX: {
             const VkPhysicalDeviceShaderEnqueueFeaturesAMDX* pValue = reinterpret_cast<const VkPhysicalDeviceShaderEnqueueFeaturesAMDX*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
 #endif
 #ifdef VK_ENABLE_BETA_EXTENSIONS
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_ENQUEUE_PROPERTIES_AMDX: {
             const VkPhysicalDeviceShaderEnqueuePropertiesAMDX* pValue = reinterpret_cast<const VkPhysicalDeviceShaderEnqueuePropertiesAMDX*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
 #endif
 #ifdef VK_ENABLE_BETA_EXTENSIONS
         case VK_STRUCTURE_TYPE_EXECUTION_GRAPH_PIPELINE_SCRATCH_SIZE_AMDX: {
             const VkExecutionGraphPipelineScratchSizeAMDX* pValue = reinterpret_cast<const VkExecutionGraphPipelineScratchSizeAMDX*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
 #endif
 #ifdef VK_ENABLE_BETA_EXTENSIONS
         case VK_STRUCTURE_TYPE_EXECUTION_GRAPH_PIPELINE_CREATE_INFO_AMDX: {
             const VkExecutionGraphPipelineCreateInfoAMDX* pValue = reinterpret_cast<const VkExecutionGraphPipelineCreateInfoAMDX*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
 #endif
 #ifdef VK_ENABLE_BETA_EXTENSIONS
         case VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_NODE_CREATE_INFO_AMDX: {
             const VkPipelineShaderStageNodeCreateInfoAMDX* pValue = reinterpret_cast<const VkPipelineShaderStageNodeCreateInfoAMDX*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
 #endif
         case VK_STRUCTURE_TYPE_ATTACHMENT_SAMPLE_COUNT_INFO_AMD: {
             const VkAttachmentSampleCountInfoAMD* pValue = reinterpret_cast<const VkAttachmentSampleCountInfoAMD*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SAMPLE_LOCATIONS_INFO_EXT: {
             const VkSampleLocationsInfoEXT* pValue = reinterpret_cast<const VkSampleLocationsInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_RENDER_PASS_SAMPLE_LOCATIONS_BEGIN_INFO_EXT: {
             const VkRenderPassSampleLocationsBeginInfoEXT* pValue = reinterpret_cast<const VkRenderPassSampleLocationsBeginInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PIPELINE_SAMPLE_LOCATIONS_STATE_CREATE_INFO_EXT: {
             const VkPipelineSampleLocationsStateCreateInfoEXT* pValue = reinterpret_cast<const VkPipelineSampleLocationsStateCreateInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SAMPLE_LOCATIONS_PROPERTIES_EXT: {
             const VkPhysicalDeviceSampleLocationsPropertiesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceSampleLocationsPropertiesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_MULTISAMPLE_PROPERTIES_EXT: {
             const VkMultisamplePropertiesEXT* pValue = reinterpret_cast<const VkMultisamplePropertiesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_BLEND_OPERATION_ADVANCED_FEATURES_EXT: {
             const VkPhysicalDeviceBlendOperationAdvancedFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceBlendOperationAdvancedFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_BLEND_OPERATION_ADVANCED_PROPERTIES_EXT: {
             const VkPhysicalDeviceBlendOperationAdvancedPropertiesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceBlendOperationAdvancedPropertiesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PIPELINE_COLOR_BLEND_ADVANCED_STATE_CREATE_INFO_EXT: {
             const VkPipelineColorBlendAdvancedStateCreateInfoEXT* pValue = reinterpret_cast<const VkPipelineColorBlendAdvancedStateCreateInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PIPELINE_COVERAGE_TO_COLOR_STATE_CREATE_INFO_NV: {
             const VkPipelineCoverageToColorStateCreateInfoNV* pValue = reinterpret_cast<const VkPipelineCoverageToColorStateCreateInfoNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PIPELINE_COVERAGE_MODULATION_STATE_CREATE_INFO_NV: {
             const VkPipelineCoverageModulationStateCreateInfoNV* pValue = reinterpret_cast<const VkPipelineCoverageModulationStateCreateInfoNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_SM_BUILTINS_PROPERTIES_NV: {
             const VkPhysicalDeviceShaderSMBuiltinsPropertiesNV* pValue = reinterpret_cast<const VkPhysicalDeviceShaderSMBuiltinsPropertiesNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_SM_BUILTINS_FEATURES_NV: {
             const VkPhysicalDeviceShaderSMBuiltinsFeaturesNV* pValue = reinterpret_cast<const VkPhysicalDeviceShaderSMBuiltinsFeaturesNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DRM_FORMAT_MODIFIER_PROPERTIES_LIST_EXT: {
             const VkDrmFormatModifierPropertiesListEXT* pValue = reinterpret_cast<const VkDrmFormatModifierPropertiesListEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_DRM_FORMAT_MODIFIER_INFO_EXT: {
             const VkPhysicalDeviceImageDrmFormatModifierInfoEXT* pValue = reinterpret_cast<const VkPhysicalDeviceImageDrmFormatModifierInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_IMAGE_DRM_FORMAT_MODIFIER_LIST_CREATE_INFO_EXT: {
             const VkImageDrmFormatModifierListCreateInfoEXT* pValue = reinterpret_cast<const VkImageDrmFormatModifierListCreateInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_IMAGE_DRM_FORMAT_MODIFIER_EXPLICIT_CREATE_INFO_EXT: {
             const VkImageDrmFormatModifierExplicitCreateInfoEXT* pValue = reinterpret_cast<const VkImageDrmFormatModifierExplicitCreateInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_IMAGE_DRM_FORMAT_MODIFIER_PROPERTIES_EXT: {
             const VkImageDrmFormatModifierPropertiesEXT* pValue = reinterpret_cast<const VkImageDrmFormatModifierPropertiesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DRM_FORMAT_MODIFIER_PROPERTIES_LIST_2_EXT: {
             const VkDrmFormatModifierPropertiesList2EXT* pValue = reinterpret_cast<const VkDrmFormatModifierPropertiesList2EXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VALIDATION_CACHE_CREATE_INFO_EXT: {
             const VkValidationCacheCreateInfoEXT* pValue = reinterpret_cast<const VkValidationCacheCreateInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SHADER_MODULE_VALIDATION_CACHE_CREATE_INFO_EXT: {
             const VkShaderModuleValidationCacheCreateInfoEXT* pValue = reinterpret_cast<const VkShaderModuleValidationCacheCreateInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_SHADING_RATE_IMAGE_STATE_CREATE_INFO_NV: {
             const VkPipelineViewportShadingRateImageStateCreateInfoNV* pValue = reinterpret_cast<const VkPipelineViewportShadingRateImageStateCreateInfoNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADING_RATE_IMAGE_FEATURES_NV: {
             const VkPhysicalDeviceShadingRateImageFeaturesNV* pValue = reinterpret_cast<const VkPhysicalDeviceShadingRateImageFeaturesNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADING_RATE_IMAGE_PROPERTIES_NV: {
             const VkPhysicalDeviceShadingRateImagePropertiesNV* pValue = reinterpret_cast<const VkPhysicalDeviceShadingRateImagePropertiesNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_COARSE_SAMPLE_ORDER_STATE_CREATE_INFO_NV: {
             const VkPipelineViewportCoarseSampleOrderStateCreateInfoNV* pValue = reinterpret_cast<const VkPipelineViewportCoarseSampleOrderStateCreateInfoNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_RAY_TRACING_SHADER_GROUP_CREATE_INFO_NV: {
             const VkRayTracingShaderGroupCreateInfoNV* pValue = reinterpret_cast<const VkRayTracingShaderGroupCreateInfoNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_RAY_TRACING_PIPELINE_CREATE_INFO_NV: {
             const VkRayTracingPipelineCreateInfoNV* pValue = reinterpret_cast<const VkRayTracingPipelineCreateInfoNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_GEOMETRY_TRIANGLES_NV: {
             const VkGeometryTrianglesNV* pValue = reinterpret_cast<const VkGeometryTrianglesNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_GEOMETRY_AABB_NV: {
             const VkGeometryAABBNV* pValue = reinterpret_cast<const VkGeometryAABBNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_GEOMETRY_NV: {
             const VkGeometryNV* pValue = reinterpret_cast<const VkGeometryNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_INFO_NV: {
             const VkAccelerationStructureInfoNV* pValue = reinterpret_cast<const VkAccelerationStructureInfoNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_CREATE_INFO_NV: {
             const VkAccelerationStructureCreateInfoNV* pValue = reinterpret_cast<const VkAccelerationStructureCreateInfoNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_BIND_ACCELERATION_STRUCTURE_MEMORY_INFO_NV: {
             const VkBindAccelerationStructureMemoryInfoNV* pValue = reinterpret_cast<const VkBindAccelerationStructureMemoryInfoNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET_ACCELERATION_STRUCTURE_NV: {
             const VkWriteDescriptorSetAccelerationStructureNV* pValue = reinterpret_cast<const VkWriteDescriptorSetAccelerationStructureNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_MEMORY_REQUIREMENTS_INFO_NV: {
             const VkAccelerationStructureMemoryRequirementsInfoNV* pValue = reinterpret_cast<const VkAccelerationStructureMemoryRequirementsInfoNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RAY_TRACING_PROPERTIES_NV: {
             const VkPhysicalDeviceRayTracingPropertiesNV* pValue = reinterpret_cast<const VkPhysicalDeviceRayTracingPropertiesNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_REPRESENTATIVE_FRAGMENT_TEST_FEATURES_NV: {
             const VkPhysicalDeviceRepresentativeFragmentTestFeaturesNV* pValue = reinterpret_cast<const VkPhysicalDeviceRepresentativeFragmentTestFeaturesNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PIPELINE_REPRESENTATIVE_FRAGMENT_TEST_STATE_CREATE_INFO_NV: {
             const VkPipelineRepresentativeFragmentTestStateCreateInfoNV* pValue = reinterpret_cast<const VkPipelineRepresentativeFragmentTestStateCreateInfoNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_VIEW_IMAGE_FORMAT_INFO_EXT: {
             const VkPhysicalDeviceImageViewImageFormatInfoEXT* pValue = reinterpret_cast<const VkPhysicalDeviceImageViewImageFormatInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_FILTER_CUBIC_IMAGE_VIEW_IMAGE_FORMAT_PROPERTIES_EXT: {
             const VkFilterCubicImageViewImageFormatPropertiesEXT* pValue = reinterpret_cast<const VkFilterCubicImageViewImageFormatPropertiesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_IMPORT_MEMORY_HOST_POINTER_INFO_EXT: {
             const VkImportMemoryHostPointerInfoEXT* pValue = reinterpret_cast<const VkImportMemoryHostPointerInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_MEMORY_HOST_POINTER_PROPERTIES_EXT: {
             const VkMemoryHostPointerPropertiesEXT* pValue = reinterpret_cast<const VkMemoryHostPointerPropertiesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_MEMORY_HOST_PROPERTIES_EXT: {
             const VkPhysicalDeviceExternalMemoryHostPropertiesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceExternalMemoryHostPropertiesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PIPELINE_COMPILER_CONTROL_CREATE_INFO_AMD: {
             const VkPipelineCompilerControlCreateInfoAMD* pValue = reinterpret_cast<const VkPipelineCompilerControlCreateInfoAMD*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_AMD: {
             const VkPhysicalDeviceShaderCorePropertiesAMD* pValue = reinterpret_cast<const VkPhysicalDeviceShaderCorePropertiesAMD*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DEVICE_MEMORY_OVERALLOCATION_CREATE_INFO_AMD: {
             const VkDeviceMemoryOverallocationCreateInfoAMD* pValue = reinterpret_cast<const VkDeviceMemoryOverallocationCreateInfoAMD*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_DIVISOR_PROPERTIES_EXT: {
             const VkPhysicalDeviceVertexAttributeDivisorPropertiesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceVertexAttributeDivisorPropertiesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PRESENT_FRAME_TOKEN_GGP: {
             const VkPresentFrameTokenGGP* pValue = reinterpret_cast<const VkPresentFrameTokenGGP*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MESH_SHADER_FEATURES_NV: {
             const VkPhysicalDeviceMeshShaderFeaturesNV* pValue = reinterpret_cast<const VkPhysicalDeviceMeshShaderFeaturesNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MESH_SHADER_PROPERTIES_NV: {
             const VkPhysicalDeviceMeshShaderPropertiesNV* pValue = reinterpret_cast<const VkPhysicalDeviceMeshShaderPropertiesNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_IMAGE_FOOTPRINT_FEATURES_NV: {
             const VkPhysicalDeviceShaderImageFootprintFeaturesNV* pValue = reinterpret_cast<const VkPhysicalDeviceShaderImageFootprintFeaturesNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_EXCLUSIVE_SCISSOR_STATE_CREATE_INFO_NV: {
             const VkPipelineViewportExclusiveScissorStateCreateInfoNV* pValue = reinterpret_cast<const VkPipelineViewportExclusiveScissorStateCreateInfoNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXCLUSIVE_SCISSOR_FEATURES_NV: {
             const VkPhysicalDeviceExclusiveScissorFeaturesNV* pValue = reinterpret_cast<const VkPhysicalDeviceExclusiveScissorFeaturesNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_QUEUE_FAMILY_CHECKPOINT_PROPERTIES_NV: {
             const VkQueueFamilyCheckpointPropertiesNV* pValue = reinterpret_cast<const VkQueueFamilyCheckpointPropertiesNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_CHECKPOINT_DATA_NV: {
             const VkCheckpointDataNV* pValue = reinterpret_cast<const VkCheckpointDataNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_QUEUE_FAMILY_CHECKPOINT_PROPERTIES_2_NV: {
             const VkQueueFamilyCheckpointProperties2NV* pValue = reinterpret_cast<const VkQueueFamilyCheckpointProperties2NV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_CHECKPOINT_DATA_2_NV: {
             const VkCheckpointData2NV* pValue = reinterpret_cast<const VkCheckpointData2NV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PRESENT_TIMING_FEATURES_EXT: {
             const VkPhysicalDevicePresentTimingFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDevicePresentTimingFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PRESENT_TIMING_SURFACE_CAPABILITIES_EXT: {
             const VkPresentTimingSurfaceCapabilitiesEXT* pValue = reinterpret_cast<const VkPresentTimingSurfaceCapabilitiesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SWAPCHAIN_CALIBRATED_TIMESTAMP_INFO_EXT: {
             const VkSwapchainCalibratedTimestampInfoEXT* pValue = reinterpret_cast<const VkSwapchainCalibratedTimestampInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SWAPCHAIN_TIMING_PROPERTIES_EXT: {
             const VkSwapchainTimingPropertiesEXT* pValue = reinterpret_cast<const VkSwapchainTimingPropertiesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SWAPCHAIN_TIME_DOMAIN_PROPERTIES_EXT: {
             const VkSwapchainTimeDomainPropertiesEXT* pValue = reinterpret_cast<const VkSwapchainTimeDomainPropertiesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PAST_PRESENTATION_TIMING_INFO_EXT: {
             const VkPastPresentationTimingInfoEXT* pValue = reinterpret_cast<const VkPastPresentationTimingInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PAST_PRESENTATION_TIMING_EXT: {
             const VkPastPresentationTimingEXT* pValue = reinterpret_cast<const VkPastPresentationTimingEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PAST_PRESENTATION_TIMING_PROPERTIES_EXT: {
             const VkPastPresentationTimingPropertiesEXT* pValue = reinterpret_cast<const VkPastPresentationTimingPropertiesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PRESENT_TIMING_INFO_EXT: {
             const VkPresentTimingInfoEXT* pValue = reinterpret_cast<const VkPresentTimingInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PRESENT_TIMINGS_INFO_EXT: {
             const VkPresentTimingsInfoEXT* pValue = reinterpret_cast<const VkPresentTimingsInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_INTEGER_FUNCTIONS_2_FEATURES_INTEL: {
             const VkPhysicalDeviceShaderIntegerFunctions2FeaturesINTEL* pValue = reinterpret_cast<const VkPhysicalDeviceShaderIntegerFunctions2FeaturesINTEL*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_INITIALIZE_PERFORMANCE_API_INFO_INTEL: {
             const VkInitializePerformanceApiInfoINTEL* pValue = reinterpret_cast<const VkInitializePerformanceApiInfoINTEL*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_QUERY_POOL_PERFORMANCE_QUERY_CREATE_INFO_INTEL: {
             const VkQueryPoolPerformanceQueryCreateInfoINTEL* pValue = reinterpret_cast<const VkQueryPoolPerformanceQueryCreateInfoINTEL*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PERFORMANCE_MARKER_INFO_INTEL: {
             const VkPerformanceMarkerInfoINTEL* pValue = reinterpret_cast<const VkPerformanceMarkerInfoINTEL*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PERFORMANCE_STREAM_MARKER_INFO_INTEL: {
             const VkPerformanceStreamMarkerInfoINTEL* pValue = reinterpret_cast<const VkPerformanceStreamMarkerInfoINTEL*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PERFORMANCE_OVERRIDE_INFO_INTEL: {
             const VkPerformanceOverrideInfoINTEL* pValue = reinterpret_cast<const VkPerformanceOverrideInfoINTEL*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PERFORMANCE_CONFIGURATION_ACQUIRE_INFO_INTEL: {
             const VkPerformanceConfigurationAcquireInfoINTEL* pValue = reinterpret_cast<const VkPerformanceConfigurationAcquireInfoINTEL*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PCI_BUS_INFO_PROPERTIES_EXT: {
             const VkPhysicalDevicePCIBusInfoPropertiesEXT* pValue = reinterpret_cast<const VkPhysicalDevicePCIBusInfoPropertiesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DISPLAY_NATIVE_HDR_SURFACE_CAPABILITIES_AMD: {
             const VkDisplayNativeHdrSurfaceCapabilitiesAMD* pValue = reinterpret_cast<const VkDisplayNativeHdrSurfaceCapabilitiesAMD*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SWAPCHAIN_DISPLAY_NATIVE_HDR_CREATE_INFO_AMD: {
             const VkSwapchainDisplayNativeHdrCreateInfoAMD* pValue = reinterpret_cast<const VkSwapchainDisplayNativeHdrCreateInfoAMD*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_IMAGEPIPE_SURFACE_CREATE_INFO_FUCHSIA: {
             const VkImagePipeSurfaceCreateInfoFUCHSIA* pValue = reinterpret_cast<const VkImagePipeSurfaceCreateInfoFUCHSIA*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_METAL_SURFACE_CREATE_INFO_EXT: {
             const VkMetalSurfaceCreateInfoEXT* pValue = reinterpret_cast<const VkMetalSurfaceCreateInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_FEATURES_EXT: {
             const VkPhysicalDeviceFragmentDensityMapFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceFragmentDensityMapFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_PROPERTIES_EXT: {
             const VkPhysicalDeviceFragmentDensityMapPropertiesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceFragmentDensityMapPropertiesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_RENDER_PASS_FRAGMENT_DENSITY_MAP_CREATE_INFO_EXT: {
             const VkRenderPassFragmentDensityMapCreateInfoEXT* pValue = reinterpret_cast<const VkRenderPassFragmentDensityMapCreateInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_INFO_EXT: {
             const VkRenderingFragmentDensityMapAttachmentInfoEXT* pValue = reinterpret_cast<const VkRenderingFragmentDensityMapAttachmentInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_2_AMD: {
             const VkPhysicalDeviceShaderCoreProperties2AMD* pValue = reinterpret_cast<const VkPhysicalDeviceShaderCoreProperties2AMD*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COHERENT_MEMORY_FEATURES_AMD: {
             const VkPhysicalDeviceCoherentMemoryFeaturesAMD* pValue = reinterpret_cast<const VkPhysicalDeviceCoherentMemoryFeaturesAMD*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_IMAGE_ATOMIC_INT64_FEATURES_EXT: {
             const VkPhysicalDeviceShaderImageAtomicInt64FeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceShaderImageAtomicInt64FeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MEMORY_BUDGET_PROPERTIES_EXT: {
             const VkPhysicalDeviceMemoryBudgetPropertiesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceMemoryBudgetPropertiesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MEMORY_PRIORITY_FEATURES_EXT: {
             const VkPhysicalDeviceMemoryPriorityFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceMemoryPriorityFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_MEMORY_PRIORITY_ALLOCATE_INFO_EXT: {
             const VkMemoryPriorityAllocateInfoEXT* pValue = reinterpret_cast<const VkMemoryPriorityAllocateInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEDICATED_ALLOCATION_IMAGE_ALIASING_FEATURES_NV: {
             const VkPhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV* pValue = reinterpret_cast<const VkPhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_FEATURES_EXT: {
             const VkPhysicalDeviceBufferDeviceAddressFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceBufferDeviceAddressFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_BUFFER_DEVICE_ADDRESS_CREATE_INFO_EXT: {
             const VkBufferDeviceAddressCreateInfoEXT* pValue = reinterpret_cast<const VkBufferDeviceAddressCreateInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VALIDATION_FEATURES_EXT: {
             const VkValidationFeaturesEXT* pValue = reinterpret_cast<const VkValidationFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_COOPERATIVE_MATRIX_PROPERTIES_NV: {
             const VkCooperativeMatrixPropertiesNV* pValue = reinterpret_cast<const VkCooperativeMatrixPropertiesNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COOPERATIVE_MATRIX_FEATURES_NV: {
             const VkPhysicalDeviceCooperativeMatrixFeaturesNV* pValue = reinterpret_cast<const VkPhysicalDeviceCooperativeMatrixFeaturesNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COOPERATIVE_MATRIX_PROPERTIES_NV: {
             const VkPhysicalDeviceCooperativeMatrixPropertiesNV* pValue = reinterpret_cast<const VkPhysicalDeviceCooperativeMatrixPropertiesNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COVERAGE_REDUCTION_MODE_FEATURES_NV: {
             const VkPhysicalDeviceCoverageReductionModeFeaturesNV* pValue = reinterpret_cast<const VkPhysicalDeviceCoverageReductionModeFeaturesNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PIPELINE_COVERAGE_REDUCTION_STATE_CREATE_INFO_NV: {
             const VkPipelineCoverageReductionStateCreateInfoNV* pValue = reinterpret_cast<const VkPipelineCoverageReductionStateCreateInfoNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_FRAMEBUFFER_MIXED_SAMPLES_COMBINATION_NV: {
             const VkFramebufferMixedSamplesCombinationNV* pValue = reinterpret_cast<const VkFramebufferMixedSamplesCombinationNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_SHADER_INTERLOCK_FEATURES_EXT: {
             const VkPhysicalDeviceFragmentShaderInterlockFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceFragmentShaderInterlockFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_YCBCR_IMAGE_ARRAYS_FEATURES_EXT: {
             const VkPhysicalDeviceYcbcrImageArraysFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceYcbcrImageArraysFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PROVOKING_VERTEX_FEATURES_EXT: {
             const VkPhysicalDeviceProvokingVertexFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceProvokingVertexFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PROVOKING_VERTEX_PROPERTIES_EXT: {
             const VkPhysicalDeviceProvokingVertexPropertiesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceProvokingVertexPropertiesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_PROVOKING_VERTEX_STATE_CREATE_INFO_EXT: {
             const VkPipelineRasterizationProvokingVertexStateCreateInfoEXT* pValue = reinterpret_cast<const VkPipelineRasterizationProvokingVertexStateCreateInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SURFACE_FULL_SCREEN_EXCLUSIVE_INFO_EXT: {
             const VkSurfaceFullScreenExclusiveInfoEXT* pValue = reinterpret_cast<const VkSurfaceFullScreenExclusiveInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SURFACE_CAPABILITIES_FULL_SCREEN_EXCLUSIVE_EXT: {
             const VkSurfaceCapabilitiesFullScreenExclusiveEXT* pValue = reinterpret_cast<const VkSurfaceCapabilitiesFullScreenExclusiveEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SURFACE_FULL_SCREEN_EXCLUSIVE_WIN32_INFO_EXT: {
             const VkSurfaceFullScreenExclusiveWin32InfoEXT* pValue = reinterpret_cast<const VkSurfaceFullScreenExclusiveWin32InfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_HEADLESS_SURFACE_CREATE_INFO_EXT: {
             const VkHeadlessSurfaceCreateInfoEXT* pValue = reinterpret_cast<const VkHeadlessSurfaceCreateInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_ATOMIC_FLOAT_FEATURES_EXT: {
             const VkPhysicalDeviceShaderAtomicFloatFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceShaderAtomicFloatFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_FEATURES_EXT: {
             const VkPhysicalDeviceExtendedDynamicStateFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceExtendedDynamicStateFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MAP_MEMORY_PLACED_FEATURES_EXT: {
             const VkPhysicalDeviceMapMemoryPlacedFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceMapMemoryPlacedFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MAP_MEMORY_PLACED_PROPERTIES_EXT: {
             const VkPhysicalDeviceMapMemoryPlacedPropertiesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceMapMemoryPlacedPropertiesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_MEMORY_MAP_PLACED_INFO_EXT: {
             const VkMemoryMapPlacedInfoEXT* pValue = reinterpret_cast<const VkMemoryMapPlacedInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_ATOMIC_FLOAT_2_FEATURES_EXT: {
             const VkPhysicalDeviceShaderAtomicFloat2FeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceShaderAtomicFloat2FeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_PROPERTIES_NV: {
             const VkPhysicalDeviceDeviceGeneratedCommandsPropertiesNV* pValue = reinterpret_cast<const VkPhysicalDeviceDeviceGeneratedCommandsPropertiesNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_FEATURES_NV: {
             const VkPhysicalDeviceDeviceGeneratedCommandsFeaturesNV* pValue = reinterpret_cast<const VkPhysicalDeviceDeviceGeneratedCommandsFeaturesNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_GRAPHICS_SHADER_GROUP_CREATE_INFO_NV: {
             const VkGraphicsShaderGroupCreateInfoNV* pValue = reinterpret_cast<const VkGraphicsShaderGroupCreateInfoNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_SHADER_GROUPS_CREATE_INFO_NV: {
             const VkGraphicsPipelineShaderGroupsCreateInfoNV* pValue = reinterpret_cast<const VkGraphicsPipelineShaderGroupsCreateInfoNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_INDIRECT_COMMANDS_LAYOUT_TOKEN_NV: {
             const VkIndirectCommandsLayoutTokenNV* pValue = reinterpret_cast<const VkIndirectCommandsLayoutTokenNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_INDIRECT_COMMANDS_LAYOUT_CREATE_INFO_NV: {
             const VkIndirectCommandsLayoutCreateInfoNV* pValue = reinterpret_cast<const VkIndirectCommandsLayoutCreateInfoNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_GENERATED_COMMANDS_INFO_NV: {
             const VkGeneratedCommandsInfoNV* pValue = reinterpret_cast<const VkGeneratedCommandsInfoNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_GENERATED_COMMANDS_MEMORY_REQUIREMENTS_INFO_NV: {
             const VkGeneratedCommandsMemoryRequirementsInfoNV* pValue = reinterpret_cast<const VkGeneratedCommandsMemoryRequirementsInfoNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_INHERITED_VIEWPORT_SCISSOR_FEATURES_NV: {
             const VkPhysicalDeviceInheritedViewportScissorFeaturesNV* pValue = reinterpret_cast<const VkPhysicalDeviceInheritedViewportScissorFeaturesNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_VIEWPORT_SCISSOR_INFO_NV: {
             const VkCommandBufferInheritanceViewportScissorInfoNV* pValue = reinterpret_cast<const VkCommandBufferInheritanceViewportScissorInfoNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TEXEL_BUFFER_ALIGNMENT_FEATURES_EXT: {
             const VkPhysicalDeviceTexelBufferAlignmentFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceTexelBufferAlignmentFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_RENDER_PASS_TRANSFORM_BEGIN_INFO_QCOM: {
             const VkRenderPassTransformBeginInfoQCOM* pValue = reinterpret_cast<const VkRenderPassTransformBeginInfoQCOM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_RENDER_PASS_TRANSFORM_INFO_QCOM: {
             const VkCommandBufferInheritanceRenderPassTransformInfoQCOM* pValue = reinterpret_cast<const VkCommandBufferInheritanceRenderPassTransformInfoQCOM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEPTH_BIAS_CONTROL_FEATURES_EXT: {
             const VkPhysicalDeviceDepthBiasControlFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceDepthBiasControlFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DEPTH_BIAS_INFO_EXT: {
             const VkDepthBiasInfoEXT* pValue = reinterpret_cast<const VkDepthBiasInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DEPTH_BIAS_REPRESENTATION_INFO_EXT: {
             const VkDepthBiasRepresentationInfoEXT* pValue = reinterpret_cast<const VkDepthBiasRepresentationInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEVICE_MEMORY_REPORT_FEATURES_EXT: {
             const VkPhysicalDeviceDeviceMemoryReportFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceDeviceMemoryReportFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DEVICE_MEMORY_REPORT_CALLBACK_DATA_EXT: {
             const VkDeviceMemoryReportCallbackDataEXT* pValue = reinterpret_cast<const VkDeviceMemoryReportCallbackDataEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DEVICE_DEVICE_MEMORY_REPORT_CREATE_INFO_EXT: {
             const VkDeviceDeviceMemoryReportCreateInfoEXT* pValue = reinterpret_cast<const VkDeviceDeviceMemoryReportCreateInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SAMPLER_CUSTOM_BORDER_COLOR_CREATE_INFO_EXT: {
             const VkSamplerCustomBorderColorCreateInfoEXT* pValue = reinterpret_cast<const VkSamplerCustomBorderColorCreateInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_CUSTOM_BORDER_COLOR_PROPERTIES_EXT: {
             const VkPhysicalDeviceCustomBorderColorPropertiesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceCustomBorderColorPropertiesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_CUSTOM_BORDER_COLOR_FEATURES_EXT: {
             const VkPhysicalDeviceCustomBorderColorFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceCustomBorderColorFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PRESENT_BARRIER_FEATURES_NV: {
             const VkPhysicalDevicePresentBarrierFeaturesNV* pValue = reinterpret_cast<const VkPhysicalDevicePresentBarrierFeaturesNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SURFACE_CAPABILITIES_PRESENT_BARRIER_NV: {
             const VkSurfaceCapabilitiesPresentBarrierNV* pValue = reinterpret_cast<const VkSurfaceCapabilitiesPresentBarrierNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SWAPCHAIN_PRESENT_BARRIER_CREATE_INFO_NV: {
             const VkSwapchainPresentBarrierCreateInfoNV* pValue = reinterpret_cast<const VkSwapchainPresentBarrierCreateInfoNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DIAGNOSTICS_CONFIG_FEATURES_NV: {
             const VkPhysicalDeviceDiagnosticsConfigFeaturesNV* pValue = reinterpret_cast<const VkPhysicalDeviceDiagnosticsConfigFeaturesNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DEVICE_DIAGNOSTICS_CONFIG_CREATE_INFO_NV: {
             const VkDeviceDiagnosticsConfigCreateInfoNV* pValue = reinterpret_cast<const VkDeviceDiagnosticsConfigCreateInfoNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
 #ifdef VK_ENABLE_BETA_EXTENSIONS
         case VK_STRUCTURE_TYPE_CUDA_MODULE_CREATE_INFO_NV: {
             const VkCudaModuleCreateInfoNV* pValue = reinterpret_cast<const VkCudaModuleCreateInfoNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
 #endif
 #ifdef VK_ENABLE_BETA_EXTENSIONS
         case VK_STRUCTURE_TYPE_CUDA_FUNCTION_CREATE_INFO_NV: {
             const VkCudaFunctionCreateInfoNV* pValue = reinterpret_cast<const VkCudaFunctionCreateInfoNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
 #endif
 #ifdef VK_ENABLE_BETA_EXTENSIONS
         case VK_STRUCTURE_TYPE_CUDA_LAUNCH_INFO_NV: {
             const VkCudaLaunchInfoNV* pValue = reinterpret_cast<const VkCudaLaunchInfoNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
 #endif
 #ifdef VK_ENABLE_BETA_EXTENSIONS
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_CUDA_KERNEL_LAUNCH_FEATURES_NV: {
             const VkPhysicalDeviceCudaKernelLaunchFeaturesNV* pValue = reinterpret_cast<const VkPhysicalDeviceCudaKernelLaunchFeaturesNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
 #endif
 #ifdef VK_ENABLE_BETA_EXTENSIONS
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_CUDA_KERNEL_LAUNCH_PROPERTIES_NV: {
             const VkPhysicalDeviceCudaKernelLaunchPropertiesNV* pValue = reinterpret_cast<const VkPhysicalDeviceCudaKernelLaunchPropertiesNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
 #endif
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TILE_SHADING_FEATURES_QCOM: {
             const VkPhysicalDeviceTileShadingFeaturesQCOM* pValue = reinterpret_cast<const VkPhysicalDeviceTileShadingFeaturesQCOM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TILE_SHADING_PROPERTIES_QCOM: {
             const VkPhysicalDeviceTileShadingPropertiesQCOM* pValue = reinterpret_cast<const VkPhysicalDeviceTileShadingPropertiesQCOM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_RENDER_PASS_TILE_SHADING_CREATE_INFO_QCOM: {
             const VkRenderPassTileShadingCreateInfoQCOM* pValue = reinterpret_cast<const VkRenderPassTileShadingCreateInfoQCOM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PER_TILE_BEGIN_INFO_QCOM: {
             const VkPerTileBeginInfoQCOM* pValue = reinterpret_cast<const VkPerTileBeginInfoQCOM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PER_TILE_END_INFO_QCOM: {
             const VkPerTileEndInfoQCOM* pValue = reinterpret_cast<const VkPerTileEndInfoQCOM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DISPATCH_TILE_INFO_QCOM: {
             const VkDispatchTileInfoQCOM* pValue = reinterpret_cast<const VkDispatchTileInfoQCOM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_QUERY_LOW_LATENCY_SUPPORT_NV: {
             const VkQueryLowLatencySupportNV* pValue = reinterpret_cast<const VkQueryLowLatencySupportNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_EXPORT_METAL_OBJECT_CREATE_INFO_EXT: {
             const VkExportMetalObjectCreateInfoEXT* pValue = reinterpret_cast<const VkExportMetalObjectCreateInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_EXPORT_METAL_OBJECTS_INFO_EXT: {
             const VkExportMetalObjectsInfoEXT* pValue = reinterpret_cast<const VkExportMetalObjectsInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_EXPORT_METAL_DEVICE_INFO_EXT: {
             const VkExportMetalDeviceInfoEXT* pValue = reinterpret_cast<const VkExportMetalDeviceInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_EXPORT_METAL_COMMAND_QUEUE_INFO_EXT: {
             const VkExportMetalCommandQueueInfoEXT* pValue = reinterpret_cast<const VkExportMetalCommandQueueInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_EXPORT_METAL_BUFFER_INFO_EXT: {
             const VkExportMetalBufferInfoEXT* pValue = reinterpret_cast<const VkExportMetalBufferInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_IMPORT_METAL_BUFFER_INFO_EXT: {
             const VkImportMetalBufferInfoEXT* pValue = reinterpret_cast<const VkImportMetalBufferInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_EXPORT_METAL_TEXTURE_INFO_EXT: {
             const VkExportMetalTextureInfoEXT* pValue = reinterpret_cast<const VkExportMetalTextureInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_IMPORT_METAL_TEXTURE_INFO_EXT: {
             const VkImportMetalTextureInfoEXT* pValue = reinterpret_cast<const VkImportMetalTextureInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_EXPORT_METAL_IO_SURFACE_INFO_EXT: {
             const VkExportMetalIOSurfaceInfoEXT* pValue = reinterpret_cast<const VkExportMetalIOSurfaceInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_IMPORT_METAL_IO_SURFACE_INFO_EXT: {
             const VkImportMetalIOSurfaceInfoEXT* pValue = reinterpret_cast<const VkImportMetalIOSurfaceInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_EXPORT_METAL_SHARED_EVENT_INFO_EXT: {
             const VkExportMetalSharedEventInfoEXT* pValue = reinterpret_cast<const VkExportMetalSharedEventInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_IMPORT_METAL_SHARED_EVENT_INFO_EXT: {
             const VkImportMetalSharedEventInfoEXT* pValue = reinterpret_cast<const VkImportMetalSharedEventInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DESCRIPTOR_BUFFER_PROPERTIES_EXT: {
             const VkPhysicalDeviceDescriptorBufferPropertiesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceDescriptorBufferPropertiesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DESCRIPTOR_BUFFER_DENSITY_MAP_PROPERTIES_EXT: {
             const VkPhysicalDeviceDescriptorBufferDensityMapPropertiesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceDescriptorBufferDensityMapPropertiesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DESCRIPTOR_BUFFER_FEATURES_EXT: {
             const VkPhysicalDeviceDescriptorBufferFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceDescriptorBufferFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DESCRIPTOR_ADDRESS_INFO_EXT: {
             const VkDescriptorAddressInfoEXT* pValue = reinterpret_cast<const VkDescriptorAddressInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DESCRIPTOR_BUFFER_BINDING_INFO_EXT: {
             const VkDescriptorBufferBindingInfoEXT* pValue = reinterpret_cast<const VkDescriptorBufferBindingInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DESCRIPTOR_BUFFER_BINDING_PUSH_DESCRIPTOR_BUFFER_HANDLE_EXT: {
             const VkDescriptorBufferBindingPushDescriptorBufferHandleEXT* pValue = reinterpret_cast<const VkDescriptorBufferBindingPushDescriptorBufferHandleEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DESCRIPTOR_GET_INFO_EXT: {
             const VkDescriptorGetInfoEXT* pValue = reinterpret_cast<const VkDescriptorGetInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_BUFFER_CAPTURE_DESCRIPTOR_DATA_INFO_EXT: {
             const VkBufferCaptureDescriptorDataInfoEXT* pValue = reinterpret_cast<const VkBufferCaptureDescriptorDataInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_IMAGE_CAPTURE_DESCRIPTOR_DATA_INFO_EXT: {
             const VkImageCaptureDescriptorDataInfoEXT* pValue = reinterpret_cast<const VkImageCaptureDescriptorDataInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_IMAGE_VIEW_CAPTURE_DESCRIPTOR_DATA_INFO_EXT: {
             const VkImageViewCaptureDescriptorDataInfoEXT* pValue = reinterpret_cast<const VkImageViewCaptureDescriptorDataInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SAMPLER_CAPTURE_DESCRIPTOR_DATA_INFO_EXT: {
             const VkSamplerCaptureDescriptorDataInfoEXT* pValue = reinterpret_cast<const VkSamplerCaptureDescriptorDataInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_OPAQUE_CAPTURE_DESCRIPTOR_DATA_CREATE_INFO_EXT: {
             const VkOpaqueCaptureDescriptorDataCreateInfoEXT* pValue = reinterpret_cast<const VkOpaqueCaptureDescriptorDataCreateInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_CAPTURE_DESCRIPTOR_DATA_INFO_EXT: {
             const VkAccelerationStructureCaptureDescriptorDataInfoEXT* pValue = reinterpret_cast<const VkAccelerationStructureCaptureDescriptorDataInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_GRAPHICS_PIPELINE_LIBRARY_FEATURES_EXT: {
             const VkPhysicalDeviceGraphicsPipelineLibraryFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceGraphicsPipelineLibraryFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_GRAPHICS_PIPELINE_LIBRARY_PROPERTIES_EXT: {
             const VkPhysicalDeviceGraphicsPipelineLibraryPropertiesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceGraphicsPipelineLibraryPropertiesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_LIBRARY_CREATE_INFO_EXT: {
             const VkGraphicsPipelineLibraryCreateInfoEXT* pValue = reinterpret_cast<const VkGraphicsPipelineLibraryCreateInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_EARLY_AND_LATE_FRAGMENT_TESTS_FEATURES_AMD: {
             const VkPhysicalDeviceShaderEarlyAndLateFragmentTestsFeaturesAMD* pValue = reinterpret_cast<const VkPhysicalDeviceShaderEarlyAndLateFragmentTestsFeaturesAMD*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_ENUMS_FEATURES_NV: {
             const VkPhysicalDeviceFragmentShadingRateEnumsFeaturesNV* pValue = reinterpret_cast<const VkPhysicalDeviceFragmentShadingRateEnumsFeaturesNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_ENUMS_PROPERTIES_NV: {
             const VkPhysicalDeviceFragmentShadingRateEnumsPropertiesNV* pValue = reinterpret_cast<const VkPhysicalDeviceFragmentShadingRateEnumsPropertiesNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PIPELINE_FRAGMENT_SHADING_RATE_ENUM_STATE_CREATE_INFO_NV: {
             const VkPipelineFragmentShadingRateEnumStateCreateInfoNV* pValue = reinterpret_cast<const VkPipelineFragmentShadingRateEnumStateCreateInfoNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_GEOMETRY_MOTION_TRIANGLES_DATA_NV: {
             const VkAccelerationStructureGeometryMotionTrianglesDataNV* pValue = reinterpret_cast<const VkAccelerationStructureGeometryMotionTrianglesDataNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_MOTION_INFO_NV: {
             const VkAccelerationStructureMotionInfoNV* pValue = reinterpret_cast<const VkAccelerationStructureMotionInfoNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RAY_TRACING_MOTION_BLUR_FEATURES_NV: {
             const VkPhysicalDeviceRayTracingMotionBlurFeaturesNV* pValue = reinterpret_cast<const VkPhysicalDeviceRayTracingMotionBlurFeaturesNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_YCBCR_2_PLANE_444_FORMATS_FEATURES_EXT: {
             const VkPhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_2_FEATURES_EXT: {
             const VkPhysicalDeviceFragmentDensityMap2FeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceFragmentDensityMap2FeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_2_PROPERTIES_EXT: {
             const VkPhysicalDeviceFragmentDensityMap2PropertiesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceFragmentDensityMap2PropertiesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_COPY_COMMAND_TRANSFORM_INFO_QCOM: {
             const VkCopyCommandTransformInfoQCOM* pValue = reinterpret_cast<const VkCopyCommandTransformInfoQCOM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_COMPRESSION_CONTROL_FEATURES_EXT: {
             const VkPhysicalDeviceImageCompressionControlFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceImageCompressionControlFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_IMAGE_COMPRESSION_CONTROL_EXT: {
             const VkImageCompressionControlEXT* pValue = reinterpret_cast<const VkImageCompressionControlEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_IMAGE_COMPRESSION_PROPERTIES_EXT: {
             const VkImageCompressionPropertiesEXT* pValue = reinterpret_cast<const VkImageCompressionPropertiesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ATTACHMENT_FEEDBACK_LOOP_LAYOUT_FEATURES_EXT: {
             const VkPhysicalDeviceAttachmentFeedbackLoopLayoutFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceAttachmentFeedbackLoopLayoutFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_4444_FORMATS_FEATURES_EXT: {
             const VkPhysicalDevice4444FormatsFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDevice4444FormatsFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FAULT_FEATURES_EXT: {
             const VkPhysicalDeviceFaultFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceFaultFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DEVICE_FAULT_COUNTS_EXT: {
             const VkDeviceFaultCountsEXT* pValue = reinterpret_cast<const VkDeviceFaultCountsEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DEVICE_FAULT_INFO_EXT: {
             const VkDeviceFaultInfoEXT* pValue = reinterpret_cast<const VkDeviceFaultInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_FEATURES_EXT: {
             const VkPhysicalDeviceRasterizationOrderAttachmentAccessFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceRasterizationOrderAttachmentAccessFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RGBA10X6_FORMATS_FEATURES_EXT: {
             const VkPhysicalDeviceRGBA10X6FormatsFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceRGBA10X6FormatsFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DIRECTFB_SURFACE_CREATE_INFO_EXT: {
             const VkDirectFBSurfaceCreateInfoEXT* pValue = reinterpret_cast<const VkDirectFBSurfaceCreateInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MUTABLE_DESCRIPTOR_TYPE_FEATURES_EXT: {
             const VkPhysicalDeviceMutableDescriptorTypeFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceMutableDescriptorTypeFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_MUTABLE_DESCRIPTOR_TYPE_CREATE_INFO_EXT: {
             const VkMutableDescriptorTypeCreateInfoEXT* pValue = reinterpret_cast<const VkMutableDescriptorTypeCreateInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VERTEX_INPUT_DYNAMIC_STATE_FEATURES_EXT: {
             const VkPhysicalDeviceVertexInputDynamicStateFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceVertexInputDynamicStateFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VERTEX_INPUT_BINDING_DESCRIPTION_2_EXT: {
             const VkVertexInputBindingDescription2EXT* pValue = reinterpret_cast<const VkVertexInputBindingDescription2EXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VERTEX_INPUT_ATTRIBUTE_DESCRIPTION_2_EXT: {
             const VkVertexInputAttributeDescription2EXT* pValue = reinterpret_cast<const VkVertexInputAttributeDescription2EXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DRM_PROPERTIES_EXT: {
             const VkPhysicalDeviceDrmPropertiesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceDrmPropertiesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ADDRESS_BINDING_REPORT_FEATURES_EXT: {
             const VkPhysicalDeviceAddressBindingReportFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceAddressBindingReportFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DEVICE_ADDRESS_BINDING_CALLBACK_DATA_EXT: {
             const VkDeviceAddressBindingCallbackDataEXT* pValue = reinterpret_cast<const VkDeviceAddressBindingCallbackDataEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEPTH_CLIP_CONTROL_FEATURES_EXT: {
             const VkPhysicalDeviceDepthClipControlFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceDepthClipControlFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_DEPTH_CLIP_CONTROL_CREATE_INFO_EXT: {
             const VkPipelineViewportDepthClipControlCreateInfoEXT* pValue = reinterpret_cast<const VkPipelineViewportDepthClipControlCreateInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PRIMITIVE_TOPOLOGY_LIST_RESTART_FEATURES_EXT: {
             const VkPhysicalDevicePrimitiveTopologyListRestartFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDevicePrimitiveTopologyListRestartFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_IMPORT_MEMORY_ZIRCON_HANDLE_INFO_FUCHSIA: {
             const VkImportMemoryZirconHandleInfoFUCHSIA* pValue = reinterpret_cast<const VkImportMemoryZirconHandleInfoFUCHSIA*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_MEMORY_ZIRCON_HANDLE_PROPERTIES_FUCHSIA: {
             const VkMemoryZirconHandlePropertiesFUCHSIA* pValue = reinterpret_cast<const VkMemoryZirconHandlePropertiesFUCHSIA*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_MEMORY_GET_ZIRCON_HANDLE_INFO_FUCHSIA: {
             const VkMemoryGetZirconHandleInfoFUCHSIA* pValue = reinterpret_cast<const VkMemoryGetZirconHandleInfoFUCHSIA*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_IMPORT_SEMAPHORE_ZIRCON_HANDLE_INFO_FUCHSIA: {
             const VkImportSemaphoreZirconHandleInfoFUCHSIA* pValue = reinterpret_cast<const VkImportSemaphoreZirconHandleInfoFUCHSIA*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SEMAPHORE_GET_ZIRCON_HANDLE_INFO_FUCHSIA: {
             const VkSemaphoreGetZirconHandleInfoFUCHSIA* pValue = reinterpret_cast<const VkSemaphoreGetZirconHandleInfoFUCHSIA*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_BUFFER_COLLECTION_CREATE_INFO_FUCHSIA: {
             const VkBufferCollectionCreateInfoFUCHSIA* pValue = reinterpret_cast<const VkBufferCollectionCreateInfoFUCHSIA*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_IMPORT_MEMORY_BUFFER_COLLECTION_FUCHSIA: {
             const VkImportMemoryBufferCollectionFUCHSIA* pValue = reinterpret_cast<const VkImportMemoryBufferCollectionFUCHSIA*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_BUFFER_COLLECTION_IMAGE_CREATE_INFO_FUCHSIA: {
             const VkBufferCollectionImageCreateInfoFUCHSIA* pValue = reinterpret_cast<const VkBufferCollectionImageCreateInfoFUCHSIA*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_BUFFER_COLLECTION_CONSTRAINTS_INFO_FUCHSIA: {
             const VkBufferCollectionConstraintsInfoFUCHSIA* pValue = reinterpret_cast<const VkBufferCollectionConstraintsInfoFUCHSIA*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_BUFFER_CONSTRAINTS_INFO_FUCHSIA: {
             const VkBufferConstraintsInfoFUCHSIA* pValue = reinterpret_cast<const VkBufferConstraintsInfoFUCHSIA*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_BUFFER_COLLECTION_BUFFER_CREATE_INFO_FUCHSIA: {
             const VkBufferCollectionBufferCreateInfoFUCHSIA* pValue = reinterpret_cast<const VkBufferCollectionBufferCreateInfoFUCHSIA*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SYSMEM_COLOR_SPACE_FUCHSIA: {
             const VkSysmemColorSpaceFUCHSIA* pValue = reinterpret_cast<const VkSysmemColorSpaceFUCHSIA*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_BUFFER_COLLECTION_PROPERTIES_FUCHSIA: {
             const VkBufferCollectionPropertiesFUCHSIA* pValue = reinterpret_cast<const VkBufferCollectionPropertiesFUCHSIA*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_IMAGE_FORMAT_CONSTRAINTS_INFO_FUCHSIA: {
             const VkImageFormatConstraintsInfoFUCHSIA* pValue = reinterpret_cast<const VkImageFormatConstraintsInfoFUCHSIA*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_IMAGE_CONSTRAINTS_INFO_FUCHSIA: {
             const VkImageConstraintsInfoFUCHSIA* pValue = reinterpret_cast<const VkImageConstraintsInfoFUCHSIA*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SUBPASS_SHADING_PIPELINE_CREATE_INFO_HUAWEI: {
             const VkSubpassShadingPipelineCreateInfoHUAWEI* pValue = reinterpret_cast<const VkSubpassShadingPipelineCreateInfoHUAWEI*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SUBPASS_SHADING_FEATURES_HUAWEI: {
             const VkPhysicalDeviceSubpassShadingFeaturesHUAWEI* pValue = reinterpret_cast<const VkPhysicalDeviceSubpassShadingFeaturesHUAWEI*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SUBPASS_SHADING_PROPERTIES_HUAWEI: {
             const VkPhysicalDeviceSubpassShadingPropertiesHUAWEI* pValue = reinterpret_cast<const VkPhysicalDeviceSubpassShadingPropertiesHUAWEI*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_INVOCATION_MASK_FEATURES_HUAWEI: {
             const VkPhysicalDeviceInvocationMaskFeaturesHUAWEI* pValue = reinterpret_cast<const VkPhysicalDeviceInvocationMaskFeaturesHUAWEI*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_MEMORY_GET_REMOTE_ADDRESS_INFO_NV: {
             const VkMemoryGetRemoteAddressInfoNV* pValue = reinterpret_cast<const VkMemoryGetRemoteAddressInfoNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_MEMORY_RDMA_FEATURES_NV: {
             const VkPhysicalDeviceExternalMemoryRDMAFeaturesNV* pValue = reinterpret_cast<const VkPhysicalDeviceExternalMemoryRDMAFeaturesNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PIPELINE_PROPERTIES_IDENTIFIER_EXT: {
             const VkPipelinePropertiesIdentifierEXT* pValue = reinterpret_cast<const VkPipelinePropertiesIdentifierEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PIPELINE_PROPERTIES_FEATURES_EXT: {
             const VkPhysicalDevicePipelinePropertiesFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDevicePipelinePropertiesFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAME_BOUNDARY_FEATURES_EXT: {
             const VkPhysicalDeviceFrameBoundaryFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceFrameBoundaryFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_FRAME_BOUNDARY_EXT: {
             const VkFrameBoundaryEXT* pValue = reinterpret_cast<const VkFrameBoundaryEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_FEATURES_EXT: {
             const VkPhysicalDeviceMultisampledRenderToSingleSampledFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceMultisampledRenderToSingleSampledFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SUBPASS_RESOLVE_PERFORMANCE_QUERY_EXT: {
             const VkSubpassResolvePerformanceQueryEXT* pValue = reinterpret_cast<const VkSubpassResolvePerformanceQueryEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_INFO_EXT: {
             const VkMultisampledRenderToSingleSampledInfoEXT* pValue = reinterpret_cast<const VkMultisampledRenderToSingleSampledInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_2_FEATURES_EXT: {
             const VkPhysicalDeviceExtendedDynamicState2FeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceExtendedDynamicState2FeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SCREEN_SURFACE_CREATE_INFO_QNX: {
             const VkScreenSurfaceCreateInfoQNX* pValue = reinterpret_cast<const VkScreenSurfaceCreateInfoQNX*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COLOR_WRITE_ENABLE_FEATURES_EXT: {
             const VkPhysicalDeviceColorWriteEnableFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceColorWriteEnableFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PIPELINE_COLOR_WRITE_CREATE_INFO_EXT: {
             const VkPipelineColorWriteCreateInfoEXT* pValue = reinterpret_cast<const VkPipelineColorWriteCreateInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PRIMITIVES_GENERATED_QUERY_FEATURES_EXT: {
             const VkPhysicalDevicePrimitivesGeneratedQueryFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDevicePrimitivesGeneratedQueryFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VIDEO_ENCODE_RGB_CONVERSION_FEATURES_VALVE: {
             const VkPhysicalDeviceVideoEncodeRgbConversionFeaturesVALVE* pValue = reinterpret_cast<const VkPhysicalDeviceVideoEncodeRgbConversionFeaturesVALVE*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_ENCODE_RGB_CONVERSION_CAPABILITIES_VALVE: {
             const VkVideoEncodeRgbConversionCapabilitiesVALVE* pValue = reinterpret_cast<const VkVideoEncodeRgbConversionCapabilitiesVALVE*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_ENCODE_PROFILE_RGB_CONVERSION_INFO_VALVE: {
             const VkVideoEncodeProfileRgbConversionInfoVALVE* pValue = reinterpret_cast<const VkVideoEncodeProfileRgbConversionInfoVALVE*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_VIDEO_ENCODE_SESSION_RGB_CONVERSION_CREATE_INFO_VALVE: {
             const VkVideoEncodeSessionRgbConversionCreateInfoVALVE* pValue = reinterpret_cast<const VkVideoEncodeSessionRgbConversionCreateInfoVALVE*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_VIEW_MIN_LOD_FEATURES_EXT: {
             const VkPhysicalDeviceImageViewMinLodFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceImageViewMinLodFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_IMAGE_VIEW_MIN_LOD_CREATE_INFO_EXT: {
             const VkImageViewMinLodCreateInfoEXT* pValue = reinterpret_cast<const VkImageViewMinLodCreateInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTI_DRAW_FEATURES_EXT: {
             const VkPhysicalDeviceMultiDrawFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceMultiDrawFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTI_DRAW_PROPERTIES_EXT: {
             const VkPhysicalDeviceMultiDrawPropertiesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceMultiDrawPropertiesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_2D_VIEW_OF_3D_FEATURES_EXT: {
             const VkPhysicalDeviceImage2DViewOf3DFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceImage2DViewOf3DFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_TILE_IMAGE_FEATURES_EXT: {
             const VkPhysicalDeviceShaderTileImageFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceShaderTileImageFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_TILE_IMAGE_PROPERTIES_EXT: {
             const VkPhysicalDeviceShaderTileImagePropertiesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceShaderTileImagePropertiesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_MICROMAP_BUILD_INFO_EXT: {
             const VkMicromapBuildInfoEXT* pValue = reinterpret_cast<const VkMicromapBuildInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_MICROMAP_CREATE_INFO_EXT: {
             const VkMicromapCreateInfoEXT* pValue = reinterpret_cast<const VkMicromapCreateInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_OPACITY_MICROMAP_FEATURES_EXT: {
             const VkPhysicalDeviceOpacityMicromapFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceOpacityMicromapFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_OPACITY_MICROMAP_PROPERTIES_EXT: {
             const VkPhysicalDeviceOpacityMicromapPropertiesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceOpacityMicromapPropertiesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_MICROMAP_VERSION_INFO_EXT: {
             const VkMicromapVersionInfoEXT* pValue = reinterpret_cast<const VkMicromapVersionInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_COPY_MICROMAP_TO_MEMORY_INFO_EXT: {
             const VkCopyMicromapToMemoryInfoEXT* pValue = reinterpret_cast<const VkCopyMicromapToMemoryInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_COPY_MEMORY_TO_MICROMAP_INFO_EXT: {
             const VkCopyMemoryToMicromapInfoEXT* pValue = reinterpret_cast<const VkCopyMemoryToMicromapInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_COPY_MICROMAP_INFO_EXT: {
             const VkCopyMicromapInfoEXT* pValue = reinterpret_cast<const VkCopyMicromapInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_MICROMAP_BUILD_SIZES_INFO_EXT: {
             const VkMicromapBuildSizesInfoEXT* pValue = reinterpret_cast<const VkMicromapBuildSizesInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_TRIANGLES_OPACITY_MICROMAP_EXT: {
             const VkAccelerationStructureTrianglesOpacityMicromapEXT* pValue = reinterpret_cast<const VkAccelerationStructureTrianglesOpacityMicromapEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
 #ifdef VK_ENABLE_BETA_EXTENSIONS
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DISPLACEMENT_MICROMAP_FEATURES_NV: {
             const VkPhysicalDeviceDisplacementMicromapFeaturesNV* pValue = reinterpret_cast<const VkPhysicalDeviceDisplacementMicromapFeaturesNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
 #endif
 #ifdef VK_ENABLE_BETA_EXTENSIONS
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DISPLACEMENT_MICROMAP_PROPERTIES_NV: {
             const VkPhysicalDeviceDisplacementMicromapPropertiesNV* pValue = reinterpret_cast<const VkPhysicalDeviceDisplacementMicromapPropertiesNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
 #endif
 #ifdef VK_ENABLE_BETA_EXTENSIONS
         case VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_TRIANGLES_DISPLACEMENT_MICROMAP_NV: {
             const VkAccelerationStructureTrianglesDisplacementMicromapNV* pValue = reinterpret_cast<const VkAccelerationStructureTrianglesDisplacementMicromapNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
 #endif
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_CLUSTER_CULLING_SHADER_FEATURES_HUAWEI: {
             const VkPhysicalDeviceClusterCullingShaderFeaturesHUAWEI* pValue = reinterpret_cast<const VkPhysicalDeviceClusterCullingShaderFeaturesHUAWEI*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_CLUSTER_CULLING_SHADER_PROPERTIES_HUAWEI: {
             const VkPhysicalDeviceClusterCullingShaderPropertiesHUAWEI* pValue = reinterpret_cast<const VkPhysicalDeviceClusterCullingShaderPropertiesHUAWEI*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_CLUSTER_CULLING_SHADER_VRS_FEATURES_HUAWEI: {
             const VkPhysicalDeviceClusterCullingShaderVrsFeaturesHUAWEI* pValue = reinterpret_cast<const VkPhysicalDeviceClusterCullingShaderVrsFeaturesHUAWEI*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_BORDER_COLOR_SWIZZLE_FEATURES_EXT: {
             const VkPhysicalDeviceBorderColorSwizzleFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceBorderColorSwizzleFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SAMPLER_BORDER_COLOR_COMPONENT_MAPPING_CREATE_INFO_EXT: {
             const VkSamplerBorderColorComponentMappingCreateInfoEXT* pValue = reinterpret_cast<const VkSamplerBorderColorComponentMappingCreateInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PAGEABLE_DEVICE_LOCAL_MEMORY_FEATURES_EXT: {
             const VkPhysicalDevicePageableDeviceLocalMemoryFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDevicePageableDeviceLocalMemoryFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_ARM: {
             const VkPhysicalDeviceShaderCorePropertiesARM* pValue = reinterpret_cast<const VkPhysicalDeviceShaderCorePropertiesARM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DEVICE_QUEUE_SHADER_CORE_CONTROL_CREATE_INFO_ARM: {
             const VkDeviceQueueShaderCoreControlCreateInfoARM* pValue = reinterpret_cast<const VkDeviceQueueShaderCoreControlCreateInfoARM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SCHEDULING_CONTROLS_FEATURES_ARM: {
             const VkPhysicalDeviceSchedulingControlsFeaturesARM* pValue = reinterpret_cast<const VkPhysicalDeviceSchedulingControlsFeaturesARM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SCHEDULING_CONTROLS_PROPERTIES_ARM: {
             const VkPhysicalDeviceSchedulingControlsPropertiesARM* pValue = reinterpret_cast<const VkPhysicalDeviceSchedulingControlsPropertiesARM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_SLICED_VIEW_OF_3D_FEATURES_EXT: {
             const VkPhysicalDeviceImageSlicedViewOf3DFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceImageSlicedViewOf3DFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_IMAGE_VIEW_SLICED_CREATE_INFO_EXT: {
             const VkImageViewSlicedCreateInfoEXT* pValue = reinterpret_cast<const VkImageViewSlicedCreateInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DESCRIPTOR_SET_HOST_MAPPING_FEATURES_VALVE: {
             const VkPhysicalDeviceDescriptorSetHostMappingFeaturesVALVE* pValue = reinterpret_cast<const VkPhysicalDeviceDescriptorSetHostMappingFeaturesVALVE*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DESCRIPTOR_SET_BINDING_REFERENCE_VALVE: {
             const VkDescriptorSetBindingReferenceVALVE* pValue = reinterpret_cast<const VkDescriptorSetBindingReferenceVALVE*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_HOST_MAPPING_INFO_VALVE: {
             const VkDescriptorSetLayoutHostMappingInfoVALVE* pValue = reinterpret_cast<const VkDescriptorSetLayoutHostMappingInfoVALVE*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_NON_SEAMLESS_CUBE_MAP_FEATURES_EXT: {
             const VkPhysicalDeviceNonSeamlessCubeMapFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceNonSeamlessCubeMapFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RENDER_PASS_STRIPED_FEATURES_ARM: {
             const VkPhysicalDeviceRenderPassStripedFeaturesARM* pValue = reinterpret_cast<const VkPhysicalDeviceRenderPassStripedFeaturesARM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RENDER_PASS_STRIPED_PROPERTIES_ARM: {
             const VkPhysicalDeviceRenderPassStripedPropertiesARM* pValue = reinterpret_cast<const VkPhysicalDeviceRenderPassStripedPropertiesARM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_RENDER_PASS_STRIPE_INFO_ARM: {
             const VkRenderPassStripeInfoARM* pValue = reinterpret_cast<const VkRenderPassStripeInfoARM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_RENDER_PASS_STRIPE_BEGIN_INFO_ARM: {
             const VkRenderPassStripeBeginInfoARM* pValue = reinterpret_cast<const VkRenderPassStripeBeginInfoARM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_RENDER_PASS_STRIPE_SUBMIT_INFO_ARM: {
             const VkRenderPassStripeSubmitInfoARM* pValue = reinterpret_cast<const VkRenderPassStripeSubmitInfoARM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_OFFSET_FEATURES_EXT: {
             const VkPhysicalDeviceFragmentDensityMapOffsetFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceFragmentDensityMapOffsetFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_OFFSET_PROPERTIES_EXT: {
             const VkPhysicalDeviceFragmentDensityMapOffsetPropertiesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceFragmentDensityMapOffsetPropertiesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_RENDER_PASS_FRAGMENT_DENSITY_MAP_OFFSET_END_INFO_EXT: {
             const VkRenderPassFragmentDensityMapOffsetEndInfoEXT* pValue = reinterpret_cast<const VkRenderPassFragmentDensityMapOffsetEndInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COPY_MEMORY_INDIRECT_FEATURES_NV: {
             const VkPhysicalDeviceCopyMemoryIndirectFeaturesNV* pValue = reinterpret_cast<const VkPhysicalDeviceCopyMemoryIndirectFeaturesNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MEMORY_DECOMPRESSION_FEATURES_EXT: {
             const VkPhysicalDeviceMemoryDecompressionFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceMemoryDecompressionFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MEMORY_DECOMPRESSION_PROPERTIES_EXT: {
             const VkPhysicalDeviceMemoryDecompressionPropertiesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceMemoryDecompressionPropertiesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_COMPUTE_FEATURES_NV: {
             const VkPhysicalDeviceDeviceGeneratedCommandsComputeFeaturesNV* pValue = reinterpret_cast<const VkPhysicalDeviceDeviceGeneratedCommandsComputeFeaturesNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_COMPUTE_PIPELINE_INDIRECT_BUFFER_INFO_NV: {
             const VkComputePipelineIndirectBufferInfoNV* pValue = reinterpret_cast<const VkComputePipelineIndirectBufferInfoNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PIPELINE_INDIRECT_DEVICE_ADDRESS_INFO_NV: {
             const VkPipelineIndirectDeviceAddressInfoNV* pValue = reinterpret_cast<const VkPipelineIndirectDeviceAddressInfoNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RAY_TRACING_LINEAR_SWEPT_SPHERES_FEATURES_NV: {
             const VkPhysicalDeviceRayTracingLinearSweptSpheresFeaturesNV* pValue = reinterpret_cast<const VkPhysicalDeviceRayTracingLinearSweptSpheresFeaturesNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_GEOMETRY_LINEAR_SWEPT_SPHERES_DATA_NV: {
             const VkAccelerationStructureGeometryLinearSweptSpheresDataNV* pValue = reinterpret_cast<const VkAccelerationStructureGeometryLinearSweptSpheresDataNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_GEOMETRY_SPHERES_DATA_NV: {
             const VkAccelerationStructureGeometrySpheresDataNV* pValue = reinterpret_cast<const VkAccelerationStructureGeometrySpheresDataNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_LINEAR_COLOR_ATTACHMENT_FEATURES_NV: {
             const VkPhysicalDeviceLinearColorAttachmentFeaturesNV* pValue = reinterpret_cast<const VkPhysicalDeviceLinearColorAttachmentFeaturesNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_COMPRESSION_CONTROL_SWAPCHAIN_FEATURES_EXT: {
             const VkPhysicalDeviceImageCompressionControlSwapchainFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceImageCompressionControlSwapchainFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_IMAGE_VIEW_SAMPLE_WEIGHT_CREATE_INFO_QCOM: {
             const VkImageViewSampleWeightCreateInfoQCOM* pValue = reinterpret_cast<const VkImageViewSampleWeightCreateInfoQCOM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_PROCESSING_FEATURES_QCOM: {
             const VkPhysicalDeviceImageProcessingFeaturesQCOM* pValue = reinterpret_cast<const VkPhysicalDeviceImageProcessingFeaturesQCOM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_PROCESSING_PROPERTIES_QCOM: {
             const VkPhysicalDeviceImageProcessingPropertiesQCOM* pValue = reinterpret_cast<const VkPhysicalDeviceImageProcessingPropertiesQCOM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_NESTED_COMMAND_BUFFER_FEATURES_EXT: {
             const VkPhysicalDeviceNestedCommandBufferFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceNestedCommandBufferFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_NESTED_COMMAND_BUFFER_PROPERTIES_EXT: {
             const VkPhysicalDeviceNestedCommandBufferPropertiesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceNestedCommandBufferPropertiesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_NATIVE_BUFFER_USAGE_OHOS: {
             const VkNativeBufferUsageOHOS* pValue = reinterpret_cast<const VkNativeBufferUsageOHOS*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_NATIVE_BUFFER_PROPERTIES_OHOS: {
             const VkNativeBufferPropertiesOHOS* pValue = reinterpret_cast<const VkNativeBufferPropertiesOHOS*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_NATIVE_BUFFER_FORMAT_PROPERTIES_OHOS: {
             const VkNativeBufferFormatPropertiesOHOS* pValue = reinterpret_cast<const VkNativeBufferFormatPropertiesOHOS*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_IMPORT_NATIVE_BUFFER_INFO_OHOS: {
             const VkImportNativeBufferInfoOHOS* pValue = reinterpret_cast<const VkImportNativeBufferInfoOHOS*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_MEMORY_GET_NATIVE_BUFFER_INFO_OHOS: {
             const VkMemoryGetNativeBufferInfoOHOS* pValue = reinterpret_cast<const VkMemoryGetNativeBufferInfoOHOS*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_EXTERNAL_FORMAT_OHOS: {
             const VkExternalFormatOHOS* pValue = reinterpret_cast<const VkExternalFormatOHOS*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_EXTERNAL_MEMORY_ACQUIRE_UNMODIFIED_EXT: {
             const VkExternalMemoryAcquireUnmodifiedEXT* pValue = reinterpret_cast<const VkExternalMemoryAcquireUnmodifiedEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_3_FEATURES_EXT: {
             const VkPhysicalDeviceExtendedDynamicState3FeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceExtendedDynamicState3FeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_3_PROPERTIES_EXT: {
             const VkPhysicalDeviceExtendedDynamicState3PropertiesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceExtendedDynamicState3PropertiesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SUBPASS_MERGE_FEEDBACK_FEATURES_EXT: {
             const VkPhysicalDeviceSubpassMergeFeedbackFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceSubpassMergeFeedbackFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_RENDER_PASS_CREATION_CONTROL_EXT: {
             const VkRenderPassCreationControlEXT* pValue = reinterpret_cast<const VkRenderPassCreationControlEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_RENDER_PASS_CREATION_FEEDBACK_CREATE_INFO_EXT: {
             const VkRenderPassCreationFeedbackCreateInfoEXT* pValue = reinterpret_cast<const VkRenderPassCreationFeedbackCreateInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_RENDER_PASS_SUBPASS_FEEDBACK_CREATE_INFO_EXT: {
             const VkRenderPassSubpassFeedbackCreateInfoEXT* pValue = reinterpret_cast<const VkRenderPassSubpassFeedbackCreateInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DIRECT_DRIVER_LOADING_INFO_LUNARG: {
             const VkDirectDriverLoadingInfoLUNARG* pValue = reinterpret_cast<const VkDirectDriverLoadingInfoLUNARG*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DIRECT_DRIVER_LOADING_LIST_LUNARG: {
             const VkDirectDriverLoadingListLUNARG* pValue = reinterpret_cast<const VkDirectDriverLoadingListLUNARG*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_TENSOR_DESCRIPTION_ARM: {
             const VkTensorDescriptionARM* pValue = reinterpret_cast<const VkTensorDescriptionARM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_TENSOR_CREATE_INFO_ARM: {
             const VkTensorCreateInfoARM* pValue = reinterpret_cast<const VkTensorCreateInfoARM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_TENSOR_VIEW_CREATE_INFO_ARM: {
             const VkTensorViewCreateInfoARM* pValue = reinterpret_cast<const VkTensorViewCreateInfoARM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_TENSOR_MEMORY_REQUIREMENTS_INFO_ARM: {
             const VkTensorMemoryRequirementsInfoARM* pValue = reinterpret_cast<const VkTensorMemoryRequirementsInfoARM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_BIND_TENSOR_MEMORY_INFO_ARM: {
             const VkBindTensorMemoryInfoARM* pValue = reinterpret_cast<const VkBindTensorMemoryInfoARM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET_TENSOR_ARM: {
             const VkWriteDescriptorSetTensorARM* pValue = reinterpret_cast<const VkWriteDescriptorSetTensorARM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_TENSOR_FORMAT_PROPERTIES_ARM: {
             const VkTensorFormatPropertiesARM* pValue = reinterpret_cast<const VkTensorFormatPropertiesARM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TENSOR_PROPERTIES_ARM: {
             const VkPhysicalDeviceTensorPropertiesARM* pValue = reinterpret_cast<const VkPhysicalDeviceTensorPropertiesARM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_TENSOR_MEMORY_BARRIER_ARM: {
             const VkTensorMemoryBarrierARM* pValue = reinterpret_cast<const VkTensorMemoryBarrierARM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_TENSOR_DEPENDENCY_INFO_ARM: {
             const VkTensorDependencyInfoARM* pValue = reinterpret_cast<const VkTensorDependencyInfoARM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TENSOR_FEATURES_ARM: {
             const VkPhysicalDeviceTensorFeaturesARM* pValue = reinterpret_cast<const VkPhysicalDeviceTensorFeaturesARM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DEVICE_TENSOR_MEMORY_REQUIREMENTS_ARM: {
             const VkDeviceTensorMemoryRequirementsARM* pValue = reinterpret_cast<const VkDeviceTensorMemoryRequirementsARM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_TENSOR_COPY_ARM: {
             const VkTensorCopyARM* pValue = reinterpret_cast<const VkTensorCopyARM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_COPY_TENSOR_INFO_ARM: {
             const VkCopyTensorInfoARM* pValue = reinterpret_cast<const VkCopyTensorInfoARM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_MEMORY_DEDICATED_ALLOCATE_INFO_TENSOR_ARM: {
             const VkMemoryDedicatedAllocateInfoTensorARM* pValue = reinterpret_cast<const VkMemoryDedicatedAllocateInfoTensorARM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_TENSOR_INFO_ARM: {
             const VkPhysicalDeviceExternalTensorInfoARM* pValue = reinterpret_cast<const VkPhysicalDeviceExternalTensorInfoARM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_EXTERNAL_TENSOR_PROPERTIES_ARM: {
             const VkExternalTensorPropertiesARM* pValue = reinterpret_cast<const VkExternalTensorPropertiesARM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_EXTERNAL_MEMORY_TENSOR_CREATE_INFO_ARM: {
             const VkExternalMemoryTensorCreateInfoARM* pValue = reinterpret_cast<const VkExternalMemoryTensorCreateInfoARM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DESCRIPTOR_BUFFER_TENSOR_FEATURES_ARM: {
             const VkPhysicalDeviceDescriptorBufferTensorFeaturesARM* pValue = reinterpret_cast<const VkPhysicalDeviceDescriptorBufferTensorFeaturesARM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DESCRIPTOR_BUFFER_TENSOR_PROPERTIES_ARM: {
             const VkPhysicalDeviceDescriptorBufferTensorPropertiesARM* pValue = reinterpret_cast<const VkPhysicalDeviceDescriptorBufferTensorPropertiesARM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DESCRIPTOR_GET_TENSOR_INFO_ARM: {
             const VkDescriptorGetTensorInfoARM* pValue = reinterpret_cast<const VkDescriptorGetTensorInfoARM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_TENSOR_CAPTURE_DESCRIPTOR_DATA_INFO_ARM: {
             const VkTensorCaptureDescriptorDataInfoARM* pValue = reinterpret_cast<const VkTensorCaptureDescriptorDataInfoARM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_TENSOR_VIEW_CAPTURE_DESCRIPTOR_DATA_INFO_ARM: {
             const VkTensorViewCaptureDescriptorDataInfoARM* pValue = reinterpret_cast<const VkTensorViewCaptureDescriptorDataInfoARM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_FRAME_BOUNDARY_TENSORS_ARM: {
             const VkFrameBoundaryTensorsARM* pValue = reinterpret_cast<const VkFrameBoundaryTensorsARM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_MODULE_IDENTIFIER_FEATURES_EXT: {
             const VkPhysicalDeviceShaderModuleIdentifierFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceShaderModuleIdentifierFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_MODULE_IDENTIFIER_PROPERTIES_EXT: {
             const VkPhysicalDeviceShaderModuleIdentifierPropertiesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceShaderModuleIdentifierPropertiesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_MODULE_IDENTIFIER_CREATE_INFO_EXT: {
             const VkPipelineShaderStageModuleIdentifierCreateInfoEXT* pValue = reinterpret_cast<const VkPipelineShaderStageModuleIdentifierCreateInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SHADER_MODULE_IDENTIFIER_EXT: {
             const VkShaderModuleIdentifierEXT* pValue = reinterpret_cast<const VkShaderModuleIdentifierEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_OPTICAL_FLOW_FEATURES_NV: {
             const VkPhysicalDeviceOpticalFlowFeaturesNV* pValue = reinterpret_cast<const VkPhysicalDeviceOpticalFlowFeaturesNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_OPTICAL_FLOW_PROPERTIES_NV: {
             const VkPhysicalDeviceOpticalFlowPropertiesNV* pValue = reinterpret_cast<const VkPhysicalDeviceOpticalFlowPropertiesNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_OPTICAL_FLOW_IMAGE_FORMAT_INFO_NV: {
             const VkOpticalFlowImageFormatInfoNV* pValue = reinterpret_cast<const VkOpticalFlowImageFormatInfoNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_OPTICAL_FLOW_IMAGE_FORMAT_PROPERTIES_NV: {
             const VkOpticalFlowImageFormatPropertiesNV* pValue = reinterpret_cast<const VkOpticalFlowImageFormatPropertiesNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_OPTICAL_FLOW_SESSION_CREATE_INFO_NV: {
             const VkOpticalFlowSessionCreateInfoNV* pValue = reinterpret_cast<const VkOpticalFlowSessionCreateInfoNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_OPTICAL_FLOW_SESSION_CREATE_PRIVATE_DATA_INFO_NV: {
             const VkOpticalFlowSessionCreatePrivateDataInfoNV* pValue = reinterpret_cast<const VkOpticalFlowSessionCreatePrivateDataInfoNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_OPTICAL_FLOW_EXECUTE_INFO_NV: {
             const VkOpticalFlowExecuteInfoNV* pValue = reinterpret_cast<const VkOpticalFlowExecuteInfoNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_LEGACY_DITHERING_FEATURES_EXT: {
             const VkPhysicalDeviceLegacyDitheringFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceLegacyDitheringFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_FORMAT_RESOLVE_FEATURES_ANDROID: {
             const VkPhysicalDeviceExternalFormatResolveFeaturesANDROID* pValue = reinterpret_cast<const VkPhysicalDeviceExternalFormatResolveFeaturesANDROID*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_FORMAT_RESOLVE_PROPERTIES_ANDROID: {
             const VkPhysicalDeviceExternalFormatResolvePropertiesANDROID* pValue = reinterpret_cast<const VkPhysicalDeviceExternalFormatResolvePropertiesANDROID*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_ANDROID_HARDWARE_BUFFER_FORMAT_RESOLVE_PROPERTIES_ANDROID: {
             const VkAndroidHardwareBufferFormatResolvePropertiesANDROID* pValue = reinterpret_cast<const VkAndroidHardwareBufferFormatResolvePropertiesANDROID*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ANTI_LAG_FEATURES_AMD: {
             const VkPhysicalDeviceAntiLagFeaturesAMD* pValue = reinterpret_cast<const VkPhysicalDeviceAntiLagFeaturesAMD*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_ANTI_LAG_PRESENTATION_INFO_AMD: {
             const VkAntiLagPresentationInfoAMD* pValue = reinterpret_cast<const VkAntiLagPresentationInfoAMD*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_ANTI_LAG_DATA_AMD: {
             const VkAntiLagDataAMD* pValue = reinterpret_cast<const VkAntiLagDataAMD*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
 #ifdef VK_ENABLE_BETA_EXTENSIONS
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DENSE_GEOMETRY_FORMAT_FEATURES_AMDX: {
             const VkPhysicalDeviceDenseGeometryFormatFeaturesAMDX* pValue = reinterpret_cast<const VkPhysicalDeviceDenseGeometryFormatFeaturesAMDX*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
 #endif
 #ifdef VK_ENABLE_BETA_EXTENSIONS
         case VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_DENSE_GEOMETRY_FORMAT_TRIANGLES_DATA_AMDX: {
             const VkAccelerationStructureDenseGeometryFormatTrianglesDataAMDX* pValue = reinterpret_cast<const VkAccelerationStructureDenseGeometryFormatTrianglesDataAMDX*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
 #endif
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_OBJECT_FEATURES_EXT: {
             const VkPhysicalDeviceShaderObjectFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceShaderObjectFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_OBJECT_PROPERTIES_EXT: {
             const VkPhysicalDeviceShaderObjectPropertiesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceShaderObjectPropertiesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SHADER_CREATE_INFO_EXT: {
             const VkShaderCreateInfoEXT* pValue = reinterpret_cast<const VkShaderCreateInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TILE_PROPERTIES_FEATURES_QCOM: {
             const VkPhysicalDeviceTilePropertiesFeaturesQCOM* pValue = reinterpret_cast<const VkPhysicalDeviceTilePropertiesFeaturesQCOM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_TILE_PROPERTIES_QCOM: {
             const VkTilePropertiesQCOM* pValue = reinterpret_cast<const VkTilePropertiesQCOM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_AMIGO_PROFILING_FEATURES_SEC: {
             const VkPhysicalDeviceAmigoProfilingFeaturesSEC* pValue = reinterpret_cast<const VkPhysicalDeviceAmigoProfilingFeaturesSEC*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_AMIGO_PROFILING_SUBMIT_INFO_SEC: {
             const VkAmigoProfilingSubmitInfoSEC* pValue = reinterpret_cast<const VkAmigoProfilingSubmitInfoSEC*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTIVIEW_PER_VIEW_VIEWPORTS_FEATURES_QCOM: {
             const VkPhysicalDeviceMultiviewPerViewViewportsFeaturesQCOM* pValue = reinterpret_cast<const VkPhysicalDeviceMultiviewPerViewViewportsFeaturesQCOM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RAY_TRACING_INVOCATION_REORDER_PROPERTIES_NV: {
             const VkPhysicalDeviceRayTracingInvocationReorderPropertiesNV* pValue = reinterpret_cast<const VkPhysicalDeviceRayTracingInvocationReorderPropertiesNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RAY_TRACING_INVOCATION_REORDER_FEATURES_NV: {
             const VkPhysicalDeviceRayTracingInvocationReorderFeaturesNV* pValue = reinterpret_cast<const VkPhysicalDeviceRayTracingInvocationReorderFeaturesNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COOPERATIVE_VECTOR_PROPERTIES_NV: {
             const VkPhysicalDeviceCooperativeVectorPropertiesNV* pValue = reinterpret_cast<const VkPhysicalDeviceCooperativeVectorPropertiesNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COOPERATIVE_VECTOR_FEATURES_NV: {
             const VkPhysicalDeviceCooperativeVectorFeaturesNV* pValue = reinterpret_cast<const VkPhysicalDeviceCooperativeVectorFeaturesNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_COOPERATIVE_VECTOR_PROPERTIES_NV: {
             const VkCooperativeVectorPropertiesNV* pValue = reinterpret_cast<const VkCooperativeVectorPropertiesNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_CONVERT_COOPERATIVE_VECTOR_MATRIX_INFO_NV: {
             const VkConvertCooperativeVectorMatrixInfoNV* pValue = reinterpret_cast<const VkConvertCooperativeVectorMatrixInfoNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTENDED_SPARSE_ADDRESS_SPACE_FEATURES_NV: {
             const VkPhysicalDeviceExtendedSparseAddressSpaceFeaturesNV* pValue = reinterpret_cast<const VkPhysicalDeviceExtendedSparseAddressSpaceFeaturesNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTENDED_SPARSE_ADDRESS_SPACE_PROPERTIES_NV: {
             const VkPhysicalDeviceExtendedSparseAddressSpacePropertiesNV* pValue = reinterpret_cast<const VkPhysicalDeviceExtendedSparseAddressSpacePropertiesNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_LEGACY_VERTEX_ATTRIBUTES_FEATURES_EXT: {
             const VkPhysicalDeviceLegacyVertexAttributesFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceLegacyVertexAttributesFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_LEGACY_VERTEX_ATTRIBUTES_PROPERTIES_EXT: {
             const VkPhysicalDeviceLegacyVertexAttributesPropertiesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceLegacyVertexAttributesPropertiesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_LAYER_SETTINGS_CREATE_INFO_EXT: {
             const VkLayerSettingsCreateInfoEXT* pValue = reinterpret_cast<const VkLayerSettingsCreateInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_CORE_BUILTINS_FEATURES_ARM: {
             const VkPhysicalDeviceShaderCoreBuiltinsFeaturesARM* pValue = reinterpret_cast<const VkPhysicalDeviceShaderCoreBuiltinsFeaturesARM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_CORE_BUILTINS_PROPERTIES_ARM: {
             const VkPhysicalDeviceShaderCoreBuiltinsPropertiesARM* pValue = reinterpret_cast<const VkPhysicalDeviceShaderCoreBuiltinsPropertiesARM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PIPELINE_LIBRARY_GROUP_HANDLES_FEATURES_EXT: {
             const VkPhysicalDevicePipelineLibraryGroupHandlesFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDevicePipelineLibraryGroupHandlesFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DYNAMIC_RENDERING_UNUSED_ATTACHMENTS_FEATURES_EXT: {
             const VkPhysicalDeviceDynamicRenderingUnusedAttachmentsFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceDynamicRenderingUnusedAttachmentsFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_LATENCY_SLEEP_MODE_INFO_NV: {
             const VkLatencySleepModeInfoNV* pValue = reinterpret_cast<const VkLatencySleepModeInfoNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_LATENCY_SLEEP_INFO_NV: {
             const VkLatencySleepInfoNV* pValue = reinterpret_cast<const VkLatencySleepInfoNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SET_LATENCY_MARKER_INFO_NV: {
             const VkSetLatencyMarkerInfoNV* pValue = reinterpret_cast<const VkSetLatencyMarkerInfoNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_LATENCY_TIMINGS_FRAME_REPORT_NV: {
             const VkLatencyTimingsFrameReportNV* pValue = reinterpret_cast<const VkLatencyTimingsFrameReportNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_GET_LATENCY_MARKER_INFO_NV: {
             const VkGetLatencyMarkerInfoNV* pValue = reinterpret_cast<const VkGetLatencyMarkerInfoNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_LATENCY_SUBMISSION_PRESENT_ID_NV: {
             const VkLatencySubmissionPresentIdNV* pValue = reinterpret_cast<const VkLatencySubmissionPresentIdNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SWAPCHAIN_LATENCY_CREATE_INFO_NV: {
             const VkSwapchainLatencyCreateInfoNV* pValue = reinterpret_cast<const VkSwapchainLatencyCreateInfoNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_OUT_OF_BAND_QUEUE_TYPE_INFO_NV: {
             const VkOutOfBandQueueTypeInfoNV* pValue = reinterpret_cast<const VkOutOfBandQueueTypeInfoNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_LATENCY_SURFACE_CAPABILITIES_NV: {
             const VkLatencySurfaceCapabilitiesNV* pValue = reinterpret_cast<const VkLatencySurfaceCapabilitiesNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DATA_GRAPH_FEATURES_ARM: {
             const VkPhysicalDeviceDataGraphFeaturesARM* pValue = reinterpret_cast<const VkPhysicalDeviceDataGraphFeaturesARM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DATA_GRAPH_PIPELINE_CONSTANT_ARM: {
             const VkDataGraphPipelineConstantARM* pValue = reinterpret_cast<const VkDataGraphPipelineConstantARM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DATA_GRAPH_PIPELINE_RESOURCE_INFO_ARM: {
             const VkDataGraphPipelineResourceInfoARM* pValue = reinterpret_cast<const VkDataGraphPipelineResourceInfoARM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DATA_GRAPH_PIPELINE_COMPILER_CONTROL_CREATE_INFO_ARM: {
             const VkDataGraphPipelineCompilerControlCreateInfoARM* pValue = reinterpret_cast<const VkDataGraphPipelineCompilerControlCreateInfoARM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DATA_GRAPH_PIPELINE_CREATE_INFO_ARM: {
             const VkDataGraphPipelineCreateInfoARM* pValue = reinterpret_cast<const VkDataGraphPipelineCreateInfoARM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DATA_GRAPH_PIPELINE_SHADER_MODULE_CREATE_INFO_ARM: {
             const VkDataGraphPipelineShaderModuleCreateInfoARM* pValue = reinterpret_cast<const VkDataGraphPipelineShaderModuleCreateInfoARM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DATA_GRAPH_PIPELINE_SESSION_CREATE_INFO_ARM: {
             const VkDataGraphPipelineSessionCreateInfoARM* pValue = reinterpret_cast<const VkDataGraphPipelineSessionCreateInfoARM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DATA_GRAPH_PIPELINE_SESSION_BIND_POINT_REQUIREMENTS_INFO_ARM: {
             const VkDataGraphPipelineSessionBindPointRequirementsInfoARM* pValue = reinterpret_cast<const VkDataGraphPipelineSessionBindPointRequirementsInfoARM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DATA_GRAPH_PIPELINE_SESSION_BIND_POINT_REQUIREMENT_ARM: {
             const VkDataGraphPipelineSessionBindPointRequirementARM* pValue = reinterpret_cast<const VkDataGraphPipelineSessionBindPointRequirementARM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DATA_GRAPH_PIPELINE_SESSION_MEMORY_REQUIREMENTS_INFO_ARM: {
             const VkDataGraphPipelineSessionMemoryRequirementsInfoARM* pValue = reinterpret_cast<const VkDataGraphPipelineSessionMemoryRequirementsInfoARM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_BIND_DATA_GRAPH_PIPELINE_SESSION_MEMORY_INFO_ARM: {
             const VkBindDataGraphPipelineSessionMemoryInfoARM* pValue = reinterpret_cast<const VkBindDataGraphPipelineSessionMemoryInfoARM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DATA_GRAPH_PIPELINE_INFO_ARM: {
             const VkDataGraphPipelineInfoARM* pValue = reinterpret_cast<const VkDataGraphPipelineInfoARM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DATA_GRAPH_PIPELINE_PROPERTY_QUERY_RESULT_ARM: {
             const VkDataGraphPipelinePropertyQueryResultARM* pValue = reinterpret_cast<const VkDataGraphPipelinePropertyQueryResultARM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DATA_GRAPH_PIPELINE_IDENTIFIER_CREATE_INFO_ARM: {
             const VkDataGraphPipelineIdentifierCreateInfoARM* pValue = reinterpret_cast<const VkDataGraphPipelineIdentifierCreateInfoARM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DATA_GRAPH_PIPELINE_DISPATCH_INFO_ARM: {
             const VkDataGraphPipelineDispatchInfoARM* pValue = reinterpret_cast<const VkDataGraphPipelineDispatchInfoARM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_QUEUE_FAMILY_DATA_GRAPH_PROPERTIES_ARM: {
             const VkQueueFamilyDataGraphPropertiesARM* pValue = reinterpret_cast<const VkQueueFamilyDataGraphPropertiesARM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DATA_GRAPH_PROCESSING_ENGINE_CREATE_INFO_ARM: {
             const VkDataGraphProcessingEngineCreateInfoARM* pValue = reinterpret_cast<const VkDataGraphProcessingEngineCreateInfoARM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_QUEUE_FAMILY_DATA_GRAPH_PROCESSING_ENGINE_INFO_ARM: {
             const VkPhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM* pValue = reinterpret_cast<const VkPhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_QUEUE_FAMILY_DATA_GRAPH_PROCESSING_ENGINE_PROPERTIES_ARM: {
             const VkQueueFamilyDataGraphProcessingEnginePropertiesARM* pValue = reinterpret_cast<const VkQueueFamilyDataGraphProcessingEnginePropertiesARM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DATA_GRAPH_PIPELINE_CONSTANT_TENSOR_SEMI_STRUCTURED_SPARSITY_INFO_ARM: {
             const VkDataGraphPipelineConstantTensorSemiStructuredSparsityInfoARM* pValue = reinterpret_cast<const VkDataGraphPipelineConstantTensorSemiStructuredSparsityInfoARM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTIVIEW_PER_VIEW_RENDER_AREAS_FEATURES_QCOM: {
             const VkPhysicalDeviceMultiviewPerViewRenderAreasFeaturesQCOM* pValue = reinterpret_cast<const VkPhysicalDeviceMultiviewPerViewRenderAreasFeaturesQCOM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_MULTIVIEW_PER_VIEW_RENDER_AREAS_RENDER_PASS_BEGIN_INFO_QCOM: {
             const VkMultiviewPerViewRenderAreasRenderPassBeginInfoQCOM* pValue = reinterpret_cast<const VkMultiviewPerViewRenderAreasRenderPassBeginInfoQCOM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PER_STAGE_DESCRIPTOR_SET_FEATURES_NV: {
             const VkPhysicalDevicePerStageDescriptorSetFeaturesNV* pValue = reinterpret_cast<const VkPhysicalDevicePerStageDescriptorSetFeaturesNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_PROCESSING_2_FEATURES_QCOM: {
             const VkPhysicalDeviceImageProcessing2FeaturesQCOM* pValue = reinterpret_cast<const VkPhysicalDeviceImageProcessing2FeaturesQCOM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_PROCESSING_2_PROPERTIES_QCOM: {
             const VkPhysicalDeviceImageProcessing2PropertiesQCOM* pValue = reinterpret_cast<const VkPhysicalDeviceImageProcessing2PropertiesQCOM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SAMPLER_BLOCK_MATCH_WINDOW_CREATE_INFO_QCOM: {
             const VkSamplerBlockMatchWindowCreateInfoQCOM* pValue = reinterpret_cast<const VkSamplerBlockMatchWindowCreateInfoQCOM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_CUBIC_WEIGHTS_FEATURES_QCOM: {
             const VkPhysicalDeviceCubicWeightsFeaturesQCOM* pValue = reinterpret_cast<const VkPhysicalDeviceCubicWeightsFeaturesQCOM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SAMPLER_CUBIC_WEIGHTS_CREATE_INFO_QCOM: {
             const VkSamplerCubicWeightsCreateInfoQCOM* pValue = reinterpret_cast<const VkSamplerCubicWeightsCreateInfoQCOM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_BLIT_IMAGE_CUBIC_WEIGHTS_INFO_QCOM: {
             const VkBlitImageCubicWeightsInfoQCOM* pValue = reinterpret_cast<const VkBlitImageCubicWeightsInfoQCOM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_YCBCR_DEGAMMA_FEATURES_QCOM: {
             const VkPhysicalDeviceYcbcrDegammaFeaturesQCOM* pValue = reinterpret_cast<const VkPhysicalDeviceYcbcrDegammaFeaturesQCOM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SAMPLER_YCBCR_CONVERSION_YCBCR_DEGAMMA_CREATE_INFO_QCOM: {
             const VkSamplerYcbcrConversionYcbcrDegammaCreateInfoQCOM* pValue = reinterpret_cast<const VkSamplerYcbcrConversionYcbcrDegammaCreateInfoQCOM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_CUBIC_CLAMP_FEATURES_QCOM: {
             const VkPhysicalDeviceCubicClampFeaturesQCOM* pValue = reinterpret_cast<const VkPhysicalDeviceCubicClampFeaturesQCOM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ATTACHMENT_FEEDBACK_LOOP_DYNAMIC_STATE_FEATURES_EXT: {
             const VkPhysicalDeviceAttachmentFeedbackLoopDynamicStateFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceAttachmentFeedbackLoopDynamicStateFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SCREEN_BUFFER_PROPERTIES_QNX: {
             const VkScreenBufferPropertiesQNX* pValue = reinterpret_cast<const VkScreenBufferPropertiesQNX*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SCREEN_BUFFER_FORMAT_PROPERTIES_QNX: {
             const VkScreenBufferFormatPropertiesQNX* pValue = reinterpret_cast<const VkScreenBufferFormatPropertiesQNX*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_IMPORT_SCREEN_BUFFER_INFO_QNX: {
             const VkImportScreenBufferInfoQNX* pValue = reinterpret_cast<const VkImportScreenBufferInfoQNX*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_EXTERNAL_FORMAT_QNX: {
             const VkExternalFormatQNX* pValue = reinterpret_cast<const VkExternalFormatQNX*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_MEMORY_SCREEN_BUFFER_FEATURES_QNX: {
             const VkPhysicalDeviceExternalMemoryScreenBufferFeaturesQNX* pValue = reinterpret_cast<const VkPhysicalDeviceExternalMemoryScreenBufferFeaturesQNX*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_LAYERED_DRIVER_PROPERTIES_MSFT: {
             const VkPhysicalDeviceLayeredDriverPropertiesMSFT* pValue = reinterpret_cast<const VkPhysicalDeviceLayeredDriverPropertiesMSFT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DESCRIPTOR_POOL_OVERALLOCATION_FEATURES_NV: {
             const VkPhysicalDeviceDescriptorPoolOverallocationFeaturesNV* pValue = reinterpret_cast<const VkPhysicalDeviceDescriptorPoolOverallocationFeaturesNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TILE_MEMORY_HEAP_FEATURES_QCOM: {
             const VkPhysicalDeviceTileMemoryHeapFeaturesQCOM* pValue = reinterpret_cast<const VkPhysicalDeviceTileMemoryHeapFeaturesQCOM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TILE_MEMORY_HEAP_PROPERTIES_QCOM: {
             const VkPhysicalDeviceTileMemoryHeapPropertiesQCOM* pValue = reinterpret_cast<const VkPhysicalDeviceTileMemoryHeapPropertiesQCOM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_TILE_MEMORY_REQUIREMENTS_QCOM: {
             const VkTileMemoryRequirementsQCOM* pValue = reinterpret_cast<const VkTileMemoryRequirementsQCOM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_TILE_MEMORY_BIND_INFO_QCOM: {
             const VkTileMemoryBindInfoQCOM* pValue = reinterpret_cast<const VkTileMemoryBindInfoQCOM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_TILE_MEMORY_SIZE_INFO_QCOM: {
             const VkTileMemorySizeInfoQCOM* pValue = reinterpret_cast<const VkTileMemorySizeInfoQCOM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DECOMPRESS_MEMORY_INFO_EXT: {
             const VkDecompressMemoryInfoEXT* pValue = reinterpret_cast<const VkDecompressMemoryInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DISPLAY_SURFACE_STEREO_CREATE_INFO_NV: {
             const VkDisplaySurfaceStereoCreateInfoNV* pValue = reinterpret_cast<const VkDisplaySurfaceStereoCreateInfoNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DISPLAY_MODE_STEREO_PROPERTIES_NV: {
             const VkDisplayModeStereoPropertiesNV* pValue = reinterpret_cast<const VkDisplayModeStereoPropertiesNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RAW_ACCESS_CHAINS_FEATURES_NV: {
             const VkPhysicalDeviceRawAccessChainsFeaturesNV* pValue = reinterpret_cast<const VkPhysicalDeviceRawAccessChainsFeaturesNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_EXTERNAL_COMPUTE_QUEUE_DEVICE_CREATE_INFO_NV: {
             const VkExternalComputeQueueDeviceCreateInfoNV* pValue = reinterpret_cast<const VkExternalComputeQueueDeviceCreateInfoNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_EXTERNAL_COMPUTE_QUEUE_CREATE_INFO_NV: {
             const VkExternalComputeQueueCreateInfoNV* pValue = reinterpret_cast<const VkExternalComputeQueueCreateInfoNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_EXTERNAL_COMPUTE_QUEUE_DATA_PARAMS_NV: {
             const VkExternalComputeQueueDataParamsNV* pValue = reinterpret_cast<const VkExternalComputeQueueDataParamsNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_COMPUTE_QUEUE_PROPERTIES_NV: {
             const VkPhysicalDeviceExternalComputeQueuePropertiesNV* pValue = reinterpret_cast<const VkPhysicalDeviceExternalComputeQueuePropertiesNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COMMAND_BUFFER_INHERITANCE_FEATURES_NV: {
             const VkPhysicalDeviceCommandBufferInheritanceFeaturesNV* pValue = reinterpret_cast<const VkPhysicalDeviceCommandBufferInheritanceFeaturesNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_ATOMIC_FLOAT16_VECTOR_FEATURES_NV: {
             const VkPhysicalDeviceShaderAtomicFloat16VectorFeaturesNV* pValue = reinterpret_cast<const VkPhysicalDeviceShaderAtomicFloat16VectorFeaturesNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_REPLICATED_COMPOSITES_FEATURES_EXT: {
             const VkPhysicalDeviceShaderReplicatedCompositesFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceShaderReplicatedCompositesFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_FLOAT8_FEATURES_EXT: {
             const VkPhysicalDeviceShaderFloat8FeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceShaderFloat8FeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RAY_TRACING_VALIDATION_FEATURES_NV: {
             const VkPhysicalDeviceRayTracingValidationFeaturesNV* pValue = reinterpret_cast<const VkPhysicalDeviceRayTracingValidationFeaturesNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_CLUSTER_ACCELERATION_STRUCTURE_FEATURES_NV: {
             const VkPhysicalDeviceClusterAccelerationStructureFeaturesNV* pValue = reinterpret_cast<const VkPhysicalDeviceClusterAccelerationStructureFeaturesNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_CLUSTER_ACCELERATION_STRUCTURE_PROPERTIES_NV: {
             const VkPhysicalDeviceClusterAccelerationStructurePropertiesNV* pValue = reinterpret_cast<const VkPhysicalDeviceClusterAccelerationStructurePropertiesNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_CLUSTER_ACCELERATION_STRUCTURE_CLUSTERS_BOTTOM_LEVEL_INPUT_NV: {
             const VkClusterAccelerationStructureClustersBottomLevelInputNV* pValue = reinterpret_cast<const VkClusterAccelerationStructureClustersBottomLevelInputNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_CLUSTER_ACCELERATION_STRUCTURE_TRIANGLE_CLUSTER_INPUT_NV: {
             const VkClusterAccelerationStructureTriangleClusterInputNV* pValue = reinterpret_cast<const VkClusterAccelerationStructureTriangleClusterInputNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_CLUSTER_ACCELERATION_STRUCTURE_MOVE_OBJECTS_INPUT_NV: {
             const VkClusterAccelerationStructureMoveObjectsInputNV* pValue = reinterpret_cast<const VkClusterAccelerationStructureMoveObjectsInputNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_CLUSTER_ACCELERATION_STRUCTURE_INPUT_INFO_NV: {
             const VkClusterAccelerationStructureInputInfoNV* pValue = reinterpret_cast<const VkClusterAccelerationStructureInputInfoNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_CLUSTER_ACCELERATION_STRUCTURE_COMMANDS_INFO_NV: {
             const VkClusterAccelerationStructureCommandsInfoNV* pValue = reinterpret_cast<const VkClusterAccelerationStructureCommandsInfoNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_BUILD_SIZES_INFO_KHR: {
             const VkAccelerationStructureBuildSizesInfoKHR* pValue = reinterpret_cast<const VkAccelerationStructureBuildSizesInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_RAY_TRACING_PIPELINE_CLUSTER_ACCELERATION_STRUCTURE_CREATE_INFO_NV: {
             const VkRayTracingPipelineClusterAccelerationStructureCreateInfoNV* pValue = reinterpret_cast<const VkRayTracingPipelineClusterAccelerationStructureCreateInfoNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PARTITIONED_ACCELERATION_STRUCTURE_FEATURES_NV: {
             const VkPhysicalDevicePartitionedAccelerationStructureFeaturesNV* pValue = reinterpret_cast<const VkPhysicalDevicePartitionedAccelerationStructureFeaturesNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PARTITIONED_ACCELERATION_STRUCTURE_PROPERTIES_NV: {
             const VkPhysicalDevicePartitionedAccelerationStructurePropertiesNV* pValue = reinterpret_cast<const VkPhysicalDevicePartitionedAccelerationStructurePropertiesNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PARTITIONED_ACCELERATION_STRUCTURE_FLAGS_NV: {
             const VkPartitionedAccelerationStructureFlagsNV* pValue = reinterpret_cast<const VkPartitionedAccelerationStructureFlagsNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET_PARTITIONED_ACCELERATION_STRUCTURE_NV: {
             const VkWriteDescriptorSetPartitionedAccelerationStructureNV* pValue = reinterpret_cast<const VkWriteDescriptorSetPartitionedAccelerationStructureNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PARTITIONED_ACCELERATION_STRUCTURE_INSTANCES_INPUT_NV: {
             const VkPartitionedAccelerationStructureInstancesInputNV* pValue = reinterpret_cast<const VkPartitionedAccelerationStructureInstancesInputNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_BUILD_PARTITIONED_ACCELERATION_STRUCTURE_INFO_NV: {
             const VkBuildPartitionedAccelerationStructureInfoNV* pValue = reinterpret_cast<const VkBuildPartitionedAccelerationStructureInfoNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_FEATURES_EXT: {
             const VkPhysicalDeviceDeviceGeneratedCommandsFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceDeviceGeneratedCommandsFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_PROPERTIES_EXT: {
             const VkPhysicalDeviceDeviceGeneratedCommandsPropertiesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceDeviceGeneratedCommandsPropertiesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_GENERATED_COMMANDS_MEMORY_REQUIREMENTS_INFO_EXT: {
             const VkGeneratedCommandsMemoryRequirementsInfoEXT* pValue = reinterpret_cast<const VkGeneratedCommandsMemoryRequirementsInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_INDIRECT_EXECUTION_SET_PIPELINE_INFO_EXT: {
             const VkIndirectExecutionSetPipelineInfoEXT* pValue = reinterpret_cast<const VkIndirectExecutionSetPipelineInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_INDIRECT_EXECUTION_SET_SHADER_LAYOUT_INFO_EXT: {
             const VkIndirectExecutionSetShaderLayoutInfoEXT* pValue = reinterpret_cast<const VkIndirectExecutionSetShaderLayoutInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_INDIRECT_EXECUTION_SET_SHADER_INFO_EXT: {
             const VkIndirectExecutionSetShaderInfoEXT* pValue = reinterpret_cast<const VkIndirectExecutionSetShaderInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_INDIRECT_EXECUTION_SET_CREATE_INFO_EXT: {
             const VkIndirectExecutionSetCreateInfoEXT* pValue = reinterpret_cast<const VkIndirectExecutionSetCreateInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_GENERATED_COMMANDS_INFO_EXT: {
             const VkGeneratedCommandsInfoEXT* pValue = reinterpret_cast<const VkGeneratedCommandsInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_WRITE_INDIRECT_EXECUTION_SET_PIPELINE_EXT: {
             const VkWriteIndirectExecutionSetPipelineEXT* pValue = reinterpret_cast<const VkWriteIndirectExecutionSetPipelineEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_INDIRECT_COMMANDS_LAYOUT_TOKEN_EXT: {
             const VkIndirectCommandsLayoutTokenEXT* pValue = reinterpret_cast<const VkIndirectCommandsLayoutTokenEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_INDIRECT_COMMANDS_LAYOUT_CREATE_INFO_EXT: {
             const VkIndirectCommandsLayoutCreateInfoEXT* pValue = reinterpret_cast<const VkIndirectCommandsLayoutCreateInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_GENERATED_COMMANDS_PIPELINE_INFO_EXT: {
             const VkGeneratedCommandsPipelineInfoEXT* pValue = reinterpret_cast<const VkGeneratedCommandsPipelineInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_GENERATED_COMMANDS_SHADER_INFO_EXT: {
             const VkGeneratedCommandsShaderInfoEXT* pValue = reinterpret_cast<const VkGeneratedCommandsShaderInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_WRITE_INDIRECT_EXECUTION_SET_SHADER_EXT: {
             const VkWriteIndirectExecutionSetShaderEXT* pValue = reinterpret_cast<const VkWriteIndirectExecutionSetShaderEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_ALIGNMENT_CONTROL_FEATURES_MESA: {
             const VkPhysicalDeviceImageAlignmentControlFeaturesMESA* pValue = reinterpret_cast<const VkPhysicalDeviceImageAlignmentControlFeaturesMESA*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_ALIGNMENT_CONTROL_PROPERTIES_MESA: {
             const VkPhysicalDeviceImageAlignmentControlPropertiesMESA* pValue = reinterpret_cast<const VkPhysicalDeviceImageAlignmentControlPropertiesMESA*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_IMAGE_ALIGNMENT_CONTROL_CREATE_INFO_MESA: {
             const VkImageAlignmentControlCreateInfoMESA* pValue = reinterpret_cast<const VkImageAlignmentControlCreateInfoMESA*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RAY_TRACING_INVOCATION_REORDER_PROPERTIES_EXT: {
             const VkPhysicalDeviceRayTracingInvocationReorderPropertiesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceRayTracingInvocationReorderPropertiesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RAY_TRACING_INVOCATION_REORDER_FEATURES_EXT: {
             const VkPhysicalDeviceRayTracingInvocationReorderFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceRayTracingInvocationReorderFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEPTH_CLAMP_CONTROL_FEATURES_EXT: {
             const VkPhysicalDeviceDepthClampControlFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceDepthClampControlFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_DEPTH_CLAMP_CONTROL_CREATE_INFO_EXT: {
             const VkPipelineViewportDepthClampControlCreateInfoEXT* pValue = reinterpret_cast<const VkPipelineViewportDepthClampControlCreateInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SURFACE_CREATE_INFO_OHOS: {
             const VkSurfaceCreateInfoOHOS* pValue = reinterpret_cast<const VkSurfaceCreateInfoOHOS*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_NATIVE_BUFFER_OHOS: {
             const VkNativeBufferOHOS* pValue = reinterpret_cast<const VkNativeBufferOHOS*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_SWAPCHAIN_IMAGE_CREATE_INFO_OHOS: {
             const VkSwapchainImageCreateInfoOHOS* pValue = reinterpret_cast<const VkSwapchainImageCreateInfoOHOS*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PRESENTATION_PROPERTIES_OHOS: {
             const VkPhysicalDevicePresentationPropertiesOHOS* pValue = reinterpret_cast<const VkPhysicalDevicePresentationPropertiesOHOS*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_HDR_VIVID_FEATURES_HUAWEI: {
             const VkPhysicalDeviceHdrVividFeaturesHUAWEI* pValue = reinterpret_cast<const VkPhysicalDeviceHdrVividFeaturesHUAWEI*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_HDR_VIVID_DYNAMIC_METADATA_HUAWEI: {
             const VkHdrVividDynamicMetadataHUAWEI* pValue = reinterpret_cast<const VkHdrVividDynamicMetadataHUAWEI*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_COOPERATIVE_MATRIX_FLEXIBLE_DIMENSIONS_PROPERTIES_NV: {
             const VkCooperativeMatrixFlexibleDimensionsPropertiesNV* pValue = reinterpret_cast<const VkCooperativeMatrixFlexibleDimensionsPropertiesNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COOPERATIVE_MATRIX_2_FEATURES_NV: {
             const VkPhysicalDeviceCooperativeMatrix2FeaturesNV* pValue = reinterpret_cast<const VkPhysicalDeviceCooperativeMatrix2FeaturesNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COOPERATIVE_MATRIX_2_PROPERTIES_NV: {
             const VkPhysicalDeviceCooperativeMatrix2PropertiesNV* pValue = reinterpret_cast<const VkPhysicalDeviceCooperativeMatrix2PropertiesNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PIPELINE_OPACITY_MICROMAP_FEATURES_ARM: {
             const VkPhysicalDevicePipelineOpacityMicromapFeaturesARM* pValue = reinterpret_cast<const VkPhysicalDevicePipelineOpacityMicromapFeaturesARM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_IMPORT_MEMORY_METAL_HANDLE_INFO_EXT: {
             const VkImportMemoryMetalHandleInfoEXT* pValue = reinterpret_cast<const VkImportMemoryMetalHandleInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_MEMORY_METAL_HANDLE_PROPERTIES_EXT: {
             const VkMemoryMetalHandlePropertiesEXT* pValue = reinterpret_cast<const VkMemoryMetalHandlePropertiesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_MEMORY_GET_METAL_HANDLE_INFO_EXT: {
             const VkMemoryGetMetalHandleInfoEXT* pValue = reinterpret_cast<const VkMemoryGetMetalHandleInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PERFORMANCE_COUNTERS_BY_REGION_FEATURES_ARM: {
             const VkPhysicalDevicePerformanceCountersByRegionFeaturesARM* pValue = reinterpret_cast<const VkPhysicalDevicePerformanceCountersByRegionFeaturesARM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PERFORMANCE_COUNTERS_BY_REGION_PROPERTIES_ARM: {
             const VkPhysicalDevicePerformanceCountersByRegionPropertiesARM* pValue = reinterpret_cast<const VkPhysicalDevicePerformanceCountersByRegionPropertiesARM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PERFORMANCE_COUNTER_ARM: {
             const VkPerformanceCounterARM* pValue = reinterpret_cast<const VkPerformanceCounterARM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PERFORMANCE_COUNTER_DESCRIPTION_ARM: {
             const VkPerformanceCounterDescriptionARM* pValue = reinterpret_cast<const VkPerformanceCounterDescriptionARM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_RENDER_PASS_PERFORMANCE_COUNTERS_BY_REGION_BEGIN_INFO_ARM: {
             const VkRenderPassPerformanceCountersByRegionBeginInfoARM* pValue = reinterpret_cast<const VkRenderPassPerformanceCountersByRegionBeginInfoARM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_ROBUSTNESS_FEATURES_EXT: {
             const VkPhysicalDeviceVertexAttributeRobustnessFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceVertexAttributeRobustnessFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FORMAT_PACK_FEATURES_ARM: {
             const VkPhysicalDeviceFormatPackFeaturesARM* pValue = reinterpret_cast<const VkPhysicalDeviceFormatPackFeaturesARM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_LAYERED_FEATURES_VALVE: {
             const VkPhysicalDeviceFragmentDensityMapLayeredFeaturesVALVE* pValue = reinterpret_cast<const VkPhysicalDeviceFragmentDensityMapLayeredFeaturesVALVE*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_LAYERED_PROPERTIES_VALVE: {
             const VkPhysicalDeviceFragmentDensityMapLayeredPropertiesVALVE* pValue = reinterpret_cast<const VkPhysicalDeviceFragmentDensityMapLayeredPropertiesVALVE*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PIPELINE_FRAGMENT_DENSITY_MAP_LAYERED_CREATE_INFO_VALVE: {
             const VkPipelineFragmentDensityMapLayeredCreateInfoVALVE* pValue = reinterpret_cast<const VkPipelineFragmentDensityMapLayeredCreateInfoVALVE*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
 #ifdef VK_ENABLE_BETA_EXTENSIONS
         case VK_STRUCTURE_TYPE_SET_PRESENT_CONFIG_NV: {
             const VkSetPresentConfigNV* pValue = reinterpret_cast<const VkSetPresentConfigNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
 #endif
 #ifdef VK_ENABLE_BETA_EXTENSIONS
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PRESENT_METERING_FEATURES_NV: {
             const VkPhysicalDevicePresentMeteringFeaturesNV* pValue = reinterpret_cast<const VkPhysicalDevicePresentMeteringFeaturesNV*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
 #endif
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ZERO_INITIALIZE_DEVICE_MEMORY_FEATURES_EXT: {
             const VkPhysicalDeviceZeroInitializeDeviceMemoryFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceZeroInitializeDeviceMemoryFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_64_BIT_INDEXING_FEATURES_EXT: {
             const VkPhysicalDeviceShader64BitIndexingFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceShader64BitIndexingFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_CUSTOM_RESOLVE_FEATURES_EXT: {
             const VkPhysicalDeviceCustomResolveFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceCustomResolveFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_BEGIN_CUSTOM_RESOLVE_INFO_EXT: {
             const VkBeginCustomResolveInfoEXT* pValue = reinterpret_cast<const VkBeginCustomResolveInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_CUSTOM_RESOLVE_CREATE_INFO_EXT: {
             const VkCustomResolveCreateInfoEXT* pValue = reinterpret_cast<const VkCustomResolveCreateInfoEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_DATA_GRAPH_PIPELINE_BUILTIN_MODEL_CREATE_INFO_QCOM: {
             const VkDataGraphPipelineBuiltinModelCreateInfoQCOM* pValue = reinterpret_cast<const VkDataGraphPipelineBuiltinModelCreateInfoQCOM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DATA_GRAPH_MODEL_FEATURES_QCOM: {
             const VkPhysicalDeviceDataGraphModelFeaturesQCOM* pValue = reinterpret_cast<const VkPhysicalDeviceDataGraphModelFeaturesQCOM*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PIPELINE_CACHE_INCREMENTAL_MODE_FEATURES_SEC: {
             const VkPhysicalDevicePipelineCacheIncrementalModeFeaturesSEC* pValue = reinterpret_cast<const VkPhysicalDevicePipelineCacheIncrementalModeFeaturesSEC*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_UNIFORM_BUFFER_UNSIZED_ARRAY_FEATURES_EXT: {
             const VkPhysicalDeviceShaderUniformBufferUnsizedArrayFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceShaderUniformBufferUnsizedArrayFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_GEOMETRY_TRIANGLES_DATA_KHR: {
             const VkAccelerationStructureGeometryTrianglesDataKHR* pValue = reinterpret_cast<const VkAccelerationStructureGeometryTrianglesDataKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_GEOMETRY_AABBS_DATA_KHR: {
             const VkAccelerationStructureGeometryAabbsDataKHR* pValue = reinterpret_cast<const VkAccelerationStructureGeometryAabbsDataKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_GEOMETRY_INSTANCES_DATA_KHR: {
             const VkAccelerationStructureGeometryInstancesDataKHR* pValue = reinterpret_cast<const VkAccelerationStructureGeometryInstancesDataKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_GEOMETRY_KHR: {
             const VkAccelerationStructureGeometryKHR* pValue = reinterpret_cast<const VkAccelerationStructureGeometryKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_BUILD_GEOMETRY_INFO_KHR: {
             const VkAccelerationStructureBuildGeometryInfoKHR* pValue = reinterpret_cast<const VkAccelerationStructureBuildGeometryInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_CREATE_INFO_KHR: {
             const VkAccelerationStructureCreateInfoKHR* pValue = reinterpret_cast<const VkAccelerationStructureCreateInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET_ACCELERATION_STRUCTURE_KHR: {
             const VkWriteDescriptorSetAccelerationStructureKHR* pValue = reinterpret_cast<const VkWriteDescriptorSetAccelerationStructureKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ACCELERATION_STRUCTURE_FEATURES_KHR: {
             const VkPhysicalDeviceAccelerationStructureFeaturesKHR* pValue = reinterpret_cast<const VkPhysicalDeviceAccelerationStructureFeaturesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ACCELERATION_STRUCTURE_PROPERTIES_KHR: {
             const VkPhysicalDeviceAccelerationStructurePropertiesKHR* pValue = reinterpret_cast<const VkPhysicalDeviceAccelerationStructurePropertiesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_DEVICE_ADDRESS_INFO_KHR: {
             const VkAccelerationStructureDeviceAddressInfoKHR* pValue = reinterpret_cast<const VkAccelerationStructureDeviceAddressInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_VERSION_INFO_KHR: {
             const VkAccelerationStructureVersionInfoKHR* pValue = reinterpret_cast<const VkAccelerationStructureVersionInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_COPY_ACCELERATION_STRUCTURE_TO_MEMORY_INFO_KHR: {
             const VkCopyAccelerationStructureToMemoryInfoKHR* pValue = reinterpret_cast<const VkCopyAccelerationStructureToMemoryInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_COPY_MEMORY_TO_ACCELERATION_STRUCTURE_INFO_KHR: {
             const VkCopyMemoryToAccelerationStructureInfoKHR* pValue = reinterpret_cast<const VkCopyMemoryToAccelerationStructureInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_COPY_ACCELERATION_STRUCTURE_INFO_KHR: {
             const VkCopyAccelerationStructureInfoKHR* pValue = reinterpret_cast<const VkCopyAccelerationStructureInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_RAY_TRACING_SHADER_GROUP_CREATE_INFO_KHR: {
             const VkRayTracingShaderGroupCreateInfoKHR* pValue = reinterpret_cast<const VkRayTracingShaderGroupCreateInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_RAY_TRACING_PIPELINE_INTERFACE_CREATE_INFO_KHR: {
             const VkRayTracingPipelineInterfaceCreateInfoKHR* pValue = reinterpret_cast<const VkRayTracingPipelineInterfaceCreateInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_RAY_TRACING_PIPELINE_CREATE_INFO_KHR: {
             const VkRayTracingPipelineCreateInfoKHR* pValue = reinterpret_cast<const VkRayTracingPipelineCreateInfoKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RAY_TRACING_PIPELINE_FEATURES_KHR: {
             const VkPhysicalDeviceRayTracingPipelineFeaturesKHR* pValue = reinterpret_cast<const VkPhysicalDeviceRayTracingPipelineFeaturesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RAY_TRACING_PIPELINE_PROPERTIES_KHR: {
             const VkPhysicalDeviceRayTracingPipelinePropertiesKHR* pValue = reinterpret_cast<const VkPhysicalDeviceRayTracingPipelinePropertiesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RAY_QUERY_FEATURES_KHR: {
             const VkPhysicalDeviceRayQueryFeaturesKHR* pValue = reinterpret_cast<const VkPhysicalDeviceRayQueryFeaturesKHR*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MESH_SHADER_FEATURES_EXT: {
             const VkPhysicalDeviceMeshShaderFeaturesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceMeshShaderFeaturesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MESH_SHADER_PROPERTIES_EXT: {
             const VkPhysicalDeviceMeshShaderPropertiesEXT* pValue = reinterpret_cast<const VkPhysicalDeviceMeshShaderPropertiesEXT*>(pNext);
             SerializeToString(*pValue, stream);
+            break;
         }
         default: {
             SerializeToString(*pNextStruct, stream);
+            break;
         }
     }
 }

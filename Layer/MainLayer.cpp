@@ -2,6 +2,10 @@
 
 #include <windows.h>
 
+#include <VulkanLayerManager.h>
+
+extern OVS::VulkanLayerManager sLayerManager;
+
 BOOL WINAPI MyHandlerRoutine(DWORD dwCtrlType) {
 	TerminateProcess(GetCurrentProcess(), 2);
 	return TRUE;
@@ -31,15 +35,11 @@ BOOL WINAPI DllMain(HINSTANCE hModule, DWORD fdwReason, LPVOID lpvReserved) {
     switch (fdwReason) {
         case DLL_PROCESS_ATTACH: {
             AllocateConsole();
-
-            std::cout << "DllMain (DLL_PROCESS_ATTACH) called!" << std::endl;
-            /* Init */
+            sLayerManager.Init();
             break;
         }
         case DLL_PROCESS_DETACH: {
-            std::cout << "DllMain (DLL_PROCESS_DETACH) called!" << std::endl;
-            /* Deinit */
-
+            sLayerManager.Cleanup();
             DeallocateConsole();
             break;
         }

@@ -74,7 +74,7 @@ void SerializeToString(const vkEnumeratePhysicalDevicesSignature& sig, std::stri
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pPhysicalDevices && sig.pPhysicalDeviceCount) {
+    if (sig.pPhysicalDevices && sig.pPhysicalDeviceCount && *sig.pPhysicalDeviceCount > 0) {
         stream << "{[";
         for (int i = 0; i < *sig.pPhysicalDeviceCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -177,7 +177,7 @@ void SerializeToString(const vkGetPhysicalDeviceQueueFamilyPropertiesSignature& 
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pQueueFamilyProperties && sig.pQueueFamilyPropertyCount) {
+    if (sig.pQueueFamilyProperties && sig.pQueueFamilyPropertyCount && *sig.pQueueFamilyPropertyCount > 0) {
         stream << "{[";
         for (int i = 0; i < *sig.pQueueFamilyPropertyCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -289,7 +289,7 @@ void SerializeToString(const vkEnumerateInstanceExtensionPropertiesSignature& si
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pProperties && sig.pPropertyCount) {
+    if (sig.pProperties && sig.pPropertyCount && *sig.pPropertyCount > 0) {
         stream << "{[";
         for (int i = 0; i < *sig.pPropertyCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -320,7 +320,7 @@ void SerializeToString(const vkEnumerateDeviceExtensionPropertiesSignature& sig,
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pProperties && sig.pPropertyCount) {
+    if (sig.pProperties && sig.pPropertyCount && *sig.pPropertyCount > 0) {
         stream << "{[";
         for (int i = 0; i < *sig.pPropertyCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -347,7 +347,7 @@ void SerializeToString(const vkEnumerateInstanceLayerPropertiesSignature& sig, s
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pProperties && sig.pPropertyCount) {
+    if (sig.pProperties && sig.pPropertyCount && *sig.pPropertyCount > 0) {
         stream << "{[";
         for (int i = 0; i < *sig.pPropertyCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -376,7 +376,7 @@ void SerializeToString(const vkEnumerateDeviceLayerPropertiesSignature& sig, std
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pProperties && sig.pPropertyCount) {
+    if (sig.pProperties && sig.pPropertyCount && *sig.pPropertyCount > 0) {
         stream << "{[";
         for (int i = 0; i < *sig.pPropertyCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -417,7 +417,7 @@ void SerializeToString(const vkQueueSubmitSignature& sig, std::stringstream& str
     stream << ", ";
     SerializeToString(sig.submitCount, stream);
     stream << ", ";
-    if (sig.pSubmits) {
+    if (sig.pSubmits && sig.submitCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.submitCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -542,7 +542,7 @@ void SerializeToString(const vkFlushMappedMemoryRangesSignature& sig, std::strin
     stream << ", ";
     SerializeToString(sig.memoryRangeCount, stream);
     stream << ", ";
-    if (sig.pMemoryRanges) {
+    if (sig.pMemoryRanges && sig.memoryRangeCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.memoryRangeCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -564,7 +564,7 @@ void SerializeToString(const vkInvalidateMappedMemoryRangesSignature& sig, std::
     stream << ", ";
     SerializeToString(sig.memoryRangeCount, stream);
     stream << ", ";
-    if (sig.pMemoryRanges) {
+    if (sig.pMemoryRanges && sig.memoryRangeCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.memoryRangeCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -674,7 +674,7 @@ void SerializeToString(const vkGetImageSparseMemoryRequirementsSignature& sig, s
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pSparseMemoryRequirements && sig.pSparseMemoryRequirementCount) {
+    if (sig.pSparseMemoryRequirements && sig.pSparseMemoryRequirementCount && *sig.pSparseMemoryRequirementCount > 0) {
         stream << "{[";
         for (int i = 0; i < *sig.pSparseMemoryRequirementCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -696,7 +696,7 @@ void SerializeToString(const vkGetPhysicalDeviceSparseImageFormatPropertiesSigna
     stream << ", ";
     SerializeToString(sig.type, stream);
     stream << ", ";
-    SerializeToString(sig.samples, stream);
+    SerializeToStringVkSampleCountFlags(sig.samples, stream);
     stream << ", ";
     SerializeToStringVkImageUsageFlags(sig.usage, stream);
     stream << ", ";
@@ -711,7 +711,7 @@ void SerializeToString(const vkGetPhysicalDeviceSparseImageFormatPropertiesSigna
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pProperties && sig.pPropertyCount) {
+    if (sig.pProperties && sig.pPropertyCount && *sig.pPropertyCount > 0) {
         stream << "{[";
         for (int i = 0; i < *sig.pPropertyCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -731,7 +731,7 @@ void SerializeToString(const vkQueueBindSparseSignature& sig, std::stringstream&
     stream << ", ";
     SerializeToString(sig.bindInfoCount, stream);
     stream << ", ";
-    if (sig.pBindInfo) {
+    if (sig.pBindInfo && sig.bindInfoCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.bindInfoCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -807,7 +807,7 @@ void SerializeToString(const vkResetFencesSignature& sig, std::stringstream& str
     stream << ", ";
     SerializeToString(sig.fenceCount, stream);
     stream << ", ";
-    if (sig.pFences) {
+    if (sig.pFences && sig.fenceCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.fenceCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -839,7 +839,7 @@ void SerializeToString(const vkWaitForFencesSignature& sig, std::stringstream& s
     stream << ", ";
     SerializeToString(sig.fenceCount, stream);
     stream << ", ";
-    if (sig.pFences) {
+    if (sig.pFences && sig.fenceCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.fenceCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -975,7 +975,7 @@ void SerializeToString(const vkGetQueryPoolResultsSignature& sig, std::stringstr
     stream << ", ";
     SerializeToString(sig.dataSize, stream);
     stream << ", ";
-    if (sig.pData) {
+    if (sig.pData && sig.dataSize > 0) {
         stream << "{[";
         const uint8_t* ptr = reinterpret_cast<const uint8_t*>(sig.pData);
         for (int i = 0; i < sig.dataSize; ++i) {
@@ -1255,7 +1255,7 @@ void SerializeToString(const vkAllocateCommandBuffersSignature& sig, std::string
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pCommandBuffers) {
+    if (sig.pCommandBuffers && sig.pAllocateInfo->commandBufferCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.pAllocateInfo->commandBufferCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -1279,7 +1279,7 @@ void SerializeToString(const vkFreeCommandBuffersSignature& sig, std::stringstre
     stream << ", ";
     SerializeToString(sig.commandBufferCount, stream);
     stream << ", ";
-    if (sig.pCommandBuffers) {
+    if (sig.pCommandBuffers && sig.commandBufferCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.commandBufferCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -1338,7 +1338,7 @@ void SerializeToString(const vkCmdCopyBufferSignature& sig, std::stringstream& s
     stream << ", ";
     SerializeToString(sig.regionCount, stream);
     stream << ", ";
-    if (sig.pRegions) {
+    if (sig.pRegions && sig.regionCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.regionCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -1366,7 +1366,7 @@ void SerializeToString(const vkCmdCopyImageSignature& sig, std::stringstream& st
     stream << ", ";
     SerializeToString(sig.regionCount, stream);
     stream << ", ";
-    if (sig.pRegions) {
+    if (sig.pRegions && sig.regionCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.regionCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -1392,7 +1392,7 @@ void SerializeToString(const vkCmdCopyBufferToImageSignature& sig, std::stringst
     stream << ", ";
     SerializeToString(sig.regionCount, stream);
     stream << ", ";
-    if (sig.pRegions) {
+    if (sig.pRegions && sig.regionCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.regionCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -1418,7 +1418,7 @@ void SerializeToString(const vkCmdCopyImageToBufferSignature& sig, std::stringst
     stream << ", ";
     SerializeToString(sig.regionCount, stream);
     stream << ", ";
-    if (sig.pRegions) {
+    if (sig.pRegions && sig.regionCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.regionCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -1442,7 +1442,7 @@ void SerializeToString(const vkCmdUpdateBufferSignature& sig, std::stringstream&
     stream << ", ";
     SerializeToString(sig.dataSize, stream);
     stream << ", ";
-    if (sig.pData) {
+    if (sig.pData && sig.dataSize > 0) {
         stream << "{[";
         const uint8_t* ptr = reinterpret_cast<const uint8_t*>(sig.pData);
         for (int i = 0; i < sig.dataSize; ++i) {
@@ -1483,7 +1483,7 @@ void SerializeToString(const vkCmdPipelineBarrierSignature& sig, std::stringstre
     stream << ", ";
     SerializeToString(sig.memoryBarrierCount, stream);
     stream << ", ";
-    if (sig.pMemoryBarriers) {
+    if (sig.pMemoryBarriers && sig.memoryBarrierCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.memoryBarrierCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -1497,7 +1497,7 @@ void SerializeToString(const vkCmdPipelineBarrierSignature& sig, std::stringstre
     stream << ", ";
     SerializeToString(sig.bufferMemoryBarrierCount, stream);
     stream << ", ";
-    if (sig.pBufferMemoryBarriers) {
+    if (sig.pBufferMemoryBarriers && sig.bufferMemoryBarrierCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.bufferMemoryBarrierCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -1511,7 +1511,7 @@ void SerializeToString(const vkCmdPipelineBarrierSignature& sig, std::stringstre
     stream << ", ";
     SerializeToString(sig.imageMemoryBarrierCount, stream);
     stream << ", ";
-    if (sig.pImageMemoryBarriers) {
+    if (sig.pImageMemoryBarriers && sig.imageMemoryBarrierCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.imageMemoryBarrierCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -1563,7 +1563,7 @@ void SerializeToString(const vkCmdWriteTimestampSignature& sig, std::stringstrea
     stream << "vkCmdWriteTimestamp(";
     SerializeToString(sig.commandBuffer, stream);
     stream << ", ";
-    SerializeToString(sig.pipelineStage, stream);
+    SerializeToStringVkPipelineStageFlags(sig.pipelineStage, stream);
     stream << ", ";
     SerializeToString(sig.queryPool, stream);
     stream << ", ";
@@ -1597,7 +1597,7 @@ void SerializeToString(const vkCmdExecuteCommandsSignature& sig, std::stringstre
     stream << ", ";
     SerializeToString(sig.commandBufferCount, stream);
     stream << ", ";
-    if (sig.pCommandBuffers) {
+    if (sig.pCommandBuffers && sig.commandBufferCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.commandBufferCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -1864,7 +1864,7 @@ void SerializeToString(const vkGetPipelineCacheDataSignature& sig, std::stringst
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pData && sig.pDataSize) {
+    if (sig.pData && sig.pDataSize && *sig.pDataSize > 0) {
         stream << "{[";
         const uint8_t* ptr = reinterpret_cast<const uint8_t*>(sig.pData);
         for (int i = 0; i < *sig.pDataSize; ++i) {
@@ -1889,7 +1889,7 @@ void SerializeToString(const vkMergePipelineCachesSignature& sig, std::stringstr
     stream << ", ";
     SerializeToString(sig.srcCacheCount, stream);
     stream << ", ";
-    if (sig.pSrcCaches) {
+    if (sig.pSrcCaches && sig.srcCacheCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.srcCacheCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -1913,7 +1913,7 @@ void SerializeToString(const vkCreateComputePipelinesSignature& sig, std::string
     stream << ", ";
     SerializeToString(sig.createInfoCount, stream);
     stream << ", ";
-    if (sig.pCreateInfos) {
+    if (sig.pCreateInfos && sig.createInfoCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.createInfoCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -1934,7 +1934,7 @@ void SerializeToString(const vkCreateComputePipelinesSignature& sig, std::string
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pPipelines) {
+    if (sig.pPipelines && sig.createInfoCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.createInfoCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -2200,7 +2200,7 @@ void SerializeToString(const vkAllocateDescriptorSetsSignature& sig, std::string
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pDescriptorSets) {
+    if (sig.pDescriptorSets && sig.pAllocateInfo->descriptorSetCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.pAllocateInfo->descriptorSetCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -2224,7 +2224,7 @@ void SerializeToString(const vkFreeDescriptorSetsSignature& sig, std::stringstre
     stream << ", ";
     SerializeToString(sig.descriptorSetCount, stream);
     stream << ", ";
-    if (sig.pDescriptorSets) {
+    if (sig.pDescriptorSets && sig.descriptorSetCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.descriptorSetCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -2246,7 +2246,7 @@ void SerializeToString(const vkUpdateDescriptorSetsSignature& sig, std::stringst
     stream << ", ";
     SerializeToString(sig.descriptorWriteCount, stream);
     stream << ", ";
-    if (sig.pDescriptorWrites) {
+    if (sig.pDescriptorWrites && sig.descriptorWriteCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.descriptorWriteCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -2260,7 +2260,7 @@ void SerializeToString(const vkUpdateDescriptorSetsSignature& sig, std::stringst
     stream << ", ";
     SerializeToString(sig.descriptorCopyCount, stream);
     stream << ", ";
-    if (sig.pDescriptorCopies) {
+    if (sig.pDescriptorCopies && sig.descriptorCopyCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.descriptorCopyCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -2296,7 +2296,7 @@ void SerializeToString(const vkCmdBindDescriptorSetsSignature& sig, std::strings
     stream << ", ";
     SerializeToString(sig.descriptorSetCount, stream);
     stream << ", ";
-    if (sig.pDescriptorSets) {
+    if (sig.pDescriptorSets && sig.descriptorSetCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.descriptorSetCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -2310,7 +2310,7 @@ void SerializeToString(const vkCmdBindDescriptorSetsSignature& sig, std::strings
     stream << ", ";
     SerializeToString(sig.dynamicOffsetCount, stream);
     stream << ", ";
-    if (sig.pDynamicOffsets) {
+    if (sig.pDynamicOffsets && sig.dynamicOffsetCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.dynamicOffsetCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -2343,7 +2343,7 @@ void SerializeToString(const vkCmdClearColorImageSignature& sig, std::stringstre
     stream << ", ";
     SerializeToString(sig.rangeCount, stream);
     stream << ", ";
-    if (sig.pRanges) {
+    if (sig.pRanges && sig.rangeCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.rangeCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -2405,7 +2405,7 @@ void SerializeToString(const vkCmdWaitEventsSignature& sig, std::stringstream& s
     stream << ", ";
     SerializeToString(sig.eventCount, stream);
     stream << ", ";
-    if (sig.pEvents) {
+    if (sig.pEvents && sig.eventCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.eventCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -2423,7 +2423,7 @@ void SerializeToString(const vkCmdWaitEventsSignature& sig, std::stringstream& s
     stream << ", ";
     SerializeToString(sig.memoryBarrierCount, stream);
     stream << ", ";
-    if (sig.pMemoryBarriers) {
+    if (sig.pMemoryBarriers && sig.memoryBarrierCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.memoryBarrierCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -2437,7 +2437,7 @@ void SerializeToString(const vkCmdWaitEventsSignature& sig, std::stringstream& s
     stream << ", ";
     SerializeToString(sig.bufferMemoryBarrierCount, stream);
     stream << ", ";
-    if (sig.pBufferMemoryBarriers) {
+    if (sig.pBufferMemoryBarriers && sig.bufferMemoryBarrierCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.bufferMemoryBarrierCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -2451,7 +2451,7 @@ void SerializeToString(const vkCmdWaitEventsSignature& sig, std::stringstream& s
     stream << ", ";
     SerializeToString(sig.imageMemoryBarrierCount, stream);
     stream << ", ";
-    if (sig.pImageMemoryBarriers) {
+    if (sig.pImageMemoryBarriers && sig.imageMemoryBarrierCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.imageMemoryBarrierCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -2477,7 +2477,7 @@ void SerializeToString(const vkCmdPushConstantsSignature& sig, std::stringstream
     stream << ", ";
     SerializeToString(sig.size, stream);
     stream << ", ";
-    if (sig.pValues) {
+    if (sig.pValues && sig.size > 0) {
         stream << "{[";
         const uint8_t* ptr = reinterpret_cast<const uint8_t*>(sig.pValues);
         for (int i = 0; i < sig.size; ++i) {
@@ -2500,7 +2500,7 @@ void SerializeToString(const vkCreateGraphicsPipelinesSignature& sig, std::strin
     stream << ", ";
     SerializeToString(sig.createInfoCount, stream);
     stream << ", ";
-    if (sig.pCreateInfos) {
+    if (sig.pCreateInfos && sig.createInfoCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.createInfoCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -2521,7 +2521,7 @@ void SerializeToString(const vkCreateGraphicsPipelinesSignature& sig, std::strin
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pPipelines) {
+    if (sig.pPipelines && sig.createInfoCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.createInfoCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -2666,7 +2666,7 @@ void SerializeToString(const vkCmdSetViewportSignature& sig, std::stringstream& 
     stream << ", ";
     SerializeToString(sig.viewportCount, stream);
     stream << ", ";
-    if (sig.pViewports) {
+    if (sig.pViewports && sig.viewportCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.viewportCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -2688,7 +2688,7 @@ void SerializeToString(const vkCmdSetScissorSignature& sig, std::stringstream& s
     stream << ", ";
     SerializeToString(sig.scissorCount, stream);
     stream << ", ";
-    if (sig.pScissors) {
+    if (sig.pScissors && sig.scissorCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.scissorCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -2795,7 +2795,7 @@ void SerializeToString(const vkCmdBindVertexBuffersSignature& sig, std::stringst
     stream << ", ";
     SerializeToString(sig.bindingCount, stream);
     stream << ", ";
-    if (sig.pBuffers) {
+    if (sig.pBuffers && sig.bindingCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.bindingCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -2807,7 +2807,7 @@ void SerializeToString(const vkCmdBindVertexBuffersSignature& sig, std::stringst
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pOffsets) {
+    if (sig.pOffsets && sig.bindingCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.bindingCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -2893,7 +2893,7 @@ void SerializeToString(const vkCmdBlitImageSignature& sig, std::stringstream& st
     stream << ", ";
     SerializeToString(sig.regionCount, stream);
     stream << ", ";
-    if (sig.pRegions) {
+    if (sig.pRegions && sig.regionCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.regionCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -2928,7 +2928,7 @@ void SerializeToString(const vkCmdClearDepthStencilImageSignature& sig, std::str
     stream << ", ";
     SerializeToString(sig.rangeCount, stream);
     stream << ", ";
-    if (sig.pRanges) {
+    if (sig.pRanges && sig.rangeCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.rangeCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -2948,7 +2948,7 @@ void SerializeToString(const vkCmdClearAttachmentsSignature& sig, std::stringstr
     stream << ", ";
     SerializeToString(sig.attachmentCount, stream);
     stream << ", ";
-    if (sig.pAttachments) {
+    if (sig.pAttachments && sig.attachmentCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.attachmentCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -2962,7 +2962,7 @@ void SerializeToString(const vkCmdClearAttachmentsSignature& sig, std::stringstr
     stream << ", ";
     SerializeToString(sig.rectCount, stream);
     stream << ", ";
-    if (sig.pRects) {
+    if (sig.pRects && sig.rectCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.rectCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -2990,7 +2990,7 @@ void SerializeToString(const vkCmdResolveImageSignature& sig, std::stringstream&
     stream << ", ";
     SerializeToString(sig.regionCount, stream);
     stream << ", ";
-    if (sig.pRegions) {
+    if (sig.pRegions && sig.regionCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.regionCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -3056,7 +3056,7 @@ void SerializeToString(const vkBindBufferMemory2Signature& sig, std::stringstrea
     stream << ", ";
     SerializeToString(sig.bindInfoCount, stream);
     stream << ", ";
-    if (sig.pBindInfos) {
+    if (sig.pBindInfos && sig.bindInfoCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.bindInfoCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -3078,7 +3078,7 @@ void SerializeToString(const vkBindImageMemory2Signature& sig, std::stringstream
     stream << ", ";
     SerializeToString(sig.bindInfoCount, stream);
     stream << ", ";
-    if (sig.pBindInfos) {
+    if (sig.pBindInfos && sig.bindInfoCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.bindInfoCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -3136,7 +3136,7 @@ void SerializeToString(const vkEnumeratePhysicalDeviceGroupsSignature& sig, std:
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pPhysicalDeviceGroupProperties && sig.pPhysicalDeviceGroupCount) {
+    if (sig.pPhysicalDeviceGroupProperties && sig.pPhysicalDeviceGroupCount && *sig.pPhysicalDeviceGroupCount > 0) {
         stream << "{[";
         for (int i = 0; i < *sig.pPhysicalDeviceGroupCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -3222,7 +3222,7 @@ void SerializeToString(const vkGetImageSparseMemoryRequirements2Signature& sig, 
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pSparseMemoryRequirements && sig.pSparseMemoryRequirementCount) {
+    if (sig.pSparseMemoryRequirements && sig.pSparseMemoryRequirementCount && *sig.pSparseMemoryRequirementCount > 0) {
         stream << "{[";
         for (int i = 0; i < *sig.pSparseMemoryRequirementCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -3322,7 +3322,7 @@ void SerializeToString(const vkGetPhysicalDeviceQueueFamilyProperties2Signature&
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pQueueFamilyProperties && sig.pQueueFamilyPropertyCount) {
+    if (sig.pQueueFamilyProperties && sig.pQueueFamilyPropertyCount && *sig.pQueueFamilyPropertyCount > 0) {
         stream << "{[";
         for (int i = 0; i < *sig.pQueueFamilyPropertyCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -3373,7 +3373,7 @@ void SerializeToString(const vkGetPhysicalDeviceSparseImageFormatProperties2Sign
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pProperties && sig.pPropertyCount) {
+    if (sig.pProperties && sig.pPropertyCount && *sig.pPropertyCount > 0) {
         stream << "{[";
         for (int i = 0; i < *sig.pPropertyCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -3916,7 +3916,7 @@ void SerializeToString(const vkGetPhysicalDeviceToolPropertiesSignature& sig, st
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pToolProperties && sig.pToolCount) {
+    if (sig.pToolProperties && sig.pToolCount && *sig.pToolCount > 0) {
         stream << "{[";
         for (int i = 0; i < *sig.pToolCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -4054,7 +4054,7 @@ void SerializeToString(const vkQueueSubmit2Signature& sig, std::stringstream& st
     stream << ", ";
     SerializeToString(sig.submitCount, stream);
     stream << ", ";
-    if (sig.pSubmits) {
+    if (sig.pSubmits && sig.submitCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.submitCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -4202,7 +4202,7 @@ void SerializeToString(const vkGetDeviceImageSparseMemoryRequirementsSignature& 
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pSparseMemoryRequirements && sig.pSparseMemoryRequirementCount) {
+    if (sig.pSparseMemoryRequirements && sig.pSparseMemoryRequirementCount && *sig.pSparseMemoryRequirementCount > 0) {
         stream << "{[";
         for (int i = 0; i < *sig.pSparseMemoryRequirementCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -4249,7 +4249,7 @@ void SerializeToString(const vkCmdWaitEvents2Signature& sig, std::stringstream& 
     stream << ", ";
     SerializeToString(sig.eventCount, stream);
     stream << ", ";
-    if (sig.pEvents) {
+    if (sig.pEvents && sig.eventCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.eventCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -4261,7 +4261,7 @@ void SerializeToString(const vkCmdWaitEvents2Signature& sig, std::stringstream& 
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pDependencyInfos) {
+    if (sig.pDependencyInfos && sig.eventCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.eventCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -4356,7 +4356,7 @@ void SerializeToString(const vkCmdSetViewportWithCountSignature& sig, std::strin
     stream << ", ";
     SerializeToString(sig.viewportCount, stream);
     stream << ", ";
-    if (sig.pViewports) {
+    if (sig.pViewports && sig.viewportCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.viewportCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -4376,7 +4376,7 @@ void SerializeToString(const vkCmdSetScissorWithCountSignature& sig, std::string
     stream << ", ";
     SerializeToString(sig.scissorCount, stream);
     stream << ", ";
-    if (sig.pScissors) {
+    if (sig.pScissors && sig.scissorCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.scissorCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -4398,7 +4398,7 @@ void SerializeToString(const vkCmdBindVertexBuffers2Signature& sig, std::strings
     stream << ", ";
     SerializeToString(sig.bindingCount, stream);
     stream << ", ";
-    if (sig.pBuffers) {
+    if (sig.pBuffers && sig.bindingCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.bindingCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -4410,7 +4410,7 @@ void SerializeToString(const vkCmdBindVertexBuffers2Signature& sig, std::strings
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pOffsets) {
+    if (sig.pOffsets && sig.bindingCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.bindingCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -4422,7 +4422,7 @@ void SerializeToString(const vkCmdBindVertexBuffers2Signature& sig, std::strings
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pSizes) {
+    if (sig.pSizes && sig.bindingCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.bindingCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -4434,7 +4434,7 @@ void SerializeToString(const vkCmdBindVertexBuffers2Signature& sig, std::strings
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pStrides) {
+    if (sig.pStrides && sig.bindingCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.bindingCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -4678,7 +4678,7 @@ void SerializeToString(const vkTransitionImageLayoutSignature& sig, std::strings
     stream << ", ";
     SerializeToString(sig.transitionCount, stream);
     stream << ", ";
-    if (sig.pTransitions) {
+    if (sig.pTransitions && sig.transitionCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.transitionCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -4706,7 +4706,7 @@ void SerializeToString(const vkCmdPushDescriptorSetSignature& sig, std::stringst
     stream << ", ";
     SerializeToString(sig.descriptorWriteCount, stream);
     stream << ", ";
-    if (sig.pDescriptorWrites) {
+    if (sig.pDescriptorWrites && sig.descriptorWriteCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.descriptorWriteCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -4944,7 +4944,7 @@ void SerializeToString(const vkGetPhysicalDeviceSurfaceFormatsKHRSignature& sig,
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pSurfaceFormats && sig.pSurfaceFormatCount) {
+    if (sig.pSurfaceFormats && sig.pSurfaceFormatCount && *sig.pSurfaceFormatCount > 0) {
         stream << "{[";
         for (int i = 0; i < *sig.pSurfaceFormatCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -4975,7 +4975,7 @@ void SerializeToString(const vkGetPhysicalDeviceSurfacePresentModesKHRSignature&
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pPresentModes && sig.pPresentModeCount) {
+    if (sig.pPresentModes && sig.pPresentModeCount && *sig.pPresentModeCount > 0) {
         stream << "{[";
         for (int i = 0; i < *sig.pPresentModeCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -5058,7 +5058,7 @@ void SerializeToString(const vkGetSwapchainImagesKHRSignature& sig, std::strings
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pSwapchainImages && sig.pSwapchainImageCount) {
+    if (sig.pSwapchainImages && sig.pSwapchainImageCount && *sig.pSwapchainImageCount > 0) {
         stream << "{[";
         for (int i = 0; i < *sig.pSwapchainImageCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -5167,7 +5167,7 @@ void SerializeToString(const vkGetPhysicalDevicePresentRectanglesKHRSignature& s
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pRects && sig.pRectCount) {
+    if (sig.pRects && sig.pRectCount && *sig.pRectCount > 0) {
         stream << "{[";
         for (int i = 0; i < *sig.pRectCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -5222,7 +5222,7 @@ void SerializeToString(const vkGetPhysicalDeviceDisplayPropertiesKHRSignature& s
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pProperties && sig.pPropertyCount) {
+    if (sig.pProperties && sig.pPropertyCount && *sig.pPropertyCount > 0) {
         stream << "{[";
         for (int i = 0; i < *sig.pPropertyCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -5251,7 +5251,7 @@ void SerializeToString(const vkGetPhysicalDeviceDisplayPlanePropertiesKHRSignatu
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pProperties && sig.pPropertyCount) {
+    if (sig.pProperties && sig.pPropertyCount && *sig.pPropertyCount > 0) {
         stream << "{[";
         for (int i = 0; i < *sig.pPropertyCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -5282,7 +5282,7 @@ void SerializeToString(const vkGetDisplayPlaneSupportedDisplaysKHRSignature& sig
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pDisplays && sig.pDisplayCount) {
+    if (sig.pDisplays && sig.pDisplayCount && *sig.pDisplayCount > 0) {
         stream << "{[";
         for (int i = 0; i < *sig.pDisplayCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -5313,7 +5313,7 @@ void SerializeToString(const vkGetDisplayModePropertiesKHRSignature& sig, std::s
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pProperties && sig.pPropertyCount) {
+    if (sig.pProperties && sig.pPropertyCount && *sig.pPropertyCount > 0) {
         stream << "{[";
         for (int i = 0; i < *sig.pPropertyCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -5428,7 +5428,7 @@ void SerializeToString(const vkCreateSharedSwapchainsKHRSignature& sig, std::str
     stream << ", ";
     SerializeToString(sig.swapchainCount, stream);
     stream << ", ";
-    if (sig.pCreateInfos) {
+    if (sig.pCreateInfos && sig.swapchainCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.swapchainCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -5449,7 +5449,7 @@ void SerializeToString(const vkCreateSharedSwapchainsKHRSignature& sig, std::str
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pSwapchains) {
+    if (sig.pSwapchains && sig.swapchainCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.swapchainCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -5752,7 +5752,7 @@ void SerializeToString(const vkGetPhysicalDeviceVideoFormatPropertiesKHRSignatur
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pVideoFormatProperties && sig.pVideoFormatPropertyCount) {
+    if (sig.pVideoFormatProperties && sig.pVideoFormatPropertyCount && *sig.pVideoFormatPropertyCount > 0) {
         stream << "{[";
         for (int i = 0; i < *sig.pVideoFormatPropertyCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -5835,7 +5835,7 @@ void SerializeToString(const vkGetVideoSessionMemoryRequirementsKHRSignature& si
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pMemoryRequirements && sig.pMemoryRequirementsCount) {
+    if (sig.pMemoryRequirements && sig.pMemoryRequirementsCount && *sig.pMemoryRequirementsCount > 0) {
         stream << "{[";
         for (int i = 0; i < *sig.pMemoryRequirementsCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -5859,7 +5859,7 @@ void SerializeToString(const vkBindVideoSessionMemoryKHRSignature& sig, std::str
     stream << ", ";
     SerializeToString(sig.bindSessionMemoryInfoCount, stream);
     stream << ", ";
-    if (sig.pBindSessionMemoryInfos) {
+    if (sig.pBindSessionMemoryInfos && sig.bindSessionMemoryInfoCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.bindSessionMemoryInfoCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -6113,7 +6113,7 @@ void SerializeToString(const vkGetPhysicalDeviceQueueFamilyProperties2KHRSignatu
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pQueueFamilyProperties && sig.pQueueFamilyPropertyCount) {
+    if (sig.pQueueFamilyProperties && sig.pQueueFamilyPropertyCount && *sig.pQueueFamilyPropertyCount > 0) {
         stream << "{[";
         for (int i = 0; i < *sig.pQueueFamilyPropertyCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -6164,7 +6164,7 @@ void SerializeToString(const vkGetPhysicalDeviceSparseImageFormatProperties2KHRS
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pProperties && sig.pPropertyCount) {
+    if (sig.pProperties && sig.pPropertyCount && *sig.pPropertyCount > 0) {
         stream << "{[";
         for (int i = 0; i < *sig.pPropertyCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -6248,7 +6248,7 @@ void SerializeToString(const vkEnumeratePhysicalDeviceGroupsKHRSignature& sig, s
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pPhysicalDeviceGroupProperties && sig.pPhysicalDeviceGroupCount) {
+    if (sig.pPhysicalDeviceGroupProperties && sig.pPhysicalDeviceGroupCount && *sig.pPhysicalDeviceGroupCount > 0) {
         stream << "{[";
         for (int i = 0; i < *sig.pPhysicalDeviceGroupCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -6318,7 +6318,7 @@ void SerializeToString(const vkGetMemoryWin32HandlePropertiesKHRSignature& sig, 
     stream << "vkGetMemoryWin32HandlePropertiesKHR(";
     SerializeToString(sig.device, stream);
     stream << ", ";
-    SerializeToString(sig.handleType, stream);
+    SerializeToStringVkExternalMemoryHandleTypeFlags(sig.handleType, stream);
     stream << ", ";
     SerializeToString(sig.handle, stream);
     stream << ", ";
@@ -6365,7 +6365,7 @@ void SerializeToString(const vkGetMemoryFdPropertiesKHRSignature& sig, std::stri
     stream << "vkGetMemoryFdPropertiesKHR(";
     SerializeToString(sig.device, stream);
     stream << ", ";
-    SerializeToString(sig.handleType, stream);
+    SerializeToStringVkExternalMemoryHandleTypeFlags(sig.handleType, stream);
     stream << ", ";
     SerializeToString(sig.fd, stream);
     stream << ", ";
@@ -6504,7 +6504,7 @@ void SerializeToString(const vkCmdPushDescriptorSetKHRSignature& sig, std::strin
     stream << ", ";
     SerializeToString(sig.descriptorWriteCount, stream);
     stream << ", ";
-    if (sig.pDescriptorWrites) {
+    if (sig.pDescriptorWrites && sig.descriptorWriteCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.descriptorWriteCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -6829,7 +6829,7 @@ void SerializeToString(const vkEnumeratePhysicalDeviceQueueFamilyPerformanceQuer
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pCounters && sig.pCounterCount) {
+    if (sig.pCounters && sig.pCounterCount && *sig.pCounterCount > 0) {
         stream << "{[";
         for (int i = 0; i < *sig.pCounterCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -6841,7 +6841,7 @@ void SerializeToString(const vkEnumeratePhysicalDeviceQueueFamilyPerformanceQuer
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pCounterDescriptions && sig.pCounterCount) {
+    if (sig.pCounterDescriptions && sig.pCounterCount && *sig.pCounterCount > 0) {
         stream << "{[";
         for (int i = 0; i < *sig.pCounterCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -6952,7 +6952,7 @@ void SerializeToString(const vkGetPhysicalDeviceSurfaceFormats2KHRSignature& sig
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pSurfaceFormats && sig.pSurfaceFormatCount) {
+    if (sig.pSurfaceFormats && sig.pSurfaceFormatCount && *sig.pSurfaceFormatCount > 0) {
         stream << "{[";
         for (int i = 0; i < *sig.pSurfaceFormatCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -6981,7 +6981,7 @@ void SerializeToString(const vkGetPhysicalDeviceDisplayProperties2KHRSignature& 
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pProperties && sig.pPropertyCount) {
+    if (sig.pProperties && sig.pPropertyCount && *sig.pPropertyCount > 0) {
         stream << "{[";
         for (int i = 0; i < *sig.pPropertyCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -7010,7 +7010,7 @@ void SerializeToString(const vkGetPhysicalDeviceDisplayPlaneProperties2KHRSignat
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pProperties && sig.pPropertyCount) {
+    if (sig.pProperties && sig.pPropertyCount && *sig.pPropertyCount > 0) {
         stream << "{[";
         for (int i = 0; i < *sig.pPropertyCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -7041,7 +7041,7 @@ void SerializeToString(const vkGetDisplayModeProperties2KHRSignature& sig, std::
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pProperties && sig.pPropertyCount) {
+    if (sig.pProperties && sig.pPropertyCount && *sig.pPropertyCount > 0) {
         stream << "{[";
         for (int i = 0; i < *sig.pPropertyCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -7153,7 +7153,7 @@ void SerializeToString(const vkGetImageSparseMemoryRequirements2KHRSignature& si
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pSparseMemoryRequirements && sig.pSparseMemoryRequirementCount) {
+    if (sig.pSparseMemoryRequirements && sig.pSparseMemoryRequirementCount && *sig.pSparseMemoryRequirementCount > 0) {
         stream << "{[";
         for (int i = 0; i < *sig.pSparseMemoryRequirementCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -7225,7 +7225,7 @@ void SerializeToString(const vkBindBufferMemory2KHRSignature& sig, std::stringst
     stream << ", ";
     SerializeToString(sig.bindInfoCount, stream);
     stream << ", ";
-    if (sig.pBindInfos) {
+    if (sig.pBindInfos && sig.bindInfoCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.bindInfoCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -7247,7 +7247,7 @@ void SerializeToString(const vkBindImageMemory2KHRSignature& sig, std::stringstr
     stream << ", ";
     SerializeToString(sig.bindInfoCount, stream);
     stream << ", ";
-    if (sig.pBindInfos) {
+    if (sig.pBindInfos && sig.bindInfoCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.bindInfoCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -7391,7 +7391,7 @@ void SerializeToString(const vkGetPhysicalDeviceFragmentShadingRatesKHRSignature
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pFragmentShadingRates && sig.pFragmentShadingRateCount) {
+    if (sig.pFragmentShadingRates && sig.pFragmentShadingRateCount && *sig.pFragmentShadingRateCount > 0) {
         stream << "{[";
         for (int i = 0; i < *sig.pFragmentShadingRateCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -7619,7 +7619,7 @@ void SerializeToString(const vkGetPipelineExecutablePropertiesKHRSignature& sig,
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pProperties && sig.pExecutableCount) {
+    if (sig.pProperties && sig.pExecutableCount && *sig.pExecutableCount > 0) {
         stream << "{[";
         for (int i = 0; i < *sig.pExecutableCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -7657,7 +7657,7 @@ void SerializeToString(const vkGetPipelineExecutableStatisticsKHRSignature& sig,
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pStatistics && sig.pStatisticCount) {
+    if (sig.pStatistics && sig.pStatisticCount && *sig.pStatisticCount > 0) {
         stream << "{[";
         for (int i = 0; i < *sig.pStatisticCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -7695,7 +7695,7 @@ void SerializeToString(const vkGetPipelineExecutableInternalRepresentationsKHRSi
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pInternalRepresentations && sig.pInternalRepresentationCount) {
+    if (sig.pInternalRepresentations && sig.pInternalRepresentationCount && *sig.pInternalRepresentationCount > 0) {
         stream << "{[";
         for (int i = 0; i < *sig.pInternalRepresentationCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -7811,7 +7811,7 @@ void SerializeToString(const vkGetEncodedVideoSessionParametersKHRSignature& sig
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pData && sig.pDataSize) {
+    if (sig.pData && sig.pDataSize && *sig.pDataSize > 0) {
         stream << "{[";
         const uint8_t* ptr = reinterpret_cast<const uint8_t*>(sig.pData);
         for (int i = 0; i < *sig.pDataSize; ++i) {
@@ -7876,7 +7876,7 @@ void SerializeToString(const vkCmdWaitEvents2KHRSignature& sig, std::stringstrea
     stream << ", ";
     SerializeToString(sig.eventCount, stream);
     stream << ", ";
-    if (sig.pEvents) {
+    if (sig.pEvents && sig.eventCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.eventCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -7888,7 +7888,7 @@ void SerializeToString(const vkCmdWaitEvents2KHRSignature& sig, std::stringstrea
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pDependencyInfos) {
+    if (sig.pDependencyInfos && sig.eventCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.eventCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -7935,7 +7935,7 @@ void SerializeToString(const vkQueueSubmit2KHRSignature& sig, std::stringstream&
     stream << ", ";
     SerializeToString(sig.submitCount, stream);
     stream << ", ";
-    if (sig.pSubmits) {
+    if (sig.pSubmits && sig.submitCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.submitCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -8121,7 +8121,7 @@ void SerializeToString(const vkGetDeviceImageSparseMemoryRequirementsKHRSignatur
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pSparseMemoryRequirements && sig.pSparseMemoryRequirementCount) {
+    if (sig.pSparseMemoryRequirements && sig.pSparseMemoryRequirementCount && *sig.pSparseMemoryRequirementCount > 0) {
         stream << "{[";
         for (int i = 0; i < *sig.pSparseMemoryRequirementCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -8351,7 +8351,7 @@ void SerializeToString(const vkGetPipelineBinaryDataKHRSignature& sig, std::stri
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pPipelineBinaryData && sig.pPipelineBinaryDataSize) {
+    if (sig.pPipelineBinaryData && sig.pPipelineBinaryDataSize && *sig.pPipelineBinaryDataSize > 0) {
         stream << "{[";
         const uint8_t* ptr = reinterpret_cast<const uint8_t*>(sig.pPipelineBinaryData);
         for (int i = 0; i < *sig.pPipelineBinaryDataSize; ++i) {
@@ -8424,7 +8424,7 @@ void SerializeToString(const vkGetPhysicalDeviceCooperativeMatrixPropertiesKHRSi
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pProperties && sig.pPropertyCount) {
+    if (sig.pProperties && sig.pPropertyCount && *sig.pPropertyCount > 0) {
         stream << "{[";
         for (int i = 0; i < *sig.pPropertyCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -8463,7 +8463,7 @@ void SerializeToString(const vkGetPhysicalDeviceCalibrateableTimeDomainsKHRSigna
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pTimeDomains && sig.pTimeDomainCount) {
+    if (sig.pTimeDomains && sig.pTimeDomainCount && *sig.pTimeDomainCount > 0) {
         stream << "{[";
         for (int i = 0; i < *sig.pTimeDomainCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -8485,7 +8485,7 @@ void SerializeToString(const vkGetCalibratedTimestampsKHRSignature& sig, std::st
     stream << ", ";
     SerializeToString(sig.timestampCount, stream);
     stream << ", ";
-    if (sig.pTimestampInfos) {
+    if (sig.pTimestampInfos && sig.timestampCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.timestampCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -8497,7 +8497,7 @@ void SerializeToString(const vkGetCalibratedTimestampsKHRSignature& sig, std::st
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pTimestamps) {
+    if (sig.pTimestamps && sig.timestampCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.timestampCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -8807,7 +8807,7 @@ void SerializeToString(const vkCmdBindTransformFeedbackBuffersEXTSignature& sig,
     stream << ", ";
     SerializeToString(sig.bindingCount, stream);
     stream << ", ";
-    if (sig.pBuffers) {
+    if (sig.pBuffers && sig.bindingCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.bindingCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -8819,7 +8819,7 @@ void SerializeToString(const vkCmdBindTransformFeedbackBuffersEXTSignature& sig,
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pOffsets) {
+    if (sig.pOffsets && sig.bindingCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.bindingCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -8831,7 +8831,7 @@ void SerializeToString(const vkCmdBindTransformFeedbackBuffersEXTSignature& sig,
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pSizes) {
+    if (sig.pSizes && sig.bindingCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.bindingCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -8853,7 +8853,7 @@ void SerializeToString(const vkCmdBeginTransformFeedbackEXTSignature& sig, std::
     stream << ", ";
     SerializeToString(sig.counterBufferCount, stream);
     stream << ", ";
-    if (sig.pCounterBuffers) {
+    if (sig.pCounterBuffers && sig.counterBufferCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.counterBufferCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -8865,7 +8865,7 @@ void SerializeToString(const vkCmdBeginTransformFeedbackEXTSignature& sig, std::
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pCounterBufferOffsets) {
+    if (sig.pCounterBufferOffsets && sig.counterBufferCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.counterBufferCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -8887,7 +8887,7 @@ void SerializeToString(const vkCmdEndTransformFeedbackEXTSignature& sig, std::st
     stream << ", ";
     SerializeToString(sig.counterBufferCount, stream);
     stream << ", ";
-    if (sig.pCounterBuffers) {
+    if (sig.pCounterBuffers && sig.counterBufferCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.counterBufferCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -8899,7 +8899,7 @@ void SerializeToString(const vkCmdEndTransformFeedbackEXTSignature& sig, std::st
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pCounterBufferOffsets) {
+    if (sig.pCounterBufferOffsets && sig.counterBufferCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.counterBufferCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -9171,7 +9171,7 @@ void SerializeToString(const vkGetShaderInfoAMDSignature& sig, std::stringstream
     stream << ", ";
     SerializeToString(sig.pipeline, stream);
     stream << ", ";
-    SerializeToString(sig.shaderStage, stream);
+    SerializeToStringVkShaderStageFlags(sig.shaderStage, stream);
     stream << ", ";
     SerializeToString(sig.infoType, stream);
     stream << ", ";
@@ -9184,7 +9184,7 @@ void SerializeToString(const vkGetShaderInfoAMDSignature& sig, std::stringstream
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pInfo && sig.pInfoSize) {
+    if (sig.pInfo && sig.pInfoSize && *sig.pInfoSize > 0) {
         stream << "{[";
         const uint8_t* ptr = reinterpret_cast<const uint8_t*>(sig.pInfo);
         for (int i = 0; i < *sig.pInfoSize; ++i) {
@@ -9350,7 +9350,7 @@ void SerializeToString(const vkCmdSetViewportWScalingNVSignature& sig, std::stri
     stream << ", ";
     SerializeToString(sig.viewportCount, stream);
     stream << ", ";
-    if (sig.pViewportWScalings) {
+    if (sig.pViewportWScalings && sig.viewportCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.viewportCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -9537,7 +9537,7 @@ void SerializeToString(const vkGetSwapchainCounterEXTSignature& sig, std::string
     stream << ", ";
     SerializeToString(sig.swapchain, stream);
     stream << ", ";
-    SerializeToString(sig.counter, stream);
+    SerializeToStringVkSurfaceCounterFlagsEXT(sig.counter, stream);
     stream << ", ";
     if (sig.pCounterValue) {
         stream << "{[";
@@ -9586,7 +9586,7 @@ void SerializeToString(const vkGetPastPresentationTimingGOOGLESignature& sig, st
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pPresentationTimings && sig.pPresentationTimingCount) {
+    if (sig.pPresentationTimings && sig.pPresentationTimingCount && *sig.pPresentationTimingCount > 0) {
         stream << "{[";
         for (int i = 0; i < *sig.pPresentationTimingCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -9610,7 +9610,7 @@ void SerializeToString(const vkCmdSetDiscardRectangleEXTSignature& sig, std::str
     stream << ", ";
     SerializeToString(sig.discardRectangleCount, stream);
     stream << ", ";
-    if (sig.pDiscardRectangles) {
+    if (sig.pDiscardRectangles && sig.discardRectangleCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.discardRectangleCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -9646,7 +9646,7 @@ void SerializeToString(const vkSetHdrMetadataEXTSignature& sig, std::stringstrea
     stream << ", ";
     SerializeToString(sig.swapchainCount, stream);
     stream << ", ";
-    if (sig.pSwapchains) {
+    if (sig.pSwapchains && sig.swapchainCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.swapchainCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -9658,7 +9658,7 @@ void SerializeToString(const vkSetHdrMetadataEXTSignature& sig, std::stringstrea
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pMetadata) {
+    if (sig.pMetadata && sig.swapchainCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.swapchainCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -9904,7 +9904,7 @@ void SerializeToString(const vkSubmitDebugUtilsMessageEXTSignature& sig, std::st
     stream << "vkSubmitDebugUtilsMessageEXT(";
     SerializeToString(sig.instance, stream);
     stream << ", ";
-    SerializeToString(sig.messageSeverity, stream);
+    SerializeToStringVkDebugUtilsMessageSeverityFlagsEXT(sig.messageSeverity, stream);
     stream << ", ";
     SerializeToStringVkDebugUtilsMessageTypeFlagsEXT(sig.messageTypes, stream);
     stream << ", ";
@@ -9972,7 +9972,7 @@ void SerializeToString(const vkCreateExecutionGraphPipelinesAMDXSignature& sig, 
     stream << ", ";
     SerializeToString(sig.createInfoCount, stream);
     stream << ", ";
-    if (sig.pCreateInfos) {
+    if (sig.pCreateInfos && sig.createInfoCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.createInfoCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -9993,7 +9993,7 @@ void SerializeToString(const vkCreateExecutionGraphPipelinesAMDXSignature& sig, 
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pPipelines) {
+    if (sig.pPipelines && sig.createInfoCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.createInfoCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -10137,7 +10137,7 @@ void SerializeToString(const vkGetPhysicalDeviceMultisamplePropertiesEXTSignatur
     stream << "vkGetPhysicalDeviceMultisamplePropertiesEXT(";
     SerializeToString(sig.physicalDevice, stream);
     stream << ", ";
-    SerializeToString(sig.samples, stream);
+    SerializeToStringVkSampleCountFlags(sig.samples, stream);
     stream << ", ";
     if (sig.pMultisampleProperties) {
         stream << "{[";
@@ -10229,7 +10229,7 @@ void SerializeToString(const vkMergeValidationCachesEXTSignature& sig, std::stri
     stream << ", ";
     SerializeToString(sig.srcCacheCount, stream);
     stream << ", ";
-    if (sig.pSrcCaches) {
+    if (sig.pSrcCaches && sig.srcCacheCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.srcCacheCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -10260,7 +10260,7 @@ void SerializeToString(const vkGetValidationCacheDataEXTSignature& sig, std::str
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pData && sig.pDataSize) {
+    if (sig.pData && sig.pDataSize && *sig.pDataSize > 0) {
         stream << "{[";
         const uint8_t* ptr = reinterpret_cast<const uint8_t*>(sig.pData);
         for (int i = 0; i < *sig.pDataSize; ++i) {
@@ -10295,7 +10295,7 @@ void SerializeToString(const vkCmdSetViewportShadingRatePaletteNVSignature& sig,
     stream << ", ";
     SerializeToString(sig.viewportCount, stream);
     stream << ", ";
-    if (sig.pShadingRatePalettes) {
+    if (sig.pShadingRatePalettes && sig.viewportCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.viewportCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -10317,7 +10317,7 @@ void SerializeToString(const vkCmdSetCoarseSampleOrderNVSignature& sig, std::str
     stream << ", ";
     SerializeToString(sig.customSampleOrderCount, stream);
     stream << ", ";
-    if (sig.pCustomSampleOrders) {
+    if (sig.pCustomSampleOrders && sig.customSampleOrderCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.customSampleOrderCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -10413,7 +10413,7 @@ void SerializeToString(const vkBindAccelerationStructureMemoryNVSignature& sig, 
     stream << ", ";
     SerializeToString(sig.bindInfoCount, stream);
     stream << ", ";
-    if (sig.pBindInfos) {
+    if (sig.pBindInfos && sig.bindInfoCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.bindInfoCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -10512,7 +10512,7 @@ void SerializeToString(const vkCreateRayTracingPipelinesNVSignature& sig, std::s
     stream << ", ";
     SerializeToString(sig.createInfoCount, stream);
     stream << ", ";
-    if (sig.pCreateInfos) {
+    if (sig.pCreateInfos && sig.createInfoCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.createInfoCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -10533,7 +10533,7 @@ void SerializeToString(const vkCreateRayTracingPipelinesNVSignature& sig, std::s
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pPipelines) {
+    if (sig.pPipelines && sig.createInfoCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.createInfoCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -10561,7 +10561,7 @@ void SerializeToString(const vkGetRayTracingShaderGroupHandlesKHRSignature& sig,
     stream << ", ";
     SerializeToString(sig.dataSize, stream);
     stream << ", ";
-    if (sig.pData) {
+    if (sig.pData && sig.dataSize > 0) {
         stream << "{[";
         const uint8_t* ptr = reinterpret_cast<const uint8_t*>(sig.pData);
         for (int i = 0; i < sig.dataSize; ++i) {
@@ -10590,7 +10590,7 @@ void SerializeToString(const vkGetRayTracingShaderGroupHandlesNVSignature& sig, 
     stream << ", ";
     SerializeToString(sig.dataSize, stream);
     stream << ", ";
-    if (sig.pData) {
+    if (sig.pData && sig.dataSize > 0) {
         stream << "{[";
         const uint8_t* ptr = reinterpret_cast<const uint8_t*>(sig.pData);
         for (int i = 0; i < sig.dataSize; ++i) {
@@ -10615,7 +10615,7 @@ void SerializeToString(const vkGetAccelerationStructureHandleNVSignature& sig, s
     stream << ", ";
     SerializeToString(sig.dataSize, stream);
     stream << ", ";
-    if (sig.pData) {
+    if (sig.pData && sig.dataSize > 0) {
         stream << "{[";
         const uint8_t* ptr = reinterpret_cast<const uint8_t*>(sig.pData);
         for (int i = 0; i < sig.dataSize; ++i) {
@@ -10638,7 +10638,7 @@ void SerializeToString(const vkCmdWriteAccelerationStructuresPropertiesNVSignatu
     stream << ", ";
     SerializeToString(sig.accelerationStructureCount, stream);
     stream << ", ";
-    if (sig.pAccelerationStructures) {
+    if (sig.pAccelerationStructures && sig.accelerationStructureCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.accelerationStructureCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -10674,7 +10674,7 @@ void SerializeToString(const vkGetMemoryHostPointerPropertiesEXTSignature& sig, 
     stream << "vkGetMemoryHostPointerPropertiesEXT(";
     SerializeToString(sig.device, stream);
     stream << ", ";
-    SerializeToString(sig.handleType, stream);
+    SerializeToStringVkExternalMemoryHandleTypeFlags(sig.handleType, stream);
     stream << ", ";
     SerializeToString(sig.pHostPointer, stream);
     stream << ", ";
@@ -10695,7 +10695,7 @@ void SerializeToString(const vkCmdWriteBufferMarkerAMDSignature& sig, std::strin
     stream << "vkCmdWriteBufferMarkerAMD(";
     SerializeToString(sig.commandBuffer, stream);
     stream << ", ";
-    SerializeToString(sig.pipelineStage, stream);
+    SerializeToStringVkPipelineStageFlags(sig.pipelineStage, stream);
     stream << ", ";
     SerializeToString(sig.dstBuffer, stream);
     stream << ", ";
@@ -10732,7 +10732,7 @@ void SerializeToString(const vkGetPhysicalDeviceCalibrateableTimeDomainsEXTSigna
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pTimeDomains && sig.pTimeDomainCount) {
+    if (sig.pTimeDomains && sig.pTimeDomainCount && *sig.pTimeDomainCount > 0) {
         stream << "{[";
         for (int i = 0; i < *sig.pTimeDomainCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -10754,7 +10754,7 @@ void SerializeToString(const vkGetCalibratedTimestampsEXTSignature& sig, std::st
     stream << ", ";
     SerializeToString(sig.timestampCount, stream);
     stream << ", ";
-    if (sig.pTimestampInfos) {
+    if (sig.pTimestampInfos && sig.timestampCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.timestampCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -10766,7 +10766,7 @@ void SerializeToString(const vkGetCalibratedTimestampsEXTSignature& sig, std::st
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pTimestamps) {
+    if (sig.pTimestamps && sig.timestampCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.timestampCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -10841,7 +10841,7 @@ void SerializeToString(const vkCmdSetExclusiveScissorEnableNVSignature& sig, std
     stream << ", ";
     SerializeToString(sig.exclusiveScissorCount, stream);
     stream << ", ";
-    if (sig.pExclusiveScissorEnables) {
+    if (sig.pExclusiveScissorEnables && sig.exclusiveScissorCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.exclusiveScissorCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -10863,7 +10863,7 @@ void SerializeToString(const vkCmdSetExclusiveScissorNVSignature& sig, std::stri
     stream << ", ";
     SerializeToString(sig.exclusiveScissorCount, stream);
     stream << ", ";
-    if (sig.pExclusiveScissors) {
+    if (sig.pExclusiveScissors && sig.exclusiveScissorCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.exclusiveScissorCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -10898,7 +10898,7 @@ void SerializeToString(const vkGetQueueCheckpointDataNVSignature& sig, std::stri
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pCheckpointData && sig.pCheckpointDataCount) {
+    if (sig.pCheckpointData && sig.pCheckpointDataCount && *sig.pCheckpointDataCount > 0) {
         stream << "{[";
         for (int i = 0; i < *sig.pCheckpointDataCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -10925,7 +10925,7 @@ void SerializeToString(const vkGetQueueCheckpointData2NVSignature& sig, std::str
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pCheckpointData && sig.pCheckpointDataCount) {
+    if (sig.pCheckpointData && sig.pCheckpointDataCount && *sig.pCheckpointDataCount > 0) {
         stream << "{[";
         for (int i = 0; i < *sig.pCheckpointDataCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -11282,7 +11282,7 @@ void SerializeToString(const vkGetPhysicalDeviceToolPropertiesEXTSignature& sig,
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pToolProperties && sig.pToolCount) {
+    if (sig.pToolProperties && sig.pToolCount && *sig.pToolCount > 0) {
         stream << "{[";
         for (int i = 0; i < *sig.pToolCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -11311,7 +11311,7 @@ void SerializeToString(const vkGetPhysicalDeviceCooperativeMatrixPropertiesNVSig
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pProperties && sig.pPropertyCount) {
+    if (sig.pProperties && sig.pPropertyCount && *sig.pPropertyCount > 0) {
         stream << "{[";
         for (int i = 0; i < *sig.pPropertyCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -11340,7 +11340,7 @@ void SerializeToString(const vkGetPhysicalDeviceSupportedFramebufferMixedSamples
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pCombinations && sig.pCombinationCount) {
+    if (sig.pCombinations && sig.pCombinationCount && *sig.pCombinationCount > 0) {
         stream << "{[";
         for (int i = 0; i < *sig.pCombinationCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -11378,7 +11378,7 @@ void SerializeToString(const vkGetPhysicalDeviceSurfacePresentModes2EXTSignature
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pPresentModes && sig.pPresentModeCount) {
+    if (sig.pPresentModes && sig.pPresentModeCount && *sig.pPresentModeCount > 0) {
         stream << "{[";
         for (int i = 0; i < *sig.pPresentModeCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -11527,7 +11527,7 @@ void SerializeToString(const vkCmdSetViewportWithCountEXTSignature& sig, std::st
     stream << ", ";
     SerializeToString(sig.viewportCount, stream);
     stream << ", ";
-    if (sig.pViewports) {
+    if (sig.pViewports && sig.viewportCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.viewportCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -11547,7 +11547,7 @@ void SerializeToString(const vkCmdSetScissorWithCountEXTSignature& sig, std::str
     stream << ", ";
     SerializeToString(sig.scissorCount, stream);
     stream << ", ";
-    if (sig.pScissors) {
+    if (sig.pScissors && sig.scissorCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.scissorCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -11569,7 +11569,7 @@ void SerializeToString(const vkCmdBindVertexBuffers2EXTSignature& sig, std::stri
     stream << ", ";
     SerializeToString(sig.bindingCount, stream);
     stream << ", ";
-    if (sig.pBuffers) {
+    if (sig.pBuffers && sig.bindingCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.bindingCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -11581,7 +11581,7 @@ void SerializeToString(const vkCmdBindVertexBuffers2EXTSignature& sig, std::stri
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pOffsets) {
+    if (sig.pOffsets && sig.bindingCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.bindingCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -11593,7 +11593,7 @@ void SerializeToString(const vkCmdBindVertexBuffers2EXTSignature& sig, std::stri
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pSizes) {
+    if (sig.pSizes && sig.bindingCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.bindingCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -11605,7 +11605,7 @@ void SerializeToString(const vkCmdBindVertexBuffers2EXTSignature& sig, std::stri
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pStrides) {
+    if (sig.pStrides && sig.bindingCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.bindingCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -11732,7 +11732,7 @@ void SerializeToString(const vkTransitionImageLayoutEXTSignature& sig, std::stri
     stream << ", ";
     SerializeToString(sig.transitionCount, stream);
     stream << ", ";
-    if (sig.pTransitions) {
+    if (sig.pTransitions && sig.transitionCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.transitionCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -12098,7 +12098,7 @@ void SerializeToString(const vkGetCudaModuleCacheNVSignature& sig, std::stringst
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pCacheData && sig.pCacheSize) {
+    if (sig.pCacheData && sig.pCacheSize && *sig.pCacheSize > 0) {
         stream << "{[";
         const uint8_t* ptr = reinterpret_cast<const uint8_t*>(sig.pCacheData);
         for (int i = 0; i < *sig.pCacheSize; ++i) {
@@ -12310,7 +12310,7 @@ void SerializeToString(const vkGetDescriptorEXTSignature& sig, std::stringstream
     stream << ", ";
     SerializeToString(sig.dataSize, stream);
     stream << ", ";
-    if (sig.pDescriptor) {
+    if (sig.pDescriptor && sig.dataSize > 0) {
         stream << "{[";
         const uint8_t* ptr = reinterpret_cast<const uint8_t*>(sig.pDescriptor);
         for (int i = 0; i < sig.dataSize; ++i) {
@@ -12331,7 +12331,7 @@ void SerializeToString(const vkCmdBindDescriptorBuffersEXTSignature& sig, std::s
     stream << ", ";
     SerializeToString(sig.bufferCount, stream);
     stream << ", ";
-    if (sig.pBindingInfos) {
+    if (sig.pBindingInfos && sig.bufferCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.bufferCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -12357,7 +12357,7 @@ void SerializeToString(const vkCmdSetDescriptorBufferOffsetsEXTSignature& sig, s
     stream << ", ";
     SerializeToString(sig.setCount, stream);
     stream << ", ";
-    if (sig.pBufferIndices) {
+    if (sig.pBufferIndices && sig.setCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.setCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -12369,7 +12369,7 @@ void SerializeToString(const vkCmdSetDescriptorBufferOffsetsEXTSignature& sig, s
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pOffsets) {
+    if (sig.pOffsets && sig.setCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.setCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -12620,7 +12620,7 @@ void SerializeToString(const vkCmdSetVertexInputEXTSignature& sig, std::stringst
     stream << ", ";
     SerializeToString(sig.vertexBindingDescriptionCount, stream);
     stream << ", ";
-    if (sig.pVertexBindingDescriptions) {
+    if (sig.pVertexBindingDescriptions && sig.vertexBindingDescriptionCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.vertexBindingDescriptionCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -12634,7 +12634,7 @@ void SerializeToString(const vkCmdSetVertexInputEXTSignature& sig, std::stringst
     stream << ", ";
     SerializeToString(sig.vertexAttributeDescriptionCount, stream);
     stream << ", ";
-    if (sig.pVertexAttributeDescriptions) {
+    if (sig.pVertexAttributeDescriptions && sig.vertexAttributeDescriptionCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.vertexAttributeDescriptionCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -12678,7 +12678,7 @@ void SerializeToString(const vkGetMemoryZirconHandlePropertiesFUCHSIASignature& 
     stream << "vkGetMemoryZirconHandlePropertiesFUCHSIA(";
     SerializeToString(sig.device, stream);
     stream << ", ";
-    SerializeToString(sig.handleType, stream);
+    SerializeToStringVkExternalMemoryHandleTypeFlags(sig.handleType, stream);
     stream << ", ";
     SerializeToString(sig.zirconHandle, stream);
     stream << ", ";
@@ -12853,7 +12853,7 @@ void SerializeToString(const vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEISign
     stream << ", ";
     SerializeToString(sig.renderpass, stream);
     stream << ", ";
-    if (sig.pMaxWorkgroupSize) {
+    if (sig.pMaxWorkgroupSize && 1 > 0) {
         stream << "{[";
         for (int i = 0; i < 1; ++i) {
             if (i > 0) { stream << ", "; }
@@ -13030,7 +13030,7 @@ void SerializeToString(const vkCmdSetColorWriteEnableEXTSignature& sig, std::str
     stream << ", ";
     SerializeToString(sig.attachmentCount, stream);
     stream << ", ";
-    if (sig.pColorWriteEnables) {
+    if (sig.pColorWriteEnables && sig.attachmentCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.attachmentCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -13050,7 +13050,7 @@ void SerializeToString(const vkCmdDrawMultiEXTSignature& sig, std::stringstream&
     stream << ", ";
     SerializeToString(sig.drawCount, stream);
     stream << ", ";
-    if (sig.pVertexInfo) {
+    if (sig.pVertexInfo && sig.drawCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.drawCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -13076,7 +13076,7 @@ void SerializeToString(const vkCmdDrawMultiIndexedEXTSignature& sig, std::string
     stream << ", ";
     SerializeToString(sig.drawCount, stream);
     stream << ", ";
-    if (sig.pIndexInfo) {
+    if (sig.pIndexInfo && sig.drawCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.drawCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -13163,7 +13163,7 @@ void SerializeToString(const vkCmdBuildMicromapsEXTSignature& sig, std::stringst
     stream << ", ";
     SerializeToString(sig.infoCount, stream);
     stream << ", ";
-    if (sig.pInfos) {
+    if (sig.pInfos && sig.infoCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.infoCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -13185,7 +13185,7 @@ void SerializeToString(const vkBuildMicromapsEXTSignature& sig, std::stringstrea
     stream << ", ";
     SerializeToString(sig.infoCount, stream);
     stream << ", ";
-    if (sig.pInfos) {
+    if (sig.pInfos && sig.infoCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.infoCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -13264,7 +13264,7 @@ void SerializeToString(const vkWriteMicromapsPropertiesEXTSignature& sig, std::s
     stream << ", ";
     SerializeToString(sig.micromapCount, stream);
     stream << ", ";
-    if (sig.pMicromaps) {
+    if (sig.pMicromaps && sig.micromapCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.micromapCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -13280,7 +13280,7 @@ void SerializeToString(const vkWriteMicromapsPropertiesEXTSignature& sig, std::s
     stream << ", ";
     SerializeToString(sig.dataSize, stream);
     stream << ", ";
-    if (sig.pData) {
+    if (sig.pData && sig.dataSize > 0) {
         stream << "{[";
         const uint8_t* ptr = reinterpret_cast<const uint8_t*>(sig.pData);
         for (int i = 0; i < sig.dataSize; ++i) {
@@ -13350,7 +13350,7 @@ void SerializeToString(const vkCmdWriteMicromapsPropertiesEXTSignature& sig, std
     stream << ", ";
     SerializeToString(sig.micromapCount, stream);
     stream << ", ";
-    if (sig.pMicromaps) {
+    if (sig.pMicromaps && sig.micromapCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.micromapCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -13519,7 +13519,7 @@ void SerializeToString(const vkCmdCopyMemoryToImageIndirectNVSignature& sig, std
     stream << ", ";
     SerializeToString(sig.dstImageLayout, stream);
     stream << ", ";
-    if (sig.pImageSubresources) {
+    if (sig.pImageSubresources && sig.copyCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.copyCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -13539,7 +13539,7 @@ void SerializeToString(const vkCmdDecompressMemoryNVSignature& sig, std::strings
     stream << ", ";
     SerializeToString(sig.decompressRegionCount, stream);
     stream << ", ";
-    if (sig.pDecompressMemoryRegions) {
+    if (sig.pDecompressMemoryRegions && sig.decompressRegionCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.decompressRegionCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -13681,7 +13681,7 @@ void SerializeToString(const vkCmdSetRasterizationSamplesEXTSignature& sig, std:
     stream << "vkCmdSetRasterizationSamplesEXT(";
     SerializeToString(sig.commandBuffer, stream);
     stream << ", ";
-    SerializeToString(sig.rasterizationSamples, stream);
+    SerializeToStringVkSampleCountFlags(sig.rasterizationSamples, stream);
     stream << ")";
 };
 
@@ -13689,9 +13689,9 @@ void SerializeToString(const vkCmdSetSampleMaskEXTSignature& sig, std::stringstr
     stream << "vkCmdSetSampleMaskEXT(";
     SerializeToString(sig.commandBuffer, stream);
     stream << ", ";
-    SerializeToString(sig.samples, stream);
+    SerializeToStringVkSampleCountFlags(sig.samples, stream);
     stream << ", ";
-    if (sig.pSampleMask) {
+    if (sig.pSampleMask && (sig.samples + 31) / 32 > 0) {
         stream << "{[";
         for (int i = 0; i < (sig.samples + 31) / 32; ++i) {
             if (i > 0) { stream << ", "; }
@@ -13737,7 +13737,7 @@ void SerializeToString(const vkCmdSetColorBlendEnableEXTSignature& sig, std::str
     stream << ", ";
     SerializeToString(sig.attachmentCount, stream);
     stream << ", ";
-    if (sig.pColorBlendEnables) {
+    if (sig.pColorBlendEnables && sig.attachmentCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.attachmentCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -13759,7 +13759,7 @@ void SerializeToString(const vkCmdSetColorBlendEquationEXTSignature& sig, std::s
     stream << ", ";
     SerializeToString(sig.attachmentCount, stream);
     stream << ", ";
-    if (sig.pColorBlendEquations) {
+    if (sig.pColorBlendEquations && sig.attachmentCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.attachmentCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -13781,7 +13781,7 @@ void SerializeToString(const vkCmdSetColorWriteMaskEXTSignature& sig, std::strin
     stream << ", ";
     SerializeToString(sig.attachmentCount, stream);
     stream << ", ";
-    if (sig.pColorWriteMasks) {
+    if (sig.pColorWriteMasks && sig.attachmentCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.attachmentCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -13851,7 +13851,7 @@ void SerializeToString(const vkCmdSetColorBlendAdvancedEXTSignature& sig, std::s
     stream << ", ";
     SerializeToString(sig.attachmentCount, stream);
     stream << ", ";
-    if (sig.pColorBlendAdvanced) {
+    if (sig.pColorBlendAdvanced && sig.attachmentCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.attachmentCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -13913,7 +13913,7 @@ void SerializeToString(const vkCmdSetViewportSwizzleNVSignature& sig, std::strin
     stream << ", ";
     SerializeToString(sig.viewportCount, stream);
     stream << ", ";
-    if (sig.pViewportSwizzles) {
+    if (sig.pViewportSwizzles && sig.viewportCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.viewportCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -13965,7 +13965,7 @@ void SerializeToString(const vkCmdSetCoverageModulationTableNVSignature& sig, st
     stream << ", ";
     SerializeToString(sig.coverageModulationTableCount, stream);
     stream << ", ";
-    if (sig.pCoverageModulationTable) {
+    if (sig.pCoverageModulationTable && sig.coverageModulationTableCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.coverageModulationTableCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -14137,7 +14137,7 @@ void SerializeToString(const vkBindTensorMemoryARMSignature& sig, std::stringstr
     stream << ", ";
     SerializeToString(sig.bindInfoCount, stream);
     stream << ", ";
-    if (sig.pBindInfos) {
+    if (sig.pBindInfos && sig.bindInfoCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.bindInfoCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -14317,7 +14317,7 @@ void SerializeToString(const vkGetPhysicalDeviceOpticalFlowImageFormatsNVSignatu
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pImageFormatProperties && sig.pFormatCount) {
+    if (sig.pImageFormatProperties && sig.pFormatCount && *sig.pFormatCount > 0) {
         stream << "{[";
         for (int i = 0; i < *sig.pFormatCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -14439,7 +14439,7 @@ void SerializeToString(const vkCreateShadersEXTSignature& sig, std::stringstream
     stream << ", ";
     SerializeToString(sig.createInfoCount, stream);
     stream << ", ";
-    if (sig.pCreateInfos) {
+    if (sig.pCreateInfos && sig.createInfoCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.createInfoCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -14460,7 +14460,7 @@ void SerializeToString(const vkCreateShadersEXTSignature& sig, std::stringstream
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pShaders) {
+    if (sig.pShaders && sig.createInfoCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.createInfoCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -14508,7 +14508,7 @@ void SerializeToString(const vkGetShaderBinaryDataEXTSignature& sig, std::string
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pData && sig.pDataSize) {
+    if (sig.pData && sig.pDataSize && *sig.pDataSize > 0) {
         stream << "{[";
         const uint8_t* ptr = reinterpret_cast<const uint8_t*>(sig.pData);
         for (int i = 0; i < *sig.pDataSize; ++i) {
@@ -14531,11 +14531,11 @@ void SerializeToString(const vkCmdBindShadersEXTSignature& sig, std::stringstrea
     stream << ", ";
     SerializeToString(sig.stageCount, stream);
     stream << ", ";
-    if (sig.pStages) {
+    if (sig.pStages && sig.stageCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.stageCount; ++i) {
             if (i > 0) { stream << ", "; }
-            SerializeToString(sig.pStages[i], stream);
+            SerializeToStringVkShaderStageFlags(sig.pStages[i], stream);
         }
         stream << "], " << sig.stageCount << "}";
     }
@@ -14543,7 +14543,7 @@ void SerializeToString(const vkCmdBindShadersEXTSignature& sig, std::stringstrea
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pShaders) {
+    if (sig.pShaders && sig.stageCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.stageCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -14589,7 +14589,7 @@ void SerializeToString(const vkGetFramebufferTilePropertiesQCOMSignature& sig, s
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pProperties && sig.pPropertiesCount) {
+    if (sig.pProperties && sig.pPropertiesCount && *sig.pPropertiesCount > 0) {
         stream << "{[";
         for (int i = 0; i < *sig.pPropertiesCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -14644,7 +14644,7 @@ void SerializeToString(const vkGetPhysicalDeviceCooperativeVectorPropertiesNVSig
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pProperties && sig.pPropertyCount) {
+    if (sig.pProperties && sig.pPropertyCount && *sig.pPropertyCount > 0) {
         stream << "{[";
         for (int i = 0; i < *sig.pPropertyCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -14683,7 +14683,7 @@ void SerializeToString(const vkCmdConvertCooperativeVectorMatrixNVSignature& sig
     stream << ", ";
     SerializeToString(sig.infoCount, stream);
     stream << ", ";
-    if (sig.pInfos) {
+    if (sig.pInfos && sig.infoCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.infoCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -14794,7 +14794,7 @@ void SerializeToString(const vkCreateDataGraphPipelinesARMSignature& sig, std::s
     stream << ", ";
     SerializeToString(sig.createInfoCount, stream);
     stream << ", ";
-    if (sig.pCreateInfos) {
+    if (sig.pCreateInfos && sig.createInfoCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.createInfoCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -14815,7 +14815,7 @@ void SerializeToString(const vkCreateDataGraphPipelinesARMSignature& sig, std::s
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pPipelines) {
+    if (sig.pPipelines && sig.createInfoCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.createInfoCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -14888,7 +14888,7 @@ void SerializeToString(const vkGetDataGraphPipelineSessionBindPointRequirementsA
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pBindPointRequirements && sig.pBindPointRequirementCount) {
+    if (sig.pBindPointRequirements && sig.pBindPointRequirementCount && *sig.pBindPointRequirementCount > 0) {
         stream << "{[";
         for (int i = 0; i < *sig.pBindPointRequirementCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -14934,7 +14934,7 @@ void SerializeToString(const vkBindDataGraphPipelineSessionMemoryARMSignature& s
     stream << ", ";
     SerializeToString(sig.bindInfoCount, stream);
     stream << ", ";
-    if (sig.pBindInfos) {
+    if (sig.pBindInfos && sig.bindInfoCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.bindInfoCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -15006,7 +15006,7 @@ void SerializeToString(const vkGetDataGraphPipelineAvailablePropertiesARMSignatu
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pProperties && sig.pPropertiesCount) {
+    if (sig.pProperties && sig.pPropertiesCount && *sig.pPropertiesCount > 0) {
         stream << "{[";
         for (int i = 0; i < *sig.pPropertiesCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -15037,7 +15037,7 @@ void SerializeToString(const vkGetDataGraphPipelinePropertiesARMSignature& sig, 
     stream << ", ";
     SerializeToString(sig.propertiesCount, stream);
     stream << ", ";
-    if (sig.pProperties) {
+    if (sig.pProperties && sig.propertiesCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.propertiesCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -15068,7 +15068,7 @@ void SerializeToString(const vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesAR
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pQueueFamilyDataGraphProperties && sig.pQueueFamilyDataGraphPropertyCount) {
+    if (sig.pQueueFamilyDataGraphProperties && sig.pQueueFamilyDataGraphPropertyCount && *sig.pQueueFamilyDataGraphPropertyCount > 0) {
         stream << "{[";
         for (int i = 0; i < *sig.pQueueFamilyDataGraphPropertyCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -15498,7 +15498,7 @@ void SerializeToString(const vkUpdateIndirectExecutionSetPipelineEXTSignature& s
     stream << ", ";
     SerializeToString(sig.executionSetWriteCount, stream);
     stream << ", ";
-    if (sig.pExecutionSetWrites) {
+    if (sig.pExecutionSetWrites && sig.executionSetWriteCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.executionSetWriteCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -15520,7 +15520,7 @@ void SerializeToString(const vkUpdateIndirectExecutionSetShaderEXTSignature& sig
     stream << ", ";
     SerializeToString(sig.executionSetWriteCount, stream);
     stream << ", ";
-    if (sig.pExecutionSetWrites) {
+    if (sig.pExecutionSetWrites && sig.executionSetWriteCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.executionSetWriteCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -15612,7 +15612,7 @@ void SerializeToString(const vkQueueSignalReleaseImageOHOSSignature& sig, std::s
     stream << ", ";
     SerializeToString(sig.waitSemaphoreCount, stream);
     stream << ", ";
-    if (sig.pWaitSemaphores) {
+    if (sig.pWaitSemaphores && sig.waitSemaphoreCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.waitSemaphoreCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -15652,7 +15652,7 @@ void SerializeToString(const vkGetPhysicalDeviceCooperativeMatrixFlexibleDimensi
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pProperties && sig.pPropertyCount) {
+    if (sig.pProperties && sig.pPropertyCount && *sig.pPropertyCount > 0) {
         stream << "{[";
         for (int i = 0; i < *sig.pPropertyCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -15698,7 +15698,7 @@ void SerializeToString(const vkGetMemoryMetalHandlePropertiesEXTSignature& sig, 
     stream << "vkGetMemoryMetalHandlePropertiesEXT(";
     SerializeToString(sig.device, stream);
     stream << ", ";
-    SerializeToString(sig.handleType, stream);
+    SerializeToStringVkExternalMemoryHandleTypeFlags(sig.handleType, stream);
     stream << ", ";
     SerializeToString(sig.pHandle, stream);
     stream << ", ";
@@ -15730,7 +15730,7 @@ void SerializeToString(const vkEnumeratePhysicalDeviceQueueFamilyPerformanceCoun
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pCounters && sig.pCounterCount) {
+    if (sig.pCounters && sig.pCounterCount && *sig.pCounterCount > 0) {
         stream << "{[";
         for (int i = 0; i < *sig.pCounterCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -15742,7 +15742,7 @@ void SerializeToString(const vkEnumeratePhysicalDeviceQueueFamilyPerformanceCoun
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pCounterDescriptions && sig.pCounterCount) {
+    if (sig.pCounterDescriptions && sig.pCounterCount && *sig.pCounterCount > 0) {
         stream << "{[";
         for (int i = 0; i < *sig.pCounterCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -15846,7 +15846,7 @@ void SerializeToString(const vkCmdBuildAccelerationStructuresKHRSignature& sig, 
     stream << ", ";
     SerializeToString(sig.infoCount, stream);
     stream << ", ";
-    if (sig.pInfos) {
+    if (sig.pInfos && sig.infoCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.infoCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -15858,7 +15858,7 @@ void SerializeToString(const vkCmdBuildAccelerationStructuresKHRSignature& sig, 
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.ppBuildRangeInfos) {
+    if (sig.ppBuildRangeInfos && sig.infoCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.infoCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -15887,7 +15887,7 @@ void SerializeToString(const vkCmdBuildAccelerationStructuresIndirectKHRSignatur
     stream << ", ";
     SerializeToString(sig.infoCount, stream);
     stream << ", ";
-    if (sig.pInfos) {
+    if (sig.pInfos && sig.infoCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.infoCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -15899,7 +15899,7 @@ void SerializeToString(const vkCmdBuildAccelerationStructuresIndirectKHRSignatur
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pIndirectDeviceAddresses) {
+    if (sig.pIndirectDeviceAddresses && sig.infoCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.infoCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -15911,7 +15911,7 @@ void SerializeToString(const vkCmdBuildAccelerationStructuresIndirectKHRSignatur
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pIndirectStrides) {
+    if (sig.pIndirectStrides && sig.infoCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.infoCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -15923,7 +15923,7 @@ void SerializeToString(const vkCmdBuildAccelerationStructuresIndirectKHRSignatur
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.ppMaxPrimitiveCounts) {
+    if (sig.ppMaxPrimitiveCounts && sig.infoCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.infoCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -15954,7 +15954,7 @@ void SerializeToString(const vkBuildAccelerationStructuresKHRSignature& sig, std
     stream << ", ";
     SerializeToString(sig.infoCount, stream);
     stream << ", ";
-    if (sig.pInfos) {
+    if (sig.pInfos && sig.infoCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.infoCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -15966,7 +15966,7 @@ void SerializeToString(const vkBuildAccelerationStructuresKHRSignature& sig, std
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.ppBuildRangeInfos) {
+    if (sig.ppBuildRangeInfos && sig.infoCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.infoCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -16054,7 +16054,7 @@ void SerializeToString(const vkWriteAccelerationStructuresPropertiesKHRSignature
     stream << ", ";
     SerializeToString(sig.accelerationStructureCount, stream);
     stream << ", ";
-    if (sig.pAccelerationStructures) {
+    if (sig.pAccelerationStructures && sig.accelerationStructureCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.accelerationStructureCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -16070,7 +16070,7 @@ void SerializeToString(const vkWriteAccelerationStructuresPropertiesKHRSignature
     stream << ", ";
     SerializeToString(sig.dataSize, stream);
     stream << ", ";
-    if (sig.pData) {
+    if (sig.pData && sig.dataSize > 0) {
         stream << "{[";
         const uint8_t* ptr = reinterpret_cast<const uint8_t*>(sig.pData);
         for (int i = 0; i < sig.dataSize; ++i) {
@@ -16157,7 +16157,7 @@ void SerializeToString(const vkCmdWriteAccelerationStructuresPropertiesKHRSignat
     stream << ", ";
     SerializeToString(sig.accelerationStructureCount, stream);
     stream << ", ";
-    if (sig.pAccelerationStructures) {
+    if (sig.pAccelerationStructures && sig.accelerationStructureCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.accelerationStructureCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -16216,7 +16216,7 @@ void SerializeToString(const vkGetAccelerationStructureBuildSizesKHRSignature& s
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pMaxPrimitiveCounts) {
+    if (sig.pMaxPrimitiveCounts && sig.pBuildInfo->geometryCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.pBuildInfo->geometryCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -16297,7 +16297,7 @@ void SerializeToString(const vkCreateRayTracingPipelinesKHRSignature& sig, std::
     stream << ", ";
     SerializeToString(sig.createInfoCount, stream);
     stream << ", ";
-    if (sig.pCreateInfos) {
+    if (sig.pCreateInfos && sig.createInfoCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.createInfoCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -16318,7 +16318,7 @@ void SerializeToString(const vkCreateRayTracingPipelinesKHRSignature& sig, std::
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    if (sig.pPipelines) {
+    if (sig.pPipelines && sig.createInfoCount > 0) {
         stream << "{[";
         for (int i = 0; i < sig.createInfoCount; ++i) {
             if (i > 0) { stream << ", "; }
@@ -16346,7 +16346,7 @@ void SerializeToString(const vkGetRayTracingCaptureReplayShaderGroupHandlesKHRSi
     stream << ", ";
     SerializeToString(sig.dataSize, stream);
     stream << ", ";
-    if (sig.pData) {
+    if (sig.pData && sig.dataSize > 0) {
         stream << "{[";
         const uint8_t* ptr = reinterpret_cast<const uint8_t*>(sig.pData);
         for (int i = 0; i < sig.dataSize; ++i) {

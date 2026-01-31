@@ -8,6 +8,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(LAYER_DIR ${CMAKE_CURRENT_SOURCE_DIR}/Layer)
 set(GENERATED_DIR ${CMAKE_CURRENT_SOURCE_DIR}/Generated)
 set(UTILS_DIR ${CMAKE_CURRENT_SOURCE_DIR}/Utils)
+set(UI_DIR ${CMAKE_CURRENT_SOURCE_DIR}/UI)
 set(EXTERNAL_DIR ${CMAKE_CURRENT_SOURCE_DIR}/External)
 set(JSON_DIR ${CMAKE_CURRENT_SOURCE_DIR}/JSON)
 
@@ -15,17 +16,19 @@ set(INCLUDE_DIRECTORIES
     ${LAYER_DIR}
     ${GENERATED_DIR}
     ${UTILS_DIR}
+    ${UI_DIR}
     ${EXTERNAL_DIR}/Vulkan-Headers/include
     ${EXTERNAL_DIR}/stb
     ${EXTERNAL_DIR}/json/single_include
 )
 
 include_directories(${INCLUDE_DIRECTORIES})
+add_compile_definitions(_CRT_SECURE_NO_WARNINGS)
 
 set(OVS_LAYER_NAME VkLayer_OVS_Debug)
 
 set(OVS_LAYER_SOURCES
-    ${LAYER_DIR}/Main.cpp
+    ${LAYER_DIR}/MainLayer.cpp
     ${LAYER_DIR}/VulkanLayerManager.h
     ${LAYER_DIR}/VulkanLayerManager.cpp
     ${LAYER_DIR}/VulkanLayerTerminator.h
@@ -41,6 +44,7 @@ set(OVS_LAYER_SOURCES
     ${GENERATED_DIR}/VulkanLayerTerminatorBaseGenerated.h
     ${GENERATED_DIR}/VulkanLayerPrinterGenerated.h
     ${GENERATED_DIR}/VulkanLayerAPIDumpGenerated.h
+    ${GENERATED_DIR}/VulkanLayerAPITraceGenerated.h
 
     ${GENERATED_DIR}/SignatureGenerated.h
     ${GENERATED_DIR}/VulkanAPICallIDGenerated.h
@@ -49,15 +53,50 @@ set(OVS_LAYER_SOURCES
     ${GENERATED_DIR}/EnumSerializeGenerated.cpp
     ${GENERATED_DIR}/StructSerializeGenerated.h
     ${GENERATED_DIR}/StructSerializeToStringGenerated.cpp
+    ${GENERATED_DIR}/StructSerializeToStreamGenerated.cpp
+    ${GENERATED_DIR}/StructDeserializeFromStreamGenerated.cpp
     ${GENERATED_DIR}/SignatureSerializeToStringGenerated.cpp
+    ${GENERATED_DIR}/SignatureSerializeToStreamGenerated.cpp
+    ${GENERATED_DIR}/SignatureDeserializeFromStreamGenerated.cpp
 
     ${UTILS_DIR}/Macros.h
     ${UTILS_DIR}/Vulkan.h
     ${UTILS_DIR}/VulkanPlatform.h
     ${UTILS_DIR}/VulkanUtils.h
+    ${UTILS_DIR}/PlatformUtils.cpp
 )
 
 add_library(${OVS_LAYER_NAME} SHARED ${OVS_LAYER_SOURCES})
-add_compile_definitions(_CRT_SECURE_NO_WARNINGS)
 
 file(COPY ${JSON_DIR}/${OVS_LAYER_NAME}.json DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+
+
+set(OVS_DEBUG_NAME OVSDebug)
+
+set(OVS_DEBUG_SOURCES
+    ${UI_DIR}/MainUI.cpp
+
+    ${GENERATED_DIR}/VulkanCoreGenerated.h
+    ${GENERATED_DIR}/VulkanDispatchTablesGenerated.h
+
+    ${GENERATED_DIR}/SignatureGenerated.h
+    ${GENERATED_DIR}/VulkanAPICallIDGenerated.h
+    ${GENERATED_DIR}/VulkanAPIStructIDGenerated.h
+    ${GENERATED_DIR}/EnumSerializeGenerated.h
+    ${GENERATED_DIR}/EnumSerializeGenerated.cpp
+    ${GENERATED_DIR}/StructSerializeGenerated.h
+    ${GENERATED_DIR}/StructSerializeToStringGenerated.cpp
+    ${GENERATED_DIR}/StructSerializeToStreamGenerated.cpp
+    ${GENERATED_DIR}/StructDeserializeFromStreamGenerated.cpp
+    ${GENERATED_DIR}/SignatureSerializeToStringGenerated.cpp
+    ${GENERATED_DIR}/SignatureSerializeToStreamGenerated.cpp
+    ${GENERATED_DIR}/SignatureDeserializeFromStreamGenerated.cpp
+
+    ${UTILS_DIR}/Macros.h
+    ${UTILS_DIR}/Vulkan.h
+    ${UTILS_DIR}/VulkanPlatform.h
+    ${UTILS_DIR}/VulkanUtils.h
+    ${UTILS_DIR}/PlatformUtils.cpp
+)
+
+add_executable(${OVS_DEBUG_NAME} ${OVS_DEBUG_SOURCES})

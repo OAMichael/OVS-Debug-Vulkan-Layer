@@ -3,6 +3,7 @@
 #include <VulkanLayerScreenshot.h>
 #include <VulkanLayerPrinterGenerated.h>
 #include <VulkanLayerAPIDumpGenerated.h>
+#include <VulkanLayerAPITraceGenerated.h>
 
 #include <PlatformUtils.h>
 
@@ -35,6 +36,16 @@ void VulkanLayerManager::Init() {
     inited_ = true;
 }
 
+void VulkanLayerManager::Cleanup() {
+    if (!inited_) {
+        return;
+    }
+
+    layers_.clear();
+
+    inited_ = false;
+}
+
 bool VulkanLayerManager::CreateLayersFromJSON(const std::string& settingsPath) {
     if (settingsPath.empty()) {
         std::cout << "[DEBUG] Settings JSON path is empty\n";
@@ -63,7 +74,9 @@ bool VulkanLayerManager::CreateLayersFromJSON(const std::string& settingsPath) {
                     VulkanLayerPrinterSettings settings{};
                     if (layerInfo.contains("Settings")) {
                         const auto& settingsJSON = layerInfo["Settings"];
-                        settings.filename = settingsJSON["Filename"];
+                        if (settingsJSON.contains("Filename")) {
+                            settings.filename = settingsJSON["Filename"];
+                        }
                     }
 
                     auto layer = std::make_unique<VulkanLayerPrinter>(settings);
@@ -74,10 +87,28 @@ bool VulkanLayerManager::CreateLayersFromJSON(const std::string& settingsPath) {
                     VulkanLayerAPIDumpSettings settings{};
                     if (layerInfo.contains("Settings")) {
                         const auto& settingsJSON = layerInfo["Settings"];
-                        settings.filename = settingsJSON["Filename"];
+                        if (settingsJSON.contains("Filename")) {
+                            settings.filename = settingsJSON["Filename"];
+                        }
                     }
 
                     auto layer = std::make_unique<VulkanLayerAPIDump>(settings);
+                    layers_.emplace_back(std::move(layer));
+                    break;
+                }
+                case VulkanLayerType::APITrace: {
+                    VulkanLayerAPITraceSettings settings{};
+                    if (layerInfo.contains("Settings")) {
+                        const auto& settingsJSON = layerInfo["Settings"];
+                        if (settingsJSON.contains("Filename")) {
+                            settings.filename = settingsJSON["Filename"];
+                        }
+                        if (settingsJSON.contains("FlushSize")) {
+                            settings.flushSize = settingsJSON["FlushSize"];
+                        }
+                    }
+
+                    auto layer = std::make_unique<VulkanLayerAPITrace>(settings);
                     layers_.emplace_back(std::move(layer));
                     break;
                 }
@@ -85,11 +116,14 @@ bool VulkanLayerManager::CreateLayersFromJSON(const std::string& settingsPath) {
                     VulkanLayerScreenshotSettings settings{};
                     if (layerInfo.contains("Settings")) {
                         const auto& settingsJSON = layerInfo["Settings"];
-                        settings.fileBaseName = settingsJSON["FileBaseName"];
-
-                        std::string frameRangesStr = settingsJSON["FrameRanges"];
-                        if (!ParseFrameRanges(frameRangesStr, settings.frameRanges)) {
-                            std::cout << "[DEBUG] Could not parse Screenshot Layer frame ranges\n";
+                        if (settingsJSON.contains("FileBaseName")) {
+                            settings.fileBaseName = settingsJSON["FileBaseName"];
+                        }
+                        if (settingsJSON.contains("FrameRanges")) {
+                            std::string frameRangesStr = settingsJSON["FrameRanges"];
+                            if (!ParseFrameRanges(frameRangesStr, settings.frameRanges)) {
+                                std::cout << "[DEBUG] Could not parse Screenshot Layer frame ranges\n";
+                            }
                         }
                     }
 

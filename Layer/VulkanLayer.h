@@ -21,6 +21,7 @@ enum class VulkanLayerType {
     Printer,
     Screenshot,
     APIDump,
+    APITrace,
 
     Count
 };
@@ -31,8 +32,9 @@ static inline const char* GetLayerTypeName(VulkanLayerType type) {
         case VulkanLayerType::TerminatorBase:   return "TerminatorBase";
         case VulkanLayerType::Terminator:       return "Terminator";
         case VulkanLayerType::Printer:          return "Printer";
-        case VulkanLayerType::APIDump:          return "APIDump";
         case VulkanLayerType::Screenshot:       return "Screenshot";
+        case VulkanLayerType::APIDump:          return "APIDump";
+        case VulkanLayerType::APITrace:         return "APITrace";
         default:                                return "Unknown";
     }
 }
@@ -56,23 +58,37 @@ static inline VulkanLayerType GetLayerTypeByName(std::string_view name) {
     if (name == "APIDump") {
         return VulkanLayerType::APIDump;
     }
+    if (name == "APITrace") {
+        return VulkanLayerType::APITrace;
+    }
     return VulkanLayerType::None;
 }
 
 class VulkanLayerInterface;
 using VulkanLayerPtr = std::unique_ptr<VulkanLayerInterface>;
 
-struct VulkanLayerPrinterSettings {
-    std::string filename;
-};
+constexpr const char PrinterDefaultFilename[] = "stdout";
+constexpr const char ScreenshotDefaultFileBaseName[] = "screenshot";
+constexpr const char APIDumpDefaultFilename[] = "stdout";
+constexpr const char APITraceDefaultFilename[] = "apitrace.ovs";
+constexpr size_t APITraceDefaultFlushSize = 200 * 1024 * 1024;
 
-struct VulkanLayerAPIDumpSettings {
-    std::string filename;
+struct VulkanLayerPrinterSettings {
+    std::string filename{PrinterDefaultFilename};
 };
 
 struct VulkanLayerScreenshotSettings {
-    std::string fileBaseName;
+    std::string fileBaseName{ScreenshotDefaultFileBaseName};
     std::vector<FrameRange> frameRanges;
+};
+
+struct VulkanLayerAPIDumpSettings {
+    std::string filename{APIDumpDefaultFilename};
+};
+
+struct VulkanLayerAPITraceSettings {
+    std::string filename{APITraceDefaultFilename};
+    size_t flushSize{APITraceDefaultFlushSize};
 };
 
 } // namespace OVS
