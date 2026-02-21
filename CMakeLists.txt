@@ -20,10 +20,17 @@ set(INCLUDE_DIRECTORIES
     ${EXTERNAL_DIR}/Vulkan-Headers/include
     ${EXTERNAL_DIR}/stb
     ${EXTERNAL_DIR}/json/single_include
+    ${EXTERNAL_DIR}/SPIRV-Tools
+    ${EXTERNAL_DIR}/SPIRV-Tools/include
+    ${EXTERNAL_DIR}/SPIRV-Tools/source
+    ${EXTERNAL_DIR}/SPIRV-Tools/external/spirv-headers/include
+    ${CMAKE_BINARY_DIR}/External/SPIRV-Tools
 )
 
 include_directories(${INCLUDE_DIRECTORIES})
 add_compile_definitions(_CRT_SECURE_NO_WARNINGS)
+
+add_subdirectory(${EXTERNAL_DIR}/SPIRV-Tools)
 
 set(OVS_LAYER_NAME VkLayer_OVS_Debug)
 
@@ -35,6 +42,8 @@ set(OVS_LAYER_SOURCES
     ${LAYER_DIR}/VulkanLayerTerminator.cpp
     ${LAYER_DIR}/VulkanLayerScreenshot.h
     ${LAYER_DIR}/VulkanLayerScreenshot.cpp
+    ${LAYER_DIR}/VulkanLayerShaderProfiler.h
+    ${LAYER_DIR}/VulkanLayerShaderProfiler.cpp
 
     ${GENERATED_DIR}/VulkanCoreGenerated.h
     ${GENERATED_DIR}/VulkanDispatchTablesGenerated.h
@@ -58,15 +67,19 @@ set(OVS_LAYER_SOURCES
     ${GENERATED_DIR}/SignatureSerializeToStringGenerated.cpp
     ${GENERATED_DIR}/SignatureSerializeToStreamGenerated.cpp
     ${GENERATED_DIR}/SignatureDeserializeFromStreamGenerated.cpp
+    ${GENERATED_DIR}/StructDeepCopyGenerated.h
+    ${GENERATED_DIR}/StructDeepCopyGenerated.cpp
 
     ${UTILS_DIR}/Macros.h
     ${UTILS_DIR}/Vulkan.h
     ${UTILS_DIR}/VulkanPlatform.h
     ${UTILS_DIR}/VulkanUtils.h
+    ${UTILS_DIR}/VulkanShader.h
     ${UTILS_DIR}/PlatformUtils.cpp
 )
 
 add_library(${OVS_LAYER_NAME} SHARED ${OVS_LAYER_SOURCES})
+target_link_libraries(${OVS_LAYER_NAME} PRIVATE SPIRV-Tools SPIRV-Tools-opt)
 
 file(COPY ${JSON_DIR}/${OVS_LAYER_NAME}.json DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 

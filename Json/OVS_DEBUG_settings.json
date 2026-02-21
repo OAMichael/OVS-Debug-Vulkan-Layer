@@ -1,15 +1,12 @@
 {
     "Layers": [
         {
-            "Type": "APITrace",
-            "Settings": {
-                "Filename": "CubeAPIDump.ovs"
-            }
+            "Type": "ShaderProfiler"
         },
         {
             "Type": "APIDump",
             "Settings": {
-                "Filename": "CubeAPIDump.txt"
+                "Filename": "APIDump.txt"
             }
         },
         {

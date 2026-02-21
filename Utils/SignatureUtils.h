@@ -105,6 +105,11 @@ struct BaseSignature {
 
 using SignaturePtr = std::unique_ptr<BaseSignature>;
 
+template <typename T, typename U = T>
+concept SameOrConstVersion = std::is_same_v<T, U> ||
+                             std::is_same_v<T, const U> ||
+                             std::is_same_v<std::remove_pointer_t<T>, const std::remove_pointer_t<T>>;
+
 
 static inline std::string ConvertWideStringToMultibyte(const std::wstring& wstr) {
     std::setlocale(LC_ALL, "en_US.utf8");
@@ -217,6 +222,39 @@ static inline void DeserializeFromStream(T& value, Allocator& allocator, const R
 }
 
 static inline void DeserializeFromStream(void*  value, size_t size, Allocator& allocator, const ReadStream& stream) { stream.Read(value, size); }
+
+
+// DeepCopy
+//
+template <typename T, typename U = T>
+requires SameOrConstVersion<T, U>
+static inline void DeepCopy(const T& valueIn, Allocator& allocator, U& valueOut) {
+    if constexpr (std::is_same_v<T, const char*> || std::is_same_v<T, char*>) {
+        if (valueIn) {
+            size_t size = std::strlen(valueIn) + 1;
+            valueOut = allocator.Allocate<char>(size);
+            std::memcpy(valueOut, valueIn, size * sizeof(char));
+        }
+        else {
+            valueOut = nullptr;
+        }
+    }
+    else if constexpr (std::is_same_v<T, const wchar_t*> || std::is_same_v<T, wchar_t*>) {
+        if (valueIn) {
+            size_t size = std::wcslen(valueIn) + 1;
+            valueOut = allocator.Allocate<wchar_t>(size);
+            std::memcpy(valueOut, valueIn, size * sizeof(wchar_t));
+        }
+        else {
+            valueOut = nullptr;
+        }
+    }
+    else {
+        valueOut = valueIn;
+    }
+}
+
+static inline void DeepCopy(const void* valueIn, Allocator& allocator, void* valueOut, size_t size) { std::memcpy(valueOut, valueIn, size); }
 
 } // namespace SignatureSerializer
 } // namespace OVS

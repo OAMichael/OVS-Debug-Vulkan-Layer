@@ -22,6 +22,7 @@ enum class VulkanLayerType {
     Screenshot,
     APIDump,
     APITrace,
+    ShaderProfiler,
 
     Count
 };
@@ -35,6 +36,7 @@ static inline const char* GetLayerTypeName(VulkanLayerType type) {
         case VulkanLayerType::Screenshot:       return "Screenshot";
         case VulkanLayerType::APIDump:          return "APIDump";
         case VulkanLayerType::APITrace:         return "APITrace";
+        case VulkanLayerType::ShaderProfiler:   return "ShaderProfiler";
         default:                                return "Unknown";
     }
 }
@@ -61,6 +63,9 @@ static inline VulkanLayerType GetLayerTypeByName(std::string_view name) {
     if (name == "APITrace") {
         return VulkanLayerType::APITrace;
     }
+    if (name == "ShaderProfiler") {
+        return VulkanLayerType::ShaderProfiler;
+    }
     return VulkanLayerType::None;
 }
 
@@ -72,6 +77,7 @@ constexpr const char ScreenshotDefaultFileBaseName[] = "screenshot";
 constexpr const char APIDumpDefaultFilename[] = "stdout";
 constexpr const char APITraceDefaultFilename[] = "apitrace.ovs";
 constexpr size_t APITraceDefaultFlushSize = 200 * 1024 * 1024;
+constexpr const char ShaderProfilerDefaultFilename[] = "shaderprof.txt";
 
 struct VulkanLayerPrinterSettings {
     std::string filename{PrinterDefaultFilename};
@@ -89,6 +95,10 @@ struct VulkanLayerAPIDumpSettings {
 struct VulkanLayerAPITraceSettings {
     std::string filename{APITraceDefaultFilename};
     size_t flushSize{APITraceDefaultFlushSize};
+};
+
+struct VulkanLayerShaderProfilerSettings {
+    std::string filename{ShaderProfilerDefaultFilename};
 };
 
 } // namespace OVS

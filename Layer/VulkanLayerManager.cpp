@@ -4,6 +4,7 @@
 #include <VulkanLayerPrinterGenerated.h>
 #include <VulkanLayerAPIDumpGenerated.h>
 #include <VulkanLayerAPITraceGenerated.h>
+#include <VulkanLayerShaderProfiler.h>
 
 #include <PlatformUtils.h>
 
@@ -83,6 +84,25 @@ bool VulkanLayerManager::CreateLayersFromJSON(const std::string& settingsPath) {
                     layers_.emplace_back(std::move(layer));
                     break;
                 }
+                case VulkanLayerType::Screenshot: {
+                    VulkanLayerScreenshotSettings settings{};
+                    if (layerInfo.contains("Settings")) {
+                        const auto& settingsJSON = layerInfo["Settings"];
+                        if (settingsJSON.contains("FileBaseName")) {
+                            settings.fileBaseName = settingsJSON["FileBaseName"];
+                        }
+                        if (settingsJSON.contains("FrameRanges")) {
+                            std::string frameRangesStr = settingsJSON["FrameRanges"];
+                            if (!ParseFrameRanges(frameRangesStr, settings.frameRanges)) {
+                                std::cout << "[DEBUG] Could not parse Screenshot Layer frame ranges\n";
+                            }
+                        }
+                    }
+
+                    auto layer = std::make_unique<VulkanLayerScreenshot>(settings);
+                    layers_.emplace_back(std::move(layer));
+                    break;
+                }
                 case VulkanLayerType::APIDump: {
                     VulkanLayerAPIDumpSettings settings{};
                     if (layerInfo.contains("Settings")) {
@@ -112,22 +132,16 @@ bool VulkanLayerManager::CreateLayersFromJSON(const std::string& settingsPath) {
                     layers_.emplace_back(std::move(layer));
                     break;
                 }
-                case VulkanLayerType::Screenshot: {
-                    VulkanLayerScreenshotSettings settings{};
+                case VulkanLayerType::ShaderProfiler: {
+                    VulkanLayerShaderProfilerSettings settings{};
                     if (layerInfo.contains("Settings")) {
                         const auto& settingsJSON = layerInfo["Settings"];
-                        if (settingsJSON.contains("FileBaseName")) {
-                            settings.fileBaseName = settingsJSON["FileBaseName"];
-                        }
-                        if (settingsJSON.contains("FrameRanges")) {
-                            std::string frameRangesStr = settingsJSON["FrameRanges"];
-                            if (!ParseFrameRanges(frameRangesStr, settings.frameRanges)) {
-                                std::cout << "[DEBUG] Could not parse Screenshot Layer frame ranges\n";
-                            }
+                        if (settingsJSON.contains("Filename")) {
+                            settings.filename = settingsJSON["Filename"];
                         }
                     }
 
-                    auto layer = std::make_unique<VulkanLayerScreenshot>(settings);
+                    auto layer = std::make_unique<VulkanLayerShaderProfiler>(settings);
                     layers_.emplace_back(std::move(layer));
                     break;
                 }
@@ -232,7 +246,7 @@ void VulkanLayerManager::ChainLayers() {
 }
 
 void VulkanLayerManager::DumpLayerChain() const {
-    std::cout << "[DEBUG] VK_LAYER_OVS_DEBUG Layes\n";
+    std::cout << "[DEBUG] VK_LAYER_OVS_DEBUG Layers\n";
     for (const auto& layer : layers_) {
         auto type = layer->GetType();
         auto name = GetLayerTypeName(type);
