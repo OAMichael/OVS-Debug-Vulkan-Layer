@@ -846,6 +846,192 @@ def genParamDeserializeFromStream(param, registry, indent, paramAccess):
     return out
 
 
+def genParamDeepCopy(param, registry, indent, paramInAccess, paramOutAccess):
+    out = ''
+
+    paramName = safeStr(param.find('name').text).strip()
+    paramType = safeStr(param.find('type').text).strip()
+    paramTypeKind = getParamTypeKind(param, registry)
+
+    paramFullType = safeStr(param.text).strip() + ' ' + safeStr(param.find('type').text).strip() + safeStr(param.find('type').tail).strip()
+
+    paramFullStrippedType = paramFullType
+    paramFullStrippedType = paramFullStrippedType.replace('const', '')
+    paramFullStrippedType = paramFullStrippedType.replace('volatile', '')
+    paramFullStrippedType = paramFullStrippedType.replace('struct', '')
+    paramFullStrippedType = paramFullStrippedType.replace('union', '')
+    paramFullStrippedType = paramFullStrippedType.strip()
+
+    if DEBUG_PARAM_TYPE_KIND:
+        out += indent + f'// Kind: {paramTypeKind.name}\n'
+
+    match paramTypeKind:
+        case (ParamTypeKind.PRIMITIVE |
+              ParamTypeKind.HANDLE |
+              ParamTypeKind.STRUCT |
+              ParamTypeKind.STRING |
+              ParamTypeKind.WSTRING |
+              ParamTypeKind.VOID_PTR |
+              ParamTypeKind.EXTERNAL_PTR |
+              ParamTypeKind.FUNCTION_PTR):
+
+            tail = safeStr(param.find('name').tail).strip()
+            if ':' in tail:
+                out += indent + f'{paramType} {paramName}Bitfield = 0;\n'
+                out += indent + f'DeepCopy({paramInAccess}{paramName}, allocator, {paramName}Bitfield);\n'
+                out += indent + f'{paramOutAccess}{paramName} = {paramName}Bitfield;\n'
+            else:
+                cast = ''
+                if 'const' in paramFullType:
+                    cast = f'({paramFullStrippedType}&)'
+                if paramTypeKind == ParamTypeKind.WSTRING:
+                    cast = '(LPWSTR&)'
+
+                out += indent + f'DeepCopy({cast}{paramInAccess}{paramName}, allocator, {cast}{paramOutAccess}{paramName});\n'
+
+        case (ParamTypeKind.PRIMITIVE_PTR |
+              ParamTypeKind.HANDLE_PTR |
+              ParamTypeKind.STRUCT_PTR |
+              ParamTypeKind.VOID_PTR_PTR |
+              ParamTypeKind.EXTERNAL_PTR_PTR):
+
+            allocType = paramFullStrippedType[:-1].strip()
+
+            out += indent + f'{allocType}* {paramName}Ptr = nullptr;\n'
+            out += indent + f'if ({paramInAccess}{paramName}) {{\n'
+            out += 2 * indent + f'{paramName}Ptr = allocator.Allocate<{allocType}>();\n'
+            out += 2 * indent + f'DeepCopy(*{paramInAccess}{paramName}, allocator, *{paramName}Ptr);\n'
+            out += indent + f'}}\n'
+            out += indent + f'{paramOutAccess}{paramName} = {paramName}Ptr;\n'
+
+        case (ParamTypeKind.PRIMITIVE_STATIC_ARRAY_1D |
+              ParamTypeKind.HANDLE_STATIC_ARRAY_1D |
+              ParamTypeKind.PRIMITIVE_STATIC_ARRAY_2D |
+              ParamTypeKind.HANDLE_STATIC_ARRAY_2D):
+
+            out += indent + f'DeepCopy((void*){paramInAccess}{paramName}, allocator, (void*){paramOutAccess}{paramName}, sizeof({paramOutAccess}{paramName}));\n'
+
+        case (ParamTypeKind.PRIMITIVE_DYNAMIC_ARRAY_1D |
+              ParamTypeKind.HANDLE_DYNAMIC_ARRAY_1D |
+              ParamTypeKind.STRUCT_DYNAMIC_ARRAY_1D |
+              ParamTypeKind.STRING_DYNAMIC_ARRAY_1D |
+              ParamTypeKind.VOID_PTR_DYNAMIC_ARRAY_1D):
+
+            length = safeStr(param.get('altlen')).strip()
+            if length == '':
+                length = safeStr(param.get('len')).strip()
+
+            if paramTypeKind == ParamTypeKind.STRING_DYNAMIC_ARRAY_1D:
+                commaPos = length.find(',')
+                length = length[:commaPos]
+
+            length, ptrCond = patchDynamicArrayLengthMember(length, paramInAccess)
+
+            allocType = paramFullStrippedType[:-1].strip()
+            if allocType == 'void':
+                allocType = 'uint8_t'
+
+            out += indent + f'{allocType}* {paramName}Ptr = nullptr;\n'
+            out += indent + f'if ({paramInAccess}{paramName}{ptrCond}) {{\n'
+            out += 2 * indent + f'{paramName}Ptr = allocator.Allocate<{allocType}>({length});\n'
+
+            if paramTypeKind in [ParamTypeKind.STRUCT_DYNAMIC_ARRAY_1D, ParamTypeKind.STRING_DYNAMIC_ARRAY_1D]:
+                out += 2 * indent + f'for (int i = 0; i < {length}; ++i) {{\n'
+                out += 3 * indent +     f'DeepCopy({paramInAccess}{paramName}[i], allocator, {paramName}Ptr[i]);\n'
+                out += 2 * indent + f'}}\n'
+            else:
+                out += 2 * indent + f'DeepCopy((void*){paramInAccess}{paramName}, allocator, (void*){paramName}Ptr, {length} * sizeof({allocType}));\n'
+
+            out += indent + f'}}\n'
+            out += indent + f'{paramOutAccess}{paramName} = {paramName}Ptr;\n'
+
+        case (ParamTypeKind.PRIMITIVE_DYNAMIC_ARRAY_2D |
+              ParamTypeKind.HANDLE_DYNAMIC_ARRAY_2D |
+              ParamTypeKind.STRUCT_DYNAMIC_ARRAY_2D):
+
+            lengths = safeStr(param.get('altlen')).strip()
+            if lengths == '':
+                lengths = safeStr(param.get('len')).strip()
+
+            commaPos = lengths.find(',')
+            lengthOuter = ''
+            lengthInner = ''
+            ptrCondOuter = ''
+            ptrCondInner = ''
+            if commaPos != -1:
+                lengthOuter = lengths[:commaPos]
+                lengthInner = lengths[commaPos + 1:]
+                lengthOuter, ptrCondOuter = patchDynamicArrayLengthMember(lengthOuter, paramInAccess)
+                lengthInner, ptrCondInner = patchDynamicArrayLengthMember(lengthInner, paramInAccess)
+            else:
+                lengthOuter = lengths
+                lengthOuter, ptrCondOuter = patchDynamicArrayLengthMember(lengthOuter, paramInAccess)
+                lengthInner = f'{paramInAccess}pInfos[i].geometryCount'
+                ptrCondInner = f' && {paramInAccess}pInfos'
+
+            allocType = paramType
+
+            out += indent + f'{allocType}** {paramName}Ptr = nullptr;\n'
+            out += indent + f'if ({paramInAccess}{paramName}{ptrCondOuter}) {{\n'
+            out += 2 * indent + f'{paramName}Ptr = allocator.Allocate<{allocType}*>({lengthOuter});\n'
+            out += 2 * indent + f'for (int i = 0; i < {lengthOuter}; ++i) {{\n'
+            out += 3 * indent +     f'{paramName}Ptr[i] = nullptr;\n'
+            out += 3 * indent +     f'if ({paramInAccess}{paramName}[i]{ptrCondInner}) {{\n'
+            out += 4 * indent +         f'{paramName}Ptr[i] = allocator.Allocate<{allocType}>({lengthInner});\n'
+
+            if paramTypeKind in [ParamTypeKind.STRUCT_DYNAMIC_ARRAY_2D]:
+                out += 4 * indent +     f'for (int j = 0; j < {lengthInner}; ++j) {{\n'
+                out += 5 * indent +         f'DeepCopy({paramInAccess}{paramName}[i][j], allocator, {paramName}Ptr[i][j]);\n'
+                out += 4 * indent +     f'}}\n'
+            else:
+                out += 4 * indent +     f'DeepCopy((void*){paramInAccess}{paramName}[i], allocator, (void*){paramName}Ptr[i], {lengthInner} * sizeof({paramType}));\n'
+
+            out += 3 * indent +     f'}}\n'
+            out += 2 * indent + f'}}\n'
+            out += indent + f'}}\n'
+            out += indent + f'{paramOutAccess}{paramName} = {paramName}Ptr;\n'
+
+        case ParamTypeKind.PNEXT:
+
+            cast = ''
+            if paramType != 'void' or 'const' in paramFullType:
+                cast = '(void**)'
+
+            out += indent + f'DeepCopyPNext({paramInAccess}{paramName}, allocator, {cast}&{paramOutAccess}{paramName});\n'
+
+        case ParamTypeKind.STRUCT_STATIC_ARRAY_1D:
+
+            brackets = safeStr(param.find('name').tail).strip()
+            for e in param.findall('enum'):
+                brackets += e.text + e.tail
+
+            length = brackets[1:-1]
+
+            out += indent + f'for (int i = 0; i < {length}; ++i) {{\n'
+            out += 2 * indent + f'DeepCopy({paramInAccess}{paramName}[i], allocator, {paramOutAccess}{paramName}[i]);\n'
+            out += indent + f'}}\n'
+
+        case ParamTypeKind.STRUCT_STATIC_ARRAY_2D:
+
+            brackets = safeStr(param.find('name').tail).strip()
+            for e in param.findall('enum'):
+                brackets += e.text + e.tail
+
+            lengths = brackets[1:-1]
+            rBracketPos = lengths.find(']')
+            lBracketPos = lengths.find('[')
+            lengthOuter = lengths[:rBracketPos]
+            lengthInner = lengths[lBracketPos + 1:]
+
+            out += indent + f'for (int i = 0; i < {lengthOuter}; ++i) {{\n'
+            out += 2 * indent + f'for (int j = 0; j < {lengthInner}; ++j) {{\n'
+            out += 3 * indent +     f'DeepCopy({paramInAccess}{paramName}[i][j], allocator, {paramOutAccess}{paramName}[i][j]);\n'
+            out += 2 * indent + f'}}\n'
+            out += indent + f'}}\n'
+
+    return out
+
+
 class COutputGeneratorCustom(COutputGenerator):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -1779,6 +1965,172 @@ class COutputGeneratorStructSerializeToStream(OutputGenerator):
                         self.ser_pnext += f'#endif\n'
 
         self.ser += f'}}\n\n'
+
+
+class COutputGeneratorStructDeepCopyDeclaration(OutputGenerator):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.body = ''
+        self.header_guard = ''
+        self.indent = '    '
+
+    def beginFile(self, genOpts):
+        OutputGenerator.beginFile(self, genOpts)
+
+        self.body += autogen_message
+
+        self.header_guard = getMacroForFilename(self.genOpts.filename)
+        self.body += f'#ifndef {self.header_guard}\n'
+        self.body += f'#define {self.header_guard}\n\n'
+        self.body += f'#include <Vulkan.h>\n'
+        self.body += f'#include <SignatureUtils.h>\n\n'
+        self.body += f'namespace OVS {{\n'
+        self.body += f'namespace SignatureSerializer {{\n\n'
+
+    def endFile(self):
+        self.body += f'void DeepCopy(const VkLayerInstanceCreateInfo& valueIn, Allocator& allocator, VkLayerInstanceCreateInfo& valueOut);\n'
+        self.body += f'void DeepCopy(const VkLayerDeviceCreateInfo& valueIn, Allocator& allocator, VkLayerDeviceCreateInfo& valueOut);\n'
+        self.body += f'void DeepCopyPNext(const void* pNextIn, Allocator& allocator, void** ppNextOut);\n'
+        self.body += f'\n'
+        self.body += f'}} // namespace SignatureSerializer\n'
+        self.body += f'}} // namespace OVS\n\n'
+        self.body += f'#endif // {self.header_guard}'
+
+        self.outFile.write(self.body)
+
+        OutputGenerator.endFile(self)
+
+    def genType(self, typeinfo, name, alias):
+        OutputGenerator.genType(self, typeinfo, name, alias)
+
+        category = typeinfo.elem.get('category')
+        if category not in ('struct', 'union') or alias:
+            return
+
+        self.body += f'void DeepCopy(const {name}& valueIn, Allocator& allocator, {name}& valueOut);\n'
+
+
+class COutputGeneratorStructDeepCopy(OutputGenerator):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.body = ''
+        self.indent = '    '
+        self.copy_struct = ''
+        self.copy_pnext = ''
+
+    def beginFile(self, genOpts):
+        OutputGenerator.beginFile(self, genOpts)
+
+        self.body += autogen_message
+
+        self.body += f'#include <SignatureUtils.h>\n'
+        self.body += f'#include <StructDeepCopyGenerated.h>\n\n'
+        self.body += f'namespace OVS {{\n'
+        self.body += f'namespace SignatureSerializer {{\n\n'
+
+        self.copy_pnext += f'void DeepCopyPNext(const void* pNextIn, Allocator& allocator, void** ppNextOut) {{\n'
+        self.copy_pnext += self.indent + f'if (!ppNextOut) {{\n'
+        self.copy_pnext += 2 * self.indent + f'return;\n'
+        self.copy_pnext += self.indent + f'}}\n\n'
+
+        self.copy_pnext += self.indent + f'if (!pNextIn) {{\n'
+        self.copy_pnext += 2 * self.indent + f'*ppNextOut = nullptr;\n'
+        self.copy_pnext += 2 * self.indent + f'return;\n'
+        self.copy_pnext += self.indent + f'}}\n\n'
+
+        self.copy_pnext += self.indent + f'const VkBaseInStructure* pNextStruct = reinterpret_cast<const VkBaseInStructure*>(pNextIn);\n'
+        self.copy_pnext += self.indent + f'switch (pNextStruct->sType) {{\n'
+
+    def endFile(self):
+        self.copy_pnext += 2 * self.indent + f'case VK_STRUCTURE_TYPE_LOADER_INSTANCE_CREATE_INFO: {{\n'
+        self.copy_pnext += 3 * self.indent +     f'const VkLayerInstanceCreateInfo* pNextStructIn = reinterpret_cast<const VkLayerInstanceCreateInfo*>(pNextStruct);\n'
+        self.copy_pnext += 3 * self.indent +     f'VkLayerInstanceCreateInfo* pNextStructOut = allocator.Allocate<VkLayerInstanceCreateInfo>();\n'
+        self.copy_pnext += 3 * self.indent +     f'DeepCopy(*pNextStructIn, allocator, *pNextStructOut);\n'
+        self.copy_pnext += 3 * self.indent +     f'*ppNextOut = pNextStructOut;\n'
+        self.copy_pnext += 3 * self.indent +     f'break;\n'
+        self.copy_pnext += 2 * self.indent + f'}}\n'
+        self.copy_pnext += 2 * self.indent + f'case VK_STRUCTURE_TYPE_LOADER_DEVICE_CREATE_INFO: {{\n'
+        self.copy_pnext += 3 * self.indent +     f'const VkLayerDeviceCreateInfo* pNextStructIn = reinterpret_cast<const VkLayerDeviceCreateInfo*>(pNextStruct);\n'
+        self.copy_pnext += 3 * self.indent +     f'VkLayerDeviceCreateInfo* pNextStructOut = allocator.Allocate<VkLayerDeviceCreateInfo>();\n'
+        self.copy_pnext += 3 * self.indent +     f'DeepCopy(*pNextStructIn, allocator, *pNextStructOut);\n'
+        self.copy_pnext += 3 * self.indent +     f'*ppNextOut = pNextStructOut;\n'
+        self.copy_pnext += 3 * self.indent +     f'break;\n'
+        self.copy_pnext += 2 * self.indent + f'}}\n'
+        self.copy_pnext += 2 * self.indent + f'default: {{\n'
+        self.copy_pnext += 3 * self.indent +     f'const VkBaseInStructure* pNextStructIn = pNextStruct;\n'
+        self.copy_pnext += 3 * self.indent +     f'VkBaseInStructure* pNextStructOut = allocator.Allocate<VkBaseInStructure>();\n'
+        self.copy_pnext += 3 * self.indent +     f'DeepCopy(*pNextStructIn, allocator, *pNextStructOut);\n'
+        self.copy_pnext += 3 * self.indent +     f'*ppNextOut = pNextStructOut;\n'
+        self.copy_pnext += 3 * self.indent +     f'break;\n'
+        self.copy_pnext += 2 * self.indent + f'}}\n'
+        self.copy_pnext += self.indent + f'}}\n'
+        self.copy_pnext += f'}}\n'
+
+        self.copy_struct += f'void DeepCopy(const VkLayerInstanceCreateInfo& valueIn, Allocator& allocator, VkLayerInstanceCreateInfo& valueOut) {{\n'
+        self.copy_struct += self.indent + f'valueOut = valueIn;\n'
+        self.copy_struct += self.indent + f'DeepCopyPNext(valueIn.pNext, allocator, (void**)&valueOut.pNext);\n'
+        self.copy_struct += f'}}\n'
+        self.copy_struct += f'\n'
+        self.copy_struct += f'void DeepCopy(const VkLayerDeviceCreateInfo& valueIn, Allocator& allocator, VkLayerDeviceCreateInfo& valueOut) {{\n'
+        self.copy_struct += self.indent + f'valueOut = valueIn;\n'
+        self.copy_struct += self.indent + f'DeepCopyPNext(valueIn.pNext, allocator, (void**)&valueOut.pNext);\n'
+        self.copy_struct += f'}}\n'
+
+        self.body += self.copy_struct
+        self.body += f'\n'
+        self.body += self.copy_pnext
+        self.body += f'\n'
+        self.body += f'}} // namespace SignatureSerializer\n'
+        self.body += f'}} // namespace OVS'
+
+        self.outFile.write(self.body)
+
+        OutputGenerator.endFile(self)
+
+    def genType(self, typeinfo, name, alias):
+        OutputGenerator.genType(self, typeinfo, name, alias)
+
+        category = typeinfo.elem.get('category')
+        if category not in ('struct', 'union') or alias:
+            return
+
+        members = typeinfo.elem.findall('member')
+
+        self.copy_struct += f'void DeepCopy(const {name}& valueIn, Allocator& allocator, {name}& valueOut) {{\n'
+
+        memberInAccess = 'valueIn.'
+        memberOutAccess = 'valueOut.'
+        for i in range(len(members)):
+            member = members[i]
+            memberName = safeStr(member.find('name').text).strip()
+
+            self.copy_struct += genParamDeepCopy(member, self.registry, self.indent, memberInAccess, memberOutAccess)
+            if memberName == 'sType':
+                sTypeValue = member.get('values')
+                if sTypeValue is not None:
+                    enumProtect = None
+                    enumInfo = self.registry.lookupElementInfo(sTypeValue, self.registry.enumdict)
+                    if enumInfo is not None:
+                        enumElem = enumInfo.elem
+                        enumProtect = enumElem.get('protect')
+
+                    if enumProtect:
+                        self.copy_pnext += f'#ifdef {enumProtect}\n'
+
+                    self.copy_pnext += 2 * self.indent + f'case {sTypeValue}: {{\n'
+                    self.copy_pnext += 3 * self.indent +     f'const {name}* pNextStructIn = reinterpret_cast<const {name}*>(pNextStruct);\n'
+                    self.copy_pnext += 3 * self.indent +     f'{name}* pNextStructOut = allocator.Allocate<{name}>();\n'
+                    self.copy_pnext += 3 * self.indent +     f'DeepCopy(*pNextStructIn, allocator, *pNextStructOut);\n'
+                    self.copy_pnext += 3 * self.indent +     f'*ppNextOut = pNextStructOut;\n'
+                    self.copy_pnext += 3 * self.indent +     f'break;\n'
+                    self.copy_pnext += 2 * self.indent + f'}}\n'
+
+                    if enumProtect:
+                        self.copy_pnext += f'#endif\n'
+
+        self.copy_struct += f'}}\n\n'
 
 
 class COutputGeneratorStructDeserializeFromStream(OutputGenerator):
@@ -2783,6 +3135,34 @@ generate_targets = [
                        protectFeature=False,
                        conventions=vkconventions.VulkanConventions(),
                        filename='VulkanLayerAPITraceGenerated.h',
+                       directory='.',
+                       apiname='vulkan',
+                       defaultExtensions='vulkan',
+                       emitExtensions = '.*')],
+
+    [COutputGeneratorStructDeepCopyDeclaration,
+     CGeneratorOptions(prefixText='',
+                       apicall='VKAPI_ATTR ',
+                       apientry='VKAPI_CALL ',
+                       apientryp='VKAPI_PTR *',
+                       indentFuncProto=True,
+                       protectFeature=False,
+                       conventions=vkconventions.VulkanConventions(),
+                       filename='StructDeepCopyGenerated.h',
+                       directory='.',
+                       apiname='vulkan',
+                       defaultExtensions='vulkan',
+                       emitExtensions = '.*')],
+
+    [COutputGeneratorStructDeepCopy,
+     CGeneratorOptions(prefixText='',
+                       apicall='VKAPI_ATTR ',
+                       apientry='VKAPI_CALL ',
+                       apientryp='VKAPI_PTR *',
+                       indentFuncProto=True,
+                       protectFeature=False,
+                       conventions=vkconventions.VulkanConventions(),
+                       filename='StructDeepCopyGenerated.cpp',
                        directory='.',
                        apiname='vulkan',
                        defaultExtensions='vulkan',
