@@ -66,10 +66,13 @@ private:
         VkInstance instance{VK_NULL_HANDLE};
         VkPhysicalDeviceProperties properties{};
         VkPhysicalDeviceMemoryProperties memoryProperties{};
+        std::vector<VkQueueFamilyProperties> queueFamilyProperties;
     };
 
     struct DeviceInfo {
         VkPhysicalDevice physicalDevice{VK_NULL_HANDLE};
+        uint32_t transferQueueFamilyIndex{0};
+        VkQueue transferQueue{VK_NULL_HANDLE};
     };
 
     struct ShaderInfo {
@@ -81,6 +84,13 @@ private:
         std::vector<VkPushConstantRange> pushConstantRanges;
     };
 
+    struct ShaderProfileStorage {
+        VkBuffer localBuffer{VK_NULL_HANDLE};
+        VkBuffer stagingBuffer{VK_NULL_HANDLE};
+        VkDeviceMemory localMemory{VK_NULL_HANDLE};
+        VkDeviceMemory stagingMemory{VK_NULL_HANDLE};
+    };
+
     struct ShaderProfileInfo {
         VulkanShaderStage stage{VulkanShaderStage::Invalid};
         VkShaderModule origShader{VK_NULL_HANDLE};
@@ -90,11 +100,18 @@ private:
         uint32_t shaderBBCount{0};
         uint32_t profileSet{0};
         uint32_t profileBinding{0};
-        VkBuffer buffer{VK_NULL_HANDLE};
-        VkDeviceMemory memory{VK_NULL_HANDLE};
+        ShaderProfileStorage storage;
+    };
+
+    struct PipelineProfileCommandInfo {
+        VkQueue queue{VK_NULL_HANDLE};
+        VkCommandPool cmdPool{VK_NULL_HANDLE};
+        VkCommandBuffer cmdBuf{VK_NULL_HANDLE};
+        VkFence fence{VK_NULL_HANDLE};
     };
 
     struct PipelineProfileInfo {
+        VkDevice device{VK_NULL_HANDLE};
         VkPipelineBindPoint bindPoint{VK_PIPELINE_BIND_POINT_MAX_ENUM};
         VkPipeline origPipeline{VK_NULL_HANDLE};
         VkPipeline modifiedPipeline{VK_NULL_HANDLE};
@@ -103,6 +120,7 @@ private:
         VkDescriptorSetLayout profileSetLayout{VK_NULL_HANDLE};
         VkDescriptorPool profileDescriptorPool{VK_NULL_HANDLE};
         VkDescriptorSet profileDescriptorSet{VK_NULL_HANDLE};
+        PipelineProfileCommandInfo commandInfo;
         std::vector<ShaderProfileInfo> shaderInfos;
     };
 
@@ -130,8 +148,11 @@ private:
     bool CreateShaderProfileShader(VkDevice device, const VkAllocationCallbacks* pAllocator, const std::vector<uint32_t>& modifiedCode, VkShaderModule& shaderOut) const;
     void DestroyShaderProfileShader(VkDevice device, const VkAllocationCallbacks* pAllocator, VkShaderModule shader) const;
 
-    bool CreateShaderProfileStorage(VkDevice device, const VkAllocationCallbacks* pAllocator, uint32_t bbCount, VkBuffer& bufferOut, VkDeviceMemory& memoryOut) const;
-    void DestroyShaderProfileStorage(VkDevice device, const VkAllocationCallbacks* pAllocator, VkBuffer buffer, VkDeviceMemory memory) const;
+    bool CreateShaderProfileStorage(VkDevice device, const VkAllocationCallbacks* pAllocator, uint32_t bbCount, ShaderProfileStorage& storageOut) const;
+    void DestroyShaderProfileStorage(VkDevice device, const VkAllocationCallbacks* pAllocator, const ShaderProfileStorage& storage) const;
+
+    bool CreatePipelineProfileCommandInfo(VkDevice device, const VkAllocationCallbacks* pAllocator, PipelineProfileCommandInfo& commandInfoOut) const;
+    void DestroyPipelineProfileCommandInfo(VkDevice device, const VkAllocationCallbacks* pAllocator, const PipelineProfileCommandInfo& commandInfo) const;
 
     bool CreateProfileDescriptorSetLayout(VkDevice device, const VkAllocationCallbacks* pAllocator, const std::vector<ShaderProfileInfo>& shaderInfos, VkDescriptorSetLayout& setLayoutOut) const;
     void DestroyProfileDescriptorSetLayout(VkDevice device, const VkAllocationCallbacks* pAllocator, VkDescriptorSetLayout setLayout) const;

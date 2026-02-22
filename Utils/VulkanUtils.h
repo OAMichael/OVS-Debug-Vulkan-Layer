@@ -32,6 +32,11 @@ static void PatchDispatchKey(VkDevice device, VkCommandBuffer commandBuffer) {
     *reinterpret_cast<void**>(commandBuffer) = dispatchKey;
 }
 
+static void PatchDispatchKey(VkDevice device, VkQueue queue) {
+    void* dispatchKey = *reinterpret_cast<void**>(device);
+    *reinterpret_cast<void**>(queue) = dispatchKey;
+}
+
 static std::optional<uint32_t> GetMemoryTypeIndex(const VkPhysicalDeviceMemoryProperties& properties, uint32_t typeBits, VkMemoryPropertyFlags propertyFlags) {
     for (uint32_t i = 0; i < properties.memoryTypeCount; i++) {
         if ((typeBits & 1) == 1) {

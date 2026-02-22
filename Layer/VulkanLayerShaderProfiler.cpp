@@ -174,6 +174,12 @@ VkResult VulkanLayerShaderProfiler::vkEnumeratePhysicalDevices(VkInstance instan
             physicalDeviceInfo.instance = instance;
             next_->vkGetPhysicalDeviceProperties(physicalDevice, &physicalDeviceInfo.properties);
             next_->vkGetPhysicalDeviceMemoryProperties(physicalDevice, &physicalDeviceInfo.memoryProperties);
+
+            uint32_t queueFamilyCount = 0;
+            next_->vkGetPhysicalDeviceQueueFamilyProperties(physicalDevice, &queueFamilyCount, nullptr);
+
+            physicalDeviceInfo.queueFamilyProperties.resize(queueFamilyCount);
+            next_->vkGetPhysicalDeviceQueueFamilyProperties(physicalDevice, &queueFamilyCount, physicalDeviceInfo.queueFamilyProperties.data());
         }
     }
     return res;
@@ -192,15 +198,18 @@ VkResult VulkanLayerShaderProfiler::vkCreateDevice(VkPhysicalDevice physicalDevi
 
     uint32_t apiVersion = VK_API_VERSION_1_0;
     auto physicalDeviceIt = physicalDeviceInfoMap_.find(physicalDevice);
-    if (physicalDeviceIt != physicalDeviceInfoMap_.end()) {
-        const auto& physicalDeviceInfo = physicalDeviceIt->second;
-        VkInstance instance = physicalDeviceInfo.instance;
+    if (physicalDeviceIt == physicalDeviceInfoMap_.end()) {
+        std::cout << "VulkanLayerShaderProfiler::vkCreateDevice: Could not find physical device info\n";
+        return VK_ERROR_UNKNOWN;
+    }
 
-        auto instanceIt = instanceInfoMap_.find(instance);
-        if (instanceIt != instanceInfoMap_.end()) {
-            const auto& instanceInfo = instanceIt->second;
-            apiVersion = instanceInfo.apiVersion;
-        }
+    const auto& physicalDeviceInfo = physicalDeviceIt->second;
+    VkInstance instance = physicalDeviceInfo.instance;
+
+    auto instanceIt = instanceInfoMap_.find(instance);
+    if (instanceIt != instanceInfoMap_.end()) {
+        const auto& instanceInfo = instanceIt->second;
+        apiVersion = instanceInfo.apiVersion;
     }
 
     if (apiVersion < VK_API_VERSION_1_1) {
@@ -255,6 +264,45 @@ VkResult VulkanLayerShaderProfiler::vkCreateDevice(VkPhysicalDevice physicalDevi
 
         auto& deviceInfo = deviceInfoMap_[device];
         deviceInfo.physicalDevice = physicalDevice;
+
+        std::optional<uint32_t> graphicsTransferIndex;
+        std::optional<uint32_t> pureTransferIndex;
+
+        const auto& queueFamilyProperties = physicalDeviceInfo.queueFamilyProperties;
+        for (uint32_t i = 0; i < modifiedInfo.queueCreateInfoCount; ++i) {
+            const auto& queueCreateInfo = modifiedInfo.pQueueCreateInfos[i];
+            if (queueCreateInfo.queueCount == 0) {
+                continue;
+            }
+
+            uint32_t queueFamilyIndex = queueCreateInfo.queueFamilyIndex;
+            const auto& familyProperties = queueFamilyProperties[queueFamilyIndex];
+            VkQueueFlags queueFlags = familyProperties.queueFlags;
+
+            // Try find transfer only queue
+            if (queueFlags & VK_QUEUE_TRANSFER_BIT) {
+                if (queueFlags & (VK_QUEUE_GRAPHICS_BIT | VK_QUEUE_COMPUTE_BIT)) {
+                    graphicsTransferIndex = queueFamilyIndex;
+                }
+                else {
+                    pureTransferIndex = queueFamilyIndex;
+                    break;
+                }
+            }
+        }
+
+        uint32_t queueFamilyIndex = 0;
+        if (pureTransferIndex) {
+            queueFamilyIndex = pureTransferIndex.value();
+        }
+        else if (graphicsTransferIndex) {
+            queueFamilyIndex = graphicsTransferIndex.value();
+        }
+
+        deviceInfo.transferQueueFamilyIndex = queueFamilyIndex;
+        next_->vkGetDeviceQueue(device, queueFamilyIndex, 0, &deviceInfo.transferQueue);
+
+        PatchDispatchKey(device, deviceInfo.transferQueue);
     }
     return res;
 }
@@ -406,6 +454,16 @@ VkResult VulkanLayerShaderProfiler::vkCreateGraphicsPipelines(VkDevice device,
             continue;
         }
 
+        PipelineProfileCommandInfo commandInfo;
+        if (!CreatePipelineProfileCommandInfo(device, pAllocator, commandInfo)) {
+            std::cout << "VulkanLayerShaderProfiler::vkCreateGraphicsPipelines: Could not create profile command info\n";
+            DestroyProfilePipelineLayout(device, pAllocator, modifiedLayout);
+            DestroyProfileDescriptorPool(device, pAllocator, profileDescriptorPool);
+            DestroyProfileDescriptorSetLayout(device, pAllocator, profileSetLayout);
+            DestroyShaderProfileInfos(device, pAllocator, shaderProfileInfos);
+            continue;
+        }
+
         for (uint32_t i = 0; i < stageInfos.size(); ++i) {
             auto& stageInfo = stageInfos[i];
             auto& shaderInfo = shaderProfileInfos[i];
@@ -419,6 +477,7 @@ VkResult VulkanLayerShaderProfiler::vkCreateGraphicsPipelines(VkDevice device,
         VkResult vkres = next_->vkCreateGraphicsPipelines(device, pipelineCache, 1, &modifiedCreateInfo, pAllocator, &modifiedPipeline);
         if (vkres != VK_SUCCESS) {
             std::cout << "VulkanLayerShaderProfiler::vkCreateGraphicsPipelines: Could not create profile pipeline\n";
+            DestroyPipelineProfileCommandInfo(device, pAllocator, commandInfo);
             DestroyProfilePipelineLayout(device, pAllocator, modifiedLayout);
             DestroyProfileDescriptorPool(device, pAllocator, profileDescriptorPool);
             DestroyProfileDescriptorSetLayout(device, pAllocator, profileSetLayout);
@@ -427,6 +486,7 @@ VkResult VulkanLayerShaderProfiler::vkCreateGraphicsPipelines(VkDevice device,
         }
 
         auto& pipelineProfileInfo = pipelineProfileInfoMap_[origPipeline];
+        pipelineProfileInfo.device = device;
         pipelineProfileInfo.bindPoint = VK_PIPELINE_BIND_POINT_GRAPHICS;
         pipelineProfileInfo.origPipeline = origPipeline;
         pipelineProfileInfo.modifiedPipeline = modifiedPipeline;
@@ -435,6 +495,7 @@ VkResult VulkanLayerShaderProfiler::vkCreateGraphicsPipelines(VkDevice device,
         pipelineProfileInfo.profileSetLayout = profileSetLayout;
         pipelineProfileInfo.profileDescriptorPool = profileDescriptorPool;
         pipelineProfileInfo.profileDescriptorSet = profileDescriptorSet;
+        pipelineProfileInfo.commandInfo = commandInfo;
         pipelineProfileInfo.shaderInfos = std::move(shaderProfileInfos);
     }
 
@@ -534,6 +595,16 @@ VkResult VulkanLayerShaderProfiler::vkCreateComputePipelines(VkDevice device,
             continue;
         }
 
+        PipelineProfileCommandInfo commandInfo;
+        if (!CreatePipelineProfileCommandInfo(device, pAllocator, commandInfo)) {
+            std::cout << "VulkanLayerShaderProfiler::vkCreateComputePipelines: Could not create profile command info\n";
+            DestroyProfilePipelineLayout(device, pAllocator, modifiedLayout);
+            DestroyProfileDescriptorPool(device, pAllocator, profileDescriptorPool);
+            DestroyProfileDescriptorSetLayout(device, pAllocator, profileSetLayout);
+            DestroyShaderProfileInfos(device, pAllocator, shaderProfileInfos);
+            continue;
+        }
+
         auto& stageInfo = stageInfos[0];
         auto& shaderInfo = shaderProfileInfos[0];
         stageInfo.module = shaderInfo.modifiedShader;
@@ -545,6 +616,7 @@ VkResult VulkanLayerShaderProfiler::vkCreateComputePipelines(VkDevice device,
         VkResult vkres = next_->vkCreateComputePipelines(device, pipelineCache, 1, &modifiedCreateInfo, pAllocator, &modifiedPipeline);
         if (vkres != VK_SUCCESS) {
             std::cout << "VulkanLayerShaderProfiler::vkCreateComputePipelines: Could not create profile pipeline\n";
+            DestroyPipelineProfileCommandInfo(device, pAllocator, commandInfo);
             DestroyProfilePipelineLayout(device, pAllocator, modifiedLayout);
             DestroyProfileDescriptorPool(device, pAllocator, profileDescriptorPool);
             DestroyProfileDescriptorSetLayout(device, pAllocator, profileSetLayout);
@@ -553,6 +625,7 @@ VkResult VulkanLayerShaderProfiler::vkCreateComputePipelines(VkDevice device,
         }
 
         auto& pipelineProfileInfo = pipelineProfileInfoMap_[origPipeline];
+        pipelineProfileInfo.device = device;
         pipelineProfileInfo.bindPoint = VK_PIPELINE_BIND_POINT_COMPUTE;
         pipelineProfileInfo.origPipeline = origPipeline;
         pipelineProfileInfo.modifiedPipeline = modifiedPipeline;
@@ -561,6 +634,7 @@ VkResult VulkanLayerShaderProfiler::vkCreateComputePipelines(VkDevice device,
         pipelineProfileInfo.profileSetLayout = profileSetLayout;
         pipelineProfileInfo.profileDescriptorPool = profileDescriptorPool;
         pipelineProfileInfo.profileDescriptorSet = profileDescriptorSet;
+        pipelineProfileInfo.commandInfo = commandInfo;
         pipelineProfileInfo.shaderInfos = std::move(shaderProfileInfos);
     }
 
@@ -663,6 +737,16 @@ VkResult VulkanLayerShaderProfiler::vkCreateRayTracingPipelinesKHR(VkDevice devi
             continue;
         }
 
+        PipelineProfileCommandInfo commandInfo;
+        if (!CreatePipelineProfileCommandInfo(device, pAllocator, commandInfo)) {
+            std::cout << "VulkanLayerShaderProfiler::vkCreateRayTracingPipelinesKHR: Could not create profile command info\n";
+            DestroyProfilePipelineLayout(device, pAllocator, modifiedLayout);
+            DestroyProfileDescriptorPool(device, pAllocator, profileDescriptorPool);
+            DestroyProfileDescriptorSetLayout(device, pAllocator, profileSetLayout);
+            DestroyShaderProfileInfos(device, pAllocator, shaderProfileInfos);
+            continue;
+        }
+
         for (uint32_t i = 0; i < stageInfos.size(); ++i) {
             auto& stageInfo = stageInfos[i];
             auto& shaderInfo = shaderProfileInfos[i];
@@ -676,6 +760,7 @@ VkResult VulkanLayerShaderProfiler::vkCreateRayTracingPipelinesKHR(VkDevice devi
         VkResult vkres = next_->vkCreateRayTracingPipelinesKHR(device, deferredOperation, pipelineCache, 1, &modifiedCreateInfo, pAllocator, &modifiedPipeline);
         if (vkres != VK_SUCCESS) {
             std::cout << "VulkanLayerShaderProfiler::vkCreateRayTracingPipelinesKHR: Could not create profile pipeline\n";
+            DestroyPipelineProfileCommandInfo(device, pAllocator, commandInfo);
             DestroyProfilePipelineLayout(device, pAllocator, modifiedLayout);
             DestroyProfileDescriptorPool(device, pAllocator, profileDescriptorPool);
             DestroyProfileDescriptorSetLayout(device, pAllocator, profileSetLayout);
@@ -684,6 +769,7 @@ VkResult VulkanLayerShaderProfiler::vkCreateRayTracingPipelinesKHR(VkDevice devi
         }
 
         auto& pipelineProfileInfo = pipelineProfileInfoMap_[origPipeline];
+        pipelineProfileInfo.device = device;
         pipelineProfileInfo.bindPoint = VK_PIPELINE_BIND_POINT_RAY_TRACING_KHR;
         pipelineProfileInfo.origPipeline = origPipeline;
         pipelineProfileInfo.modifiedPipeline = modifiedPipeline;
@@ -692,6 +778,7 @@ VkResult VulkanLayerShaderProfiler::vkCreateRayTracingPipelinesKHR(VkDevice devi
         pipelineProfileInfo.profileSetLayout = profileSetLayout;
         pipelineProfileInfo.profileDescriptorPool = profileDescriptorPool;
         pipelineProfileInfo.profileDescriptorSet = profileDescriptorSet;
+        pipelineProfileInfo.commandInfo = commandInfo;
         pipelineProfileInfo.shaderInfos = std::move(shaderProfileInfos);
     }
 
@@ -706,6 +793,7 @@ void VulkanLayerShaderProfiler::vkDestroyPipeline(VkDevice device, VkPipeline pi
 
         CollectProfileData(device, pipelineProfileInfo);
         next_->vkDestroyPipeline(device, pipelineProfileInfo.modifiedPipeline, pAllocator);
+        DestroyPipelineProfileCommandInfo(device, pAllocator, pipelineProfileInfo.commandInfo);
         DestroyProfilePipelineLayout(device, pAllocator, pipelineProfileInfo.modifiedLayout);
         DestroyProfileDescriptorPool(device, pAllocator, pipelineProfileInfo.profileDescriptorPool);
         DestroyProfileDescriptorSetLayout(device, pAllocator, pipelineProfileInfo.profileSetLayout);
@@ -811,9 +899,8 @@ bool VulkanLayerShaderProfiler::CreateShaderProfileInfo(VkDevice device, const V
         return false;
     }
 
-    VkBuffer buffer = VK_NULL_HANDLE;
-    VkDeviceMemory memory = VK_NULL_HANDLE;
-    if (!CreateShaderProfileStorage(device, pAllocator, bbCount, buffer, memory)) {
+    ShaderProfileStorage storage;
+    if (!CreateShaderProfileStorage(device, pAllocator, bbCount, storage)) {
         std::cout << "VulkanLayerShaderProfiler::CreateShaderProfileInfo: Could not create shader profile storage\n";
         DestroyShaderProfileShader(device, pAllocator, modifiedShader);
         return false;
@@ -827,14 +914,13 @@ bool VulkanLayerShaderProfiler::CreateShaderProfileInfo(VkDevice device, const V
     shaderInfoOut.shaderBBCount = bbCount;
     shaderInfoOut.profileSet = profileSet;
     shaderInfoOut.profileBinding = profileBinding;
-    shaderInfoOut.buffer = buffer;
-    shaderInfoOut.memory = memory;
+    shaderInfoOut.storage = storage;
     return true;
 }
 
 void VulkanLayerShaderProfiler::DestroyShaderProfileInfo(VkDevice device, const VkAllocationCallbacks* pAllocator, const ShaderProfileInfo& shaderInfo) const
 {
-    DestroyShaderProfileStorage(device, pAllocator, shaderInfo.buffer, shaderInfo.memory);
+    DestroyShaderProfileStorage(device, pAllocator, shaderInfo.storage);
     DestroyShaderProfileShader(device, pAllocator, shaderInfo.modifiedShader);
 }
 
@@ -1186,7 +1272,7 @@ void VulkanLayerShaderProfiler::DestroyShaderProfileShader(VkDevice device, cons
     next_->vkDestroyShaderModule(device, shader, pAllocator);
 }
 
-bool VulkanLayerShaderProfiler::CreateShaderProfileStorage(VkDevice device, const VkAllocationCallbacks* pAllocator, uint32_t bbCount, VkBuffer& bufferOut, VkDeviceMemory& memoryOut) const
+bool VulkanLayerShaderProfiler::CreateShaderProfileStorage(VkDevice device, const VkAllocationCallbacks* pAllocator, uint32_t bbCount, ShaderProfileStorage& storageOut) const
 {
     auto deviceInfoIt = deviceInfoMap_.find(device);
     if (deviceInfoIt == deviceInfoMap_.end()) {
@@ -1206,58 +1292,154 @@ bool VulkanLayerShaderProfiler::CreateShaderProfileStorage(VkDevice device, cons
     const auto& physicalDeviceInfo = physicalDeviceInfoIt->second;
     const auto& memoryProperties = physicalDeviceInfo.memoryProperties;
 
+    ShaderProfileStorage storage;
+
     VkBufferCreateInfo bci{};
     bci.sType = VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO;
-    bci.usage = VK_BUFFER_USAGE_STORAGE_BUFFER_BIT;
+    bci.usage = VK_BUFFER_USAGE_STORAGE_BUFFER_BIT | VK_BUFFER_USAGE_TRANSFER_SRC_BIT;
     bci.size = bbCount * sizeof(uint32_t);
 
-    VkBuffer buffer = VK_NULL_HANDLE;
-    VkResult vkres = next_->vkCreateBuffer(device, &bci, pAllocator, &buffer);
+    VkResult vkres = next_->vkCreateBuffer(device, &bci, pAllocator, &storage.localBuffer);
     if (vkres != VK_SUCCESS) {
-        std::cout << "VulkanLayerShaderProfiler::CreateShaderProfileStorage: Could not create buffer for shader\n";
+        std::cout << "VulkanLayerShaderProfiler::CreateShaderProfileStorage: Could not create local buffer for shader\n";
+        DestroyShaderProfileStorage(device, pAllocator, storage);
         return false;
     }
 
-    VkMemoryRequirements memReqs{};
-    next_->vkGetBufferMemoryRequirements(device, buffer, &memReqs);
+    bci.usage = VK_BUFFER_USAGE_TRANSFER_DST_BIT;
 
-    auto memoryTypeIndex = GetMemoryTypeIndex(memoryProperties, memReqs.memoryTypeBits, VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT);
-    if (!memoryTypeIndex) {
+    vkres = next_->vkCreateBuffer(device, &bci, pAllocator, &storage.stagingBuffer);
+    if (vkres != VK_SUCCESS) {
+        std::cout << "VulkanLayerShaderProfiler::CreateShaderProfileStorage: Could not create staging buffer for shader\n";
+        DestroyShaderProfileStorage(device, pAllocator, storage);
+        return false;
+    }
+
+    VkMemoryRequirements localMemReqs{};
+    VkMemoryRequirements stagingMemReqs{};
+    next_->vkGetBufferMemoryRequirements(device, storage.localBuffer, &localMemReqs);
+    next_->vkGetBufferMemoryRequirements(device, storage.stagingBuffer, &stagingMemReqs);
+
+    auto localMemoryTypeIndex = GetMemoryTypeIndex(memoryProperties, localMemReqs.memoryTypeBits, VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
+    auto stagingMemoryTypeIndex = GetMemoryTypeIndex(memoryProperties, localMemReqs.memoryTypeBits, VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT);
+
+    if (!localMemoryTypeIndex) {
+        std::cout << "VulkanLayerShaderProfiler::CreateShaderProfileStorage: Could not find memory type with VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT\n";
+        DestroyShaderProfileStorage(device, pAllocator, storage);
+        return false;
+    }
+
+    if (!stagingMemoryTypeIndex) {
         std::cout << "VulkanLayerShaderProfiler::CreateShaderProfileStorage: Could not find memory type with VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT\n";
-        next_->vkDestroyBuffer(device, buffer, pAllocator);
+        DestroyShaderProfileStorage(device, pAllocator, storage);
         return false;
     }
 
     VkMemoryAllocateInfo mai{};
     mai.sType = VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO;
-    mai.allocationSize = memReqs.size;
-    mai.memoryTypeIndex = memoryTypeIndex.value();
+    mai.allocationSize = localMemReqs.size;
+    mai.memoryTypeIndex = localMemoryTypeIndex.value();
 
-    VkDeviceMemory memory = VK_NULL_HANDLE;
-    vkres = next_->vkAllocateMemory(device, &mai, pAllocator, &memory);
+    vkres = next_->vkAllocateMemory(device, &mai, pAllocator, &storage.localMemory);
     if (vkres != VK_SUCCESS) {
-        std::cout << "VulkanLayerShaderProfiler::CreateShaderProfileStorage: Could not allocate memory for shader\n";
-        next_->vkDestroyBuffer(device, buffer, pAllocator);
+        std::cout << "VulkanLayerShaderProfiler::CreateShaderProfileStorage: Could not allocate local memory for shader\n";
+        DestroyShaderProfileStorage(device, pAllocator, storage);
         return false;
     }
 
-    vkres = next_->vkBindBufferMemory(device, buffer, memory, 0);
+    mai.allocationSize = stagingMemReqs.size;
+    mai.memoryTypeIndex = stagingMemoryTypeIndex.value();
+
+    vkres = next_->vkAllocateMemory(device, &mai, pAllocator, &storage.stagingMemory);
     if (vkres != VK_SUCCESS) {
-        std::cout << "VulkanLayerShaderProfiler::CreateShaderProfileStorage: Could not bind buffer to memory\n";
-        next_->vkFreeMemory(device, memory, pAllocator);
-        next_->vkDestroyBuffer(device, buffer, pAllocator);
+        std::cout << "VulkanLayerShaderProfiler::CreateShaderProfileStorage: Could not allocate staging memory for shader\n";
+        DestroyShaderProfileStorage(device, pAllocator, storage);
         return false;
     }
 
-    bufferOut = buffer;
-    memoryOut = memory;
+    vkres = next_->vkBindBufferMemory(device, storage.localBuffer, storage.localMemory, 0);
+    if (vkres != VK_SUCCESS) {
+        std::cout << "VulkanLayerShaderProfiler::CreateShaderProfileStorage: Could not bind local buffer to local memory\n";
+        DestroyShaderProfileStorage(device, pAllocator, storage);
+        return false;
+    }
+
+    vkres = next_->vkBindBufferMemory(device, storage.stagingBuffer, storage.stagingMemory, 0);
+    if (vkres != VK_SUCCESS) {
+        std::cout << "VulkanLayerShaderProfiler::CreateShaderProfileStorage: Could not bind staging buffer to staging memory\n";
+        DestroyShaderProfileStorage(device, pAllocator, storage);
+        return false;
+    }
+
+    storageOut = storage;
     return true;
 }
 
-void VulkanLayerShaderProfiler::DestroyShaderProfileStorage(VkDevice device, const VkAllocationCallbacks* pAllocator, VkBuffer buffer, VkDeviceMemory memory) const
+void VulkanLayerShaderProfiler::DestroyShaderProfileStorage(VkDevice device, const VkAllocationCallbacks* pAllocator, const ShaderProfileStorage& storage) const
 {
-    next_->vkFreeMemory(device, memory, pAllocator);
-    next_->vkDestroyBuffer(device, buffer, pAllocator);
+    next_->vkFreeMemory(device, storage.localMemory, pAllocator);
+    next_->vkFreeMemory(device, storage.stagingMemory, pAllocator);
+    next_->vkDestroyBuffer(device, storage.localBuffer, pAllocator);
+    next_->vkDestroyBuffer(device, storage.stagingBuffer, pAllocator);
+}
+
+bool VulkanLayerShaderProfiler::CreatePipelineProfileCommandInfo(VkDevice device, const VkAllocationCallbacks* pAllocator, PipelineProfileCommandInfo& commandInfoOut) const
+{
+    auto deviceInfoIt = deviceInfoMap_.find(device);
+    if (deviceInfoIt == deviceInfoMap_.end()) {
+        std::cout << "VulkanLayerShaderProfiler::CreatePipelineProfileCommandInfo: Could not find device info\n";
+        return false;
+    }
+
+    const auto& deviceInfo = deviceInfoIt->second;
+
+    PipelineProfileCommandInfo commandInfo;
+    commandInfo.queue = deviceInfo.transferQueue;
+
+    VkCommandPoolCreateInfo cpci{};
+    cpci.sType = VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO;
+    cpci.queueFamilyIndex = deviceInfo.transferQueueFamilyIndex;
+
+    VkResult vkres = next_->vkCreateCommandPool(device, &cpci, pAllocator, &commandInfo.cmdPool);
+    if (vkres != VK_SUCCESS) {
+        std::cout << "VulkanLayerShaderProfiler::CreatePipelineProfileCommandInfo: Could not create command pool\n";
+        DestroyPipelineProfileCommandInfo(device, pAllocator, commandInfo);
+        return false;
+    }
+
+    VkCommandBufferAllocateInfo cbai{};
+    cbai.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
+    cbai.commandPool = commandInfo.cmdPool;
+    cbai.level = VK_COMMAND_BUFFER_LEVEL_PRIMARY;
+    cbai.commandBufferCount = 1;
+
+    vkres = next_->vkAllocateCommandBuffers(device, &cbai, &commandInfo.cmdBuf);
+    if (vkres != VK_SUCCESS) {
+        std::cout << "VulkanLayerShaderProfiler::CreatePipelineProfileCommandInfo: Could not allocate command buffer\n";
+        DestroyPipelineProfileCommandInfo(device, pAllocator, commandInfo);
+        return false;
+    }
+
+    PatchDispatchKey(device, commandInfo.cmdBuf);
+
+    VkFenceCreateInfo fci{};
+    fci.sType = VK_STRUCTURE_TYPE_FENCE_CREATE_INFO;
+
+    vkres = next_->vkCreateFence(device, &fci, pAllocator, &commandInfo.fence);
+    if (vkres != VK_SUCCESS) {
+        std::cout << "VulkanLayerShaderProfiler::CreatePipelineProfileCommandInfo: Could not create fence\n";
+        DestroyPipelineProfileCommandInfo(device, pAllocator, commandInfo);
+        return false;
+    }
+
+    commandInfoOut = commandInfo;
+    return true;
+}
+
+void VulkanLayerShaderProfiler::DestroyPipelineProfileCommandInfo(VkDevice device, const VkAllocationCallbacks* pAllocator, const PipelineProfileCommandInfo& commandInfo) const
+{
+    next_->vkDestroyCommandPool(device, commandInfo.cmdPool, pAllocator);
+    next_->vkDestroyFence(device, commandInfo.fence, pAllocator);
 }
 
 bool VulkanLayerShaderProfiler::CreateProfileDescriptorSetLayout(VkDevice device, const VkAllocationCallbacks* pAllocator, const std::vector<ShaderProfileInfo>& shaderInfos, VkDescriptorSetLayout& setLayoutOut) const
@@ -1349,7 +1531,7 @@ bool VulkanLayerShaderProfiler::SetupProfileDescriptorSet(VkDevice device, const
         auto& descriptorWrite = descriptorWrites[i];
         auto& descriptorBufferInfo = descriptorBufferInfos[i];
 
-        descriptorBufferInfo.buffer = shaderInfo.buffer;
+        descriptorBufferInfo.buffer = shaderInfo.storage.localBuffer;
         descriptorBufferInfo.offset = 0;
         descriptorBufferInfo.range = VK_WHOLE_SIZE;
 
@@ -1445,6 +1627,63 @@ bool VulkanLayerShaderProfiler::CollectProfileData(VkDevice device, const Pipeli
     collectedProfileInfo.bindPoint = pipelineProfileInfo.bindPoint;
     collectedProfileInfo.pipeline = pipelineProfileInfo.origPipeline;
 
+    const auto& commandInfo = pipelineProfileInfo.commandInfo;
+
+    VkCommandBufferBeginInfo cbbi{};
+    cbbi.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;
+    cbbi.flags = VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT;
+
+    VkResult vkres = next_->vkBeginCommandBuffer(commandInfo.cmdBuf, &cbbi);
+    if (vkres != VK_SUCCESS) {
+        std::cout << "VulkanLayerShaderProfiler::CollectProfileData: Could not begin command buffer\n";
+        return false;
+    }
+
+    for (const auto& shaderInfo : pipelineProfileInfo.shaderInfos) {
+        uint32_t bbCount = shaderInfo.shaderBBCount;
+        VkBuffer localBuffer = shaderInfo.storage.localBuffer;
+        VkBuffer stagingBuffer = shaderInfo.storage.stagingBuffer;
+
+        VkBufferCopy bufferCopy{};
+        bufferCopy.size = bbCount * sizeof(uint32_t);
+        next_->vkCmdCopyBuffer(commandInfo.cmdBuf, localBuffer, stagingBuffer, 1, &bufferCopy);
+    }
+
+    vkres = next_->vkEndCommandBuffer(commandInfo.cmdBuf);
+    if (vkres != VK_SUCCESS) {
+        std::cout << "VulkanLayerShaderProfiler::CollectProfileData: Could not end command buffer\n";
+        return false;
+    }
+
+    VkSubmitInfo submitInfo{};
+    submitInfo.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
+    submitInfo.commandBufferCount = 1;
+    submitInfo.pCommandBuffers = &commandInfo.cmdBuf;
+
+    vkres = next_->vkQueueSubmit(commandInfo.queue, 1, &submitInfo, commandInfo.fence);
+    if (vkres != VK_SUCCESS) {
+        std::cout << "VulkanLayerShaderProfiler::CollectProfileData: Could not submit command buffer\n";
+        return false;
+    }
+
+    vkres = next_->vkWaitForFences(device, 1, &commandInfo.fence, VK_TRUE, UINT64_MAX);
+    if (vkres != VK_SUCCESS) {
+        std::cout << "VulkanLayerShaderProfiler::CollectProfileData: Could not wait for fence\n";
+        return false;
+    }
+
+    vkres = next_->vkResetFences(device, 1, &commandInfo.fence);
+    if (vkres != VK_SUCCESS) {
+        std::cout << "VulkanLayerShaderProfiler::CollectProfileData: Could not reset fence\n";
+        return false;
+    }
+
+    vkres = next_->vkResetCommandPool(device, commandInfo.cmdPool, 0);
+    if (vkres != VK_SUCCESS) {
+        std::cout << "VulkanLayerShaderProfiler::CollectProfileData: Could not reset command pool\n";
+        return false;
+    }
+
     for (const auto& shaderInfo : pipelineProfileInfo.shaderInfos) {
         CollectedShaderProfileInfo collectedShaderInfo;
         collectedShaderInfo.stage = shaderInfo.stage;
@@ -1453,7 +1692,7 @@ bool VulkanLayerShaderProfiler::CollectProfileData(VkDevice device, const Pipeli
 
         auto& profileData = collectedShaderInfo.profileData;
 
-        VkDeviceMemory memory = shaderInfo.memory;
+        VkDeviceMemory memory = shaderInfo.storage.stagingMemory;
         uint32_t bbCount = shaderInfo.shaderBBCount;
 
         void* pData = nullptr;
