@@ -128,7 +128,7 @@ private:
         VulkanShaderStage stage{VulkanShaderStage::Invalid};
         VkShaderModule shader{VK_NULL_HANDLE};
         std::vector<uint32_t> code;
-        std::vector<uint32_t> profileData;
+        std::vector<uint64_t> profileData;
     };
 
     struct CollectedPipelineProfileInfo {

@@ -146,12 +146,45 @@ VulkanLayerShaderProfiler::~VulkanLayerShaderProfiler()
 
 VkResult VulkanLayerShaderProfiler::vkCreateInstance(const VkInstanceCreateInfo* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkInstance* pInstance)
 {
-    VkResult res = next_->vkCreateInstance(pCreateInfo, pAllocator, pInstance);
+    static std::unordered_map<const char*, uint32_t> sExtensionPromotionMap = {
+        {VK_KHR_GET_PHYSICAL_DEVICE_PROPERTIES_2_EXTENSION_NAME, VK_API_VERSION_1_1},
+    };
+
+    VkInstanceCreateInfo modifiedInfo = *pCreateInfo;
+
+    const char* const* extensionsBegin = modifiedInfo.ppEnabledExtensionNames;
+    const char* const* extensionsEnd = extensionsBegin + modifiedInfo.enabledExtensionCount;
+    std::vector<const char*> extensions(extensionsBegin, extensionsEnd);
+
+    uint32_t apiVersion = modifiedInfo.pApplicationInfo->apiVersion;
+
+    for (const auto& [extName, promotionVersion] : sExtensionPromotionMap) {
+        if (apiVersion >= promotionVersion) {
+            continue;
+        }
+
+        bool hasExtension = false;
+        for (const auto& extension : extensions) {
+            if (!std::strcmp(extension, extName)) {
+                hasExtension = true;
+                break;
+            }
+        }
+
+        if (!hasExtension) {
+            extensions.push_back(extName);
+        }
+    }
+
+    modifiedInfo.ppEnabledExtensionNames = extensions.data();
+    modifiedInfo.enabledExtensionCount = extensions.size();
+
+    VkResult res = next_->vkCreateInstance(&modifiedInfo, pAllocator, pInstance);
     if (res == VK_SUCCESS) {
         VkInstance instance = *pInstance;
 
         auto& instanceInfo = instanceInfoMap_[instance];
-        instanceInfo.apiVersion = pCreateInfo->pApplicationInfo->apiVersion;
+        instanceInfo.apiVersion = apiVersion;
     }
     return res;
 }
@@ -187,11 +220,15 @@ VkResult VulkanLayerShaderProfiler::vkEnumeratePhysicalDevices(VkInstance instan
 
 VkResult VulkanLayerShaderProfiler::vkCreateDevice(VkPhysicalDevice physicalDevice, const VkDeviceCreateInfo* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkDevice* pDevice)
 {
+    static std::unordered_map<const char*, uint32_t> sExtensionPromotionMap = {
+        {VK_KHR_STORAGE_BUFFER_STORAGE_CLASS_EXTENSION_NAME, VK_API_VERSION_1_1},
+        {VK_KHR_SHADER_ATOMIC_INT64_EXTENSION_NAME,          VK_API_VERSION_1_2},
+    };
+
     VkDeviceCreateInfo modifiedInfo{};
     SignatureSerializer::Allocator allocator;
     SignatureSerializer::DeepCopy(*pCreateInfo, allocator, modifiedInfo);
 
-    // VK_KHR_storage_buffer_storage_class extension
     const char* const* extensionsBegin = modifiedInfo.ppEnabledExtensionNames;
     const char* const* extensionsEnd = extensionsBegin + modifiedInfo.enabledExtensionCount;
     std::vector<const char*> extensions(extensionsBegin, extensionsEnd);
@@ -212,26 +249,33 @@ VkResult VulkanLayerShaderProfiler::vkCreateDevice(VkPhysicalDevice physicalDevi
         apiVersion = instanceInfo.apiVersion;
     }
 
-    if (apiVersion < VK_API_VERSION_1_1) {
+    for (const auto& [extName, promotionVersion] : sExtensionPromotionMap) {
+        if (apiVersion >= promotionVersion) {
+            continue;
+        }
+
         bool hasExtension = false;
         for (const auto& extension : extensions) {
-            if (!std::strcmp(extension, VK_KHR_STORAGE_BUFFER_STORAGE_CLASS_EXTENSION_NAME)) {
+            if (!std::strcmp(extension, extName)) {
                 hasExtension = true;
                 break;
             }
         }
 
         if (!hasExtension) {
-            extensions.push_back(VK_KHR_STORAGE_BUFFER_STORAGE_CLASS_EXTENSION_NAME);
-            modifiedInfo.ppEnabledExtensionNames = extensions.data();
-            modifiedInfo.enabledExtensionCount = extensions.size();
+            extensions.push_back(extName);
         }
     }
 
-    bool hasFeatures = false;
-    VkPhysicalDeviceFeatures features{};
+    modifiedInfo.ppEnabledExtensionNames = extensions.data();
+    modifiedInfo.enabledExtensionCount = extensions.size();
 
-    // vertexPipelineStoresAndAtomics and fragmentStoresAndAtomics features
+    bool hasFeatures = false;
+    bool hasAtomicFeatures = false;
+    VkPhysicalDeviceFeatures features{};
+    VkPhysicalDeviceShaderAtomicInt64Features atomicFeatures{};
+
+    // vertexPipelineStoresAndAtomics, fragmentStoresAndAtomics and shaderInt64 features
     const void* pNext = GetStructFromPNextChain(VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FEATURES_2, modifiedInfo.pNext);
     if (pNext) {
         // It's our own memory, can edit it
@@ -239,6 +283,7 @@ VkResult VulkanLayerShaderProfiler::vkCreateDevice(VkPhysicalDevice physicalDevi
         VkPhysicalDeviceFeatures2& features2 = *const_cast<VkPhysicalDeviceFeatures2*>(pFeatures2);
         features2.features.vertexPipelineStoresAndAtomics = VK_TRUE;
         features2.features.fragmentStoresAndAtomics = VK_TRUE;
+        features2.features.shaderInt64 = VK_TRUE;
 
         hasFeatures = true;
     }
@@ -247,6 +292,7 @@ VkResult VulkanLayerShaderProfiler::vkCreateDevice(VkPhysicalDevice physicalDevi
         features = *modifiedInfo.pEnabledFeatures;
         features.vertexPipelineStoresAndAtomics = VK_TRUE;
         features.fragmentStoresAndAtomics = VK_TRUE;
+        features.shaderInt64 = VK_TRUE;
         modifiedInfo.pEnabledFeatures = &features;
 
         hasFeatures = true;
@@ -255,7 +301,36 @@ VkResult VulkanLayerShaderProfiler::vkCreateDevice(VkPhysicalDevice physicalDevi
     if (!hasFeatures) {
         features.vertexPipelineStoresAndAtomics = VK_TRUE;
         features.fragmentStoresAndAtomics = VK_TRUE;
+        features.shaderInt64 = VK_TRUE;
         modifiedInfo.pEnabledFeatures = &features;
+    }
+
+    // shaderBufferInt64Atomics feature
+    pNext = GetStructFromPNextChain(VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_1_2_FEATURES , modifiedInfo.pNext);
+    if (pNext) {
+        const VkPhysicalDeviceVulkan12Features* pFeatures12 = reinterpret_cast<const VkPhysicalDeviceVulkan12Features*>(pNext);
+        VkPhysicalDeviceVulkan12Features& features12 = *const_cast<VkPhysicalDeviceVulkan12Features*>(pFeatures12);
+        features12.shaderBufferInt64Atomics = VK_TRUE;
+
+        hasAtomicFeatures = true;
+    }
+    else {
+        pNext = GetStructFromPNextChain(VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_ATOMIC_INT64_FEATURES , modifiedInfo.pNext);
+        if (pNext) {
+            const VkPhysicalDeviceShaderAtomicInt64Features* pShaderAtomicFeatures = reinterpret_cast<const VkPhysicalDeviceShaderAtomicInt64Features*>(pNext);
+            VkPhysicalDeviceShaderAtomicInt64Features& shaderAtomicFeatures = *const_cast<VkPhysicalDeviceShaderAtomicInt64Features*>(pShaderAtomicFeatures);
+            shaderAtomicFeatures.shaderBufferInt64Atomics = VK_TRUE;
+
+            hasAtomicFeatures = true;
+        }
+    }
+
+    if (!hasAtomicFeatures) {
+        atomicFeatures.sType = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_ATOMIC_INT64_FEATURES;
+        atomicFeatures.pNext = const_cast<void*>(modifiedInfo.pNext);
+        atomicFeatures.shaderBufferInt64Atomics = VK_TRUE;
+
+        modifiedInfo.pNext = &atomicFeatures;
     }
 
     VkResult res = next_->vkCreateDevice(physicalDevice, &modifiedInfo, pAllocator, pDevice);
@@ -957,11 +1032,12 @@ bool VulkanLayerShaderProfiler::ModifySPIRV(const std::vector<uint32_t>& origCod
     using Instruction = spvtools::opt::Instruction;
     using Operand = spvtools::opt::Operand;
 
-    Instruction* uintTypeInst = nullptr;
-    Instruction* intTypeInst = nullptr;
-    Instruction* const0UintInst = nullptr;
-    Instruction* const1UintInst = nullptr;
-    Instruction* constBBCountUintInst = nullptr;
+    Instruction* uint32TypeInst = nullptr;
+    Instruction* int32TypeInst = nullptr;
+    Instruction* uint64TypeInst = nullptr;
+    Instruction* const0Uint32Inst = nullptr;
+    Instruction* const1Uint32Inst = nullptr;
+    Instruction* constBBCountUint32Inst = nullptr;
     std::vector<Instruction*> constIdxInsts(bbCount);
     Instruction* arrayTypeInst = nullptr;
     Instruction* structTypeInst = nullptr;
@@ -975,17 +1051,38 @@ bool VulkanLayerShaderProfiler::ModifySPIRV(const std::vector<uint32_t>& origCod
         }
 
         const auto& opWidth = inst->GetOperand(1);
-        if (opWidth.AsLiteralUint64() != 32) {
-            continue;
-        }
-
         const auto& opSign = inst->GetOperand(2);
-        if (opSign.AsLiteralUint64() == 0) {
-            uintTypeInst = inst;
+        uint64_t width = opWidth.AsLiteralUint64();
+        uint64_t sign = opSign.AsLiteralUint64();
+        if (width == 32) {
+            if (sign == 0) {
+                uint32TypeInst = inst;
+            }
+            else {
+                int32TypeInst = inst;
+            }
         }
-        else {
-            intTypeInst = inst;
+        else if (width == 64) {
+            if (sign == 0) {
+                uint64TypeInst = inst;
+            }
         }
+    }
+
+    // OpCapability Int64
+    if (!m.HasExplicitCapability(uint32_t(spv::Capability::Int64))) {
+        auto operands = Instruction::OperandList{{SPV_OPERAND_TYPE_CAPABILITY, {uint32_t(spv::Capability::Int64)}}};
+        auto inst = std::make_unique<Instruction>(context.get(), spv::Op::OpCapability, 0, 0, operands);
+
+        m.AddCapability(std::move(inst));
+    }
+
+    // OpCapability Int64Atomics
+    if (!m.HasExplicitCapability(uint32_t(spv::Capability::Int64Atomics))) {
+        auto operands = Instruction::OperandList{{SPV_OPERAND_TYPE_CAPABILITY, {uint32_t(spv::Capability::Int64Atomics)}}};
+        auto inst = std::make_unique<Instruction>(context.get(), spv::Op::OpCapability, 0, 0, operands);
+
+        m.AddCapability(std::move(inst));
     }
 
     // OpExtension "SPV_KHR_storage_buffer_storage_class"
@@ -1011,45 +1108,56 @@ bool VulkanLayerShaderProfiler::ModifySPIRV(const std::vector<uint32_t>& origCod
     }
 
     // %uint = OpTypeInt 32 0
-    if (uintTypeInst == nullptr)
+    if (uint32TypeInst == nullptr)
     {
         uint32_t resultId = context->TakeNextId();
         auto operands = Instruction::OperandList{{SPV_OPERAND_TYPE_LITERAL_INTEGER, {32}}, {SPV_OPERAND_TYPE_LITERAL_INTEGER, {0}}};
         auto inst = std::make_unique<Instruction>(context.get(), spv::Op::OpTypeInt, 0, resultId, operands);
-        uintTypeInst = inst.get();
+        uint32TypeInst = inst.get();
 
         m.AddType(std::move(inst));
     }
 
     // %int = OpTypeInt 32 1
-    if (intTypeInst == nullptr)
+    if (int32TypeInst == nullptr)
     {
         uint32_t resultId = context->TakeNextId();
         auto operands = Instruction::OperandList{{SPV_OPERAND_TYPE_LITERAL_INTEGER, {32}}, {SPV_OPERAND_TYPE_LITERAL_INTEGER, {1}}};
         auto inst = std::make_unique<Instruction>(context.get(), spv::Op::OpTypeInt, 0, resultId, operands);
-        intTypeInst = inst.get();
+        int32TypeInst = inst.get();
+
+        m.AddType(std::move(inst));
+    }
+
+    // %uint64 = OpTypeInt 64 0
+    if (uint64TypeInst == nullptr)
+    {
+        uint32_t resultId = context->TakeNextId();
+        auto operands = Instruction::OperandList{{SPV_OPERAND_TYPE_LITERAL_INTEGER, {64}}, {SPV_OPERAND_TYPE_LITERAL_INTEGER, {0}}};
+        auto inst = std::make_unique<Instruction>(context.get(), spv::Op::OpTypeInt, 0, resultId, operands);
+        uint64TypeInst = inst.get();
 
         m.AddType(std::move(inst));
     }
 
     // %uint_0 = OpConstant %uint 0
     {
-        uint32_t typeId = uintTypeInst->result_id();
+        uint32_t typeId = uint32TypeInst->result_id();
         uint32_t resultId = context->TakeNextId();
         auto operands = Instruction::OperandList{{SPV_OPERAND_TYPE_LITERAL_INTEGER, {0}}};
         auto inst = std::make_unique<Instruction>(context.get(), spv::Op::OpConstant, typeId, resultId, operands);
-        const0UintInst = inst.get();
+        const0Uint32Inst = inst.get();
 
         m.AddGlobalValue(std::move(inst));
     }
 
     // %uint_1 = OpConstant %uint 1
     {
-        uint32_t typeId = uintTypeInst->result_id();
+        uint32_t typeId = uint32TypeInst->result_id();
         uint32_t resultId = context->TakeNextId();
         auto operands = Instruction::OperandList{{SPV_OPERAND_TYPE_LITERAL_INTEGER, {1}}};
         auto inst = std::make_unique<Instruction>(context.get(), spv::Op::OpConstant, typeId, resultId, operands);
-        const1UintInst = inst.get();
+        const1Uint32Inst = inst.get();
 
         m.AddGlobalValue(std::move(inst));
     }
@@ -1057,14 +1165,14 @@ bool VulkanLayerShaderProfiler::ModifySPIRV(const std::vector<uint32_t>& origCod
     // %uint_<size> = OpConstant %uint <size>
     {
         if (bbCount == 1) {
-            constBBCountUintInst = const1UintInst;
+            constBBCountUint32Inst = const1Uint32Inst;
         }
         else {
-            uint32_t typeId = uintTypeInst->result_id();
+            uint32_t typeId = uint32TypeInst->result_id();
             uint32_t resultId = context->TakeNextId();
             auto operands = Instruction::OperandList{{SPV_OPERAND_TYPE_LITERAL_INTEGER, {bbCount}}};
             auto inst = std::make_unique<Instruction>(context.get(), spv::Op::OpConstant, typeId, resultId, operands);
-            constBBCountUintInst = inst.get();
+            constBBCountUint32Inst = inst.get();
 
             m.AddGlobalValue(std::move(inst));
         }
@@ -1073,7 +1181,7 @@ bool VulkanLayerShaderProfiler::ModifySPIRV(const std::vector<uint32_t>& origCod
     // %int_<idx> = OpConstant %int <idx>
     {
         for (uint32_t i = 0; i < bbCount; ++i) {
-            uint32_t typeId = intTypeInst->result_id();
+            uint32_t typeId = int32TypeInst->result_id();
             uint32_t resultId = context->TakeNextId();
             auto operands = Instruction::OperandList{{SPV_OPERAND_TYPE_LITERAL_INTEGER, {i}}};
             auto inst = std::make_unique<Instruction>(context.get(), spv::Op::OpConstant, typeId, resultId, operands);
@@ -1083,11 +1191,11 @@ bool VulkanLayerShaderProfiler::ModifySPIRV(const std::vector<uint32_t>& origCod
         }
     }
 
-    // %arr = OpTypeArray %uint %uint_<size>
+    // %arr = OpTypeArray %uint64 %uint_<size>
     {
-        uint32_t typeId = uintTypeInst->result_id();
+        uint32_t typeId = uint64TypeInst->result_id();
         uint32_t resultId = context->TakeNextId();
-        uint32_t countId = constBBCountUintInst->result_id();
+        uint32_t countId = constBBCountUint32Inst->result_id();
         auto operands = Instruction::OperandList{{SPV_OPERAND_TYPE_ID, {typeId}}, {SPV_OPERAND_TYPE_ID, {countId}}};
         auto inst = std::make_unique<Instruction>(context.get(), spv::Op::OpTypeArray, 0, resultId, operands);
         arrayTypeInst = inst.get();
@@ -1117,9 +1225,9 @@ bool VulkanLayerShaderProfiler::ModifySPIRV(const std::vector<uint32_t>& origCod
         m.AddType(std::move(inst));
     }
 
-    // %arr_ptr = OpTypePointer StorageBuffer %uint
+    // %arr_ptr = OpTypePointer StorageBuffer %uint64
     {
-        uint32_t typeId = uintTypeInst->result_id();
+        uint32_t typeId = uint64TypeInst->result_id();
         uint32_t resultId = context->TakeNextId();
         auto operands = Instruction::OperandList{{SPV_OPERAND_TYPE_STORAGE_CLASS, {uint32_t(spv::StorageClass::StorageBuffer)}}, {SPV_OPERAND_TYPE_ID, {typeId}}};
         auto inst = std::make_unique<Instruction>(context.get(), spv::Op::OpTypePointer, 0, resultId, operands);
@@ -1139,10 +1247,10 @@ bool VulkanLayerShaderProfiler::ModifySPIRV(const std::vector<uint32_t>& origCod
         m.AddGlobalValue(std::move(inst));
     }
 
-    // OpDecorate %arr ArrayStride 4
+    // OpDecorate %arr ArrayStride 8
     {
         uint32_t targetId = arrayTypeInst->result_id();
-        auto operands = Instruction::OperandList{{SPV_OPERAND_TYPE_ID, {targetId}}, {SPV_OPERAND_TYPE_DECORATION, {uint32_t(spv::Decoration::ArrayStride)}}, {SPV_OPERAND_TYPE_LITERAL_INTEGER, {4}}};
+        auto operands = Instruction::OperandList{{SPV_OPERAND_TYPE_ID, {targetId}}, {SPV_OPERAND_TYPE_DECORATION, {uint32_t(spv::Decoration::ArrayStride)}}, {SPV_OPERAND_TYPE_LITERAL_INTEGER, {8}}};
         auto inst = std::make_unique<Instruction>(context.get(), spv::Op::OpDecorate, 0, 0, operands);
 
         m.AddAnnotationInst(std::move(inst));
@@ -1220,13 +1328,13 @@ bool VulkanLayerShaderProfiler::ModifySPIRV(const std::vector<uint32_t>& origCod
             }
 
             {
-                uint32_t typeId = uintTypeInst->result_id();
+                uint32_t typeId = uint64TypeInst->result_id();
                 uint32_t resultId = context->TakeNextId();
                 uint32_t varId = accessChainInst->result_id();
-                uint32_t uint0Id = const0UintInst->result_id();
-                uint32_t uint1Id = const1UintInst->result_id();
-                auto operands = Instruction::OperandList{{SPV_OPERAND_TYPE_ID, {varId}}, {SPV_OPERAND_TYPE_ID, {uint1Id}}, {SPV_OPERAND_TYPE_ID, {uint0Id}}, {SPV_OPERAND_TYPE_ID, {uint1Id}}};
-                auto inst = std::make_unique<Instruction>(context.get(), spv::Op::OpAtomicIAdd, typeId, resultId, operands);
+                uint32_t uint0Id = const0Uint32Inst->result_id();
+                uint32_t uint1Id = const1Uint32Inst->result_id();
+                auto operands = Instruction::OperandList{{SPV_OPERAND_TYPE_ID, {varId}}, {SPV_OPERAND_TYPE_ID, {uint1Id}}, {SPV_OPERAND_TYPE_ID, {uint0Id}}};
+                auto inst = std::make_unique<Instruction>(context.get(), spv::Op::OpAtomicIIncrement, typeId, resultId, operands);
 
                 firstInst->InsertBefore(std::move(inst));
             }
@@ -1297,7 +1405,7 @@ bool VulkanLayerShaderProfiler::CreateShaderProfileStorage(VkDevice device, cons
     VkBufferCreateInfo bci{};
     bci.sType = VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO;
     bci.usage = VK_BUFFER_USAGE_STORAGE_BUFFER_BIT | VK_BUFFER_USAGE_TRANSFER_SRC_BIT;
-    bci.size = bbCount * sizeof(uint32_t);
+    bci.size = bbCount * sizeof(uint64_t);
 
     VkResult vkres = next_->vkCreateBuffer(device, &bci, pAllocator, &storage.localBuffer);
     if (vkres != VK_SUCCESS) {
@@ -1645,7 +1753,7 @@ bool VulkanLayerShaderProfiler::CollectProfileData(VkDevice device, const Pipeli
         VkBuffer stagingBuffer = shaderInfo.storage.stagingBuffer;
 
         VkBufferCopy bufferCopy{};
-        bufferCopy.size = bbCount * sizeof(uint32_t);
+        bufferCopy.size = bbCount * sizeof(uint64_t);
         next_->vkCmdCopyBuffer(commandInfo.cmdBuf, localBuffer, stagingBuffer, 1, &bufferCopy);
     }
 
@@ -1703,7 +1811,7 @@ bool VulkanLayerShaderProfiler::CollectProfileData(VkDevice device, const Pipeli
         }
 
         profileData.resize(bbCount);
-        std::memcpy(profileData.data(), pData, bbCount * sizeof(uint32_t));
+        std::memcpy(profileData.data(), pData, bbCount * sizeof(uint64_t));
         next_->vkUnmapMemory(device, memory);
 
         collectedProfileInfo.shaderInfos.emplace_back(std::move(collectedShaderInfo));
