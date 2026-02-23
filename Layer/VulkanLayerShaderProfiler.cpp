@@ -57,6 +57,19 @@ static void DumpModule(const spvtools::opt::Module& m) {
     std::cout << '\n';
 }
 
+static spvtools::opt::Instruction* GetFirstExecutableInstruction(spvtools::opt::BasicBlock& bb) {
+    auto* firstInst = &(*bb.begin());
+    while (firstInst->opcode() == spv::Op::OpLabel
+        || firstInst->opcode() == spv::Op::OpPhi
+        || firstInst->opcode() == spv::Op::OpVariable
+        || firstInst->opcode() == spv::Op::OpUntypedVariableKHR)
+    {
+        firstInst = firstInst->NextNode();
+    }
+
+    return firstInst;
+}
+
 static VulkanShaderStage ExecutionModelToShaderStage(spv::ExecutionModel value) {
     switch (value) {
         case spv::ExecutionModel::Vertex:                   return VulkanShaderStage::Vertex;
@@ -944,6 +957,23 @@ bool VulkanLayerShaderProfiler::ModifySPIRV(const std::vector<uint32_t>& origCod
 
     auto& m = *context->module();
 
+    const auto& entryPoints = m.entry_points();
+    size_t entryPointsCount = 0;
+    for (const auto& e : entryPoints) {
+        ++entryPointsCount;
+    }
+
+    if (entryPointsCount == 0) {
+        std::cout << "SPIRV: Shader module does not contain any entry point\n";
+        return false;
+    }
+    if (entryPointsCount > 1) {
+        std::cout << "SPIRV: Shader module contains more than one entry point which is unsupported\n";
+        return false;
+    }
+
+    auto& entryPointInst = *entryPoints.begin();
+
     uint32_t bbCount = 0;
     for (const auto& f : m) {
         bbCount += f.end() - f.begin();
@@ -955,6 +985,8 @@ bool VulkanLayerShaderProfiler::ModifySPIRV(const std::vector<uint32_t>& origCod
     }
 
     using Instruction = spvtools::opt::Instruction;
+    using BasicBlock = spvtools::opt::BasicBlock;
+    using Function = spvtools::opt::Function;
     using Operand = spvtools::opt::Operand;
 
     Instruction* uintTypeInst = nullptr;
@@ -962,29 +994,54 @@ bool VulkanLayerShaderProfiler::ModifySPIRV(const std::vector<uint32_t>& origCod
     Instruction* const0UintInst = nullptr;
     Instruction* const1UintInst = nullptr;
     Instruction* constBBCountUintInst = nullptr;
+    Instruction* const1IntInst = nullptr;
     std::vector<Instruction*> constIdxInsts(bbCount);
+
+    Instruction* privatePtrInst = nullptr;
+    std::vector<Instruction*> bbCounterInsts(bbCount);
+
     Instruction* arrayTypeInst = nullptr;
     Instruction* structTypeInst = nullptr;
     Instruction* structPtrTypeInst = nullptr;
     Instruction* arrayPtrTypeInst = nullptr;
     Instruction* structPtrInst = nullptr;
 
+    Instruction* voidTypeInst = nullptr;
+    Instruction* funcTypeInst = nullptr;
+
+    Function* storeFunction = nullptr;
+    BasicBlock* storeBasicBlock = nullptr;
+
     for (auto* inst : m.GetTypes()) {
-        if (inst->opcode() != spv::Op::OpTypeInt) {
-            continue;
-        }
+        if (inst->opcode() == spv::Op::OpTypeInt) {
+            const auto& opWidth = inst->GetOperand(1);
+            if (opWidth.AsLiteralUint64() != 32) {
+                continue;
+            }
 
-        const auto& opWidth = inst->GetOperand(1);
-        if (opWidth.AsLiteralUint64() != 32) {
-            continue;
+            const auto& opSign = inst->GetOperand(2);
+            if (opSign.AsLiteralUint64() == 0) {
+                uintTypeInst = inst;
+            }
+            else {
+                intTypeInst = inst;
+            }
         }
+        else if (inst->opcode() == spv::Op::OpTypeVoid) {
+            voidTypeInst = inst;
+        }
+        else if (inst->opcode() == spv::Op::OpTypeFunction) {
+            if (!voidTypeInst) {
+                continue;
+            }
 
-        const auto& opSign = inst->GetOperand(2);
-        if (opSign.AsLiteralUint64() == 0) {
-            uintTypeInst = inst;
-        }
-        else {
-            intTypeInst = inst;
+            if (inst->NumInOperands() != 1) {
+                continue;
+            }
+
+            if (inst->GetSingleWordInOperand(0) == voidTypeInst->result_id()) {
+                funcTypeInst = inst;
+            }
         }
     }
 
@@ -1078,6 +1135,46 @@ bool VulkanLayerShaderProfiler::ModifySPIRV(const std::vector<uint32_t>& origCod
             auto operands = Instruction::OperandList{{SPV_OPERAND_TYPE_LITERAL_INTEGER, {i}}};
             auto inst = std::make_unique<Instruction>(context.get(), spv::Op::OpConstant, typeId, resultId, operands);
             constIdxInsts[i] = inst.get();
+
+            m.AddGlobalValue(std::move(inst));
+        }
+    }
+
+    // %int_1 = OpConstant %int 1
+    {
+        if (constIdxInsts.size() >= 2) {
+            const1IntInst = constIdxInsts[1];
+        }
+        else {
+            uint32_t typeId = intTypeInst->result_id();
+            uint32_t resultId = context->TakeNextId();
+            auto operands = Instruction::OperandList{{SPV_OPERAND_TYPE_LITERAL_INTEGER, {1}}};
+            auto inst = std::make_unique<Instruction>(context.get(), spv::Op::OpConstant, typeId, resultId, operands);
+            const1IntInst = inst.get();
+
+            m.AddGlobalValue(std::move(inst));
+        }
+    }
+
+    // %private_ptr = OpTypePointer Private %uint
+    {
+        uint32_t typeId = uintTypeInst->result_id();
+        uint32_t resultId = context->TakeNextId();
+        auto operands = Instruction::OperandList{{SPV_OPERAND_TYPE_STORAGE_CLASS, {uint32_t(spv::StorageClass::Private)}}, {SPV_OPERAND_TYPE_ID, {typeId}}};
+        auto inst = std::make_unique<Instruction>(context.get(), spv::Op::OpTypePointer, 0, resultId, operands);
+        privatePtrInst = inst.get();
+
+        m.AddType(std::move(inst));
+    }
+
+    // %bb_counter_<idx> = OpVariable %private_ptr Private
+    {
+        for (uint32_t i = 0; i < bbCount; ++i) {
+            uint32_t typeId = privatePtrInst->result_id();
+            uint32_t resultId = context->TakeNextId();
+            auto operands = Instruction::OperandList{{SPV_OPERAND_TYPE_STORAGE_CLASS, {uint32_t(spv::StorageClass::Private)}}};
+            auto inst = std::make_unique<Instruction>(context.get(), spv::Op::OpVariable, typeId, resultId, operands);
+            bbCounterInsts[i] = inst.get();
 
             m.AddGlobalValue(std::move(inst));
         }
@@ -1184,25 +1281,58 @@ bool VulkanLayerShaderProfiler::ModifySPIRV(const std::vector<uint32_t>& origCod
         m.AddAnnotationInst(std::move(inst));
     }
 
-    if (m.version() > SPV_SPIRV_VERSION_WORD(1, 3))
-    {
-        uint32_t targetId = structPtrInst->result_id();
-        for (auto& inst : m.entry_points()) {
-            spvtools::opt::Operand operand(SPV_OPERAND_TYPE_ID, {targetId});
-            inst.AddOperand(operand);
+    if (!funcTypeInst) {
+        if (!voidTypeInst) {
+            uint32_t resultId = context->TakeNextId();
+            auto operands = Instruction::OperandList{};
+            auto inst = std::make_unique<Instruction>(context.get(), spv::Op::OpTypeVoid, 0, resultId, operands);
+            voidTypeInst = inst.get();
+
+            m.AddType(std::move(inst));
         }
+
+        uint32_t resultId = context->TakeNextId();
+        uint32_t voidTypeId = voidTypeInst->result_id();
+        auto operands = Instruction::OperandList{{SPV_OPERAND_TYPE_ID, {voidTypeId}}};
+        auto inst = std::make_unique<Instruction>(context.get(), spv::Op::OpTypeFunction, 0, resultId, operands);
+        funcTypeInst = inst.get();
+
+        m.AddType(std::move(inst));
     }
 
-    uint32_t bbIdx = 0;
-    for (auto& f : m) {
-        for (auto& bb : f) {
-            Instruction* firstInst = &(*bb.begin());
-            while (firstInst->opcode() == spv::Op::OpLabel
-                || firstInst->opcode() == spv::Op::OpPhi
-                || firstInst->opcode() == spv::Op::OpVariable
-                || firstInst->opcode() == spv::Op::OpUntypedVariableKHR)
+    {
+        std::unique_ptr<Function> function;
+        std::unique_ptr<BasicBlock> basicBlock;
+
+        {
+            uint32_t resultId = context->TakeNextId();
+            uint32_t voidTypeId = voidTypeInst->result_id();
+            uint32_t funcTypeId = funcTypeInst->result_id();
+            auto operands = Instruction::OperandList{{SPV_OPERAND_TYPE_FUNCTION_CONTROL, {uint32_t(spv::FunctionControlMask::MaskNone)}}, {SPV_OPERAND_TYPE_TYPE_ID, {funcTypeId}}};
+            auto inst = std::make_unique<Instruction>(context.get(), spv::Op::OpFunction, voidTypeId, resultId, operands);
+
+            function = std::make_unique<Function>(std::move(inst));
+        }
+
+        {
+            uint32_t resultId = context->TakeNextId();
+            auto operands = Instruction::OperandList{};
+            auto inst = std::make_unique<Instruction>(context.get(), spv::Op::OpLabel, 0, resultId, operands);
+
+            basicBlock = std::make_unique<BasicBlock>(std::move(inst));
+        }
+
+        for (uint32_t bbIdx = 0; bbIdx < bbCount; ++bbIdx) {
+            Instruction* loadInst = nullptr;
             {
-                firstInst = firstInst->NextNode();
+                uint32_t typeId = uintTypeInst->result_id();
+                uint32_t resultId = context->TakeNextId();
+                uint32_t varId = bbCounterInsts[bbIdx]->result_id();
+                auto operands = Instruction::OperandList{{SPV_OPERAND_TYPE_ID, {varId}}};
+                auto inst = std::make_unique<Instruction>(context.get(), spv::Op::OpLoad, typeId, resultId, operands);
+                loadInst = inst.get();
+
+                basicBlock->AddInstruction(std::move(inst));
             }
 
             Instruction* accessChainInst = nullptr;
@@ -1216,7 +1346,7 @@ bool VulkanLayerShaderProfiler::ModifySPIRV(const std::vector<uint32_t>& origCod
                 auto inst = std::make_unique<Instruction>(context.get(), spv::Op::OpAccessChain, typeId, resultId, operands);
                 accessChainInst = inst.get();
 
-                firstInst->InsertBefore(std::move(inst));
+                basicBlock->AddInstruction(std::move(inst));
             }
 
             {
@@ -1225,10 +1355,120 @@ bool VulkanLayerShaderProfiler::ModifySPIRV(const std::vector<uint32_t>& origCod
                 uint32_t varId = accessChainInst->result_id();
                 uint32_t uint0Id = const0UintInst->result_id();
                 uint32_t uint1Id = const1UintInst->result_id();
-                auto operands = Instruction::OperandList{{SPV_OPERAND_TYPE_ID, {varId}}, {SPV_OPERAND_TYPE_ID, {uint1Id}}, {SPV_OPERAND_TYPE_ID, {uint0Id}}, {SPV_OPERAND_TYPE_ID, {uint1Id}}};
+                uint32_t loadId = loadInst->result_id();
+                auto operands = Instruction::OperandList{{SPV_OPERAND_TYPE_ID, {varId}}, {SPV_OPERAND_TYPE_ID, {uint1Id}}, {SPV_OPERAND_TYPE_ID, {uint0Id}}, {SPV_OPERAND_TYPE_ID, {loadId}}};
                 auto inst = std::make_unique<Instruction>(context.get(), spv::Op::OpAtomicIAdd, typeId, resultId, operands);
 
+                basicBlock->AddInstruction(std::move(inst));
+            }
+        }
+
+        {
+            auto operands = Instruction::OperandList{};
+            auto inst = std::make_unique<Instruction>(context.get(), spv::Op::OpReturn, 0, 0, operands);
+
+            basicBlock->AddInstruction(std::move(inst));
+        }
+
+        storeBasicBlock = basicBlock.get();
+        function->AddBasicBlock(std::move(basicBlock));
+
+        {
+            auto operands = Instruction::OperandList{};
+            auto inst = std::make_unique<Instruction>(context.get(), spv::Op::OpFunctionEnd, 0, 0, operands);
+
+            function->SetFunctionEnd(std::move(inst));
+        }
+
+        storeFunction = function.get();
+        m.AddFunction(std::move(function));
+    }
+
+    if (m.version() > SPV_SPIRV_VERSION_WORD(1, 3))
+    {
+        uint32_t targetId = structPtrInst->result_id();
+        spvtools::opt::Operand operand(SPV_OPERAND_TYPE_ID, {targetId});
+        entryPointInst.AddOperand(operand);
+
+        for (uint32_t i = 0; i < bbCount; ++i) {
+            uint32_t varId = bbCounterInsts[i]->result_id();
+            spvtools::opt::Operand varOperand(SPV_OPERAND_TYPE_ID, {varId});
+            entryPointInst.AddOperand(varOperand);
+        }
+    }
+
+    uint32_t bbIdx = 0;
+    for (auto& f : m) {
+        // Skip our function
+        if (f.result_id() == storeFunction->result_id()) {
+            continue;
+        }
+
+        Instruction* firstInst = nullptr;
+        bool isEntryPoint = (entryPointInst.GetOperand(1).AsId() == f.result_id());
+        if (isEntryPoint) {
+            auto& bb = *f.begin();
+            firstInst = GetFirstExecutableInstruction(bb);
+
+            for (uint32_t i = 0; i < bbCount; ++i) {
+                uint32_t bbCounterId = bbCounterInsts[i]->result_id();
+                uint32_t const0UintId = const0UintInst->result_id();
+                auto operands = Instruction::OperandList{{SPV_OPERAND_TYPE_ID, {bbCounterId}}, {SPV_OPERAND_TYPE_ID, {const0UintId}}};
+                auto inst = std::make_unique<Instruction>(context.get(), spv::Op::OpStore, 0, 0, operands);
+
                 firstInst->InsertBefore(std::move(inst));
+            }
+        }
+
+        for (auto& bb : f) {
+            firstInst = GetFirstExecutableInstruction(bb);
+
+            Instruction* loadInst = nullptr;
+            {
+                uint32_t typeId = uintTypeInst->result_id();
+                uint32_t resultId = context->TakeNextId();
+                uint32_t varId = bbCounterInsts[bbIdx]->result_id();
+                auto operands = Instruction::OperandList{{SPV_OPERAND_TYPE_ID, {varId}}};
+                auto inst = std::make_unique<Instruction>(context.get(), spv::Op::OpLoad, typeId, resultId, operands);
+                loadInst = inst.get();
+
+                firstInst->InsertBefore(std::move(inst));
+            }
+
+            Instruction* addInst = nullptr;
+            {
+                uint32_t typeId = uintTypeInst->result_id();
+                uint32_t resultId = context->TakeNextId();
+                uint32_t varId = loadInst->result_id();
+                uint32_t int1Id = const1IntInst->result_id();
+                auto operands = Instruction::OperandList{{SPV_OPERAND_TYPE_ID, {varId}}, {SPV_OPERAND_TYPE_ID, {int1Id}}};
+                auto inst = std::make_unique<Instruction>(context.get(), spv::Op::OpIAdd, typeId, resultId, operands);
+                addInst = inst.get();
+
+                firstInst->InsertBefore(std::move(inst));
+            }
+
+            {
+                uint32_t varId = bbCounterInsts[bbIdx]->result_id();
+                uint32_t incId = addInst->result_id();
+                auto operands = Instruction::OperandList{{SPV_OPERAND_TYPE_ID, {varId}}, {SPV_OPERAND_TYPE_ID, {incId}}};
+                auto inst = std::make_unique<Instruction>(context.get(), spv::Op::OpStore, 0, 0, operands);
+
+                firstInst->InsertBefore(std::move(inst));
+            }
+
+            auto* terminator = bb.terminator();
+            if (terminator) {
+                auto opcode = terminator->opcode();
+                if ((isEntryPoint && spvOpcodeIsReturn(opcode)) || (spvOpcodeIsAbort(opcode))) {
+                    uint32_t voidTypeId = voidTypeInst->result_id();
+                    uint32_t resultId = context->TakeNextId();
+                    uint32_t calleeId = storeFunction->result_id();
+                    auto operands = Instruction::OperandList{{SPV_OPERAND_TYPE_ID, {calleeId}}};
+                    auto inst = std::make_unique<Instruction>(context.get(), spv::Op::OpFunctionCall, voidTypeId, resultId, operands);
+
+                    terminator->InsertBefore(std::move(inst));
+                }
             }
 
             ++bbIdx;
