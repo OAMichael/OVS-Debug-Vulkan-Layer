@@ -114,34 +114,7 @@ VulkanLayerShaderProfiler::VulkanLayerShaderProfiler(const VulkanLayerShaderProf
 
 VulkanLayerShaderProfiler::~VulkanLayerShaderProfiler()
 {
-    const auto& filename = settings_.filename;
-
-    std::ofstream perfFile(filename);
-    if (!perfFile.is_open()) {
-        std::cout << "VulkanLayerShaderProfiler::~VulkanLayerShaderProfiler: Could not open file: \'" << filename << "\'\n";
-        return;
-    }
-
-    std::stringstream stream;
-    for (const auto& profileInfo : collectedProfileInfos_) {
-        stream << "Pipeline " << profileInfo.pipeline << " (" << GetVulkanPipelineBindPointName(profileInfo.bindPoint) << "):\n";
-        for (const auto& shaderInfo : profileInfo.shaderInfos) {
-            const auto& profileData = shaderInfo.profileData;
-
-            stream << "    Shader " << shaderInfo.shader << " (" << GetVulkanShaderStageName(shaderInfo.stage) << "): [";
-            for (size_t i = 0; i < profileData.size(); ++i) {
-                if (i > 0) {
-                    stream << ", ";
-                }
-                stream << profileData[i];
-            }
-            stream << "]\n";
-        }
-        stream << "\n";
-    }
-
-    perfFile << stream.rdbuf();
-    perfFile.close();
+    SaveCollectedProfileInfo();
 }
 
 VkResult VulkanLayerShaderProfiler::vkCreateInstance(const VkInstanceCreateInfo* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkInstance* pInstance)
@@ -1818,6 +1791,39 @@ bool VulkanLayerShaderProfiler::CollectProfileData(VkDevice device, const Pipeli
     }
 
     collectedProfileInfos_.emplace_back(std::move(collectedProfileInfo));
+    return true;
+}
+
+bool VulkanLayerShaderProfiler::SaveCollectedProfileInfo() const
+{
+    std::vector<uint8_t> data;
+    WriteStream stream(data);
+
+    uint64_t collectedProfileInfoSize = collectedProfileInfos_.size();
+    stream.Write(collectedProfileInfoSize);
+
+    for (const auto& collectedProfileInfo : collectedProfileInfos_) {
+        SerializeToStream(collectedProfileInfo, stream);
+    }
+
+    const auto& filename = settings_.filename;
+    std::FILE* perfFile = std::fopen(filename.c_str(), "wb");
+    if (!perfFile) {
+        std::cout << "VulkanLayerShaderProfiler::SaveCollectedProfileInfo: Could not open file: \'" << filename << "\'\n";
+        return false;
+    }
+
+    OVSFileHeader ovsHeader{};
+    ovsHeader.layerType = uint32_t(VulkanLayerType::ShaderProfiler);
+    std::fwrite(&ovsHeader, sizeof(OVSFileHeader), 1, perfFile);
+
+    ShaderProfilerFileHeader shaderProfHeader{};
+    shaderProfHeader.byteSize = data.size();
+    std::fwrite(&shaderProfHeader, sizeof(ShaderProfilerFileHeader), 1, perfFile);
+
+    std::fwrite(data.data(), sizeof(uint8_t), data.size(), perfFile);
+
+    std::fclose(perfFile);
     return true;
 }
 

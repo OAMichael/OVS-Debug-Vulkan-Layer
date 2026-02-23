@@ -2744,12 +2744,23 @@ class COutputGeneratorVulkanLayerAPITrace(OutputGenerator):
 
     def endFile(self):
         self.body += self.indent + f'explicit VulkanLayerAPITrace(const VulkanLayerAPITraceSettings& settings) : VulkanLayerInterface(VulkanLayerType::APITrace), settings_{{settings}}, buffered_(settings.flushSize) {{\n'
-        self.body += 2 * self.indent + f'file_ = std::fopen(settings_.filename.c_str(), \"wb\");\n'
+        self.body += 2 * self.indent + f'file_ = std::fopen(settings_.filename.c_str(), \"wb\");\n\n'
+        self.body += 2 * self.indent + f'OVSFileHeader ovsHeader{{}};\n'
+        self.body += 2 * self.indent + f'ovsHeader.layerType = uint32_t(VulkanLayerType::APITrace);\n'
+        self.body += 2 * self.indent + f'std::fwrite(&ovsHeader, sizeof(OVSFileHeader), 1, file_);\n\n'
+
+        self.body += 2 * self.indent + f'APITraceFileHeader apitraceHeader{{}};\n'
+        self.body += 2 * self.indent + f'std::fwrite(&apitraceHeader, sizeof(APITraceFileHeader), 1, file_);\n'
+
         self.body += self.indent + f'}}\n\n'
 
         self.body += self.indent + f'virtual ~VulkanLayerAPITrace() {{\n'
         self.body += 2 * self.indent + f'std::lock_guard lock(bufferedMutex_);\n'
-        self.body += 2 * self.indent + f'std::fwrite(buffered_.data(), sizeof(uint8_t), bufferedSize_, file_);\n'
+        self.body += 2 * self.indent + f'std::fwrite(buffered_.data(), sizeof(uint8_t), bufferedSize_, file_);\n\n'
+        self.body += 2 * self.indent + f'APITraceFileHeader apitraceHeader{{}};\n'
+        self.body += 2 * self.indent + f'apitraceHeader.signatureCount = signatureIndex_;\n'
+        self.body += 2 * self.indent + f'std::fseek(file_, sizeof(OVSFileHeader), SEEK_SET);\n'
+        self.body += 2 * self.indent + f'std::fwrite(&apitraceHeader, sizeof(APITraceFileHeader), 1, file_);\n'
         self.body += 2 * self.indent + f'std::fclose(file_);\n'
         self.body += self.indent + f'}}\n\n'
 
@@ -2836,7 +2847,7 @@ class COutputGeneratorVulkanLayerAPITrace(OutputGenerator):
         self.body += f'{call}\n'
         self.body += f'{sign}\n'
         self.body += 2 * self.indent + f'std::vector<uint8_t> sigdata;\n'
-        self.body += 2 * self.indent + f'SignatureSerializer::WriteStream stream(sigdata);\n'
+        self.body += 2 * self.indent + f'WriteStream stream(sigdata);\n'
         self.body += 2 * self.indent + f'SignatureSerializer::SerializeToStream(sig, stream);\n'
         self.body += 2 * self.indent + f'SaveData(sigdata);\n'
         if type != 'void':

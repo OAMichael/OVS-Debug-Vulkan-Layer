@@ -29,7 +29,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -44,7 +44,7 @@ public:
         sig.pAllocator = const_cast<VkAllocationCallbacks*>(pAllocator);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -60,7 +60,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -75,7 +75,7 @@ public:
         sig.pFeatures = pFeatures;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -90,7 +90,7 @@ public:
         sig.pFormatProperties = pFormatProperties;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -110,7 +110,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -125,7 +125,7 @@ public:
         sig.pProperties = pProperties;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -140,7 +140,7 @@ public:
         sig.pQueueFamilyProperties = pQueueFamilyProperties;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -154,7 +154,7 @@ public:
         sig.pMemoryProperties = pMemoryProperties;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -169,7 +169,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -185,7 +185,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -203,7 +203,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -218,7 +218,7 @@ public:
         sig.pAllocator = const_cast<VkAllocationCallbacks*>(pAllocator);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -234,7 +234,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -252,7 +252,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -268,7 +268,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -285,7 +285,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -302,7 +302,7 @@ public:
         sig.pQueue = pQueue;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -319,7 +319,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -334,7 +334,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -349,7 +349,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -367,7 +367,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -383,7 +383,7 @@ public:
         sig.pAllocator = const_cast<VkAllocationCallbacks*>(pAllocator);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -402,7 +402,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -417,7 +417,7 @@ public:
         sig.memory = memory;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -433,7 +433,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -450,7 +450,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -466,7 +466,7 @@ public:
         sig.pCommittedMemoryInBytes = pCommittedMemoryInBytes;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -483,7 +483,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -501,7 +501,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -517,7 +517,7 @@ public:
         sig.pMemoryRequirements = pMemoryRequirements;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -532,7 +532,7 @@ public:
         sig.pMemoryRequirements = pMemoryRequirements;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -548,7 +548,7 @@ public:
         sig.pSparseMemoryRequirements = pSparseMemoryRequirements;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -568,7 +568,7 @@ public:
         sig.pProperties = pProperties;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -585,7 +585,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -603,7 +603,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -619,7 +619,7 @@ public:
         sig.pAllocator = const_cast<VkAllocationCallbacks*>(pAllocator);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -635,7 +635,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -651,7 +651,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -670,7 +670,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -688,7 +688,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -704,7 +704,7 @@ public:
         sig.pAllocator = const_cast<VkAllocationCallbacks*>(pAllocator);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -721,7 +721,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -737,7 +737,7 @@ public:
         sig.pAllocator = const_cast<VkAllocationCallbacks*>(pAllocator);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -758,7 +758,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -776,7 +776,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -792,7 +792,7 @@ public:
         sig.pAllocator = const_cast<VkAllocationCallbacks*>(pAllocator);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -809,7 +809,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -825,7 +825,7 @@ public:
         sig.pAllocator = const_cast<VkAllocationCallbacks*>(pAllocator);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -841,7 +841,7 @@ public:
         sig.pLayout = pLayout;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -858,7 +858,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -874,7 +874,7 @@ public:
         sig.pAllocator = const_cast<VkAllocationCallbacks*>(pAllocator);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -891,7 +891,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -907,7 +907,7 @@ public:
         sig.pAllocator = const_cast<VkAllocationCallbacks*>(pAllocator);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -923,7 +923,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -940,7 +940,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -957,7 +957,7 @@ public:
         sig.pCommandBuffers = const_cast<VkCommandBuffer*>(pCommandBuffers);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -972,7 +972,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -987,7 +987,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -1003,7 +1003,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -1021,7 +1021,7 @@ public:
         sig.pRegions = const_cast<VkBufferCopy*>(pRegions);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -1040,7 +1040,7 @@ public:
         sig.pRegions = const_cast<VkImageCopy*>(pRegions);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -1058,7 +1058,7 @@ public:
         sig.pRegions = const_cast<VkBufferImageCopy*>(pRegions);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -1076,7 +1076,7 @@ public:
         sig.pRegions = const_cast<VkBufferImageCopy*>(pRegions);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -1093,7 +1093,7 @@ public:
         sig.pData = const_cast<void*>(pData);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -1110,7 +1110,7 @@ public:
         sig.data = data;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -1132,7 +1132,7 @@ public:
         sig.pImageMemoryBarriers = const_cast<VkImageMemoryBarrier*>(pImageMemoryBarriers);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -1148,7 +1148,7 @@ public:
         sig.flags = flags;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -1163,7 +1163,7 @@ public:
         sig.query = query;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -1179,7 +1179,7 @@ public:
         sig.queryCount = queryCount;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -1195,7 +1195,7 @@ public:
         sig.query = query;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -1215,7 +1215,7 @@ public:
         sig.flags = flags;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -1230,7 +1230,7 @@ public:
         sig.pCommandBuffers = const_cast<VkCommandBuffer*>(pCommandBuffers);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -1247,7 +1247,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -1263,7 +1263,7 @@ public:
         sig.pAllocator = const_cast<VkAllocationCallbacks*>(pAllocator);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -1278,7 +1278,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -1294,7 +1294,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -1310,7 +1310,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -1328,7 +1328,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -1344,7 +1344,7 @@ public:
         sig.pAllocator = const_cast<VkAllocationCallbacks*>(pAllocator);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -1361,7 +1361,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -1377,7 +1377,7 @@ public:
         sig.pAllocator = const_cast<VkAllocationCallbacks*>(pAllocator);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -1394,7 +1394,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -1410,7 +1410,7 @@ public:
         sig.pAllocator = const_cast<VkAllocationCallbacks*>(pAllocator);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -1427,7 +1427,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -1445,7 +1445,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -1465,7 +1465,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -1481,7 +1481,7 @@ public:
         sig.pAllocator = const_cast<VkAllocationCallbacks*>(pAllocator);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -1498,7 +1498,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -1514,7 +1514,7 @@ public:
         sig.pAllocator = const_cast<VkAllocationCallbacks*>(pAllocator);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -1531,7 +1531,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -1547,7 +1547,7 @@ public:
         sig.pAllocator = const_cast<VkAllocationCallbacks*>(pAllocator);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -1564,7 +1564,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -1580,7 +1580,7 @@ public:
         sig.pAllocator = const_cast<VkAllocationCallbacks*>(pAllocator);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -1597,7 +1597,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -1613,7 +1613,7 @@ public:
         sig.pAllocator = const_cast<VkAllocationCallbacks*>(pAllocator);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -1629,7 +1629,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -1646,7 +1646,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -1664,7 +1664,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -1682,7 +1682,7 @@ public:
         sig.pDescriptorCopies = const_cast<VkCopyDescriptorSet*>(pDescriptorCopies);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -1697,7 +1697,7 @@ public:
         sig.pipeline = pipeline;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -1717,7 +1717,7 @@ public:
         sig.pDynamicOffsets = const_cast<uint32_t*>(pDynamicOffsets);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -1735,7 +1735,7 @@ public:
         sig.pRanges = const_cast<VkImageSubresourceRange*>(pRanges);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -1751,7 +1751,7 @@ public:
         sig.groupCountZ = groupCountZ;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -1766,7 +1766,7 @@ public:
         sig.offset = offset;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -1781,7 +1781,7 @@ public:
         sig.stageMask = stageMask;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -1796,7 +1796,7 @@ public:
         sig.stageMask = stageMask;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -1819,7 +1819,7 @@ public:
         sig.pImageMemoryBarriers = const_cast<VkImageMemoryBarrier*>(pImageMemoryBarriers);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -1837,7 +1837,7 @@ public:
         sig.pValues = const_cast<void*>(pValues);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -1856,7 +1856,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -1874,7 +1874,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -1890,7 +1890,7 @@ public:
         sig.pAllocator = const_cast<VkAllocationCallbacks*>(pAllocator);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -1907,7 +1907,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -1923,7 +1923,7 @@ public:
         sig.pAllocator = const_cast<VkAllocationCallbacks*>(pAllocator);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -1938,7 +1938,7 @@ public:
         sig.pGranularity = pGranularity;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -1954,7 +1954,7 @@ public:
         sig.pViewports = const_cast<VkViewport*>(pViewports);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -1970,7 +1970,7 @@ public:
         sig.pScissors = const_cast<VkRect2D*>(pScissors);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -1984,7 +1984,7 @@ public:
         sig.lineWidth = lineWidth;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -2000,7 +2000,7 @@ public:
         sig.depthBiasSlopeFactor = depthBiasSlopeFactor;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -2014,7 +2014,7 @@ public:
         std::memcpy(sig.blendConstants, blendConstants, sizeof(sig.blendConstants));
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -2029,7 +2029,7 @@ public:
         sig.maxDepthBounds = maxDepthBounds;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -2044,7 +2044,7 @@ public:
         sig.compareMask = compareMask;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -2059,7 +2059,7 @@ public:
         sig.writeMask = writeMask;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -2074,7 +2074,7 @@ public:
         sig.reference = reference;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -2090,7 +2090,7 @@ public:
         sig.indexType = indexType;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -2107,7 +2107,7 @@ public:
         sig.pOffsets = const_cast<VkDeviceSize*>(pOffsets);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -2124,7 +2124,7 @@ public:
         sig.firstInstance = firstInstance;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -2142,7 +2142,7 @@ public:
         sig.firstInstance = firstInstance;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -2159,7 +2159,7 @@ public:
         sig.stride = stride;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -2176,7 +2176,7 @@ public:
         sig.stride = stride;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -2196,7 +2196,7 @@ public:
         sig.filter = filter;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -2214,7 +2214,7 @@ public:
         sig.pRanges = const_cast<VkImageSubresourceRange*>(pRanges);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -2231,7 +2231,7 @@ public:
         sig.pRects = const_cast<VkClearRect*>(pRects);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -2250,7 +2250,7 @@ public:
         sig.pRegions = const_cast<VkImageResolve*>(pRegions);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -2265,7 +2265,7 @@ public:
         sig.contents = contents;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -2279,7 +2279,7 @@ public:
         sig.contents = contents;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -2292,7 +2292,7 @@ public:
         sig.commandBuffer = commandBuffer;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -2306,7 +2306,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -2323,7 +2323,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -2340,7 +2340,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -2358,7 +2358,7 @@ public:
         sig.pPeerMemoryFeatures = pPeerMemoryFeatures;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -2372,7 +2372,7 @@ public:
         sig.deviceMask = deviceMask;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -2388,7 +2388,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -2404,7 +2404,7 @@ public:
         sig.pMemoryRequirements = pMemoryRequirements;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -2419,7 +2419,7 @@ public:
         sig.pMemoryRequirements = pMemoryRequirements;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -2435,7 +2435,7 @@ public:
         sig.pSparseMemoryRequirements = pSparseMemoryRequirements;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -2449,7 +2449,7 @@ public:
         sig.pFeatures = pFeatures;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -2463,7 +2463,7 @@ public:
         sig.pProperties = pProperties;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -2478,7 +2478,7 @@ public:
         sig.pFormatProperties = pFormatProperties;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -2494,7 +2494,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -2510,7 +2510,7 @@ public:
         sig.pQueueFamilyProperties = pQueueFamilyProperties;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -2524,7 +2524,7 @@ public:
         sig.pMemoryProperties = pMemoryProperties;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -2540,7 +2540,7 @@ public:
         sig.pProperties = pProperties;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -2555,7 +2555,7 @@ public:
         sig.flags = flags;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -2570,7 +2570,7 @@ public:
         sig.pQueue = pQueue;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -2585,7 +2585,7 @@ public:
         sig.pExternalBufferProperties = pExternalBufferProperties;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -2600,7 +2600,7 @@ public:
         sig.pExternalFenceProperties = pExternalFenceProperties;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -2615,7 +2615,7 @@ public:
         sig.pExternalSemaphoreProperties = pExternalSemaphoreProperties;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -2634,7 +2634,7 @@ public:
         sig.groupCountZ = groupCountZ;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -2651,7 +2651,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -2667,7 +2667,7 @@ public:
         sig.pAllocator = const_cast<VkAllocationCallbacks*>(pAllocator);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -2683,7 +2683,7 @@ public:
         sig.pData = const_cast<void*>(pData);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -2698,7 +2698,7 @@ public:
         sig.pSupport = pSupport;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -2715,7 +2715,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -2731,7 +2731,7 @@ public:
         sig.pAllocator = const_cast<VkAllocationCallbacks*>(pAllocator);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -2747,7 +2747,7 @@ public:
         sig.queryCount = queryCount;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -2763,7 +2763,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -2780,7 +2780,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -2796,7 +2796,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -2812,7 +2812,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -2828,7 +2828,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -2844,7 +2844,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -2864,7 +2864,7 @@ public:
         sig.stride = stride;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -2883,7 +2883,7 @@ public:
         sig.stride = stride;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -2900,7 +2900,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -2916,7 +2916,7 @@ public:
         sig.pSubpassBeginInfo = const_cast<VkSubpassBeginInfo*>(pSubpassBeginInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -2931,7 +2931,7 @@ public:
         sig.pSubpassEndInfo = const_cast<VkSubpassEndInfo*>(pSubpassEndInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -2945,7 +2945,7 @@ public:
         sig.pSubpassEndInfo = const_cast<VkSubpassEndInfo*>(pSubpassEndInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -2961,7 +2961,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -2979,7 +2979,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -2995,7 +2995,7 @@ public:
         sig.pAllocator = const_cast<VkAllocationCallbacks*>(pAllocator);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -3013,7 +3013,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -3031,7 +3031,7 @@ public:
         sig.pData = pData;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -3045,7 +3045,7 @@ public:
         sig.pDependencyInfo = const_cast<VkDependencyInfo*>(pDependencyInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -3061,7 +3061,7 @@ public:
         sig.query = query;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -3078,7 +3078,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -3093,7 +3093,7 @@ public:
         sig.pCopyBufferInfo = const_cast<VkCopyBufferInfo2*>(pCopyBufferInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -3107,7 +3107,7 @@ public:
         sig.pCopyImageInfo = const_cast<VkCopyImageInfo2*>(pCopyImageInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -3121,7 +3121,7 @@ public:
         sig.pCopyBufferToImageInfo = const_cast<VkCopyBufferToImageInfo2*>(pCopyBufferToImageInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -3135,7 +3135,7 @@ public:
         sig.pCopyImageToBufferInfo = const_cast<VkCopyImageToBufferInfo2*>(pCopyImageToBufferInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -3150,7 +3150,7 @@ public:
         sig.pMemoryRequirements = pMemoryRequirements;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -3165,7 +3165,7 @@ public:
         sig.pMemoryRequirements = pMemoryRequirements;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -3181,7 +3181,7 @@ public:
         sig.pSparseMemoryRequirements = pSparseMemoryRequirements;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -3196,7 +3196,7 @@ public:
         sig.pDependencyInfo = const_cast<VkDependencyInfo*>(pDependencyInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -3211,7 +3211,7 @@ public:
         sig.stageMask = stageMask;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -3227,7 +3227,7 @@ public:
         sig.pDependencyInfos = const_cast<VkDependencyInfo*>(pDependencyInfos);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -3241,7 +3241,7 @@ public:
         sig.pBlitImageInfo = const_cast<VkBlitImageInfo2*>(pBlitImageInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -3255,7 +3255,7 @@ public:
         sig.pResolveImageInfo = const_cast<VkResolveImageInfo2*>(pResolveImageInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -3269,7 +3269,7 @@ public:
         sig.pRenderingInfo = const_cast<VkRenderingInfo*>(pRenderingInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -3282,7 +3282,7 @@ public:
         sig.commandBuffer = commandBuffer;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -3296,7 +3296,7 @@ public:
         sig.cullMode = cullMode;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -3310,7 +3310,7 @@ public:
         sig.frontFace = frontFace;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -3324,7 +3324,7 @@ public:
         sig.primitiveTopology = primitiveTopology;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -3339,7 +3339,7 @@ public:
         sig.pViewports = const_cast<VkViewport*>(pViewports);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -3354,7 +3354,7 @@ public:
         sig.pScissors = const_cast<VkRect2D*>(pScissors);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -3373,7 +3373,7 @@ public:
         sig.pStrides = const_cast<VkDeviceSize*>(pStrides);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -3387,7 +3387,7 @@ public:
         sig.depthTestEnable = depthTestEnable;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -3401,7 +3401,7 @@ public:
         sig.depthWriteEnable = depthWriteEnable;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -3415,7 +3415,7 @@ public:
         sig.depthCompareOp = depthCompareOp;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -3429,7 +3429,7 @@ public:
         sig.depthBoundsTestEnable = depthBoundsTestEnable;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -3443,7 +3443,7 @@ public:
         sig.stencilTestEnable = stencilTestEnable;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -3461,7 +3461,7 @@ public:
         sig.compareOp = compareOp;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -3475,7 +3475,7 @@ public:
         sig.rasterizerDiscardEnable = rasterizerDiscardEnable;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -3489,7 +3489,7 @@ public:
         sig.depthBiasEnable = depthBiasEnable;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -3503,7 +3503,7 @@ public:
         sig.primitiveRestartEnable = primitiveRestartEnable;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -3519,7 +3519,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -3535,7 +3535,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -3551,7 +3551,7 @@ public:
         sig.pLayout = pLayout;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -3567,7 +3567,7 @@ public:
         sig.pLayout = pLayout;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -3582,7 +3582,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -3598,7 +3598,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -3614,7 +3614,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -3631,7 +3631,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -3650,7 +3650,7 @@ public:
         sig.pDescriptorWrites = const_cast<VkWriteDescriptorSet*>(pDescriptorWrites);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -3667,7 +3667,7 @@ public:
         sig.pData = const_cast<void*>(pData);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -3681,7 +3681,7 @@ public:
         sig.pBindDescriptorSetsInfo = const_cast<VkBindDescriptorSetsInfo*>(pBindDescriptorSetsInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -3695,7 +3695,7 @@ public:
         sig.pPushConstantsInfo = const_cast<VkPushConstantsInfo*>(pPushConstantsInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -3709,7 +3709,7 @@ public:
         sig.pPushDescriptorSetInfo = const_cast<VkPushDescriptorSetInfo*>(pPushDescriptorSetInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -3723,7 +3723,7 @@ public:
         sig.pPushDescriptorSetWithTemplateInfo = const_cast<VkPushDescriptorSetWithTemplateInfo*>(pPushDescriptorSetWithTemplateInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -3738,7 +3738,7 @@ public:
         sig.lineStipplePattern = lineStipplePattern;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -3755,7 +3755,7 @@ public:
         sig.indexType = indexType;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -3770,7 +3770,7 @@ public:
         sig.pGranularity = pGranularity;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -3784,7 +3784,7 @@ public:
         sig.pLocationInfo = const_cast<VkRenderingAttachmentLocationInfo*>(pLocationInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -3798,7 +3798,7 @@ public:
         sig.pInputAttachmentIndexInfo = const_cast<VkRenderingInputAttachmentIndexInfo*>(pInputAttachmentIndexInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -3813,7 +3813,7 @@ public:
         sig.pAllocator = const_cast<VkAllocationCallbacks*>(pAllocator);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -3830,7 +3830,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -3847,7 +3847,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -3865,7 +3865,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -3883,7 +3883,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -3901,7 +3901,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -3917,7 +3917,7 @@ public:
         sig.pAllocator = const_cast<VkAllocationCallbacks*>(pAllocator);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -3934,7 +3934,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -3954,7 +3954,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -3970,7 +3970,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -3986,7 +3986,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -4003,7 +4003,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -4021,7 +4021,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -4038,7 +4038,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -4055,7 +4055,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -4072,7 +4072,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -4090,7 +4090,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -4108,7 +4108,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -4127,7 +4127,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -4145,7 +4145,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -4163,7 +4163,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -4182,7 +4182,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -4200,7 +4200,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -4218,7 +4218,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -4236,7 +4236,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -4254,7 +4254,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -4272,7 +4272,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -4289,7 +4289,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -4307,7 +4307,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -4325,7 +4325,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -4341,7 +4341,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -4358,7 +4358,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -4376,7 +4376,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -4394,7 +4394,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -4410,7 +4410,7 @@ public:
         sig.pAllocator = const_cast<VkAllocationCallbacks*>(pAllocator);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -4427,7 +4427,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -4445,7 +4445,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -4463,7 +4463,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -4480,7 +4480,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -4496,7 +4496,7 @@ public:
         sig.pAllocator = const_cast<VkAllocationCallbacks*>(pAllocator);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -4510,7 +4510,7 @@ public:
         sig.pBeginInfo = const_cast<VkVideoBeginCodingInfoKHR*>(pBeginInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -4524,7 +4524,7 @@ public:
         sig.pEndCodingInfo = const_cast<VkVideoEndCodingInfoKHR*>(pEndCodingInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -4538,7 +4538,7 @@ public:
         sig.pCodingControlInfo = const_cast<VkVideoCodingControlInfoKHR*>(pCodingControlInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -4552,7 +4552,7 @@ public:
         sig.pDecodeInfo = const_cast<VkVideoDecodeInfoKHR*>(pDecodeInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -4566,7 +4566,7 @@ public:
         sig.pRenderingInfo = const_cast<VkRenderingInfo*>(pRenderingInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -4579,7 +4579,7 @@ public:
         sig.commandBuffer = commandBuffer;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -4593,7 +4593,7 @@ public:
         sig.pFeatures = pFeatures;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -4607,7 +4607,7 @@ public:
         sig.pProperties = pProperties;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -4622,7 +4622,7 @@ public:
         sig.pFormatProperties = pFormatProperties;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -4638,7 +4638,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -4654,7 +4654,7 @@ public:
         sig.pQueueFamilyProperties = pQueueFamilyProperties;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -4668,7 +4668,7 @@ public:
         sig.pMemoryProperties = pMemoryProperties;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -4684,7 +4684,7 @@ public:
         sig.pProperties = pProperties;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -4701,7 +4701,7 @@ public:
         sig.pPeerMemoryFeatures = pPeerMemoryFeatures;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -4715,7 +4715,7 @@ public:
         sig.deviceMask = deviceMask;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -4734,7 +4734,7 @@ public:
         sig.groupCountZ = groupCountZ;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -4749,7 +4749,7 @@ public:
         sig.flags = flags;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -4765,7 +4765,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -4781,7 +4781,7 @@ public:
         sig.pExternalBufferProperties = pExternalBufferProperties;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -4797,7 +4797,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -4815,7 +4815,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -4832,7 +4832,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -4850,7 +4850,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -4866,7 +4866,7 @@ public:
         sig.pExternalSemaphoreProperties = pExternalSemaphoreProperties;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -4881,7 +4881,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -4898,7 +4898,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -4914,7 +4914,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -4931,7 +4931,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -4950,7 +4950,7 @@ public:
         sig.pDescriptorWrites = const_cast<VkWriteDescriptorSet*>(pDescriptorWrites);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -4967,7 +4967,7 @@ public:
         sig.pData = const_cast<void*>(pData);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -4984,7 +4984,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -5000,7 +5000,7 @@ public:
         sig.pAllocator = const_cast<VkAllocationCallbacks*>(pAllocator);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -5016,7 +5016,7 @@ public:
         sig.pData = const_cast<void*>(pData);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -5033,7 +5033,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -5049,7 +5049,7 @@ public:
         sig.pSubpassBeginInfo = const_cast<VkSubpassBeginInfo*>(pSubpassBeginInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -5064,7 +5064,7 @@ public:
         sig.pSubpassEndInfo = const_cast<VkSubpassEndInfo*>(pSubpassEndInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -5078,7 +5078,7 @@ public:
         sig.pSubpassEndInfo = const_cast<VkSubpassEndInfo*>(pSubpassEndInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -5093,7 +5093,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -5109,7 +5109,7 @@ public:
         sig.pExternalFenceProperties = pExternalFenceProperties;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -5124,7 +5124,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -5141,7 +5141,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -5157,7 +5157,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -5174,7 +5174,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -5193,7 +5193,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -5209,7 +5209,7 @@ public:
         sig.pNumPasses = pNumPasses;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -5224,7 +5224,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -5238,7 +5238,7 @@ public:
         sig.device = device;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -5254,7 +5254,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -5272,7 +5272,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -5289,7 +5289,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -5306,7 +5306,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -5324,7 +5324,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -5341,7 +5341,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -5357,7 +5357,7 @@ public:
         sig.pMemoryRequirements = pMemoryRequirements;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -5372,7 +5372,7 @@ public:
         sig.pMemoryRequirements = pMemoryRequirements;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -5388,7 +5388,7 @@ public:
         sig.pSparseMemoryRequirements = pSparseMemoryRequirements;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -5405,7 +5405,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -5421,7 +5421,7 @@ public:
         sig.pAllocator = const_cast<VkAllocationCallbacks*>(pAllocator);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -5437,7 +5437,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -5454,7 +5454,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -5470,7 +5470,7 @@ public:
         sig.pSupport = pSupport;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -5489,7 +5489,7 @@ public:
         sig.stride = stride;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -5508,7 +5508,7 @@ public:
         sig.stride = stride;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -5524,7 +5524,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -5541,7 +5541,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -5557,7 +5557,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -5574,7 +5574,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -5590,7 +5590,7 @@ public:
         std::memcpy(sig.combinerOps, combinerOps, sizeof(sig.combinerOps));
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -5604,7 +5604,7 @@ public:
         sig.pLocationInfo = const_cast<VkRenderingAttachmentLocationInfo*>(pLocationInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -5618,7 +5618,7 @@ public:
         sig.pInputAttachmentIndexInfo = const_cast<VkRenderingInputAttachmentIndexInfo*>(pInputAttachmentIndexInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -5635,7 +5635,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -5651,7 +5651,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -5667,7 +5667,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -5683,7 +5683,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -5700,7 +5700,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -5716,7 +5716,7 @@ public:
         sig.pAllocator = const_cast<VkAllocationCallbacks*>(pAllocator);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -5731,7 +5731,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -5747,7 +5747,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -5763,7 +5763,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -5781,7 +5781,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -5799,7 +5799,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -5817,7 +5817,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -5834,7 +5834,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -5850,7 +5850,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -5867,7 +5867,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -5886,7 +5886,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -5901,7 +5901,7 @@ public:
         sig.pEncodeInfo = const_cast<VkVideoEncodeInfoKHR*>(pEncodeInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -5916,7 +5916,7 @@ public:
         sig.pDependencyInfo = const_cast<VkDependencyInfo*>(pDependencyInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -5931,7 +5931,7 @@ public:
         sig.stageMask = stageMask;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -5947,7 +5947,7 @@ public:
         sig.pDependencyInfos = const_cast<VkDependencyInfo*>(pDependencyInfos);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -5961,7 +5961,7 @@ public:
         sig.pDependencyInfo = const_cast<VkDependencyInfo*>(pDependencyInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -5977,7 +5977,7 @@ public:
         sig.query = query;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -5994,7 +5994,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -6009,7 +6009,7 @@ public:
         sig.pCopyBufferInfo = const_cast<VkCopyBufferInfo2*>(pCopyBufferInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -6023,7 +6023,7 @@ public:
         sig.pCopyImageInfo = const_cast<VkCopyImageInfo2*>(pCopyImageInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -6037,7 +6037,7 @@ public:
         sig.pCopyBufferToImageInfo = const_cast<VkCopyBufferToImageInfo2*>(pCopyBufferToImageInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -6051,7 +6051,7 @@ public:
         sig.pCopyImageToBufferInfo = const_cast<VkCopyImageToBufferInfo2*>(pCopyImageToBufferInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -6065,7 +6065,7 @@ public:
         sig.pBlitImageInfo = const_cast<VkBlitImageInfo2*>(pBlitImageInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -6079,7 +6079,7 @@ public:
         sig.pResolveImageInfo = const_cast<VkResolveImageInfo2*>(pResolveImageInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -6093,7 +6093,7 @@ public:
         sig.indirectDeviceAddress = indirectDeviceAddress;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -6108,7 +6108,7 @@ public:
         sig.pMemoryRequirements = pMemoryRequirements;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -6123,7 +6123,7 @@ public:
         sig.pMemoryRequirements = pMemoryRequirements;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -6139,7 +6139,7 @@ public:
         sig.pSparseMemoryRequirements = pSparseMemoryRequirements;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -6156,7 +6156,7 @@ public:
         sig.indexType = indexType;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -6171,7 +6171,7 @@ public:
         sig.pGranularity = pGranularity;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -6186,7 +6186,7 @@ public:
         sig.pLayout = pLayout;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -6202,7 +6202,7 @@ public:
         sig.pLayout = pLayout;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -6218,7 +6218,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -6236,7 +6236,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -6252,7 +6252,7 @@ public:
         sig.pAllocator = const_cast<VkAllocationCallbacks*>(pAllocator);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -6268,7 +6268,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -6287,7 +6287,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -6304,7 +6304,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -6320,7 +6320,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -6337,7 +6337,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -6353,7 +6353,7 @@ public:
         sig.lineStipplePattern = lineStipplePattern;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -6369,7 +6369,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -6388,7 +6388,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -6403,7 +6403,7 @@ public:
         sig.pBindDescriptorSetsInfo = const_cast<VkBindDescriptorSetsInfo*>(pBindDescriptorSetsInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -6417,7 +6417,7 @@ public:
         sig.pPushConstantsInfo = const_cast<VkPushConstantsInfo*>(pPushConstantsInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -6431,7 +6431,7 @@ public:
         sig.pPushDescriptorSetInfo = const_cast<VkPushDescriptorSetInfo*>(pPushDescriptorSetInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -6445,7 +6445,7 @@ public:
         sig.pPushDescriptorSetWithTemplateInfo = const_cast<VkPushDescriptorSetWithTemplateInfo*>(pPushDescriptorSetWithTemplateInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -6459,7 +6459,7 @@ public:
         sig.pSetDescriptorBufferOffsetsInfo = const_cast<VkSetDescriptorBufferOffsetsInfoEXT*>(pSetDescriptorBufferOffsetsInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -6473,7 +6473,7 @@ public:
         sig.pBindDescriptorBufferEmbeddedSamplersInfo = const_cast<VkBindDescriptorBufferEmbeddedSamplersInfoEXT*>(pBindDescriptorBufferEmbeddedSamplersInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -6487,7 +6487,7 @@ public:
         sig.pCopyMemoryIndirectInfo = const_cast<VkCopyMemoryIndirectInfoKHR*>(pCopyMemoryIndirectInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -6501,7 +6501,7 @@ public:
         sig.pCopyMemoryToImageIndirectInfo = const_cast<VkCopyMemoryToImageIndirectInfoKHR*>(pCopyMemoryToImageIndirectInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -6515,7 +6515,7 @@ public:
         sig.pRenderingEndInfo = const_cast<VkRenderingEndInfoKHR*>(pRenderingEndInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -6532,7 +6532,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -6548,7 +6548,7 @@ public:
         sig.pAllocator = const_cast<VkAllocationCallbacks*>(pAllocator);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -6568,7 +6568,7 @@ public:
         sig.pMessage = const_cast<char*>(pMessage);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -6583,7 +6583,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -6599,7 +6599,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -6614,7 +6614,7 @@ public:
         sig.pMarkerInfo = const_cast<VkDebugMarkerMarkerInfoEXT*>(pMarkerInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -6627,7 +6627,7 @@ public:
         sig.commandBuffer = commandBuffer;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -6641,7 +6641,7 @@ public:
         sig.pMarkerInfo = const_cast<VkDebugMarkerMarkerInfoEXT*>(pMarkerInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -6659,7 +6659,7 @@ public:
         sig.pSizes = const_cast<VkDeviceSize*>(pSizes);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -6676,7 +6676,7 @@ public:
         sig.pCounterBufferOffsets = const_cast<VkDeviceSize*>(pCounterBufferOffsets);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -6693,7 +6693,7 @@ public:
         sig.pCounterBufferOffsets = const_cast<VkDeviceSize*>(pCounterBufferOffsets);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -6710,7 +6710,7 @@ public:
         sig.index = index;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -6726,7 +6726,7 @@ public:
         sig.index = index;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -6745,7 +6745,7 @@ public:
         sig.vertexStride = vertexStride;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -6762,7 +6762,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -6780,7 +6780,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -6796,7 +6796,7 @@ public:
         sig.pAllocator = const_cast<VkAllocationCallbacks*>(pAllocator);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -6811,7 +6811,7 @@ public:
         sig.pAllocator = const_cast<VkAllocationCallbacks*>(pAllocator);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -6825,7 +6825,7 @@ public:
         sig.pLaunchInfo = const_cast<VkCuLaunchInfoNVX*>(pLaunchInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -6840,7 +6840,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -6856,7 +6856,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -6873,7 +6873,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -6893,7 +6893,7 @@ public:
         sig.stride = stride;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -6912,7 +6912,7 @@ public:
         sig.stride = stride;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -6931,7 +6931,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -6949,7 +6949,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -6971,7 +6971,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -6989,7 +6989,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -7007,7 +7007,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -7022,7 +7022,7 @@ public:
         sig.pConditionalRenderingBegin = const_cast<VkConditionalRenderingBeginInfoEXT*>(pConditionalRenderingBegin);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -7035,7 +7035,7 @@ public:
         sig.commandBuffer = commandBuffer;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -7051,7 +7051,7 @@ public:
         sig.pViewportWScalings = const_cast<VkViewportWScalingNV*>(pViewportWScalings);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -7066,7 +7066,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -7083,7 +7083,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -7101,7 +7101,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -7118,7 +7118,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -7135,7 +7135,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -7153,7 +7153,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -7172,7 +7172,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -7190,7 +7190,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -7207,7 +7207,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -7225,7 +7225,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -7242,7 +7242,7 @@ public:
         sig.pDiscardRectangles = const_cast<VkRect2D*>(pDiscardRectangles);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -7256,7 +7256,7 @@ public:
         sig.discardRectangleEnable = discardRectangleEnable;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -7270,7 +7270,7 @@ public:
         sig.discardRectangleMode = discardRectangleMode;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -7286,7 +7286,7 @@ public:
         sig.pMetadata = const_cast<VkHdrMetadataEXT*>(pMetadata);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -7303,7 +7303,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -7321,7 +7321,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -7337,7 +7337,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -7353,7 +7353,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -7368,7 +7368,7 @@ public:
         sig.pLabelInfo = const_cast<VkDebugUtilsLabelEXT*>(pLabelInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -7381,7 +7381,7 @@ public:
         sig.queue = queue;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -7395,7 +7395,7 @@ public:
         sig.pLabelInfo = const_cast<VkDebugUtilsLabelEXT*>(pLabelInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -7409,7 +7409,7 @@ public:
         sig.pLabelInfo = const_cast<VkDebugUtilsLabelEXT*>(pLabelInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -7422,7 +7422,7 @@ public:
         sig.commandBuffer = commandBuffer;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -7436,7 +7436,7 @@ public:
         sig.pLabelInfo = const_cast<VkDebugUtilsLabelEXT*>(pLabelInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -7453,7 +7453,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -7469,7 +7469,7 @@ public:
         sig.pAllocator = const_cast<VkAllocationCallbacks*>(pAllocator);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -7485,7 +7485,7 @@ public:
         sig.pCallbackData = const_cast<VkDebugUtilsMessengerCallbackDataEXT*>(pCallbackData);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -7501,7 +7501,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -7518,7 +7518,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -7538,7 +7538,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -7555,7 +7555,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -7573,7 +7573,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -7590,7 +7590,7 @@ public:
         sig.scratchSize = scratchSize;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -7606,7 +7606,7 @@ public:
         sig.pCountInfo = const_cast<VkDispatchGraphCountInfoAMDX*>(pCountInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -7622,7 +7622,7 @@ public:
         sig.pCountInfo = const_cast<VkDispatchGraphCountInfoAMDX*>(pCountInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -7638,7 +7638,7 @@ public:
         sig.countInfo = countInfo;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -7652,7 +7652,7 @@ public:
         sig.pSampleLocationsInfo = const_cast<VkSampleLocationsInfoEXT*>(pSampleLocationsInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -7667,7 +7667,7 @@ public:
         sig.pMultisampleProperties = pMultisampleProperties;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -7683,7 +7683,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -7701,7 +7701,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -7717,7 +7717,7 @@ public:
         sig.pAllocator = const_cast<VkAllocationCallbacks*>(pAllocator);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -7734,7 +7734,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -7752,7 +7752,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -7768,7 +7768,7 @@ public:
         sig.imageLayout = imageLayout;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -7784,7 +7784,7 @@ public:
         sig.pShadingRatePalettes = const_cast<VkShadingRatePaletteNV*>(pShadingRatePalettes);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -7800,7 +7800,7 @@ public:
         sig.pCustomSampleOrders = const_cast<VkCoarseSampleOrderCustomNV*>(pCustomSampleOrders);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -7817,7 +7817,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -7833,7 +7833,7 @@ public:
         sig.pAllocator = const_cast<VkAllocationCallbacks*>(pAllocator);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -7848,7 +7848,7 @@ public:
         sig.pMemoryRequirements = pMemoryRequirements;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -7864,7 +7864,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -7886,7 +7886,7 @@ public:
         sig.scratchOffset = scratchOffset;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -7902,7 +7902,7 @@ public:
         sig.mode = mode;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -7929,7 +7929,7 @@ public:
         sig.depth = depth;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -7948,7 +7948,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -7968,7 +7968,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -7988,7 +7988,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -8006,7 +8006,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -8025,7 +8025,7 @@ public:
         sig.firstQuery = firstQuery;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -8041,7 +8041,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -8059,7 +8059,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -8077,7 +8077,7 @@ public:
         sig.marker = marker;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -8094,7 +8094,7 @@ public:
         sig.marker = marker;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -8110,7 +8110,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -8129,7 +8129,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -8145,7 +8145,7 @@ public:
         sig.firstTask = firstTask;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -8162,7 +8162,7 @@ public:
         sig.stride = stride;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -8181,7 +8181,7 @@ public:
         sig.stride = stride;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -8197,7 +8197,7 @@ public:
         sig.pExclusiveScissorEnables = const_cast<VkBool32*>(pExclusiveScissorEnables);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -8213,7 +8213,7 @@ public:
         sig.pExclusiveScissors = const_cast<VkRect2D*>(pExclusiveScissors);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -8227,7 +8227,7 @@ public:
         sig.pCheckpointMarker = const_cast<void*>(pCheckpointMarker);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -8242,7 +8242,7 @@ public:
         sig.pCheckpointData = pCheckpointData;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -8257,7 +8257,7 @@ public:
         sig.pCheckpointData = pCheckpointData;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -8273,7 +8273,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -8291,7 +8291,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -8309,7 +8309,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -8326,7 +8326,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -8342,7 +8342,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -8356,7 +8356,7 @@ public:
         sig.device = device;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -8371,7 +8371,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -8387,7 +8387,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -8403,7 +8403,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -8420,7 +8420,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -8436,7 +8436,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -8452,7 +8452,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -8469,7 +8469,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -8485,7 +8485,7 @@ public:
         sig.localDimmingEnable = localDimmingEnable;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -8502,7 +8502,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -8520,7 +8520,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -8536,7 +8536,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -8553,7 +8553,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -8570,7 +8570,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -8587,7 +8587,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -8605,7 +8605,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -8621,7 +8621,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -8637,7 +8637,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -8654,7 +8654,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -8672,7 +8672,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -8688,7 +8688,7 @@ public:
         sig.lineStipplePattern = lineStipplePattern;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -8704,7 +8704,7 @@ public:
         sig.queryCount = queryCount;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -8718,7 +8718,7 @@ public:
         sig.cullMode = cullMode;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -8732,7 +8732,7 @@ public:
         sig.frontFace = frontFace;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -8746,7 +8746,7 @@ public:
         sig.primitiveTopology = primitiveTopology;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -8761,7 +8761,7 @@ public:
         sig.pViewports = const_cast<VkViewport*>(pViewports);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -8776,7 +8776,7 @@ public:
         sig.pScissors = const_cast<VkRect2D*>(pScissors);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -8795,7 +8795,7 @@ public:
         sig.pStrides = const_cast<VkDeviceSize*>(pStrides);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -8809,7 +8809,7 @@ public:
         sig.depthTestEnable = depthTestEnable;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -8823,7 +8823,7 @@ public:
         sig.depthWriteEnable = depthWriteEnable;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -8837,7 +8837,7 @@ public:
         sig.depthCompareOp = depthCompareOp;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -8851,7 +8851,7 @@ public:
         sig.depthBoundsTestEnable = depthBoundsTestEnable;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -8865,7 +8865,7 @@ public:
         sig.stencilTestEnable = stencilTestEnable;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -8883,7 +8883,7 @@ public:
         sig.compareOp = compareOp;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -8898,7 +8898,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -8914,7 +8914,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -8930,7 +8930,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -8947,7 +8947,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -8964,7 +8964,7 @@ public:
         sig.pLayout = pLayout;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -8979,7 +8979,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -8995,7 +8995,7 @@ public:
         sig.pMemoryRequirements = pMemoryRequirements;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -9009,7 +9009,7 @@ public:
         sig.pGeneratedCommandsInfo = const_cast<VkGeneratedCommandsInfoNV*>(pGeneratedCommandsInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -9024,7 +9024,7 @@ public:
         sig.pGeneratedCommandsInfo = const_cast<VkGeneratedCommandsInfoNV*>(pGeneratedCommandsInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -9040,7 +9040,7 @@ public:
         sig.groupIndex = groupIndex;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -9057,7 +9057,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -9073,7 +9073,7 @@ public:
         sig.pAllocator = const_cast<VkAllocationCallbacks*>(pAllocator);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -9087,7 +9087,7 @@ public:
         sig.pDepthBiasInfo = const_cast<VkDepthBiasInfoEXT*>(pDepthBiasInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -9103,7 +9103,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -9121,7 +9121,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -9139,7 +9139,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -9155,7 +9155,7 @@ public:
         sig.pAllocator = const_cast<VkAllocationCallbacks*>(pAllocator);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -9173,7 +9173,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -9191,7 +9191,7 @@ public:
         sig.pData = pData;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -9208,7 +9208,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -9226,7 +9226,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -9244,7 +9244,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -9260,7 +9260,7 @@ public:
         sig.pAllocator = const_cast<VkAllocationCallbacks*>(pAllocator);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -9275,7 +9275,7 @@ public:
         sig.pAllocator = const_cast<VkAllocationCallbacks*>(pAllocator);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -9289,7 +9289,7 @@ public:
         sig.pLaunchInfo = const_cast<VkCudaLaunchInfoNV*>(pLaunchInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -9303,7 +9303,7 @@ public:
         sig.pDispatchTileInfo = const_cast<VkDispatchTileInfoQCOM*>(pDispatchTileInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -9317,7 +9317,7 @@ public:
         sig.pPerTileBeginInfo = const_cast<VkPerTileBeginInfoQCOM*>(pPerTileBeginInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -9331,7 +9331,7 @@ public:
         sig.pPerTileEndInfo = const_cast<VkPerTileEndInfoQCOM*>(pPerTileEndInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -9345,7 +9345,7 @@ public:
         sig.pMetalObjectsInfo = pMetalObjectsInfo;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -9360,7 +9360,7 @@ public:
         sig.pLayoutSizeInBytes = pLayoutSizeInBytes;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -9376,7 +9376,7 @@ public:
         sig.pOffset = pOffset;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -9392,7 +9392,7 @@ public:
         sig.pDescriptor = pDescriptor;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -9407,7 +9407,7 @@ public:
         sig.pBindingInfos = const_cast<VkDescriptorBufferBindingInfoEXT*>(pBindingInfos);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -9426,7 +9426,7 @@ public:
         sig.pOffsets = const_cast<VkDeviceSize*>(pOffsets);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -9442,7 +9442,7 @@ public:
         sig.set = set;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -9458,7 +9458,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -9475,7 +9475,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -9492,7 +9492,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -9509,7 +9509,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -9526,7 +9526,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -9542,7 +9542,7 @@ public:
         std::memcpy(sig.combinerOps, combinerOps, sizeof(sig.combinerOps));
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -9558,7 +9558,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -9574,7 +9574,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -9591,7 +9591,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -9609,7 +9609,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -9626,7 +9626,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -9644,7 +9644,7 @@ public:
         sig.pVertexAttributeDescriptions = const_cast<VkVertexInputAttributeDescription2EXT*>(pVertexAttributeDescriptions);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -9660,7 +9660,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -9678,7 +9678,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -9694,7 +9694,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -9711,7 +9711,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -9729,7 +9729,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -9746,7 +9746,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -9763,7 +9763,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -9779,7 +9779,7 @@ public:
         sig.pAllocator = const_cast<VkAllocationCallbacks*>(pAllocator);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -9795,7 +9795,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -9812,7 +9812,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -9826,7 +9826,7 @@ public:
         sig.commandBuffer = commandBuffer;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -9841,7 +9841,7 @@ public:
         sig.imageLayout = imageLayout;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -9857,7 +9857,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -9874,7 +9874,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -9889,7 +9889,7 @@ public:
         sig.patchControlPoints = patchControlPoints;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -9903,7 +9903,7 @@ public:
         sig.rasterizerDiscardEnable = rasterizerDiscardEnable;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -9917,7 +9917,7 @@ public:
         sig.depthBiasEnable = depthBiasEnable;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -9931,7 +9931,7 @@ public:
         sig.logicOp = logicOp;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -9945,7 +9945,7 @@ public:
         sig.primitiveRestartEnable = primitiveRestartEnable;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -9962,7 +9962,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -9979,7 +9979,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -9995,7 +9995,7 @@ public:
         sig.pColorWriteEnables = const_cast<VkBool32*>(pColorWriteEnables);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -10013,7 +10013,7 @@ public:
         sig.stride = stride;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -10032,7 +10032,7 @@ public:
         sig.pVertexOffset = const_cast<int32_t*>(pVertexOffset);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -10049,7 +10049,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -10065,7 +10065,7 @@ public:
         sig.pAllocator = const_cast<VkAllocationCallbacks*>(pAllocator);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -10080,7 +10080,7 @@ public:
         sig.pInfos = const_cast<VkMicromapBuildInfoEXT*>(pInfos);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -10097,7 +10097,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -10114,7 +10114,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -10131,7 +10131,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -10148,7 +10148,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -10169,7 +10169,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -10184,7 +10184,7 @@ public:
         sig.pInfo = const_cast<VkCopyMicromapInfoEXT*>(pInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -10198,7 +10198,7 @@ public:
         sig.pInfo = const_cast<VkCopyMicromapToMemoryInfoEXT*>(pInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -10212,7 +10212,7 @@ public:
         sig.pInfo = const_cast<VkCopyMemoryToMicromapInfoEXT*>(pInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -10230,7 +10230,7 @@ public:
         sig.firstQuery = firstQuery;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -10245,7 +10245,7 @@ public:
         sig.pCompatibility = pCompatibility;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -10261,7 +10261,7 @@ public:
         sig.pSizeInfo = pSizeInfo;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -10277,7 +10277,7 @@ public:
         sig.groupCountZ = groupCountZ;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -10292,7 +10292,7 @@ public:
         sig.offset = offset;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -10307,7 +10307,7 @@ public:
         sig.priority = priority;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -10322,7 +10322,7 @@ public:
         sig.pHostMapping = pHostMapping;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -10337,7 +10337,7 @@ public:
         sig.ppData = ppData;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -10353,7 +10353,7 @@ public:
         sig.stride = stride;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -10372,7 +10372,7 @@ public:
         sig.pImageSubresources = const_cast<VkImageSubresourceLayers*>(pImageSubresources);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -10387,7 +10387,7 @@ public:
         sig.pDecompressMemoryRegions = const_cast<VkDecompressMemoryRegionNV*>(pDecompressMemoryRegions);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -10403,7 +10403,7 @@ public:
         sig.stride = stride;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -10418,7 +10418,7 @@ public:
         sig.pMemoryRequirements = pMemoryRequirements;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -10433,7 +10433,7 @@ public:
         sig.pipeline = pipeline;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -10448,7 +10448,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -10465,7 +10465,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -10482,7 +10482,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -10497,7 +10497,7 @@ public:
         sig.depthClampEnable = depthClampEnable;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -10511,7 +10511,7 @@ public:
         sig.polygonMode = polygonMode;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -10525,7 +10525,7 @@ public:
         sig.rasterizationSamples = rasterizationSamples;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -10540,7 +10540,7 @@ public:
         sig.pSampleMask = const_cast<VkSampleMask*>(pSampleMask);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -10554,7 +10554,7 @@ public:
         sig.alphaToCoverageEnable = alphaToCoverageEnable;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -10568,7 +10568,7 @@ public:
         sig.alphaToOneEnable = alphaToOneEnable;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -10582,7 +10582,7 @@ public:
         sig.logicOpEnable = logicOpEnable;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -10598,7 +10598,7 @@ public:
         sig.pColorBlendEnables = const_cast<VkBool32*>(pColorBlendEnables);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -10614,7 +10614,7 @@ public:
         sig.pColorBlendEquations = const_cast<VkColorBlendEquationEXT*>(pColorBlendEquations);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -10630,7 +10630,7 @@ public:
         sig.pColorWriteMasks = const_cast<VkColorComponentFlags*>(pColorWriteMasks);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -10644,7 +10644,7 @@ public:
         sig.domainOrigin = domainOrigin;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -10658,7 +10658,7 @@ public:
         sig.rasterizationStream = rasterizationStream;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -10672,7 +10672,7 @@ public:
         sig.conservativeRasterizationMode = conservativeRasterizationMode;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -10686,7 +10686,7 @@ public:
         sig.extraPrimitiveOverestimationSize = extraPrimitiveOverestimationSize;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -10700,7 +10700,7 @@ public:
         sig.depthClipEnable = depthClipEnable;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -10714,7 +10714,7 @@ public:
         sig.sampleLocationsEnable = sampleLocationsEnable;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -10730,7 +10730,7 @@ public:
         sig.pColorBlendAdvanced = const_cast<VkColorBlendAdvancedEXT*>(pColorBlendAdvanced);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -10744,7 +10744,7 @@ public:
         sig.provokingVertexMode = provokingVertexMode;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -10758,7 +10758,7 @@ public:
         sig.lineRasterizationMode = lineRasterizationMode;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -10772,7 +10772,7 @@ public:
         sig.stippledLineEnable = stippledLineEnable;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -10786,7 +10786,7 @@ public:
         sig.negativeOneToOne = negativeOneToOne;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -10800,7 +10800,7 @@ public:
         sig.viewportWScalingEnable = viewportWScalingEnable;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -10816,7 +10816,7 @@ public:
         sig.pViewportSwizzles = const_cast<VkViewportSwizzleNV*>(pViewportSwizzles);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -10830,7 +10830,7 @@ public:
         sig.coverageToColorEnable = coverageToColorEnable;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -10844,7 +10844,7 @@ public:
         sig.coverageToColorLocation = coverageToColorLocation;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -10858,7 +10858,7 @@ public:
         sig.coverageModulationMode = coverageModulationMode;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -10872,7 +10872,7 @@ public:
         sig.coverageModulationTableEnable = coverageModulationTableEnable;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -10887,7 +10887,7 @@ public:
         sig.pCoverageModulationTable = const_cast<float*>(pCoverageModulationTable);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -10901,7 +10901,7 @@ public:
         sig.shadingRateImageEnable = shadingRateImageEnable;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -10915,7 +10915,7 @@ public:
         sig.representativeFragmentTestEnable = representativeFragmentTestEnable;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -10929,7 +10929,7 @@ public:
         sig.coverageReductionMode = coverageReductionMode;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -10946,7 +10946,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -10962,7 +10962,7 @@ public:
         sig.pAllocator = const_cast<VkAllocationCallbacks*>(pAllocator);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -10979,7 +10979,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -10995,7 +10995,7 @@ public:
         sig.pAllocator = const_cast<VkAllocationCallbacks*>(pAllocator);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -11010,7 +11010,7 @@ public:
         sig.pMemoryRequirements = pMemoryRequirements;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -11026,7 +11026,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -11042,7 +11042,7 @@ public:
         sig.pMemoryRequirements = pMemoryRequirements;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -11056,7 +11056,7 @@ public:
         sig.pCopyTensorInfo = const_cast<VkCopyTensorInfoARM*>(pCopyTensorInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -11071,7 +11071,7 @@ public:
         sig.pExternalTensorProperties = pExternalTensorProperties;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -11087,7 +11087,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -11104,7 +11104,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -11120,7 +11120,7 @@ public:
         sig.pIdentifier = pIdentifier;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -11135,7 +11135,7 @@ public:
         sig.pIdentifier = pIdentifier;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -11152,7 +11152,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -11170,7 +11170,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -11186,7 +11186,7 @@ public:
         sig.pAllocator = const_cast<VkAllocationCallbacks*>(pAllocator);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -11204,7 +11204,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -11220,7 +11220,7 @@ public:
         sig.pExecuteInfo = const_cast<VkOpticalFlowExecuteInfoNV*>(pExecuteInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -11234,7 +11234,7 @@ public:
         sig.pData = const_cast<VkAntiLagDataAMD*>(pData);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -11252,7 +11252,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -11268,7 +11268,7 @@ public:
         sig.pAllocator = const_cast<VkAllocationCallbacks*>(pAllocator);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -11285,7 +11285,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -11302,7 +11302,7 @@ public:
         sig.pShaders = const_cast<VkShaderEXT*>(pShaders);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -11317,7 +11317,7 @@ public:
         sig.pDepthClampRange = const_cast<VkDepthClampRangeEXT*>(pDepthClampRange);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -11334,7 +11334,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -11351,7 +11351,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -11368,7 +11368,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -11384,7 +11384,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -11400,7 +11400,7 @@ public:
         sig.pInfos = const_cast<VkConvertCooperativeVectorMatrixInfoNV*>(pInfos);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -11416,7 +11416,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -11433,7 +11433,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -11449,7 +11449,7 @@ public:
         sig.pLatencyMarkerInfo = const_cast<VkSetLatencyMarkerInfoNV*>(pLatencyMarkerInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -11464,7 +11464,7 @@ public:
         sig.pLatencyMarkerInfo = pLatencyMarkerInfo;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -11478,7 +11478,7 @@ public:
         sig.pQueueTypeInfo = const_cast<VkOutOfBandQueueTypeInfoNV*>(pQueueTypeInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -11498,7 +11498,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -11516,7 +11516,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -11534,7 +11534,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -11550,7 +11550,7 @@ public:
         sig.pMemoryRequirements = pMemoryRequirements;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -11566,7 +11566,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -11582,7 +11582,7 @@ public:
         sig.pAllocator = const_cast<VkAllocationCallbacks*>(pAllocator);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -11597,7 +11597,7 @@ public:
         sig.pInfo = const_cast<VkDataGraphPipelineDispatchInfoARM*>(pInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -11614,7 +11614,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -11632,7 +11632,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -11650,7 +11650,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -11666,7 +11666,7 @@ public:
         sig.pQueueFamilyDataGraphProcessingEngineProperties = pQueueFamilyDataGraphProcessingEngineProperties;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -11680,7 +11680,7 @@ public:
         sig.aspectMask = aspectMask;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -11696,7 +11696,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -11711,7 +11711,7 @@ public:
         sig.pTileMemoryBindInfo = const_cast<VkTileMemoryBindInfoQCOM*>(pTileMemoryBindInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -11725,7 +11725,7 @@ public:
         sig.pDecompressMemoryInfoEXT = const_cast<VkDecompressMemoryInfoEXT*>(pDecompressMemoryInfoEXT);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -11743,7 +11743,7 @@ public:
         sig.stride = stride;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -11760,7 +11760,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -11776,7 +11776,7 @@ public:
         sig.pAllocator = const_cast<VkAllocationCallbacks*>(pAllocator);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -11791,7 +11791,7 @@ public:
         sig.pData = pData;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -11806,7 +11806,7 @@ public:
         sig.pSizeInfo = pSizeInfo;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -11820,7 +11820,7 @@ public:
         sig.pCommandInfos = const_cast<VkClusterAccelerationStructureCommandsInfoNV*>(pCommandInfos);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -11835,7 +11835,7 @@ public:
         sig.pSizeInfo = pSizeInfo;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -11849,7 +11849,7 @@ public:
         sig.pBuildInfo = const_cast<VkBuildPartitionedAccelerationStructureInfoNV*>(pBuildInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -11864,7 +11864,7 @@ public:
         sig.pMemoryRequirements = pMemoryRequirements;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -11879,7 +11879,7 @@ public:
         sig.stateCommandBuffer = stateCommandBuffer;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -11894,7 +11894,7 @@ public:
         sig.pGeneratedCommandsInfo = const_cast<VkGeneratedCommandsInfoEXT*>(pGeneratedCommandsInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -11911,7 +11911,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -11927,7 +11927,7 @@ public:
         sig.pAllocator = const_cast<VkAllocationCallbacks*>(pAllocator);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -11944,7 +11944,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -11960,7 +11960,7 @@ public:
         sig.pAllocator = const_cast<VkAllocationCallbacks*>(pAllocator);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -11976,7 +11976,7 @@ public:
         sig.pExecutionSetWrites = const_cast<VkWriteIndirectExecutionSetPipelineEXT*>(pExecutionSetWrites);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -11992,7 +11992,7 @@ public:
         sig.pExecutionSetWrites = const_cast<VkWriteIndirectExecutionSetShaderEXT*>(pExecutionSetWrites);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -12009,7 +12009,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -12027,7 +12027,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -12046,7 +12046,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -12065,7 +12065,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -12082,7 +12082,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -12099,7 +12099,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -12117,7 +12117,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -12136,7 +12136,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -12151,7 +12151,7 @@ public:
         sig.pRenderingEndInfo = const_cast<VkRenderingEndInfoKHR*>(pRenderingEndInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -12165,7 +12165,7 @@ public:
         sig.pBeginCustomResolveInfo = const_cast<VkBeginCustomResolveInfoEXT*>(pBeginCustomResolveInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -12182,7 +12182,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -12198,7 +12198,7 @@ public:
         sig.pAllocator = const_cast<VkAllocationCallbacks*>(pAllocator);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -12214,7 +12214,7 @@ public:
         sig.ppBuildRangeInfos = const_cast<VkAccelerationStructureBuildRangeInfoKHR* const*>(ppBuildRangeInfos);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -12232,7 +12232,7 @@ public:
         sig.ppMaxPrimitiveCounts = const_cast<uint32_t* const*>(ppMaxPrimitiveCounts);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -12250,7 +12250,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -12267,7 +12267,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -12284,7 +12284,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -12301,7 +12301,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -12322,7 +12322,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -12337,7 +12337,7 @@ public:
         sig.pInfo = const_cast<VkCopyAccelerationStructureInfoKHR*>(pInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -12351,7 +12351,7 @@ public:
         sig.pInfo = const_cast<VkCopyAccelerationStructureToMemoryInfoKHR*>(pInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -12365,7 +12365,7 @@ public:
         sig.pInfo = const_cast<VkCopyMemoryToAccelerationStructureInfoKHR*>(pInfo);
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -12380,7 +12380,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -12399,7 +12399,7 @@ public:
         sig.firstQuery = firstQuery;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -12414,7 +12414,7 @@ public:
         sig.pCompatibility = pCompatibility;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -12431,7 +12431,7 @@ public:
         sig.pSizeInfo = pSizeInfo;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -12451,7 +12451,7 @@ public:
         sig.depth = depth;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -12471,7 +12471,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -12491,7 +12491,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -12510,7 +12510,7 @@ public:
         sig.indirectDeviceAddress = indirectDeviceAddress;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -12527,7 +12527,7 @@ public:
         sig.ret = ret;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
         return ret;
@@ -12542,7 +12542,7 @@ public:
         sig.pipelineStackSize = pipelineStackSize;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -12558,7 +12558,7 @@ public:
         sig.groupCountZ = groupCountZ;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -12575,7 +12575,7 @@ public:
         sig.stride = stride;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
@@ -12594,18 +12594,30 @@ public:
         sig.stride = stride;
 
         std::vector<uint8_t> sigdata;
-        SignatureSerializer::WriteStream stream(sigdata);
+        WriteStream stream(sigdata);
         SignatureSerializer::SerializeToStream(sig, stream);
         SaveData(sigdata);
     }
 
     explicit VulkanLayerAPITrace(const VulkanLayerAPITraceSettings& settings) : VulkanLayerInterface(VulkanLayerType::APITrace), settings_{settings}, buffered_(settings.flushSize) {
         file_ = std::fopen(settings_.filename.c_str(), "wb");
+
+        OVSFileHeader ovsHeader{};
+        ovsHeader.layerType = uint32_t(VulkanLayerType::APITrace);
+        std::fwrite(&ovsHeader, sizeof(OVSFileHeader), 1, file_);
+
+        APITraceFileHeader apitraceHeader{};
+        std::fwrite(&apitraceHeader, sizeof(APITraceFileHeader), 1, file_);
     }
 
     virtual ~VulkanLayerAPITrace() {
         std::lock_guard lock(bufferedMutex_);
         std::fwrite(buffered_.data(), sizeof(uint8_t), bufferedSize_, file_);
+
+        APITraceFileHeader apitraceHeader{};
+        apitraceHeader.signatureCount = signatureIndex_;
+        std::fseek(file_, sizeof(OVSFileHeader), SEEK_SET);
+        std::fwrite(&apitraceHeader, sizeof(APITraceFileHeader), 1, file_);
         std::fclose(file_);
     }
 

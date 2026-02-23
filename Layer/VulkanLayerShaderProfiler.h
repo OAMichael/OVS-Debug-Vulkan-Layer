@@ -124,19 +124,6 @@ private:
         std::vector<ShaderProfileInfo> shaderInfos;
     };
 
-    struct CollectedShaderProfileInfo {
-        VulkanShaderStage stage{VulkanShaderStage::Invalid};
-        VkShaderModule shader{VK_NULL_HANDLE};
-        std::vector<uint32_t> code;
-        std::vector<uint64_t> profileData;
-    };
-
-    struct CollectedPipelineProfileInfo {
-        VkPipelineBindPoint bindPoint{VK_PIPELINE_BIND_POINT_MAX_ENUM};
-        VkPipeline pipeline{VK_NULL_HANDLE};
-        std::vector<CollectedShaderProfileInfo> shaderInfos;
-    };
-
     bool CreateShaderProfileInfos(VkDevice device, const VkAllocationCallbacks* pAllocator, const std::vector<VkPipelineShaderStageCreateInfo>& stageInfos, uint32_t profileSet, std::vector<ShaderProfileInfo>& shaderInfosOut) const;
     void DestroyShaderProfileInfos(VkDevice device, const VkAllocationCallbacks* pAllocator, const std::vector<ShaderProfileInfo>& shaderInfos) const;
 
@@ -169,6 +156,7 @@ private:
     bool BindProfilePipeline(VkCommandBuffer commandBuffer, VkPipelineBindPoint pipelineBindPoint, VkPipeline pipeline) const;
 
     bool CollectProfileData(VkDevice device, const PipelineProfileInfo& pipelineProfileInfo);
+    bool SaveCollectedProfileInfo() const;
 
     VulkanLayerShaderProfilerSettings settings_{};
 

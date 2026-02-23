@@ -4,12 +4,6 @@
             "Type": "ShaderProfiler"
         },
         {
-            "Type": "APIDump",
-            "Settings": {
-                "Filename": "APIDump.txt"
-            }
-        },
-        {
             "Type": "Terminator"
         }
     ]

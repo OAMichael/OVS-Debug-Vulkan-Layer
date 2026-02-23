@@ -36,6 +36,8 @@ set(OVS_LAYER_NAME VkLayer_OVS_Debug)
 
 set(OVS_LAYER_SOURCES
     ${LAYER_DIR}/MainLayer.cpp
+    ${LAYER_DIR}/VulkanLayer.h
+    ${LAYER_DIR}/VulkanLayer.cpp
     ${LAYER_DIR}/VulkanLayerManager.h
     ${LAYER_DIR}/VulkanLayerManager.cpp
     ${LAYER_DIR}/VulkanLayerTerminator.h
@@ -75,6 +77,7 @@ set(OVS_LAYER_SOURCES
     ${UTILS_DIR}/VulkanPlatform.h
     ${UTILS_DIR}/VulkanUtils.h
     ${UTILS_DIR}/VulkanShader.h
+    ${UTILS_DIR}/CommonUtils.h
     ${UTILS_DIR}/PlatformUtils.cpp
 )
 
@@ -88,6 +91,9 @@ set(OVS_DEBUG_NAME OVSDebug)
 
 set(OVS_DEBUG_SOURCES
     ${UI_DIR}/MainUI.cpp
+
+    ${LAYER_DIR}/VulkanLayer.h
+    ${LAYER_DIR}/VulkanLayer.cpp
 
     ${GENERATED_DIR}/VulkanCoreGenerated.h
     ${GENERATED_DIR}/VulkanDispatchTablesGenerated.h
@@ -109,6 +115,7 @@ set(OVS_DEBUG_SOURCES
     ${UTILS_DIR}/Vulkan.h
     ${UTILS_DIR}/VulkanPlatform.h
     ${UTILS_DIR}/VulkanUtils.h
+    ${UTILS_DIR}/CommonUtils.h
     ${UTILS_DIR}/PlatformUtils.cpp
 )
 
