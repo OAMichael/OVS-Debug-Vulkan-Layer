@@ -91,6 +91,8 @@ set(OVS_DEBUG_NAME OVSDebug)
 
 set(OVS_DEBUG_SOURCES
     ${UI_DIR}/MainUI.cpp
+    ${UI_DIR}/ShaderProfiler.h
+    ${UI_DIR}/ShaderProfiler.cpp
 
     ${LAYER_DIR}/VulkanLayer.h
     ${LAYER_DIR}/VulkanLayer.cpp
@@ -120,3 +122,4 @@ set(OVS_DEBUG_SOURCES
 )
 
 add_executable(${OVS_DEBUG_NAME} ${OVS_DEBUG_SOURCES})
+target_link_libraries(${OVS_DEBUG_NAME} PRIVATE SPIRV-Tools SPIRV-Tools-opt)

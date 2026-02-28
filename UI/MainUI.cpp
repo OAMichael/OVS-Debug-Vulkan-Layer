@@ -5,6 +5,8 @@
 #include <SignatureGenerated.h>
 #include <VulkanLayer.h>
 
+#include <ShaderProfiler.h>
+
 using SignatureHeader = OVS::SignatureSerializer::SignatureHeader;
 
 bool HandleAPITraceLayer(std::FILE* inputFile, std::FILE* outputFile) {
@@ -50,61 +52,13 @@ bool HandleAPITraceLayer(std::FILE* inputFile, std::FILE* outputFile) {
 }
 
 
-bool HandleShaderProfilerLayer(std::FILE* inputFile, std::FILE* outputFile) {
-    OVS::ShaderProfilerFileHeader shaderProfHeader{};
-    std::fread(&shaderProfHeader, sizeof(OVS::ShaderProfilerFileHeader), 1, inputFile);
-    if (std::feof(inputFile)) {
-        return false;
-    }
-
-    std::vector<uint8_t> data(shaderProfHeader.byteSize);
-    std::fread(data.data(), sizeof(uint8_t), data.size(), inputFile);
-    if (std::feof(inputFile)) {
-        return false;
-    }
-
-    OVS::ReadStream stream(data);
-
-    uint64_t collectedProfileInfoSize = 0;
-    stream.Read(collectedProfileInfoSize);
-
-    std::vector<OVS::CollectedPipelineProfileInfo> collectedProfileInfos(collectedProfileInfoSize);
-    for (auto& collectedProfileInfo : collectedProfileInfos) {
-        OVS::DeserializeFromStream(collectedProfileInfo, stream);
-    }
-
-    std::stringstream ss;
-    for (const auto& profileInfo : collectedProfileInfos) {
-        ss << "Pipeline " << profileInfo.pipeline << " (" << OVS::GetVulkanPipelineBindPointName(profileInfo.bindPoint) << "):\n";
-        for (const auto& shaderInfo : profileInfo.shaderInfos) {
-            const auto& profileData = shaderInfo.profileData;
-
-            ss << "    Shader " << shaderInfo.shader << " (" << OVS::GetVulkanShaderStageName(shaderInfo.stage) << "): [";
-            for (size_t i = 0; i < profileData.size(); ++i) {
-                if (i > 0) {
-                    ss << ", ";
-                }
-                ss << profileData[i];
-            }
-            ss << "]\n";
-        }
-        ss << "\n";
-    }
-
-    const auto& str = ss.str();
-    std::fwrite(str.c_str(), sizeof(char), str.size(), outputFile);
-
-    return true;
-}
-
-
 int main(int argc, char** argv) {
     if (argc < 2) {
         std::cout << "Usage: " << argv[0] << " <InputFilename> [OutputFilename]" << std::endl;
         return 0;
     }
 
-    const char* inputFilename  = argv[1];
+    const char* inputFilename = argv[1];
     std::FILE* inputFile = std::fopen(inputFilename, "rb");
     if (!inputFile) {
         std::cout << "Could not open file \"" << inputFilename << "\"" << std::endl;
