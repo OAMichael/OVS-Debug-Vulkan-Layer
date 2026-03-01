@@ -1,6 +1,7 @@
 #include <VulkanLayerManager.h>
 #include <VulkanLayerTerminator.h>
 #include <VulkanLayerScreenshot.h>
+#include <VulkanLayerOverlay.h>
 #include <VulkanLayerPrinterGenerated.h>
 #include <VulkanLayerAPIDumpGenerated.h>
 #include <VulkanLayerAPITraceGenerated.h>
@@ -100,6 +101,12 @@ bool VulkanLayerManager::CreateLayersFromJSON(const std::string& settingsPath) {
                     }
 
                     auto layer = std::make_unique<VulkanLayerScreenshot>(settings);
+                    layers_.emplace_back(std::move(layer));
+                    break;
+                }
+                case VulkanLayerType::Overlay: {
+                    VulkanLayerOverlaySettings settings{};
+                    auto layer = std::make_unique<VulkanLayerOverlay>(settings);
                     layers_.emplace_back(std::move(layer));
                     break;
                 }

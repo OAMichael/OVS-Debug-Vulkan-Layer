@@ -42,6 +42,8 @@ set(OVS_LAYER_SOURCES
     ${LAYER_DIR}/VulkanLayerManager.cpp
     ${LAYER_DIR}/VulkanLayerTerminator.h
     ${LAYER_DIR}/VulkanLayerTerminator.cpp
+    ${LAYER_DIR}/VulkanLayerOverlay.h
+    ${LAYER_DIR}/VulkanLayerOverlay.cpp
     ${LAYER_DIR}/VulkanLayerScreenshot.h
     ${LAYER_DIR}/VulkanLayerScreenshot.cpp
     ${LAYER_DIR}/VulkanLayerShaderProfiler.h

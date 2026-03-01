@@ -8,6 +8,7 @@
 #include <string>
 #include <vector>
 #include <cstdint>
+#include <unordered_map>
 
 namespace OVS {
 
@@ -23,6 +24,7 @@ enum class VulkanLayerType {
     Terminator,
     Printer,
     Screenshot,
+    Overlay,
     APIDump,
     APITrace,
     ShaderProfiler,
@@ -37,6 +39,7 @@ static inline const char* GetLayerTypeName(VulkanLayerType type) {
         case VulkanLayerType::Terminator:       return "Terminator";
         case VulkanLayerType::Printer:          return "Printer";
         case VulkanLayerType::Screenshot:       return "Screenshot";
+        case VulkanLayerType::Overlay:          return "Overlay";
         case VulkanLayerType::APIDump:          return "APIDump";
         case VulkanLayerType::APITrace:         return "APITrace";
         case VulkanLayerType::ShaderProfiler:   return "ShaderProfiler";
@@ -45,29 +48,21 @@ static inline const char* GetLayerTypeName(VulkanLayerType type) {
 }
 
 static inline VulkanLayerType GetLayerTypeByName(std::string_view name) {
-    if (name == "PassThrough") {
-        return VulkanLayerType::PassThrough;
-    }
-    if (name == "TerminatorBase") {
-        return VulkanLayerType::TerminatorBase;
-    }
-    if (name == "Terminator") {
-        return VulkanLayerType::Terminator;
-    }
-    if (name == "Printer") {
-        return VulkanLayerType::Printer;
-    }
-    if (name == "Screenshot") {
-        return VulkanLayerType::Screenshot;
-    }
-    if (name == "APIDump") {
-        return VulkanLayerType::APIDump;
-    }
-    if (name == "APITrace") {
-        return VulkanLayerType::APITrace;
-    }
-    if (name == "ShaderProfiler") {
-        return VulkanLayerType::ShaderProfiler;
+    static const std::unordered_map<std::string_view, VulkanLayerType> sNameToTypeMap = {
+        {"PassThrough", VulkanLayerType::PassThrough},
+        {"TerminatorBase", VulkanLayerType::TerminatorBase},
+        {"Terminator", VulkanLayerType::Terminator},
+        {"Printer", VulkanLayerType::Printer},
+        {"Screenshot", VulkanLayerType::Screenshot},
+        {"Overlay", VulkanLayerType::Overlay},
+        {"APIDump", VulkanLayerType::APIDump},
+        {"APITrace", VulkanLayerType::APITrace},
+        {"ShaderProfiler", VulkanLayerType::ShaderProfiler},
+    };
+
+    auto it = sNameToTypeMap.find(name);
+    if (it != sNameToTypeMap.end()) {
+        return it->second;
     }
     return VulkanLayerType::None;
 }
@@ -89,6 +84,10 @@ struct VulkanLayerPrinterSettings {
 struct VulkanLayerScreenshotSettings {
     std::string fileBaseName{ScreenshotDefaultFileBaseName};
     std::vector<FrameRange> frameRanges;
+};
+
+struct VulkanLayerOverlaySettings {
+
 };
 
 struct VulkanLayerAPIDumpSettings {

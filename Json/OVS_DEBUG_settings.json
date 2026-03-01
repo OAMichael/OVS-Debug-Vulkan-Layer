@@ -1,7 +1,7 @@
 {
     "Layers": [
         {
-            "Type": "ShaderProfiler"
+            "Type": "Overlay"
         },
         {
             "Type": "Terminator"
