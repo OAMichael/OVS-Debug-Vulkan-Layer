@@ -106,6 +106,13 @@ bool VulkanLayerManager::CreateLayersFromJSON(const std::string& settingsPath) {
                 }
                 case VulkanLayerType::Overlay: {
                     VulkanLayerOverlaySettings settings{};
+                    if (layerInfo.contains("Settings")) {
+                        const auto& settingsJSON = layerInfo["Settings"];
+                        if (settingsJSON.contains("MultipleViewports")) {
+                            settings.multipleViewports = settingsJSON["MultipleViewports"];
+                        }
+                    }
+
                     auto layer = std::make_unique<VulkanLayerOverlay>(settings);
                     layers_.emplace_back(std::move(layer));
                     break;

@@ -12,6 +12,20 @@ public:
     virtual PFN_vkVoidFunction vkGetInstanceProcAddr(VkInstance instance, const char* pName) override;
     virtual PFN_vkVoidFunction vkGetDeviceProcAddr(VkDevice device, const char* pName) override;
 
+    static inline VulkanGlobalDispatchTable& GetGlobalDispatchTable() { return globalTableNative_; }
+
+    template <typename T>
+    static inline VulkanInstanceDispatchTable& GetInstanceDispatchTable(T obj) {
+        DispatchKey dispatchKey = GetDispatchKey(obj);
+        return instanceTablesNative_[dispatchKey];
+    }
+
+    template <typename T>
+    static inline VulkanDeviceDispatchTable& GetDeviceDispatchTable(T obj) {
+        DispatchKey dispatchKey = GetDispatchKey(obj);
+        return deviceTablesNative_[dispatchKey];
+    }
+
     VulkanLayerTerminator() : VulkanLayerTerminatorBase(VulkanLayerType::Terminator) {}
     virtual ~VulkanLayerTerminator() {}
 };

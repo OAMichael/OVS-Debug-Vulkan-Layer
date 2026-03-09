@@ -19,6 +19,7 @@ set(INCLUDE_DIRECTORIES
     ${UI_DIR}
     ${EXTERNAL_DIR}/Vulkan-Headers/include
     ${EXTERNAL_DIR}/stb
+    ${EXTERNAL_DIR}/imgui
     ${EXTERNAL_DIR}/json/single_include
     ${EXTERNAL_DIR}/SPIRV-Tools
     ${EXTERNAL_DIR}/SPIRV-Tools/include
@@ -81,10 +82,20 @@ set(OVS_LAYER_SOURCES
     ${UTILS_DIR}/VulkanShader.h
     ${UTILS_DIR}/CommonUtils.h
     ${UTILS_DIR}/PlatformUtils.cpp
+
+    ${EXTERNAL_DIR}/imgui/imgui.cpp
+    ${EXTERNAL_DIR}/imgui/imgui_demo.cpp
+    ${EXTERNAL_DIR}/imgui/imgui_draw.cpp
+    ${EXTERNAL_DIR}/imgui/imgui_tables.cpp
+    ${EXTERNAL_DIR}/imgui/imgui_widgets.cpp
+    ${EXTERNAL_DIR}/imgui/backends/imgui_impl_vulkan.cpp
+    ${EXTERNAL_DIR}/imgui/backends/imgui_impl_win32.cpp
 )
 
 add_library(${OVS_LAYER_NAME} SHARED ${OVS_LAYER_SOURCES})
 target_link_libraries(${OVS_LAYER_NAME} PRIVATE SPIRV-Tools SPIRV-Tools-opt)
+target_link_libraries(${OVS_LAYER_NAME} PRIVATE Comctl32.lib)
+target_compile_definitions(${OVS_LAYER_NAME} PRIVATE IMGUI_IMPL_VULKAN_NO_PROTOTYPES)
 
 file(COPY ${JSON_DIR}/${OVS_LAYER_NAME}.json DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 

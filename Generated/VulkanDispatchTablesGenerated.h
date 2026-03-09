@@ -12,8 +12,14 @@
 
 namespace OVS {
 
-struct VulkanInstanceDispatchTable {
+struct VulkanGlobalDispatchTable {
     PFN_vkCreateInstance vkCreateInstance{nullptr};
+    PFN_vkEnumerateInstanceExtensionProperties vkEnumerateInstanceExtensionProperties{nullptr};
+    PFN_vkEnumerateInstanceLayerProperties vkEnumerateInstanceLayerProperties{nullptr};
+    PFN_vkEnumerateInstanceVersion vkEnumerateInstanceVersion{nullptr};
+};
+
+struct VulkanInstanceDispatchTable {
     PFN_vkDestroyInstance vkDestroyInstance{nullptr};
     PFN_vkEnumeratePhysicalDevices vkEnumeratePhysicalDevices{nullptr};
     PFN_vkGetPhysicalDeviceFeatures vkGetPhysicalDeviceFeatures{nullptr};
@@ -24,12 +30,9 @@ struct VulkanInstanceDispatchTable {
     PFN_vkGetPhysicalDeviceMemoryProperties vkGetPhysicalDeviceMemoryProperties{nullptr};
     PFN_vkGetInstanceProcAddr vkGetInstanceProcAddr{nullptr};
     PFN_vkCreateDevice vkCreateDevice{nullptr};
-    PFN_vkEnumerateInstanceExtensionProperties vkEnumerateInstanceExtensionProperties{nullptr};
     PFN_vkEnumerateDeviceExtensionProperties vkEnumerateDeviceExtensionProperties{nullptr};
-    PFN_vkEnumerateInstanceLayerProperties vkEnumerateInstanceLayerProperties{nullptr};
     PFN_vkEnumerateDeviceLayerProperties vkEnumerateDeviceLayerProperties{nullptr};
     PFN_vkGetPhysicalDeviceSparseImageFormatProperties vkGetPhysicalDeviceSparseImageFormatProperties{nullptr};
-    PFN_vkEnumerateInstanceVersion vkEnumerateInstanceVersion{nullptr};
     PFN_vkEnumeratePhysicalDeviceGroups vkEnumeratePhysicalDeviceGroups{nullptr};
     PFN_vkGetPhysicalDeviceFeatures2 vkGetPhysicalDeviceFeatures2{nullptr};
     PFN_vkGetPhysicalDeviceProperties2 vkGetPhysicalDeviceProperties2{nullptr};
@@ -793,11 +796,17 @@ struct VulkanDeviceDispatchTable {
     PFN_vkCmdDrawMeshTasksIndirectCountEXT vkCmdDrawMeshTasksIndirectCountEXT{nullptr};
 };
 
-struct VulkanDispatchTable : VulkanInstanceDispatchTable, VulkanDeviceDispatchTable {};
+struct VulkanDispatchTable : VulkanGlobalDispatchTable, VulkanInstanceDispatchTable, VulkanDeviceDispatchTable {};
 
+
+static void LoadGlobalDispatchTable(PFN_vkGetInstanceProcAddr gipa, VulkanGlobalDispatchTable& dt) {
+    dt.vkCreateInstance = (PFN_vkCreateInstance)gipa(nullptr, "vkCreateInstance");
+    dt.vkEnumerateInstanceExtensionProperties = (PFN_vkEnumerateInstanceExtensionProperties)gipa(nullptr, "vkEnumerateInstanceExtensionProperties");
+    dt.vkEnumerateInstanceLayerProperties = (PFN_vkEnumerateInstanceLayerProperties)gipa(nullptr, "vkEnumerateInstanceLayerProperties");
+    dt.vkEnumerateInstanceVersion = (PFN_vkEnumerateInstanceVersion)gipa(nullptr, "vkEnumerateInstanceVersion");
+}
 
 static void LoadInstanceDispatchTable(PFN_vkGetInstanceProcAddr gipa, VkInstance instance, VulkanInstanceDispatchTable& dt) {
-    dt.vkCreateInstance = (PFN_vkCreateInstance)gipa(nullptr, "vkCreateInstance");
     dt.vkDestroyInstance = (PFN_vkDestroyInstance)gipa(instance, "vkDestroyInstance");
     dt.vkEnumeratePhysicalDevices = (PFN_vkEnumeratePhysicalDevices)gipa(instance, "vkEnumeratePhysicalDevices");
     dt.vkGetPhysicalDeviceFeatures = (PFN_vkGetPhysicalDeviceFeatures)gipa(instance, "vkGetPhysicalDeviceFeatures");
@@ -808,12 +817,9 @@ static void LoadInstanceDispatchTable(PFN_vkGetInstanceProcAddr gipa, VkInstance
     dt.vkGetPhysicalDeviceMemoryProperties = (PFN_vkGetPhysicalDeviceMemoryProperties)gipa(instance, "vkGetPhysicalDeviceMemoryProperties");
     dt.vkGetInstanceProcAddr = gipa;
     dt.vkCreateDevice = (PFN_vkCreateDevice)gipa(instance, "vkCreateDevice");
-    dt.vkEnumerateInstanceExtensionProperties = (PFN_vkEnumerateInstanceExtensionProperties)gipa(nullptr, "vkEnumerateInstanceExtensionProperties");
     dt.vkEnumerateDeviceExtensionProperties = (PFN_vkEnumerateDeviceExtensionProperties)gipa(instance, "vkEnumerateDeviceExtensionProperties");
-    dt.vkEnumerateInstanceLayerProperties = (PFN_vkEnumerateInstanceLayerProperties)gipa(nullptr, "vkEnumerateInstanceLayerProperties");
     dt.vkEnumerateDeviceLayerProperties = (PFN_vkEnumerateDeviceLayerProperties)gipa(instance, "vkEnumerateDeviceLayerProperties");
     dt.vkGetPhysicalDeviceSparseImageFormatProperties = (PFN_vkGetPhysicalDeviceSparseImageFormatProperties)gipa(instance, "vkGetPhysicalDeviceSparseImageFormatProperties");
-    dt.vkEnumerateInstanceVersion = (PFN_vkEnumerateInstanceVersion)gipa(nullptr, "vkEnumerateInstanceVersion");
     dt.vkEnumeratePhysicalDeviceGroups = (PFN_vkEnumeratePhysicalDeviceGroups)gipa(instance, "vkEnumeratePhysicalDeviceGroups");
     dt.vkGetPhysicalDeviceFeatures2 = (PFN_vkGetPhysicalDeviceFeatures2)gipa(instance, "vkGetPhysicalDeviceFeatures2");
     dt.vkGetPhysicalDeviceProperties2 = (PFN_vkGetPhysicalDeviceProperties2)gipa(instance, "vkGetPhysicalDeviceProperties2");
@@ -913,7 +919,7 @@ static void LoadInstanceDispatchTable(PFN_vkGetInstanceProcAddr gipa, VkInstance
     dt.vkCreateSurfaceOHOS = (PFN_vkCreateSurfaceOHOS)gipa(instance, "vkCreateSurfaceOHOS");
     dt.vkGetPhysicalDeviceCooperativeMatrixFlexibleDimensionsPropertiesNV = (PFN_vkGetPhysicalDeviceCooperativeMatrixFlexibleDimensionsPropertiesNV)gipa(instance, "vkGetPhysicalDeviceCooperativeMatrixFlexibleDimensionsPropertiesNV");
     dt.vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARM = (PFN_vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARM)gipa(instance, "vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARM");
-};
+}
 
 static void LoadDeviceDispatchTable(PFN_vkGetDeviceProcAddr gdpa, VkDevice device, VulkanDeviceDispatchTable& dt) {
     dt.vkGetDeviceProcAddr = gdpa;
@@ -1575,7 +1581,7 @@ static void LoadDeviceDispatchTable(PFN_vkGetDeviceProcAddr gdpa, VkDevice devic
     dt.vkCmdDrawMeshTasksEXT = (PFN_vkCmdDrawMeshTasksEXT)gdpa(device, "vkCmdDrawMeshTasksEXT");
     dt.vkCmdDrawMeshTasksIndirectEXT = (PFN_vkCmdDrawMeshTasksIndirectEXT)gdpa(device, "vkCmdDrawMeshTasksIndirectEXT");
     dt.vkCmdDrawMeshTasksIndirectCountEXT = (PFN_vkCmdDrawMeshTasksIndirectCountEXT)gdpa(device, "vkCmdDrawMeshTasksIndirectCountEXT");
-};
+}
 
 } // namespace OVS
 

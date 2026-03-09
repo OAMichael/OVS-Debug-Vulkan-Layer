@@ -1,7 +1,155 @@
 #include <VulkanUtils.h>
 #include <VulkanLayerOverlay.h>
+#include <VulkanLayerTerminator.h>
+
+#include <commctrl.h>
+
+#include <iostream>
+
+extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
 namespace OVS {
+
+static void vkGetDeviceQueueForImGui(VkDevice device, uint32_t queueFamilyIndex, uint32_t queueIndex, VkQueue* pQueue)
+{
+    const auto& dispatchTable = VulkanLayerTerminator::GetDeviceDispatchTable(device);
+
+    dispatchTable.vkGetDeviceQueue(device, queueFamilyIndex, queueIndex, pQueue);
+    if (pQueue && *pQueue) {
+        auto queue = *pQueue;
+        PatchDispatchKey(device, queue);
+    }
+}
+
+static void vkGetDeviceQueue2ForImGui(VkDevice device, const VkDeviceQueueInfo2* pQueueInfo, VkQueue* pQueue)
+{
+    const auto& dispatchTable = VulkanLayerTerminator::GetDeviceDispatchTable(device);
+
+    dispatchTable.vkGetDeviceQueue2(device, pQueueInfo, pQueue);
+    if (pQueue && *pQueue) {
+        auto queue = *pQueue;
+        PatchDispatchKey(device, queue);
+    }
+}
+
+static VkResult vkAllocateCommandBuffersForImGui(VkDevice device, const VkCommandBufferAllocateInfo *pAllocateInfo, VkCommandBuffer *pCommandBuffers)
+{
+    const auto& dispatchTable = VulkanLayerTerminator::GetDeviceDispatchTable(device);
+
+    VkResult res = dispatchTable.vkAllocateCommandBuffers(device, pAllocateInfo, pCommandBuffers);
+    if (res == VK_SUCCESS) {
+        for (uint32_t i = 0; i < pAllocateInfo->commandBufferCount; ++i) {
+            auto cmdBuf = pCommandBuffers[i];
+            PatchDispatchKey(device, cmdBuf);
+        }
+    }
+    return res;
+}
+
+static PFN_vkVoidFunction VulkanLoaderFuncForImGui(const char* funcName, void* userData)
+{
+    if (!std::strcmp(funcName, "vkAllocateCommandBuffers")) {
+        return (PFN_vkVoidFunction)vkAllocateCommandBuffersForImGui;
+    }
+    if (!std::strcmp(funcName, "vkGetDeviceQueue")) {
+        return (PFN_vkVoidFunction)vkGetDeviceQueueForImGui;
+    }
+    if (!std::strcmp(funcName, "vkGetDeviceQueue2")) {
+        return (PFN_vkVoidFunction)vkGetDeviceQueue2ForImGui;
+    }
+
+    auto instance = *reinterpret_cast<VkInstance*>(userData);
+    const auto& dispatchTable = VulkanLayerTerminator::GetInstanceDispatchTable(instance);
+    return dispatchTable.vkGetInstanceProcAddr(instance, funcName);
+}
+
+static void VulkanResultFuncForImGui(VkResult res)
+{
+    if (res < VK_SUCCESS) {
+        std::cout << "ImGui Vulkan Error: " << res << '\n';
+    }
+}
+
+static int VulkanCreateSurfaceForImGui(ImGuiViewport* viewport, ImU64 instance, const void* pAllocator, ImU64* pSurface)
+{
+    const auto& dispatchTable = VulkanLayerTerminator::GetInstanceDispatchTable((VkInstance)instance);
+
+    VkWin32SurfaceCreateInfoKHR createInfo{};
+    createInfo.sType = VK_STRUCTURE_TYPE_WIN32_SURFACE_CREATE_INFO_KHR;
+    createInfo.hwnd = (HWND)viewport->PlatformHandleRaw;
+    createInfo.hinstance = ::GetModuleHandle(nullptr);
+    return (int)dispatchTable.vkCreateWin32SurfaceKHR((VkInstance)instance, &createInfo, (VkAllocationCallbacks*)pAllocator, (VkSurfaceKHR*)pSurface);
+}
+
+VulkanLayerOverlay::VulkanLayerOverlay(const VulkanLayerOverlaySettings& settings) : VulkanLayerPassThrough(VulkanLayerType::Overlay), settings_{settings}
+{
+    ImGui_ImplWin32_EnableDpiAwareness();
+    HMONITOR mainMonitor = ::MonitorFromPoint(POINT(0, 0), MONITOR_DEFAULTTOPRIMARY);
+    float mainScale = ImGui_ImplWin32_GetDpiScaleForMonitor(mainMonitor);
+
+    IMGUI_CHECKVERSION();
+    ImGui::CreateContext();
+    ImGuiIO& io = ImGui::GetIO();
+    io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
+    io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
+    if (settings_.multipleViewports) {
+        io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
+    }
+
+    ImGui::StyleColorsDark();
+
+    ImGuiStyle& style = ImGui::GetStyle();
+    style.ScaleAllSizes(mainScale);
+    style.FontScaleDpi = mainScale;
+    style.WindowRounding = 0.0f;
+    style.Colors[ImGuiCol_WindowBg].w = 1.0f;
+    io.ConfigDpiScaleFonts = true;
+    io.ConfigDpiScaleViewports = true;
+    if (settings_.multipleViewports) {
+        io.ConfigViewportsNoAutoMerge = true;
+        io.ConfigViewportsNoDefaultParent = false;
+    }
+}
+
+VulkanLayerOverlay::~VulkanLayerOverlay()
+{
+    if (ImGui::GetCurrentContext()) {
+        ImGui::DestroyContext();
+    }
+}
+
+VkResult VulkanLayerOverlay::vkCreateInstance(const VkInstanceCreateInfo* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkInstance* pInstance)
+{
+    VkResult res = next_->vkCreateInstance(pCreateInfo, pAllocator, pInstance);
+    if (res == VK_SUCCESS) {
+        VkInstance instance = *pInstance;
+
+        auto& instanceInfo = instanceInfos_[instance];
+        instanceInfo.apiVersion = pCreateInfo->pApplicationInfo->apiVersion;
+    }
+    return res;
+}
+
+void VulkanLayerOverlay::vkDestroyInstance(VkInstance instance, const VkAllocationCallbacks* pAllocator)
+{
+    instanceInfos_.erase(instance);
+    next_->vkDestroyInstance(instance, pAllocator);
+}
+
+VkResult VulkanLayerOverlay::vkEnumeratePhysicalDevices(VkInstance instance, uint32_t* pPhysicalDeviceCount, VkPhysicalDevice* pPhysicalDevices)
+{
+    VkResult res = next_->vkEnumeratePhysicalDevices(instance, pPhysicalDeviceCount, pPhysicalDevices);
+    if ((res == VK_SUCCESS || res == VK_INCOMPLETE) && pPhysicalDeviceCount && pPhysicalDevices) {
+        uint32_t physicalDeviceCount = *pPhysicalDeviceCount;
+        for (uint32_t i = 0; i < physicalDeviceCount; ++i) {
+            VkPhysicalDevice physicalDevice = pPhysicalDevices[i];
+
+            auto& physicalDeviceInfo = physicalDeviceInfos_[physicalDevice];
+            physicalDeviceInfo.instance = instance;
+        }
+    }
+    return res;
+}
 
 VkResult VulkanLayerOverlay::vkCreateDevice(VkPhysicalDevice physicalDevice, const VkDeviceCreateInfo* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkDevice* pDevice)
 {
@@ -73,6 +221,26 @@ void VulkanLayerOverlay::vkDestroyDevice(VkDevice device, const VkAllocationCall
     next_->vkDestroyDevice(device, pAllocator);
 }
 
+VkResult VulkanLayerOverlay::vkCreateWin32SurfaceKHR(VkInstance instance, const VkWin32SurfaceCreateInfoKHR* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkSurfaceKHR* pSurface)
+{
+    VkResult res = next_->vkCreateWin32SurfaceKHR(instance, pCreateInfo, pAllocator, pSurface);
+    if (res == VK_SUCCESS && pSurface && *pSurface) {
+        VkSurfaceKHR surface = *pSurface;
+        auto& surfaceInfo = surfaceInfos_[surface];
+
+        surfaceInfo.type = SurfaceType::Windows;
+        surfaceInfo.window = pCreateInfo->hwnd;
+        ReplaceWndProc(pCreateInfo->hwnd);
+    }
+    return res;
+}
+
+void VulkanLayerOverlay::vkDestroySurfaceKHR(VkInstance instance, VkSurfaceKHR surface, const VkAllocationCallbacks* pAllocator)
+{
+    surfaceInfos_.erase(surface);
+    next_->vkDestroySurfaceKHR(instance, surface, pAllocator);
+}
+
 VkResult VulkanLayerOverlay::vkCreateSwapchainKHR(VkDevice device, const VkSwapchainCreateInfoKHR* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkSwapchainKHR* pSwapchain)
 {
     if (!pCreateInfo || !pSwapchain) {
@@ -89,9 +257,13 @@ VkResult VulkanLayerOverlay::vkCreateSwapchainKHR(VkDevice device, const VkSwapc
     }
 
     SwapchainInfo swapchainInfo{};
+    swapchainInfo.device = device;
+    swapchainInfo.surface = modifiedInfo.surface;
     swapchainInfo.width = modifiedInfo.imageExtent.width;
     swapchainInfo.height = modifiedInfo.imageExtent.height;
     swapchainInfo.format = modifiedInfo.imageFormat;
+    swapchainInfo.imageColorSpace = modifiedInfo.imageColorSpace;
+    swapchainInfo.presentMode = modifiedInfo.presentMode;
 
     uint32_t imagesCount = 0;
     res = next_->vkGetSwapchainImagesKHR(device, swapchain, &imagesCount, nullptr);
@@ -114,21 +286,45 @@ VkResult VulkanLayerOverlay::vkCreateSwapchainKHR(VkDevice device, const VkSwapc
         return res;
     }
 
+    auto imguiInfoIt = imguiInfos_.find(modifiedInfo.oldSwapchain);
+    if (imguiInfoIt != imguiInfos_.end()) {
+        const auto& imguiInfo = imguiInfoIt->second;
+        DestroyImGuiInfo(imguiInfo);
+        imguiInfos_.erase(imguiInfoIt);
+    }
+
+    ImGuiInfo imguiInfo{};
+    res = CreateImGuiInfo(swapchain, swapchainInfo, overlayInfo, imguiInfo);
+    if (res != VK_SUCCESS) {
+        DestroyOverlayInfo(device, pAllocator, overlayInfo);
+        next_->vkDestroySwapchainKHR(device, swapchain, pAllocator);
+        return res;
+    }
+
     *pSwapchain = swapchain;
     swapchainInfos_[swapchain] = std::move(swapchainInfo);
     overlayInfos_[swapchain] = std::move(overlayInfo);
+    imguiInfos_[swapchain] = std::move(imguiInfo);
 
     return VK_SUCCESS;
 }
 
 void VulkanLayerOverlay::vkDestroySwapchainKHR(VkDevice device, VkSwapchainKHR swapchain, const VkAllocationCallbacks* pAllocator)
 {
-    auto it = overlayInfos_.find(swapchain);
-    if (it != overlayInfos_.end()) {
-        const auto& overlayInfo = it->second;
-        DestroyOverlayInfo(device, pAllocator, overlayInfo);
-        overlayInfos_.erase(it);
+    auto imguiInfoIt = imguiInfos_.find(swapchain);
+    if (imguiInfoIt != imguiInfos_.end()) {
+        const auto& imguiInfo = imguiInfoIt->second;
+        DestroyImGuiInfo(imguiInfo);
+        imguiInfos_.erase(imguiInfoIt);
     }
+
+    auto overlayInfoIt = overlayInfos_.find(swapchain);
+    if (overlayInfoIt != overlayInfos_.end()) {
+        const auto& overlayInfo = overlayInfoIt->second;
+        DestroyOverlayInfo(device, pAllocator, overlayInfo);
+        overlayInfos_.erase(overlayInfoIt);
+    }
+
     swapchainInfos_.erase(swapchain);
     next_->vkDestroySwapchainKHR(device, swapchain, pAllocator);
 }
@@ -165,10 +361,10 @@ VkResult VulkanLayerOverlay::vkQueuePresentKHR(VkQueue queue, const VkPresentInf
         auto device = overlayInfo.device;
         auto cmdBuf = overlayInfo.cmdBufs[imageIndex];
         auto semaphore = overlayInfo.semaphores[imageIndex];
-        auto renderPass = overlayInfo.renderPasses[imageIndex];
         auto framebuffer = overlayInfo.framebuffers[imageIndex];
 
         fence = overlayInfo.fences[imageIndex];
+        auto renderPass = overlayInfo.renderPass;
 
         res = next_->vkWaitForFences(device, 1, &fence, VK_TRUE, UINT64_MAX);
         if (res != VK_SUCCESS) {
@@ -198,13 +394,30 @@ VkResult VulkanLayerOverlay::vkQueuePresentKHR(VkQueue queue, const VkPresentInf
 
         next_->vkCmdBeginRenderPass(cmdBuf, &rpbi, VK_SUBPASS_CONTENTS_INLINE);
 
-        // TODO
+        ImGui_ImplVulkan_NewFrame();
+        ImGui_ImplWin32_NewFrame();
+        ImGui::NewFrame();
+
+        ImGui::ShowDemoWindow();
+
+        ImGui::Render();
+        ImDrawData* drawData = ImGui::GetDrawData();
+
+        bool mainWindowMinimized = (drawData->DisplaySize.x <= 0.0f || drawData->DisplaySize.y <= 0.0f);
+        if (!mainWindowMinimized) {
+            ImGui_ImplVulkan_RenderDrawData(drawData, cmdBuf);
+        }
 
         next_->vkCmdEndRenderPass(cmdBuf);
 
         res = next_->vkEndCommandBuffer(cmdBuf);
         if (res != VK_SUCCESS) {
             continue;
+        }
+
+        if (settings_.multipleViewports) {
+            ImGui::UpdatePlatformWindows();
+            ImGui::RenderPlatformWindowsDefault();
         }
 
         commandBuffers.push_back(cmdBuf);
@@ -330,6 +543,15 @@ VkResult VulkanLayerOverlay::CreateOverlayInfo(VkDevice device, const VkAllocati
     fbci.height = swapchainInfo.height;
     fbci.layers = 1;
 
+    VkRenderPass renderPass = VK_NULL_HANDLE;
+    res = next_->vkCreateRenderPass(device, &rpci, pAllocator, &renderPass);
+    if (res != VK_SUCCESS) {
+        DestroyOverlayInfo(device, pAllocator, overlayInfo);
+        return res;
+    }
+
+    overlayInfo.renderPass = renderPass;
+
     for (uint32_t i = 0; i < swapchainImagesCount; ++i) {
         VkSemaphore semaphore = VK_NULL_HANDLE;
         res = next_->vkCreateSemaphore(device, &sci, pAllocator, &semaphore);
@@ -346,14 +568,6 @@ VkResult VulkanLayerOverlay::CreateOverlayInfo(VkDevice device, const VkAllocati
         }
 
         overlayInfo.fences.push_back(fence);
-
-        VkRenderPass renderPass = VK_NULL_HANDLE;
-        res = next_->vkCreateRenderPass(device, &rpci, pAllocator, &renderPass);
-        if (res != VK_SUCCESS) {
-            break;
-        }
-
-        overlayInfo.renderPasses.push_back(renderPass);
 
         VkImageView imageView = VK_NULL_HANDLE;
         ivci.image = swapchainInfo.images[i];
@@ -380,21 +594,52 @@ VkResult VulkanLayerOverlay::CreateOverlayInfo(VkDevice device, const VkAllocati
         return res;
     }
 
+    VkDescriptorPoolSize poolSizes[] = {
+        { VK_DESCRIPTOR_TYPE_SAMPLER,                   OverlayInfoMaxDescriptorsCount },
+        { VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER,    OverlayInfoMaxDescriptorsCount },
+        { VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE,             OverlayInfoMaxDescriptorsCount },
+        { VK_DESCRIPTOR_TYPE_STORAGE_IMAGE,             OverlayInfoMaxDescriptorsCount },
+        { VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER,      OverlayInfoMaxDescriptorsCount },
+        { VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER,      OverlayInfoMaxDescriptorsCount },
+        { VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER,            OverlayInfoMaxDescriptorsCount },
+        { VK_DESCRIPTOR_TYPE_STORAGE_BUFFER,            OverlayInfoMaxDescriptorsCount },
+        { VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC,    OverlayInfoMaxDescriptorsCount },
+        { VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC,    OverlayInfoMaxDescriptorsCount },
+        { VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT,          OverlayInfoMaxDescriptorsCount }
+    };
+
+    VkDescriptorPoolCreateInfo dpci{};
+    dpci.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_POOL_CREATE_INFO;
+    dpci.flags = VK_DESCRIPTOR_POOL_CREATE_FREE_DESCRIPTOR_SET_BIT;
+    dpci.maxSets = OverlayInfoMaxDescriptorSetsCount;
+    dpci.poolSizeCount = std::size(poolSizes);
+    dpci.pPoolSizes = poolSizes;
+
+    VkDescriptorPool descriptorPool = VK_NULL_HANDLE;
+    res = next_->vkCreateDescriptorPool(device, &dpci, pAllocator, &descriptorPool);
+    if (res != VK_SUCCESS) {
+        DestroyOverlayInfo(device, pAllocator, overlayInfo);
+        return res;
+    }
+
+    overlayInfo.descriptorPool = descriptorPool;
+
     overlayInfoOut = std::move(overlayInfo);
     return res;
 }
 
 void VulkanLayerOverlay::DestroyOverlayInfo(VkDevice device, const VkAllocationCallbacks* pAllocator, const OverlayInfo& overlayInfo)
 {
+    next_->vkDestroyDescriptorPool(device, overlayInfo.descriptorPool, pAllocator);
+
     for (auto fb : overlayInfo.framebuffers) {
         next_->vkDestroyFramebuffer(device, fb, pAllocator);
     }
     for (auto iv : overlayInfo.imageViews) {
         next_->vkDestroyImageView(device, iv, pAllocator);
     }
-    for (auto rp : overlayInfo.renderPasses) {
-        next_->vkDestroyRenderPass(device, rp, pAllocator);
-    }
+    next_->vkDestroyRenderPass(device, overlayInfo.renderPass, pAllocator);
+
     for (auto fence : overlayInfo.fences) {
         next_->vkDestroyFence(device, fence, pAllocator);
     }
@@ -402,6 +647,206 @@ void VulkanLayerOverlay::DestroyOverlayInfo(VkDevice device, const VkAllocationC
         next_->vkDestroySemaphore(device, sem, pAllocator);
     }
     next_->vkDestroyCommandPool(device, overlayInfo.cmdPool, pAllocator);
+}
+
+VkResult VulkanLayerOverlay::CreateImGuiInfo(VkSwapchainKHR swapchain, const SwapchainInfo& swapchainInfo, const OverlayInfo& overlayInfo, ImGuiInfo& imguiInfoOut)
+{
+    auto surfaceInfoIt = surfaceInfos_.find(swapchainInfo.surface);
+    if (surfaceInfoIt == surfaceInfos_.end()) {
+        return VK_ERROR_UNKNOWN;
+    }
+
+    const auto& surfaceInfo = surfaceInfoIt->second;
+
+    auto deviceInfoIt = deviceInfos_.find(swapchainInfo.device);
+    if (deviceInfoIt == deviceInfos_.end()) {
+        return VK_ERROR_UNKNOWN;
+    }
+
+    const auto& deviceInfo = deviceInfoIt->second;
+
+    auto physicalDeviceInfoIt = physicalDeviceInfos_.find(deviceInfo.physicalDevice);
+    if (physicalDeviceInfoIt == physicalDeviceInfos_.end()) {
+        return VK_ERROR_UNKNOWN;
+    }
+
+    const auto& physicalDeviceInfo = physicalDeviceInfoIt->second;
+    VkInstance instance = physicalDeviceInfo.instance;
+
+    auto instanceInfoIt = instanceInfos_.find(instance);
+    if (instanceInfoIt == instanceInfos_.end()) {
+        return VK_ERROR_UNKNOWN;
+    }
+
+    const auto& instanceInfo = instanceInfoIt->second;
+
+    ImGuiInfo imguiInfo{};
+    imguiInfo.instance = instance;
+    imguiInfo.physicalDevice = deviceInfo.physicalDevice;
+    imguiInfo.device = swapchainInfo.device;
+    imguiInfo.queueFamily = deviceInfo.graphicsQueueFamilyIndex;
+    imguiInfo.queue = deviceInfo.graphicsQueue;
+
+    if (!ImGui_ImplWin32_Init(surfaceInfo.window)) {
+        return VK_ERROR_UNKNOWN;
+    }
+
+    ImGuiPlatformIO& platformIO = ImGui::GetPlatformIO();
+    platformIO.Platform_CreateVkSurface = VulkanCreateSurfaceForImGui;
+
+    if (!ImGui_ImplVulkan_LoadFunctions(instanceInfo.apiVersion, &VulkanLoaderFuncForImGui, &instance)) {
+        ImGui_ImplWin32_Shutdown();
+        return VK_ERROR_UNKNOWN;
+    }
+
+    uint32_t swapchainImageCount = swapchainInfo.images.size();
+
+    auto& windowData = imguiInfo.windowData;
+
+    windowData.Surface = swapchainInfo.surface;
+    windowData.SurfaceFormat.format = swapchainInfo.format;
+    windowData.SurfaceFormat.colorSpace = swapchainInfo.imageColorSpace;
+    windowData.PresentMode = swapchainInfo.presentMode;
+
+    windowData.AttachmentDesc.format = swapchainInfo.format;
+	windowData.AttachmentDesc.samples = VK_SAMPLE_COUNT_1_BIT;
+	windowData.AttachmentDesc.loadOp = VK_ATTACHMENT_LOAD_OP_LOAD;
+	windowData.AttachmentDesc.storeOp = VK_ATTACHMENT_STORE_OP_STORE;
+	windowData.AttachmentDesc.stencilLoadOp = VK_ATTACHMENT_LOAD_OP_DONT_CARE;
+	windowData.AttachmentDesc.stencilStoreOp = VK_ATTACHMENT_STORE_OP_DONT_CARE;
+	windowData.AttachmentDesc.initialLayout = VK_IMAGE_LAYOUT_PRESENT_SRC_KHR;
+	windowData.AttachmentDesc.finalLayout = VK_IMAGE_LAYOUT_PRESENT_SRC_KHR;
+
+    windowData.Width = swapchainInfo.width;
+    windowData.Height = swapchainInfo.height;
+    windowData.Swapchain = swapchain;
+    windowData.RenderPass = overlayInfo.renderPass;
+    windowData.ImageCount = swapchainImageCount;
+    windowData.SemaphoreCount = 0;
+
+    windowData.Frames.resize(swapchainImageCount);
+    for (uint32_t i = 0; i < swapchainImageCount; ++i) {
+        windowData.Frames[i].CommandPool = overlayInfo.cmdPool;
+        windowData.Frames[i].CommandBuffer = overlayInfo.cmdBufs[i];
+        windowData.Frames[i].Fence = overlayInfo.fences[i];
+        windowData.Frames[i].Backbuffer = swapchainInfo.images[i];
+        windowData.Frames[i].BackbufferView = overlayInfo.imageViews[i];
+        windowData.Frames[i].Framebuffer = overlayInfo.framebuffers[i];
+    }
+
+    ImGui_ImplVulkan_InitInfo initInfo{};
+    initInfo.ApiVersion = instanceInfo.apiVersion;
+    initInfo.Instance = imguiInfo.instance;
+    initInfo.PhysicalDevice = imguiInfo.physicalDevice;
+    initInfo.Device = imguiInfo.device;
+    initInfo.QueueFamily = imguiInfo.queueFamily;
+    initInfo.Queue = imguiInfo.queue;
+    initInfo.PipelineCache = VK_NULL_HANDLE;
+    initInfo.DescriptorPool = overlayInfo.descriptorPool;
+    initInfo.MinImageCount = windowData.ImageCount;
+    initInfo.ImageCount = windowData.ImageCount;
+    initInfo.Allocator = nullptr;
+    initInfo.PipelineInfoMain.RenderPass = windowData.RenderPass;
+    initInfo.PipelineInfoMain.Subpass = 0;
+    initInfo.PipelineInfoMain.MSAASamples = VK_SAMPLE_COUNT_1_BIT;
+    initInfo.CheckVkResultFn = &VulkanResultFuncForImGui;
+    if (!ImGui_ImplVulkan_Init(&initInfo)) {
+        ImGui_ImplWin32_Shutdown();
+        return VK_ERROR_UNKNOWN;
+    }
+
+    imguiInfoOut = imguiInfo;
+    return VK_SUCCESS;
+}
+
+void VulkanLayerOverlay::DestroyImGuiInfo(const ImGuiInfo& imguiInfo)
+{
+    VkDevice device = imguiInfo.device;
+    const auto& dtNative = VulkanLayerTerminator::GetDeviceDispatchTable(device);
+
+    dtNative.vkDeviceWaitIdle(device);
+    ImGui_ImplVulkan_Shutdown();
+    ImGui_ImplWin32_Shutdown();
+}
+
+static bool IsMouseMessageForImGui(UINT uMsg)
+{
+    switch (uMsg) {
+        case WM_MOUSEMOVE:
+        case WM_NCMOUSEMOVE:
+        case WM_MOUSELEAVE:
+        case WM_NCMOUSELEAVE:
+        case WM_LBUTTONDOWN:
+        case WM_LBUTTONDBLCLK:
+        case WM_RBUTTONDOWN:
+        case WM_RBUTTONDBLCLK:
+        case WM_MBUTTONDOWN:
+        case WM_MBUTTONDBLCLK:
+        case WM_XBUTTONDOWN:
+        case WM_XBUTTONDBLCLK:
+        case WM_LBUTTONUP:
+        case WM_RBUTTONUP:
+        case WM_MBUTTONUP:
+        case WM_XBUTTONUP:
+        case WM_MOUSEWHEEL:
+        case WM_MOUSEHWHEEL:
+        case WM_SETCURSOR: {
+            return true;
+        }
+        default: {
+            return false;
+        }
+    }
+}
+
+static bool IsKeyboardMessageForImGui(UINT uMsg)
+{
+    switch (uMsg) {
+        case WM_KEYDOWN:
+        case WM_KEYUP:
+        case WM_SYSKEYDOWN:
+        case WM_SYSKEYUP:
+        case WM_SETFOCUS:
+        case WM_KILLFOCUS:
+        case WM_INPUTLANGCHANGE:
+        case WM_CHAR:
+        case WM_IME_COMPOSITION:
+        case WM_IME_CHAR: {
+            return true;
+        }
+        default: {
+            return false;
+        }
+    }
+}
+
+LRESULT CALLBACK SubclassWindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam, UINT_PTR uIdSubclass, DWORD_PTR dwRefData)
+{
+    if (ImGui_ImplWin32_WndProcHandler(hWnd, uMsg, wParam, lParam)) {
+        return true;
+    }
+
+    const VulkanLayerOverlay* layer = reinterpret_cast<const VulkanLayerOverlay*>(dwRefData);
+    const auto& settings = layer->GetSettings();
+    if (!settings.multipleViewports) {
+        ImGuiIO& io = ImGui::GetIO();
+        if (io.WantCaptureMouse && IsMouseMessageForImGui(uMsg)) {
+            return true;
+        }
+        if (io.WantCaptureKeyboard && IsKeyboardMessageForImGui(uMsg)) {
+            return true;
+        }
+    }
+
+    if (uMsg == WM_NCDESTROY) {
+        RemoveWindowSubclass(hWnd, SubclassWindowProc, uIdSubclass);
+    }
+
+    return DefSubclassProc(hWnd, uMsg, wParam, lParam);
+}
+
+void VulkanLayerOverlay::ReplaceWndProc(HWND hwnd) {
+    SetWindowSubclass(hwnd, SubclassWindowProc, 1, (DWORD_PTR)this);
 }
 
 } // namespace OVS

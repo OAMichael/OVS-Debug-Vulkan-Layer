@@ -1,7 +1,10 @@
 {
     "Layers": [
         {
-            "Type": "Overlay"
+            "Type": "Overlay",
+            "Settings": {
+                "MultipleViewports": false
+            }
         },
         {
             "Type": "Terminator"

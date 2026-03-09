@@ -8,6 +8,10 @@ namespace OVS {
 
 extern std::unordered_map<std::string, PFN_vkVoidFunction> sFunctionTable;
 
+std::unordered_map<DispatchKey, VulkanInstanceDispatchTable> VulkanLayerTerminatorBase::instanceTablesNative_;
+std::unordered_map<DispatchKey, VulkanDeviceDispatchTable>   VulkanLayerTerminatorBase::deviceTablesNative_;
+VulkanGlobalDispatchTable                                    VulkanLayerTerminatorBase::globalTableNative_;
+
 VkResult VulkanLayerTerminator::vkCreateInstance(const VkInstanceCreateInfo* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkInstance* pInstance)
 {
     VkLayerInstanceCreateInfo* layerCreateInfo = GetLayerInstanceCreateInfo(pCreateInfo);
@@ -28,7 +32,15 @@ VkResult VulkanLayerTerminator::vkCreateInstance(const VkInstanceCreateInfo* pCr
         return ret;
     }
 
-    LoadInstanceDispatchTable(gipa, *pInstance, dispatchTableNative_);
+    VkInstance instance = *pInstance;
+
+    DispatchKey dispatchKey = GetDispatchKey(instance);
+    auto& instanceDispatchTable = instanceTablesNative_[dispatchKey];
+    LoadInstanceDispatchTable(gipa, instance, instanceDispatchTable);
+
+    auto& globalDispatchTable = globalTableNative_;
+    LoadGlobalDispatchTable(gipa, globalDispatchTable);
+
     return VK_SUCCESS;
 }
 
@@ -42,7 +54,9 @@ VkResult VulkanLayerTerminator::vkCreateDevice(VkPhysicalDevice physicalDevice, 
     PFN_vkGetDeviceProcAddr gdpa = layerCreateInfo->u.pLayerInfo->pfnNextGetDeviceProcAddr;
     layerCreateInfo->u.pLayerInfo = layerCreateInfo->u.pLayerInfo->pNext;
 
-    PFN_vkCreateDevice pfnCreateDevice = dispatchTableNative_.vkCreateDevice;
+    DispatchKey dispatchKey = GetDispatchKey(physicalDevice);
+    const auto& dispatchTable = instanceTablesNative_[dispatchKey];
+    PFN_vkCreateDevice pfnCreateDevice = dispatchTable.vkCreateDevice;
     if (!pfnCreateDevice) {
         return VK_ERROR_INITIALIZATION_FAILED;
     }
@@ -52,7 +66,12 @@ VkResult VulkanLayerTerminator::vkCreateDevice(VkPhysicalDevice physicalDevice, 
         return ret;
     }
 
-    LoadDeviceDispatchTable(gdpa, *pDevice, dispatchTableNative_);
+    VkDevice device = *pDevice;
+
+    dispatchKey = GetDispatchKey(device);
+    auto& deviceDispatchTable = deviceTablesNative_[dispatchKey];
+    LoadDeviceDispatchTable(gdpa, *pDevice, deviceDispatchTable);
+
     return VK_SUCCESS;
 }
 
@@ -62,7 +81,10 @@ PFN_vkVoidFunction VulkanLayerTerminator::vkGetInstanceProcAddr(VkInstance insta
     if (it != sFunctionTable.end()) {
         return it->second;
     }
-    return dispatchTableNative_.vkGetInstanceProcAddr(instance, pName);
+
+    DispatchKey dispatchKey = GetDispatchKey(instance);
+    const auto& dispatchTable = instanceTablesNative_[dispatchKey];
+    return dispatchTable.vkGetInstanceProcAddr(instance, pName);
 }
 
 PFN_vkVoidFunction VulkanLayerTerminator::vkGetDeviceProcAddr(VkDevice device, const char* pName)
@@ -71,7 +93,10 @@ PFN_vkVoidFunction VulkanLayerTerminator::vkGetDeviceProcAddr(VkDevice device, c
     if (it != sFunctionTable.end()) {
         return it->second;
     }
-    return dispatchTableNative_.vkGetDeviceProcAddr(device, pName);
+
+    DispatchKey dispatchKey = GetDispatchKey(device);
+    const auto& dispatchTable = deviceTablesNative_[dispatchKey];
+    return dispatchTable.vkGetDeviceProcAddr(device, pName);
 }
 
 } // namespace OVS

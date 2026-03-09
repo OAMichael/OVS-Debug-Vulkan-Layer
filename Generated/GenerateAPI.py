@@ -123,6 +123,17 @@ SPECIAL_INSTANCE_COMMANDS = [
     'vkEnumerateInstanceVersion'
 ]
 
+INSTANCE_DISPATCHABLE_HANDLES = [
+    'VkInstance',
+    'VkPhysicalDevice'
+]
+
+DEVICE_DISPATCHABLE_HANDLES = [
+    'VkDevice',
+    'VkQueue',
+    'VkCommandBuffer',
+    'VkExternalComputeQueueNV'
+]
 
 args = ''.join(sys.argv)
 
@@ -1074,8 +1085,10 @@ class COutputGeneratorVulkanDispatchTables(OutputGenerator):
 
         self.body = ''
         self.header_guard = ''
+        self.global_table = ''
         self.instance_table = ''
         self.device_table = ''
+        self.load_global = ''
         self.load_instance = ''
         self.load_device = ''
 
@@ -1090,26 +1103,34 @@ class COutputGeneratorVulkanDispatchTables(OutputGenerator):
         self.body += f'#include <Vulkan.h>\n\n'
         self.body += f'namespace OVS {{\n'
 
+        self.global_table   += f'struct VulkanGlobalDispatchTable {{\n'
         self.instance_table += f'struct VulkanInstanceDispatchTable {{\n'
         self.device_table   += f'struct VulkanDeviceDispatchTable {{\n'
 
+        self.load_global    += f'static void LoadGlobalDispatchTable(PFN_vkGetInstanceProcAddr gipa, VulkanGlobalDispatchTable& dt) {{\n'
         self.load_instance  += f'static void LoadInstanceDispatchTable(PFN_vkGetInstanceProcAddr gipa, VkInstance instance, VulkanInstanceDispatchTable& dt) {{\n'
         self.load_device    += f'static void LoadDeviceDispatchTable(PFN_vkGetDeviceProcAddr gdpa, VkDevice device, VulkanDeviceDispatchTable& dt) {{\n'
 
     def endFile(self):
+        self.global_table   += f'}};\n'
         self.instance_table += f'}};\n'
         self.device_table   += f'}};\n'
 
-        self.load_instance  += f'}};\n'
-        self.load_device    += f'}};\n'
+        self.load_global    += f'}}\n'
+        self.load_instance  += f'}}\n'
+        self.load_device    += f'}}\n'
 
+        self.body += f'\n'
+        self.body += self.global_table
         self.body += f'\n'
         self.body += self.instance_table
         self.body += f'\n'
         self.body += self.device_table
         self.body += f'\n'
-        self.body += f'struct VulkanDispatchTable : VulkanInstanceDispatchTable, VulkanDeviceDispatchTable {{}};\n'
+        self.body += f'struct VulkanDispatchTable : VulkanGlobalDispatchTable, VulkanInstanceDispatchTable, VulkanDeviceDispatchTable {{}};\n'
         self.body += f'\n'
+        self.body += f'\n'
+        self.body += self.load_global
         self.body += f'\n'
         self.body += self.load_instance
         self.body += f'\n'
@@ -1129,21 +1150,23 @@ class COutputGeneratorVulkanDispatchTables(OutputGenerator):
 
         first_param_type = getFirstParamType(cmdinfo)
         if first_param_type is not None:
-            if first_param_type == 'VkInstance' or first_param_type == 'VkPhysicalDevice' or name in SPECIAL_INSTANCE_COMMANDS:
+            if first_param_type in INSTANCE_DISPATCHABLE_HANDLES:
                 self.instance_table += indent + f'PFN_{name} {name}{{nullptr}};\n'
-            else:
+            elif first_param_type in DEVICE_DISPATCHABLE_HANDLES:
                 self.device_table   += indent + f'PFN_{name} {name}{{nullptr}};\n'
+            else:
+                self.global_table   += indent + f'PFN_{name} {name}{{nullptr}};\n'
 
             if name == 'vkGetInstanceProcAddr':
                 self.load_instance += indent + f'dt.{name} = gipa;\n'
             elif name == 'vkGetDeviceProcAddr':
                 self.load_device   += indent + f'dt.{name} = gdpa;\n'
-            elif name in SPECIAL_INSTANCE_COMMANDS:
-                self.load_instance += indent + f'dt.{name} = (PFN_{name})gipa(nullptr, \"{name}\");\n'
-            elif first_param_type == 'VkInstance' or first_param_type == 'VkPhysicalDevice':
+            elif first_param_type in INSTANCE_DISPATCHABLE_HANDLES:
                 self.load_instance += indent + f'dt.{name} = (PFN_{name})gipa(instance, \"{name}\");\n'
-            else:
+            elif first_param_type in DEVICE_DISPATCHABLE_HANDLES:
                 self.load_device   += indent + f'dt.{name} = (PFN_{name})gdpa(device, \"{name}\");\n'
+            else:
+                self.load_global   += indent + f'dt.{name} = (PFN_{name})gipa(nullptr, \"{name}\");\n'
 
 
 class COutputGeneratorVulkanLayerEntry(OutputGenerator):
@@ -1299,8 +1322,10 @@ class COutputGeneratorVulkanLayerTerminatorBase(OutputGenerator):
         self.header_guard = getMacroForFilename(self.genOpts.filename)
         self.body += f'#ifndef {self.header_guard}\n'
         self.body += f'#define {self.header_guard}\n\n'
+        self.body += f'#include <VulkanUtils.h>\n'
         self.body += f'#include <VulkanLayerInterfaceGenerated.h>\n'
         self.body += f'#include <VulkanDispatchTablesGenerated.h>\n\n'
+        self.body += f'#include <unordered_map>\n\n'
         self.body += f'namespace OVS {{\n\n'
         self.body += f'class VulkanLayerTerminatorBase : public VulkanLayerInterface {{\n'
         self.body += f'public:\n'
@@ -1310,7 +1335,9 @@ class COutputGeneratorVulkanLayerTerminatorBase(OutputGenerator):
         self.body += self.indent + f'virtual ~VulkanLayerTerminatorBase() {{}}\n\n'
         self.body += f'protected:\n'
         self.body += self.indent + f'explicit VulkanLayerTerminatorBase(VulkanLayerType type) : VulkanLayerInterface(type) {{}}\n\n'
-        self.body += self.indent + f'VulkanDispatchTable dispatchTableNative_;\n'
+        self.body += self.indent + f'static std::unordered_map<DispatchKey, VulkanInstanceDispatchTable> instanceTablesNative_;\n'
+        self.body += self.indent + f'static std::unordered_map<DispatchKey, VulkanDeviceDispatchTable>   deviceTablesNative_;\n'
+        self.body += self.indent + f'static VulkanGlobalDispatchTable                                    globalTableNative_;\n'
         self.body += f'}};\n\n'
         self.body += f'}} // namespace OVS\n\n'
         self.body += f'#endif // {self.header_guard}'
@@ -1326,13 +1353,26 @@ class COutputGeneratorVulkanLayerTerminatorBase(OutputGenerator):
         type = proto.find('type').text.strip()
         params = cmdinfo.elem.findall('param')
 
+        first_param_name = safeStr(params[0].find('name').text).strip()
+        first_param_type = getFirstParamType(cmdinfo)
+
         decl = ''
         defi = ''
+
+        if first_param_type in INSTANCE_DISPATCHABLE_HANDLES:
+            defi += 2 * self.indent + f'DispatchKey dispatchKey = GetDispatchKey({first_param_name});\n'
+            defi += 2 * self.indent + f'const auto& dispatchTable = instanceTablesNative_[dispatchKey];\n'
+        elif first_param_type in DEVICE_DISPATCHABLE_HANDLES:
+            defi += 2 * self.indent + f'DispatchKey dispatchKey = GetDispatchKey({first_param_name});\n'
+            defi += 2 * self.indent + f'const auto& dispatchTable = deviceTablesNative_[dispatchKey];\n'
+        else:
+            defi += 2 * self.indent + f'const auto& dispatchTable = globalTableNative_;\n'
 
         defi += 2 * self.indent
         if type != 'void':
             defi += 'return '
-        defi += f'dispatchTableNative_.{name}('
+
+        defi += f'dispatchTable.{name}('
         for i in range(len(params)):
             param = params[i]
             param_qual = safeStr(param.text).strip()

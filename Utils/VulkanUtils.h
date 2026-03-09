@@ -27,14 +27,26 @@ static VkLayerDeviceCreateInfo* GetLayerDeviceCreateInfo(const void* pNext) {
     return ldci;
 }
 
-static void PatchDispatchKey(VkDevice device, VkCommandBuffer commandBuffer) {
-    void* dispatchKey = *reinterpret_cast<void**>(device);
-    *reinterpret_cast<void**>(commandBuffer) = dispatchKey;
+using DispatchKey = void*;
+
+template <typename T>
+static inline DispatchKey GetDispatchKey(T obj) {
+    return *reinterpret_cast<DispatchKey*>(obj);
+}
+
+template <typename T>
+static inline void SetDispatchKey(T obj, DispatchKey dispatchKey) {
+    *reinterpret_cast<DispatchKey*>(obj) = dispatchKey;
 }
 
 static void PatchDispatchKey(VkDevice device, VkQueue queue) {
-    void* dispatchKey = *reinterpret_cast<void**>(device);
-    *reinterpret_cast<void**>(queue) = dispatchKey;
+    DispatchKey dispatchKey = GetDispatchKey(device);
+    SetDispatchKey(queue, dispatchKey);
+}
+
+static void PatchDispatchKey(VkDevice device, VkCommandBuffer commandBuffer) {
+    DispatchKey dispatchKey = GetDispatchKey(device);
+    SetDispatchKey(commandBuffer, dispatchKey);
 }
 
 static std::optional<uint32_t> GetMemoryTypeIndex(const VkPhysicalDeviceMemoryProperties& properties, uint32_t typeBits, VkMemoryPropertyFlags propertyFlags) {

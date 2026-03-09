@@ -87,7 +87,7 @@ struct VulkanLayerScreenshotSettings {
 };
 
 struct VulkanLayerOverlaySettings {
-
+    bool multipleViewports{false};
 };
 
 struct VulkanLayerAPIDumpSettings {
