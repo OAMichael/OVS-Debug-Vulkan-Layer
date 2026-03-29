@@ -1,13 +1,21 @@
 #ifndef UTILS__VULKAN_PLATFORM_H
 #define UTILS__VULKAN_PLATFORM_H
 
+#ifdef _WIN32
+
+#ifndef NOMINMAX
+#define NOMINMAX
+#endif
+#ifndef WIN32_LEAN_AND_MEAN
+#define WIN32_LEAN_AND_MEAN
+#endif
+
+#include <Windows.h>
+
+#else
+
 #include <cstdint>
 
-#ifdef _WIN32
-#define NOMINMAX
-#define WIN32_LEAN_AND_MEAN
-#include <Windows.h>
-#else
 typedef void* HINSTANCE;
 typedef void* HWND;
 typedef void* HANDLE;
@@ -16,6 +24,7 @@ typedef wchar_t* LPWSTR;
 typedef const wchar_t* LPCWSTR;
 typedef void* SECURITY_ATTRIBUTES;
 typedef uint32_t DWORD;
+
 #endif
 
 typedef void* Display;

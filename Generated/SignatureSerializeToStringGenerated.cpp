@@ -4040,7 +4040,7 @@ void SerializeToString(const vkCmdWriteTimestamp2Signature& sig, std::stringstre
     stream << "vkCmdWriteTimestamp2(";
     SerializeToString(sig.commandBuffer, stream);
     stream << ", ";
-    SerializeToString(sig.stage, stream);
+    SerializeToStringVkPipelineStageFlags2(sig.stage, stream);
     stream << ", ";
     SerializeToString(sig.queryPool, stream);
     stream << ", ";
@@ -4239,7 +4239,7 @@ void SerializeToString(const vkCmdResetEvent2Signature& sig, std::stringstream& 
     stream << ", ";
     SerializeToString(sig.event, stream);
     stream << ", ";
-    SerializeToString(sig.stageMask, stream);
+    SerializeToStringVkPipelineStageFlags2(sig.stageMask, stream);
     stream << ")";
 };
 
@@ -7866,7 +7866,7 @@ void SerializeToString(const vkCmdResetEvent2KHRSignature& sig, std::stringstrea
     stream << ", ";
     SerializeToString(sig.event, stream);
     stream << ", ";
-    SerializeToString(sig.stageMask, stream);
+    SerializeToStringVkPipelineStageFlags2(sig.stageMask, stream);
     stream << ")";
 };
 
@@ -7921,7 +7921,7 @@ void SerializeToString(const vkCmdWriteTimestamp2KHRSignature& sig, std::strings
     stream << "vkCmdWriteTimestamp2KHR(";
     SerializeToString(sig.commandBuffer, stream);
     stream << ", ";
-    SerializeToString(sig.stage, stream);
+    SerializeToStringVkPipelineStageFlags2(sig.stage, stream);
     stream << ", ";
     SerializeToString(sig.queryPool, stream);
     stream << ", ";
@@ -10709,7 +10709,7 @@ void SerializeToString(const vkCmdWriteBufferMarker2AMDSignature& sig, std::stri
     stream << "vkCmdWriteBufferMarker2AMD(";
     SerializeToString(sig.commandBuffer, stream);
     stream << ", ";
-    SerializeToString(sig.stage, stream);
+    SerializeToStringVkPipelineStageFlags2(sig.stage, stream);
     stream << ", ";
     SerializeToString(sig.dstBuffer, stream);
     stream << ", ";
@@ -15169,7 +15169,7 @@ void SerializeToString(const vkCmdDecompressMemoryIndirectCountEXTSignature& sig
     stream << "vkCmdDecompressMemoryIndirectCountEXT(";
     SerializeToString(sig.commandBuffer, stream);
     stream << ", ";
-    SerializeToString(sig.decompressionMethod, stream);
+    SerializeToStringVkMemoryDecompressionMethodFlagsEXT(sig.decompressionMethod, stream);
     stream << ", ";
     SerializeToString(sig.indirectCommandsAddress, stream);
     stream << ", ";

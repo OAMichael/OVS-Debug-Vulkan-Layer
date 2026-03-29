@@ -358,7 +358,8 @@ def genParamSerializeToString(param, registry, indent, paramAccess):
     paramTypeName = safeStr(paramTypeElem.get('name'))
     paramTypeCategory = safeStr(paramTypeElem.get('category'))
     paramTypeRequires = safeStr(paramTypeElem.get('requires'))
-    if paramTypeCategory == 'bitmask' and paramTypeRequires != '':
+    paramTypeBitvalues = safeStr(paramTypeElem.get('bitvalues'))
+    if paramTypeCategory == 'bitmask' and (paramTypeRequires != '' or paramTypeBitvalues != ''):
         customSerializer = paramTypeName
 
     if 'FlagBits' in paramTypeName:
@@ -525,6 +526,210 @@ def genParamSerializeToString(param, registry, indent, paramAccess):
         case ParamTypeKind.PNEXT:
 
             out += indent + f'SerializeToStringPNext({paramAccess}{paramName}, stream);\n'
+
+    return out
+
+
+def genParamSerializeToParamTree(param, registry, indent, paramAccess):
+    out = ''
+
+    paramName = safeStr(param.find('name').text).strip()
+    paramType = safeStr(param.find('type').text).strip()
+    paramTypeKind = getParamTypeKind(param, registry)
+
+    paramFullType = safeStr(param.text).strip() + ' ' + safeStr(param.find('type').text).strip() + safeStr(param.find('type').tail).strip()
+    paramBrackets = safeStr(param.find('name').tail).strip()
+    for e in param.findall('enum'):
+        paramBrackets += e.text + e.tail
+
+    paramFullStrippedType = paramFullType
+    paramFullStrippedType = paramFullStrippedType.replace('const', '')
+    paramFullStrippedType = paramFullStrippedType.replace('volatile', '')
+    paramFullStrippedType = paramFullStrippedType.replace('struct', '')
+    paramFullStrippedType = paramFullStrippedType.replace('union', '')
+    paramFullStrippedType = paramFullStrippedType.replace(' ', '')
+    paramFullStrippedType = paramFullStrippedType.strip()
+
+    customSerializer = ''
+    paramTypeElem = getNonAliasTypeElem(paramType, registry)
+    paramTypeName = safeStr(paramTypeElem.get('name'))
+    paramTypeCategory = safeStr(paramTypeElem.get('category'))
+    paramTypeRequires = safeStr(paramTypeElem.get('requires'))
+    paramTypeBitvalues = safeStr(paramTypeElem.get('bitvalues'))
+    if paramTypeCategory == 'bitmask' and (paramTypeRequires != '' or paramTypeBitvalues != ''):
+        customSerializer = paramTypeName
+
+    if 'FlagBits' in paramTypeName:
+        customSerializer = paramTypeName.replace('FlagBits', 'Flags')
+
+    if DEBUG_PARAM_TYPE_KIND:
+        out += indent + f'// Kind: {paramTypeKind.name}\n'
+
+    out += indent + f'{{\n'
+    out += 2 * indent + f'ParamNode& childNode = node.children.emplace_back(\"{paramFullStrippedType}{paramBrackets}\", \"{paramName}\");\n'
+
+    match paramTypeKind:
+        case (ParamTypeKind.PRIMITIVE |
+              ParamTypeKind.HANDLE |
+              ParamTypeKind.STRUCT |
+              ParamTypeKind.STRING |
+              ParamTypeKind.WSTRING |
+              ParamTypeKind.VOID_PTR |
+              ParamTypeKind.EXTERNAL_PTR |
+              ParamTypeKind.FUNCTION_PTR):
+
+            cast = ''
+            if paramTypeKind == ParamTypeKind.FUNCTION_PTR:
+                cast = '(void*)'
+
+            out += 2 * indent + f'SerializeToParamTree{customSerializer}({cast}{paramAccess}{paramName}, childNode);\n'
+
+        case (ParamTypeKind.PRIMITIVE_PTR |
+              ParamTypeKind.HANDLE_PTR |
+              ParamTypeKind.STRUCT_PTR |
+              ParamTypeKind.VOID_PTR_PTR |
+              ParamTypeKind.EXTERNAL_PTR_PTR):
+
+            derefType = paramFullStrippedType[:-1].strip()
+
+            out += 2 * indent + f'if ({paramAccess}{paramName}) {{\n'
+            out += 3 * indent +     f'ParamNode& childChildNode = childNode.children.emplace_back(\"{derefType}\", \"{paramName}[0]\");\n'
+            out += 3 * indent +     f'SerializeToParamTree{customSerializer}(*{paramAccess}{paramName}, childChildNode);\n'
+            out += 2 * indent + f'}}\n'
+            out += 2 * indent + f'else {{\n'
+            out += 3 * indent +     f'SerializeToParamTree(nullptr, childNode);\n'
+            out += 2 * indent + f'}}\n'
+
+        case (ParamTypeKind.PRIMITIVE_STATIC_ARRAY_1D |
+              ParamTypeKind.HANDLE_STATIC_ARRAY_1D |
+              ParamTypeKind.STRUCT_STATIC_ARRAY_1D):
+
+            if paramType == 'char':
+                out += 2 * indent + f'SerializeToParamTree{customSerializer}({paramAccess}{paramName}, childNode);\n'
+            else:
+                length = paramBrackets[1:-1]
+                derefType = paramFullStrippedType
+
+                out += 2 * indent + f'const std::string& childName = childNode.name;\n'
+                out += 2 * indent + f'for (int i = 0; i < {length}; ++i) {{\n'
+                out += 3 * indent +     f'std::string childChildName = childName + \'[\' + std::to_string(i) + \']\';\n'
+                out += 3 * indent +     f'ParamNode& childChildNode = childNode.children.emplace_back(\"{derefType}\", childChildName);\n'
+                out += 3 * indent +     f'SerializeToParamTree{customSerializer}({paramAccess}{paramName}[i], childChildNode);\n'
+                out += 2 * indent + f'}}\n'
+
+        case (ParamTypeKind.PRIMITIVE_DYNAMIC_ARRAY_1D |
+              ParamTypeKind.HANDLE_DYNAMIC_ARRAY_1D |
+              ParamTypeKind.STRUCT_DYNAMIC_ARRAY_1D |
+              ParamTypeKind.STRING_DYNAMIC_ARRAY_1D |
+              ParamTypeKind.VOID_PTR_DYNAMIC_ARRAY_1D):
+
+            length = safeStr(param.get('altlen')).strip()
+            if length == '':
+                length = safeStr(param.get('len')).strip()
+
+            if paramTypeKind == ParamTypeKind.STRING_DYNAMIC_ARRAY_1D:
+                commaPos = length.find(',')
+                length = length[:commaPos]
+
+            length, ptrCond = patchDynamicArrayLengthMember(length, paramAccess)
+            arrayName = f'{paramAccess}{paramName}'
+
+            derefType = paramFullStrippedType[:-1].strip()
+            if derefType == 'void':
+                derefType = 'uint8_t'
+
+            out += 2 * indent + f'if ({paramAccess}{paramName}{ptrCond}) {{\n'
+            if paramType == 'void' and paramTypeKind != ParamTypeKind.VOID_PTR_DYNAMIC_ARRAY_1D:
+                out += 3 * indent + f'const uint8_t* ptr = reinterpret_cast<const uint8_t*>({paramAccess}{paramName});\n'
+                arrayName = 'ptr'
+
+            out += 3 * indent +     f'const std::string& childName = childNode.name;\n'
+            out += 3 * indent +     f'for (int i = 0; i < {length}; ++i) {{\n'
+            out += 4 * indent +         f'std::string childChildName = childName + \'[\' + std::to_string(i) + \']\';\n'
+            out += 4 * indent +         f'ParamNode& childChildNode = childNode.children.emplace_back(\"{derefType}\", childChildName);\n'
+            out += 4 * indent +         f'SerializeToParamTree{customSerializer}({arrayName}[i], childChildNode);\n'
+            out += 3 * indent +     f'}}\n'
+            out += 2 * indent + f'}}\n'
+            out += 2 * indent + f'else {{\n'
+            out += 3 * indent +     f'SerializeToParamTree(nullptr, childNode);\n'
+            out += 2 * indent + f'}}\n'
+
+        case (ParamTypeKind.PRIMITIVE_STATIC_ARRAY_2D |
+              ParamTypeKind.HANDLE_STATIC_ARRAY_2D |
+              ParamTypeKind.STRUCT_STATIC_ARRAY_2D):
+
+            lengths = paramBrackets[1:-1]
+            rBracketPos = lengths.find(']')
+            lBracketPos = lengths.find('[')
+            lengthOuter = lengths[:rBracketPos]
+            lengthInner = lengths[lBracketPos + 1:]
+            derefTypeOuter = paramFullStrippedType + '[' + lengthInner + ']'
+            derefTypeInner = paramFullStrippedType
+
+            out += 2 * indent + f'const std::string& childName = childNode.name;\n'
+            out += 2 * indent + f'for (int i = 0; i < {lengthOuter}; ++i) {{\n'
+            out += 3 * indent +     f'std::string childChildName = childName + \'[\' + std::to_string(i) + \']\';\n'
+            out += 3 * indent +     f'ParamNode& childChildNode = childNode.children.emplace_back(\"{derefTypeOuter}\", childChildName);\n'
+            out += 3 * indent +     f'for (int j = 0; j < {lengthInner}; ++j) {{\n'
+            out += 4 * indent +         f'std::string childChildChildName = childChildName + \'[\' + std::to_string(j) + \']\';\n'
+            out += 4 * indent +         f'ParamNode& childChildChildNode = childChildNode.children.emplace_back(\"{derefTypeInner}\", childChildChildName);\n'
+            out += 4 * indent +         f'SerializeToParamTree{customSerializer}({paramAccess}{paramName}[i][j], childChildChildNode);\n'
+            out += 3 * indent +     f'}}\n'
+            out += 2 * indent + f'}}\n'
+
+        case (ParamTypeKind.PRIMITIVE_DYNAMIC_ARRAY_2D |
+              ParamTypeKind.HANDLE_DYNAMIC_ARRAY_2D |
+              ParamTypeKind.STRUCT_DYNAMIC_ARRAY_2D):
+
+            lengths = safeStr(param.get('altlen')).strip()
+            if lengths == '':
+                lengths = safeStr(param.get('len')).strip()
+
+            commaPos = lengths.find(',')
+            lengthOuter = ''
+            lengthInner = ''
+            ptrCondOuter = ''
+            ptrCondInner = ''
+            if commaPos != -1:
+                lengthOuter = lengths[:commaPos]
+                lengthInner = lengths[commaPos + 1:]
+                lengthOuter, ptrCondOuter = patchDynamicArrayLengthMember(lengthOuter, paramAccess)
+                lengthInner, ptrCondInner = patchDynamicArrayLengthMember(lengthInner, paramAccess)
+            else:
+                lengthOuter = lengths
+                lengthOuter, ptrCondOuter = patchDynamicArrayLengthMember(lengthOuter, paramAccess)
+                lengthInner = f'{paramAccess}pInfos[i].geometryCount'
+                ptrCondInner = f' && {paramAccess}pInfos'
+
+            derefTypeOuter = paramFullStrippedType[:-1].strip()
+            derefTypeInner = derefTypeOuter[:-1].strip()
+
+            out += 2 * indent + f'if ({paramAccess}{paramName}{ptrCondOuter}) {{\n'
+            out += 3 * indent +     f'const std::string& childName = childNode.name;\n'
+            out += 3 * indent +     f'for (int i = 0; i < {lengthOuter}; ++i) {{\n'
+            out += 4 * indent +         f'std::string childChildName = childName + \'[\' + std::to_string(i) + \']\';\n'
+            out += 4 * indent +         f'ParamNode& childChildNode = childNode.children.emplace_back(\"{derefTypeOuter}\", childChildName);\n'
+            out += 4 * indent +         f'if ({paramAccess}{paramName}[i]{ptrCondInner}) {{\n'
+            out += 5 * indent +             f'for (int j = 0; j < {lengthInner}; ++j) {{\n'
+            out += 6 * indent +                 f'std::string childChildChildName = childChildName + \'[\' + std::to_string(j) + \']\';\n'
+            out += 6 * indent +                 f'ParamNode& childChildChildNode = childChildNode.children.emplace_back(\"{derefTypeInner}\", childChildChildName);\n'
+            out += 6 * indent +                 f'SerializeToParamTree{customSerializer}({paramAccess}{paramName}[i][j], childChildChildNode);\n'
+            out += 5 * indent +             f'}}\n'
+            out += 4 * indent +         f'}}\n'
+            out += 4 * indent +         f'else {{\n'
+            out += 5 * indent +             f'SerializeToParamTree(nullptr, childChildNode);\n'
+            out += 4 * indent +         f'}}\n'
+            out += 3 * indent +     f'}}\n'
+            out += 2 * indent + f'}}\n'
+            out += 2 * indent + f'else {{\n'
+            out += 3 * indent +     f'SerializeToParamTree(nullptr, childNode);\n'
+            out += 2 * indent + f'}}\n'
+
+        case ParamTypeKind.PNEXT:
+
+            out += 2 * indent + f'SerializeToParamTreePNext({paramAccess}{paramName}, childNode);\n'
+
+    out += indent + f'}}\n'
 
     return out
 
@@ -707,6 +912,7 @@ def genParamDeserializeFromStream(param, registry, indent, paramAccess):
     paramFullStrippedType = paramFullStrippedType.replace('volatile', '')
     paramFullStrippedType = paramFullStrippedType.replace('struct', '')
     paramFullStrippedType = paramFullStrippedType.replace('union', '')
+    paramFullStrippedType = paramFullStrippedType.replace(' ', '')
     paramFullStrippedType = paramFullStrippedType.strip()
 
     if DEBUG_PARAM_TYPE_KIND:
@@ -871,6 +1077,7 @@ def genParamDeepCopy(param, registry, indent, paramInAccess, paramOutAccess):
     paramFullStrippedType = paramFullStrippedType.replace('volatile', '')
     paramFullStrippedType = paramFullStrippedType.replace('struct', '')
     paramFullStrippedType = paramFullStrippedType.replace('union', '')
+    paramFullStrippedType = paramFullStrippedType.replace(' ', '')
     paramFullStrippedType = paramFullStrippedType.strip()
 
     if DEBUG_PARAM_TYPE_KIND:
@@ -1659,6 +1866,7 @@ class COutputGeneratorSignatureDeclaration(OutputGenerator):
         self.sig_decl = ''
         self.sig_create = ''
         self.ser_to_str = ''
+        self.ser_to_param_tree = ''
         self.ser_to_json = ''
         self.ser_to_stream = ''
         self.deser_from_stream = ''
@@ -1688,6 +1896,8 @@ class COutputGeneratorSignatureDeclaration(OutputGenerator):
         self.body += self.sig_forward_decl
         self.body += f'\n'
         self.body += self.ser_to_str
+        self.body += f'\n'
+        self.body += self.ser_to_param_tree
         self.body += f'\n'
         self.body += self.ser_to_json
         self.body += f'\n'
@@ -1746,6 +1956,7 @@ class COutputGeneratorSignatureDeclaration(OutputGenerator):
 
         self.sig_decl += f'\n'
         self.sig_decl += self.indent + f'virtual void SerializeToString(std::stringstream& stream) const {{ SignatureSerializer::SerializeToString(*this, stream); }}\n'
+        self.sig_decl += self.indent + f'virtual void SerializeToParamTree(ParamNode& node) const {{ SignatureSerializer::SerializeToParamTree(*this, node); }}\n'
         self.sig_decl += self.indent + f'virtual void SerializeToJSON(std::stringstream& stream) const {{ /*TODO*/ }}\n'
         self.sig_decl += self.indent + f'virtual void SerializeToStream(WriteStream& stream) const {{ SignatureSerializer::SerializeToStream(*this, stream); }}\n'
         self.sig_decl += self.indent + f'virtual void DeserializeFromStream(const ReadStream& stream) {{ SignatureSerializer::DeserializeFromStream(*this, stream); }}\n'
@@ -1756,6 +1967,7 @@ class COutputGeneratorSignatureDeclaration(OutputGenerator):
         self.sig_forward_decl   += f'struct {name}Signature;\n'
         self.sig_create         += 2 * self.indent + f'case APICallID::{name}: return std::make_unique<{name}Signature>();\n'
         self.ser_to_str         += f'void SerializeToString(const {name}Signature& sig, std::stringstream& stream);\n'
+        self.ser_to_param_tree  += f'void SerializeToParamTree(const {name}Signature& sig, ParamNode& node);\n'
         self.ser_to_json        += f'void SerializeToJSON(const {name}Signature& sig, std::stringstream& stream);\n'
         self.ser_to_stream      += f'void SerializeToStream(const {name}Signature& sig, WriteStream& stream);\n'
         self.deser_from_stream  += f'void DeserializeFromStream({name}Signature& sig, const ReadStream& stream);\n'
@@ -1770,6 +1982,7 @@ class COutputGeneratorStructSerializeDeclaration(OutputGenerator):
         self.header_guard = ''
         self.indent = '    '
         self.ser_to_str = ''
+        self.ser_to_param_tree = ''
         self.ser_to_json = ''
         self.ser_to_stream = ''
         self.deser_from_stream = ''
@@ -1789,12 +2002,15 @@ class COutputGeneratorStructSerializeDeclaration(OutputGenerator):
 
     def endFile(self):
         self.ser_to_str         += f'void SerializeToStringPNext(const void* pNext, std::stringstream& stream);\n'
+        self.ser_to_param_tree  += f'void SerializeToParamTreePNext(const void* pNext, ParamNode& node);\n'
         self.ser_to_json        += f'void SerializeToJSONPNext(const void* pNext, std::stringstream& stream);\n'
         self.ser_to_stream      += f'void SerializeToStreamPNext(const void* pNext, WriteStream& stream);\n'
         self.deser_from_stream  += f'void DeserializeFromStreamPNext(void** ppNext, Allocator& allocator, const ReadStream& stream);\n'
         self.deser_from_json    += f'void DeserializeFromJSONPNext(void** ppNext, Allocator& allocator, const std::string& json);\n'
 
         self.body += self.ser_to_str
+        self.body += f'\n'
+        self.body += self.ser_to_param_tree
         self.body += f'\n'
         self.body += self.ser_to_json
         self.body += f'\n'
@@ -1820,6 +2036,7 @@ class COutputGeneratorStructSerializeDeclaration(OutputGenerator):
             return
 
         self.ser_to_str         += f'void SerializeToString(const {name}& value, std::stringstream& stream);\n'
+        self.ser_to_param_tree  += f'void SerializeToParamTree(const {name}& value, ParamNode& node);\n'
         self.ser_to_json        += f'void SerializeToJSON(const {name}& value, std::stringstream& stream);\n'
         self.ser_to_stream      += f'void SerializeToStream(const {name}& value, WriteStream& stream);\n'
         self.deser_from_stream  += f'void DeserializeFromStream({name}& value, Allocator& allocator, const ReadStream& stream);\n'
@@ -1917,6 +2134,96 @@ class COutputGeneratorStructSerializeToString(OutputGenerator):
 
         self.ser_to_str += self.indent + f'stream << \"}}\";\n'
         self.ser_to_str += f'}}\n\n'
+
+
+class COutputGeneratorStructSerializeToParamTree(OutputGenerator):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.body = ''
+        self.indent = '    '
+        self.ser_to_param_tree = ''
+        self.ser_pnext = ''
+
+    def beginFile(self, genOpts):
+        OutputGenerator.beginFile(self, genOpts)
+
+        self.body += autogen_message
+
+        self.body += f'#include <SignatureUtils.h>\n'
+        self.body += f'#include <StructSerializeGenerated.h>\n'
+        self.body += f'#include <EnumSerializeGenerated.h>\n\n'
+        self.body += f'namespace OVS {{\n'
+        self.body += f'namespace SignatureSerializer {{\n\n'
+
+        self.ser_pnext += f'void SerializeToParamTreePNext(const void* pNext, ParamNode& node) {{\n'
+        self.ser_pnext += self.indent + f'if (!pNext) {{\n'
+        self.ser_pnext += 2 * self.indent + f'SerializeToParamTree(pNext, node);\n'
+        self.ser_pnext += 2 * self.indent + f'return;\n'
+        self.ser_pnext += self.indent + f'}}\n\n'
+        self.ser_pnext += self.indent + f'const VkBaseInStructure* pNextStruct = reinterpret_cast<const VkBaseInStructure*>(pNext);\n'
+        self.ser_pnext += self.indent + f'switch (pNextStruct->sType) {{\n'
+
+    def endFile(self):
+        self.ser_pnext += 2 * self.indent + f'default: {{\n'
+        self.ser_pnext += 3 * self.indent +     f'ParamNode& childNode = node.children.emplace_back(\"VkBaseInStructure\", \"pNext[0]\");\n'
+        self.ser_pnext += 3 * self.indent +     f'SerializeToParamTree(*pNextStruct, childNode);\n'
+        self.ser_pnext += 3 * self.indent +     f'break;\n'
+        self.ser_pnext += 2 * self.indent + f'}}\n'
+        self.ser_pnext += self.indent + f'}}\n'
+        self.ser_pnext += f'}}\n'
+
+        self.body += self.ser_to_param_tree
+        self.body += f'\n'
+        self.body += self.ser_pnext
+        self.body += f'\n'
+        self.body += f'}} // namespace SignatureSerializer\n'
+        self.body += f'}} // namespace OVS'
+
+        self.outFile.write(self.body)
+
+        OutputGenerator.endFile(self)
+
+    def genType(self, typeinfo, name, alias):
+        OutputGenerator.genType(self, typeinfo, name, alias)
+
+        category = typeinfo.elem.get('category')
+        if category not in ('struct', 'union') or alias:
+            return
+
+        members = typeinfo.elem.findall('member')
+
+        self.ser_to_param_tree += f'void SerializeToParamTree(const {name}& value, ParamNode& node) {{\n'
+
+        memberAccess = 'value.'
+        for i in range(len(members)):
+            member = members[i]
+            memberName = safeStr(member.find('name').text).strip()
+
+            self.ser_to_param_tree += genParamSerializeToParamTree(member, self.registry, self.indent, memberAccess)
+            if memberName == 'sType':
+                sTypeValue = member.get('values')
+                if sTypeValue is not None:
+                    enumProtect = None
+                    enumInfo = self.registry.lookupElementInfo(sTypeValue, self.registry.enumdict)
+                    if enumInfo is not None:
+                        enumElem = enumInfo.elem
+                        enumProtect = enumElem.get('protect')
+
+                    if enumProtect:
+                        self.ser_pnext += f'#ifdef {enumProtect}\n'
+
+                    self.ser_pnext += 2 * self.indent + f'case {sTypeValue}: {{\n'
+                    self.ser_pnext += 3 * self.indent +     f'const {name}* pValue = reinterpret_cast<const {name}*>(pNext);\n'
+                    self.ser_pnext += 3 * self.indent +     f'ParamNode& childNode = node.children.emplace_back(\"{name}\", \"pNext[0]\");\n'
+                    self.ser_pnext += 3 * self.indent +     f'SerializeToParamTree(*pValue, childNode);\n'
+                    self.ser_pnext += 3 * self.indent +     f'break;\n'
+                    self.ser_pnext += 2 * self.indent + f'}}\n'
+
+                    if enumProtect:
+                        self.ser_pnext += f'#endif\n'
+
+        self.ser_to_param_tree += f'}}\n\n'
 
 
 class COutputGeneratorStructSerializeToStream(OutputGenerator):
@@ -2278,14 +2585,16 @@ class COutputGeneratorEnumSerializeDeclaration(OutputGenerator):
         self.indent = '    '
         self.group_enums = ''
         self.bitmask_enums = ''
+        self.group_param_tree = ''
+        self.bitmask_param_tree = ''
 
     def beginFile(self, genOpts):
         OutputGenerator.beginFile(self, genOpts)
 
         self.body += autogen_message
 
-        self.body += f'#include <Vulkan.h>\n\n'
-        self.body += f'#include <sstream>\n\n'
+        self.body += f'#include <Vulkan.h>\n'
+        self.body += f'#include <SignatureUtils.h>\n\n'
         self.body += f'namespace OVS {{\n'
         self.body += f'namespace SignatureSerializer {{\n\n'
 
@@ -2293,6 +2602,10 @@ class COutputGeneratorEnumSerializeDeclaration(OutputGenerator):
         self.body += self.group_enums
         self.body += f'\n'
         self.body += self.bitmask_enums
+        self.body += f'\n'
+        self.body += self.group_param_tree
+        self.body += f'\n'
+        self.body += self.bitmask_param_tree
         self.body += f'\n'
         self.body += f'}} // namespace SignatureSerializer\n'
         self.body += f'}} // namespace OVS'
@@ -2309,10 +2622,12 @@ class COutputGeneratorEnumSerializeDeclaration(OutputGenerator):
 
         groupElem = groupinfo.elem
         if groupElem.get('type') == "enum":
-            self.group_enums += f'void SerializeToString({groupName} value, std::stringstream& stream);\n'
+            self.group_enums        += f'void SerializeToString({groupName} value, std::stringstream& stream);\n'
+            self.group_param_tree   += f'void SerializeToParamTree({groupName} value, ParamNode& node);\n'
         else:
             flags = groupName.replace('FlagBits', 'Flags')
-            self.bitmask_enums += f'void SerializeToString{flags}({flags} value, std::stringstream& stream);\n'
+            self.bitmask_enums      += f'void SerializeToString{flags}({flags} value, std::stringstream& stream);\n'
+            self.bitmask_param_tree += f'void SerializeToParamTree{flags}({flags} value, ParamNode& node);\n'
 
 
 class COutputGeneratorEnumSerialize(OutputGenerator):
@@ -2323,13 +2638,14 @@ class COutputGeneratorEnumSerialize(OutputGenerator):
         self.indent = '    '
         self.group_enums = ''
         self.bitmask_enums = ''
+        self.group_param_tree = ''
+        self.bitmask_param_tree = ''
 
     def beginFile(self, genOpts):
         OutputGenerator.beginFile(self, genOpts)
 
         self.body += autogen_message
 
-        self.body += f'#include <SignatureUtils.h>\n'
         self.body += f'#include <EnumSerializeGenerated.h>\n\n'
         self.body += f'namespace OVS {{\n'
         self.body += f'namespace SignatureSerializer {{\n\n'
@@ -2338,6 +2654,10 @@ class COutputGeneratorEnumSerialize(OutputGenerator):
         self.body += self.group_enums
         self.body += f'\n'
         self.body += self.bitmask_enums
+        self.body += f'\n'
+        self.body += self.group_param_tree
+        self.body += f'\n'
+        self.body += self.bitmask_param_tree
         self.body += f'}} // namespace SignatureSerializer\n'
         self.body += f'}} // namespace OVS'
 
@@ -2381,6 +2701,12 @@ class COutputGeneratorEnumSerialize(OutputGenerator):
 
             self.group_enums += self.indent + f'}}\n'
             self.group_enums += f'}}\n\n'
+
+            self.group_param_tree += f'void SerializeToParamTree({groupName} value, ParamNode& node) {{\n'
+            self.group_param_tree += self.indent + f'std::stringstream stream;\n'
+            self.group_param_tree += self.indent + f'SerializeToString(value, stream);\n'
+            self.group_param_tree += self.indent + f'node.value = stream.str();\n'
+            self.group_param_tree += f'}}\n'
         else:
             zeroEnumName = ''
 
@@ -2463,6 +2789,12 @@ class COutputGeneratorEnumSerialize(OutputGenerator):
             self.bitmask_enums += self.indent + f'stream << out;\n'
             self.bitmask_enums += f'}}\n\n'
 
+            self.bitmask_param_tree += f'void SerializeToParamTree{flags}({flags} value, ParamNode& node) {{\n'
+            self.bitmask_param_tree += self.indent + f'std::stringstream stream;\n'
+            self.bitmask_param_tree += self.indent + f'SerializeToString{flags}(value, stream);\n'
+            self.bitmask_param_tree += self.indent + f'node.value = stream.str();\n'
+            self.bitmask_param_tree += f'}}\n'
+
 
 class COutputGeneratorSignatureSerializeToString(OutputGenerator):
     def __init__(self, *args, **kwargs):
@@ -2532,6 +2864,73 @@ class COutputGeneratorSignatureSerializeToString(OutputGenerator):
                 self.body += self.indent + f'// Kind: {retParamTypeKind.name}\n'
 
             self.body += self.indent + f'SerializeToString{customSerializer}({cast}{paramAccess}ret, stream);\n'
+
+        self.body += f'}};\n\n'
+
+
+class COutputGeneratorSignatureSerializeToParamTree(OutputGenerator):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.body = ''
+        self.indent = '    '
+
+    def beginFile(self, genOpts):
+        OutputGenerator.beginFile(self, genOpts)
+
+        self.body += autogen_message
+
+        self.body += f'#include <SignatureUtils.h>\n'
+        self.body += f'#include <SignatureGenerated.h>\n'
+        self.body += f'#include <EnumSerializeGenerated.h>\n'
+        self.body += f'#include <StructSerializeGenerated.h>\n\n'
+        self.body += f'namespace OVS {{\n'
+        self.body += f'namespace SignatureSerializer {{\n\n'
+
+    def endFile(self):
+        self.body += f'}} // namespace SignatureSerializer\n'
+        self.body += f'}} // namespace OVS'
+
+        self.outFile.write(self.body)
+
+        OutputGenerator.endFile(self)
+
+    def genCmd(self, cmdinfo, name, alias):
+        OutputGenerator.genCmd(self, cmdinfo, name, alias)
+
+        proto = cmdinfo.elem.find('proto')
+        type = proto.find('type').text.strip()
+        params = cmdinfo.elem.findall('param')
+
+        paramAccess = 'sig.'
+
+        self.body += f'void SerializeToParamTree(const {name}Signature& sig, ParamNode& node) {{\n'
+        self.body += self.indent + f'node.type = \"{type}\";\n'
+        self.body += self.indent + f'node.name = \"{name}\";\n'
+        if type != 'void':
+            cast = ''
+            customSerializer = ''
+            retParamTypeKind = None
+            typeElem = getNonAliasTypeElem(type, self.registry)
+            category = safeStr(typeElem.get('category'))
+            requires = safeStr(typeElem.get('requires'))
+            if category == 'funcpointer':
+                retParamTypeKind = ParamTypeKind.FUNCTION_PTR
+                cast = '(void*)'
+            if type in BASE_TYPES or category in ['basetype', 'enum', 'bitmask']:
+                retParamTypeKind = ParamTypeKind.PRIMITIVE
+                if category == 'bitmask' and requires != '':
+                    customSerializer = typeElem.get('name')
+
+            if DEBUG_PARAM_TYPE_KIND:
+                self.body += self.indent + f'// Kind: {retParamTypeKind.name}\n'
+
+            self.body += self.indent + f'SerializeToParamTree{customSerializer}({cast}{paramAccess}ret, node);\n'
+
+        for i in range(len(params)):
+            param = params[i]
+
+            self.body += genParamSerializeToParamTree(param, self.registry, self.indent, paramAccess)
 
         self.body += f'}};\n\n'
 
@@ -3065,6 +3464,20 @@ generate_targets = [
                        defaultExtensions='vulkan',
                        emitExtensions = '.*')],
 
+    [COutputGeneratorStructSerializeToParamTree,
+     CGeneratorOptions(prefixText='',
+                       apicall='VKAPI_ATTR ',
+                       apientry='VKAPI_CALL ',
+                       apientryp='VKAPI_PTR *',
+                       indentFuncProto=True,
+                       protectFeature=False,
+                       conventions=vkconventions.VulkanConventions(),
+                       filename='StructSerializeToParamTreeGenerated.cpp',
+                       directory='.',
+                       apiname='vulkan',
+                       defaultExtensions='vulkan',
+                       emitExtensions = '.*')],
+
     [COutputGeneratorStructSerializeToStream,
      CGeneratorOptions(prefixText='',
                        apicall='VKAPI_ATTR ',
@@ -3130,6 +3543,20 @@ generate_targets = [
                        protectFeature=False,
                        conventions=vkconventions.VulkanConventions(),
                        filename='SignatureSerializeToStringGenerated.cpp',
+                       directory='.',
+                       apiname='vulkan',
+                       defaultExtensions='vulkan',
+                       emitExtensions = '.*')],
+
+    [COutputGeneratorSignatureSerializeToParamTree,
+     CGeneratorOptions(prefixText='',
+                       apicall='VKAPI_ATTR ',
+                       apientry='VKAPI_CALL ',
+                       apientryp='VKAPI_PTR *',
+                       indentFuncProto=True,
+                       protectFeature=False,
+                       conventions=vkconventions.VulkanConventions(),
+                       filename='SignatureSerializeToParamTreeGenerated.cpp',
                        directory='.',
                        apiname='vulkan',
                        defaultExtensions='vulkan',

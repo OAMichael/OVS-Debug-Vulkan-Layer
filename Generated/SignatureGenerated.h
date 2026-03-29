@@ -1566,6 +1566,782 @@ void SerializeToString(const vkCmdDrawMeshTasksEXTSignature& sig, std::stringstr
 void SerializeToString(const vkCmdDrawMeshTasksIndirectEXTSignature& sig, std::stringstream& stream);
 void SerializeToString(const vkCmdDrawMeshTasksIndirectCountEXTSignature& sig, std::stringstream& stream);
 
+void SerializeToParamTree(const vkCreateInstanceSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkDestroyInstanceSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkEnumeratePhysicalDevicesSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDeviceFeaturesSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDeviceFormatPropertiesSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDeviceImageFormatPropertiesSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDevicePropertiesSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDeviceQueueFamilyPropertiesSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDeviceMemoryPropertiesSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetInstanceProcAddrSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetDeviceProcAddrSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateDeviceSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkDestroyDeviceSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkEnumerateInstanceExtensionPropertiesSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkEnumerateDeviceExtensionPropertiesSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkEnumerateInstanceLayerPropertiesSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkEnumerateDeviceLayerPropertiesSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetDeviceQueueSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkQueueSubmitSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkQueueWaitIdleSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkDeviceWaitIdleSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkAllocateMemorySignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkFreeMemorySignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkMapMemorySignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkUnmapMemorySignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkFlushMappedMemoryRangesSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkInvalidateMappedMemoryRangesSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetDeviceMemoryCommitmentSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkBindBufferMemorySignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkBindImageMemorySignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetBufferMemoryRequirementsSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetImageMemoryRequirementsSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetImageSparseMemoryRequirementsSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDeviceSparseImageFormatPropertiesSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkQueueBindSparseSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateFenceSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkDestroyFenceSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkResetFencesSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetFenceStatusSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkWaitForFencesSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateSemaphoreSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkDestroySemaphoreSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateQueryPoolSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkDestroyQueryPoolSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetQueryPoolResultsSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateBufferSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkDestroyBufferSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateImageSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkDestroyImageSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetImageSubresourceLayoutSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateImageViewSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkDestroyImageViewSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateCommandPoolSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkDestroyCommandPoolSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkResetCommandPoolSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkAllocateCommandBuffersSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkFreeCommandBuffersSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkBeginCommandBufferSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkEndCommandBufferSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkResetCommandBufferSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdCopyBufferSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdCopyImageSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdCopyBufferToImageSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdCopyImageToBufferSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdUpdateBufferSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdFillBufferSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdPipelineBarrierSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdBeginQuerySignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdEndQuerySignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdResetQueryPoolSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdWriteTimestampSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdCopyQueryPoolResultsSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdExecuteCommandsSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateEventSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkDestroyEventSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetEventStatusSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkSetEventSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkResetEventSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateBufferViewSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkDestroyBufferViewSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateShaderModuleSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkDestroyShaderModuleSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreatePipelineCacheSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkDestroyPipelineCacheSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPipelineCacheDataSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkMergePipelineCachesSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateComputePipelinesSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkDestroyPipelineSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreatePipelineLayoutSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkDestroyPipelineLayoutSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateSamplerSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkDestroySamplerSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateDescriptorSetLayoutSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkDestroyDescriptorSetLayoutSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateDescriptorPoolSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkDestroyDescriptorPoolSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkResetDescriptorPoolSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkAllocateDescriptorSetsSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkFreeDescriptorSetsSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkUpdateDescriptorSetsSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdBindPipelineSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdBindDescriptorSetsSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdClearColorImageSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdDispatchSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdDispatchIndirectSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetEventSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdResetEventSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdWaitEventsSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdPushConstantsSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateGraphicsPipelinesSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateFramebufferSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkDestroyFramebufferSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateRenderPassSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkDestroyRenderPassSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetRenderAreaGranularitySignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetViewportSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetScissorSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetLineWidthSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetDepthBiasSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetBlendConstantsSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetDepthBoundsSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetStencilCompareMaskSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetStencilWriteMaskSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetStencilReferenceSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdBindIndexBufferSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdBindVertexBuffersSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdDrawSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdDrawIndexedSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdDrawIndirectSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdDrawIndexedIndirectSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdBlitImageSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdClearDepthStencilImageSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdClearAttachmentsSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdResolveImageSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdBeginRenderPassSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdNextSubpassSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdEndRenderPassSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkEnumerateInstanceVersionSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkBindBufferMemory2Signature& sig, ParamNode& node);
+void SerializeToParamTree(const vkBindImageMemory2Signature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetDeviceGroupPeerMemoryFeaturesSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetDeviceMaskSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkEnumeratePhysicalDeviceGroupsSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetImageMemoryRequirements2Signature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetBufferMemoryRequirements2Signature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetImageSparseMemoryRequirements2Signature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDeviceFeatures2Signature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDeviceProperties2Signature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDeviceFormatProperties2Signature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDeviceImageFormatProperties2Signature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDeviceQueueFamilyProperties2Signature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDeviceMemoryProperties2Signature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDeviceSparseImageFormatProperties2Signature& sig, ParamNode& node);
+void SerializeToParamTree(const vkTrimCommandPoolSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetDeviceQueue2Signature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDeviceExternalBufferPropertiesSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDeviceExternalFencePropertiesSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDeviceExternalSemaphorePropertiesSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdDispatchBaseSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateDescriptorUpdateTemplateSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkDestroyDescriptorUpdateTemplateSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkUpdateDescriptorSetWithTemplateSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetDescriptorSetLayoutSupportSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateSamplerYcbcrConversionSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkDestroySamplerYcbcrConversionSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkResetQueryPoolSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetSemaphoreCounterValueSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkWaitSemaphoresSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkSignalSemaphoreSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetBufferDeviceAddressSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetBufferOpaqueCaptureAddressSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetDeviceMemoryOpaqueCaptureAddressSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdDrawIndirectCountSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdDrawIndexedIndirectCountSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateRenderPass2Signature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdBeginRenderPass2Signature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdNextSubpass2Signature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdEndRenderPass2Signature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDeviceToolPropertiesSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreatePrivateDataSlotSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkDestroyPrivateDataSlotSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkSetPrivateDataSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPrivateDataSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdPipelineBarrier2Signature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdWriteTimestamp2Signature& sig, ParamNode& node);
+void SerializeToParamTree(const vkQueueSubmit2Signature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdCopyBuffer2Signature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdCopyImage2Signature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdCopyBufferToImage2Signature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdCopyImageToBuffer2Signature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetDeviceBufferMemoryRequirementsSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetDeviceImageMemoryRequirementsSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetDeviceImageSparseMemoryRequirementsSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetEvent2Signature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdResetEvent2Signature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdWaitEvents2Signature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdBlitImage2Signature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdResolveImage2Signature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdBeginRenderingSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdEndRenderingSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetCullModeSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetFrontFaceSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetPrimitiveTopologySignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetViewportWithCountSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetScissorWithCountSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdBindVertexBuffers2Signature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetDepthTestEnableSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetDepthWriteEnableSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetDepthCompareOpSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetDepthBoundsTestEnableSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetStencilTestEnableSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetStencilOpSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetRasterizerDiscardEnableSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetDepthBiasEnableSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetPrimitiveRestartEnableSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkMapMemory2Signature& sig, ParamNode& node);
+void SerializeToParamTree(const vkUnmapMemory2Signature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetDeviceImageSubresourceLayoutSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetImageSubresourceLayout2Signature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCopyMemoryToImageSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCopyImageToMemorySignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCopyImageToImageSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkTransitionImageLayoutSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdPushDescriptorSetSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdPushDescriptorSetWithTemplateSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdBindDescriptorSets2Signature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdPushConstants2Signature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdPushDescriptorSet2Signature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdPushDescriptorSetWithTemplate2Signature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetLineStippleSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdBindIndexBuffer2Signature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetRenderingAreaGranularitySignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetRenderingAttachmentLocationsSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetRenderingInputAttachmentIndicesSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkDestroySurfaceKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDeviceSurfaceSupportKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDeviceSurfaceCapabilitiesKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDeviceSurfaceFormatsKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDeviceSurfacePresentModesKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateSwapchainKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkDestroySwapchainKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetSwapchainImagesKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkAcquireNextImageKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkQueuePresentKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetDeviceGroupPresentCapabilitiesKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetDeviceGroupSurfacePresentModesKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDevicePresentRectanglesKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkAcquireNextImage2KHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDeviceDisplayPropertiesKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDeviceDisplayPlanePropertiesKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetDisplayPlaneSupportedDisplaysKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetDisplayModePropertiesKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateDisplayModeKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetDisplayPlaneCapabilitiesKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateDisplayPlaneSurfaceKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateSharedSwapchainsKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateXlibSurfaceKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDeviceXlibPresentationSupportKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateXcbSurfaceKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDeviceXcbPresentationSupportKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateWaylandSurfaceKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDeviceWaylandPresentationSupportKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateAndroidSurfaceKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateWin32SurfaceKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDeviceWin32PresentationSupportKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDeviceVideoCapabilitiesKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDeviceVideoFormatPropertiesKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateVideoSessionKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkDestroyVideoSessionKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetVideoSessionMemoryRequirementsKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkBindVideoSessionMemoryKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateVideoSessionParametersKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkUpdateVideoSessionParametersKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkDestroyVideoSessionParametersKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdBeginVideoCodingKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdEndVideoCodingKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdControlVideoCodingKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdDecodeVideoKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdBeginRenderingKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdEndRenderingKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDeviceFeatures2KHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDeviceProperties2KHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDeviceFormatProperties2KHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDeviceImageFormatProperties2KHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDeviceQueueFamilyProperties2KHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDeviceMemoryProperties2KHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDeviceSparseImageFormatProperties2KHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetDeviceGroupPeerMemoryFeaturesKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetDeviceMaskKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdDispatchBaseKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkTrimCommandPoolKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkEnumeratePhysicalDeviceGroupsKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDeviceExternalBufferPropertiesKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetMemoryWin32HandleKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetMemoryWin32HandlePropertiesKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetMemoryFdKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetMemoryFdPropertiesKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDeviceExternalSemaphorePropertiesKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkImportSemaphoreWin32HandleKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetSemaphoreWin32HandleKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkImportSemaphoreFdKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetSemaphoreFdKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdPushDescriptorSetKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdPushDescriptorSetWithTemplateKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateDescriptorUpdateTemplateKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkDestroyDescriptorUpdateTemplateKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkUpdateDescriptorSetWithTemplateKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateRenderPass2KHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdBeginRenderPass2KHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdNextSubpass2KHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdEndRenderPass2KHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetSwapchainStatusKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDeviceExternalFencePropertiesKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkImportFenceWin32HandleKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetFenceWin32HandleKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkImportFenceFdKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetFenceFdKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkAcquireProfilingLockKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkReleaseProfilingLockKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDeviceSurfaceCapabilities2KHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDeviceSurfaceFormats2KHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDeviceDisplayProperties2KHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDeviceDisplayPlaneProperties2KHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetDisplayModeProperties2KHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetDisplayPlaneCapabilities2KHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetImageMemoryRequirements2KHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetBufferMemoryRequirements2KHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetImageSparseMemoryRequirements2KHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateSamplerYcbcrConversionKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkDestroySamplerYcbcrConversionKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkBindBufferMemory2KHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkBindImageMemory2KHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetDescriptorSetLayoutSupportKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdDrawIndirectCountKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdDrawIndexedIndirectCountKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetSemaphoreCounterValueKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkWaitSemaphoresKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkSignalSemaphoreKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDeviceFragmentShadingRatesKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetFragmentShadingRateKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetRenderingAttachmentLocationsKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetRenderingInputAttachmentIndicesKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkWaitForPresentKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetBufferDeviceAddressKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetBufferOpaqueCaptureAddressKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetDeviceMemoryOpaqueCaptureAddressKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateDeferredOperationKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkDestroyDeferredOperationKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetDeferredOperationMaxConcurrencyKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetDeferredOperationResultKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkDeferredOperationJoinKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPipelineExecutablePropertiesKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPipelineExecutableStatisticsKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPipelineExecutableInternalRepresentationsKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkMapMemory2KHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkUnmapMemory2KHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDeviceVideoEncodeQualityLevelPropertiesKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetEncodedVideoSessionParametersKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdEncodeVideoKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetEvent2KHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdResetEvent2KHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdWaitEvents2KHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdPipelineBarrier2KHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdWriteTimestamp2KHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkQueueSubmit2KHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdCopyBuffer2KHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdCopyImage2KHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdCopyBufferToImage2KHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdCopyImageToBuffer2KHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdBlitImage2KHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdResolveImage2KHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdTraceRaysIndirect2KHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetDeviceBufferMemoryRequirementsKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetDeviceImageMemoryRequirementsKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetDeviceImageSparseMemoryRequirementsKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdBindIndexBuffer2KHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetRenderingAreaGranularityKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetDeviceImageSubresourceLayoutKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetImageSubresourceLayout2KHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkWaitForPresent2KHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreatePipelineBinariesKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkDestroyPipelineBinaryKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPipelineKeyKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPipelineBinaryDataKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkReleaseCapturedPipelineDataKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkReleaseSwapchainImagesKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDeviceCooperativeMatrixPropertiesKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetLineStippleKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDeviceCalibrateableTimeDomainsKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetCalibratedTimestampsKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdBindDescriptorSets2KHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdPushConstants2KHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdPushDescriptorSet2KHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdPushDescriptorSetWithTemplate2KHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetDescriptorBufferOffsets2EXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdBindDescriptorBufferEmbeddedSamplers2EXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdCopyMemoryIndirectKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdCopyMemoryToImageIndirectKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdEndRendering2KHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateDebugReportCallbackEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkDestroyDebugReportCallbackEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkDebugReportMessageEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkDebugMarkerSetObjectTagEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkDebugMarkerSetObjectNameEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdDebugMarkerBeginEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdDebugMarkerEndEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdDebugMarkerInsertEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdBindTransformFeedbackBuffersEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdBeginTransformFeedbackEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdEndTransformFeedbackEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdBeginQueryIndexedEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdEndQueryIndexedEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdDrawIndirectByteCountEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateCuModuleNVXSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateCuFunctionNVXSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkDestroyCuModuleNVXSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkDestroyCuFunctionNVXSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdCuLaunchKernelNVXSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetImageViewHandleNVXSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetImageViewHandle64NVXSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetImageViewAddressNVXSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdDrawIndirectCountAMDSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdDrawIndexedIndirectCountAMDSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetShaderInfoAMDSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateStreamDescriptorSurfaceGGPSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDeviceExternalImageFormatPropertiesNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetMemoryWin32HandleNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateViSurfaceNNSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdBeginConditionalRenderingEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdEndConditionalRenderingEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetViewportWScalingNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkReleaseDisplayEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkAcquireXlibDisplayEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetRandROutputDisplayEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDeviceSurfaceCapabilities2EXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkDisplayPowerControlEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkRegisterDeviceEventEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkRegisterDisplayEventEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetSwapchainCounterEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetRefreshCycleDurationGOOGLESignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPastPresentationTimingGOOGLESignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetDiscardRectangleEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetDiscardRectangleEnableEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetDiscardRectangleModeEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkSetHdrMetadataEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateIOSSurfaceMVKSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateMacOSSurfaceMVKSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkSetDebugUtilsObjectNameEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkSetDebugUtilsObjectTagEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkQueueBeginDebugUtilsLabelEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkQueueEndDebugUtilsLabelEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkQueueInsertDebugUtilsLabelEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdBeginDebugUtilsLabelEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdEndDebugUtilsLabelEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdInsertDebugUtilsLabelEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateDebugUtilsMessengerEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkDestroyDebugUtilsMessengerEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkSubmitDebugUtilsMessageEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetAndroidHardwareBufferPropertiesANDROIDSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetMemoryAndroidHardwareBufferANDROIDSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateExecutionGraphPipelinesAMDXSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetExecutionGraphPipelineScratchSizeAMDXSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetExecutionGraphPipelineNodeIndexAMDXSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdInitializeGraphScratchMemoryAMDXSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdDispatchGraphAMDXSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdDispatchGraphIndirectAMDXSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdDispatchGraphIndirectCountAMDXSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetSampleLocationsEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDeviceMultisamplePropertiesEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetImageDrmFormatModifierPropertiesEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateValidationCacheEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkDestroyValidationCacheEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkMergeValidationCachesEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetValidationCacheDataEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdBindShadingRateImageNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetViewportShadingRatePaletteNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetCoarseSampleOrderNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateAccelerationStructureNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkDestroyAccelerationStructureNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetAccelerationStructureMemoryRequirementsNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkBindAccelerationStructureMemoryNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdBuildAccelerationStructureNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdCopyAccelerationStructureNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdTraceRaysNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateRayTracingPipelinesNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetRayTracingShaderGroupHandlesKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetRayTracingShaderGroupHandlesNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetAccelerationStructureHandleNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdWriteAccelerationStructuresPropertiesNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCompileDeferredNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetMemoryHostPointerPropertiesEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdWriteBufferMarkerAMDSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdWriteBufferMarker2AMDSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDeviceCalibrateableTimeDomainsEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetCalibratedTimestampsEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdDrawMeshTasksNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdDrawMeshTasksIndirectNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdDrawMeshTasksIndirectCountNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetExclusiveScissorEnableNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetExclusiveScissorNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetCheckpointNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetQueueCheckpointDataNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetQueueCheckpointData2NVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkSetSwapchainPresentTimingQueueSizeEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetSwapchainTimingPropertiesEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetSwapchainTimeDomainPropertiesEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPastPresentationTimingEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkInitializePerformanceApiINTELSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkUninitializePerformanceApiINTELSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetPerformanceMarkerINTELSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetPerformanceStreamMarkerINTELSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetPerformanceOverrideINTELSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkAcquirePerformanceConfigurationINTELSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkReleasePerformanceConfigurationINTELSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkQueueSetPerformanceConfigurationINTELSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPerformanceParameterINTELSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkSetLocalDimmingAMDSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateImagePipeSurfaceFUCHSIASignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateMetalSurfaceEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetBufferDeviceAddressEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDeviceToolPropertiesEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDeviceCooperativeMatrixPropertiesNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDeviceSurfacePresentModes2EXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkAcquireFullScreenExclusiveModeEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkReleaseFullScreenExclusiveModeEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetDeviceGroupSurfacePresentModes2EXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateHeadlessSurfaceEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetLineStippleEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkResetQueryPoolEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetCullModeEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetFrontFaceEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetPrimitiveTopologyEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetViewportWithCountEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetScissorWithCountEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdBindVertexBuffers2EXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetDepthTestEnableEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetDepthWriteEnableEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetDepthCompareOpEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetDepthBoundsTestEnableEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetStencilTestEnableEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetStencilOpEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCopyMemoryToImageEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCopyImageToMemoryEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCopyImageToImageEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkTransitionImageLayoutEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetImageSubresourceLayout2EXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkReleaseSwapchainImagesEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetGeneratedCommandsMemoryRequirementsNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdPreprocessGeneratedCommandsNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdExecuteGeneratedCommandsNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdBindPipelineShaderGroupNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateIndirectCommandsLayoutNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkDestroyIndirectCommandsLayoutNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetDepthBias2EXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkAcquireDrmDisplayEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetDrmDisplayEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreatePrivateDataSlotEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkDestroyPrivateDataSlotEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkSetPrivateDataEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPrivateDataEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateCudaModuleNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetCudaModuleCacheNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateCudaFunctionNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkDestroyCudaModuleNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkDestroyCudaFunctionNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdCudaLaunchKernelNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdDispatchTileQCOMSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdBeginPerTileExecutionQCOMSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdEndPerTileExecutionQCOMSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkExportMetalObjectsEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetDescriptorSetLayoutSizeEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetDescriptorSetLayoutBindingOffsetEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetDescriptorEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdBindDescriptorBuffersEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetDescriptorBufferOffsetsEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdBindDescriptorBufferEmbeddedSamplersEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetBufferOpaqueCaptureDescriptorDataEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetImageOpaqueCaptureDescriptorDataEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetImageViewOpaqueCaptureDescriptorDataEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetSamplerOpaqueCaptureDescriptorDataEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetAccelerationStructureOpaqueCaptureDescriptorDataEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetFragmentShadingRateEnumNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetDeviceFaultInfoEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkAcquireWinrtDisplayNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetWinrtDisplayNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateDirectFBSurfaceEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDeviceDirectFBPresentationSupportEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetVertexInputEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetMemoryZirconHandleFUCHSIASignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetMemoryZirconHandlePropertiesFUCHSIASignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkImportSemaphoreZirconHandleFUCHSIASignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetSemaphoreZirconHandleFUCHSIASignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateBufferCollectionFUCHSIASignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkSetBufferCollectionImageConstraintsFUCHSIASignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkSetBufferCollectionBufferConstraintsFUCHSIASignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkDestroyBufferCollectionFUCHSIASignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetBufferCollectionPropertiesFUCHSIASignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEISignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSubpassShadingHUAWEISignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdBindInvocationMaskHUAWEISignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetMemoryRemoteAddressNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPipelinePropertiesEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetPatchControlPointsEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetRasterizerDiscardEnableEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetDepthBiasEnableEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetLogicOpEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetPrimitiveRestartEnableEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateScreenSurfaceQNXSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDeviceScreenPresentationSupportQNXSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetColorWriteEnableEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdDrawMultiEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdDrawMultiIndexedEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateMicromapEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkDestroyMicromapEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdBuildMicromapsEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkBuildMicromapsEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCopyMicromapEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCopyMicromapToMemoryEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCopyMemoryToMicromapEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkWriteMicromapsPropertiesEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdCopyMicromapEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdCopyMicromapToMemoryEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdCopyMemoryToMicromapEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdWriteMicromapsPropertiesEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetDeviceMicromapCompatibilityEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetMicromapBuildSizesEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdDrawClusterHUAWEISignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdDrawClusterIndirectHUAWEISignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkSetDeviceMemoryPriorityEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetDescriptorSetLayoutHostMappingInfoVALVESignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetDescriptorSetHostMappingVALVESignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdCopyMemoryIndirectNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdCopyMemoryToImageIndirectNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdDecompressMemoryNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdDecompressMemoryIndirectCountNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPipelineIndirectMemoryRequirementsNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdUpdatePipelineIndirectBufferNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPipelineIndirectDeviceAddressNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetNativeBufferPropertiesOHOSSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetMemoryNativeBufferOHOSSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetDepthClampEnableEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetPolygonModeEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetRasterizationSamplesEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetSampleMaskEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetAlphaToCoverageEnableEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetAlphaToOneEnableEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetLogicOpEnableEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetColorBlendEnableEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetColorBlendEquationEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetColorWriteMaskEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetTessellationDomainOriginEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetRasterizationStreamEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetConservativeRasterizationModeEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetExtraPrimitiveOverestimationSizeEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetDepthClipEnableEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetSampleLocationsEnableEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetColorBlendAdvancedEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetProvokingVertexModeEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetLineRasterizationModeEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetLineStippleEnableEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetDepthClipNegativeOneToOneEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetViewportWScalingEnableNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetViewportSwizzleNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetCoverageToColorEnableNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetCoverageToColorLocationNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetCoverageModulationModeNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetCoverageModulationTableEnableNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetCoverageModulationTableNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetShadingRateImageEnableNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetRepresentativeFragmentTestEnableNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetCoverageReductionModeNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateTensorARMSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkDestroyTensorARMSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateTensorViewARMSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkDestroyTensorViewARMSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetTensorMemoryRequirementsARMSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkBindTensorMemoryARMSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetDeviceTensorMemoryRequirementsARMSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdCopyTensorARMSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDeviceExternalTensorPropertiesARMSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetTensorOpaqueCaptureDescriptorDataARMSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetTensorViewOpaqueCaptureDescriptorDataARMSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetShaderModuleIdentifierEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetShaderModuleCreateInfoIdentifierEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDeviceOpticalFlowImageFormatsNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateOpticalFlowSessionNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkDestroyOpticalFlowSessionNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkBindOpticalFlowSessionImageNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdOpticalFlowExecuteNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkAntiLagUpdateAMDSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateShadersEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkDestroyShaderEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetShaderBinaryDataEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdBindShadersEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetDepthClampRangeEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetFramebufferTilePropertiesQCOMSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetDynamicRenderingTilePropertiesQCOMSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDeviceCooperativeVectorPropertiesNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkConvertCooperativeVectorMatrixNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdConvertCooperativeVectorMatrixNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkSetLatencySleepModeNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkLatencySleepNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkSetLatencyMarkerNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetLatencyTimingsNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkQueueNotifyOutOfBandNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateDataGraphPipelinesARMSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateDataGraphPipelineSessionARMSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetDataGraphPipelineSessionBindPointRequirementsARMSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetDataGraphPipelineSessionMemoryRequirementsARMSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkBindDataGraphPipelineSessionMemoryARMSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkDestroyDataGraphPipelineSessionARMSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdDispatchDataGraphARMSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetDataGraphPipelineAvailablePropertiesARMSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetDataGraphPipelinePropertiesARMSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARMSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARMSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetAttachmentFeedbackLoopEnableEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetScreenBufferPropertiesQNXSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdBindTileMemoryQCOMSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdDecompressMemoryEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdDecompressMemoryIndirectCountEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateExternalComputeQueueNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkDestroyExternalComputeQueueNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetExternalComputeQueueDataNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetClusterAccelerationStructureBuildSizesNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdBuildClusterAccelerationStructureIndirectNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPartitionedAccelerationStructuresBuildSizesNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdBuildPartitionedAccelerationStructuresNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetGeneratedCommandsMemoryRequirementsEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdPreprocessGeneratedCommandsEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdExecuteGeneratedCommandsEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateIndirectCommandsLayoutEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkDestroyIndirectCommandsLayoutEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateIndirectExecutionSetEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkDestroyIndirectExecutionSetEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkUpdateIndirectExecutionSetPipelineEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkUpdateIndirectExecutionSetShaderEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateSurfaceOHOSSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetSwapchainGrallocUsageOHOSSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkAcquireImageOHOSSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkQueueSignalReleaseImageOHOSSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetPhysicalDeviceCooperativeMatrixFlexibleDimensionsPropertiesNVSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetMemoryMetalHandleEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetMemoryMetalHandlePropertiesEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARMSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdEndRendering2EXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdBeginCustomResolveEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateAccelerationStructureKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkDestroyAccelerationStructureKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdBuildAccelerationStructuresKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdBuildAccelerationStructuresIndirectKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkBuildAccelerationStructuresKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCopyAccelerationStructureKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCopyAccelerationStructureToMemoryKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCopyMemoryToAccelerationStructureKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkWriteAccelerationStructuresPropertiesKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdCopyAccelerationStructureKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdCopyAccelerationStructureToMemoryKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdCopyMemoryToAccelerationStructureKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetAccelerationStructureDeviceAddressKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdWriteAccelerationStructuresPropertiesKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetDeviceAccelerationStructureCompatibilityKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetAccelerationStructureBuildSizesKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdTraceRaysKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCreateRayTracingPipelinesKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetRayTracingCaptureReplayShaderGroupHandlesKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdTraceRaysIndirectKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkGetRayTracingShaderGroupStackSizeKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdSetRayTracingPipelineStackSizeKHRSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdDrawMeshTasksEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdDrawMeshTasksIndirectEXTSignature& sig, ParamNode& node);
+void SerializeToParamTree(const vkCmdDrawMeshTasksIndirectCountEXTSignature& sig, ParamNode& node);
+
 void SerializeToJSON(const vkCreateInstanceSignature& sig, std::stringstream& stream);
 void SerializeToJSON(const vkDestroyInstanceSignature& sig, std::stringstream& stream);
 void SerializeToJSON(const vkEnumeratePhysicalDevicesSignature& sig, std::stringstream& stream);
@@ -4677,6 +5453,7 @@ struct vkCreateInstanceSignature : public BaseSignature {
     VkInstance* pInstance{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -4689,6 +5466,7 @@ struct vkDestroyInstanceSignature : public BaseSignature {
     VkAllocationCallbacks* pAllocator{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -4703,6 +5481,7 @@ struct vkEnumeratePhysicalDevicesSignature : public BaseSignature {
     VkPhysicalDevice* pPhysicalDevices{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -4715,6 +5494,7 @@ struct vkGetPhysicalDeviceFeaturesSignature : public BaseSignature {
     VkPhysicalDeviceFeatures* pFeatures{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -4728,6 +5508,7 @@ struct vkGetPhysicalDeviceFormatPropertiesSignature : public BaseSignature {
     VkFormatProperties* pFormatProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -4746,6 +5527,7 @@ struct vkGetPhysicalDeviceImageFormatPropertiesSignature : public BaseSignature 
     VkImageFormatProperties* pImageFormatProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -4758,6 +5540,7 @@ struct vkGetPhysicalDevicePropertiesSignature : public BaseSignature {
     VkPhysicalDeviceProperties* pProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -4771,6 +5554,7 @@ struct vkGetPhysicalDeviceQueueFamilyPropertiesSignature : public BaseSignature 
     VkQueueFamilyProperties* pQueueFamilyProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -4783,6 +5567,7 @@ struct vkGetPhysicalDeviceMemoryPropertiesSignature : public BaseSignature {
     VkPhysicalDeviceMemoryProperties* pMemoryProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -4796,6 +5581,7 @@ struct vkGetInstanceProcAddrSignature : public BaseSignature {
     char* pName{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -4809,6 +5595,7 @@ struct vkGetDeviceProcAddrSignature : public BaseSignature {
     char* pName{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -4824,6 +5611,7 @@ struct vkCreateDeviceSignature : public BaseSignature {
     VkDevice* pDevice{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -4836,6 +5624,7 @@ struct vkDestroyDeviceSignature : public BaseSignature {
     VkAllocationCallbacks* pAllocator{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -4850,6 +5639,7 @@ struct vkEnumerateInstanceExtensionPropertiesSignature : public BaseSignature {
     VkExtensionProperties* pProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -4865,6 +5655,7 @@ struct vkEnumerateDeviceExtensionPropertiesSignature : public BaseSignature {
     VkExtensionProperties* pProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -4878,6 +5669,7 @@ struct vkEnumerateInstanceLayerPropertiesSignature : public BaseSignature {
     VkLayerProperties* pProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -4892,6 +5684,7 @@ struct vkEnumerateDeviceLayerPropertiesSignature : public BaseSignature {
     VkLayerProperties* pProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -4906,6 +5699,7 @@ struct vkGetDeviceQueueSignature : public BaseSignature {
     VkQueue* pQueue{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -4921,6 +5715,7 @@ struct vkQueueSubmitSignature : public BaseSignature {
     VkFence fence{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -4933,6 +5728,7 @@ struct vkQueueWaitIdleSignature : public BaseSignature {
     VkQueue queue{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -4945,6 +5741,7 @@ struct vkDeviceWaitIdleSignature : public BaseSignature {
     VkDevice device{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -4960,6 +5757,7 @@ struct vkAllocateMemorySignature : public BaseSignature {
     VkDeviceMemory* pMemory{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -4973,6 +5771,7 @@ struct vkFreeMemorySignature : public BaseSignature {
     VkAllocationCallbacks* pAllocator{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -4990,6 +5789,7 @@ struct vkMapMemorySignature : public BaseSignature {
     void** ppData{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5002,6 +5802,7 @@ struct vkUnmapMemorySignature : public BaseSignature {
     VkDeviceMemory memory{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5016,6 +5817,7 @@ struct vkFlushMappedMemoryRangesSignature : public BaseSignature {
     VkMappedMemoryRange* pMemoryRanges{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5030,6 +5832,7 @@ struct vkInvalidateMappedMemoryRangesSignature : public BaseSignature {
     VkMappedMemoryRange* pMemoryRanges{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5043,6 +5846,7 @@ struct vkGetDeviceMemoryCommitmentSignature : public BaseSignature {
     VkDeviceSize* pCommittedMemoryInBytes{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5058,6 +5862,7 @@ struct vkBindBufferMemorySignature : public BaseSignature {
     VkDeviceSize memoryOffset{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5073,6 +5878,7 @@ struct vkBindImageMemorySignature : public BaseSignature {
     VkDeviceSize memoryOffset{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5086,6 +5892,7 @@ struct vkGetBufferMemoryRequirementsSignature : public BaseSignature {
     VkMemoryRequirements* pMemoryRequirements{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5099,6 +5906,7 @@ struct vkGetImageMemoryRequirementsSignature : public BaseSignature {
     VkMemoryRequirements* pMemoryRequirements{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5113,6 +5921,7 @@ struct vkGetImageSparseMemoryRequirementsSignature : public BaseSignature {
     VkSparseImageMemoryRequirements* pSparseMemoryRequirements{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5131,6 +5940,7 @@ struct vkGetPhysicalDeviceSparseImageFormatPropertiesSignature : public BaseSign
     VkSparseImageFormatProperties* pProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5146,6 +5956,7 @@ struct vkQueueBindSparseSignature : public BaseSignature {
     VkFence fence{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5161,6 +5972,7 @@ struct vkCreateFenceSignature : public BaseSignature {
     VkFence* pFence{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5174,6 +5986,7 @@ struct vkDestroyFenceSignature : public BaseSignature {
     VkAllocationCallbacks* pAllocator{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5188,6 +6001,7 @@ struct vkResetFencesSignature : public BaseSignature {
     VkFence* pFences{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5201,6 +6015,7 @@ struct vkGetFenceStatusSignature : public BaseSignature {
     VkFence fence{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5217,6 +6032,7 @@ struct vkWaitForFencesSignature : public BaseSignature {
     uint64_t timeout{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5232,6 +6048,7 @@ struct vkCreateSemaphoreSignature : public BaseSignature {
     VkSemaphore* pSemaphore{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5245,6 +6062,7 @@ struct vkDestroySemaphoreSignature : public BaseSignature {
     VkAllocationCallbacks* pAllocator{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5260,6 +6078,7 @@ struct vkCreateQueryPoolSignature : public BaseSignature {
     VkQueryPool* pQueryPool{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5273,6 +6092,7 @@ struct vkDestroyQueryPoolSignature : public BaseSignature {
     VkAllocationCallbacks* pAllocator{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5292,6 +6112,7 @@ struct vkGetQueryPoolResultsSignature : public BaseSignature {
     VkQueryResultFlags flags{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5307,6 +6128,7 @@ struct vkCreateBufferSignature : public BaseSignature {
     VkBuffer* pBuffer{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5320,6 +6142,7 @@ struct vkDestroyBufferSignature : public BaseSignature {
     VkAllocationCallbacks* pAllocator{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5335,6 +6158,7 @@ struct vkCreateImageSignature : public BaseSignature {
     VkImage* pImage{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5348,6 +6172,7 @@ struct vkDestroyImageSignature : public BaseSignature {
     VkAllocationCallbacks* pAllocator{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5362,6 +6187,7 @@ struct vkGetImageSubresourceLayoutSignature : public BaseSignature {
     VkSubresourceLayout* pLayout{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5377,6 +6203,7 @@ struct vkCreateImageViewSignature : public BaseSignature {
     VkImageView* pView{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5390,6 +6217,7 @@ struct vkDestroyImageViewSignature : public BaseSignature {
     VkAllocationCallbacks* pAllocator{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5405,6 +6233,7 @@ struct vkCreateCommandPoolSignature : public BaseSignature {
     VkCommandPool* pCommandPool{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5418,6 +6247,7 @@ struct vkDestroyCommandPoolSignature : public BaseSignature {
     VkAllocationCallbacks* pAllocator{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5432,6 +6262,7 @@ struct vkResetCommandPoolSignature : public BaseSignature {
     VkCommandPoolResetFlags flags{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5446,6 +6277,7 @@ struct vkAllocateCommandBuffersSignature : public BaseSignature {
     VkCommandBuffer* pCommandBuffers{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5460,6 +6292,7 @@ struct vkFreeCommandBuffersSignature : public BaseSignature {
     VkCommandBuffer* pCommandBuffers{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5473,6 +6306,7 @@ struct vkBeginCommandBufferSignature : public BaseSignature {
     VkCommandBufferBeginInfo* pBeginInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5485,6 +6319,7 @@ struct vkEndCommandBufferSignature : public BaseSignature {
     VkCommandBuffer commandBuffer{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5498,6 +6333,7 @@ struct vkResetCommandBufferSignature : public BaseSignature {
     VkCommandBufferResetFlags flags{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5513,6 +6349,7 @@ struct vkCmdCopyBufferSignature : public BaseSignature {
     VkBufferCopy* pRegions{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5530,6 +6367,7 @@ struct vkCmdCopyImageSignature : public BaseSignature {
     VkImageCopy* pRegions{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5546,6 +6384,7 @@ struct vkCmdCopyBufferToImageSignature : public BaseSignature {
     VkBufferImageCopy* pRegions{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5562,6 +6401,7 @@ struct vkCmdCopyImageToBufferSignature : public BaseSignature {
     VkBufferImageCopy* pRegions{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5577,6 +6417,7 @@ struct vkCmdUpdateBufferSignature : public BaseSignature {
     void* pData{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5592,6 +6433,7 @@ struct vkCmdFillBufferSignature : public BaseSignature {
     uint32_t data{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5612,6 +6454,7 @@ struct vkCmdPipelineBarrierSignature : public BaseSignature {
     VkImageMemoryBarrier* pImageMemoryBarriers{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5626,6 +6469,7 @@ struct vkCmdBeginQuerySignature : public BaseSignature {
     VkQueryControlFlags flags{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5639,6 +6483,7 @@ struct vkCmdEndQuerySignature : public BaseSignature {
     uint32_t query{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5653,6 +6498,7 @@ struct vkCmdResetQueryPoolSignature : public BaseSignature {
     uint32_t queryCount{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5667,6 +6513,7 @@ struct vkCmdWriteTimestampSignature : public BaseSignature {
     uint32_t query{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5685,6 +6532,7 @@ struct vkCmdCopyQueryPoolResultsSignature : public BaseSignature {
     VkQueryResultFlags flags{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5698,6 +6546,7 @@ struct vkCmdExecuteCommandsSignature : public BaseSignature {
     VkCommandBuffer* pCommandBuffers{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5713,6 +6562,7 @@ struct vkCreateEventSignature : public BaseSignature {
     VkEvent* pEvent{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5726,6 +6576,7 @@ struct vkDestroyEventSignature : public BaseSignature {
     VkAllocationCallbacks* pAllocator{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5739,6 +6590,7 @@ struct vkGetEventStatusSignature : public BaseSignature {
     VkEvent event{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5752,6 +6604,7 @@ struct vkSetEventSignature : public BaseSignature {
     VkEvent event{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5765,6 +6618,7 @@ struct vkResetEventSignature : public BaseSignature {
     VkEvent event{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5780,6 +6634,7 @@ struct vkCreateBufferViewSignature : public BaseSignature {
     VkBufferView* pView{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5793,6 +6648,7 @@ struct vkDestroyBufferViewSignature : public BaseSignature {
     VkAllocationCallbacks* pAllocator{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5808,6 +6664,7 @@ struct vkCreateShaderModuleSignature : public BaseSignature {
     VkShaderModule* pShaderModule{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5821,6 +6678,7 @@ struct vkDestroyShaderModuleSignature : public BaseSignature {
     VkAllocationCallbacks* pAllocator{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5836,6 +6694,7 @@ struct vkCreatePipelineCacheSignature : public BaseSignature {
     VkPipelineCache* pPipelineCache{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5849,6 +6708,7 @@ struct vkDestroyPipelineCacheSignature : public BaseSignature {
     VkAllocationCallbacks* pAllocator{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5864,6 +6724,7 @@ struct vkGetPipelineCacheDataSignature : public BaseSignature {
     void* pData{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5879,6 +6740,7 @@ struct vkMergePipelineCachesSignature : public BaseSignature {
     VkPipelineCache* pSrcCaches{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5896,6 +6758,7 @@ struct vkCreateComputePipelinesSignature : public BaseSignature {
     VkPipeline* pPipelines{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5909,6 +6772,7 @@ struct vkDestroyPipelineSignature : public BaseSignature {
     VkAllocationCallbacks* pAllocator{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5924,6 +6788,7 @@ struct vkCreatePipelineLayoutSignature : public BaseSignature {
     VkPipelineLayout* pPipelineLayout{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5937,6 +6802,7 @@ struct vkDestroyPipelineLayoutSignature : public BaseSignature {
     VkAllocationCallbacks* pAllocator{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5952,6 +6818,7 @@ struct vkCreateSamplerSignature : public BaseSignature {
     VkSampler* pSampler{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5965,6 +6832,7 @@ struct vkDestroySamplerSignature : public BaseSignature {
     VkAllocationCallbacks* pAllocator{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5980,6 +6848,7 @@ struct vkCreateDescriptorSetLayoutSignature : public BaseSignature {
     VkDescriptorSetLayout* pSetLayout{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -5993,6 +6862,7 @@ struct vkDestroyDescriptorSetLayoutSignature : public BaseSignature {
     VkAllocationCallbacks* pAllocator{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6008,6 +6878,7 @@ struct vkCreateDescriptorPoolSignature : public BaseSignature {
     VkDescriptorPool* pDescriptorPool{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6021,6 +6892,7 @@ struct vkDestroyDescriptorPoolSignature : public BaseSignature {
     VkAllocationCallbacks* pAllocator{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6035,6 +6907,7 @@ struct vkResetDescriptorPoolSignature : public BaseSignature {
     VkDescriptorPoolResetFlags flags{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6049,6 +6922,7 @@ struct vkAllocateDescriptorSetsSignature : public BaseSignature {
     VkDescriptorSet* pDescriptorSets{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6064,6 +6938,7 @@ struct vkFreeDescriptorSetsSignature : public BaseSignature {
     VkDescriptorSet* pDescriptorSets{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6079,6 +6954,7 @@ struct vkUpdateDescriptorSetsSignature : public BaseSignature {
     VkCopyDescriptorSet* pDescriptorCopies{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6092,6 +6968,7 @@ struct vkCmdBindPipelineSignature : public BaseSignature {
     VkPipeline pipeline{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6110,6 +6987,7 @@ struct vkCmdBindDescriptorSetsSignature : public BaseSignature {
     uint32_t* pDynamicOffsets{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6126,6 +7004,7 @@ struct vkCmdClearColorImageSignature : public BaseSignature {
     VkImageSubresourceRange* pRanges{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6140,6 +7019,7 @@ struct vkCmdDispatchSignature : public BaseSignature {
     uint32_t groupCountZ{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6153,6 +7033,7 @@ struct vkCmdDispatchIndirectSignature : public BaseSignature {
     VkDeviceSize offset{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6166,6 +7047,7 @@ struct vkCmdSetEventSignature : public BaseSignature {
     VkPipelineStageFlags stageMask{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6179,6 +7061,7 @@ struct vkCmdResetEventSignature : public BaseSignature {
     VkPipelineStageFlags stageMask{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6200,6 +7083,7 @@ struct vkCmdWaitEventsSignature : public BaseSignature {
     VkImageMemoryBarrier* pImageMemoryBarriers{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6216,6 +7100,7 @@ struct vkCmdPushConstantsSignature : public BaseSignature {
     void* pValues{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6233,6 +7118,7 @@ struct vkCreateGraphicsPipelinesSignature : public BaseSignature {
     VkPipeline* pPipelines{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6248,6 +7134,7 @@ struct vkCreateFramebufferSignature : public BaseSignature {
     VkFramebuffer* pFramebuffer{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6261,6 +7148,7 @@ struct vkDestroyFramebufferSignature : public BaseSignature {
     VkAllocationCallbacks* pAllocator{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6276,6 +7164,7 @@ struct vkCreateRenderPassSignature : public BaseSignature {
     VkRenderPass* pRenderPass{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6289,6 +7178,7 @@ struct vkDestroyRenderPassSignature : public BaseSignature {
     VkAllocationCallbacks* pAllocator{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6302,6 +7192,7 @@ struct vkGetRenderAreaGranularitySignature : public BaseSignature {
     VkExtent2D* pGranularity{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6316,6 +7207,7 @@ struct vkCmdSetViewportSignature : public BaseSignature {
     VkViewport* pViewports{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6330,6 +7222,7 @@ struct vkCmdSetScissorSignature : public BaseSignature {
     VkRect2D* pScissors{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6342,6 +7235,7 @@ struct vkCmdSetLineWidthSignature : public BaseSignature {
     float lineWidth{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6356,6 +7250,7 @@ struct vkCmdSetDepthBiasSignature : public BaseSignature {
     float depthBiasSlopeFactor{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6368,6 +7263,7 @@ struct vkCmdSetBlendConstantsSignature : public BaseSignature {
     float blendConstants[4]{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6381,6 +7277,7 @@ struct vkCmdSetDepthBoundsSignature : public BaseSignature {
     float maxDepthBounds{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6394,6 +7291,7 @@ struct vkCmdSetStencilCompareMaskSignature : public BaseSignature {
     uint32_t compareMask{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6407,6 +7305,7 @@ struct vkCmdSetStencilWriteMaskSignature : public BaseSignature {
     uint32_t writeMask{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6420,6 +7319,7 @@ struct vkCmdSetStencilReferenceSignature : public BaseSignature {
     uint32_t reference{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6434,6 +7334,7 @@ struct vkCmdBindIndexBufferSignature : public BaseSignature {
     VkIndexType indexType{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6449,6 +7350,7 @@ struct vkCmdBindVertexBuffersSignature : public BaseSignature {
     VkDeviceSize* pOffsets{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6464,6 +7366,7 @@ struct vkCmdDrawSignature : public BaseSignature {
     uint32_t firstInstance{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6480,6 +7383,7 @@ struct vkCmdDrawIndexedSignature : public BaseSignature {
     uint32_t firstInstance{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6495,6 +7399,7 @@ struct vkCmdDrawIndirectSignature : public BaseSignature {
     uint32_t stride{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6510,6 +7415,7 @@ struct vkCmdDrawIndexedIndirectSignature : public BaseSignature {
     uint32_t stride{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6528,6 +7434,7 @@ struct vkCmdBlitImageSignature : public BaseSignature {
     VkFilter filter{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6544,6 +7451,7 @@ struct vkCmdClearDepthStencilImageSignature : public BaseSignature {
     VkImageSubresourceRange* pRanges{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6559,6 +7467,7 @@ struct vkCmdClearAttachmentsSignature : public BaseSignature {
     VkClearRect* pRects{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6576,6 +7485,7 @@ struct vkCmdResolveImageSignature : public BaseSignature {
     VkImageResolve* pRegions{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6589,6 +7499,7 @@ struct vkCmdBeginRenderPassSignature : public BaseSignature {
     VkSubpassContents contents{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6601,6 +7512,7 @@ struct vkCmdNextSubpassSignature : public BaseSignature {
     VkSubpassContents contents{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6612,6 +7524,7 @@ struct vkCmdEndRenderPassSignature : public BaseSignature {
     VkCommandBuffer commandBuffer{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6624,6 +7537,7 @@ struct vkEnumerateInstanceVersionSignature : public BaseSignature {
     uint32_t* pApiVersion{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6638,6 +7552,7 @@ struct vkBindBufferMemory2Signature : public BaseSignature {
     VkBindBufferMemoryInfo* pBindInfos{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6652,6 +7567,7 @@ struct vkBindImageMemory2Signature : public BaseSignature {
     VkBindImageMemoryInfo* pBindInfos{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6667,6 +7583,7 @@ struct vkGetDeviceGroupPeerMemoryFeaturesSignature : public BaseSignature {
     VkPeerMemoryFeatureFlags* pPeerMemoryFeatures{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6679,6 +7596,7 @@ struct vkCmdSetDeviceMaskSignature : public BaseSignature {
     uint32_t deviceMask{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6693,6 +7611,7 @@ struct vkEnumeratePhysicalDeviceGroupsSignature : public BaseSignature {
     VkPhysicalDeviceGroupProperties* pPhysicalDeviceGroupProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6706,6 +7625,7 @@ struct vkGetImageMemoryRequirements2Signature : public BaseSignature {
     VkMemoryRequirements2* pMemoryRequirements{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6719,6 +7639,7 @@ struct vkGetBufferMemoryRequirements2Signature : public BaseSignature {
     VkMemoryRequirements2* pMemoryRequirements{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6733,6 +7654,7 @@ struct vkGetImageSparseMemoryRequirements2Signature : public BaseSignature {
     VkSparseImageMemoryRequirements2* pSparseMemoryRequirements{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6745,6 +7667,7 @@ struct vkGetPhysicalDeviceFeatures2Signature : public BaseSignature {
     VkPhysicalDeviceFeatures2* pFeatures{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6757,6 +7680,7 @@ struct vkGetPhysicalDeviceProperties2Signature : public BaseSignature {
     VkPhysicalDeviceProperties2* pProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6770,6 +7694,7 @@ struct vkGetPhysicalDeviceFormatProperties2Signature : public BaseSignature {
     VkFormatProperties2* pFormatProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6784,6 +7709,7 @@ struct vkGetPhysicalDeviceImageFormatProperties2Signature : public BaseSignature
     VkImageFormatProperties2* pImageFormatProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6797,6 +7723,7 @@ struct vkGetPhysicalDeviceQueueFamilyProperties2Signature : public BaseSignature
     VkQueueFamilyProperties2* pQueueFamilyProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6809,6 +7736,7 @@ struct vkGetPhysicalDeviceMemoryProperties2Signature : public BaseSignature {
     VkPhysicalDeviceMemoryProperties2* pMemoryProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6823,6 +7751,7 @@ struct vkGetPhysicalDeviceSparseImageFormatProperties2Signature : public BaseSig
     VkSparseImageFormatProperties2* pProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6836,6 +7765,7 @@ struct vkTrimCommandPoolSignature : public BaseSignature {
     VkCommandPoolTrimFlags flags{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6849,6 +7779,7 @@ struct vkGetDeviceQueue2Signature : public BaseSignature {
     VkQueue* pQueue{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6862,6 +7793,7 @@ struct vkGetPhysicalDeviceExternalBufferPropertiesSignature : public BaseSignatu
     VkExternalBufferProperties* pExternalBufferProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6875,6 +7807,7 @@ struct vkGetPhysicalDeviceExternalFencePropertiesSignature : public BaseSignatur
     VkExternalFenceProperties* pExternalFenceProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6888,6 +7821,7 @@ struct vkGetPhysicalDeviceExternalSemaphorePropertiesSignature : public BaseSign
     VkExternalSemaphoreProperties* pExternalSemaphoreProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6905,6 +7839,7 @@ struct vkCmdDispatchBaseSignature : public BaseSignature {
     uint32_t groupCountZ{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6920,6 +7855,7 @@ struct vkCreateDescriptorUpdateTemplateSignature : public BaseSignature {
     VkDescriptorUpdateTemplate* pDescriptorUpdateTemplate{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6933,6 +7869,7 @@ struct vkDestroyDescriptorUpdateTemplateSignature : public BaseSignature {
     VkAllocationCallbacks* pAllocator{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6947,6 +7884,7 @@ struct vkUpdateDescriptorSetWithTemplateSignature : public BaseSignature {
     void* pData{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6960,6 +7898,7 @@ struct vkGetDescriptorSetLayoutSupportSignature : public BaseSignature {
     VkDescriptorSetLayoutSupport* pSupport{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6975,6 +7914,7 @@ struct vkCreateSamplerYcbcrConversionSignature : public BaseSignature {
     VkSamplerYcbcrConversion* pYcbcrConversion{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -6988,6 +7928,7 @@ struct vkDestroySamplerYcbcrConversionSignature : public BaseSignature {
     VkAllocationCallbacks* pAllocator{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7002,6 +7943,7 @@ struct vkResetQueryPoolSignature : public BaseSignature {
     uint32_t queryCount{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7016,6 +7958,7 @@ struct vkGetSemaphoreCounterValueSignature : public BaseSignature {
     uint64_t* pValue{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7030,6 +7973,7 @@ struct vkWaitSemaphoresSignature : public BaseSignature {
     uint64_t timeout{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7043,6 +7987,7 @@ struct vkSignalSemaphoreSignature : public BaseSignature {
     VkSemaphoreSignalInfo* pSignalInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7056,6 +8001,7 @@ struct vkGetBufferDeviceAddressSignature : public BaseSignature {
     VkBufferDeviceAddressInfo* pInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7069,6 +8015,7 @@ struct vkGetBufferOpaqueCaptureAddressSignature : public BaseSignature {
     VkBufferDeviceAddressInfo* pInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7082,6 +8029,7 @@ struct vkGetDeviceMemoryOpaqueCaptureAddressSignature : public BaseSignature {
     VkDeviceMemoryOpaqueCaptureAddressInfo* pInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7099,6 +8047,7 @@ struct vkCmdDrawIndirectCountSignature : public BaseSignature {
     uint32_t stride{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7116,6 +8065,7 @@ struct vkCmdDrawIndexedIndirectCountSignature : public BaseSignature {
     uint32_t stride{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7131,6 +8081,7 @@ struct vkCreateRenderPass2Signature : public BaseSignature {
     VkRenderPass* pRenderPass{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7144,6 +8095,7 @@ struct vkCmdBeginRenderPass2Signature : public BaseSignature {
     VkSubpassBeginInfo* pSubpassBeginInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7157,6 +8109,7 @@ struct vkCmdNextSubpass2Signature : public BaseSignature {
     VkSubpassEndInfo* pSubpassEndInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7169,6 +8122,7 @@ struct vkCmdEndRenderPass2Signature : public BaseSignature {
     VkSubpassEndInfo* pSubpassEndInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7183,6 +8137,7 @@ struct vkGetPhysicalDeviceToolPropertiesSignature : public BaseSignature {
     VkPhysicalDeviceToolProperties* pToolProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7198,6 +8153,7 @@ struct vkCreatePrivateDataSlotSignature : public BaseSignature {
     VkPrivateDataSlot* pPrivateDataSlot{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7211,6 +8167,7 @@ struct vkDestroyPrivateDataSlotSignature : public BaseSignature {
     VkAllocationCallbacks* pAllocator{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7227,6 +8184,7 @@ struct vkSetPrivateDataSignature : public BaseSignature {
     uint64_t data{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7242,6 +8200,7 @@ struct vkGetPrivateDataSignature : public BaseSignature {
     uint64_t* pData{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7254,6 +8213,7 @@ struct vkCmdPipelineBarrier2Signature : public BaseSignature {
     VkDependencyInfo* pDependencyInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7268,6 +8228,7 @@ struct vkCmdWriteTimestamp2Signature : public BaseSignature {
     uint32_t query{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7283,6 +8244,7 @@ struct vkQueueSubmit2Signature : public BaseSignature {
     VkFence fence{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7295,6 +8257,7 @@ struct vkCmdCopyBuffer2Signature : public BaseSignature {
     VkCopyBufferInfo2* pCopyBufferInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7307,6 +8270,7 @@ struct vkCmdCopyImage2Signature : public BaseSignature {
     VkCopyImageInfo2* pCopyImageInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7319,6 +8283,7 @@ struct vkCmdCopyBufferToImage2Signature : public BaseSignature {
     VkCopyBufferToImageInfo2* pCopyBufferToImageInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7331,6 +8296,7 @@ struct vkCmdCopyImageToBuffer2Signature : public BaseSignature {
     VkCopyImageToBufferInfo2* pCopyImageToBufferInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7344,6 +8310,7 @@ struct vkGetDeviceBufferMemoryRequirementsSignature : public BaseSignature {
     VkMemoryRequirements2* pMemoryRequirements{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7357,6 +8324,7 @@ struct vkGetDeviceImageMemoryRequirementsSignature : public BaseSignature {
     VkMemoryRequirements2* pMemoryRequirements{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7371,6 +8339,7 @@ struct vkGetDeviceImageSparseMemoryRequirementsSignature : public BaseSignature 
     VkSparseImageMemoryRequirements2* pSparseMemoryRequirements{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7384,6 +8353,7 @@ struct vkCmdSetEvent2Signature : public BaseSignature {
     VkDependencyInfo* pDependencyInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7397,6 +8367,7 @@ struct vkCmdResetEvent2Signature : public BaseSignature {
     VkPipelineStageFlags2 stageMask{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7411,6 +8382,7 @@ struct vkCmdWaitEvents2Signature : public BaseSignature {
     VkDependencyInfo* pDependencyInfos{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7423,6 +8395,7 @@ struct vkCmdBlitImage2Signature : public BaseSignature {
     VkBlitImageInfo2* pBlitImageInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7435,6 +8408,7 @@ struct vkCmdResolveImage2Signature : public BaseSignature {
     VkResolveImageInfo2* pResolveImageInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7447,6 +8421,7 @@ struct vkCmdBeginRenderingSignature : public BaseSignature {
     VkRenderingInfo* pRenderingInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7458,6 +8433,7 @@ struct vkCmdEndRenderingSignature : public BaseSignature {
     VkCommandBuffer commandBuffer{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7470,6 +8446,7 @@ struct vkCmdSetCullModeSignature : public BaseSignature {
     VkCullModeFlags cullMode{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7482,6 +8459,7 @@ struct vkCmdSetFrontFaceSignature : public BaseSignature {
     VkFrontFace frontFace{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7494,6 +8472,7 @@ struct vkCmdSetPrimitiveTopologySignature : public BaseSignature {
     VkPrimitiveTopology primitiveTopology{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7507,6 +8486,7 @@ struct vkCmdSetViewportWithCountSignature : public BaseSignature {
     VkViewport* pViewports{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7520,6 +8500,7 @@ struct vkCmdSetScissorWithCountSignature : public BaseSignature {
     VkRect2D* pScissors{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7537,6 +8518,7 @@ struct vkCmdBindVertexBuffers2Signature : public BaseSignature {
     VkDeviceSize* pStrides{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7549,6 +8531,7 @@ struct vkCmdSetDepthTestEnableSignature : public BaseSignature {
     VkBool32 depthTestEnable{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7561,6 +8544,7 @@ struct vkCmdSetDepthWriteEnableSignature : public BaseSignature {
     VkBool32 depthWriteEnable{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7573,6 +8557,7 @@ struct vkCmdSetDepthCompareOpSignature : public BaseSignature {
     VkCompareOp depthCompareOp{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7585,6 +8570,7 @@ struct vkCmdSetDepthBoundsTestEnableSignature : public BaseSignature {
     VkBool32 depthBoundsTestEnable{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7597,6 +8583,7 @@ struct vkCmdSetStencilTestEnableSignature : public BaseSignature {
     VkBool32 stencilTestEnable{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7613,6 +8600,7 @@ struct vkCmdSetStencilOpSignature : public BaseSignature {
     VkCompareOp compareOp{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7625,6 +8613,7 @@ struct vkCmdSetRasterizerDiscardEnableSignature : public BaseSignature {
     VkBool32 rasterizerDiscardEnable{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7637,6 +8626,7 @@ struct vkCmdSetDepthBiasEnableSignature : public BaseSignature {
     VkBool32 depthBiasEnable{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7649,6 +8639,7 @@ struct vkCmdSetPrimitiveRestartEnableSignature : public BaseSignature {
     VkBool32 primitiveRestartEnable{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7663,6 +8654,7 @@ struct vkMapMemory2Signature : public BaseSignature {
     void** ppData{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7676,6 +8668,7 @@ struct vkUnmapMemory2Signature : public BaseSignature {
     VkMemoryUnmapInfo* pMemoryUnmapInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7689,6 +8682,7 @@ struct vkGetDeviceImageSubresourceLayoutSignature : public BaseSignature {
     VkSubresourceLayout2* pLayout{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7703,6 +8697,7 @@ struct vkGetImageSubresourceLayout2Signature : public BaseSignature {
     VkSubresourceLayout2* pLayout{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7716,6 +8711,7 @@ struct vkCopyMemoryToImageSignature : public BaseSignature {
     VkCopyMemoryToImageInfo* pCopyMemoryToImageInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7729,6 +8725,7 @@ struct vkCopyImageToMemorySignature : public BaseSignature {
     VkCopyImageToMemoryInfo* pCopyImageToMemoryInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7742,6 +8739,7 @@ struct vkCopyImageToImageSignature : public BaseSignature {
     VkCopyImageToImageInfo* pCopyImageToImageInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7756,6 +8754,7 @@ struct vkTransitionImageLayoutSignature : public BaseSignature {
     VkHostImageLayoutTransitionInfo* pTransitions{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7772,6 +8771,7 @@ struct vkCmdPushDescriptorSetSignature : public BaseSignature {
     VkWriteDescriptorSet* pDescriptorWrites{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7787,6 +8787,7 @@ struct vkCmdPushDescriptorSetWithTemplateSignature : public BaseSignature {
     void* pData{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7799,6 +8800,7 @@ struct vkCmdBindDescriptorSets2Signature : public BaseSignature {
     VkBindDescriptorSetsInfo* pBindDescriptorSetsInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7811,6 +8813,7 @@ struct vkCmdPushConstants2Signature : public BaseSignature {
     VkPushConstantsInfo* pPushConstantsInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7823,6 +8826,7 @@ struct vkCmdPushDescriptorSet2Signature : public BaseSignature {
     VkPushDescriptorSetInfo* pPushDescriptorSetInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7835,6 +8839,7 @@ struct vkCmdPushDescriptorSetWithTemplate2Signature : public BaseSignature {
     VkPushDescriptorSetWithTemplateInfo* pPushDescriptorSetWithTemplateInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7848,6 +8853,7 @@ struct vkCmdSetLineStippleSignature : public BaseSignature {
     uint16_t lineStipplePattern{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7863,6 +8869,7 @@ struct vkCmdBindIndexBuffer2Signature : public BaseSignature {
     VkIndexType indexType{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7876,6 +8883,7 @@ struct vkGetRenderingAreaGranularitySignature : public BaseSignature {
     VkExtent2D* pGranularity{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7888,6 +8896,7 @@ struct vkCmdSetRenderingAttachmentLocationsSignature : public BaseSignature {
     VkRenderingAttachmentLocationInfo* pLocationInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7900,6 +8909,7 @@ struct vkCmdSetRenderingInputAttachmentIndicesSignature : public BaseSignature {
     VkRenderingInputAttachmentIndexInfo* pInputAttachmentIndexInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7913,6 +8923,7 @@ struct vkDestroySurfaceKHRSignature : public BaseSignature {
     VkAllocationCallbacks* pAllocator{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7928,6 +8939,7 @@ struct vkGetPhysicalDeviceSurfaceSupportKHRSignature : public BaseSignature {
     VkBool32* pSupported{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7942,6 +8954,7 @@ struct vkGetPhysicalDeviceSurfaceCapabilitiesKHRSignature : public BaseSignature
     VkSurfaceCapabilitiesKHR* pSurfaceCapabilities{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7957,6 +8970,7 @@ struct vkGetPhysicalDeviceSurfaceFormatsKHRSignature : public BaseSignature {
     VkSurfaceFormatKHR* pSurfaceFormats{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7972,6 +8986,7 @@ struct vkGetPhysicalDeviceSurfacePresentModesKHRSignature : public BaseSignature
     VkPresentModeKHR* pPresentModes{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -7987,6 +9002,7 @@ struct vkCreateSwapchainKHRSignature : public BaseSignature {
     VkSwapchainKHR* pSwapchain{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8000,6 +9016,7 @@ struct vkDestroySwapchainKHRSignature : public BaseSignature {
     VkAllocationCallbacks* pAllocator{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8015,6 +9032,7 @@ struct vkGetSwapchainImagesKHRSignature : public BaseSignature {
     VkImage* pSwapchainImages{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8032,6 +9050,7 @@ struct vkAcquireNextImageKHRSignature : public BaseSignature {
     uint32_t* pImageIndex{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8045,6 +9064,7 @@ struct vkQueuePresentKHRSignature : public BaseSignature {
     VkPresentInfoKHR* pPresentInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8058,6 +9078,7 @@ struct vkGetDeviceGroupPresentCapabilitiesKHRSignature : public BaseSignature {
     VkDeviceGroupPresentCapabilitiesKHR* pDeviceGroupPresentCapabilities{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8072,6 +9093,7 @@ struct vkGetDeviceGroupSurfacePresentModesKHRSignature : public BaseSignature {
     VkDeviceGroupPresentModeFlagsKHR* pModes{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8087,6 +9109,7 @@ struct vkGetPhysicalDevicePresentRectanglesKHRSignature : public BaseSignature {
     VkRect2D* pRects{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8101,6 +9124,7 @@ struct vkAcquireNextImage2KHRSignature : public BaseSignature {
     uint32_t* pImageIndex{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8115,6 +9139,7 @@ struct vkGetPhysicalDeviceDisplayPropertiesKHRSignature : public BaseSignature {
     VkDisplayPropertiesKHR* pProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8129,6 +9154,7 @@ struct vkGetPhysicalDeviceDisplayPlanePropertiesKHRSignature : public BaseSignat
     VkDisplayPlanePropertiesKHR* pProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8144,6 +9170,7 @@ struct vkGetDisplayPlaneSupportedDisplaysKHRSignature : public BaseSignature {
     VkDisplayKHR* pDisplays{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8159,6 +9186,7 @@ struct vkGetDisplayModePropertiesKHRSignature : public BaseSignature {
     VkDisplayModePropertiesKHR* pProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8175,6 +9203,7 @@ struct vkCreateDisplayModeKHRSignature : public BaseSignature {
     VkDisplayModeKHR* pMode{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8190,6 +9219,7 @@ struct vkGetDisplayPlaneCapabilitiesKHRSignature : public BaseSignature {
     VkDisplayPlaneCapabilitiesKHR* pCapabilities{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8205,6 +9235,7 @@ struct vkCreateDisplayPlaneSurfaceKHRSignature : public BaseSignature {
     VkSurfaceKHR* pSurface{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8221,6 +9252,7 @@ struct vkCreateSharedSwapchainsKHRSignature : public BaseSignature {
     VkSwapchainKHR* pSwapchains{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8236,6 +9268,7 @@ struct vkCreateXlibSurfaceKHRSignature : public BaseSignature {
     VkSurfaceKHR* pSurface{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8251,6 +9284,7 @@ struct vkGetPhysicalDeviceXlibPresentationSupportKHRSignature : public BaseSigna
     VisualID visualID{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8266,6 +9300,7 @@ struct vkCreateXcbSurfaceKHRSignature : public BaseSignature {
     VkSurfaceKHR* pSurface{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8281,6 +9316,7 @@ struct vkGetPhysicalDeviceXcbPresentationSupportKHRSignature : public BaseSignat
     xcb_visualid_t visual_id{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8296,6 +9332,7 @@ struct vkCreateWaylandSurfaceKHRSignature : public BaseSignature {
     VkSurfaceKHR* pSurface{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8310,6 +9347,7 @@ struct vkGetPhysicalDeviceWaylandPresentationSupportKHRSignature : public BaseSi
     wl_display* display{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8325,6 +9363,7 @@ struct vkCreateAndroidSurfaceKHRSignature : public BaseSignature {
     VkSurfaceKHR* pSurface{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8340,6 +9379,7 @@ struct vkCreateWin32SurfaceKHRSignature : public BaseSignature {
     VkSurfaceKHR* pSurface{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8353,6 +9393,7 @@ struct vkGetPhysicalDeviceWin32PresentationSupportKHRSignature : public BaseSign
     uint32_t queueFamilyIndex{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8367,6 +9408,7 @@ struct vkGetPhysicalDeviceVideoCapabilitiesKHRSignature : public BaseSignature {
     VkVideoCapabilitiesKHR* pCapabilities{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8382,6 +9424,7 @@ struct vkGetPhysicalDeviceVideoFormatPropertiesKHRSignature : public BaseSignatu
     VkVideoFormatPropertiesKHR* pVideoFormatProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8397,6 +9440,7 @@ struct vkCreateVideoSessionKHRSignature : public BaseSignature {
     VkVideoSessionKHR* pVideoSession{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8410,6 +9454,7 @@ struct vkDestroyVideoSessionKHRSignature : public BaseSignature {
     VkAllocationCallbacks* pAllocator{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8425,6 +9470,7 @@ struct vkGetVideoSessionMemoryRequirementsKHRSignature : public BaseSignature {
     VkVideoSessionMemoryRequirementsKHR* pMemoryRequirements{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8440,6 +9486,7 @@ struct vkBindVideoSessionMemoryKHRSignature : public BaseSignature {
     VkBindVideoSessionMemoryInfoKHR* pBindSessionMemoryInfos{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8455,6 +9502,7 @@ struct vkCreateVideoSessionParametersKHRSignature : public BaseSignature {
     VkVideoSessionParametersKHR* pVideoSessionParameters{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8469,6 +9517,7 @@ struct vkUpdateVideoSessionParametersKHRSignature : public BaseSignature {
     VkVideoSessionParametersUpdateInfoKHR* pUpdateInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8482,6 +9531,7 @@ struct vkDestroyVideoSessionParametersKHRSignature : public BaseSignature {
     VkAllocationCallbacks* pAllocator{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8494,6 +9544,7 @@ struct vkCmdBeginVideoCodingKHRSignature : public BaseSignature {
     VkVideoBeginCodingInfoKHR* pBeginInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8506,6 +9557,7 @@ struct vkCmdEndVideoCodingKHRSignature : public BaseSignature {
     VkVideoEndCodingInfoKHR* pEndCodingInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8518,6 +9570,7 @@ struct vkCmdControlVideoCodingKHRSignature : public BaseSignature {
     VkVideoCodingControlInfoKHR* pCodingControlInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8530,6 +9583,7 @@ struct vkCmdDecodeVideoKHRSignature : public BaseSignature {
     VkVideoDecodeInfoKHR* pDecodeInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8542,6 +9596,7 @@ struct vkCmdBeginRenderingKHRSignature : public BaseSignature {
     VkRenderingInfo* pRenderingInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8553,6 +9608,7 @@ struct vkCmdEndRenderingKHRSignature : public BaseSignature {
     VkCommandBuffer commandBuffer{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8565,6 +9621,7 @@ struct vkGetPhysicalDeviceFeatures2KHRSignature : public BaseSignature {
     VkPhysicalDeviceFeatures2* pFeatures{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8577,6 +9634,7 @@ struct vkGetPhysicalDeviceProperties2KHRSignature : public BaseSignature {
     VkPhysicalDeviceProperties2* pProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8590,6 +9648,7 @@ struct vkGetPhysicalDeviceFormatProperties2KHRSignature : public BaseSignature {
     VkFormatProperties2* pFormatProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8604,6 +9663,7 @@ struct vkGetPhysicalDeviceImageFormatProperties2KHRSignature : public BaseSignat
     VkImageFormatProperties2* pImageFormatProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8617,6 +9677,7 @@ struct vkGetPhysicalDeviceQueueFamilyProperties2KHRSignature : public BaseSignat
     VkQueueFamilyProperties2* pQueueFamilyProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8629,6 +9690,7 @@ struct vkGetPhysicalDeviceMemoryProperties2KHRSignature : public BaseSignature {
     VkPhysicalDeviceMemoryProperties2* pMemoryProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8643,6 +9705,7 @@ struct vkGetPhysicalDeviceSparseImageFormatProperties2KHRSignature : public Base
     VkSparseImageFormatProperties2* pProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8658,6 +9721,7 @@ struct vkGetDeviceGroupPeerMemoryFeaturesKHRSignature : public BaseSignature {
     VkPeerMemoryFeatureFlags* pPeerMemoryFeatures{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8670,6 +9734,7 @@ struct vkCmdSetDeviceMaskKHRSignature : public BaseSignature {
     uint32_t deviceMask{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8687,6 +9752,7 @@ struct vkCmdDispatchBaseKHRSignature : public BaseSignature {
     uint32_t groupCountZ{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8700,6 +9766,7 @@ struct vkTrimCommandPoolKHRSignature : public BaseSignature {
     VkCommandPoolTrimFlags flags{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8714,6 +9781,7 @@ struct vkEnumeratePhysicalDeviceGroupsKHRSignature : public BaseSignature {
     VkPhysicalDeviceGroupProperties* pPhysicalDeviceGroupProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8727,6 +9795,7 @@ struct vkGetPhysicalDeviceExternalBufferPropertiesKHRSignature : public BaseSign
     VkExternalBufferProperties* pExternalBufferProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8741,6 +9810,7 @@ struct vkGetMemoryWin32HandleKHRSignature : public BaseSignature {
     HANDLE* pHandle{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8756,6 +9826,7 @@ struct vkGetMemoryWin32HandlePropertiesKHRSignature : public BaseSignature {
     VkMemoryWin32HandlePropertiesKHR* pMemoryWin32HandleProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8770,6 +9841,7 @@ struct vkGetMemoryFdKHRSignature : public BaseSignature {
     int* pFd{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8785,6 +9857,7 @@ struct vkGetMemoryFdPropertiesKHRSignature : public BaseSignature {
     VkMemoryFdPropertiesKHR* pMemoryFdProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8798,6 +9871,7 @@ struct vkGetPhysicalDeviceExternalSemaphorePropertiesKHRSignature : public BaseS
     VkExternalSemaphoreProperties* pExternalSemaphoreProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8811,6 +9885,7 @@ struct vkImportSemaphoreWin32HandleKHRSignature : public BaseSignature {
     VkImportSemaphoreWin32HandleInfoKHR* pImportSemaphoreWin32HandleInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8825,6 +9900,7 @@ struct vkGetSemaphoreWin32HandleKHRSignature : public BaseSignature {
     HANDLE* pHandle{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8838,6 +9914,7 @@ struct vkImportSemaphoreFdKHRSignature : public BaseSignature {
     VkImportSemaphoreFdInfoKHR* pImportSemaphoreFdInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8852,6 +9929,7 @@ struct vkGetSemaphoreFdKHRSignature : public BaseSignature {
     int* pFd{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8868,6 +9946,7 @@ struct vkCmdPushDescriptorSetKHRSignature : public BaseSignature {
     VkWriteDescriptorSet* pDescriptorWrites{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8883,6 +9962,7 @@ struct vkCmdPushDescriptorSetWithTemplateKHRSignature : public BaseSignature {
     void* pData{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8898,6 +9978,7 @@ struct vkCreateDescriptorUpdateTemplateKHRSignature : public BaseSignature {
     VkDescriptorUpdateTemplate* pDescriptorUpdateTemplate{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8911,6 +9992,7 @@ struct vkDestroyDescriptorUpdateTemplateKHRSignature : public BaseSignature {
     VkAllocationCallbacks* pAllocator{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8925,6 +10007,7 @@ struct vkUpdateDescriptorSetWithTemplateKHRSignature : public BaseSignature {
     void* pData{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8940,6 +10023,7 @@ struct vkCreateRenderPass2KHRSignature : public BaseSignature {
     VkRenderPass* pRenderPass{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8953,6 +10037,7 @@ struct vkCmdBeginRenderPass2KHRSignature : public BaseSignature {
     VkSubpassBeginInfo* pSubpassBeginInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8966,6 +10051,7 @@ struct vkCmdNextSubpass2KHRSignature : public BaseSignature {
     VkSubpassEndInfo* pSubpassEndInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8978,6 +10064,7 @@ struct vkCmdEndRenderPass2KHRSignature : public BaseSignature {
     VkSubpassEndInfo* pSubpassEndInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -8991,6 +10078,7 @@ struct vkGetSwapchainStatusKHRSignature : public BaseSignature {
     VkSwapchainKHR swapchain{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9004,6 +10092,7 @@ struct vkGetPhysicalDeviceExternalFencePropertiesKHRSignature : public BaseSigna
     VkExternalFenceProperties* pExternalFenceProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9017,6 +10106,7 @@ struct vkImportFenceWin32HandleKHRSignature : public BaseSignature {
     VkImportFenceWin32HandleInfoKHR* pImportFenceWin32HandleInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9031,6 +10121,7 @@ struct vkGetFenceWin32HandleKHRSignature : public BaseSignature {
     HANDLE* pHandle{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9044,6 +10135,7 @@ struct vkImportFenceFdKHRSignature : public BaseSignature {
     VkImportFenceFdInfoKHR* pImportFenceFdInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9058,6 +10150,7 @@ struct vkGetFenceFdKHRSignature : public BaseSignature {
     int* pFd{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9074,6 +10167,7 @@ struct vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHRSignature 
     VkPerformanceCounterDescriptionKHR* pCounterDescriptions{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9087,6 +10181,7 @@ struct vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHRSignature : public
     uint32_t* pNumPasses{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9100,6 +10195,7 @@ struct vkAcquireProfilingLockKHRSignature : public BaseSignature {
     VkAcquireProfilingLockInfoKHR* pInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9111,6 +10207,7 @@ struct vkReleaseProfilingLockKHRSignature : public BaseSignature {
     VkDevice device{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9125,6 +10222,7 @@ struct vkGetPhysicalDeviceSurfaceCapabilities2KHRSignature : public BaseSignatur
     VkSurfaceCapabilities2KHR* pSurfaceCapabilities{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9140,6 +10238,7 @@ struct vkGetPhysicalDeviceSurfaceFormats2KHRSignature : public BaseSignature {
     VkSurfaceFormat2KHR* pSurfaceFormats{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9154,6 +10253,7 @@ struct vkGetPhysicalDeviceDisplayProperties2KHRSignature : public BaseSignature 
     VkDisplayProperties2KHR* pProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9168,6 +10268,7 @@ struct vkGetPhysicalDeviceDisplayPlaneProperties2KHRSignature : public BaseSigna
     VkDisplayPlaneProperties2KHR* pProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9183,6 +10284,7 @@ struct vkGetDisplayModeProperties2KHRSignature : public BaseSignature {
     VkDisplayModeProperties2KHR* pProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9197,6 +10299,7 @@ struct vkGetDisplayPlaneCapabilities2KHRSignature : public BaseSignature {
     VkDisplayPlaneCapabilities2KHR* pCapabilities{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9210,6 +10313,7 @@ struct vkGetImageMemoryRequirements2KHRSignature : public BaseSignature {
     VkMemoryRequirements2* pMemoryRequirements{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9223,6 +10327,7 @@ struct vkGetBufferMemoryRequirements2KHRSignature : public BaseSignature {
     VkMemoryRequirements2* pMemoryRequirements{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9237,6 +10342,7 @@ struct vkGetImageSparseMemoryRequirements2KHRSignature : public BaseSignature {
     VkSparseImageMemoryRequirements2* pSparseMemoryRequirements{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9252,6 +10358,7 @@ struct vkCreateSamplerYcbcrConversionKHRSignature : public BaseSignature {
     VkSamplerYcbcrConversion* pYcbcrConversion{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9265,6 +10372,7 @@ struct vkDestroySamplerYcbcrConversionKHRSignature : public BaseSignature {
     VkAllocationCallbacks* pAllocator{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9279,6 +10387,7 @@ struct vkBindBufferMemory2KHRSignature : public BaseSignature {
     VkBindBufferMemoryInfo* pBindInfos{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9293,6 +10402,7 @@ struct vkBindImageMemory2KHRSignature : public BaseSignature {
     VkBindImageMemoryInfo* pBindInfos{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9306,6 +10416,7 @@ struct vkGetDescriptorSetLayoutSupportKHRSignature : public BaseSignature {
     VkDescriptorSetLayoutSupport* pSupport{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9323,6 +10434,7 @@ struct vkCmdDrawIndirectCountKHRSignature : public BaseSignature {
     uint32_t stride{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9340,6 +10452,7 @@ struct vkCmdDrawIndexedIndirectCountKHRSignature : public BaseSignature {
     uint32_t stride{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9354,6 +10467,7 @@ struct vkGetSemaphoreCounterValueKHRSignature : public BaseSignature {
     uint64_t* pValue{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9368,6 +10482,7 @@ struct vkWaitSemaphoresKHRSignature : public BaseSignature {
     uint64_t timeout{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9381,6 +10496,7 @@ struct vkSignalSemaphoreKHRSignature : public BaseSignature {
     VkSemaphoreSignalInfo* pSignalInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9395,6 +10511,7 @@ struct vkGetPhysicalDeviceFragmentShadingRatesKHRSignature : public BaseSignatur
     VkPhysicalDeviceFragmentShadingRateKHR* pFragmentShadingRates{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9408,6 +10525,7 @@ struct vkCmdSetFragmentShadingRateKHRSignature : public BaseSignature {
     VkFragmentShadingRateCombinerOpKHR combinerOps[2]{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9420,6 +10538,7 @@ struct vkCmdSetRenderingAttachmentLocationsKHRSignature : public BaseSignature {
     VkRenderingAttachmentLocationInfo* pLocationInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9432,6 +10551,7 @@ struct vkCmdSetRenderingInputAttachmentIndicesKHRSignature : public BaseSignatur
     VkRenderingInputAttachmentIndexInfo* pInputAttachmentIndexInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9447,6 +10567,7 @@ struct vkWaitForPresentKHRSignature : public BaseSignature {
     uint64_t timeout{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9460,6 +10581,7 @@ struct vkGetBufferDeviceAddressKHRSignature : public BaseSignature {
     VkBufferDeviceAddressInfo* pInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9473,6 +10595,7 @@ struct vkGetBufferOpaqueCaptureAddressKHRSignature : public BaseSignature {
     VkBufferDeviceAddressInfo* pInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9486,6 +10609,7 @@ struct vkGetDeviceMemoryOpaqueCaptureAddressKHRSignature : public BaseSignature 
     VkDeviceMemoryOpaqueCaptureAddressInfo* pInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9500,6 +10624,7 @@ struct vkCreateDeferredOperationKHRSignature : public BaseSignature {
     VkDeferredOperationKHR* pDeferredOperation{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9513,6 +10638,7 @@ struct vkDestroyDeferredOperationKHRSignature : public BaseSignature {
     VkAllocationCallbacks* pAllocator{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9526,6 +10652,7 @@ struct vkGetDeferredOperationMaxConcurrencyKHRSignature : public BaseSignature {
     VkDeferredOperationKHR operation{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9539,6 +10666,7 @@ struct vkGetDeferredOperationResultKHRSignature : public BaseSignature {
     VkDeferredOperationKHR operation{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9552,6 +10680,7 @@ struct vkDeferredOperationJoinKHRSignature : public BaseSignature {
     VkDeferredOperationKHR operation{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9567,6 +10696,7 @@ struct vkGetPipelineExecutablePropertiesKHRSignature : public BaseSignature {
     VkPipelineExecutablePropertiesKHR* pProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9582,6 +10712,7 @@ struct vkGetPipelineExecutableStatisticsKHRSignature : public BaseSignature {
     VkPipelineExecutableStatisticKHR* pStatistics{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9597,6 +10728,7 @@ struct vkGetPipelineExecutableInternalRepresentationsKHRSignature : public BaseS
     VkPipelineExecutableInternalRepresentationKHR* pInternalRepresentations{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9611,6 +10743,7 @@ struct vkMapMemory2KHRSignature : public BaseSignature {
     void** ppData{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9624,6 +10757,7 @@ struct vkUnmapMemory2KHRSignature : public BaseSignature {
     VkMemoryUnmapInfo* pMemoryUnmapInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9638,6 +10772,7 @@ struct vkGetPhysicalDeviceVideoEncodeQualityLevelPropertiesKHRSignature : public
     VkVideoEncodeQualityLevelPropertiesKHR* pQualityLevelProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9654,6 +10789,7 @@ struct vkGetEncodedVideoSessionParametersKHRSignature : public BaseSignature {
     void* pData{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9666,6 +10802,7 @@ struct vkCmdEncodeVideoKHRSignature : public BaseSignature {
     VkVideoEncodeInfoKHR* pEncodeInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9679,6 +10816,7 @@ struct vkCmdSetEvent2KHRSignature : public BaseSignature {
     VkDependencyInfo* pDependencyInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9692,6 +10830,7 @@ struct vkCmdResetEvent2KHRSignature : public BaseSignature {
     VkPipelineStageFlags2 stageMask{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9706,6 +10845,7 @@ struct vkCmdWaitEvents2KHRSignature : public BaseSignature {
     VkDependencyInfo* pDependencyInfos{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9718,6 +10858,7 @@ struct vkCmdPipelineBarrier2KHRSignature : public BaseSignature {
     VkDependencyInfo* pDependencyInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9732,6 +10873,7 @@ struct vkCmdWriteTimestamp2KHRSignature : public BaseSignature {
     uint32_t query{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9747,6 +10889,7 @@ struct vkQueueSubmit2KHRSignature : public BaseSignature {
     VkFence fence{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9759,6 +10902,7 @@ struct vkCmdCopyBuffer2KHRSignature : public BaseSignature {
     VkCopyBufferInfo2* pCopyBufferInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9771,6 +10915,7 @@ struct vkCmdCopyImage2KHRSignature : public BaseSignature {
     VkCopyImageInfo2* pCopyImageInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9783,6 +10928,7 @@ struct vkCmdCopyBufferToImage2KHRSignature : public BaseSignature {
     VkCopyBufferToImageInfo2* pCopyBufferToImageInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9795,6 +10941,7 @@ struct vkCmdCopyImageToBuffer2KHRSignature : public BaseSignature {
     VkCopyImageToBufferInfo2* pCopyImageToBufferInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9807,6 +10954,7 @@ struct vkCmdBlitImage2KHRSignature : public BaseSignature {
     VkBlitImageInfo2* pBlitImageInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9819,6 +10967,7 @@ struct vkCmdResolveImage2KHRSignature : public BaseSignature {
     VkResolveImageInfo2* pResolveImageInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9831,6 +10980,7 @@ struct vkCmdTraceRaysIndirect2KHRSignature : public BaseSignature {
     VkDeviceAddress indirectDeviceAddress{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9844,6 +10994,7 @@ struct vkGetDeviceBufferMemoryRequirementsKHRSignature : public BaseSignature {
     VkMemoryRequirements2* pMemoryRequirements{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9857,6 +11008,7 @@ struct vkGetDeviceImageMemoryRequirementsKHRSignature : public BaseSignature {
     VkMemoryRequirements2* pMemoryRequirements{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9871,6 +11023,7 @@ struct vkGetDeviceImageSparseMemoryRequirementsKHRSignature : public BaseSignatu
     VkSparseImageMemoryRequirements2* pSparseMemoryRequirements{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9886,6 +11039,7 @@ struct vkCmdBindIndexBuffer2KHRSignature : public BaseSignature {
     VkIndexType indexType{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9899,6 +11053,7 @@ struct vkGetRenderingAreaGranularityKHRSignature : public BaseSignature {
     VkExtent2D* pGranularity{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9912,6 +11067,7 @@ struct vkGetDeviceImageSubresourceLayoutKHRSignature : public BaseSignature {
     VkSubresourceLayout2* pLayout{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9926,6 +11082,7 @@ struct vkGetImageSubresourceLayout2KHRSignature : public BaseSignature {
     VkSubresourceLayout2* pLayout{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9940,6 +11097,7 @@ struct vkWaitForPresent2KHRSignature : public BaseSignature {
     VkPresentWait2InfoKHR* pPresentWait2Info{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9955,6 +11113,7 @@ struct vkCreatePipelineBinariesKHRSignature : public BaseSignature {
     VkPipelineBinaryHandlesInfoKHR* pBinaries{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9968,6 +11127,7 @@ struct vkDestroyPipelineBinaryKHRSignature : public BaseSignature {
     VkAllocationCallbacks* pAllocator{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9982,6 +11142,7 @@ struct vkGetPipelineKeyKHRSignature : public BaseSignature {
     VkPipelineBinaryKeyKHR* pPipelineKey{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -9998,6 +11159,7 @@ struct vkGetPipelineBinaryDataKHRSignature : public BaseSignature {
     void* pPipelineBinaryData{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10012,6 +11174,7 @@ struct vkReleaseCapturedPipelineDataKHRSignature : public BaseSignature {
     VkAllocationCallbacks* pAllocator{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10025,6 +11188,7 @@ struct vkReleaseSwapchainImagesKHRSignature : public BaseSignature {
     VkReleaseSwapchainImagesInfoKHR* pReleaseInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10039,6 +11203,7 @@ struct vkGetPhysicalDeviceCooperativeMatrixPropertiesKHRSignature : public BaseS
     VkCooperativeMatrixPropertiesKHR* pProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10052,6 +11217,7 @@ struct vkCmdSetLineStippleKHRSignature : public BaseSignature {
     uint16_t lineStipplePattern{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10066,6 +11232,7 @@ struct vkGetPhysicalDeviceCalibrateableTimeDomainsKHRSignature : public BaseSign
     VkTimeDomainKHR* pTimeDomains{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10082,6 +11249,7 @@ struct vkGetCalibratedTimestampsKHRSignature : public BaseSignature {
     uint64_t* pMaxDeviation{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10094,6 +11262,7 @@ struct vkCmdBindDescriptorSets2KHRSignature : public BaseSignature {
     VkBindDescriptorSetsInfo* pBindDescriptorSetsInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10106,6 +11275,7 @@ struct vkCmdPushConstants2KHRSignature : public BaseSignature {
     VkPushConstantsInfo* pPushConstantsInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10118,6 +11288,7 @@ struct vkCmdPushDescriptorSet2KHRSignature : public BaseSignature {
     VkPushDescriptorSetInfo* pPushDescriptorSetInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10130,6 +11301,7 @@ struct vkCmdPushDescriptorSetWithTemplate2KHRSignature : public BaseSignature {
     VkPushDescriptorSetWithTemplateInfo* pPushDescriptorSetWithTemplateInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10142,6 +11314,7 @@ struct vkCmdSetDescriptorBufferOffsets2EXTSignature : public BaseSignature {
     VkSetDescriptorBufferOffsetsInfoEXT* pSetDescriptorBufferOffsetsInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10154,6 +11327,7 @@ struct vkCmdBindDescriptorBufferEmbeddedSamplers2EXTSignature : public BaseSigna
     VkBindDescriptorBufferEmbeddedSamplersInfoEXT* pBindDescriptorBufferEmbeddedSamplersInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10166,6 +11340,7 @@ struct vkCmdCopyMemoryIndirectKHRSignature : public BaseSignature {
     VkCopyMemoryIndirectInfoKHR* pCopyMemoryIndirectInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10178,6 +11353,7 @@ struct vkCmdCopyMemoryToImageIndirectKHRSignature : public BaseSignature {
     VkCopyMemoryToImageIndirectInfoKHR* pCopyMemoryToImageIndirectInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10190,6 +11366,7 @@ struct vkCmdEndRendering2KHRSignature : public BaseSignature {
     VkRenderingEndInfoKHR* pRenderingEndInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10205,6 +11382,7 @@ struct vkCreateDebugReportCallbackEXTSignature : public BaseSignature {
     VkDebugReportCallbackEXT* pCallback{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10218,6 +11396,7 @@ struct vkDestroyDebugReportCallbackEXTSignature : public BaseSignature {
     VkAllocationCallbacks* pAllocator{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10236,6 +11415,7 @@ struct vkDebugReportMessageEXTSignature : public BaseSignature {
     char* pMessage{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10249,6 +11429,7 @@ struct vkDebugMarkerSetObjectTagEXTSignature : public BaseSignature {
     VkDebugMarkerObjectTagInfoEXT* pTagInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10262,6 +11443,7 @@ struct vkDebugMarkerSetObjectNameEXTSignature : public BaseSignature {
     VkDebugMarkerObjectNameInfoEXT* pNameInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10274,6 +11456,7 @@ struct vkCmdDebugMarkerBeginEXTSignature : public BaseSignature {
     VkDebugMarkerMarkerInfoEXT* pMarkerInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10285,6 +11468,7 @@ struct vkCmdDebugMarkerEndEXTSignature : public BaseSignature {
     VkCommandBuffer commandBuffer{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10297,6 +11481,7 @@ struct vkCmdDebugMarkerInsertEXTSignature : public BaseSignature {
     VkDebugMarkerMarkerInfoEXT* pMarkerInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10313,6 +11498,7 @@ struct vkCmdBindTransformFeedbackBuffersEXTSignature : public BaseSignature {
     VkDeviceSize* pSizes{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10328,6 +11514,7 @@ struct vkCmdBeginTransformFeedbackEXTSignature : public BaseSignature {
     VkDeviceSize* pCounterBufferOffsets{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10343,6 +11530,7 @@ struct vkCmdEndTransformFeedbackEXTSignature : public BaseSignature {
     VkDeviceSize* pCounterBufferOffsets{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10358,6 +11546,7 @@ struct vkCmdBeginQueryIndexedEXTSignature : public BaseSignature {
     uint32_t index{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10372,6 +11561,7 @@ struct vkCmdEndQueryIndexedEXTSignature : public BaseSignature {
     uint32_t index{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10389,6 +11579,7 @@ struct vkCmdDrawIndirectByteCountEXTSignature : public BaseSignature {
     uint32_t vertexStride{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10404,6 +11595,7 @@ struct vkCreateCuModuleNVXSignature : public BaseSignature {
     VkCuModuleNVX* pModule{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10419,6 +11611,7 @@ struct vkCreateCuFunctionNVXSignature : public BaseSignature {
     VkCuFunctionNVX* pFunction{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10432,6 +11625,7 @@ struct vkDestroyCuModuleNVXSignature : public BaseSignature {
     VkAllocationCallbacks* pAllocator{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10445,6 +11639,7 @@ struct vkDestroyCuFunctionNVXSignature : public BaseSignature {
     VkAllocationCallbacks* pAllocator{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10457,6 +11652,7 @@ struct vkCmdCuLaunchKernelNVXSignature : public BaseSignature {
     VkCuLaunchInfoNVX* pLaunchInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10470,6 +11666,7 @@ struct vkGetImageViewHandleNVXSignature : public BaseSignature {
     VkImageViewHandleInfoNVX* pInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10483,6 +11680,7 @@ struct vkGetImageViewHandle64NVXSignature : public BaseSignature {
     VkImageViewHandleInfoNVX* pInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10497,6 +11695,7 @@ struct vkGetImageViewAddressNVXSignature : public BaseSignature {
     VkImageViewAddressPropertiesNVX* pProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10514,6 +11713,7 @@ struct vkCmdDrawIndirectCountAMDSignature : public BaseSignature {
     uint32_t stride{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10531,6 +11731,7 @@ struct vkCmdDrawIndexedIndirectCountAMDSignature : public BaseSignature {
     uint32_t stride{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10548,6 +11749,7 @@ struct vkGetShaderInfoAMDSignature : public BaseSignature {
     void* pInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10563,6 +11765,7 @@ struct vkCreateStreamDescriptorSurfaceGGPSignature : public BaseSignature {
     VkSurfaceKHR* pSurface{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10582,6 +11785,7 @@ struct vkGetPhysicalDeviceExternalImageFormatPropertiesNVSignature : public Base
     VkExternalImageFormatPropertiesNV* pExternalImageFormatProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10597,6 +11801,7 @@ struct vkGetMemoryWin32HandleNVSignature : public BaseSignature {
     HANDLE* pHandle{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10612,6 +11817,7 @@ struct vkCreateViSurfaceNNSignature : public BaseSignature {
     VkSurfaceKHR* pSurface{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10624,6 +11830,7 @@ struct vkCmdBeginConditionalRenderingEXTSignature : public BaseSignature {
     VkConditionalRenderingBeginInfoEXT* pConditionalRenderingBegin{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10635,6 +11842,7 @@ struct vkCmdEndConditionalRenderingEXTSignature : public BaseSignature {
     VkCommandBuffer commandBuffer{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10649,6 +11857,7 @@ struct vkCmdSetViewportWScalingNVSignature : public BaseSignature {
     VkViewportWScalingNV* pViewportWScalings{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10662,6 +11871,7 @@ struct vkReleaseDisplayEXTSignature : public BaseSignature {
     VkDisplayKHR display{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10676,6 +11886,7 @@ struct vkAcquireXlibDisplayEXTSignature : public BaseSignature {
     VkDisplayKHR display{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10691,6 +11902,7 @@ struct vkGetRandROutputDisplayEXTSignature : public BaseSignature {
     VkDisplayKHR* pDisplay{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10705,6 +11917,7 @@ struct vkGetPhysicalDeviceSurfaceCapabilities2EXTSignature : public BaseSignatur
     VkSurfaceCapabilities2EXT* pSurfaceCapabilities{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10719,6 +11932,7 @@ struct vkDisplayPowerControlEXTSignature : public BaseSignature {
     VkDisplayPowerInfoEXT* pDisplayPowerInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10734,6 +11948,7 @@ struct vkRegisterDeviceEventEXTSignature : public BaseSignature {
     VkFence* pFence{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10750,6 +11965,7 @@ struct vkRegisterDisplayEventEXTSignature : public BaseSignature {
     VkFence* pFence{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10765,6 +11981,7 @@ struct vkGetSwapchainCounterEXTSignature : public BaseSignature {
     uint64_t* pCounterValue{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10779,6 +11996,7 @@ struct vkGetRefreshCycleDurationGOOGLESignature : public BaseSignature {
     VkRefreshCycleDurationGOOGLE* pDisplayTimingProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10794,6 +12012,7 @@ struct vkGetPastPresentationTimingGOOGLESignature : public BaseSignature {
     VkPastPresentationTimingGOOGLE* pPresentationTimings{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10808,6 +12027,7 @@ struct vkCmdSetDiscardRectangleEXTSignature : public BaseSignature {
     VkRect2D* pDiscardRectangles{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10820,6 +12040,7 @@ struct vkCmdSetDiscardRectangleEnableEXTSignature : public BaseSignature {
     VkBool32 discardRectangleEnable{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10832,6 +12053,7 @@ struct vkCmdSetDiscardRectangleModeEXTSignature : public BaseSignature {
     VkDiscardRectangleModeEXT discardRectangleMode{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10846,6 +12068,7 @@ struct vkSetHdrMetadataEXTSignature : public BaseSignature {
     VkHdrMetadataEXT* pMetadata{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10861,6 +12084,7 @@ struct vkCreateIOSSurfaceMVKSignature : public BaseSignature {
     VkSurfaceKHR* pSurface{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10876,6 +12100,7 @@ struct vkCreateMacOSSurfaceMVKSignature : public BaseSignature {
     VkSurfaceKHR* pSurface{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10889,6 +12114,7 @@ struct vkSetDebugUtilsObjectNameEXTSignature : public BaseSignature {
     VkDebugUtilsObjectNameInfoEXT* pNameInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10902,6 +12128,7 @@ struct vkSetDebugUtilsObjectTagEXTSignature : public BaseSignature {
     VkDebugUtilsObjectTagInfoEXT* pTagInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10914,6 +12141,7 @@ struct vkQueueBeginDebugUtilsLabelEXTSignature : public BaseSignature {
     VkDebugUtilsLabelEXT* pLabelInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10925,6 +12153,7 @@ struct vkQueueEndDebugUtilsLabelEXTSignature : public BaseSignature {
     VkQueue queue{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10937,6 +12166,7 @@ struct vkQueueInsertDebugUtilsLabelEXTSignature : public BaseSignature {
     VkDebugUtilsLabelEXT* pLabelInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10949,6 +12179,7 @@ struct vkCmdBeginDebugUtilsLabelEXTSignature : public BaseSignature {
     VkDebugUtilsLabelEXT* pLabelInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10960,6 +12191,7 @@ struct vkCmdEndDebugUtilsLabelEXTSignature : public BaseSignature {
     VkCommandBuffer commandBuffer{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10972,6 +12204,7 @@ struct vkCmdInsertDebugUtilsLabelEXTSignature : public BaseSignature {
     VkDebugUtilsLabelEXT* pLabelInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -10987,6 +12220,7 @@ struct vkCreateDebugUtilsMessengerEXTSignature : public BaseSignature {
     VkDebugUtilsMessengerEXT* pMessenger{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11000,6 +12234,7 @@ struct vkDestroyDebugUtilsMessengerEXTSignature : public BaseSignature {
     VkAllocationCallbacks* pAllocator{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11014,6 +12249,7 @@ struct vkSubmitDebugUtilsMessageEXTSignature : public BaseSignature {
     VkDebugUtilsMessengerCallbackDataEXT* pCallbackData{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11028,6 +12264,7 @@ struct vkGetAndroidHardwareBufferPropertiesANDROIDSignature : public BaseSignatu
     VkAndroidHardwareBufferPropertiesANDROID* pProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11042,6 +12279,7 @@ struct vkGetMemoryAndroidHardwareBufferANDROIDSignature : public BaseSignature {
     AHardwareBuffer** pBuffer{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11059,6 +12297,7 @@ struct vkCreateExecutionGraphPipelinesAMDXSignature : public BaseSignature {
     VkPipeline* pPipelines{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11073,6 +12312,7 @@ struct vkGetExecutionGraphPipelineScratchSizeAMDXSignature : public BaseSignatur
     VkExecutionGraphPipelineScratchSizeAMDX* pSizeInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11088,6 +12328,7 @@ struct vkGetExecutionGraphPipelineNodeIndexAMDXSignature : public BaseSignature 
     uint32_t* pNodeIndex{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11102,6 +12343,7 @@ struct vkCmdInitializeGraphScratchMemoryAMDXSignature : public BaseSignature {
     VkDeviceSize scratchSize{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11116,6 +12358,7 @@ struct vkCmdDispatchGraphAMDXSignature : public BaseSignature {
     VkDispatchGraphCountInfoAMDX* pCountInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11130,6 +12373,7 @@ struct vkCmdDispatchGraphIndirectAMDXSignature : public BaseSignature {
     VkDispatchGraphCountInfoAMDX* pCountInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11144,6 +12388,7 @@ struct vkCmdDispatchGraphIndirectCountAMDXSignature : public BaseSignature {
     VkDeviceAddress countInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11156,6 +12401,7 @@ struct vkCmdSetSampleLocationsEXTSignature : public BaseSignature {
     VkSampleLocationsInfoEXT* pSampleLocationsInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11169,6 +12415,7 @@ struct vkGetPhysicalDeviceMultisamplePropertiesEXTSignature : public BaseSignatu
     VkMultisamplePropertiesEXT* pMultisampleProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11183,6 +12430,7 @@ struct vkGetImageDrmFormatModifierPropertiesEXTSignature : public BaseSignature 
     VkImageDrmFormatModifierPropertiesEXT* pProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11198,6 +12446,7 @@ struct vkCreateValidationCacheEXTSignature : public BaseSignature {
     VkValidationCacheEXT* pValidationCache{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11211,6 +12460,7 @@ struct vkDestroyValidationCacheEXTSignature : public BaseSignature {
     VkAllocationCallbacks* pAllocator{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11226,6 +12476,7 @@ struct vkMergeValidationCachesEXTSignature : public BaseSignature {
     VkValidationCacheEXT* pSrcCaches{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11241,6 +12492,7 @@ struct vkGetValidationCacheDataEXTSignature : public BaseSignature {
     void* pData{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11254,6 +12506,7 @@ struct vkCmdBindShadingRateImageNVSignature : public BaseSignature {
     VkImageLayout imageLayout{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11268,6 +12521,7 @@ struct vkCmdSetViewportShadingRatePaletteNVSignature : public BaseSignature {
     VkShadingRatePaletteNV* pShadingRatePalettes{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11282,6 +12536,7 @@ struct vkCmdSetCoarseSampleOrderNVSignature : public BaseSignature {
     VkCoarseSampleOrderCustomNV* pCustomSampleOrders{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11297,6 +12552,7 @@ struct vkCreateAccelerationStructureNVSignature : public BaseSignature {
     VkAccelerationStructureNV* pAccelerationStructure{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11310,6 +12566,7 @@ struct vkDestroyAccelerationStructureNVSignature : public BaseSignature {
     VkAllocationCallbacks* pAllocator{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11323,6 +12580,7 @@ struct vkGetAccelerationStructureMemoryRequirementsNVSignature : public BaseSign
     VkMemoryRequirements2KHR* pMemoryRequirements{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11337,6 +12595,7 @@ struct vkBindAccelerationStructureMemoryNVSignature : public BaseSignature {
     VkBindAccelerationStructureMemoryInfoNV* pBindInfos{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11356,6 +12615,7 @@ struct vkCmdBuildAccelerationStructureNVSignature : public BaseSignature {
     VkDeviceSize scratchOffset{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11370,6 +12630,7 @@ struct vkCmdCopyAccelerationStructureNVSignature : public BaseSignature {
     VkCopyAccelerationStructureModeKHR mode{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11395,6 +12656,7 @@ struct vkCmdTraceRaysNVSignature : public BaseSignature {
     uint32_t depth{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11412,6 +12674,7 @@ struct vkCreateRayTracingPipelinesNVSignature : public BaseSignature {
     VkPipeline* pPipelines{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11429,6 +12692,7 @@ struct vkGetRayTracingShaderGroupHandlesKHRSignature : public BaseSignature {
     void* pData{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11446,6 +12710,7 @@ struct vkGetRayTracingShaderGroupHandlesNVSignature : public BaseSignature {
     void* pData{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11461,6 +12726,7 @@ struct vkGetAccelerationStructureHandleNVSignature : public BaseSignature {
     void* pData{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11477,6 +12743,7 @@ struct vkCmdWriteAccelerationStructuresPropertiesNVSignature : public BaseSignat
     uint32_t firstQuery{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11491,6 +12758,7 @@ struct vkCompileDeferredNVSignature : public BaseSignature {
     uint32_t shader{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11506,6 +12774,7 @@ struct vkGetMemoryHostPointerPropertiesEXTSignature : public BaseSignature {
     VkMemoryHostPointerPropertiesEXT* pMemoryHostPointerProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11521,6 +12790,7 @@ struct vkCmdWriteBufferMarkerAMDSignature : public BaseSignature {
     uint32_t marker{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11536,6 +12806,7 @@ struct vkCmdWriteBufferMarker2AMDSignature : public BaseSignature {
     uint32_t marker{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11550,6 +12821,7 @@ struct vkGetPhysicalDeviceCalibrateableTimeDomainsEXTSignature : public BaseSign
     VkTimeDomainKHR* pTimeDomains{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11566,6 +12838,7 @@ struct vkGetCalibratedTimestampsEXTSignature : public BaseSignature {
     uint64_t* pMaxDeviation{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11579,6 +12852,7 @@ struct vkCmdDrawMeshTasksNVSignature : public BaseSignature {
     uint32_t firstTask{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11594,6 +12868,7 @@ struct vkCmdDrawMeshTasksIndirectNVSignature : public BaseSignature {
     uint32_t stride{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11611,6 +12886,7 @@ struct vkCmdDrawMeshTasksIndirectCountNVSignature : public BaseSignature {
     uint32_t stride{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11625,6 +12901,7 @@ struct vkCmdSetExclusiveScissorEnableNVSignature : public BaseSignature {
     VkBool32* pExclusiveScissorEnables{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11639,6 +12916,7 @@ struct vkCmdSetExclusiveScissorNVSignature : public BaseSignature {
     VkRect2D* pExclusiveScissors{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11651,6 +12929,7 @@ struct vkCmdSetCheckpointNVSignature : public BaseSignature {
     void* pCheckpointMarker{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11664,6 +12943,7 @@ struct vkGetQueueCheckpointDataNVSignature : public BaseSignature {
     VkCheckpointDataNV* pCheckpointData{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11677,6 +12957,7 @@ struct vkGetQueueCheckpointData2NVSignature : public BaseSignature {
     VkCheckpointData2NV* pCheckpointData{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11691,6 +12972,7 @@ struct vkSetSwapchainPresentTimingQueueSizeEXTSignature : public BaseSignature {
     uint32_t size{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11706,6 +12988,7 @@ struct vkGetSwapchainTimingPropertiesEXTSignature : public BaseSignature {
     uint64_t* pSwapchainTimingPropertiesCounter{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11721,6 +13004,7 @@ struct vkGetSwapchainTimeDomainPropertiesEXTSignature : public BaseSignature {
     uint64_t* pTimeDomainsCounter{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11735,6 +13019,7 @@ struct vkGetPastPresentationTimingEXTSignature : public BaseSignature {
     VkPastPresentationTimingPropertiesEXT* pPastPresentationTimingProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11748,6 +13033,7 @@ struct vkInitializePerformanceApiINTELSignature : public BaseSignature {
     VkInitializePerformanceApiInfoINTEL* pInitializeInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11759,6 +13045,7 @@ struct vkUninitializePerformanceApiINTELSignature : public BaseSignature {
     VkDevice device{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11772,6 +13059,7 @@ struct vkCmdSetPerformanceMarkerINTELSignature : public BaseSignature {
     VkPerformanceMarkerInfoINTEL* pMarkerInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11785,6 +13073,7 @@ struct vkCmdSetPerformanceStreamMarkerINTELSignature : public BaseSignature {
     VkPerformanceStreamMarkerInfoINTEL* pMarkerInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11798,6 +13087,7 @@ struct vkCmdSetPerformanceOverrideINTELSignature : public BaseSignature {
     VkPerformanceOverrideInfoINTEL* pOverrideInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11812,6 +13102,7 @@ struct vkAcquirePerformanceConfigurationINTELSignature : public BaseSignature {
     VkPerformanceConfigurationINTEL* pConfiguration{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11825,6 +13116,7 @@ struct vkReleasePerformanceConfigurationINTELSignature : public BaseSignature {
     VkPerformanceConfigurationINTEL configuration{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11838,6 +13130,7 @@ struct vkQueueSetPerformanceConfigurationINTELSignature : public BaseSignature {
     VkPerformanceConfigurationINTEL configuration{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11852,6 +13145,7 @@ struct vkGetPerformanceParameterINTELSignature : public BaseSignature {
     VkPerformanceValueINTEL* pValue{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11865,6 +13159,7 @@ struct vkSetLocalDimmingAMDSignature : public BaseSignature {
     VkBool32 localDimmingEnable{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11880,6 +13175,7 @@ struct vkCreateImagePipeSurfaceFUCHSIASignature : public BaseSignature {
     VkSurfaceKHR* pSurface{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11895,6 +13191,7 @@ struct vkCreateMetalSurfaceEXTSignature : public BaseSignature {
     VkSurfaceKHR* pSurface{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11908,6 +13205,7 @@ struct vkGetBufferDeviceAddressEXTSignature : public BaseSignature {
     VkBufferDeviceAddressInfo* pInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11922,6 +13220,7 @@ struct vkGetPhysicalDeviceToolPropertiesEXTSignature : public BaseSignature {
     VkPhysicalDeviceToolProperties* pToolProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11936,6 +13235,7 @@ struct vkGetPhysicalDeviceCooperativeMatrixPropertiesNVSignature : public BaseSi
     VkCooperativeMatrixPropertiesNV* pProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11950,6 +13250,7 @@ struct vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNVSignatur
     VkFramebufferMixedSamplesCombinationNV* pCombinations{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11965,6 +13266,7 @@ struct vkGetPhysicalDeviceSurfacePresentModes2EXTSignature : public BaseSignatur
     VkPresentModeKHR* pPresentModes{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11978,6 +13280,7 @@ struct vkAcquireFullScreenExclusiveModeEXTSignature : public BaseSignature {
     VkSwapchainKHR swapchain{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -11991,6 +13294,7 @@ struct vkReleaseFullScreenExclusiveModeEXTSignature : public BaseSignature {
     VkSwapchainKHR swapchain{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12005,6 +13309,7 @@ struct vkGetDeviceGroupSurfacePresentModes2EXTSignature : public BaseSignature {
     VkDeviceGroupPresentModeFlagsKHR* pModes{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12020,6 +13325,7 @@ struct vkCreateHeadlessSurfaceEXTSignature : public BaseSignature {
     VkSurfaceKHR* pSurface{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12033,6 +13339,7 @@ struct vkCmdSetLineStippleEXTSignature : public BaseSignature {
     uint16_t lineStipplePattern{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12047,6 +13354,7 @@ struct vkResetQueryPoolEXTSignature : public BaseSignature {
     uint32_t queryCount{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12059,6 +13367,7 @@ struct vkCmdSetCullModeEXTSignature : public BaseSignature {
     VkCullModeFlags cullMode{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12071,6 +13380,7 @@ struct vkCmdSetFrontFaceEXTSignature : public BaseSignature {
     VkFrontFace frontFace{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12083,6 +13393,7 @@ struct vkCmdSetPrimitiveTopologyEXTSignature : public BaseSignature {
     VkPrimitiveTopology primitiveTopology{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12096,6 +13407,7 @@ struct vkCmdSetViewportWithCountEXTSignature : public BaseSignature {
     VkViewport* pViewports{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12109,6 +13421,7 @@ struct vkCmdSetScissorWithCountEXTSignature : public BaseSignature {
     VkRect2D* pScissors{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12126,6 +13439,7 @@ struct vkCmdBindVertexBuffers2EXTSignature : public BaseSignature {
     VkDeviceSize* pStrides{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12138,6 +13452,7 @@ struct vkCmdSetDepthTestEnableEXTSignature : public BaseSignature {
     VkBool32 depthTestEnable{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12150,6 +13465,7 @@ struct vkCmdSetDepthWriteEnableEXTSignature : public BaseSignature {
     VkBool32 depthWriteEnable{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12162,6 +13478,7 @@ struct vkCmdSetDepthCompareOpEXTSignature : public BaseSignature {
     VkCompareOp depthCompareOp{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12174,6 +13491,7 @@ struct vkCmdSetDepthBoundsTestEnableEXTSignature : public BaseSignature {
     VkBool32 depthBoundsTestEnable{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12186,6 +13504,7 @@ struct vkCmdSetStencilTestEnableEXTSignature : public BaseSignature {
     VkBool32 stencilTestEnable{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12202,6 +13521,7 @@ struct vkCmdSetStencilOpEXTSignature : public BaseSignature {
     VkCompareOp compareOp{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12215,6 +13535,7 @@ struct vkCopyMemoryToImageEXTSignature : public BaseSignature {
     VkCopyMemoryToImageInfo* pCopyMemoryToImageInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12228,6 +13549,7 @@ struct vkCopyImageToMemoryEXTSignature : public BaseSignature {
     VkCopyImageToMemoryInfo* pCopyImageToMemoryInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12241,6 +13563,7 @@ struct vkCopyImageToImageEXTSignature : public BaseSignature {
     VkCopyImageToImageInfo* pCopyImageToImageInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12255,6 +13578,7 @@ struct vkTransitionImageLayoutEXTSignature : public BaseSignature {
     VkHostImageLayoutTransitionInfo* pTransitions{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12269,6 +13593,7 @@ struct vkGetImageSubresourceLayout2EXTSignature : public BaseSignature {
     VkSubresourceLayout2* pLayout{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12282,6 +13607,7 @@ struct vkReleaseSwapchainImagesEXTSignature : public BaseSignature {
     VkReleaseSwapchainImagesInfoKHR* pReleaseInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12295,6 +13621,7 @@ struct vkGetGeneratedCommandsMemoryRequirementsNVSignature : public BaseSignatur
     VkMemoryRequirements2* pMemoryRequirements{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12307,6 +13634,7 @@ struct vkCmdPreprocessGeneratedCommandsNVSignature : public BaseSignature {
     VkGeneratedCommandsInfoNV* pGeneratedCommandsInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12320,6 +13648,7 @@ struct vkCmdExecuteGeneratedCommandsNVSignature : public BaseSignature {
     VkGeneratedCommandsInfoNV* pGeneratedCommandsInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12334,6 +13663,7 @@ struct vkCmdBindPipelineShaderGroupNVSignature : public BaseSignature {
     uint32_t groupIndex{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12349,6 +13679,7 @@ struct vkCreateIndirectCommandsLayoutNVSignature : public BaseSignature {
     VkIndirectCommandsLayoutNV* pIndirectCommandsLayout{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12362,6 +13693,7 @@ struct vkDestroyIndirectCommandsLayoutNVSignature : public BaseSignature {
     VkAllocationCallbacks* pAllocator{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12374,6 +13706,7 @@ struct vkCmdSetDepthBias2EXTSignature : public BaseSignature {
     VkDepthBiasInfoEXT* pDepthBiasInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12388,6 +13721,7 @@ struct vkAcquireDrmDisplayEXTSignature : public BaseSignature {
     VkDisplayKHR display{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12403,6 +13737,7 @@ struct vkGetDrmDisplayEXTSignature : public BaseSignature {
     VkDisplayKHR* display{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12418,6 +13753,7 @@ struct vkCreatePrivateDataSlotEXTSignature : public BaseSignature {
     VkPrivateDataSlot* pPrivateDataSlot{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12431,6 +13767,7 @@ struct vkDestroyPrivateDataSlotEXTSignature : public BaseSignature {
     VkAllocationCallbacks* pAllocator{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12447,6 +13784,7 @@ struct vkSetPrivateDataEXTSignature : public BaseSignature {
     uint64_t data{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12462,6 +13800,7 @@ struct vkGetPrivateDataEXTSignature : public BaseSignature {
     uint64_t* pData{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12477,6 +13816,7 @@ struct vkCreateCudaModuleNVSignature : public BaseSignature {
     VkCudaModuleNV* pModule{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12492,6 +13832,7 @@ struct vkGetCudaModuleCacheNVSignature : public BaseSignature {
     void* pCacheData{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12507,6 +13848,7 @@ struct vkCreateCudaFunctionNVSignature : public BaseSignature {
     VkCudaFunctionNV* pFunction{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12520,6 +13862,7 @@ struct vkDestroyCudaModuleNVSignature : public BaseSignature {
     VkAllocationCallbacks* pAllocator{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12533,6 +13876,7 @@ struct vkDestroyCudaFunctionNVSignature : public BaseSignature {
     VkAllocationCallbacks* pAllocator{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12545,6 +13889,7 @@ struct vkCmdCudaLaunchKernelNVSignature : public BaseSignature {
     VkCudaLaunchInfoNV* pLaunchInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12557,6 +13902,7 @@ struct vkCmdDispatchTileQCOMSignature : public BaseSignature {
     VkDispatchTileInfoQCOM* pDispatchTileInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12569,6 +13915,7 @@ struct vkCmdBeginPerTileExecutionQCOMSignature : public BaseSignature {
     VkPerTileBeginInfoQCOM* pPerTileBeginInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12581,6 +13928,7 @@ struct vkCmdEndPerTileExecutionQCOMSignature : public BaseSignature {
     VkPerTileEndInfoQCOM* pPerTileEndInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12593,6 +13941,7 @@ struct vkExportMetalObjectsEXTSignature : public BaseSignature {
     VkExportMetalObjectsInfoEXT* pMetalObjectsInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12606,6 +13955,7 @@ struct vkGetDescriptorSetLayoutSizeEXTSignature : public BaseSignature {
     VkDeviceSize* pLayoutSizeInBytes{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12620,6 +13970,7 @@ struct vkGetDescriptorSetLayoutBindingOffsetEXTSignature : public BaseSignature 
     VkDeviceSize* pOffset{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12634,6 +13985,7 @@ struct vkGetDescriptorEXTSignature : public BaseSignature {
     void* pDescriptor{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12647,6 +13999,7 @@ struct vkCmdBindDescriptorBuffersEXTSignature : public BaseSignature {
     VkDescriptorBufferBindingInfoEXT* pBindingInfos{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12664,6 +14017,7 @@ struct vkCmdSetDescriptorBufferOffsetsEXTSignature : public BaseSignature {
     VkDeviceSize* pOffsets{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12678,6 +14032,7 @@ struct vkCmdBindDescriptorBufferEmbeddedSamplersEXTSignature : public BaseSignat
     uint32_t set{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12692,6 +14047,7 @@ struct vkGetBufferOpaqueCaptureDescriptorDataEXTSignature : public BaseSignature
     void* pData{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12706,6 +14062,7 @@ struct vkGetImageOpaqueCaptureDescriptorDataEXTSignature : public BaseSignature 
     void* pData{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12720,6 +14077,7 @@ struct vkGetImageViewOpaqueCaptureDescriptorDataEXTSignature : public BaseSignat
     void* pData{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12734,6 +14092,7 @@ struct vkGetSamplerOpaqueCaptureDescriptorDataEXTSignature : public BaseSignatur
     void* pData{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12748,6 +14107,7 @@ struct vkGetAccelerationStructureOpaqueCaptureDescriptorDataEXTSignature : publi
     void* pData{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12761,6 +14121,7 @@ struct vkCmdSetFragmentShadingRateEnumNVSignature : public BaseSignature {
     VkFragmentShadingRateCombinerOpKHR combinerOps[2]{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12775,6 +14136,7 @@ struct vkGetDeviceFaultInfoEXTSignature : public BaseSignature {
     VkDeviceFaultInfoEXT* pFaultInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12788,6 +14150,7 @@ struct vkAcquireWinrtDisplayNVSignature : public BaseSignature {
     VkDisplayKHR display{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12802,6 +14165,7 @@ struct vkGetWinrtDisplayNVSignature : public BaseSignature {
     VkDisplayKHR* pDisplay{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12817,6 +14181,7 @@ struct vkCreateDirectFBSurfaceEXTSignature : public BaseSignature {
     VkSurfaceKHR* pSurface{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12831,6 +14196,7 @@ struct vkGetPhysicalDeviceDirectFBPresentationSupportEXTSignature : public BaseS
     IDirectFB* dfb{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12846,6 +14212,7 @@ struct vkCmdSetVertexInputEXTSignature : public BaseSignature {
     VkVertexInputAttributeDescription2EXT* pVertexAttributeDescriptions{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12860,6 +14227,7 @@ struct vkGetMemoryZirconHandleFUCHSIASignature : public BaseSignature {
     zx_handle_t* pZirconHandle{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12875,6 +14243,7 @@ struct vkGetMemoryZirconHandlePropertiesFUCHSIASignature : public BaseSignature 
     VkMemoryZirconHandlePropertiesFUCHSIA* pMemoryZirconHandleProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12888,6 +14257,7 @@ struct vkImportSemaphoreZirconHandleFUCHSIASignature : public BaseSignature {
     VkImportSemaphoreZirconHandleInfoFUCHSIA* pImportSemaphoreZirconHandleInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12902,6 +14272,7 @@ struct vkGetSemaphoreZirconHandleFUCHSIASignature : public BaseSignature {
     zx_handle_t* pZirconHandle{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12917,6 +14288,7 @@ struct vkCreateBufferCollectionFUCHSIASignature : public BaseSignature {
     VkBufferCollectionFUCHSIA* pCollection{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12931,6 +14303,7 @@ struct vkSetBufferCollectionImageConstraintsFUCHSIASignature : public BaseSignat
     VkImageConstraintsInfoFUCHSIA* pImageConstraintsInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12945,6 +14318,7 @@ struct vkSetBufferCollectionBufferConstraintsFUCHSIASignature : public BaseSigna
     VkBufferConstraintsInfoFUCHSIA* pBufferConstraintsInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12958,6 +14332,7 @@ struct vkDestroyBufferCollectionFUCHSIASignature : public BaseSignature {
     VkAllocationCallbacks* pAllocator{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12972,6 +14347,7 @@ struct vkGetBufferCollectionPropertiesFUCHSIASignature : public BaseSignature {
     VkBufferCollectionPropertiesFUCHSIA* pProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12986,6 +14362,7 @@ struct vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEISignature : public BaseSig
     VkExtent2D* pMaxWorkgroupSize{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -12997,6 +14374,7 @@ struct vkCmdSubpassShadingHUAWEISignature : public BaseSignature {
     VkCommandBuffer commandBuffer{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13010,6 +14388,7 @@ struct vkCmdBindInvocationMaskHUAWEISignature : public BaseSignature {
     VkImageLayout imageLayout{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13024,6 +14403,7 @@ struct vkGetMemoryRemoteAddressNVSignature : public BaseSignature {
     VkRemoteAddressNV* pAddress{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13038,6 +14418,7 @@ struct vkGetPipelinePropertiesEXTSignature : public BaseSignature {
     VkBaseOutStructure* pPipelineProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13050,6 +14431,7 @@ struct vkCmdSetPatchControlPointsEXTSignature : public BaseSignature {
     uint32_t patchControlPoints{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13062,6 +14444,7 @@ struct vkCmdSetRasterizerDiscardEnableEXTSignature : public BaseSignature {
     VkBool32 rasterizerDiscardEnable{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13074,6 +14457,7 @@ struct vkCmdSetDepthBiasEnableEXTSignature : public BaseSignature {
     VkBool32 depthBiasEnable{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13086,6 +14470,7 @@ struct vkCmdSetLogicOpEXTSignature : public BaseSignature {
     VkLogicOp logicOp{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13098,6 +14483,7 @@ struct vkCmdSetPrimitiveRestartEnableEXTSignature : public BaseSignature {
     VkBool32 primitiveRestartEnable{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13113,6 +14499,7 @@ struct vkCreateScreenSurfaceQNXSignature : public BaseSignature {
     VkSurfaceKHR* pSurface{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13127,6 +14514,7 @@ struct vkGetPhysicalDeviceScreenPresentationSupportQNXSignature : public BaseSig
     _screen_window* window{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13140,6 +14528,7 @@ struct vkCmdSetColorWriteEnableEXTSignature : public BaseSignature {
     VkBool32* pColorWriteEnables{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13156,6 +14545,7 @@ struct vkCmdDrawMultiEXTSignature : public BaseSignature {
     uint32_t stride{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13173,6 +14563,7 @@ struct vkCmdDrawMultiIndexedEXTSignature : public BaseSignature {
     int32_t* pVertexOffset{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13188,6 +14579,7 @@ struct vkCreateMicromapEXTSignature : public BaseSignature {
     VkMicromapEXT* pMicromap{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13201,6 +14593,7 @@ struct vkDestroyMicromapEXTSignature : public BaseSignature {
     VkAllocationCallbacks* pAllocator{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13214,6 +14607,7 @@ struct vkCmdBuildMicromapsEXTSignature : public BaseSignature {
     VkMicromapBuildInfoEXT* pInfos{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13229,6 +14623,7 @@ struct vkBuildMicromapsEXTSignature : public BaseSignature {
     VkMicromapBuildInfoEXT* pInfos{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13243,6 +14638,7 @@ struct vkCopyMicromapEXTSignature : public BaseSignature {
     VkCopyMicromapInfoEXT* pInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13257,6 +14653,7 @@ struct vkCopyMicromapToMemoryEXTSignature : public BaseSignature {
     VkCopyMicromapToMemoryInfoEXT* pInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13271,6 +14668,7 @@ struct vkCopyMemoryToMicromapEXTSignature : public BaseSignature {
     VkCopyMemoryToMicromapInfoEXT* pInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13289,6 +14687,7 @@ struct vkWriteMicromapsPropertiesEXTSignature : public BaseSignature {
     size_t stride{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13301,6 +14700,7 @@ struct vkCmdCopyMicromapEXTSignature : public BaseSignature {
     VkCopyMicromapInfoEXT* pInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13313,6 +14713,7 @@ struct vkCmdCopyMicromapToMemoryEXTSignature : public BaseSignature {
     VkCopyMicromapToMemoryInfoEXT* pInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13325,6 +14726,7 @@ struct vkCmdCopyMemoryToMicromapEXTSignature : public BaseSignature {
     VkCopyMemoryToMicromapInfoEXT* pInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13341,6 +14743,7 @@ struct vkCmdWriteMicromapsPropertiesEXTSignature : public BaseSignature {
     uint32_t firstQuery{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13354,6 +14757,7 @@ struct vkGetDeviceMicromapCompatibilityEXTSignature : public BaseSignature {
     VkAccelerationStructureCompatibilityKHR* pCompatibility{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13368,6 +14772,7 @@ struct vkGetMicromapBuildSizesEXTSignature : public BaseSignature {
     VkMicromapBuildSizesInfoEXT* pSizeInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13382,6 +14787,7 @@ struct vkCmdDrawClusterHUAWEISignature : public BaseSignature {
     uint32_t groupCountZ{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13395,6 +14801,7 @@ struct vkCmdDrawClusterIndirectHUAWEISignature : public BaseSignature {
     VkDeviceSize offset{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13408,6 +14815,7 @@ struct vkSetDeviceMemoryPriorityEXTSignature : public BaseSignature {
     float priority{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13421,6 +14829,7 @@ struct vkGetDescriptorSetLayoutHostMappingInfoVALVESignature : public BaseSignat
     VkDescriptorSetLayoutHostMappingInfoVALVE* pHostMapping{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13434,6 +14843,7 @@ struct vkGetDescriptorSetHostMappingVALVESignature : public BaseSignature {
     void** ppData{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13448,6 +14858,7 @@ struct vkCmdCopyMemoryIndirectNVSignature : public BaseSignature {
     uint32_t stride{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13465,6 +14876,7 @@ struct vkCmdCopyMemoryToImageIndirectNVSignature : public BaseSignature {
     VkImageSubresourceLayers* pImageSubresources{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13478,6 +14890,7 @@ struct vkCmdDecompressMemoryNVSignature : public BaseSignature {
     VkDecompressMemoryRegionNV* pDecompressMemoryRegions{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13492,6 +14905,7 @@ struct vkCmdDecompressMemoryIndirectCountNVSignature : public BaseSignature {
     uint32_t stride{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13505,6 +14919,7 @@ struct vkGetPipelineIndirectMemoryRequirementsNVSignature : public BaseSignature
     VkMemoryRequirements2* pMemoryRequirements{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13518,6 +14933,7 @@ struct vkCmdUpdatePipelineIndirectBufferNVSignature : public BaseSignature {
     VkPipeline pipeline{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13531,6 +14947,7 @@ struct vkGetPipelineIndirectDeviceAddressNVSignature : public BaseSignature {
     VkPipelineIndirectDeviceAddressInfoNV* pInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13545,6 +14962,7 @@ struct vkGetNativeBufferPropertiesOHOSSignature : public BaseSignature {
     VkNativeBufferPropertiesOHOS* pProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13559,6 +14977,7 @@ struct vkGetMemoryNativeBufferOHOSSignature : public BaseSignature {
     OH_NativeBuffer** pBuffer{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13571,6 +14990,7 @@ struct vkCmdSetDepthClampEnableEXTSignature : public BaseSignature {
     VkBool32 depthClampEnable{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13583,6 +15003,7 @@ struct vkCmdSetPolygonModeEXTSignature : public BaseSignature {
     VkPolygonMode polygonMode{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13595,6 +15016,7 @@ struct vkCmdSetRasterizationSamplesEXTSignature : public BaseSignature {
     VkSampleCountFlagBits rasterizationSamples{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13608,6 +15030,7 @@ struct vkCmdSetSampleMaskEXTSignature : public BaseSignature {
     VkSampleMask* pSampleMask{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13620,6 +15043,7 @@ struct vkCmdSetAlphaToCoverageEnableEXTSignature : public BaseSignature {
     VkBool32 alphaToCoverageEnable{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13632,6 +15056,7 @@ struct vkCmdSetAlphaToOneEnableEXTSignature : public BaseSignature {
     VkBool32 alphaToOneEnable{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13644,6 +15069,7 @@ struct vkCmdSetLogicOpEnableEXTSignature : public BaseSignature {
     VkBool32 logicOpEnable{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13658,6 +15084,7 @@ struct vkCmdSetColorBlendEnableEXTSignature : public BaseSignature {
     VkBool32* pColorBlendEnables{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13672,6 +15099,7 @@ struct vkCmdSetColorBlendEquationEXTSignature : public BaseSignature {
     VkColorBlendEquationEXT* pColorBlendEquations{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13686,6 +15114,7 @@ struct vkCmdSetColorWriteMaskEXTSignature : public BaseSignature {
     VkColorComponentFlags* pColorWriteMasks{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13698,6 +15127,7 @@ struct vkCmdSetTessellationDomainOriginEXTSignature : public BaseSignature {
     VkTessellationDomainOrigin domainOrigin{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13710,6 +15140,7 @@ struct vkCmdSetRasterizationStreamEXTSignature : public BaseSignature {
     uint32_t rasterizationStream{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13722,6 +15153,7 @@ struct vkCmdSetConservativeRasterizationModeEXTSignature : public BaseSignature 
     VkConservativeRasterizationModeEXT conservativeRasterizationMode{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13734,6 +15166,7 @@ struct vkCmdSetExtraPrimitiveOverestimationSizeEXTSignature : public BaseSignatu
     float extraPrimitiveOverestimationSize{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13746,6 +15179,7 @@ struct vkCmdSetDepthClipEnableEXTSignature : public BaseSignature {
     VkBool32 depthClipEnable{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13758,6 +15192,7 @@ struct vkCmdSetSampleLocationsEnableEXTSignature : public BaseSignature {
     VkBool32 sampleLocationsEnable{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13772,6 +15207,7 @@ struct vkCmdSetColorBlendAdvancedEXTSignature : public BaseSignature {
     VkColorBlendAdvancedEXT* pColorBlendAdvanced{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13784,6 +15220,7 @@ struct vkCmdSetProvokingVertexModeEXTSignature : public BaseSignature {
     VkProvokingVertexModeEXT provokingVertexMode{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13796,6 +15233,7 @@ struct vkCmdSetLineRasterizationModeEXTSignature : public BaseSignature {
     VkLineRasterizationModeEXT lineRasterizationMode{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13808,6 +15246,7 @@ struct vkCmdSetLineStippleEnableEXTSignature : public BaseSignature {
     VkBool32 stippledLineEnable{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13820,6 +15259,7 @@ struct vkCmdSetDepthClipNegativeOneToOneEXTSignature : public BaseSignature {
     VkBool32 negativeOneToOne{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13832,6 +15272,7 @@ struct vkCmdSetViewportWScalingEnableNVSignature : public BaseSignature {
     VkBool32 viewportWScalingEnable{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13846,6 +15287,7 @@ struct vkCmdSetViewportSwizzleNVSignature : public BaseSignature {
     VkViewportSwizzleNV* pViewportSwizzles{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13858,6 +15300,7 @@ struct vkCmdSetCoverageToColorEnableNVSignature : public BaseSignature {
     VkBool32 coverageToColorEnable{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13870,6 +15313,7 @@ struct vkCmdSetCoverageToColorLocationNVSignature : public BaseSignature {
     uint32_t coverageToColorLocation{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13882,6 +15326,7 @@ struct vkCmdSetCoverageModulationModeNVSignature : public BaseSignature {
     VkCoverageModulationModeNV coverageModulationMode{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13894,6 +15339,7 @@ struct vkCmdSetCoverageModulationTableEnableNVSignature : public BaseSignature {
     VkBool32 coverageModulationTableEnable{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13907,6 +15353,7 @@ struct vkCmdSetCoverageModulationTableNVSignature : public BaseSignature {
     float* pCoverageModulationTable{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13919,6 +15366,7 @@ struct vkCmdSetShadingRateImageEnableNVSignature : public BaseSignature {
     VkBool32 shadingRateImageEnable{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13931,6 +15379,7 @@ struct vkCmdSetRepresentativeFragmentTestEnableNVSignature : public BaseSignatur
     VkBool32 representativeFragmentTestEnable{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13943,6 +15392,7 @@ struct vkCmdSetCoverageReductionModeNVSignature : public BaseSignature {
     VkCoverageReductionModeNV coverageReductionMode{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13958,6 +15408,7 @@ struct vkCreateTensorARMSignature : public BaseSignature {
     VkTensorARM* pTensor{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13971,6 +15422,7 @@ struct vkDestroyTensorARMSignature : public BaseSignature {
     VkAllocationCallbacks* pAllocator{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13986,6 +15438,7 @@ struct vkCreateTensorViewARMSignature : public BaseSignature {
     VkTensorViewARM* pView{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -13999,6 +15452,7 @@ struct vkDestroyTensorViewARMSignature : public BaseSignature {
     VkAllocationCallbacks* pAllocator{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14012,6 +15466,7 @@ struct vkGetTensorMemoryRequirementsARMSignature : public BaseSignature {
     VkMemoryRequirements2* pMemoryRequirements{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14026,6 +15481,7 @@ struct vkBindTensorMemoryARMSignature : public BaseSignature {
     VkBindTensorMemoryInfoARM* pBindInfos{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14039,6 +15495,7 @@ struct vkGetDeviceTensorMemoryRequirementsARMSignature : public BaseSignature {
     VkMemoryRequirements2* pMemoryRequirements{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14051,6 +15508,7 @@ struct vkCmdCopyTensorARMSignature : public BaseSignature {
     VkCopyTensorInfoARM* pCopyTensorInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14064,6 +15522,7 @@ struct vkGetPhysicalDeviceExternalTensorPropertiesARMSignature : public BaseSign
     VkExternalTensorPropertiesARM* pExternalTensorProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14078,6 +15537,7 @@ struct vkGetTensorOpaqueCaptureDescriptorDataARMSignature : public BaseSignature
     void* pData{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14092,6 +15552,7 @@ struct vkGetTensorViewOpaqueCaptureDescriptorDataARMSignature : public BaseSigna
     void* pData{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14105,6 +15566,7 @@ struct vkGetShaderModuleIdentifierEXTSignature : public BaseSignature {
     VkShaderModuleIdentifierEXT* pIdentifier{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14118,6 +15580,7 @@ struct vkGetShaderModuleCreateInfoIdentifierEXTSignature : public BaseSignature 
     VkShaderModuleIdentifierEXT* pIdentifier{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14133,6 +15596,7 @@ struct vkGetPhysicalDeviceOpticalFlowImageFormatsNVSignature : public BaseSignat
     VkOpticalFlowImageFormatPropertiesNV* pImageFormatProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14148,6 +15612,7 @@ struct vkCreateOpticalFlowSessionNVSignature : public BaseSignature {
     VkOpticalFlowSessionNV* pSession{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14161,6 +15626,7 @@ struct vkDestroyOpticalFlowSessionNVSignature : public BaseSignature {
     VkAllocationCallbacks* pAllocator{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14177,6 +15643,7 @@ struct vkBindOpticalFlowSessionImageNVSignature : public BaseSignature {
     VkImageLayout layout{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14190,6 +15657,7 @@ struct vkCmdOpticalFlowExecuteNVSignature : public BaseSignature {
     VkOpticalFlowExecuteInfoNV* pExecuteInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14202,6 +15670,7 @@ struct vkAntiLagUpdateAMDSignature : public BaseSignature {
     VkAntiLagDataAMD* pData{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14218,6 +15687,7 @@ struct vkCreateShadersEXTSignature : public BaseSignature {
     VkShaderEXT* pShaders{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14231,6 +15701,7 @@ struct vkDestroyShaderEXTSignature : public BaseSignature {
     VkAllocationCallbacks* pAllocator{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14246,6 +15717,7 @@ struct vkGetShaderBinaryDataEXTSignature : public BaseSignature {
     void* pData{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14260,6 +15732,7 @@ struct vkCmdBindShadersEXTSignature : public BaseSignature {
     VkShaderEXT* pShaders{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14273,6 +15746,7 @@ struct vkCmdSetDepthClampRangeEXTSignature : public BaseSignature {
     VkDepthClampRangeEXT* pDepthClampRange{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14288,6 +15762,7 @@ struct vkGetFramebufferTilePropertiesQCOMSignature : public BaseSignature {
     VkTilePropertiesQCOM* pProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14302,6 +15777,7 @@ struct vkGetDynamicRenderingTilePropertiesQCOMSignature : public BaseSignature {
     VkTilePropertiesQCOM* pProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14316,6 +15792,7 @@ struct vkGetPhysicalDeviceCooperativeVectorPropertiesNVSignature : public BaseSi
     VkCooperativeVectorPropertiesNV* pProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14329,6 +15806,7 @@ struct vkConvertCooperativeVectorMatrixNVSignature : public BaseSignature {
     VkConvertCooperativeVectorMatrixInfoNV* pInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14342,6 +15820,7 @@ struct vkCmdConvertCooperativeVectorMatrixNVSignature : public BaseSignature {
     VkConvertCooperativeVectorMatrixInfoNV* pInfos{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14356,6 +15835,7 @@ struct vkSetLatencySleepModeNVSignature : public BaseSignature {
     VkLatencySleepModeInfoNV* pSleepModeInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14370,6 +15850,7 @@ struct vkLatencySleepNVSignature : public BaseSignature {
     VkLatencySleepInfoNV* pSleepInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14383,6 +15864,7 @@ struct vkSetLatencyMarkerNVSignature : public BaseSignature {
     VkSetLatencyMarkerInfoNV* pLatencyMarkerInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14396,6 +15878,7 @@ struct vkGetLatencyTimingsNVSignature : public BaseSignature {
     VkGetLatencyMarkerInfoNV* pLatencyMarkerInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14408,6 +15891,7 @@ struct vkQueueNotifyOutOfBandNVSignature : public BaseSignature {
     VkOutOfBandQueueTypeInfoNV* pQueueTypeInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14426,6 +15910,7 @@ struct vkCreateDataGraphPipelinesARMSignature : public BaseSignature {
     VkPipeline* pPipelines{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14441,6 +15926,7 @@ struct vkCreateDataGraphPipelineSessionARMSignature : public BaseSignature {
     VkDataGraphPipelineSessionARM* pSession{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14456,6 +15942,7 @@ struct vkGetDataGraphPipelineSessionBindPointRequirementsARMSignature : public B
     VkDataGraphPipelineSessionBindPointRequirementARM* pBindPointRequirements{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14469,6 +15956,7 @@ struct vkGetDataGraphPipelineSessionMemoryRequirementsARMSignature : public Base
     VkMemoryRequirements2* pMemoryRequirements{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14483,6 +15971,7 @@ struct vkBindDataGraphPipelineSessionMemoryARMSignature : public BaseSignature {
     VkBindDataGraphPipelineSessionMemoryInfoARM* pBindInfos{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14496,6 +15985,7 @@ struct vkDestroyDataGraphPipelineSessionARMSignature : public BaseSignature {
     VkAllocationCallbacks* pAllocator{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14509,6 +15999,7 @@ struct vkCmdDispatchDataGraphARMSignature : public BaseSignature {
     VkDataGraphPipelineDispatchInfoARM* pInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14524,6 +16015,7 @@ struct vkGetDataGraphPipelineAvailablePropertiesARMSignature : public BaseSignat
     VkDataGraphPipelinePropertyARM* pProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14539,6 +16031,7 @@ struct vkGetDataGraphPipelinePropertiesARMSignature : public BaseSignature {
     VkDataGraphPipelinePropertyQueryResultARM* pProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14554,6 +16047,7 @@ struct vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARMSignature : public Ba
     VkQueueFamilyDataGraphPropertiesARM* pQueueFamilyDataGraphProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14567,6 +16061,7 @@ struct vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARMSigna
     VkQueueFamilyDataGraphProcessingEnginePropertiesARM* pQueueFamilyDataGraphProcessingEngineProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14579,6 +16074,7 @@ struct vkCmdSetAttachmentFeedbackLoopEnableEXTSignature : public BaseSignature {
     VkImageAspectFlags aspectMask{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14593,6 +16089,7 @@ struct vkGetScreenBufferPropertiesQNXSignature : public BaseSignature {
     VkScreenBufferPropertiesQNX* pProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14605,6 +16102,7 @@ struct vkCmdBindTileMemoryQCOMSignature : public BaseSignature {
     VkTileMemoryBindInfoQCOM* pTileMemoryBindInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14617,6 +16115,7 @@ struct vkCmdDecompressMemoryEXTSignature : public BaseSignature {
     VkDecompressMemoryInfoEXT* pDecompressMemoryInfoEXT{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14633,6 +16132,7 @@ struct vkCmdDecompressMemoryIndirectCountEXTSignature : public BaseSignature {
     uint32_t stride{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14648,6 +16148,7 @@ struct vkCreateExternalComputeQueueNVSignature : public BaseSignature {
     VkExternalComputeQueueNV* pExternalQueue{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14661,6 +16162,7 @@ struct vkDestroyExternalComputeQueueNVSignature : public BaseSignature {
     VkAllocationCallbacks* pAllocator{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14674,6 +16176,7 @@ struct vkGetExternalComputeQueueDataNVSignature : public BaseSignature {
     void* pData{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14687,6 +16190,7 @@ struct vkGetClusterAccelerationStructureBuildSizesNVSignature : public BaseSigna
     VkAccelerationStructureBuildSizesInfoKHR* pSizeInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14699,6 +16203,7 @@ struct vkCmdBuildClusterAccelerationStructureIndirectNVSignature : public BaseSi
     VkClusterAccelerationStructureCommandsInfoNV* pCommandInfos{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14712,6 +16217,7 @@ struct vkGetPartitionedAccelerationStructuresBuildSizesNVSignature : public Base
     VkAccelerationStructureBuildSizesInfoKHR* pSizeInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14724,6 +16230,7 @@ struct vkCmdBuildPartitionedAccelerationStructuresNVSignature : public BaseSigna
     VkBuildPartitionedAccelerationStructureInfoNV* pBuildInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14737,6 +16244,7 @@ struct vkGetGeneratedCommandsMemoryRequirementsEXTSignature : public BaseSignatu
     VkMemoryRequirements2* pMemoryRequirements{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14750,6 +16258,7 @@ struct vkCmdPreprocessGeneratedCommandsEXTSignature : public BaseSignature {
     VkCommandBuffer stateCommandBuffer{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14763,6 +16272,7 @@ struct vkCmdExecuteGeneratedCommandsEXTSignature : public BaseSignature {
     VkGeneratedCommandsInfoEXT* pGeneratedCommandsInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14778,6 +16288,7 @@ struct vkCreateIndirectCommandsLayoutEXTSignature : public BaseSignature {
     VkIndirectCommandsLayoutEXT* pIndirectCommandsLayout{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14791,6 +16302,7 @@ struct vkDestroyIndirectCommandsLayoutEXTSignature : public BaseSignature {
     VkAllocationCallbacks* pAllocator{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14806,6 +16318,7 @@ struct vkCreateIndirectExecutionSetEXTSignature : public BaseSignature {
     VkIndirectExecutionSetEXT* pIndirectExecutionSet{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14819,6 +16332,7 @@ struct vkDestroyIndirectExecutionSetEXTSignature : public BaseSignature {
     VkAllocationCallbacks* pAllocator{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14833,6 +16347,7 @@ struct vkUpdateIndirectExecutionSetPipelineEXTSignature : public BaseSignature {
     VkWriteIndirectExecutionSetPipelineEXT* pExecutionSetWrites{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14847,6 +16362,7 @@ struct vkUpdateIndirectExecutionSetShaderEXTSignature : public BaseSignature {
     VkWriteIndirectExecutionSetShaderEXT* pExecutionSetWrites{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14862,6 +16378,7 @@ struct vkCreateSurfaceOHOSSignature : public BaseSignature {
     VkSurfaceKHR* pSurface{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14877,6 +16394,7 @@ struct vkGetSwapchainGrallocUsageOHOSSignature : public BaseSignature {
     uint64_t* grallocUsage{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14893,6 +16411,7 @@ struct vkAcquireImageOHOSSignature : public BaseSignature {
     VkFence fence{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14909,6 +16428,7 @@ struct vkQueueSignalReleaseImageOHOSSignature : public BaseSignature {
     int32_t* pNativeFenceFd{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14923,6 +16443,7 @@ struct vkGetPhysicalDeviceCooperativeMatrixFlexibleDimensionsPropertiesNVSignatu
     VkCooperativeMatrixFlexibleDimensionsPropertiesNV* pProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14937,6 +16458,7 @@ struct vkGetMemoryMetalHandleEXTSignature : public BaseSignature {
     void** pHandle{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14952,6 +16474,7 @@ struct vkGetMemoryMetalHandlePropertiesEXTSignature : public BaseSignature {
     VkMemoryMetalHandlePropertiesEXT* pMemoryMetalHandleProperties{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14968,6 +16491,7 @@ struct vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARMSignatu
     VkPerformanceCounterDescriptionARM* pCounterDescriptions{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14980,6 +16504,7 @@ struct vkCmdEndRendering2EXTSignature : public BaseSignature {
     VkRenderingEndInfoKHR* pRenderingEndInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -14992,6 +16517,7 @@ struct vkCmdBeginCustomResolveEXTSignature : public BaseSignature {
     VkBeginCustomResolveInfoEXT* pBeginCustomResolveInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -15007,6 +16533,7 @@ struct vkCreateAccelerationStructureKHRSignature : public BaseSignature {
     VkAccelerationStructureKHR* pAccelerationStructure{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -15020,6 +16547,7 @@ struct vkDestroyAccelerationStructureKHRSignature : public BaseSignature {
     VkAllocationCallbacks* pAllocator{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -15034,6 +16562,7 @@ struct vkCmdBuildAccelerationStructuresKHRSignature : public BaseSignature {
     VkAccelerationStructureBuildRangeInfoKHR* const* ppBuildRangeInfos{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -15050,6 +16579,7 @@ struct vkCmdBuildAccelerationStructuresIndirectKHRSignature : public BaseSignatu
     uint32_t* const* ppMaxPrimitiveCounts{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -15066,6 +16596,7 @@ struct vkBuildAccelerationStructuresKHRSignature : public BaseSignature {
     VkAccelerationStructureBuildRangeInfoKHR* const* ppBuildRangeInfos{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -15080,6 +16611,7 @@ struct vkCopyAccelerationStructureKHRSignature : public BaseSignature {
     VkCopyAccelerationStructureInfoKHR* pInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -15094,6 +16626,7 @@ struct vkCopyAccelerationStructureToMemoryKHRSignature : public BaseSignature {
     VkCopyAccelerationStructureToMemoryInfoKHR* pInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -15108,6 +16641,7 @@ struct vkCopyMemoryToAccelerationStructureKHRSignature : public BaseSignature {
     VkCopyMemoryToAccelerationStructureInfoKHR* pInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -15126,6 +16660,7 @@ struct vkWriteAccelerationStructuresPropertiesKHRSignature : public BaseSignatur
     size_t stride{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -15138,6 +16673,7 @@ struct vkCmdCopyAccelerationStructureKHRSignature : public BaseSignature {
     VkCopyAccelerationStructureInfoKHR* pInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -15150,6 +16686,7 @@ struct vkCmdCopyAccelerationStructureToMemoryKHRSignature : public BaseSignature
     VkCopyAccelerationStructureToMemoryInfoKHR* pInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -15162,6 +16699,7 @@ struct vkCmdCopyMemoryToAccelerationStructureKHRSignature : public BaseSignature
     VkCopyMemoryToAccelerationStructureInfoKHR* pInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -15175,6 +16713,7 @@ struct vkGetAccelerationStructureDeviceAddressKHRSignature : public BaseSignatur
     VkAccelerationStructureDeviceAddressInfoKHR* pInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -15191,6 +16730,7 @@ struct vkCmdWriteAccelerationStructuresPropertiesKHRSignature : public BaseSigna
     uint32_t firstQuery{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -15204,6 +16744,7 @@ struct vkGetDeviceAccelerationStructureCompatibilityKHRSignature : public BaseSi
     VkAccelerationStructureCompatibilityKHR* pCompatibility{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -15219,6 +16760,7 @@ struct vkGetAccelerationStructureBuildSizesKHRSignature : public BaseSignature {
     VkAccelerationStructureBuildSizesInfoKHR* pSizeInfo{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -15237,6 +16779,7 @@ struct vkCmdTraceRaysKHRSignature : public BaseSignature {
     uint32_t depth{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -15255,6 +16798,7 @@ struct vkCreateRayTracingPipelinesKHRSignature : public BaseSignature {
     VkPipeline* pPipelines{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -15272,6 +16816,7 @@ struct vkGetRayTracingCaptureReplayShaderGroupHandlesKHRSignature : public BaseS
     void* pData{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -15288,6 +16833,7 @@ struct vkCmdTraceRaysIndirectKHRSignature : public BaseSignature {
     VkDeviceAddress indirectDeviceAddress{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -15303,6 +16849,7 @@ struct vkGetRayTracingShaderGroupStackSizeKHRSignature : public BaseSignature {
     VkShaderGroupShaderKHR groupShader{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -15315,6 +16862,7 @@ struct vkCmdSetRayTracingPipelineStackSizeKHRSignature : public BaseSignature {
     uint32_t pipelineStackSize{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -15329,6 +16877,7 @@ struct vkCmdDrawMeshTasksEXTSignature : public BaseSignature {
     uint32_t groupCountZ{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -15344,6 +16893,7 @@ struct vkCmdDrawMeshTasksIndirectEXTSignature : public BaseSignature {
     uint32_t stride{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }
@@ -15361,6 +16911,7 @@ struct vkCmdDrawMeshTasksIndirectCountEXTSignature : public BaseSignature {
     uint32_t stride{};
 
     virtual void SerializeToString(std::stringstream& stream) const { SignatureSerializer::SerializeToString(*this, stream); }
+    virtual void SerializeToParamTree(ParamNode& node) const { SignatureSerializer::SerializeToParamTree(*this, node); }
     virtual void SerializeToJSON(std::stringstream& stream) const { /*TODO*/ }
     virtual void SerializeToStream(WriteStream& stream) const { SignatureSerializer::SerializeToStream(*this, stream); }
     virtual void DeserializeFromStream(const ReadStream& stream) { SignatureSerializer::DeserializeFromStream(*this, stream); }

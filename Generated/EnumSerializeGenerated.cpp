@@ -5,7 +5,6 @@
  * Do not modify this file manually!
  */
 
-#include <SignatureUtils.h>
 #include <EnumSerializeGenerated.h>
 
 namespace OVS {
@@ -12004,5 +12003,1767 @@ void SerializeToStringVkAccelerationStructureCreateFlagsKHR(VkAccelerationStruct
     stream << out;
 }
 
+
+void SerializeToParamTree(VkResult value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkStructureType value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkImageLayout value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkObjectType value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkVendorId value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkSystemAllocationScope value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkInternalAllocationType value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkFormat value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkImageTiling value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkImageType value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkPhysicalDeviceType value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkQueryType value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkSharingMode value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkComponentSwizzle value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkImageViewType value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkCommandBufferLevel value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkIndexType value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkPipelineCacheHeaderVersion value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkBorderColor value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkFilter value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkSamplerAddressMode value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkSamplerMipmapMode value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkCompareOp value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkDescriptorType value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkPipelineBindPoint value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkBlendFactor value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkBlendOp value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkDynamicState value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkFrontFace value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkVertexInputRate value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkPrimitiveTopology value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkPolygonMode value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkStencilOp value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkLogicOp value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkAttachmentLoadOp value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkAttachmentStoreOp value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkSubpassContents value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkDescriptorUpdateTemplateType value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkSamplerYcbcrModelConversion value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkSamplerYcbcrRange value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkChromaLocation value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkPointClippingBehavior value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkTessellationDomainOrigin value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkDriverId value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkShaderFloatControlsIndependence value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkSemaphoreType value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkSamplerReductionMode value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkPipelineRobustnessBufferBehavior value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkPipelineRobustnessImageBehavior value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkQueueGlobalPriority value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkLineRasterizationMode value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkPresentModeKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkColorSpaceKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkQueryResultStatusKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(StdVideoH264LevelIdc value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(StdVideoH264ProfileIdc value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(StdVideoH264ChromaFormatIdc value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(StdVideoH264PocType value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(StdVideoH264AspectRatioIdc value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(StdVideoH264WeightedBipredIdc value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(StdVideoH264SliceType value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(StdVideoH264CabacInitIdc value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(StdVideoH264DisableDeblockingFilterIdc value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(StdVideoH264PictureType value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(StdVideoH264ModificationOfPicNumsIdc value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(StdVideoH264MemMgmtControlOp value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(StdVideoH265LevelIdc value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(StdVideoH265ProfileIdc value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(StdVideoH265ChromaFormatIdc value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(StdVideoH265AspectRatioIdc value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(StdVideoH265SliceType value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(StdVideoH265PictureType value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(StdVideoDecodeH264FieldOrderCount value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkPerformanceCounterUnitKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkPerformanceCounterScopeKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkPerformanceCounterStorageKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkFragmentShadingRateCombinerOpKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkPipelineExecutableStatisticFormatKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkVideoEncodeTuningModeKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkComponentTypeKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkScopeKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(StdVideoAV1Profile value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(StdVideoAV1Level value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(StdVideoAV1ColorPrimaries value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(StdVideoAV1TransferCharacteristics value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(StdVideoAV1MatrixCoefficients value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(StdVideoAV1ChromaSamplePosition value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(StdVideoAV1FrameType value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(StdVideoAV1InterpolationFilter value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(StdVideoAV1TxMode value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(StdVideoAV1FrameRestorationType value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkVideoEncodeAV1PredictionModeKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkVideoEncodeAV1RateControlGroupKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(StdVideoVP9Profile value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(StdVideoVP9Level value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(StdVideoVP9FrameType value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(StdVideoVP9InterpolationFilter value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(StdVideoVP9ColorSpace value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkTimeDomainKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkPhysicalDeviceLayeredApiKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkDefaultVertexAttributeValueKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(StdVideoH264NonVclNaluType value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(StdVideoAV1ReferenceName value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(StdVideoVP9ReferenceName value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkDebugReportObjectTypeEXT value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkRasterizationOrderAMD value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkShaderInfoTypeAMD value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkValidationCheckEXT value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkDisplayPowerStateEXT value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkDeviceEventTypeEXT value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkDisplayEventTypeEXT value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkViewportCoordinateSwizzleNV value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkDiscardRectangleModeEXT value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkConservativeRasterizationModeEXT value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkBlendOverlapEXT value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkCoverageModulationModeNV value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkValidationCacheHeaderVersionEXT value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkShadingRatePaletteEntryNV value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkCoarseSampleOrderTypeNV value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkRayTracingShaderGroupTypeKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkGeometryTypeKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkAccelerationStructureTypeKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkCopyAccelerationStructureModeKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkAccelerationStructureMemoryRequirementsTypeNV value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkMemoryOverallocationBehaviorAMD value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkPerformanceConfigurationTypeINTEL value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkQueryPoolSamplingModeINTEL value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkPerformanceOverrideTypeINTEL value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkPerformanceParameterTypeINTEL value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkPerformanceValueTypeINTEL value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkValidationFeatureEnableEXT value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkValidationFeatureDisableEXT value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkCoverageReductionModeNV value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkProvokingVertexModeEXT value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkFullScreenExclusiveEXT value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkIndirectCommandsTokenTypeNV value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkDepthBiasRepresentationEXT value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkDeviceMemoryReportEventTypeEXT value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkFragmentShadingRateTypeNV value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkFragmentShadingRateNV value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkAccelerationStructureMotionInstanceTypeNV value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkDeviceFaultAddressTypeEXT value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkDeviceFaultVendorBinaryHeaderVersionEXT value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkDeviceAddressBindingTypeEXT value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkMicromapTypeEXT value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkBuildMicromapModeEXT value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkCopyMicromapModeEXT value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkOpacityMicromapFormatEXT value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkOpacityMicromapSpecialIndexEXT value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkAccelerationStructureCompatibilityKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkAccelerationStructureBuildTypeKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkDisplacementMicromapFormatNV value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkRayTracingLssIndexingModeNV value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkRayTracingLssPrimitiveEndCapsModeNV value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkSubpassMergeStatusEXT value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkDirectDriverLoadingModeLUNARG value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkTensorTilingARM value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkOpticalFlowPerformanceLevelNV value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkOpticalFlowSessionBindingPointNV value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkAntiLagModeAMD value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkAntiLagStageAMD value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkCompressedTriangleFormatAMDX value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkShaderCodeTypeEXT value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkDepthClampModeEXT value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkRayTracingInvocationReorderModeEXT value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkCooperativeVectorMatrixLayoutNV value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkLayerSettingTypeEXT value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkLatencyMarkerNV value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkOutOfBandQueueTypeNV value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkDataGraphPipelineSessionBindPointARM value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkDataGraphPipelineSessionBindPointTypeARM value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkDataGraphPipelinePropertyARM value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkPhysicalDeviceDataGraphProcessingEngineTypeARM value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkPhysicalDeviceDataGraphOperationTypeARM value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkBlockMatchWindowCompareModeQCOM value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkCubicFilterWeightsQCOM value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkLayeredDriverUnderlyingApiMSFT value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkDisplaySurfaceStereoTypeNV value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkClusterAccelerationStructureTypeNV value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkClusterAccelerationStructureOpTypeNV value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkClusterAccelerationStructureOpModeNV value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkPartitionedAccelerationStructureOpTypeNV value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkIndirectExecutionSetInfoTypeEXT value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkIndirectCommandsTokenTypeEXT value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkDataGraphModelCacheTypeQCOM value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkBuildAccelerationStructureModeKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTree(VkShaderGroupShaderKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
+}
+
+void SerializeToParamTreeVkAccessFlags(VkAccessFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkAccessFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkImageAspectFlags(VkImageAspectFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkImageAspectFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkFormatFeatureFlags(VkFormatFeatureFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkFormatFeatureFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkImageCreateFlags(VkImageCreateFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkImageCreateFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkSampleCountFlags(VkSampleCountFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkSampleCountFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkImageUsageFlags(VkImageUsageFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkImageUsageFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkInstanceCreateFlags(VkInstanceCreateFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkInstanceCreateFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkMemoryHeapFlags(VkMemoryHeapFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkMemoryHeapFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkMemoryPropertyFlags(VkMemoryPropertyFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkMemoryPropertyFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkQueueFlags(VkQueueFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkQueueFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkDeviceQueueCreateFlags(VkDeviceQueueCreateFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkDeviceQueueCreateFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkPipelineStageFlags(VkPipelineStageFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkPipelineStageFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkMemoryMapFlags(VkMemoryMapFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkMemoryMapFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkSparseMemoryBindFlags(VkSparseMemoryBindFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkSparseMemoryBindFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkSparseImageFormatFlags(VkSparseImageFormatFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkSparseImageFormatFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkFenceCreateFlags(VkFenceCreateFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkFenceCreateFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkQueryPoolCreateFlags(VkQueryPoolCreateFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkQueryPoolCreateFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkQueryPipelineStatisticFlags(VkQueryPipelineStatisticFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkQueryPipelineStatisticFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkQueryResultFlags(VkQueryResultFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkQueryResultFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkBufferCreateFlags(VkBufferCreateFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkBufferCreateFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkBufferUsageFlags(VkBufferUsageFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkBufferUsageFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkImageViewCreateFlags(VkImageViewCreateFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkImageViewCreateFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkDependencyFlags(VkDependencyFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkDependencyFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkCommandPoolCreateFlags(VkCommandPoolCreateFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkCommandPoolCreateFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkCommandPoolResetFlags(VkCommandPoolResetFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkCommandPoolResetFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkCommandBufferUsageFlags(VkCommandBufferUsageFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkCommandBufferUsageFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkQueryControlFlags(VkQueryControlFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkQueryControlFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkCommandBufferResetFlags(VkCommandBufferResetFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkCommandBufferResetFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkEventCreateFlags(VkEventCreateFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkEventCreateFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkPipelineCacheCreateFlags(VkPipelineCacheCreateFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkPipelineCacheCreateFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkPipelineCreateFlags(VkPipelineCreateFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkPipelineCreateFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkPipelineShaderStageCreateFlags(VkPipelineShaderStageCreateFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkPipelineShaderStageCreateFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkShaderStageFlags(VkShaderStageFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkShaderStageFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkPipelineLayoutCreateFlags(VkPipelineLayoutCreateFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkPipelineLayoutCreateFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkSamplerCreateFlags(VkSamplerCreateFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkSamplerCreateFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkDescriptorPoolCreateFlags(VkDescriptorPoolCreateFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkDescriptorPoolCreateFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkDescriptorSetLayoutCreateFlags(VkDescriptorSetLayoutCreateFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkDescriptorSetLayoutCreateFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkColorComponentFlags(VkColorComponentFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkColorComponentFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkCullModeFlags(VkCullModeFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkCullModeFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkPipelineDepthStencilStateCreateFlags(VkPipelineDepthStencilStateCreateFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkPipelineDepthStencilStateCreateFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkPipelineColorBlendStateCreateFlags(VkPipelineColorBlendStateCreateFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkPipelineColorBlendStateCreateFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkAttachmentDescriptionFlags(VkAttachmentDescriptionFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkAttachmentDescriptionFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkFramebufferCreateFlags(VkFramebufferCreateFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkFramebufferCreateFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkRenderPassCreateFlags(VkRenderPassCreateFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkRenderPassCreateFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkSubpassDescriptionFlags(VkSubpassDescriptionFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkSubpassDescriptionFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkStencilFaceFlags(VkStencilFaceFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkStencilFaceFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkPeerMemoryFeatureFlags(VkPeerMemoryFeatureFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkPeerMemoryFeatureFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkMemoryAllocateFlags(VkMemoryAllocateFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkMemoryAllocateFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkExternalMemoryHandleTypeFlags(VkExternalMemoryHandleTypeFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkExternalMemoryHandleTypeFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkExternalMemoryFeatureFlags(VkExternalMemoryFeatureFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkExternalMemoryFeatureFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkExternalFenceHandleTypeFlags(VkExternalFenceHandleTypeFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkExternalFenceHandleTypeFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkExternalFenceFeatureFlags(VkExternalFenceFeatureFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkExternalFenceFeatureFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkFenceImportFlags(VkFenceImportFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkFenceImportFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkSemaphoreImportFlags(VkSemaphoreImportFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkSemaphoreImportFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkExternalSemaphoreHandleTypeFlags(VkExternalSemaphoreHandleTypeFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkExternalSemaphoreHandleTypeFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkExternalSemaphoreFeatureFlags(VkExternalSemaphoreFeatureFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkExternalSemaphoreFeatureFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkSubgroupFeatureFlags(VkSubgroupFeatureFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkSubgroupFeatureFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkResolveModeFlags(VkResolveModeFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkResolveModeFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkSemaphoreWaitFlags(VkSemaphoreWaitFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkSemaphoreWaitFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkDescriptorBindingFlags(VkDescriptorBindingFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkDescriptorBindingFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkToolPurposeFlags(VkToolPurposeFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkToolPurposeFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkPipelineStageFlags2(VkPipelineStageFlags2 value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkPipelineStageFlags2(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkAccessFlags2(VkAccessFlags2 value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkAccessFlags2(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkSubmitFlags(VkSubmitFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkSubmitFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkFormatFeatureFlags2(VkFormatFeatureFlags2 value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkFormatFeatureFlags2(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkPipelineCreationFeedbackFlags(VkPipelineCreationFeedbackFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkPipelineCreationFeedbackFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkRenderingFlags(VkRenderingFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkRenderingFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkMemoryUnmapFlags(VkMemoryUnmapFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkMemoryUnmapFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkBufferUsageFlags2(VkBufferUsageFlags2 value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkBufferUsageFlags2(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkHostImageCopyFlags(VkHostImageCopyFlags value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkHostImageCopyFlags(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkPipelineCreateFlags2(VkPipelineCreateFlags2 value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkPipelineCreateFlags2(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkSurfaceTransformFlagsKHR(VkSurfaceTransformFlagsKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkSurfaceTransformFlagsKHR(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkCompositeAlphaFlagsKHR(VkCompositeAlphaFlagsKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkCompositeAlphaFlagsKHR(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkSwapchainCreateFlagsKHR(VkSwapchainCreateFlagsKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkSwapchainCreateFlagsKHR(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkDeviceGroupPresentModeFlagsKHR(VkDeviceGroupPresentModeFlagsKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkDeviceGroupPresentModeFlagsKHR(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkDisplayPlaneAlphaFlagsKHR(VkDisplayPlaneAlphaFlagsKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkDisplayPlaneAlphaFlagsKHR(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkVideoCodecOperationFlagsKHR(VkVideoCodecOperationFlagsKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkVideoCodecOperationFlagsKHR(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkVideoChromaSubsamplingFlagsKHR(VkVideoChromaSubsamplingFlagsKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkVideoChromaSubsamplingFlagsKHR(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkVideoComponentBitDepthFlagsKHR(VkVideoComponentBitDepthFlagsKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkVideoComponentBitDepthFlagsKHR(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkVideoCapabilityFlagsKHR(VkVideoCapabilityFlagsKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkVideoCapabilityFlagsKHR(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkVideoSessionCreateFlagsKHR(VkVideoSessionCreateFlagsKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkVideoSessionCreateFlagsKHR(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkVideoSessionParametersCreateFlagsKHR(VkVideoSessionParametersCreateFlagsKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkVideoSessionParametersCreateFlagsKHR(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkVideoCodingControlFlagsKHR(VkVideoCodingControlFlagsKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkVideoCodingControlFlagsKHR(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkVideoDecodeCapabilityFlagsKHR(VkVideoDecodeCapabilityFlagsKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkVideoDecodeCapabilityFlagsKHR(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkVideoDecodeUsageFlagsKHR(VkVideoDecodeUsageFlagsKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkVideoDecodeUsageFlagsKHR(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkVideoEncodeH264CapabilityFlagsKHR(VkVideoEncodeH264CapabilityFlagsKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkVideoEncodeH264CapabilityFlagsKHR(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkVideoEncodeH264StdFlagsKHR(VkVideoEncodeH264StdFlagsKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkVideoEncodeH264StdFlagsKHR(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkVideoEncodeH264RateControlFlagsKHR(VkVideoEncodeH264RateControlFlagsKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkVideoEncodeH264RateControlFlagsKHR(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkVideoEncodeH265CapabilityFlagsKHR(VkVideoEncodeH265CapabilityFlagsKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkVideoEncodeH265CapabilityFlagsKHR(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkVideoEncodeH265StdFlagsKHR(VkVideoEncodeH265StdFlagsKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkVideoEncodeH265StdFlagsKHR(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkVideoEncodeH265CtbSizeFlagsKHR(VkVideoEncodeH265CtbSizeFlagsKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkVideoEncodeH265CtbSizeFlagsKHR(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkVideoEncodeH265TransformBlockSizeFlagsKHR(VkVideoEncodeH265TransformBlockSizeFlagsKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkVideoEncodeH265TransformBlockSizeFlagsKHR(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkVideoEncodeH265RateControlFlagsKHR(VkVideoEncodeH265RateControlFlagsKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkVideoEncodeH265RateControlFlagsKHR(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkVideoDecodeH264PictureLayoutFlagsKHR(VkVideoDecodeH264PictureLayoutFlagsKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkVideoDecodeH264PictureLayoutFlagsKHR(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkPerformanceCounterDescriptionFlagsKHR(VkPerformanceCounterDescriptionFlagsKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkPerformanceCounterDescriptionFlagsKHR(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkAcquireProfilingLockFlagsKHR(VkAcquireProfilingLockFlagsKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkAcquireProfilingLockFlagsKHR(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkVideoEncodeFlagsKHR(VkVideoEncodeFlagsKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkVideoEncodeFlagsKHR(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkVideoEncodeCapabilityFlagsKHR(VkVideoEncodeCapabilityFlagsKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkVideoEncodeCapabilityFlagsKHR(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkVideoEncodeRateControlModeFlagsKHR(VkVideoEncodeRateControlModeFlagsKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkVideoEncodeRateControlModeFlagsKHR(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkVideoEncodeFeedbackFlagsKHR(VkVideoEncodeFeedbackFlagsKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkVideoEncodeFeedbackFlagsKHR(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkVideoEncodeUsageFlagsKHR(VkVideoEncodeUsageFlagsKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkVideoEncodeUsageFlagsKHR(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkVideoEncodeContentFlagsKHR(VkVideoEncodeContentFlagsKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkVideoEncodeContentFlagsKHR(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkPresentScalingFlagsKHR(VkPresentScalingFlagsKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkPresentScalingFlagsKHR(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkPresentGravityFlagsKHR(VkPresentGravityFlagsKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkPresentGravityFlagsKHR(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkVideoEncodeAV1CapabilityFlagsKHR(VkVideoEncodeAV1CapabilityFlagsKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkVideoEncodeAV1CapabilityFlagsKHR(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkVideoEncodeAV1StdFlagsKHR(VkVideoEncodeAV1StdFlagsKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkVideoEncodeAV1StdFlagsKHR(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkVideoEncodeAV1SuperblockSizeFlagsKHR(VkVideoEncodeAV1SuperblockSizeFlagsKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkVideoEncodeAV1SuperblockSizeFlagsKHR(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkVideoEncodeAV1RateControlFlagsKHR(VkVideoEncodeAV1RateControlFlagsKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkVideoEncodeAV1RateControlFlagsKHR(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkAddressCopyFlagsKHR(VkAddressCopyFlagsKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkAddressCopyFlagsKHR(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkVideoEncodeIntraRefreshModeFlagsKHR(VkVideoEncodeIntraRefreshModeFlagsKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkVideoEncodeIntraRefreshModeFlagsKHR(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkAccessFlags3KHR(VkAccessFlags3KHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkAccessFlags3KHR(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkRenderingAttachmentFlagsKHR(VkRenderingAttachmentFlagsKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkRenderingAttachmentFlagsKHR(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkResolveImageFlagsKHR(VkResolveImageFlagsKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkResolveImageFlagsKHR(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkDebugReportFlagsEXT(VkDebugReportFlagsEXT value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkDebugReportFlagsEXT(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkExternalMemoryHandleTypeFlagsNV(VkExternalMemoryHandleTypeFlagsNV value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkExternalMemoryHandleTypeFlagsNV(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkExternalMemoryFeatureFlagsNV(VkExternalMemoryFeatureFlagsNV value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkExternalMemoryFeatureFlagsNV(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkConditionalRenderingFlagsEXT(VkConditionalRenderingFlagsEXT value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkConditionalRenderingFlagsEXT(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkSurfaceCounterFlagsEXT(VkSurfaceCounterFlagsEXT value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkSurfaceCounterFlagsEXT(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkDebugUtilsMessageSeverityFlagsEXT(VkDebugUtilsMessageSeverityFlagsEXT value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkDebugUtilsMessageSeverityFlagsEXT(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkDebugUtilsMessageTypeFlagsEXT(VkDebugUtilsMessageTypeFlagsEXT value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkDebugUtilsMessageTypeFlagsEXT(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkGeometryFlagsKHR(VkGeometryFlagsKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkGeometryFlagsKHR(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkGeometryInstanceFlagsKHR(VkGeometryInstanceFlagsKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkGeometryInstanceFlagsKHR(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkBuildAccelerationStructureFlagsKHR(VkBuildAccelerationStructureFlagsKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkBuildAccelerationStructureFlagsKHR(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkPipelineCompilerControlFlagsAMD(VkPipelineCompilerControlFlagsAMD value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkPipelineCompilerControlFlagsAMD(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkPresentStageFlagsEXT(VkPresentStageFlagsEXT value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkPresentStageFlagsEXT(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkPastPresentationTimingFlagsEXT(VkPastPresentationTimingFlagsEXT value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkPastPresentationTimingFlagsEXT(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkPresentTimingInfoFlagsEXT(VkPresentTimingInfoFlagsEXT value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkPresentTimingInfoFlagsEXT(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkShaderCorePropertiesFlagsAMD(VkShaderCorePropertiesFlagsAMD value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkShaderCorePropertiesFlagsAMD(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkIndirectStateFlagsNV(VkIndirectStateFlagsNV value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkIndirectStateFlagsNV(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkIndirectCommandsLayoutUsageFlagsNV(VkIndirectCommandsLayoutUsageFlagsNV value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkIndirectCommandsLayoutUsageFlagsNV(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkDeviceDiagnosticsConfigFlagsNV(VkDeviceDiagnosticsConfigFlagsNV value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkDeviceDiagnosticsConfigFlagsNV(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkTileShadingRenderPassFlagsQCOM(VkTileShadingRenderPassFlagsQCOM value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkTileShadingRenderPassFlagsQCOM(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkExportMetalObjectTypeFlagsEXT(VkExportMetalObjectTypeFlagsEXT value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkExportMetalObjectTypeFlagsEXT(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkGraphicsPipelineLibraryFlagsEXT(VkGraphicsPipelineLibraryFlagsEXT value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkGraphicsPipelineLibraryFlagsEXT(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkImageCompressionFlagsEXT(VkImageCompressionFlagsEXT value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkImageCompressionFlagsEXT(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkImageCompressionFixedRateFlagsEXT(VkImageCompressionFixedRateFlagsEXT value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkImageCompressionFixedRateFlagsEXT(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkDeviceAddressBindingFlagsEXT(VkDeviceAddressBindingFlagsEXT value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkDeviceAddressBindingFlagsEXT(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkImageConstraintsInfoFlagsFUCHSIA(VkImageConstraintsInfoFlagsFUCHSIA value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkImageConstraintsInfoFlagsFUCHSIA(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkFrameBoundaryFlagsEXT(VkFrameBoundaryFlagsEXT value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkFrameBoundaryFlagsEXT(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkVideoEncodeRgbModelConversionFlagsVALVE(VkVideoEncodeRgbModelConversionFlagsVALVE value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkVideoEncodeRgbModelConversionFlagsVALVE(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkVideoEncodeRgbRangeCompressionFlagsVALVE(VkVideoEncodeRgbRangeCompressionFlagsVALVE value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkVideoEncodeRgbRangeCompressionFlagsVALVE(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkVideoEncodeRgbChromaOffsetFlagsVALVE(VkVideoEncodeRgbChromaOffsetFlagsVALVE value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkVideoEncodeRgbChromaOffsetFlagsVALVE(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkBuildMicromapFlagsEXT(VkBuildMicromapFlagsEXT value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkBuildMicromapFlagsEXT(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkMicromapCreateFlagsEXT(VkMicromapCreateFlagsEXT value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkMicromapCreateFlagsEXT(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkPhysicalDeviceSchedulingControlsFlagsARM(VkPhysicalDeviceSchedulingControlsFlagsARM value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkPhysicalDeviceSchedulingControlsFlagsARM(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkMemoryDecompressionMethodFlagsEXT(VkMemoryDecompressionMethodFlagsEXT value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkMemoryDecompressionMethodFlagsEXT(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkTensorCreateFlagsARM(VkTensorCreateFlagsARM value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkTensorCreateFlagsARM(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkTensorViewCreateFlagsARM(VkTensorViewCreateFlagsARM value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkTensorViewCreateFlagsARM(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkTensorUsageFlagsARM(VkTensorUsageFlagsARM value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkTensorUsageFlagsARM(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkOpticalFlowGridSizeFlagsNV(VkOpticalFlowGridSizeFlagsNV value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkOpticalFlowGridSizeFlagsNV(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkOpticalFlowUsageFlagsNV(VkOpticalFlowUsageFlagsNV value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkOpticalFlowUsageFlagsNV(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkOpticalFlowSessionCreateFlagsNV(VkOpticalFlowSessionCreateFlagsNV value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkOpticalFlowSessionCreateFlagsNV(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkOpticalFlowExecuteFlagsNV(VkOpticalFlowExecuteFlagsNV value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkOpticalFlowExecuteFlagsNV(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkShaderCreateFlagsEXT(VkShaderCreateFlagsEXT value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkShaderCreateFlagsEXT(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkDataGraphPipelineSessionCreateFlagsARM(VkDataGraphPipelineSessionCreateFlagsARM value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkDataGraphPipelineSessionCreateFlagsARM(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkDataGraphPipelineDispatchFlagsARM(VkDataGraphPipelineDispatchFlagsARM value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkDataGraphPipelineDispatchFlagsARM(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkClusterAccelerationStructureAddressResolutionFlagsNV(VkClusterAccelerationStructureAddressResolutionFlagsNV value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkClusterAccelerationStructureAddressResolutionFlagsNV(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkClusterAccelerationStructureClusterFlagsNV(VkClusterAccelerationStructureClusterFlagsNV value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkClusterAccelerationStructureClusterFlagsNV(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkClusterAccelerationStructureGeometryFlagsNV(VkClusterAccelerationStructureGeometryFlagsNV value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkClusterAccelerationStructureGeometryFlagsNV(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkClusterAccelerationStructureIndexFormatFlagsNV(VkClusterAccelerationStructureIndexFormatFlagsNV value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkClusterAccelerationStructureIndexFormatFlagsNV(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkPartitionedAccelerationStructureInstanceFlagsNV(VkPartitionedAccelerationStructureInstanceFlagsNV value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkPartitionedAccelerationStructureInstanceFlagsNV(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkIndirectCommandsInputModeFlagsEXT(VkIndirectCommandsInputModeFlagsEXT value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkIndirectCommandsInputModeFlagsEXT(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkIndirectCommandsLayoutUsageFlagsEXT(VkIndirectCommandsLayoutUsageFlagsEXT value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkIndirectCommandsLayoutUsageFlagsEXT(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkSwapchainImageUsageFlagsOHOS(VkSwapchainImageUsageFlagsOHOS value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkSwapchainImageUsageFlagsOHOS(value, stream);
+    node.value = stream.str();
+}
+void SerializeToParamTreeVkAccelerationStructureCreateFlagsKHR(VkAccelerationStructureCreateFlagsKHR value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToStringVkAccelerationStructureCreateFlagsKHR(value, stream);
+    node.value = stream.str();
+}
 } // namespace SignatureSerializer
 } // namespace OVS

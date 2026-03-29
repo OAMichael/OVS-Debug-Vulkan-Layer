@@ -5051,13 +5051,13 @@ void SerializeToString(const VkMemoryBarrier2& value, std::stringstream& stream)
     stream << ", ";
     SerializeToStringPNext(value.pNext, stream);
     stream << ", ";
-    SerializeToString(value.srcStageMask, stream);
+    SerializeToStringVkPipelineStageFlags2(value.srcStageMask, stream);
     stream << ", ";
-    SerializeToString(value.srcAccessMask, stream);
+    SerializeToStringVkAccessFlags2(value.srcAccessMask, stream);
     stream << ", ";
-    SerializeToString(value.dstStageMask, stream);
+    SerializeToStringVkPipelineStageFlags2(value.dstStageMask, stream);
     stream << ", ";
-    SerializeToString(value.dstAccessMask, stream);
+    SerializeToStringVkAccessFlags2(value.dstAccessMask, stream);
     stream << "}";
 }
 
@@ -5067,13 +5067,13 @@ void SerializeToString(const VkBufferMemoryBarrier2& value, std::stringstream& s
     stream << ", ";
     SerializeToStringPNext(value.pNext, stream);
     stream << ", ";
-    SerializeToString(value.srcStageMask, stream);
+    SerializeToStringVkPipelineStageFlags2(value.srcStageMask, stream);
     stream << ", ";
-    SerializeToString(value.srcAccessMask, stream);
+    SerializeToStringVkAccessFlags2(value.srcAccessMask, stream);
     stream << ", ";
-    SerializeToString(value.dstStageMask, stream);
+    SerializeToStringVkPipelineStageFlags2(value.dstStageMask, stream);
     stream << ", ";
-    SerializeToString(value.dstAccessMask, stream);
+    SerializeToStringVkAccessFlags2(value.dstAccessMask, stream);
     stream << ", ";
     SerializeToString(value.srcQueueFamilyIndex, stream);
     stream << ", ";
@@ -5093,13 +5093,13 @@ void SerializeToString(const VkImageMemoryBarrier2& value, std::stringstream& st
     stream << ", ";
     SerializeToStringPNext(value.pNext, stream);
     stream << ", ";
-    SerializeToString(value.srcStageMask, stream);
+    SerializeToStringVkPipelineStageFlags2(value.srcStageMask, stream);
     stream << ", ";
-    SerializeToString(value.srcAccessMask, stream);
+    SerializeToStringVkAccessFlags2(value.srcAccessMask, stream);
     stream << ", ";
-    SerializeToString(value.dstStageMask, stream);
+    SerializeToStringVkPipelineStageFlags2(value.dstStageMask, stream);
     stream << ", ";
-    SerializeToString(value.dstAccessMask, stream);
+    SerializeToStringVkAccessFlags2(value.dstAccessMask, stream);
     stream << ", ";
     SerializeToString(value.oldLayout, stream);
     stream << ", ";
@@ -5177,7 +5177,7 @@ void SerializeToString(const VkSemaphoreSubmitInfo& value, std::stringstream& st
     stream << ", ";
     SerializeToString(value.value, stream);
     stream << ", ";
-    SerializeToString(value.stageMask, stream);
+    SerializeToStringVkPipelineStageFlags2(value.stageMask, stream);
     stream << ", ";
     SerializeToString(value.deviceIndex, stream);
     stream << "}";
@@ -5437,11 +5437,11 @@ void SerializeToString(const VkFormatProperties3& value, std::stringstream& stre
     stream << ", ";
     SerializeToStringPNext(value.pNext, stream);
     stream << ", ";
-    SerializeToString(value.linearTilingFeatures, stream);
+    SerializeToStringVkFormatFeatureFlags2(value.linearTilingFeatures, stream);
     stream << ", ";
-    SerializeToString(value.optimalTilingFeatures, stream);
+    SerializeToStringVkFormatFeatureFlags2(value.optimalTilingFeatures, stream);
     stream << ", ";
-    SerializeToString(value.bufferFeatures, stream);
+    SerializeToStringVkFormatFeatureFlags2(value.bufferFeatures, stream);
     stream << "}";
 }
 
@@ -6323,7 +6323,7 @@ void SerializeToString(const VkBufferUsageFlags2CreateInfo& value, std::stringst
     stream << ", ";
     SerializeToStringPNext(value.pNext, stream);
     stream << ", ";
-    SerializeToString(value.usage, stream);
+    SerializeToStringVkBufferUsageFlags2(value.usage, stream);
     stream << "}";
 }
 
@@ -6627,7 +6627,7 @@ void SerializeToString(const VkPipelineCreateFlags2CreateInfo& value, std::strin
     stream << ", ";
     SerializeToStringPNext(value.pNext, stream);
     stream << ", ";
-    SerializeToString(value.flags, stream);
+    SerializeToStringVkPipelineCreateFlags2(value.flags, stream);
     stream << "}";
 }
 
@@ -14667,9 +14667,9 @@ void SerializeToString(const VkMemoryBarrierAccessFlags3KHR& value, std::strings
     stream << ", ";
     SerializeToStringPNext(value.pNext, stream);
     stream << ", ";
-    SerializeToString(value.srcAccessMask3, stream);
+    SerializeToStringVkAccessFlags3KHR(value.srcAccessMask3, stream);
     stream << ", ";
-    SerializeToString(value.dstAccessMask3, stream);
+    SerializeToStringVkAccessFlags3KHR(value.dstAccessMask3, stream);
     stream << "}";
 }
 
@@ -16093,7 +16093,7 @@ void SerializeToString(const VkAndroidHardwareBufferFormatProperties2ANDROID& va
     stream << ", ";
     SerializeToString(value.externalFormat, stream);
     stream << ", ";
-    SerializeToString(value.formatFeatures, stream);
+    SerializeToStringVkFormatFeatureFlags2(value.formatFeatures, stream);
     stream << ", ";
     SerializeToString(value.samplerYcbcrConversionComponents, stream);
     stream << ", ";
@@ -16624,7 +16624,7 @@ void SerializeToString(const VkDrmFormatModifierProperties2EXT& value, std::stri
     stream << ", ";
     SerializeToString(value.drmFormatModifierPlaneCount, stream);
     stream << ", ";
-    SerializeToString(value.drmFormatModifierTilingFeatures, stream);
+    SerializeToStringVkFormatFeatureFlags2(value.drmFormatModifierTilingFeatures, stream);
     stream << "}";
 }
 
@@ -17399,7 +17399,7 @@ void SerializeToString(const VkQueueFamilyCheckpointProperties2NV& value, std::s
     stream << ", ";
     SerializeToStringPNext(value.pNext, stream);
     stream << ", ";
-    SerializeToString(value.checkpointExecutionStageMask, stream);
+    SerializeToStringVkPipelineStageFlags2(value.checkpointExecutionStageMask, stream);
     stream << "}";
 }
 
@@ -17409,7 +17409,7 @@ void SerializeToString(const VkCheckpointData2NV& value, std::stringstream& stre
     stream << ", ";
     SerializeToStringPNext(value.pNext, stream);
     stream << ", ";
-    SerializeToString(value.stage, stream);
+    SerializeToStringVkPipelineStageFlags2(value.stage, stream);
     stream << ", ";
     SerializeToString(value.pCheckpointMarker, stream);
     stream << "}";
@@ -17441,7 +17441,7 @@ void SerializeToString(const VkPresentTimingSurfaceCapabilitiesEXT& value, std::
     stream << ", ";
     SerializeToString(value.presentAtRelativeTimeSupported, stream);
     stream << ", ";
-    SerializeToString(value.presentStageQueries, stream);
+    SerializeToStringVkPresentStageFlagsEXT(value.presentStageQueries, stream);
     stream << "}";
 }
 
@@ -17453,7 +17453,7 @@ void SerializeToString(const VkSwapchainCalibratedTimestampInfoEXT& value, std::
     stream << ", ";
     SerializeToString(value.swapchain, stream);
     stream << ", ";
-    SerializeToString(value.presentStage, stream);
+    SerializeToStringVkPresentStageFlagsEXT(value.presentStage, stream);
     stream << ", ";
     SerializeToString(value.timeDomainId, stream);
     stream << "}";
@@ -17511,7 +17511,7 @@ void SerializeToString(const VkPastPresentationTimingInfoEXT& value, std::string
     stream << ", ";
     SerializeToStringPNext(value.pNext, stream);
     stream << ", ";
-    SerializeToString(value.flags, stream);
+    SerializeToStringVkPastPresentationTimingFlagsEXT(value.flags, stream);
     stream << ", ";
     SerializeToString(value.swapchain, stream);
     stream << "}";
@@ -17519,7 +17519,7 @@ void SerializeToString(const VkPastPresentationTimingInfoEXT& value, std::string
 
 void SerializeToString(const VkPresentStageTimeEXT& value, std::stringstream& stream) {
     stream << "VkPresentStageTimeEXT{";
-    SerializeToString(value.stage, stream);
+    SerializeToStringVkPresentStageFlagsEXT(value.stage, stream);
     stream << ", ";
     SerializeToString(value.time, stream);
     stream << "}";
@@ -17589,15 +17589,15 @@ void SerializeToString(const VkPresentTimingInfoEXT& value, std::stringstream& s
     stream << ", ";
     SerializeToStringPNext(value.pNext, stream);
     stream << ", ";
-    SerializeToString(value.flags, stream);
+    SerializeToStringVkPresentTimingInfoFlagsEXT(value.flags, stream);
     stream << ", ";
     SerializeToString(value.targetTime, stream);
     stream << ", ";
     SerializeToString(value.timeDomainId, stream);
     stream << ", ";
-    SerializeToString(value.presentStageQueries, stream);
+    SerializeToStringVkPresentStageFlagsEXT(value.presentStageQueries, stream);
     stream << ", ";
-    SerializeToString(value.targetTimeDomainPresentStage, stream);
+    SerializeToStringVkPresentStageFlagsEXT(value.targetTimeDomainPresentStage, stream);
     stream << "}";
 }
 
@@ -21231,7 +21231,7 @@ void SerializeToString(const VkPhysicalDeviceSchedulingControlsPropertiesARM& va
     stream << ", ";
     SerializeToStringPNext(value.pNext, stream);
     stream << ", ";
-    SerializeToString(value.schedulingControlsFlags, stream);
+    SerializeToStringVkPhysicalDeviceSchedulingControlsFlagsARM(value.schedulingControlsFlags, stream);
     stream << "}";
 }
 
@@ -21439,7 +21439,7 @@ void SerializeToString(const VkDecompressMemoryRegionNV& value, std::stringstrea
     stream << ", ";
     SerializeToString(value.decompressedSize, stream);
     stream << ", ";
-    SerializeToString(value.decompressionMethod, stream);
+    SerializeToStringVkMemoryDecompressionMethodFlagsEXT(value.decompressionMethod, stream);
     stream << "}";
 }
 
@@ -21459,7 +21459,7 @@ void SerializeToString(const VkPhysicalDeviceMemoryDecompressionPropertiesEXT& v
     stream << ", ";
     SerializeToStringPNext(value.pNext, stream);
     stream << ", ";
-    SerializeToString(value.decompressionMethods, stream);
+    SerializeToStringVkMemoryDecompressionMethodFlagsEXT(value.decompressionMethods, stream);
     stream << ", ";
     SerializeToString(value.maxDecompressionIndirectCount, stream);
     stream << "}";
@@ -22005,7 +22005,7 @@ void SerializeToString(const VkTensorDescriptionARM& value, std::stringstream& s
         SerializeToString(nullptr, stream);
     }
     stream << ", ";
-    SerializeToString(value.usage, stream);
+    SerializeToStringVkTensorUsageFlagsARM(value.usage, stream);
     stream << "}";
 }
 
@@ -22015,7 +22015,7 @@ void SerializeToString(const VkTensorCreateInfoARM& value, std::stringstream& st
     stream << ", ";
     SerializeToStringPNext(value.pNext, stream);
     stream << ", ";
-    SerializeToString(value.flags, stream);
+    SerializeToStringVkTensorCreateFlagsARM(value.flags, stream);
     stream << ", ";
     if (value.pDescription) {
         stream << "{[";
@@ -22050,7 +22050,7 @@ void SerializeToString(const VkTensorViewCreateInfoARM& value, std::stringstream
     stream << ", ";
     SerializeToStringPNext(value.pNext, stream);
     stream << ", ";
-    SerializeToString(value.flags, stream);
+    SerializeToStringVkTensorViewCreateFlagsARM(value.flags, stream);
     stream << ", ";
     SerializeToString(value.tensor, stream);
     stream << ", ";
@@ -22110,9 +22110,9 @@ void SerializeToString(const VkTensorFormatPropertiesARM& value, std::stringstre
     stream << ", ";
     SerializeToStringPNext(value.pNext, stream);
     stream << ", ";
-    SerializeToString(value.optimalTilingTensorFeatures, stream);
+    SerializeToStringVkFormatFeatureFlags2(value.optimalTilingTensorFeatures, stream);
     stream << ", ";
-    SerializeToString(value.linearTilingTensorFeatures, stream);
+    SerializeToStringVkFormatFeatureFlags2(value.linearTilingTensorFeatures, stream);
     stream << "}";
 }
 
@@ -22156,13 +22156,13 @@ void SerializeToString(const VkTensorMemoryBarrierARM& value, std::stringstream&
     stream << ", ";
     SerializeToStringPNext(value.pNext, stream);
     stream << ", ";
-    SerializeToString(value.srcStageMask, stream);
+    SerializeToStringVkPipelineStageFlags2(value.srcStageMask, stream);
     stream << ", ";
-    SerializeToString(value.srcAccessMask, stream);
+    SerializeToStringVkAccessFlags2(value.srcAccessMask, stream);
     stream << ", ";
-    SerializeToString(value.dstStageMask, stream);
+    SerializeToStringVkPipelineStageFlags2(value.dstStageMask, stream);
     stream << ", ";
-    SerializeToString(value.dstAccessMask, stream);
+    SerializeToStringVkAccessFlags2(value.dstAccessMask, stream);
     stream << ", ";
     SerializeToString(value.srcQueueFamilyIndex, stream);
     stream << ", ";
@@ -22316,7 +22316,7 @@ void SerializeToString(const VkPhysicalDeviceExternalTensorInfoARM& value, std::
     stream << ", ";
     SerializeToStringPNext(value.pNext, stream);
     stream << ", ";
-    SerializeToString(value.flags, stream);
+    SerializeToStringVkTensorCreateFlagsARM(value.flags, stream);
     stream << ", ";
     if (value.pDescription) {
         stream << "{[";
@@ -23345,7 +23345,7 @@ void SerializeToString(const VkDataGraphPipelineCreateInfoARM& value, std::strin
     stream << ", ";
     SerializeToStringPNext(value.pNext, stream);
     stream << ", ";
-    SerializeToString(value.flags, stream);
+    SerializeToStringVkPipelineCreateFlags2(value.flags, stream);
     stream << ", ";
     SerializeToString(value.layout, stream);
     stream << ", ";
@@ -23406,7 +23406,7 @@ void SerializeToString(const VkDataGraphPipelineSessionCreateInfoARM& value, std
     stream << ", ";
     SerializeToStringPNext(value.pNext, stream);
     stream << ", ";
-    SerializeToString(value.flags, stream);
+    SerializeToStringVkDataGraphPipelineSessionCreateFlagsARM(value.flags, stream);
     stream << ", ";
     SerializeToString(value.dataGraphPipeline, stream);
     stream << "}";
@@ -23533,7 +23533,7 @@ void SerializeToString(const VkDataGraphPipelineDispatchInfoARM& value, std::str
     stream << ", ";
     SerializeToStringPNext(value.pNext, stream);
     stream << ", ";
-    SerializeToString(value.flags, stream);
+    SerializeToStringVkDataGraphPipelineDispatchFlagsARM(value.flags, stream);
     stream << "}";
 }
 
@@ -23935,7 +23935,7 @@ void SerializeToString(const VkDecompressMemoryInfoEXT& value, std::stringstream
     stream << ", ";
     SerializeToStringPNext(value.pNext, stream);
     stream << ", ";
-    SerializeToString(value.decompressionMethod, stream);
+    SerializeToStringVkMemoryDecompressionMethodFlagsEXT(value.decompressionMethod, stream);
     stream << ", ";
     SerializeToString(value.regionCount, stream);
     stream << ", ";

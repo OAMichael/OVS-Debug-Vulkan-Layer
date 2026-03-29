@@ -35,11 +35,20 @@ struct SignatureHeader {
     uint64_t globalIndex{0};
 };
 
+struct ParamNode {
+    std::string type;
+    std::string name;
+    std::string value;
+
+    std::vector<ParamNode> children;
+};
+
 struct BaseSignature {
     SignatureHeader header{};
     Allocator allocator{};
 
     virtual void SerializeToString(std::stringstream& stream) const = 0;
+    virtual void SerializeToParamTree(ParamNode& node) const = 0;
     virtual void SerializeToJSON(std::stringstream& stream) const = 0;
     virtual void SerializeToStream(WriteStream& stream) const = 0;
     virtual void DeserializeFromStream(const ReadStream& stream) = 0;
@@ -48,6 +57,7 @@ struct BaseSignature {
 };
 
 using SignaturePtr = std::unique_ptr<BaseSignature>;
+using SignatureSharedPtr = std::shared_ptr<BaseSignature>;
 
 template <typename T, typename U = T>
 concept SameOrConstVersion = std::is_same_v<T, U> ||
@@ -99,6 +109,16 @@ static inline void SerializeToString(const T& value, std::stringstream& stream) 
     else {
         stream << value;
     }
+}
+
+
+// Serialize to parameter tree
+//
+template <typename T>
+static inline void SerializeToParamTree(const T& value, ParamNode& node) {
+    std::stringstream stream;
+    SerializeToString(value, stream);
+    node.value = stream.str();
 }
 
 
