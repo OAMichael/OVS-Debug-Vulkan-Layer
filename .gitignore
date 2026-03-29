@@ -1,8 +1,13 @@
 .vscode
+.cache
 build
 Generated/*.txt
 *.o
 *.dll
 *.lib
 *.exp
+*.ps1
+*.ovs
+*.txt
+!CMakeLists.txt
 imgui.ini

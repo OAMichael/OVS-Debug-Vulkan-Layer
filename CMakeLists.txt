@@ -8,7 +8,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(LAYER_DIR ${CMAKE_CURRENT_SOURCE_DIR}/Layer)
 set(GENERATED_DIR ${CMAKE_CURRENT_SOURCE_DIR}/Generated)
 set(UTILS_DIR ${CMAKE_CURRENT_SOURCE_DIR}/Utils)
-set(UI_DIR ${CMAKE_CURRENT_SOURCE_DIR}/UI)
+set(TOOLS_DIR ${CMAKE_CURRENT_SOURCE_DIR}/Tools)
 set(EXTERNAL_DIR ${CMAKE_CURRENT_SOURCE_DIR}/External)
 set(JSON_DIR ${CMAKE_CURRENT_SOURCE_DIR}/JSON)
 
@@ -16,7 +16,7 @@ set(INCLUDE_DIRECTORIES
     ${LAYER_DIR}
     ${GENERATED_DIR}
     ${UTILS_DIR}
-    ${UI_DIR}
+    ${TOOLS_DIR}
     ${EXTERNAL_DIR}/Vulkan-Headers/include
     ${EXTERNAL_DIR}/stb
     ${EXTERNAL_DIR}/imgui
@@ -67,9 +67,11 @@ set(OVS_LAYER_SOURCES
     ${GENERATED_DIR}/EnumSerializeGenerated.cpp
     ${GENERATED_DIR}/StructSerializeGenerated.h
     ${GENERATED_DIR}/StructSerializeToStringGenerated.cpp
+    ${GENERATED_DIR}/StructSerializeToParamTreeGenerated.cpp
     ${GENERATED_DIR}/StructSerializeToStreamGenerated.cpp
     ${GENERATED_DIR}/StructDeserializeFromStreamGenerated.cpp
     ${GENERATED_DIR}/SignatureSerializeToStringGenerated.cpp
+    ${GENERATED_DIR}/SignatureSerializeToParamTreeGenerated.cpp
     ${GENERATED_DIR}/SignatureSerializeToStreamGenerated.cpp
     ${GENERATED_DIR}/SignatureDeserializeFromStreamGenerated.cpp
     ${GENERATED_DIR}/StructDeepCopyGenerated.h
@@ -103,9 +105,11 @@ file(COPY ${JSON_DIR}/${OVS_LAYER_NAME}.json DESTINATION ${CMAKE_CURRENT_BINARY_
 set(OVS_DEBUG_NAME OVSDebug)
 
 set(OVS_DEBUG_SOURCES
-    ${UI_DIR}/MainUI.cpp
-    ${UI_DIR}/ShaderProfiler.h
-    ${UI_DIR}/ShaderProfiler.cpp
+    ${TOOLS_DIR}/Main.cpp
+    ${TOOLS_DIR}/APITrace.h
+    ${TOOLS_DIR}/APITrace.cpp
+    ${TOOLS_DIR}/ShaderProfiler.h
+    ${TOOLS_DIR}/ShaderProfiler.cpp
 
     ${LAYER_DIR}/VulkanLayer.h
     ${LAYER_DIR}/VulkanLayer.cpp
@@ -120,9 +124,11 @@ set(OVS_DEBUG_SOURCES
     ${GENERATED_DIR}/EnumSerializeGenerated.cpp
     ${GENERATED_DIR}/StructSerializeGenerated.h
     ${GENERATED_DIR}/StructSerializeToStringGenerated.cpp
+    ${GENERATED_DIR}/StructSerializeToParamTreeGenerated.cpp
     ${GENERATED_DIR}/StructSerializeToStreamGenerated.cpp
     ${GENERATED_DIR}/StructDeserializeFromStreamGenerated.cpp
     ${GENERATED_DIR}/SignatureSerializeToStringGenerated.cpp
+    ${GENERATED_DIR}/SignatureSerializeToParamTreeGenerated.cpp
     ${GENERATED_DIR}/SignatureSerializeToStreamGenerated.cpp
     ${GENERATED_DIR}/SignatureDeserializeFromStreamGenerated.cpp
 
