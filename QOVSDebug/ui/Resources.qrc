@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/Images">
+        <file>branch-closed.png</file>
+        <file>branch-open.png</file>
+        <file>branch-end.png</file>
+        <file>branch-more.png</file>
+        <file>vline.png</file>
+        <file>APITraceLogo.png</file>
+        <file>OVSLogo.jpg</file>
+    </qresource>
+</RCC>

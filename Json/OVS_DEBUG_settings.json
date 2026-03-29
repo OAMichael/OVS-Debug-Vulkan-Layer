@@ -1,9 +1,9 @@
 {
     "Layers": [
         {
-            "Type": "Overlay",
+            "Type": "APITrace",
             "Settings": {
-                "MultipleViewports": false
+                "Filename": "ComputeCloth.ovs"
             }
         },
         {

@@ -47,6 +47,21 @@ static inline const char* GetLayerTypeName(VulkanLayerType type) {
     }
 }
 
+static inline const char* GetLayerReadableTypeName(VulkanLayerType type) {
+    switch (type) {
+    case VulkanLayerType::PassThrough:      return "Pass Through";
+    case VulkanLayerType::TerminatorBase:   return "Terminator Base";
+    case VulkanLayerType::Terminator:       return "Terminator";
+    case VulkanLayerType::Printer:          return "Printer";
+    case VulkanLayerType::Screenshot:       return "Screenshot";
+    case VulkanLayerType::Overlay:          return "Overlay";
+    case VulkanLayerType::APIDump:          return "API Dump";
+    case VulkanLayerType::APITrace:         return "API Trace";
+    case VulkanLayerType::ShaderProfiler:   return "Shader Profiler";
+    default:                                return "Unknown";
+    }
+}
+
 static inline VulkanLayerType GetLayerTypeByName(std::string_view name) {
     static const std::unordered_map<std::string_view, VulkanLayerType> sNameToTypeMap = {
         {"PassThrough", VulkanLayerType::PassThrough},
