@@ -7,6 +7,10 @@ static constexpr int IconTextSpacing = 10;
 static constexpr int TextHOffset = 20;
 static constexpr int FileNameFontHeight = 14;
 
+static constexpr QColor RadialGradientColor = QColor(0xC0, 0xC0, 0xC0);
+static constexpr QPointF RadialGradientCenter = QPointF(100, 100);
+static constexpr int RadialGradientRadius = 600;
+
 class LayerItemStyle : public QProxyStyle
 {
 public:
@@ -34,6 +38,17 @@ LayerItemDelegate::~LayerItemDelegate()
 
 void LayerItemDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
+    QRadialGradient radialGrad(RadialGradientCenter, RadialGradientRadius);
+
+    radialGrad.setColorAt(0.0, Qt::white);
+    radialGrad.setColorAt(1.0, RadialGradientColor);
+
+    QBrush brush(radialGrad);
+
+    painter->save();
+    painter->fillRect(option.rect, brush);
+    painter->restore();
+
     QStyleOptionViewItem opt = option;
     QStyledItemDelegate::initStyleOption(&opt, index);
 
