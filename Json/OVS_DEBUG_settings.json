@@ -1,9 +1,16 @@
 {
     "Layers": [
         {
-            "Type": "APITrace",
+            "Type": "ShaderOptimizer",
             "Settings": {
-                "Filename": "ComputeCloth.ovs"
+                "Mode": "Performance",
+                "Passes": [
+                    "InlineExhaustive",
+                    "EliminateDeadFunctions",
+                    "AggressiveDCE",
+                    "DeadBranchElim",
+                    "MergeReturn"
+                ]
             }
         },
         {

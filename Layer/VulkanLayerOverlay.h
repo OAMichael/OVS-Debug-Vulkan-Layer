@@ -35,6 +35,8 @@ public:
     explicit VulkanLayerOverlay(const VulkanLayerOverlaySettings& settings);
     virtual ~VulkanLayerOverlay();
 
+    static VulkanLayerOverlaySettings ParseSettingsFromJSON(const nlohmann::json& layerInfo);
+
 private:
     static constexpr uint32_t OverlayInfoMaxDescriptorsCount = 1000;
     static constexpr uint32_t OverlayInfoMaxDescriptorSetsCount = 1000;

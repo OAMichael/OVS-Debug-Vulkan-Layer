@@ -6,6 +6,88 @@
 
 namespace OVS {
 
+static bool ParseFrameRanges(const std::string& frameRangesStr, std::vector<FrameRange>& out)
+{
+    std::vector<std::string> rangesStr;
+
+    size_t findPos = 0;
+    while (true) {
+        auto pos = frameRangesStr.find(',', findPos);
+        auto count = pos - findPos;
+        if (pos == std::string::npos) {
+            count = pos - frameRangesStr.size();
+        }
+
+        auto sub = frameRangesStr.substr(findPos, count);
+        std::erase(sub, ' ');
+        rangesStr.push_back(sub);
+
+        if (pos == std::string::npos) {
+            break;
+        }
+
+        findPos = pos + 1;
+    }
+
+    std::vector<FrameRange> frameRanges;
+    for (const auto& rangeStr : rangesStr) {
+        auto dash = rangeStr.find('-');
+        if (dash == std::string::npos) {
+            uint32_t frame = 0;
+
+            auto begin = rangeStr.data();
+            auto end = begin + rangeStr.size();
+            auto res = std::from_chars(begin, end, frame);
+            if (res.ec != std::errc()) {
+                return false;
+            }
+
+            frameRanges.push_back(FrameRange(frame, frame));
+        }
+        else {
+            if (dash == rangeStr.size() - 1) {
+                return false;
+            }
+
+            uint32_t start = 0;
+            uint32_t end = 0;
+
+            auto begin1 = rangeStr.data();
+            auto end1 = begin1 + dash;
+            auto begin2 = begin1 + dash + 1;
+            auto end2 = begin1 + rangeStr.size();
+            auto res1 = std::from_chars(begin1, end1, start);
+            auto res2 = std::from_chars(begin2, end2, end);
+            if (res1.ec != std::errc() || res2.ec != std::errc()) {
+                return false;
+            }
+
+            frameRanges.push_back(FrameRange(start, end));
+        }
+    }
+
+    out = std::move(frameRanges);
+    return true;
+}
+
+VulkanLayerScreenshotSettings VulkanLayerScreenshot::ParseSettingsFromJSON(const nlohmann::json& layerInfo)
+{
+    VulkanLayerScreenshotSettings settings{};
+    if (layerInfo.contains("Settings")) {
+        const auto& settingsJSON = layerInfo["Settings"];
+        if (settingsJSON.contains("FileBaseName")) {
+            settings.fileBaseName = settingsJSON["FileBaseName"];
+        }
+        if (settingsJSON.contains("FrameRanges")) {
+            std::string frameRangesStr = settingsJSON["FrameRanges"];
+            if (!ParseFrameRanges(frameRangesStr, settings.frameRanges)) {
+                std::cout << "[DEBUG] Could not parse Screenshot Layer frame ranges\n";
+            }
+        }
+    }
+    return settings;
+}
+
 VkResult VulkanLayerScreenshot::vkCreateDevice(VkPhysicalDevice physicalDevice, const VkDeviceCreateInfo* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkDevice* pDevice)
 {
     VkResult res = next_->vkCreateDevice(physicalDevice, pCreateInfo, pAllocator, pDevice);

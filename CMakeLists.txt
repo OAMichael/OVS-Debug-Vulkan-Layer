@@ -49,6 +49,8 @@ set(OVS_LAYER_SOURCES
     ${LAYER_DIR}/VulkanLayerScreenshot.cpp
     ${LAYER_DIR}/VulkanLayerShaderProfiler.h
     ${LAYER_DIR}/VulkanLayerShaderProfiler.cpp
+    ${LAYER_DIR}/VulkanLayerShaderOptimizer.h
+    ${LAYER_DIR}/VulkanLayerShaderOptimizer.cpp
 
     ${GENERATED_DIR}/VulkanCoreGenerated.h
     ${GENERATED_DIR}/VulkanDispatchTablesGenerated.h
@@ -82,6 +84,7 @@ set(OVS_LAYER_SOURCES
     ${UTILS_DIR}/VulkanPlatform.h
     ${UTILS_DIR}/VulkanUtils.h
     ${UTILS_DIR}/VulkanShader.h
+    ${UTILS_DIR}/VulkanShader.cpp
     ${UTILS_DIR}/CommonUtils.h
     ${UTILS_DIR}/PlatformUtils.cpp
 

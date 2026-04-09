@@ -26,6 +26,8 @@ public:
     explicit VulkanLayerScreenshot(const VulkanLayerScreenshotSettings& settings) : VulkanLayerPassThrough(VulkanLayerType::Screenshot), settings_{settings} {}
     virtual ~VulkanLayerScreenshot() {}
 
+    static VulkanLayerScreenshotSettings ParseSettingsFromJSON(const nlohmann::json& layerInfo);
+
 private:
     struct ScreenshotInfo {
         VkImage image{VK_NULL_HANDLE};

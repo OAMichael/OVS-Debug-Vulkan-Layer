@@ -14,48 +14,8 @@
 namespace OVS {
 
 static void SPIRVErrorHandler(spv_message_level_t, const char*, const spv_position_t&, const char* m) {
-    std::cout << "SPIRV: " << m << '\n';
+    std::cout << "Shader Profiler SPIRV: " << m << '\n';
 };
-
-static void DumpModule(const spvtools::opt::Module& m) {
-    std::cout << "Module (version: " << m.version() << "):\n";
-    for (const auto& inst : m.capabilities()) {
-        std::cout << "            " << inst.PrettyPrint() << '\n';
-    }
-    for (const auto& inst : m.ext_inst_imports()) {
-        std::cout << "            " << inst.PrettyPrint() << '\n';
-    }
-    std::cout << "            " << m.GetMemoryModel()->PrettyPrint() << '\n';
-    for (const auto& inst : m.entry_points()) {
-        std::cout << "            " << inst.PrettyPrint() << '\n';
-    }
-    for (const auto& inst : m.execution_modes()) {
-        std::cout << "            " << inst.PrettyPrint() << '\n';
-    }
-    for (const auto& inst : m.annotations()) {
-        std::cout << "            " << inst.PrettyPrint() << '\n';
-    }
-    for (const auto& inst : m.extensions()) {
-        std::cout << "            " << inst.PrettyPrint() << '\n';
-    }
-    for (const auto& inst : m.types_values()) {
-        std::cout << "            " << inst.PrettyPrint() << '\n';
-    }
-    std::cout << '\n';
-
-    for (const auto& f : m) {
-        std::cout << "    Function #" << f.result_id() << '\n';
-        for (const auto& bb : f) {
-            std::cout << "        BB #" << bb.id() << '\n';
-            for (const auto& inst : bb) {
-                std::cout << "            " << inst.PrettyPrint() << '\n';
-            }
-            std::cout << '\n';
-        }
-        std::cout << '\n';
-    }
-    std::cout << '\n';
-}
 
 static VulkanShaderStage ExecutionModelToShaderStage(spv::ExecutionModel value) {
     switch (value) {
@@ -110,11 +70,16 @@ static inline bool IsPipelineBindPointSupported(VkPipelineBindPoint bindPoint) {
     }
 }
 
-VulkanLayerShaderProfiler::VulkanLayerShaderProfiler(const VulkanLayerShaderProfilerSettings& settings) : VulkanLayerPassThrough(VulkanLayerType::ShaderProfiler), settings_{settings} {}
-
-VulkanLayerShaderProfiler::~VulkanLayerShaderProfiler()
+VulkanLayerShaderProfilerSettings VulkanLayerShaderProfiler::ParseSettingsFromJSON(const nlohmann::json& layerInfo)
 {
-    SaveCollectedProfileInfo();
+    VulkanLayerShaderProfilerSettings settings{};
+    if (layerInfo.contains("Settings")) {
+        const auto& settingsJSON = layerInfo["Settings"];
+        if (settingsJSON.contains("Filename")) {
+            settings.filename = settingsJSON["Filename"];
+        }
+    }
+    return settings;
 }
 
 VkResult VulkanLayerShaderProfiler::vkCreateInstance(const VkInstanceCreateInfo* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkInstance* pInstance)

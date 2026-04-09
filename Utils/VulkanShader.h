@@ -3,6 +3,13 @@
 
 #include <Vulkan.h>
 
+#include <iostream>
+#include <vector>
+
+namespace spvtools::opt {
+class Module;
+}
+
 namespace OVS {
 
 enum class VulkanShaderStage {
@@ -74,6 +81,10 @@ constexpr static inline const char* GetVulkanPipelineBindPointName(VkPipelineBin
         default:                                     return "Unknown";
     }
 }
+
+void PrintSPIRV(const uint32_t* pCode, uint32_t codeSize, std::ostream& out);
+void PrintSPIRV(const std::vector<uint32_t>& code, std::ostream& out);
+void PrintSPIRV(const spvtools::opt::Module& m, std::ostream& out);
 
 } // namespace OVS
 

@@ -10,6 +10,8 @@
 #include <cstdint>
 #include <unordered_map>
 
+#include <nlohmann/json.hpp>
+
 namespace OVS {
 
 struct FrameRange {
@@ -28,6 +30,7 @@ enum class VulkanLayerType {
     APIDump,
     APITrace,
     ShaderProfiler,
+    ShaderOptimizer,
 
     Count
 };
@@ -43,6 +46,7 @@ static inline const char* GetLayerTypeName(VulkanLayerType type) {
         case VulkanLayerType::APIDump:          return "APIDump";
         case VulkanLayerType::APITrace:         return "APITrace";
         case VulkanLayerType::ShaderProfiler:   return "ShaderProfiler";
+        case VulkanLayerType::ShaderOptimizer:  return "ShaderOptimizer";
         default:                                return "Unknown";
     }
 }
@@ -58,21 +62,23 @@ static inline const char* GetLayerReadableTypeName(VulkanLayerType type) {
     case VulkanLayerType::APIDump:          return "API Dump";
     case VulkanLayerType::APITrace:         return "API Trace";
     case VulkanLayerType::ShaderProfiler:   return "Shader Profiler";
+    case VulkanLayerType::ShaderOptimizer:  return "Shader Optimizer";
     default:                                return "Unknown";
     }
 }
 
 static inline VulkanLayerType GetLayerTypeByName(std::string_view name) {
     static const std::unordered_map<std::string_view, VulkanLayerType> sNameToTypeMap = {
-        {"PassThrough", VulkanLayerType::PassThrough},
-        {"TerminatorBase", VulkanLayerType::TerminatorBase},
-        {"Terminator", VulkanLayerType::Terminator},
-        {"Printer", VulkanLayerType::Printer},
-        {"Screenshot", VulkanLayerType::Screenshot},
-        {"Overlay", VulkanLayerType::Overlay},
-        {"APIDump", VulkanLayerType::APIDump},
-        {"APITrace", VulkanLayerType::APITrace},
-        {"ShaderProfiler", VulkanLayerType::ShaderProfiler},
+        {"PassThrough",         VulkanLayerType::PassThrough},
+        {"TerminatorBase",      VulkanLayerType::TerminatorBase},
+        {"Terminator",          VulkanLayerType::Terminator},
+        {"Printer",             VulkanLayerType::Printer},
+        {"Screenshot",          VulkanLayerType::Screenshot},
+        {"Overlay",             VulkanLayerType::Overlay},
+        {"APIDump",             VulkanLayerType::APIDump},
+        {"APITrace",            VulkanLayerType::APITrace},
+        {"ShaderProfiler",      VulkanLayerType::ShaderProfiler},
+        {"ShaderOptimizer",     VulkanLayerType::ShaderOptimizer},
     };
 
     auto it = sNameToTypeMap.find(name);
@@ -80,6 +86,115 @@ static inline VulkanLayerType GetLayerTypeByName(std::string_view name) {
         return it->second;
     }
     return VulkanLayerType::None;
+}
+
+enum class ShaderOptimizerMode {
+    None = 0,
+    Performance,
+    Size,
+    Custom
+};
+
+static inline const char* GetShaderOptimizerModeName(ShaderOptimizerMode mode) {
+    switch (mode) {
+        case ShaderOptimizerMode::Performance:  return "Performance";
+        case ShaderOptimizerMode::Size:         return "Size";
+        case ShaderOptimizerMode::Custom:       return "Custom";
+        default:                                return "None";
+    }
+}
+
+enum class ShaderOptimizerPass {
+    None = 0,
+    StripDebugInfo,                         // Strip debug info
+    StripNonSemanticInfo,                   // Strip non-semantic info
+    EliminateDeadFunctions,                 // Eliminate dead functions
+    EliminateDeadMembers,                   // Eliminate dead structure members
+    FoldSpecConstantOpAndComposite,         // Fold specialization constants
+    UnifyConstant,                          // Merge constants with the same values
+    EliminateDeadConstant,                  // Eliminate dead constants
+    StrengthReduction,                      // Peepholes
+    BlockMerge,                             // Merge basic block with single predecessor with its parent
+    InlineExhaustive,                       // Inline everything
+    InlineOpaque,                           // Inline functions with opaque type parameters or return type
+    DeadBranchElim,                         // Eliminate dead branches
+    AggressiveDCE,                          // Aggressive DCE
+    RemoveUnusedInterfaceVariables,         // Remove unused interface variables
+    RemoveDuplicates,                       // Remove duplicate instructions (capabilities, ExtInstImport, types, decorations)
+    CFGCleanup,                             // Remove unreachable basic blocks
+    DeadVariableElimination,                // Eliminate dead variables
+    MergeReturn,                            // Merge function return basic blocks
+    LocalRedundancyElimination,             // Local value numbering
+    LoopInvariantCodeMotion,                // Move loop invariant instructions outside a loop
+    LoopFission,                            // Loop fission
+    LoopFusion,                             // Loop fusion
+    LoopPeeling,                            // Loop peeling
+    LoopUnswitch,                           // Move branches out of a loop
+    RedundancyElimination,                  // Global value numbering
+    CoditionalConstantPropagation,          // Conditional constant propagation
+    IfConversion,                           // If conversion
+    Simplification,                         // Instruction simplification
+    LoopUnroll,                             // Loop unroll
+    ConvertRelaxedToHalf,                   // Replace all float instructions with half instructions
+    RelaxFloatOps,                          // Decorate all floats with RelaxedPrecision
+    CopyPropagateArrays,                    // Propogate arrays
+    VectorDCE,                              // DCE for vector components
+    ReduceLoadSize,                         // Reduce loads
+    CombineAccessChains,                    // Combine (propogate) access
+    GraphicsRobustAccess,                   // Enable robust access
+    InterfaceVariableScalarReplacement,     // Replace interface variables with scalars/vectors (mat4 -> vec4, vec4, vec4, vec4)
+    TrimCapabilities,                       // Remove unused capabilities
+    SplitCombinedImageSampler,              // Split combined images sampler into sampled image and sampler
+};
+
+static inline ShaderOptimizerPass GetShaderOptimizerPassByName(std::string_view name) {
+    static const std::unordered_map<std::string_view, ShaderOptimizerPass> sNameToTypeMap = {
+        {"StripDebugInfo",                      ShaderOptimizerPass::StripDebugInfo},
+        {"StripNonSemanticInfo",                ShaderOptimizerPass::StripNonSemanticInfo},
+        {"EliminateDeadFunctions",              ShaderOptimizerPass::EliminateDeadFunctions},
+        {"EliminateDeadMembers",                ShaderOptimizerPass::EliminateDeadMembers},
+        {"FoldSpecConstantOpAndComposite",      ShaderOptimizerPass::FoldSpecConstantOpAndComposite},
+        {"UnifyConstant",                       ShaderOptimizerPass::UnifyConstant},
+        {"EliminateDeadConstant",               ShaderOptimizerPass::EliminateDeadConstant},
+        {"StrengthReduction",                   ShaderOptimizerPass::StrengthReduction},
+        {"BlockMerge",                          ShaderOptimizerPass::BlockMerge},
+        {"InlineExhaustive",                    ShaderOptimizerPass::InlineExhaustive},
+        {"InlineOpaque",                        ShaderOptimizerPass::InlineOpaque},
+        {"DeadBranchElim",                      ShaderOptimizerPass::DeadBranchElim},
+        {"AggressiveDCE",                       ShaderOptimizerPass::AggressiveDCE},
+        {"RemoveUnusedInterfaceVariables",      ShaderOptimizerPass::RemoveUnusedInterfaceVariables},
+        {"RemoveDuplicates",                    ShaderOptimizerPass::RemoveDuplicates},
+        {"CFGCleanup",                          ShaderOptimizerPass::CFGCleanup},
+        {"DeadVariableElimination",             ShaderOptimizerPass::DeadVariableElimination},
+        {"MergeReturn",                         ShaderOptimizerPass::MergeReturn},
+        {"LocalRedundancyElimination",          ShaderOptimizerPass::LocalRedundancyElimination},
+        {"LoopInvariantCodeMotion",             ShaderOptimizerPass::LoopInvariantCodeMotion},
+        {"LoopFission",                         ShaderOptimizerPass::LoopFission},
+        {"LoopFusion",                          ShaderOptimizerPass::LoopFusion},
+        {"LoopPeeling",                         ShaderOptimizerPass::LoopPeeling},
+        {"LoopUnswitch",                        ShaderOptimizerPass::LoopUnswitch},
+        {"RedundancyElimination",               ShaderOptimizerPass::RedundancyElimination},
+        {"CoditionalConstantPropagation",       ShaderOptimizerPass::CoditionalConstantPropagation},
+        {"IfConversion",                        ShaderOptimizerPass::IfConversion},
+        {"Simplification",                      ShaderOptimizerPass::Simplification},
+        {"LoopUnroll",                          ShaderOptimizerPass::LoopUnroll},
+        {"ConvertRelaxedToHalf",                ShaderOptimizerPass::ConvertRelaxedToHalf},
+        {"RelaxFloatOps",                       ShaderOptimizerPass::RelaxFloatOps},
+        {"CopyPropagateArrays",                 ShaderOptimizerPass::CopyPropagateArrays},
+        {"VectorDCE",                           ShaderOptimizerPass::VectorDCE},
+        {"ReduceLoadSize",                      ShaderOptimizerPass::ReduceLoadSize},
+        {"CombineAccessChains",                 ShaderOptimizerPass::CombineAccessChains},
+        {"GraphicsRobustAccess",                ShaderOptimizerPass::GraphicsRobustAccess},
+        {"InterfaceVariableScalarReplacement",  ShaderOptimizerPass::InterfaceVariableScalarReplacement},
+        {"TrimCapabilities",                    ShaderOptimizerPass::TrimCapabilities},
+        {"SplitCombinedImageSampler",           ShaderOptimizerPass::SplitCombinedImageSampler},
+    };
+
+    auto it = sNameToTypeMap.find(name);
+    if (it != sNameToTypeMap.end()) {
+        return it->second;
+    }
+    return ShaderOptimizerPass::None;
 }
 
 class VulkanLayerInterface;
@@ -116,6 +231,11 @@ struct VulkanLayerAPITraceSettings {
 
 struct VulkanLayerShaderProfilerSettings {
     std::string filename{ShaderProfilerDefaultFilename};
+};
+
+struct VulkanLayerShaderOptimizerSettings {
+    ShaderOptimizerMode mode{ShaderOptimizerMode::None};
+    std::vector<ShaderOptimizerPass> customPasses;
 };
 
 constexpr uint32_t OVSFileMagic = (uint32_t('#') << 24) | (uint32_t('O') << 16) | (uint32_t('V') << 8) | (uint32_t('S'));

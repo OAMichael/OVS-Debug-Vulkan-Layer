@@ -81,6 +81,18 @@ static int VulkanCreateSurfaceForImGui(ImGuiViewport* viewport, ImU64 instance, 
     return (int)dispatchTable.vkCreateWin32SurfaceKHR((VkInstance)instance, &createInfo, (VkAllocationCallbacks*)pAllocator, (VkSurfaceKHR*)pSurface);
 }
 
+VulkanLayerOverlaySettings VulkanLayerOverlay::ParseSettingsFromJSON(const nlohmann::json& layerInfo)
+{
+    VulkanLayerOverlaySettings settings{};
+    if (layerInfo.contains("Settings")) {
+        const auto& settingsJSON = layerInfo["Settings"];
+        if (settingsJSON.contains("MultipleViewports")) {
+            settings.multipleViewports = settingsJSON["MultipleViewports"];
+        }
+    }
+    return settings;
+}
+
 VulkanLayerOverlay::VulkanLayerOverlay(const VulkanLayerOverlaySettings& settings) : VulkanLayerPassThrough(VulkanLayerType::Overlay), settings_{settings}
 {
     ImGui_ImplWin32_EnableDpiAwareness();

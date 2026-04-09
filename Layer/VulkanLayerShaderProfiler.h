@@ -54,8 +54,10 @@ public:
 
     virtual void vkCmdBindPipeline(VkCommandBuffer commandBuffer, VkPipelineBindPoint pipelineBindPoint, VkPipeline pipeline) override;
 
-    explicit VulkanLayerShaderProfiler(const VulkanLayerShaderProfilerSettings& settings);
-    virtual ~VulkanLayerShaderProfiler();
+    explicit VulkanLayerShaderProfiler(const VulkanLayerShaderProfilerSettings& settings) : VulkanLayerPassThrough(VulkanLayerType::ShaderProfiler), settings_{settings} {}
+    virtual ~VulkanLayerShaderProfiler() { SaveCollectedProfileInfo(); }
+
+    static VulkanLayerShaderProfilerSettings ParseSettingsFromJSON(const nlohmann::json& layerInfo);
 
 private:
     struct InstanceInfo {
