@@ -47,6 +47,8 @@ set(OVS_LAYER_SOURCES
     ${LAYER_DIR}/VulkanLayerOverlay.cpp
     ${LAYER_DIR}/VulkanLayerScreenshot.h
     ${LAYER_DIR}/VulkanLayerScreenshot.cpp
+    ${LAYER_DIR}/VulkanLayerGPUProfiler.h
+    ${LAYER_DIR}/VulkanLayerGPUProfiler.cpp
     ${LAYER_DIR}/VulkanLayerShaderProfiler.h
     ${LAYER_DIR}/VulkanLayerShaderProfiler.cpp
     ${LAYER_DIR}/VulkanLayerShaderOptimizer.h
@@ -111,6 +113,8 @@ set(OVS_DEBUG_SOURCES
     ${TOOLS_DIR}/Main.cpp
     ${TOOLS_DIR}/APITrace.h
     ${TOOLS_DIR}/APITrace.cpp
+    ${TOOLS_DIR}/GPUProfiler.h
+    ${TOOLS_DIR}/GPUProfiler.cpp
     ${TOOLS_DIR}/ShaderProfiler.h
     ${TOOLS_DIR}/ShaderProfiler.cpp
 

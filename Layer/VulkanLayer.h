@@ -29,6 +29,7 @@ enum class VulkanLayerType {
     Overlay,
     APIDump,
     APITrace,
+    GPUProfiler,
     ShaderProfiler,
     ShaderOptimizer,
 
@@ -45,6 +46,7 @@ static inline const char* GetLayerTypeName(VulkanLayerType type) {
         case VulkanLayerType::Overlay:          return "Overlay";
         case VulkanLayerType::APIDump:          return "APIDump";
         case VulkanLayerType::APITrace:         return "APITrace";
+        case VulkanLayerType::GPUProfiler:      return "GPUProfiler";
         case VulkanLayerType::ShaderProfiler:   return "ShaderProfiler";
         case VulkanLayerType::ShaderOptimizer:  return "ShaderOptimizer";
         default:                                return "Unknown";
@@ -61,6 +63,7 @@ static inline const char* GetLayerReadableTypeName(VulkanLayerType type) {
     case VulkanLayerType::Overlay:          return "Overlay";
     case VulkanLayerType::APIDump:          return "API Dump";
     case VulkanLayerType::APITrace:         return "API Trace";
+    case VulkanLayerType::GPUProfiler:      return "GPU Profiler";
     case VulkanLayerType::ShaderProfiler:   return "Shader Profiler";
     case VulkanLayerType::ShaderOptimizer:  return "Shader Optimizer";
     default:                                return "Unknown";
@@ -77,6 +80,7 @@ static inline VulkanLayerType GetLayerTypeByName(std::string_view name) {
         {"Overlay",             VulkanLayerType::Overlay},
         {"APIDump",             VulkanLayerType::APIDump},
         {"APITrace",            VulkanLayerType::APITrace},
+        {"GPUProfiler",         VulkanLayerType::GPUProfiler},
         {"ShaderProfiler",      VulkanLayerType::ShaderProfiler},
         {"ShaderOptimizer",     VulkanLayerType::ShaderOptimizer},
     };
@@ -204,6 +208,7 @@ constexpr const char PrinterDefaultFilename[] = "stdout";
 constexpr const char ScreenshotDefaultFileBaseName[] = "screenshot";
 constexpr const char APIDumpDefaultFilename[] = "stdout";
 constexpr const char APITraceDefaultFilename[] = "apitrace.ovs";
+constexpr const char GPUProfilerDefaultFilename[] = "gpuprof.ovs";
 constexpr size_t APITraceDefaultFlushSize = 200 * 1024 * 1024;
 constexpr const char ShaderProfilerDefaultFilename[] = "shaderprof.ovs";
 
@@ -229,6 +234,11 @@ struct VulkanLayerAPITraceSettings {
     size_t flushSize{APITraceDefaultFlushSize};
 };
 
+struct VulkanLayerGPUProfilerSettings {
+    std::string filename{GPUProfilerDefaultFilename};
+    bool useZoneBarriers{false};
+};
+
 struct VulkanLayerShaderProfilerSettings {
     std::string filename{ShaderProfilerDefaultFilename};
 };
@@ -252,6 +262,11 @@ struct APITraceFileHeader {
     uint64_t signatureCount{0};
 };
 
+struct GPUProfilerFileHeader {
+    uint64_t byteSize{0};
+    float timestampPeriod{0};
+};
+
 struct ShaderProfilerFileHeader {
     uint64_t byteSize{0};
 };
@@ -269,11 +284,40 @@ struct CollectedPipelineProfileInfo {
     std::vector<CollectedShaderProfileInfo> shaderInfos;
 };
 
+struct GPUZone {
+    std::string name;
+    uint64_t begin{0};
+    uint64_t end{0};
+    std::vector<GPUZone> children;
+};
+
+struct GPUProfileCommandBufferInfo {
+    VkCommandBuffer commandBuffer{VK_NULL_HANDLE};
+    GPUZone rootZone;
+};
+
+struct GPUProfileFrameInfo {
+    uint32_t frame{0};
+    std::vector<GPUProfileCommandBufferInfo> commandBufferInfos;
+};
+
+struct GPUProfileInfo {
+    std::vector<GPUProfileFrameInfo> frameInfos;
+};
+
 void SerializeToStream(const CollectedPipelineProfileInfo& info, WriteStream& stream);
 void SerializeToStream(const CollectedShaderProfileInfo& info, WriteStream& stream);
+void SerializeToStream(const GPUProfileInfo& info, WriteStream& stream);
+void SerializeToStream(const GPUProfileFrameInfo& info, WriteStream& stream);
+void SerializeToStream(const GPUProfileCommandBufferInfo& info, WriteStream& stream);
+void SerializeToStream(const GPUZone& info, WriteStream& stream);
 
 void DeserializeFromStream(CollectedPipelineProfileInfo& info, const ReadStream& stream);
 void DeserializeFromStream(CollectedShaderProfileInfo& info, const ReadStream& stream);
+void DeserializeFromStream(GPUProfileInfo& info, const ReadStream& stream);
+void DeserializeFromStream(GPUProfileFrameInfo& info, const ReadStream& stream);
+void DeserializeFromStream(GPUProfileCommandBufferInfo& info, const ReadStream& stream);
+void DeserializeFromStream(GPUZone& info, const ReadStream& stream);
 
 } // namespace OVS
 

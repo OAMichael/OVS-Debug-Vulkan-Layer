@@ -5,6 +5,7 @@
 #include <VulkanLayer.h>
 
 #include <APITrace.h>
+#include <GPUProfiler.h>
 #include <ShaderProfiler.h>
 
 int main(int argc, char** argv) {
@@ -43,7 +44,10 @@ int main(int argc, char** argv) {
 
     std::FILE* outputFile = nullptr;
     OVS::VulkanLayerType layerType = OVS::VulkanLayerType(layerTypeU32);
-    if (layerType == OVS::VulkanLayerType::APITrace || layerType == OVS::VulkanLayerType::ShaderProfiler) {
+    if (layerType == OVS::VulkanLayerType::APITrace ||
+        layerType == OVS::VulkanLayerType::GPUProfiler ||
+        layerType == OVS::VulkanLayerType::ShaderProfiler)
+    {
         if (argc < 3) {
             std::cout << "Output file is required for layer type \"" << OVS::GetLayerTypeName(layerType) << "\"" << std::endl;
             std::fclose(inputFile);
@@ -63,6 +67,10 @@ int main(int argc, char** argv) {
     switch (layerType) {
         case OVS::VulkanLayerType::APITrace: {
             handled = HandleAPITraceLayer(inputFile, outputFile);
+            break;
+        }
+        case OVS::VulkanLayerType::GPUProfiler: {
+            handled = HandleGPUProfilerLayer(inputFile, outputFile);
             break;
         }
         case OVS::VulkanLayerType::ShaderProfiler: {

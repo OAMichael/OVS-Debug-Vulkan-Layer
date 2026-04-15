@@ -5,6 +5,7 @@
 #include <VulkanLayerPrinterGenerated.h>
 #include <VulkanLayerAPIDumpGenerated.h>
 #include <VulkanLayerAPITraceGenerated.h>
+#include <VulkanLayerGPUProfiler.h>
 #include <VulkanLayerShaderProfiler.h>
 #include <VulkanLayerShaderOptimizer.h>
 
@@ -124,6 +125,12 @@ bool VulkanLayerManager::CreateLayersFromJSON(const std::string& settingsPath) {
                     }
 
                     auto layer = std::make_unique<VulkanLayerAPITrace>(settings);
+                    layers_.emplace_back(std::move(layer));
+                    break;
+                }
+                case VulkanLayerType::GPUProfiler: {
+                    auto settings = VulkanLayerGPUProfiler::ParseSettingsFromJSON(layerInfo);
+                    auto layer = std::make_unique<VulkanLayerGPUProfiler>(settings);
                     layers_.emplace_back(std::move(layer));
                     break;
                 }

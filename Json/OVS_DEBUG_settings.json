@@ -1,16 +1,16 @@
 {
     "Layers": [
         {
-            "Type": "ShaderOptimizer",
+            "Type": "GPUProfiler",
             "Settings": {
-                "Mode": "Performance",
-                "Passes": [
-                    "InlineExhaustive",
-                    "EliminateDeadFunctions",
-                    "AggressiveDCE",
-                    "DeadBranchElim",
-                    "MergeReturn"
-                ]
+                "Filename": "DebugUtilsGPUProfiler.ovs",
+                "UseZoneBarriers": false
+            }
+        },
+        {
+            "Type": "APITrace",
+            "Settings": {
+                "Filename": "DebugUtilsAPITrace.ovs"
             }
         },
         {
