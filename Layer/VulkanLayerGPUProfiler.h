@@ -3,6 +3,8 @@
 
 #include <VulkanLayerPassThroughGenerated.h>
 
+#include <nlohmann/json.hpp>
+
 #include <unordered_map>
 #include <unordered_set>
 #include <vector>

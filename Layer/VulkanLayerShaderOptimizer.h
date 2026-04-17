@@ -3,6 +3,8 @@
 
 #include <VulkanLayerPassThroughGenerated.h>
 
+#include <nlohmann/json.hpp>
+
 namespace spvtools {
 class Optimizer;
 }

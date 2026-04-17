@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 
 #include <apitracewindow.h>
+#include <gpuprofilerwindow.h>
 
 #include <QListView>
 #include <QStringList>
@@ -104,6 +105,14 @@ void MainWindow::openFile()
             statusBarWidget = apitracewindow->getStatusBarWidget();
             window = apitracewindow;
             layerIconPath = ":/Images/APITraceLogo.png";
+            break;
+        }
+        case OVS::VulkanLayerType::GPUProfiler: {
+            GPUProfilerWindow *gpuprofilerwindow = new GPUProfilerWindow(this);
+            gpuprofilerwindow->openFile(fileName);
+            statusBarWidget = gpuprofilerwindow->getStatusBarWidget();
+            window = gpuprofilerwindow;
+            layerIconPath = ":/Images/GPUProfilerLogo.png";
             break;
         }
         case OVS::VulkanLayerType::ShaderProfiler: {

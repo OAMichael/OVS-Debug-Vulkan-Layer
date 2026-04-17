@@ -10,8 +10,6 @@
 #include <cstdint>
 #include <unordered_map>
 
-#include <nlohmann/json.hpp>
-
 namespace OVS {
 
 struct FrameRange {

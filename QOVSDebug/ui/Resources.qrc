@@ -7,5 +7,6 @@
         <file>vline.png</file>
         <file>APITraceLogo.png</file>
         <file>OVSLogo.jpg</file>
+        <file>GPUProfilerLogo.png</file>
     </qresource>
 </RCC>

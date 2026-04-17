@@ -8,12 +8,6 @@
             }
         },
         {
-            "Type": "APITrace",
-            "Settings": {
-                "Filename": "DebugUtilsAPITrace.ovs"
-            }
-        },
-        {
             "Type": "Terminator"
         }
     ]

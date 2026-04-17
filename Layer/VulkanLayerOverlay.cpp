@@ -2,6 +2,8 @@
 #include <VulkanLayerOverlay.h>
 #include <VulkanLayerTerminator.h>
 
+#include <nlohmann/json.hpp>
+
 #include <commctrl.h>
 
 #include <iostream>

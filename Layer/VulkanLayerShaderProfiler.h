@@ -4,6 +4,8 @@
 #include <VulkanLayerPassThroughGenerated.h>
 #include <VulkanShader.h>
 
+#include <nlohmann/json.hpp>
+
 #include <unordered_map>
 
 namespace OVS {
