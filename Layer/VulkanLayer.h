@@ -262,6 +262,7 @@ struct APITraceFileHeader {
 
 struct GPUProfilerFileHeader {
     uint64_t byteSize{0};
+    uint64_t originTimestamp{0};
     float timestampPeriod{0};
 };
 
@@ -282,6 +283,8 @@ struct CollectedPipelineProfileInfo {
     std::vector<CollectedShaderProfileInfo> shaderInfos;
 };
 
+constexpr uint64_t InvalidTimestamp = UINT64_MAX;
+
 struct GPUZone {
     std::string name;
     uint64_t begin{0};
@@ -296,6 +299,7 @@ struct GPUProfileCommandBufferInfo {
 
 struct GPUProfileFrameInfo {
     uint32_t frame{0};
+    uint64_t presentTimestamp{InvalidTimestamp};
     std::vector<GPUProfileCommandBufferInfo> commandBufferInfos;
 };
 

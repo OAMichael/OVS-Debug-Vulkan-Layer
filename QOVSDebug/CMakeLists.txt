@@ -39,6 +39,7 @@ set(PROJECT_SOURCES
         ${UI_SRC_DIR}/apitracewindow.cpp
         ${UI_SRC_DIR}/gpuprofilerwindow.cpp
         ${UI_SRC_DIR}/gpuzone.cpp
+        ${UI_SRC_DIR}/gpuframe.cpp
         ${UI_SRC_DIR}/timelineview.cpp
         ${UI_SRC_DIR}/layeritemdelegate.cpp
 
@@ -46,6 +47,7 @@ set(PROJECT_SOURCES
         ${UI_INCLUDE_DIR}/apitracewindow.h
         ${UI_INCLUDE_DIR}/gpuprofilerwindow.h
         ${UI_INCLUDE_DIR}/gpuzone.h
+        ${UI_INCLUDE_DIR}/gpuframe.h
         ${UI_INCLUDE_DIR}/timelineview.h
         ${UI_INCLUDE_DIR}/layeritemdelegate.h
 

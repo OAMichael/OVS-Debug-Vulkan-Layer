@@ -4,18 +4,19 @@
 #include <QStyleOptionGraphicsItem>
 #include <QPainter>
 
-QGPUZone::QGPUZone(const QString &name, float begin, float duration, const QColor &color)
+QGPUZone::QGPUZone(const QString &name, float begin, float duration, uint32_t frame, const QColor &color)
 {
     this->name = name;
     this->begin = begin;
     this->duration = duration;
+    this->frame = frame;
     this->color = color;
-    setZValue(0.0);
+    setZValue(1.0);
 
     setFlags(ItemIsSelectable);
     setAcceptHoverEvents(true);
 
-    QString tooltip = QString("%1: %2 us").arg(name).arg(duration);
+    QString tooltip = getDescription();
     setToolTip(tooltip);
 }
 

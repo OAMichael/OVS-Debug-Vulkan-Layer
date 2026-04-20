@@ -10,6 +10,7 @@
 #include <QItemSelectionModel>
 
 #include <gpuzone.h>
+#include <gpuframe.h>
 
 GPUProfilerWindow::GPUProfilerWindow(QWidget *parent)
     : QWidget(parent)
@@ -109,45 +110,82 @@ void GPUProfilerWindow::openFile(const QString &fname)
         return;
     }
 
-    const auto& firstFrame = frameInfos.front();
-    for (const auto& commandBufferInfo : firstFrame.commandBufferInfos) {
-        const auto& rootZone = commandBufferInfo.rootZone;
-        timestampMin = qMin(rootZone.begin, timestampMin);
-    }
-
-    const auto& lastFrame = frameInfos.back();
-    for (const auto& commandBufferInfo : lastFrame.commandBufferInfos) {
-        const auto& rootZone = commandBufferInfo.rootZone;
-        timestampMax = qMax(rootZone.end, timestampMax);
-    }
-
+    originTimestamp = gpuProfHeader.originTimestamp;
     timestampPeriod = gpuProfHeader.timestampPeriod;
 
+    int maxDepth = 0;
     for (const auto& frameInfo : frameInfos) {
         const auto& commandBufferInfos = frameInfo.commandBufferInfos;
         for (const auto& commandBufferInfo : commandBufferInfos) {
-            plotGPUZone(commandBufferInfo.rootZone, 0);
+            const auto& rootZone = commandBufferInfo.rootZone;
+            int depth = calculateGPUZoneDepth(rootZone);
+            maxDepth = qMax(maxDepth, depth);
         }
+    }
+
+    for (size_t i = 0; i < frameInfos.size(); ++i) {
+        const auto& frameInfo = frameInfos[i];
+
+        uint32_t frame = frameInfo.frame;
+        const auto& commandBufferInfos = frameInfo.commandBufferInfos;
+        for (const auto& commandBufferInfo : commandBufferInfos) {
+            plotGPUZone(commandBufferInfo.rootZone, frame, 0);
+        }
+
+        uint64_t frameBegin = originTimestamp;
+        uint64_t frameEnd = frameInfo.presentTimestamp;
+        if (i > 0) {
+            const auto& prevFrameInfo = frameInfos[i - 1];
+            frameBegin = prevFrameInfo.presentTimestamp;
+        }
+        plotGPUFrame(frame, frameBegin, frameEnd, maxDepth);
     }
 }
 
-void GPUProfilerWindow::plotGPUZone(const OVS::GPUZone& zone, int layer)
+int GPUProfilerWindow::calculateGPUZoneDepth(const OVS::GPUZone& zone)
 {
-    uint64_t zoneBeginU64 = zone.begin - timestampMin;
-    uint64_t zoneEndU64 = zone.end - timestampMin;
+    int maxChild = 0;
+    for (const auto& child : zone.children) {
+        int childDepth = calculateGPUZoneDepth(child);
+        maxChild = qMax(maxChild, childDepth);
+    }
+    return 1 + maxChild;
+}
+
+void GPUProfilerWindow::plotGPUZone(const OVS::GPUZone& zone, uint32_t frame, int depth)
+{
+    uint64_t zoneBeginU64 = zone.begin - originTimestamp;
+    uint64_t zoneEndU64 = zone.end - originTimestamp;
     uint64_t zoneDurU64 = zoneEndU64 - zoneBeginU64;
 
     float zoneBeginF = zoneBeginU64 * timestampPeriod / 1000.0f;
     float zoneDurF = zoneDurU64 * timestampPeriod / 1000.0f;
-
     QString zoneName(zone.name.c_str());
-    QGPUZone *qgpuzone = new QGPUZone(zoneName, zoneBeginF, zoneDurF, QColor(255, 0, 255));
-    qgpuzone->setPos(zoneBeginF, layer * QGPUZone::getHeightValue());
+    QGPUZone *qgpuzone = new QGPUZone(zoneName, zoneBeginF, zoneDurF, frame, QColor(255, 0, 255));
+    qgpuzone->setPos(zoneBeginF, depth * QGPUZone::getHeightValue());
     gpuZonesPlot->addItem(qgpuzone);
 
     for (const auto& child : zone.children) {
-        plotGPUZone(child, layer + 1);
+        plotGPUZone(child, frame, depth + 1);
     }
+}
+
+void GPUProfilerWindow::plotGPUFrame(uint32_t frame, uint64_t begin, uint64_t end, int maxDepth)
+{
+    if (begin == OVS::InvalidTimestamp || end == OVS::InvalidTimestamp) {
+        return;
+    }
+
+    uint64_t frameBeginU64 = begin - originTimestamp;
+    uint64_t frameEndU64 = end - originTimestamp;
+    uint64_t frameDurU64 = frameEndU64 - frameBeginU64;
+
+    float frameBeginF = frameBeginU64 * timestampPeriod / 1000.0f;
+    float frameDurF = frameDurU64 * timestampPeriod / 1000.0f;
+    float frameHeight = (1 + maxDepth) * QGPUZone::getHeightValue();
+    QGPUFrame *qgpuframe = new QGPUFrame(frameBeginF, frameDurF, frameHeight, frame, QColor(0, 0, 0, 31));
+    qgpuframe->setPos(frameBeginF, 0);
+    gpuZonesPlot->addItem(qgpuframe);
 }
 
 GPUProfilerStatusBar::GPUProfilerStatusBar(QWidget *parent)

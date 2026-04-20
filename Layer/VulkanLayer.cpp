@@ -36,6 +36,7 @@ void SerializeToStream(const GPUProfileInfo& info, WriteStream& stream) {
 
 void SerializeToStream(const GPUProfileFrameInfo& info, WriteStream& stream) {
     stream.Write(info.frame);
+    stream.Write(info.presentTimestamp);
 
     uint64_t commandBufferInfoSize = info.commandBufferInfos.size();
     stream.Write(commandBufferInfoSize);
@@ -102,6 +103,7 @@ void DeserializeFromStream(GPUProfileInfo& info, const ReadStream& stream) {
 
 void DeserializeFromStream(GPUProfileFrameInfo& info, const ReadStream& stream) {
     stream.Read(info.frame);
+    stream.Read(info.presentTimestamp);
 
     uint64_t commandBufferInfoSize = 0;
     stream.Read(commandBufferInfoSize);

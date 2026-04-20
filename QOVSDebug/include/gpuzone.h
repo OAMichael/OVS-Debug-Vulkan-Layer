@@ -8,7 +8,7 @@
 class QGPUZone : public QGraphicsItem
 {
 public:
-    QGPUZone(const QString &name, float begin, float duration, const QColor &color);
+    QGPUZone(const QString &name, float begin, float duration, uint32_t frame, const QColor &color);
 
     enum { Type = UserType + 1 };
 
@@ -20,7 +20,7 @@ public:
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *item, QWidget *widget) override;
 
     inline QString getDescription() const {
-        return QString("%1: %2 us").arg(name).arg(duration);
+        return QString("Frame %1: %2 - %3 us").arg(frame).arg(name).arg(duration);
     }
 
     static constexpr qreal getHeightValue() { return 40.0; }
@@ -34,6 +34,7 @@ private:
     QString name;
     float begin{0.0f};
     float duration{0.0f};
+    uint32_t frame{0};
     QColor color;
 };
 

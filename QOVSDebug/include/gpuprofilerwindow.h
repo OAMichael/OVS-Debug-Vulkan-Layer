@@ -35,7 +35,10 @@ private slots:
 
 private:
     void fileOpenError(const QString &error);
-    void plotGPUZone(const OVS::GPUZone& zone, int layer);
+
+    int calculateGPUZoneDepth(const OVS::GPUZone& zone);
+    void plotGPUZone(const OVS::GPUZone& zone, uint32_t frame, int depth);
+    void plotGPUFrame(uint32_t frame, uint64_t begin, uint64_t end, int maxDepth);
 
     Ui::GPUProfilerWindow *ui;
 
@@ -44,8 +47,7 @@ private:
     QGraphicsScene *gpuZonesPlot;
     GPUProfilerStatusBar *statusBar;
 
-    uint64_t timestampMin{UINT64_MAX};
-    uint64_t timestampMax{0};
+    uint64_t originTimestamp{0};
     float timestampPeriod{0.0f};
 };
 

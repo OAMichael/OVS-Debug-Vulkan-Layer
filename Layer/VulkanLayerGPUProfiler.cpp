@@ -48,35 +48,136 @@ VulkanLayerGPUProfiler::~VulkanLayerGPUProfiler()
         deviceInfo.DestroyQueryPools();
     }
 
+    SetupOriginTimestamp();
     StripProfileInfo();
     SaveProfileInfo();
+}
+
+VkResult VulkanLayerGPUProfiler::vkCreateInstance(const VkInstanceCreateInfo* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkInstance* pInstance)
+{
+    static std::unordered_map<const char*, uint32_t> sExtensionPromotionMap = {
+        {VK_KHR_GET_PHYSICAL_DEVICE_PROPERTIES_2_EXTENSION_NAME, VK_API_VERSION_1_1},
+    };
+
+    VkInstanceCreateInfo modifiedInfo = *pCreateInfo;
+
+    const char* const* extensionsBegin = modifiedInfo.ppEnabledExtensionNames;
+    const char* const* extensionsEnd = extensionsBegin + modifiedInfo.enabledExtensionCount;
+    std::vector<const char*> extensions(extensionsBegin, extensionsEnd);
+
+    uint32_t apiVersion = modifiedInfo.pApplicationInfo->apiVersion;
+
+    for (const auto& [extName, promotionVersion] : sExtensionPromotionMap) {
+        if (apiVersion >= promotionVersion) {
+            continue;
+        }
+
+        bool hasExtension = false;
+        for (const auto& extension : extensions) {
+            if (!std::strcmp(extension, extName)) {
+                hasExtension = true;
+                break;
+            }
+        }
+
+        if (!hasExtension) {
+            extensions.push_back(extName);
+        }
+    }
+
+    modifiedInfo.ppEnabledExtensionNames = extensions.data();
+    modifiedInfo.enabledExtensionCount = extensions.size();
+
+    VkResult res = next_->vkCreateInstance(&modifiedInfo, pAllocator, pInstance);
+    if (res != VK_SUCCESS) {
+        res = next_->vkCreateInstance(pCreateInfo, pAllocator, pInstance);
+    }
+    return res;
 }
 
 VkResult VulkanLayerGPUProfiler::vkCreateDevice(VkPhysicalDevice physicalDevice, const VkDeviceCreateInfo* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkDevice* pDevice)
 {
     std::lock_guard lock(mutex_);
 
-    VkResult res = next_->vkCreateDevice(physicalDevice, pCreateInfo, pAllocator, pDevice);
-    if (res == VK_SUCCESS) {
-        VkDevice device = *pDevice;
+    VkDeviceCreateInfo modifiedInfo = *pCreateInfo;
 
-        auto& next = *next_;
-        auto [deviceInfoIt, _] = deviceInfoMap_.emplace(device, std::ref(next));
+    const char* const* extensionsBegin = modifiedInfo.ppEnabledExtensionNames;
+    const char* const* extensionsEnd = extensionsBegin + modifiedInfo.enabledExtensionCount;
+    std::vector<const char*> extensions(extensionsBegin, extensionsEnd);
 
-        auto& deviceInfo = deviceInfoIt->second;
-        deviceInfo.device = device;
-        deviceInfo.physicalDevice = physicalDevice;
-
-        VkPhysicalDeviceProperties properties{};
-        next_->vkGetPhysicalDeviceProperties(physicalDevice, &properties);
-        timestampPeriod_ = properties.limits.timestampPeriod;
-
-        uint32_t queueFamilyPropertyCount = 0;
-        next_->vkGetPhysicalDeviceQueueFamilyProperties(physicalDevice, &queueFamilyPropertyCount, nullptr);
-
-        deviceInfo.queueFamilyProperties.resize(queueFamilyPropertyCount);
-        next_->vkGetPhysicalDeviceQueueFamilyProperties(physicalDevice, &queueFamilyPropertyCount, deviceInfo.queueFamilyProperties.data());
+    bool hasExtension = false;
+    for (const auto& extension : extensions) {
+        if (!std::strcmp(extension, VK_KHR_CALIBRATED_TIMESTAMPS_EXTENSION_NAME)) {
+            hasExtension = true;
+            break;
+        }
     }
+
+    if (!hasExtension) {
+        extensions.push_back(VK_KHR_CALIBRATED_TIMESTAMPS_EXTENSION_NAME);
+    }
+
+    modifiedInfo.ppEnabledExtensionNames = extensions.data();
+    modifiedInfo.enabledExtensionCount = extensions.size();
+
+    VkResult res = next_->vkCreateDevice(physicalDevice, &modifiedInfo, pAllocator, pDevice);
+    if (res != VK_SUCCESS) {
+        res = next_->vkCreateDevice(physicalDevice, pCreateInfo, pAllocator, pDevice);
+        if (res == VK_SUCCESS) {
+            std::cout << "GPUProfiler: Could not create device with \"" VK_KHR_CALIBRATED_TIMESTAMPS_EXTENSION_NAME "\" extension. Cannot use calibrated timestamps\n";
+        }
+        return res;
+    }
+
+    VkDevice device = *pDevice;
+
+    auto& next = *next_;
+    auto [deviceInfoIt, _] = deviceInfoMap_.emplace(device, std::ref(next));
+
+    auto& deviceInfo = deviceInfoIt->second;
+    deviceInfo.device = device;
+    deviceInfo.physicalDevice = physicalDevice;
+
+    VkPhysicalDeviceProperties properties{};
+    next_->vkGetPhysicalDeviceProperties(physicalDevice, &properties);
+    timestampPeriod_ = properties.limits.timestampPeriod;
+
+    uint32_t queueFamilyPropertyCount = 0;
+    next_->vkGetPhysicalDeviceQueueFamilyProperties(physicalDevice, &queueFamilyPropertyCount, nullptr);
+
+    deviceInfo.queueFamilyProperties.resize(queueFamilyPropertyCount);
+    next_->vkGetPhysicalDeviceQueueFamilyProperties(physicalDevice, &queueFamilyPropertyCount, deviceInfo.queueFamilyProperties.data());
+
+    bool hasRequiredTimeDomain = false;
+
+    uint32_t timeDomainCount = 0;
+    VkResult timeDomainRes = next_->vkGetPhysicalDeviceCalibrateableTimeDomainsKHR(physicalDevice, &timeDomainCount, nullptr);
+    if (timeDomainRes == VK_SUCCESS) {
+        std::vector<VkTimeDomainKHR> timeDomains(timeDomainCount);
+        timeDomainRes = next_->vkGetPhysicalDeviceCalibrateableTimeDomainsKHR(physicalDevice, &timeDomainCount, timeDomains.data());
+        if (timeDomainRes == VK_SUCCESS) {
+            for (const auto& timeDomain : timeDomains) {
+                if (timeDomain == GetRequiredTimeDomain()) {
+                    hasRequiredTimeDomain = true;
+                    break;
+                }
+            }
+        }
+    }
+
+    LARGE_INTEGER perfFrequency;
+    if (hasRequiredTimeDomain && ::QueryPerformanceFrequency(&perfFrequency)) {
+        if (CalibrateTimestamps(device)) {
+            hasCalibratedTimestamps_ = true;
+            originTimestamp_ = calibratedTimestamp_;
+            perfFrequency_ = perfFrequency.QuadPart;
+        }
+    }
+
+    if (!hasCalibratedTimestamps_) {
+        std::cout << "GPUProfiler: Could not get calibrated timestamps\n";
+    }
+
     return res;
 }
 
@@ -525,10 +626,47 @@ VkResult VulkanLayerGPUProfiler::vkQueuePresentKHR(VkQueue queue, const VkPresen
 {
     VkResult res = next_->vkQueuePresentKHR(queue, pPresentInfo);
     if (res == VK_SUCCESS) {
+        if (hasCalibratedTimestamps_) {
+            LARGE_INTEGER perfCounter;
+            if (::QueryPerformanceCounter(&perfCounter)) {
+                auto& frameInfo = profileInfo_.frameInfos.back();
+                float elapsedSec = float(perfCounter.QuadPart - calibratedPerfCounter_) / float(perfFrequency_);
+                float elapsedNSec = elapsedSec * 1e9;
+                frameInfo.presentTimestamp = (calibratedTimestamp_ + uint64_t(elapsedNSec / timestampPeriod_));
+            }
+
+            VkDevice device = GetDeviceByQueue(queue);
+            CalibrateTimestamps(device);
+        }
+
         profileInfo_.frameInfos.emplace_back();
         ++currentFrame_;
     }
     return res;
+}
+
+bool VulkanLayerGPUProfiler::CalibrateTimestamps(VkDevice device)
+{
+    VkCalibratedTimestampInfoKHR ctsi[2];
+
+    ctsi[0].sType = VK_STRUCTURE_TYPE_CALIBRATED_TIMESTAMP_INFO_KHR;
+    ctsi[0].pNext = nullptr;
+    ctsi[0].timeDomain = VK_TIME_DOMAIN_DEVICE_KHR;
+
+    ctsi[1].sType = VK_STRUCTURE_TYPE_CALIBRATED_TIMESTAMP_INFO_KHR;
+    ctsi[1].pNext = nullptr;
+    ctsi[1].timeDomain = GetRequiredTimeDomain();
+
+    uint64_t timestamps[2];
+    uint64_t maxDeviation = 0;
+    VkResult res = next_->vkGetCalibratedTimestampsKHR(device, 2, ctsi, timestamps, &maxDeviation);
+    if (res != VK_SUCCESS) {
+        return false;
+    }
+
+    calibratedTimestamp_ = timestamps[0];
+    calibratedPerfCounter_ = timestamps[1];
+    return true;
 }
 
 bool VulkanLayerGPUProfiler::CollectCommandBufferInfo(const CommandBufferInfo& commandBufferInfo)
@@ -571,6 +709,8 @@ bool VulkanLayerGPUProfiler::CollectCommandBufferInfo(const CommandBufferInfo& c
     auto& profileRootZone = profileCommandBufferInfo.rootZone;
     ConvertGPUZones(queryResults, rawRootZone, profileRootZone);
 
+    profileFrameInfo.presentTimestamp = std::max<uint64_t>(profileFrameInfo.presentTimestamp, profileRootZone.end);
+
     return true;
 }
 
@@ -590,6 +730,21 @@ void VulkanLayerGPUProfiler::ConvertGPUZones(const std::vector<uint64_t>& queryR
         auto& profileChild = profileChildren[i];
         ConvertGPUZones(queryResults, rawChild, profileChild);
     }
+}
+
+void VulkanLayerGPUProfiler::SetupOriginTimestamp()
+{
+    if (hasCalibratedTimestamps_ || profileInfo_.frameInfos.empty()) {
+        return;
+    }
+
+    uint64_t minTimestamp = UINT64_MAX;
+    const auto& firstFrameInfo = profileInfo_.frameInfos.front();
+    for (const auto& commandBufferInfo : firstFrameInfo.commandBufferInfos) {
+        uint64_t ts = commandBufferInfo.rootZone.begin;
+        minTimestamp = std::min<uint64_t>(minTimestamp, ts);
+    }
+    originTimestamp_ = minTimestamp;
 }
 
 void VulkanLayerGPUProfiler::StripProfileInfo()
@@ -624,6 +779,7 @@ bool VulkanLayerGPUProfiler::SaveProfileInfo() const
 
     GPUProfilerFileHeader gpuProfHeader{};
     gpuProfHeader.byteSize = data.size();
+    gpuProfHeader.originTimestamp = originTimestamp_;
     gpuProfHeader.timestampPeriod = timestampPeriod_;
     std::fwrite(&gpuProfHeader, sizeof(GPUProfilerFileHeader), 1, perfFile);
 

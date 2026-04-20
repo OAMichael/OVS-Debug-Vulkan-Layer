@@ -15,6 +15,8 @@ namespace OVS {
 
 class VulkanLayerGPUProfiler : public VulkanLayerPassThrough {
 public:
+    virtual VkResult vkCreateInstance(const VkInstanceCreateInfo* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkInstance* pInstance) override;
+
     virtual VkResult vkCreateDevice(VkPhysicalDevice physicalDevice, const VkDeviceCreateInfo* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkDevice* pDevice) override;
     virtual void vkDestroyDevice(VkDevice device, const VkAllocationCallbacks* pAllocator) override;
 
@@ -158,9 +160,21 @@ private:
         return &(commandBufferInfoIt->second);
     }
 
+    inline VkDevice GetDeviceByQueue(VkQueue queue) const {
+        auto it = queueToDeviceMap_.find(queue);
+        if (it == queueToDeviceMap_.end()) {
+            return VK_NULL_HANDLE;
+        }
+        return it->second;
+    }
+
+    static inline constexpr VkTimeDomainKHR GetRequiredTimeDomain() { return VK_TIME_DOMAIN_QUERY_PERFORMANCE_COUNTER_KHR; }
+
+    bool CalibrateTimestamps(VkDevice device);
     bool CollectCommandBufferInfo(const CommandBufferInfo& commandBufferInfo);
     void ConvertGPUZones(const std::vector<uint64_t>& queryResults, const GPUZoneInfo& rawZone, GPUZone& profileZone);
 
+    void SetupOriginTimestamp();
     void StripProfileInfo();
     bool SaveProfileInfo() const;
 
@@ -173,7 +187,14 @@ private:
     std::mutex mutex_;
 
     uint32_t currentFrame_{1};
+
+    bool hasCalibratedTimestamps_{false};
+    uint64_t originTimestamp_{InvalidTimestamp};
     float timestampPeriod_{0.0f};
+
+    uint64_t calibratedTimestamp_{0};
+    uint64_t calibratedPerfCounter_{0};
+    uint64_t perfFrequency_{0};
 
     GPUProfileInfo profileInfo_;
 };
