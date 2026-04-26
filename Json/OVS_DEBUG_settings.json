@@ -1,10 +1,9 @@
 {
     "Layers": [
         {
-            "Type": "GPUProfiler",
+            "Type": "ShaderProfiler",
             "Settings": {
-                "Filename": "DebugUtilsGPUProfiler.ovs",
-                "UseZoneBarriers": false
+                "Filename": "ComputeClothShaderProfiler.ovs"
             }
         },
         {
