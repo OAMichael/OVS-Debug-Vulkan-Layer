@@ -5,6 +5,8 @@
 
 #include <iostream>
 #include <vector>
+#include <string>
+#include <unordered_map>
 
 namespace spvtools::opt {
 class Module;
@@ -85,6 +87,31 @@ constexpr static inline const char* GetVulkanPipelineBindPointName(VkPipelineBin
 void PrintSPIRV(const uint32_t* pCode, uint32_t codeSize, std::ostream& out);
 void PrintSPIRV(const std::vector<uint32_t>& code, std::ostream& out);
 void PrintSPIRV(const spvtools::opt::Module& m, std::ostream& out);
+
+
+struct SPIRVDebugInfo {
+    std::string filename;
+    std::string source;
+    std::unordered_map<uint32_t, size_t> instLines;
+};
+
+struct SPIRVProfileInfo {
+    SPIRVDebugInfo debugInfo{};
+
+    uint64_t totalFuncExecuted{0};
+    uint64_t totalBBExecuted{0};
+    uint64_t totalInstExecuted{0};
+
+    std::unordered_map<uint32_t, uint64_t> funcExecuted;
+    std::unordered_map<uint32_t, uint64_t> bbExecuted;
+    std::unordered_map<uint32_t, uint64_t> instExecuted;
+
+    std::unordered_map<size_t, uint64_t> linesExecuted;
+};
+
+bool ParseSPIRVDebugInfo(const spvtools::opt::Module& m, SPIRVDebugInfo& spvDebugInfoOut);
+bool SetupSPIRVProfileInfo(const spvtools::opt::Module& m, const std::vector<uint64_t>& profileData, SPIRVProfileInfo& spvProfileInfoOut);
+void ComputeLinesExecuted(const spvtools::opt::Module& m, SPIRVProfileInfo& spvProfileInfo);
 
 } // namespace OVS
 

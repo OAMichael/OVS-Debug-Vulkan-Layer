@@ -142,6 +142,8 @@ set(OVS_DEBUG_SOURCES
     ${UTILS_DIR}/Macros.h
     ${UTILS_DIR}/Vulkan.h
     ${UTILS_DIR}/VulkanPlatform.h
+    ${UTILS_DIR}/VulkanShader.h
+    ${UTILS_DIR}/VulkanShader.cpp
     ${UTILS_DIR}/VulkanUtils.h
     ${UTILS_DIR}/CommonUtils.h
     ${UTILS_DIR}/PlatformUtils.cpp

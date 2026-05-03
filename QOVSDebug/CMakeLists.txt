@@ -23,6 +23,8 @@ set(UI_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include)
 set(UI_SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
 set(UI_UI_DIR ${CMAKE_CURRENT_SOURCE_DIR}/ui)
 
+add_subdirectory(${OVS_EXTERNAL_DIR}/SPIRV-Tools ${CMAKE_BINARY_DIR}/External/SPIRV-Tools)
+
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOUIC_SEARCH_PATHS ${UI_UI_DIR})
 
@@ -31,6 +33,11 @@ set(OVS_INCLUDE_DIRECTORIES
     ${OVS_GENERATED_DIR}
     ${OVS_UTILS_DIR}
     ${OVS_EXTERNAL_DIR}/Vulkan-Headers/include
+    ${OVS_EXTERNAL_DIR}/SPIRV-Tools
+    ${OVS_EXTERNAL_DIR}/SPIRV-Tools/include
+    ${OVS_EXTERNAL_DIR}/SPIRV-Tools/source
+    ${OVS_EXTERNAL_DIR}/SPIRV-Tools/external/spirv-headers/include
+    ${CMAKE_BINARY_DIR}/External/SPIRV-Tools
 )
 
 set(PROJECT_SOURCES
@@ -38,6 +45,7 @@ set(PROJECT_SOURCES
         ${UI_SRC_DIR}/mainwindow.cpp
         ${UI_SRC_DIR}/apitracewindow.cpp
         ${UI_SRC_DIR}/gpuprofilerwindow.cpp
+        ${UI_SRC_DIR}/shaderprofilerwindow.cpp
         ${UI_SRC_DIR}/gpuzone.cpp
         ${UI_SRC_DIR}/gpuframe.cpp
         ${UI_SRC_DIR}/timelineview.cpp
@@ -46,6 +54,7 @@ set(PROJECT_SOURCES
         ${UI_INCLUDE_DIR}/mainwindow.h
         ${UI_INCLUDE_DIR}/apitracewindow.h
         ${UI_INCLUDE_DIR}/gpuprofilerwindow.h
+        ${UI_INCLUDE_DIR}/shaderprofilerwindow.h
         ${UI_INCLUDE_DIR}/gpuzone.h
         ${UI_INCLUDE_DIR}/gpuframe.h
         ${UI_INCLUDE_DIR}/timelineview.h
@@ -54,6 +63,7 @@ set(PROJECT_SOURCES
         ${UI_UI_DIR}/mainwindow.ui
         ${UI_UI_DIR}/apitracewindow.ui
         ${UI_UI_DIR}/gpuprofilerwindow.ui
+        ${UI_UI_DIR}/shaderprofilerwindow.ui
 )
 
 set(OVS_SOURCES
@@ -81,6 +91,8 @@ set(OVS_SOURCES
     ${OVS_UTILS_DIR}/Macros.h
     ${OVS_UTILS_DIR}/Vulkan.h
     ${OVS_UTILS_DIR}/VulkanPlatform.h
+    ${OVS_UTILS_DIR}/VulkanShader.h
+    ${OVS_UTILS_DIR}/VulkanShader.cpp
     ${OVS_UTILS_DIR}/VulkanUtils.h
     ${OVS_UTILS_DIR}/CommonUtils.h
     ${OVS_UTILS_DIR}/PlatformUtils.cpp
@@ -116,6 +128,7 @@ endif()
 target_include_directories(MainOVS PRIVATE ${OVS_INCLUDE_DIRECTORIES} ${UI_INCLUDE_DIR})
 target_compile_options(MainOVS PRIVATE -Wa,-mbig-obj)
 target_link_libraries(MainOVS PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(MainOVS PRIVATE SPIRV-Tools SPIRV-Tools-opt)
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an

@@ -1,5 +1,6 @@
 #include <ShaderProfiler.h>
 #include <VulkanLayer.h>
+#include <VulkanShader.h>
 
 #include <spirv-tools/libspirv.hpp>
 #include <opt/build_module.h>
@@ -7,209 +8,11 @@
 
 #include <sstream>
 #include <iostream>
-#include <optional>
 #include <ranges>
 
-constexpr uint32_t OpLineOperandLineIndex = 1;
-
-struct SPIRVDebugInfo {
-    std::string filename;
-    std::string source;
-    std::unordered_map<uint32_t, size_t> instLines;
-};
-
-struct SPIRVProfileInfo {
-    SPIRVDebugInfo debugInfo{};
-
-    uint64_t totalFuncExecuted{0};
-    uint64_t totalBBExecuted{0};
-    uint64_t totalInstExecuted{0};
-
-    std::unordered_map<uint32_t, uint64_t> funcExecuted;
-    std::unordered_map<uint32_t, uint64_t> bbExecuted;
-    std::unordered_map<uint32_t, uint64_t> instExecuted;
-
-    std::unordered_map<size_t, uint64_t> linesExecuted;
-};
-
 static void SPIRVErrorHandler(spv_message_level_t, const char*, const spv_position_t&, const char* m) {
-    std::cout << "SPIRV: " << m << '\n';
+    std::cout << "Print SPIRV: " << m << '\n';
 };
-
-void ReplaceInString(std::string& str, const std::string& search, const std::string& replace) {
-    size_t pos = 0;
-    while ((pos = str.find(search, pos)) != std::string::npos) {
-         str.replace(pos, search.length(), replace);
-         pos += replace.length();
-    }
-}
-
-std::optional<size_t> GetInstructionLine(const spvtools::opt::Instruction& inst) {
-    const auto& dbgLineInsts = inst.dbg_line_insts();
-    for (const auto& dbgLineInst : dbgLineInsts | std::views::reverse) {
-        switch (dbgLineInst.opcode()) {
-            case spv::Op::OpLine: {
-                size_t instLine = dbgLineInst.GetSingleWordOperand(OpLineOperandLineIndex);
-                return instLine;
-            }
-            case spv::Op::OpNoLine: {
-                return std::nullopt;
-            }
-            default: {
-                break;
-            }
-        }
-    }
-    return std::nullopt;
-}
-
-bool ParseSPIRVDebugInfo(const spvtools::opt::Module& m, SPIRVDebugInfo& spvDebugInfoOut) {
-    SPIRVDebugInfo debugInfo;
-
-    std::unordered_map<uint32_t, std::string> stringMap;
-    for (const auto& inst : m.debugs1()) {
-        switch (inst.opcode()) {
-            case spv::Op::OpString: {
-                if (inst.NumOperands() == 2) {
-                    const auto& operand = inst.GetOperand(1);
-                    uint32_t resultId = inst.result_id();
-                    std::string str = operand.AsString();
-                    stringMap[resultId] = std::move(str);
-                }
-                break;
-            }
-            case spv::Op::OpSource: {
-                if (inst.NumOperands() == 4) {
-                    const auto& operandFileId = inst.GetOperand(2);
-                    const auto& operandSource = inst.GetOperand(3);
-
-                    uint32_t fileId = operandFileId.AsId();
-                    auto stringIt = stringMap.find(fileId);
-                    if (stringIt != stringMap.end()) {
-                        const auto& filename = stringIt->second;
-                        debugInfo.filename = filename;
-                    }
-
-                    std::string source = operandSource.AsString();
-
-                    const char lineString[] = "#line 1";
-                    auto pos = source.find(lineString);
-                    if (pos != std::string::npos) {
-                        source = source.substr(pos + sizeof(lineString));
-                    }
-
-                    debugInfo.source = std::move(source);
-                }
-                break;
-            }
-            case spv::Op::OpSourceContinued: {
-                if (inst.NumOperands() == 1) {
-                    const auto& operandSource = inst.GetOperand(0);
-
-                    std::string sourceContinued = operandSource.AsString();
-                    debugInfo.source.append(sourceContinued);
-                }
-                break;
-            }
-            default: {
-                break;
-            }
-        }
-    }
-
-    ReplaceInString(debugInfo.source, "\t", "    ");
-
-    const spvtools::opt::Instruction* pPrevInstWithLine = nullptr;
-    std::vector<const spvtools::opt::Instruction*> phiInsts;
-    m.ForEachInst([&debugInfo, &pPrevInstWithLine, &phiInsts](const spvtools::opt::Instruction* pInst) {
-        const auto& inst = *pInst;
-        auto instLine = GetInstructionLine(inst);
-        if (instLine) {
-            debugInfo.instLines[inst.unique_id()] = instLine.value();
-            pPrevInstWithLine = pInst;
-        }
-        else if (inst.IsBlockTerminator() && pPrevInstWithLine) {
-            auto instLineIt = debugInfo.instLines.find(pPrevInstWithLine->unique_id());
-            if (instLineIt != debugInfo.instLines.end()) {
-                debugInfo.instLines[inst.unique_id()] = instLineIt->second;
-                pPrevInstWithLine = pInst;
-            }
-        }
-        else if (inst.opcode() == spv::Op::OpPhi) {
-            phiInsts.emplace_back(pInst);
-        }
-    });
-
-    for (const auto* phiInst : phiInsts) {
-        if (debugInfo.instLines.contains(phiInst->unique_id())) {
-            continue;
-        }
-
-        const auto* nextInst = phiInst->NextNode();
-        auto instLineIt = debugInfo.instLines.find(nextInst->unique_id());
-        if (instLineIt != debugInfo.instLines.end()) {
-            debugInfo.instLines[phiInst->unique_id()] = instLineIt->second;
-        }
-    }
-
-    spvDebugInfoOut = std::move(debugInfo);
-    return !spvDebugInfoOut.source.empty();
-}
-
-bool SetupSPIRVProfileInfo(const spvtools::opt::Module& m, const std::vector<uint64_t>& profileData, SPIRVProfileInfo& spvProfileInfoOut) {
-    SPIRVProfileInfo profileInfo;
-
-    auto& funcExecuted = profileInfo.funcExecuted;
-    auto& bbExecuted = profileInfo.bbExecuted;
-    auto& instExecuted = profileInfo.instExecuted;
-
-    size_t bbIdx = 0;
-    for (const auto& f : m) {
-        for (const auto& bb : f) {
-            bbExecuted[bb.id()] = profileData[bbIdx++];
-        }
-    }
-
-    for (const auto& f : m) {
-        const auto& entry = f.entry();
-        uint64_t currFuncExecuted = bbExecuted[entry->id()];
-        funcExecuted[f.result_id()] = currFuncExecuted;
-        profileInfo.totalFuncExecuted += currFuncExecuted;
-
-        for (const auto& bb : f) {
-            uint64_t currBBExecuted = bbExecuted[bb.id()];
-            profileInfo.totalBBExecuted += currBBExecuted;
-
-            for (const auto& inst : bb) {
-                instExecuted[inst.unique_id()] = currBBExecuted;
-                profileInfo.totalInstExecuted += currBBExecuted;
-            }
-        }
-    }
-
-    spvProfileInfoOut = std::move(profileInfo);
-    return true;
-}
-
-void ComputeLinesExecuted(const spvtools::opt::Module& m, SPIRVProfileInfo& spvProfileInfo) {
-    auto& instLines = spvProfileInfo.debugInfo.instLines;
-    auto& instExecuted = spvProfileInfo.instExecuted;
-    auto& linesExecuted = spvProfileInfo.linesExecuted;
-    for (const auto& f : m) {
-        for (const auto& bb : f) {
-            for (const auto& inst : bb) {
-                uint32_t id = inst.unique_id();
-                auto instLineIt = instLines.find(id);
-                if (instLineIt == instLines.end()) {
-                    continue;
-                }
-
-                size_t instLine = instLineIt->second;
-                linesExecuted[instLine] += instExecuted[id];
-            }
-        }
-    }
-}
 
 bool HandleShaderProfilerLayer(std::FILE* inputFile, std::FILE* outputFile) {
     OVS::ShaderProfilerFileHeader shaderProfHeader{};
@@ -257,11 +60,11 @@ bool HandleShaderProfilerLayer(std::FILE* inputFile, std::FILE* outputFile) {
 
             auto& m = *context->module();
 
-            SPIRVProfileInfo spvProfileInfo;
-            SetupSPIRVProfileInfo(m, profileData, spvProfileInfo);
+            OVS::SPIRVProfileInfo spvProfileInfo;
+            OVS::SetupSPIRVProfileInfo(m, profileData, spvProfileInfo);
 
-            if (ParseSPIRVDebugInfo(m, spvProfileInfo.debugInfo)) {
-                ComputeLinesExecuted(m, spvProfileInfo);
+            if (OVS::ParseSPIRVDebugInfo(m, spvProfileInfo.debugInfo)) {
+                OVS::ComputeLinesExecuted(m, spvProfileInfo);
 
                 const auto& source = spvProfileInfo.debugInfo.source;
                 auto lines = source | std::views::split('\n');

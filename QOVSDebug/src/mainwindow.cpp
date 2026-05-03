@@ -3,6 +3,7 @@
 
 #include <apitracewindow.h>
 #include <gpuprofilerwindow.h>
+#include <shaderprofilerwindow.h>
 
 #include <QListView>
 #include <QStringList>
@@ -116,6 +117,11 @@ void MainWindow::openFile()
             break;
         }
         case OVS::VulkanLayerType::ShaderProfiler: {
+            ShaderProfilerWindow *shaderprofilerwindow = new ShaderProfilerWindow(this);
+            shaderprofilerwindow->openFile(fileName);
+            statusBarWidget = shaderprofilerwindow->getStatusBarWidget();
+            window = shaderprofilerwindow;
+            layerIconPath = ":/Images/ShaderProfilerLogo.png";
             break;
         }
         default: {

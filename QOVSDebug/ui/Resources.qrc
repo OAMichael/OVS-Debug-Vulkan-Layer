@@ -8,5 +8,6 @@
         <file>APITraceLogo.png</file>
         <file>OVSLogo.jpg</file>
         <file>GPUProfilerLogo.png</file>
+        <file>ShaderProfilerLogo.png</file>
     </qresource>
 </RCC>
